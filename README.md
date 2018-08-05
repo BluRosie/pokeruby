@@ -1,15 +1,22 @@
 # Pokémon Ruby and Sapphire [![Build Status][travis-badge]][travis]
 
-This is a disassembly of Pokémon Ruby and Sapphire.
+This is a disassembly of Pokémon Ruby and Sapphire with various edits to show off just what is all super easily done with a disassembly.
 
-It builds the following roms:
+Current implemented features:
+* a ton of decapitalization
+* gen vi exp. share, toggleable from the bag and everything
+* poison fades after reaching 1 hp in the overworld
 
-* pokeruby.gba `sha1: f28b6ffc97847e94a6c21a63cacf633ee5c8df1e`
-* pokesapphire.gba `sha1: 3ccbbd45f8553c36463f13b938e833f652b793e4`
+In progress:
+* ball expansion
+
+It builds the following rom:
+
+* pokeruby.gba
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
-## See also
+## See also, done by the pret team
 
 * Disassembly of [**Pokémon Red/Blue**][pokered]
 * Disassembly of [**Pokémon Yellow**][pokeyellow]
