@@ -9,8 +9,8 @@ UnknownString_81C6CA6: @ 81C6CA6
 
 gSaveText_DontTurnOff:: @ 81C6CE1
 BattleTower_BattleRoom_Text_1C6CE1:: @ 81C6CE1
-	.string "SAVING...\n"
-	.string "DON’T TURN OFF THE POWER.$"
+	.string "Saving...\n"
+	.string "Don’t turn off the power.$"
 
 gSaveText_PlayerSavedTheGame:: @ 81C6D05
 BattleTower_BattleRoom_Text_1C6D05:: @ 81C6D05

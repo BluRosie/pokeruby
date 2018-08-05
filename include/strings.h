@@ -221,6 +221,8 @@ extern const u8 gOtherText_RepelLingers[];
 extern const u8 gOtherText_UsedFlute[];
 extern const u8 gOtherText_UsedRepel[];
 extern const u8 gOtherText_BoxIsFull[];
+extern const u8 gOtherText_ExpShareOn[];
+extern const u8 gOtherText_ExpShareOff[];
 extern const u8 gOtherText_Size[];
 extern const u8 gOtherText_Firm[];
 

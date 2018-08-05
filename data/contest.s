@@ -364,8 +364,8 @@ gUnknown_083CC5D0:: @ 83CC5D0
 	.2byte SPECIES_TAILLOW
 	.byte CONTEST_SMART
 .ifdef ENGLISH
-	.string "TAILTA$", 11
-	.string "WYATT$", 10
+	.string "Tailta$", 11
+	.string "Wyatt$", 10
 .else
 	.string "SCHWALBI$", 11
 	.string "ROSEL$", 10
@@ -376,8 +376,8 @@ gUnknown_083CC5D0:: @ 83CC5D0
 	.2byte SPECIES_BRELOOM
 	.byte CONTEST_BEAUTY
 .ifdef ENGLISH
-	.string "BRELO$", 11
-	.string "LIANA$", 10
+	.string "Brelo$", 11
+	.string "Liana$", 10
 .else
 	.string "TUFUNG$", 11
 	.string "WITOLD$", 10
@@ -388,8 +388,8 @@ gUnknown_083CC5D0:: @ 83CC5D0
 	.2byte SPECIES_PELIPPER
 	.byte CONTEST_COOL
 .ifdef ENGLISH
-	.string "PELEP$", 11
-	.string "TIERA$", 10
+	.string "Pelep$", 11
+	.string "Tiera$", 10
 .else
 	.string "LIPPER$", 11
 	.string "RUFUS$", 10
@@ -400,8 +400,8 @@ gUnknown_083CC5D0:: @ 83CC5D0
 	.2byte SPECIES_PELIPPER
 	.byte CONTEST_COOL
 .ifdef ENGLISH
-	.string "PELEP$", 11
-	.string "TIERA$", 10
+	.string "Pelep$", 11
+	.string "Tiera$", 10
 .else
 	.string "LIPPER$", 11
 	.string "ELLEN$", 10
@@ -412,8 +412,8 @@ gUnknown_083CC5D0:: @ 83CC5D0
 	.2byte SPECIES_PELIPPER
 	.byte CONTEST_COOL
 .ifdef ENGLISH
-	.string "PELEP$", 11
-	.string "TIERA$", 10
+	.string "Pelep$", 11
+	.string "Tiera$", 10
 .else
 	.string "LIPPER$", 11
 	.string "AVIA$", 10
@@ -424,8 +424,8 @@ gUnknown_083CC5D0:: @ 83CC5D0
 	.2byte SPECIES_DELCATTY
 	.byte CONTEST_SMART
 .ifdef ENGLISH
-	.string "KITSY$", 11
-	.string "OMAR$", 10
+	.string "Kitsy$", 11
+	.string "Omar$", 10
 .else
 	.string "CONEC$", 11
 	.string "HAUBERT$", 10
@@ -436,8 +436,8 @@ gUnknown_083CC5D0:: @ 83CC5D0
 	.2byte SPECIES_GULPIN
 	.byte CONTEST_CUTE
 .ifdef ENGLISH
-	.string "GULPS$", 11
-	.string "MACIE$", 10
+	.string "Gulps$", 11
+	.string "Macie$", 10
 .else
 	.string "SCHLUCKI$", 11
 	.string "HEILWIG$", 10
@@ -448,8 +448,8 @@ gUnknown_083CC5D0:: @ 83CC5D0
 	.2byte SPECIES_LOUDRED
 	.byte CONTEST_TOUGH
 .ifdef ENGLISH
-	.string "LOUDED$", 11
-	.string "BRYANT$", 10
+	.string "Louded$", 11
+	.string "Bryant$", 10
 .else
 	.string "KEELO$", 11
 	.string "ISEGRIM$", 10

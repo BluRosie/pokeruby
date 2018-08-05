@@ -8,10 +8,10 @@ const u8 Category_BattleSystemProgrammer[] = _("{PALETTE 9}Battle System Program
 const u8 Category_FieldSystemProgrammer[] = _("{PALETTE 9}Field System Programmer");
 const u8 Category_Programmers[] = _("{PALETTE 9}Programmers");
 const u8 Category_MainGraphicDesigner[] = _("{PALETTE 9}Main Graphic Designer");
-const u8 Category_POKeMONGraphicDesigners[] = _("{PALETTE 9}POKéMON & Graphic Designers");
+const u8 Category_POKeMONGraphicDesigners[] = _("{PALETTE 9}Pokémon & Graphic Designers");
 const u8 Category_POKeMONDesigners[] = _("{PALETTE 9}POKéMON Designers");
 const u8 Category_MusicComposition[] = _("{PALETTE 9}Music Composition");
-const u8 Category_SoundEffectsPOKeMONVoices[] = _("{PALETTE 9}Sound Effects & POKéMON Voices");
+const u8 Category_SoundEffectsPOKeMONVoices[] = _("{PALETTE 9}Sound Effects & Pokémon Voices");
 const u8 Category_GameDesigners[] = _("{PALETTE 9}Game Designers");
 const u8 Category_PlotScenario[] = _("{PALETTE 9}Plot Scenario");
 const u8 Category_GameScenario[] = _("{PALETTE 9}Game Scenario");
@@ -135,9 +135,9 @@ const u8 Text_ABA[] = _("Australian Braille Authority");
 const u8 Text_RNZFotB[] = _("Royal New Zealand Federation for the Blind");
 const u8 Text_CreditsTerminator[] = _("");
 #ifdef SAPPHIRE
-const u8 Text_Version[] = _("{PALETTE 9}POKéMON SAPPHIRE VERSION"); 
+const u8 Text_Version[] = _("{PALETTE 9}Pokémon Sapphire Version"); 
 #else
-const u8 Text_Version[] = _("{PALETTE 9}POKéMON RUBY VERSION");
+const u8 Text_Version[] = _("{PALETTE 9}Pokémon Ruby Version");
 #endif
 
 const struct CreditsEntry CreditsTerminator[] = {0, Text_CreditsTerminator};

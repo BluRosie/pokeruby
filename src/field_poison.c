@@ -11,7 +11,8 @@
 #include "constants/species.h"
 
 extern u16 gSpecialVar_Result;
-extern u8 fieldPoisonText_PokemonFainted[];
+//extern u8 fieldPoisonText_PokemonFainted[];
+extern u8 fieldPoisonText_PokemonSurvived[];
 
 static bool32 IsMonValidSpecies(struct Pokemon *mon)
 {
@@ -23,7 +24,7 @@ static bool32 IsMonValidSpecies(struct Pokemon *mon)
         return TRUE;
 }
 
-static bool32 AllMonsFainted(void)
+static bool32 AllMonsFainted(void) // pretty sure this is entirely unnecessary now
 {
     int i;
     struct Pokemon *mon = gPlayerParty;
@@ -38,23 +39,23 @@ static bool32 AllMonsFainted(void)
     return TRUE;
 }
 
-static void FaintFromFieldPoison(u8 monIndex)
+static void FieldPoisonFade(u8 monIndex)
 {
     struct Pokemon *mon = &gPlayerParty[monIndex];
     u32 status = 0;
 
-    AdjustFriendship(mon, FRIENDSHIP_EVENT_FAINT_OUTSIDE_BATTLE);
+    //AdjustFriendship(mon, FRIENDSHIP_EVENT_FAINT_OUTSIDE_BATTLE);
     SetMonData(mon, MON_DATA_STATUS, &status);
     GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
     StringGetEnd10(gStringVar1);
 }
 
-static bool32 MonFaintedFromPoison(u8 monIndex)
+static bool32 MonSurvivedPoison(u8 monIndex)
 {
     struct Pokemon *mon = &gPlayerParty[monIndex];
 
     // UB: Too few arguments for function 'GetMonData'
-    if (IsMonValidSpecies(mon) && GetMonData(mon, MON_DATA_HP) == 0
+    if (IsMonValidSpecies(mon) && GetMonData(mon, MON_DATA_HP) == 1
      && GetPrimaryStatus(GetMonData(mon, MON_DATA_STATUS)) == STATUS_PRIMARY_POISON)
         return TRUE;
     else
@@ -74,11 +75,11 @@ static void Task_WhiteOut(u8 taskId)
         // Check if any Pokemon have fainted due to poison
         while (tPartyMember < PARTY_SIZE)
         {
-            if (MonFaintedFromPoison(tPartyMember))
+            if (MonSurvivedPoison(tPartyMember))
             {
-                // Show message about fainted mon
-                FaintFromFieldPoison(tPartyMember);
-                ShowFieldMessage(fieldPoisonText_PokemonFainted);
+                // Show message about surviving mon
+                FieldPoisonFade(tPartyMember);
+                ShowFieldMessage(fieldPoisonText_PokemonSurvived);
                 tState++;
                 return;
             }
@@ -114,7 +115,7 @@ s32 DoPoisonFieldEffect(void)
 {
     struct Pokemon *mon = &gPlayerParty[0];
     u32 numPoisoned = 0;
-    u32 numFainting = 0;
+    u32 numSurviving = 0;
     int i;
 
     // count the number of mons that are poisoned and fainting from poison,
@@ -128,18 +129,18 @@ s32 DoPoisonFieldEffect(void)
         {
             // decrement HP of poisoned mon
             hp = GetMonData(mon, MON_DATA_HP);
-            if (hp != 0)
+            if (hp != 1)
                 hp--;
-            if (hp == 0)
-                numFainting++;
+            if (hp == 1)
+                numSurviving++;
             SetMonData(mon, MON_DATA_HP, &hp);
             numPoisoned++;
         }
         mon++;
     }
-    if (numFainting != 0 || numPoisoned != 0)
+    if (numSurviving != 0 || numPoisoned != 0)
         FldeffPoison_Start();
-    if (numFainting != 0)
+    if (numSurviving != 0)
         return 2;
     if (numPoisoned != 0)
         return 1;

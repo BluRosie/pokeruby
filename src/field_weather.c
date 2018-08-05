@@ -470,6 +470,7 @@ static void FadeInScreenWithWeather(void)
     case WEATHER_RAIN_MED:
     case WEATHER_RAIN_HEAVY:
     case WEATHER_SNOW:
+	case WEATHER_ASH:
     case WEATHER_SHADE:
         if (FadeInScreen_RainShowShade() == FALSE)
         {
@@ -491,7 +492,6 @@ static void FadeInScreenWithWeather(void)
             gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
         }
         break;
-    case WEATHER_ASH:
     case WEATHER_SANDSTORM:
     case WEATHER_FOG_2:
     case WEATHER_FOG_3:

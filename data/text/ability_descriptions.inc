@@ -2,13 +2,13 @@ gAbilityDescription_None: @ 81F99CC
 	.string "No special ability.$"
 
 gAbilityDescription_Stench: @ 81F99E0
-	.string "Helps repel wild POKéMON.$"
+	.string "Helps repel wild Pokémon.$"
 
 gAbilityDescription_Drizzle: @ 81F99FA
 	.string "Summons rain in battle.$"
 
 gAbilityDescription_SpeedBoost: @ 81F9A12
-	.string "Gradually boosts SPEED.$"
+	.string "Gradually boosts Speed.$"
 
 gAbilityDescription_BattleArmor: @ 81F9A2A
 	.string "Blocks critical hits.$"
@@ -65,7 +65,7 @@ gAbilityDescription_SuctionCups: @ 81F9BB2
 	.string "Firmly anchors the body.$"
 
 gAbilityDescription_Intimidate: @ 81F9BCB
-	.string "Lowers the foe’s ATTACK.$"
+	.string "Lowers the foe’s Attack.$"
 
 gAbilityDescription_ShadowTag: @ 81F9BE4
 	.string "Prevents the foe’s escape.$"
@@ -77,7 +77,7 @@ gAbilityDescription_WonderGuard: @ 81F9C0F
 	.string "“Super effective” hits.$"
 
 gAbilityDescription_Levitate: @ 81F9C27
-	.string "Not hit by GROUND attacks.$"
+	.string "Not hit by Ground attacks.$"
 
 gAbilityDescription_EffectSpore: @ 81F9C42
 	.string "Leaves spores on contact.$"
@@ -98,10 +98,10 @@ gAbilityDescription_SereneGrace: @ 81F9CC5
 	.string "Promotes added effects.$"
 
 gAbilityDescription_SwiftSwim: @ 81F9CDD
-	.string "Raises SPEED in rain.$"
+	.string "Raises Speed in rain.$"
 
 gAbilityDescription_Chlorophyll: @ 81F9CF3
-	.string "Raises SPEED in sunshine.$"
+	.string "Raises Speed in sunshine.$"
 
 gAbilityDescription_Illuminate: @ 81F9D0D
 	.string "Encounter rate increases.$"
@@ -110,7 +110,7 @@ gAbilityDescription_Trace: @ 81F9D27
 	.string "Copies special ability.$"
 
 gAbilityDescription_HugePower: @ 81F9D3F
-	.string "Raises ATTACK.$"
+	.string "Raises Attack.$"
 
 gAbilityDescription_PoisonPoint: @ 81F9D4E
 	.string "Poisons foe on contact.$"
@@ -125,7 +125,7 @@ gAbilityDescription_WaterVeil: @ 81F9D8D
 	.string "Prevents burns.$"
 
 gAbilityDescription_MagnetPull: @ 81F9D9D
-	.string "Traps STEEL-type POKéMON.$"
+	.string "Traps STEEL-type Pokémon.$"
 
 gAbilityDescription_Soundproof: @ 81F9DB7
 	.string "Avoids sound-based moves.$"
@@ -155,7 +155,7 @@ gAbilityDescription_KeenEye: @ 81F9E80
 	.string "Prevents loss of accuracy.$"
 
 gAbilityDescription_HyperCutter: @ 81F9E9B
-	.string "Prevents ATTACK reduction.$"
+	.string "Prevents Attack reduction.$"
 
 gAbilityDescription_Pickup: @ 81F9EB6
 	.string "May pick up items.$"
@@ -170,10 +170,10 @@ gAbilityDescription_CuteCharm: @ 81F9F00
 	.string "Infatuates on contact.$"
 
 gAbilityDescription_Plus: @ 81F9F17
-	.string "Powers up with MINUS.$"
+	.string "Powers up with Minus.$"
 
 gAbilityDescription_Minus: @ 81F9F2D
-	.string "Powers up with PLUS.$"
+	.string "Powers up with Plus.$"
 
 gAbilityDescription_Forecast: @ 81F9F42
 	.string "Changes with the weather.$"
@@ -185,25 +185,25 @@ gAbilityDescription_ShedSkin: @ 81F9F71
 	.string "Heals the body by shedding.$"
 
 gAbilityDescription_Guts: @ 81F9F8D
-	.string "Ups ATTACK if suffering.$"
+	.string "Ups Attack if suffering.$"
 
 gAbilityDescription_MarvelScale: @ 81F9FA6
-	.string "Ups DEFENSE if suffering.$"
+	.string "Ups Defense if suffering.$"
 
 gAbilityDescription_LiquidOoze: @ 81F9FC0
 	.string "Draining causes injury.$"
 
 gAbilityDescription_Overgrow: @ 81F9FD8
-	.string "Ups GRASS moves in a pinch.$"
+	.string "Ups Grass moves in a pinch.$"
 
 gAbilityDescription_Blaze: @ 81F9FF4
-	.string "Ups FIRE moves in a pinch.$"
+	.string "Ups Fire moves in a pinch.$"
 
 gAbilityDescription_Torrent: @ 81FA00F
-	.string "Ups WATER moves in a pinch.$"
+	.string "Ups Water moves in a pinch.$"
 
 gAbilityDescription_Swarm: @ 81FA02B
-	.string "Ups BUG moves in a pinch.$"
+	.string "Ups Bug moves in a pinch.$"
 
 gAbilityDescription_RockHead: @ 81FA045
 	.string "Prevents recoil damage.$"
@@ -221,7 +221,7 @@ gAbilityDescription_WhiteSmoke: @ 81FA09B
 	.string "Prevents ability reduction.$"
 
 gAbilityDescription_PurePower: @ 81FA0B7
-	.string "Raises ATTACK.$"
+	.string "Raises Attack.$"
 
 gAbilityDescription_ShellArmor: @ 81FA0C6
 	.string "Blocks critical hits.$"

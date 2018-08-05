@@ -3,6 +3,32 @@
 #include "constants/battle_move_effects.h"
 #include "constants/moves.h"
 
+/*
+ *	there are some additional moves that need to be updated codewise:
+ *		move			updated effect
+ *
+ *		volt tackle		paralysis (10%) needs to be added
+ *		conversion 2	likely doesn't work in the desired manner (targeting, nuances)
+ *		tail glow		special attack increased by three stages
+ *		growth			needs to also boost attack and be affected by sunlight
+ *		knock off		needs to boost when the item is knocked, actually knock the item too
+ *		blizzard		hail accuracy
+ *		charge			also raises special defense
+ *		toxic			can't miss if used by a poison-type
+ *		taunt			three/four turn duration, oblivious/aroma veil failure
+ *		encore			3 turns, target selectable, will fail if previous move calls others
+ *		disable			4 turns
+ *		jump kick		half hp recoil
+ *		hi jump kick	half hp recoil
+ *		hidden power	base power 60
+ *		spite			4 pp always, no pp remaining is only failure
+ *		facade			burn's attack lowering no longer applies
+ *		minimize		double damage for body slam, stomp, accuracy check ignored
+ *		struggle		1/4 max hp recoil, more situations put it here
+ *		multitarget		diving target gets double damage, as well as divides damage?  i don't know honestly
+ *		a bunch of moves need longer names as well
+ */
+
 const struct BattleMove gBattleMoves[] = {
 
     [MOVE_NONE] = {
@@ -178,7 +204,7 @@ const struct BattleMove gBattleMoves[] = {
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
-        .pp = 30,
+        .pp = 20,
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
         .priority = 0,
@@ -225,17 +251,17 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_ROAR,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 100,
+        .accuracy = 0,
         .pp = 20,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = -6,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_FLY] = {
         .effect = EFFECT_FLY,
-        .power = 70,
+        .power = 90,
         .type = TYPE_FLYING,
         .accuracy = 95,
         .pp = 15,
@@ -249,7 +275,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_TRAP,
         .power = 15,
         .type = TYPE_NORMAL,
-        .accuracy = 75,
+        .accuracy = 85,
         .pp = 20,
         .secondaryEffectChance = 100,
         .target = TARGET_SELECTED_POKEMON,
@@ -271,10 +297,10 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_VINE_WHIP] = {
         .effect = EFFECT_HIT,
-        .power = 35,
+        .power = 45,
         .type = TYPE_GRASS,
         .accuracy = 100,
-        .pp = 10,
+        .pp = 25,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -319,10 +345,10 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_JUMP_KICK] = {
         .effect = EFFECT_RECOIL_IF_MISS,
-        .power = 70,
+        .power = 100,
         .type = TYPE_FIGHTING,
         .accuracy = 95,
-        .pp = 25,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -403,9 +429,9 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_TACKLE] = {
         .effect = EFFECT_HIT,
-        .power = 35,
+        .power = 40,
         .type = TYPE_NORMAL,
-        .accuracy = 95,
+        .accuracy = 100,
         .pp = 35,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -429,7 +455,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_TRAP,
         .power = 15,
         .type = TYPE_NORMAL,
-        .accuracy = 85,
+        .accuracy = 90,
         .pp = 20,
         .secondaryEffectChance = 100,
         .target = TARGET_SELECTED_POKEMON,
@@ -451,10 +477,10 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_THRASH] = {
         .effect = EFFECT_RAMPAGE,
-        .power = 90,
+        .power = 120,
         .type = TYPE_NORMAL,
         .accuracy = 100,
-        .pp = 20,
+        .pp = 10,
         .secondaryEffectChance = 100,
         .target = TARGET_RANDOM,
         .priority = 0,
@@ -503,7 +529,7 @@ const struct BattleMove gBattleMoves[] = {
         .type = TYPE_BUG,
         .accuracy = 100,
         .pp = 20,
-        .secondaryEffectChance = 20,
+        .secondaryEffectChance = 36,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
         .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
@@ -511,9 +537,9 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_PIN_MISSILE] = {
         .effect = EFFECT_MULTI_HIT,
-        .power = 14,
+        .power = 25,
         .type = TYPE_BUG,
-        .accuracy = 85,
+        .accuracy = 95,
         .pp = 20,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -561,12 +587,12 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_ROAR,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 100,
+        .accuracy = 0,
         .pp = 20,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = -6,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_SING] = {
@@ -609,16 +635,16 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_DISABLE,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 55,
+        .accuracy = 100,
         .pp = 20,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_ACID] = {
-        .effect = EFFECT_DEFENSE_DOWN_HIT,
+        .effect = EFFECT_SPECIAL_DEFENSE_DOWN_HIT,
         .power = 40,
         .type = TYPE_POISON,
         .accuracy = 100,
@@ -643,7 +669,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_FLAMETHROWER] = {
         .effect = EFFECT_BURN_HIT,
-        .power = 95,
+        .power = 90,
         .type = TYPE_FIRE,
         .accuracy = 100,
         .pp = 15,
@@ -679,7 +705,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_HYDRO_PUMP] = {
         .effect = EFFECT_HIT,
-        .power = 120,
+        .power = 110,
         .type = TYPE_WATER,
         .accuracy = 80,
         .pp = 5,
@@ -691,19 +717,19 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_SURF] = {
         .effect = EFFECT_HIT,
-        .power = 95,
+        .power = 90,
         .type = TYPE_WATER,
         .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 0,
-        .target = TARGET_BOTH_ENEMIES,
+        .target = TARGET_ALL_EXCEPT_USER,
         .priority = 0,
         .flags = F_AFFECTED_BY_KINGS_ROCK | F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_ICE_BEAM] = {
         .effect = EFFECT_FREEZE_HIT,
-        .power = 95,
+        .power = 90,
         .type = TYPE_ICE,
         .accuracy = 100,
         .pp = 10,
@@ -715,7 +741,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_BLIZZARD] = {
         .effect = EFFECT_FREEZE_HIT,
-        .power = 120,
+        .power = 110,
         .type = TYPE_ICE,
         .accuracy = 70,
         .pp = 5,
@@ -802,7 +828,7 @@ const struct BattleMove gBattleMoves[] = {
         .power = 80,
         .type = TYPE_FIGHTING,
         .accuracy = 80,
-        .pp = 25,
+        .pp = 20,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -830,7 +856,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_SPECIAL,
         .priority = -5,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_MAKES_CONTACT,
+        .flags = F_AFFECTED_BY_PROTECT | F_MAKES_CONTACT,
     },
 
     [MOVE_SEISMIC_TOSS] = {
@@ -862,7 +888,7 @@ const struct BattleMove gBattleMoves[] = {
         .power = 20,
         .type = TYPE_GRASS,
         .accuracy = 100,
-        .pp = 20,
+        .pp = 25,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -874,7 +900,7 @@ const struct BattleMove gBattleMoves[] = {
         .power = 40,
         .type = TYPE_GRASS,
         .accuracy = 100,
-        .pp = 10,
+        .pp = 15,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -898,7 +924,7 @@ const struct BattleMove gBattleMoves[] = {
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
-        .pp = 40,
+        .pp = 20,
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
         .priority = 0,
@@ -967,10 +993,10 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_PETAL_DANCE] = {
         .effect = EFFECT_RAMPAGE,
-        .power = 70,
+        .power = 120,
         .type = TYPE_GRASS,
         .accuracy = 100,
-        .pp = 20,
+        .pp = 10,
         .secondaryEffectChance = 100,
         .target = TARGET_RANDOM,
         .priority = 0,
@@ -1003,9 +1029,9 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_FIRE_SPIN] = {
         .effect = EFFECT_TRAP,
-        .power = 15,
+        .power = 35,
         .type = TYPE_FIRE,
-        .accuracy = 70,
+        .accuracy = 85,
         .pp = 15,
         .secondaryEffectChance = 100,
         .target = TARGET_SELECTED_POKEMON,
@@ -1027,7 +1053,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_THUNDERBOLT] = {
         .effect = EFFECT_PARALYZE_HIT,
-        .power = 95,
+        .power = 90,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
         .pp = 15,
@@ -1041,7 +1067,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_PARALYZE,
         .power = 0,
         .type = TYPE_ELECTRIC,
-        .accuracy = 100,
+        .accuracy = 90,
         .pp = 20,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -1051,7 +1077,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_THUNDER] = {
         .effect = EFFECT_THUNDER,
-        .power = 120,
+        .power = 110,
         .type = TYPE_ELECTRIC,
         .accuracy = 70,
         .pp = 10,
@@ -1099,7 +1125,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_DIG] = {
         .effect = EFFECT_FLY,
-        .power = 60,
+        .power = 80,
         .type = TYPE_GROUND,
         .accuracy = 100,
         .pp = 10,
@@ -1113,7 +1139,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_TOXIC,
         .power = 0,
         .type = TYPE_POISON,
-        .accuracy = 85,
+        .accuracy = 90,
         .pp = 10,
         .secondaryEffectChance = 100,
         .target = TARGET_SELECTED_POKEMON,
@@ -1270,7 +1296,7 @@ const struct BattleMove gBattleMoves[] = {
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
-        .pp = 20,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
         .priority = 0,
@@ -1294,7 +1320,7 @@ const struct BattleMove gBattleMoves[] = {
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
-        .pp = 20,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
         .priority = 0,
@@ -1354,7 +1380,7 @@ const struct BattleMove gBattleMoves[] = {
         .power = 0,
         .type = TYPE_PSYCHIC,
         .accuracy = 0,
-        .pp = 30,
+        .pp = 20,
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
         .priority = 0,
@@ -1413,11 +1439,11 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_BIDE,
         .power = 1,
         .type = TYPE_NORMAL,
-        .accuracy = 100,
+        .accuracy = 0,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
-        .priority = 0,
+        .priority = 1,
         .flags = F_AFFECTED_BY_KINGS_ROCK | F_AFFECTED_BY_PROTECT | F_MAKES_CONTACT,
     },
 
@@ -1471,7 +1497,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_LICK] = {
         .effect = EFFECT_PARALYZE_HIT,
-        .power = 20,
+        .power = 30,
         .type = TYPE_GHOST,
         .accuracy = 100,
         .pp = 30,
@@ -1483,7 +1509,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_SMOG] = {
         .effect = EFFECT_POISON_HIT,
-        .power = 20,
+        .power = 30,
         .type = TYPE_POISON,
         .accuracy = 70,
         .pp = 20,
@@ -1519,7 +1545,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_FIRE_BLAST] = {
         .effect = EFFECT_BURN_HIT,
-        .power = 120,
+        .power = 110,
         .type = TYPE_FIRE,
         .accuracy = 85,
         .pp = 5,
@@ -1530,7 +1556,7 @@ const struct BattleMove gBattleMoves[] = {
     },
 
     [MOVE_WATERFALL] = {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_FLINCH_HIT,
         .power = 80,
         .type = TYPE_WATER,
         .accuracy = 100,
@@ -1545,8 +1571,8 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_TRAP,
         .power = 35,
         .type = TYPE_WATER,
-        .accuracy = 75,
-        .pp = 10,
+        .accuracy = 85,
+        .pp = 15,
         .secondaryEffectChance = 100,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -1567,10 +1593,10 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_SKULL_BASH] = {
         .effect = EFFECT_SKULL_BASH,
-        .power = 100,
+        .power = 130,
         .type = TYPE_NORMAL,
         .accuracy = 100,
-        .pp = 15,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -1622,7 +1648,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_SOFT_BOILED] = {
@@ -1639,10 +1665,10 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_HI_JUMP_KICK] = {
         .effect = EFFECT_RECOIL_IF_MISS,
-        .power = 85,
+        .power = 130,
         .type = TYPE_FIGHTING,
         .accuracy = 90,
-        .pp = 20,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -1653,7 +1679,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_PARALYZE,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 75,
+        .accuracy = 100,
         .pp = 30,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -1677,10 +1703,10 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_POISON,
         .power = 0,
         .type = TYPE_POISON,
-        .accuracy = 55,
+        .accuracy = 90,
         .pp = 40,
         .secondaryEffectChance = 0,
-        .target = TARGET_SELECTED_POKEMON,
+        .target = TARGET_BOTH_ENEMIES,
         .priority = 0,
         .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT | F_AFFECTED_BY_PROTECT,
     },
@@ -1699,10 +1725,10 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_LEECH_LIFE] = {
         .effect = EFFECT_ABSORB,
-        .power = 20,
+        .power = 80,
         .type = TYPE_BUG,
         .accuracy = 100,
-        .pp = 15,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -1747,7 +1773,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_BUBBLE] = {
         .effect = EFFECT_SPEED_DOWN_HIT,
-        .power = 20,
+        .power = 40,
         .type = TYPE_WATER,
         .accuracy = 100,
         .pp = 30,
@@ -1785,7 +1811,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_ACCURACY_DOWN,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 70,
+        .accuracy = 100,
         .pp = 20,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -1797,7 +1823,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_PSYWAVE,
         .power = 1,
         .type = TYPE_PSYCHIC,
-        .accuracy = 80,
+        .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -1822,7 +1848,7 @@ const struct BattleMove gBattleMoves[] = {
         .power = 0,
         .type = TYPE_POISON,
         .accuracy = 0,
-        .pp = 40,
+        .pp = 20,
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
         .priority = 0,
@@ -1831,9 +1857,9 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_CRABHAMMER] = {
         .effect = EFFECT_HIGH_CRITICAL,
-        .power = 90,
+        .power = 100,
         .type = TYPE_WATER,
-        .accuracy = 85,
+        .accuracy = 90,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -1934,7 +1960,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
         .priority = 0,
-        .flags = 0,
+        .flags = F_AFFECTED_BY_SNATCH,
     },
 
     [MOVE_TRI_ATTACK] = {
@@ -1989,12 +2015,12 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_RECOIL,
         .power = 50,
         .type = TYPE_NORMAL,
-        .accuracy = 100,
+        .accuracy = 0,
         .pp = 1,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_AFFECTED_BY_KINGS_ROCK | F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT | F_MAKES_CONTACT,
+        .flags = F_AFFECTED_BY_KINGS_ROCK | F_AFFECTED_BY_PROTECT | F_MAKES_CONTACT,
     },
 
     [MOVE_SKETCH] = {
@@ -2023,10 +2049,10 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_THIEF] = {
         .effect = EFFECT_THIEF,
-        .power = 40,
+        .power = 60,
         .type = TYPE_DARK,
         .accuracy = 100,
-        .pp = 10,
+        .pp = 25,
         .secondaryEffectChance = 100,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -2042,14 +2068,14 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT | F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT,
     },
 
     [MOVE_MIND_READER] = {
         .effect = EFFECT_LOCK_ON,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 100,
+        .accuracy = 0,
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -2083,7 +2109,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_SNORE] = {
         .effect = EFFECT_SNORE,
-        .power = 40,
+        .power = 50,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 15,
@@ -2096,7 +2122,7 @@ const struct BattleMove gBattleMoves[] = {
     [MOVE_CURSE] = {
         .effect = EFFECT_CURSE,
         .power = 0,
-        .type = TYPE_MYSTERY,
+        .type = TYPE_GHOST,
         .accuracy = 0,
         .pp = 10,
         .secondaryEffectChance = 0,
@@ -2124,7 +2150,7 @@ const struct BattleMove gBattleMoves[] = {
         .accuracy = 100,
         .pp = 30,
         .secondaryEffectChance = 0,
-        .target = TARGET_USER,
+        .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
         .flags = 0,
     },
@@ -2145,7 +2171,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_SPEED_DOWN_2,
         .power = 0,
         .type = TYPE_GRASS,
-        .accuracy = 85,
+        .accuracy = 100,
         .pp = 40,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -2174,7 +2200,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_POWDER_SNOW] = {
@@ -2197,7 +2223,7 @@ const struct BattleMove gBattleMoves[] = {
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
-        .priority = 3,
+        .priority = 4,
         .flags = 0,
     },
 
@@ -2217,7 +2243,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_SPEED_DOWN_2,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -2234,7 +2260,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_AFFECTED_BY_KINGS_ROCK | F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
+        .flags = F_AFFECTED_BY_KINGS_ROCK | F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT | F_MAKES_CONTACT,
     },
 
     [MOVE_SWEET_KISS] = {
@@ -2306,12 +2332,12 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_ENEMY_SIDE,
         .priority = 0,
-        .flags = 0,
+        .flags = F_AFFECTED_BY_MAGIC_COAT,
     },
 
     [MOVE_ZAP_CANNON] = {
         .effect = EFFECT_PARALYZE_HIT,
-        .power = 100,
+        .power = 120,
         .type = TYPE_ELECTRIC,
         .accuracy = 50,
         .pp = 5,
@@ -2325,7 +2351,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_FORESIGHT,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 100,
+        .accuracy = 0,
         .pp = 40,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -2377,7 +2403,7 @@ const struct BattleMove gBattleMoves[] = {
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
-        .priority = 3,
+        .priority = 4,
         .flags = 0,
     },
 
@@ -2385,7 +2411,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_MULTI_HIT,
         .power = 25,
         .type = TYPE_GROUND,
-        .accuracy = 80,
+        .accuracy = 90,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -2397,7 +2423,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_LOCK_ON,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 100,
+        .accuracy = 0,
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -2407,10 +2433,10 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_OUTRAGE] = {
         .effect = EFFECT_RAMPAGE,
-        .power = 90,
+        .power = 120,
         .type = TYPE_DRAGON,
         .accuracy = 100,
-        .pp = 15,
+        .pp = 10,
         .secondaryEffectChance = 100,
         .target = TARGET_RANDOM,
         .priority = 0,
@@ -2431,10 +2457,10 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_GIGA_DRAIN] = {
         .effect = EFFECT_ABSORB,
-        .power = 60,
+        .power = 75,
         .type = TYPE_GRASS,
         .accuracy = 100,
-        .pp = 5,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -2449,7 +2475,7 @@ const struct BattleMove gBattleMoves[] = {
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
-        .priority = 3,
+        .priority = 4,
         .flags = 0,
     },
 
@@ -2493,7 +2519,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_SWAGGER,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 90,
+        .accuracy = 85,
         .pp = 15,
         .secondaryEffectChance = 100,
         .target = TARGET_SELECTED_POKEMON,
@@ -2527,7 +2553,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_FURY_CUTTER] = {
         .effect = EFFECT_FURY_CUTTER,
-        .power = 10,
+        .power = 40,
         .type = TYPE_BUG,
         .accuracy = 95,
         .pp = 20,
@@ -2738,7 +2764,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_PURSUIT] = {
@@ -2805,7 +2831,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_VITAL_THROW,
         .power = 70,
         .type = TYPE_FIGHTING,
-        .accuracy = 100,
+        .accuracy = 0,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -2910,7 +2936,7 @@ const struct BattleMove gBattleMoves[] = {
     },
 
     [MOVE_CRUNCH] = {
-        .effect = EFFECT_SPECIAL_DEFENSE_DOWN_HIT,
+        .effect = EFFECT_DEFENSE_DOWN_HIT,
         .power = 80,
         .type = TYPE_DARK,
         .accuracy = 100,
@@ -2930,7 +2956,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_SPECIAL,
         .priority = -5,
-        .flags = F_MIRROR_MOVE_COMPATIBLE,
+        .flags = F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_PSYCH_UP] = {
@@ -2942,7 +2968,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_AFFECTED_BY_SNATCH,
+        .flags = 0,
     },
 
     [MOVE_EXTREME_SPEED] = {
@@ -2953,7 +2979,7 @@ const struct BattleMove gBattleMoves[] = {
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
-        .priority = 1,
+        .priority = 2,
         .flags = F_AFFECTED_BY_KINGS_ROCK | F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT | F_MAKES_CONTACT,
     },
 
@@ -2966,7 +2992,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 10,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT | F_MAKES_CONTACT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_SHADOW_BALL] = {
@@ -2983,10 +3009,10 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_FUTURE_SIGHT] = {
         .effect = EFFECT_FUTURE_SIGHT,
-        .power = 80,
+        .power = 120,
         .type = TYPE_PSYCHIC,
-        .accuracy = 90,
-        .pp = 15,
+        .accuracy = 100,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -2995,7 +3021,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_ROCK_SMASH] = {
         .effect = EFFECT_DEFENSE_DOWN_HIT,
-        .power = 20,
+        .power = 40,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
         .pp = 15,
@@ -3007,9 +3033,9 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_WHIRLPOOL] = {
         .effect = EFFECT_TRAP,
-        .power = 15,
+        .power = 35,
         .type = TYPE_WATER,
-        .accuracy = 70,
+        .accuracy = 85,
         .pp = 15,
         .secondaryEffectChance = 100,
         .target = TARGET_SELECTED_POKEMON,
@@ -3037,13 +3063,13 @@ const struct BattleMove gBattleMoves[] = {
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
-        .priority = 1,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
+        .priority = 3,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT | F_MAKES_CONTACT,
     },
 
     [MOVE_UPROAR] = {
         .effect = EFFECT_UPROAR,
-        .power = 50,
+        .power = 90,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 10,
@@ -3058,7 +3084,7 @@ const struct BattleMove gBattleMoves[] = {
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
-        .pp = 10,
+        .pp = 20,
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
         .priority = 0,
@@ -3091,7 +3117,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_HEAT_WAVE] = {
         .effect = EFFECT_BURN_HIT,
-        .power = 100,
+        .power = 95,
         .type = TYPE_FIRE,
         .accuracy = 90,
         .pp = 10,
@@ -3122,7 +3148,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_FLATTER] = {
@@ -3141,7 +3167,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_WILL_O_WISP,
         .power = 0,
         .type = TYPE_FIRE,
-        .accuracy = 75,
+        .accuracy = 85,
         .pp = 15,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -3187,7 +3213,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_SMELLING_SALT] = {
         .effect = EFFECT_SMELLINGSALT,
-        .power = 60,
+        .power = 70,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 10,
@@ -3242,7 +3268,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT | F_AFFECTED_BY_MAGIC_COAT,
     },
 
     [MOVE_HELPING_HAND] = {
@@ -3290,7 +3316,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
         .priority = 0,
-        .flags = F_AFFECTED_BY_PROTECT,
+        .flags = F_AFFECTED_BY_SNATCH | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_ASSIST] = {
@@ -3350,7 +3376,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
         .priority = 0,
-        .flags = 0,
+        .flags = F_AFFECTED_BY_SNATCH,
     },
 
     [MOVE_REVENGE] = {
@@ -3391,7 +3417,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_KNOCK_OFF] = {
         .effect = EFFECT_KNOCK_OFF,
-        .power = 20,
+        .power = 65,
         .type = TYPE_DARK,
         .accuracy = 100,
         .pp = 20,
@@ -3446,7 +3472,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_USER,
         .priority = 0,
-        .flags = F_AFFECTED_BY_PROTECT,
+        .flags = F_AFFECTED_BY_SNATCH | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_REFRESH] = {
@@ -3499,7 +3525,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_DIVE] = {
         .effect = EFFECT_FLY,
-        .power = 60,
+        .power = 80,
         .type = TYPE_WATER,
         .accuracy = 100,
         .pp = 10,
@@ -3590,7 +3616,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_ALL_EXCEPT_USER,
         .priority = 0,
-        .flags = F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_BLAZE_KICK] = {
@@ -3715,9 +3741,9 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_METEOR_MASH] = {
         .effect = EFFECT_ATTACK_UP_HIT,
-        .power = 100,
+        .power = 90,
         .type = TYPE_STEEL,
-        .accuracy = 85,
+        .accuracy = 90,
         .pp = 10,
         .secondaryEffectChance = 20,
         .target = TARGET_SELECTED_POKEMON,
@@ -3794,27 +3820,27 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 100,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_AFFECTED_BY_KINGS_ROCK | F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT | F_MAKES_CONTACT,
+        .flags = F_AFFECTED_BY_KINGS_ROCK | F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_ODOR_SLEUTH] = {
         .effect = EFFECT_FORESIGHT,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 100,
+        .accuracy = 0,
         .pp = 40,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT | F_AFFECTED_BY_PROTECT,
     },
 
     [MOVE_ROCK_TOMB] = {
         .effect = EFFECT_SPEED_DOWN_HIT,
-        .power = 50,
+        .power = 60,
         .type = TYPE_ROCK,
-        .accuracy = 80,
-        .pp = 10,
+        .accuracy = 95,
+        .pp = 15,
         .secondaryEffectChance = 100,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -3922,7 +3948,7 @@ const struct BattleMove gBattleMoves[] = {
         .power = 80,
         .type = TYPE_PSYCHIC,
         .accuracy = 100,
-        .pp = 30,
+        .pp = 20,
         .secondaryEffectChance = 10,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
@@ -3943,9 +3969,9 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_SAND_TOMB] = {
         .effect = EFFECT_TRAP,
-        .power = 15,
+        .power = 35,
         .type = TYPE_GROUND,
-        .accuracy = 70,
+        .accuracy = 85,
         .pp = 15,
         .secondaryEffectChance = 100,
         .target = TARGET_SELECTED_POKEMON,
@@ -3967,7 +3993,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_MUDDY_WATER] = {
         .effect = EFFECT_ACCURACY_DOWN_HIT,
-        .power = 95,
+        .power = 90,
         .type = TYPE_WATER,
         .accuracy = 85,
         .pp = 10,
@@ -3979,7 +4005,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_BULLET_SEED] = {
         .effect = EFFECT_MULTI_HIT,
-        .power = 10,
+        .power = 25,
         .type = TYPE_GRASS,
         .accuracy = 100,
         .pp = 30,
@@ -4003,7 +4029,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_ICICLE_SPEAR] = {
         .effect = EFFECT_MULTI_HIT,
-        .power = 10,
+        .power = 25,
         .type = TYPE_ICE,
         .accuracy = 100,
         .pp = 30,
@@ -4034,7 +4060,7 @@ const struct BattleMove gBattleMoves[] = {
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT | F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_MAGIC_COAT,
     },
 
     [MOVE_HOWL] = {
@@ -4123,14 +4149,14 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_COVET] = {
         .effect = EFFECT_THIEF,
-        .power = 40,
+        .power = 60,
         .type = TYPE_NORMAL,
         .accuracy = 100,
-        .pp = 40,
+        .pp = 25,
         .secondaryEffectChance = 100,
         .target = TARGET_SELECTED_POKEMON,
         .priority = 0,
-        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT,
+        .flags = F_MIRROR_MOVE_COMPATIBLE | F_AFFECTED_BY_PROTECT | F_MAKES_CONTACT,
     },
 
     [MOVE_VOLT_TACKLE] = {
@@ -4183,7 +4209,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_LEAF_BLADE] = {
         .effect = EFFECT_HIGH_CRITICAL,
-        .power = 70,
+        .power = 90,
         .type = TYPE_GRASS,
         .accuracy = 100,
         .pp = 15,
@@ -4209,7 +4235,7 @@ const struct BattleMove gBattleMoves[] = {
         .effect = EFFECT_MULTI_HIT,
         .power = 25,
         .type = TYPE_ROCK,
-        .accuracy = 80,
+        .accuracy = 90,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -4243,9 +4269,9 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_DOOM_DESIRE] = {
         .effect = EFFECT_FUTURE_SIGHT,
-        .power = 120,
+        .power = 140,
         .type = TYPE_STEEL,
-        .accuracy = 85,
+        .accuracy = 100,
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = TARGET_SELECTED_POKEMON,
@@ -4255,7 +4281,7 @@ const struct BattleMove gBattleMoves[] = {
 
     [MOVE_PSYCHO_BOOST] = {
         .effect = EFFECT_OVERHEAT,
-        .power = 140,
+        .power = 130,
         .type = TYPE_PSYCHIC,
         .accuracy = 90,
         .pp = 5,

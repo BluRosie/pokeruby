@@ -1207,3 +1207,34 @@ void ItemUseOutOfBattle_CannotUse(u8 taskId)
 {
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].data[2]);
 }
+
+void ItemUseOutOfBattle_ExpShare(u8 taskId)
+{
+	if (!gSaveBlock2.expShare)
+	{
+		PlaySE(SE_EXPMAX);
+		if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+		{
+			Menu_EraseWindowRect(0, 13, 13, 20);
+			DisplayItemMessageOnField(taskId, gOtherText_ExpShareOn, CleanUpItemMenuMessage, 1);
+		}
+		else
+		{
+			DisplayItemMessageOnField(taskId, gOtherText_ExpShareOn, CleanUpOverworldMessage, 0);
+		}
+	}
+	else
+	{
+		PlaySE(SE_PC_OFF);
+		if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+		{
+			Menu_EraseWindowRect(0, 13, 13, 20);
+			DisplayItemMessageOnField(taskId, gOtherText_ExpShareOff, CleanUpItemMenuMessage, 1);
+		}
+		else
+		{
+			DisplayItemMessageOnField(taskId, gOtherText_ExpShareOff, CleanUpOverworldMessage, 0);
+		}
+	}
+	gSaveBlock2.expShare = !gSaveBlock2.expShare;
+}

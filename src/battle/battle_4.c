@@ -26,6 +26,7 @@
 #include "naming_screen.h"
 #include "ewram.h"
 #include "util.h"
+#include "pokedex.h"
 
 // TODO: put this into battle_controllers.h
 
@@ -2365,7 +2366,7 @@ void SetMoveEffect(bool8 primary, u8 certainArg)
     #define EffectAffectsUser 0x40
     register u8 certain asm("r5") = certainArg;
     register bool32 StatusChanged asm("r10") = 0;
-	register int AffectsUser asm("r6") = 0; //0x40 otherwise
+    register int AffectsUser asm("r6") = 0; //0x40 otherwise
     bool32 NoSunCanFreeze = 1;
 
     if (gBattleCommunication[MOVE_EFFECT_BYTE] & EffectAffectsUser)
@@ -2747,7 +2748,7 @@ void SetMoveEffect(bool8 primary, u8 certainArg)
                 if (gBattleMons[gBankTarget].item == 0)
                     {gBattlescriptCurrInstr++; return;}
 
-				gLastUsedItem = gBattleMons[gBankTarget].item;
+                gLastUsedItem = gBattleMons[gBankTarget].item;
                 USED_HELD_ITEM(bank) = gLastUsedItem;
                 gBattleMons[gBankTarget].item = 0;
 
@@ -2762,7 +2763,7 @@ void SetMoveEffect(bool8 primary, u8 certainArg)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_ItemSteal;
 
-				CHOICED_MOVE(gBankTarget) = 0;
+                CHOICED_MOVE(gBankTarget) = 0;
             }
             break;
         case 32: //escape prevention
@@ -5398,6 +5399,7 @@ static void atk23_getexp(void)
         {
             u16 calculatedExp;
             s32 viaSentIn;
+            
 
             for (viaSentIn = 0, i = 0; i < 6; i++)
             {
@@ -5413,19 +5415,20 @@ static void atk23_getexp(void)
                 else
                     holdEffect = ItemId_GetHoldEffect(item);
 
-                if (holdEffect == HOLD_EFFECT_EXP_SHARE)
-                    viaExpShare++;
+//                if (holdEffect == HOLD_EFFECT_EXP_SHARE)
+//                    viaExpShare++;
             }
 
             calculatedExp = gBaseStats[gBattleMons[gBank1].species].expYield * gBattleMons[gBank1].level / 7;
 
-            if (viaExpShare) // at least one mon is getting exp via exp share
+            if (gSaveBlock2.expShare) // exp share is turned on
             {
                 *exp = calculatedExp / 2 / viaSentIn;
                 if (*exp == 0)
                     *exp = 1;
 
-                gExpShareExp = calculatedExp / 2 / viaExpShare;
+                viaExpShare = gSaveBlock1.playerPartyCount;
+                gExpShareExp = calculatedExp / 2;
                 if (gExpShareExp == 0)
                     gExpShareExp = 1;
             }
@@ -5443,6 +5446,7 @@ static void atk23_getexp(void)
         }
         // fall through
     case 2: // set exp value to the poke in expgetter_id and print message
+
         if (gBattleExecBuffer == 0)
         {
             item = GetMonData(&gPlayerParty[gBattleStruct->expGetterID], MON_DATA_HELD_ITEM);
@@ -5452,7 +5456,7 @@ static void atk23_getexp(void)
             else
                 holdEffect = ItemId_GetHoldEffect(item);
 
-            if (holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1))
+            if (!gSaveBlock2.expShare && !(gBattleStruct->sentInPokes & 1))
             {
                 gBattleStruct->sentInPokes >>= 1;
                 gBattleStruct->getexpStateTracker = 5;
@@ -5481,7 +5485,7 @@ static void atk23_getexp(void)
                     else
                         gBattleMoveDamage = 0;
 
-                    if (holdEffect == HOLD_EFFECT_EXP_SHARE)
+                    if (gSaveBlock2.expShare)
                         gBattleMoveDamage += gExpShareExp;
                     if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
                         gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
@@ -5516,8 +5520,8 @@ static void atk23_getexp(void)
 
                     PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattleStruct->expGetterBank, gBattleStruct->expGetterID)
 
-					// buffer 'gained' or 'gained a boosted'
-					PREPARE_STRING_BUFFER(gBattleTextBuff2, i)
+                    // buffer 'gained' or 'gained a boosted'
+                    PREPARE_STRING_BUFFER(gBattleTextBuff2, i)
 
                     PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 5, gBattleMoveDamage)
 
@@ -12634,186 +12638,186 @@ NAKED
 static void atk9E_metronome(void)
 {
     asm("\
-	push	{r4, r5, r6, r7, lr}\n\
-	mov	r7, r8\n\
-	push	{r7}\n\
-	ldr	r6, ._3076      @ gBankAttacker\n\
-	ldrb	r2, [r6]\n\
-	lsl	r1, r2, #0x1\n\
-	ldr	r0, ._3076 + 4  @ \n\
-	add	r3, r1, r0\n\
-	ldr	r5, ._3076 + 8  @ \n\
-	mov	r4, #0x58\n\
-	add	r0, r2, #0\n\
-	mul	r0, r0, r4\n\
-	add	r1, r0, r5\n\
-	ldrh	r0, [r1, #0xe]\n\
-	cmp	r0, #0\n\
-	bne	._3071	@cond_branch\n\
-	ldrh	r2, [r1, #0x10]\n\
-	cmp	r2, #0\n\
-	beq	._3071	@cond_branch\n\
-	ldrh	r0, [r1, #0x12]\n\
-	cmp	r0, #0\n\
-	beq	._3071	@cond_branch\n\
-	ldrh	r0, [r3]\n\
-	cmp	r0, #0\n\
-	bne	._3072	@cond_branch\n\
-	strh	r2, [r3]\n\
+    push	{r4, r5, r6, r7, lr}\n\
+    mov	r7, r8\n\
+    push	{r7}\n\
+    ldr	r6, ._3076      @ gBankAttacker\n\
+    ldrb	r2, [r6]\n\
+    lsl	r1, r2, #0x1\n\
+    ldr	r0, ._3076 + 4  @ \n\
+    add	r3, r1, r0\n\
+    ldr	r5, ._3076 + 8  @ \n\
+    mov	r4, #0x58\n\
+    add	r0, r2, #0\n\
+    mul	r0, r0, r4\n\
+    add	r1, r0, r5\n\
+    ldrh	r0, [r1, #0xe]\n\
+    cmp	r0, #0\n\
+    bne	._3071	@cond_branch\n\
+    ldrh	r2, [r1, #0x10]\n\
+    cmp	r2, #0\n\
+    beq	._3071	@cond_branch\n\
+    ldrh	r0, [r1, #0x12]\n\
+    cmp	r0, #0\n\
+    beq	._3071	@cond_branch\n\
+    ldrh	r0, [r3]\n\
+    cmp	r0, #0\n\
+    bne	._3072	@cond_branch\n\
+    strh	r2, [r3]\n\
 ._3072:\n\
-	ldr	r1, ._3076 + 12 @ \n\
-	ldrh	r0, [r3]\n\
-	strh	r0, [r1]\n\
-	ldrb	r0, [r6]\n\
-	mul	r0, r0, r4\n\
-	add	r0, r0, r5\n\
-	ldrh	r5, [r0, #0x10]\n\
-	ldrh	r2, [r0, #0x12]\n\
-	add	r7, r1, #0\n\
-	cmp	r5, r2\n\
-	bcs	._3073	@cond_branch\n\
-	ldrh	r0, [r3]\n\
-	cmp	r0, r2\n\
-	beq	._3074	@cond_branch\n\
-	add	r0, r0, #0x1\n\
-	b	._3079\n\
+    ldr	r1, ._3076 + 12 @ \n\
+    ldrh	r0, [r3]\n\
+    strh	r0, [r1]\n\
+    ldrb	r0, [r6]\n\
+    mul	r0, r0, r4\n\
+    add	r0, r0, r5\n\
+    ldrh	r5, [r0, #0x10]\n\
+    ldrh	r2, [r0, #0x12]\n\
+    add	r7, r1, #0\n\
+    cmp	r5, r2\n\
+    bcs	._3073	@cond_branch\n\
+    ldrh	r0, [r3]\n\
+    cmp	r0, r2\n\
+    beq	._3074	@cond_branch\n\
+    add	r0, r0, #0x1\n\
+    b	._3079\n\
 ._3077:\n\
-	.align	2, 0\n\
+    .align	2, 0\n\
 ._3076:\n\
-	.word	gBankAttacker\n\
-	.word	+0x20160b4\n\
-	.word	gBattleMons\n\
-	.word	gCurrentMove\n\
+    .word	gBankAttacker\n\
+    .word	+0x20160b4\n\
+    .word	gBattleMons\n\
+    .word	gCurrentMove\n\
 ._3073:\n\
-	ldrh	r4, [r3]\n\
-	add	r1, r4, #0\n\
-	mov	r0, #0xb1\n\
-	lsl	r0, r0, #0x1\n\
-	cmp	r1, r0\n\
-	bne	._3078	@cond_branch\n\
-	mov	r0, #0x1\n\
-	b	._3079\n\
+    ldrh	r4, [r3]\n\
+    add	r1, r4, #0\n\
+    mov	r0, #0xb1\n\
+    lsl	r0, r0, #0x1\n\
+    cmp	r1, r0\n\
+    bne	._3078	@cond_branch\n\
+    mov	r0, #0x1\n\
+    b	._3079\n\
 ._3078:\n\
-	cmp	r1, r2\n\
-	bne	._3080	@cond_branch\n\
+    cmp	r1, r2\n\
+    bne	._3080	@cond_branch\n\
 ._3074:\n\
-	strh	r5, [r3]\n\
-	b	._3081\n\
+    strh	r5, [r3]\n\
+    b	._3081\n\
 ._3080:\n\
-	add	r0, r4, #1\n\
+    add	r0, r4, #1\n\
 ._3079:\n\
-	strh	r0, [r3]\n\
+    strh	r0, [r3]\n\
 ._3081:\n\
-	ldr	r4, ._3083      @ gHitMarker\n\
-	ldr	r2, [r4]\n\
-	ldr	r0, ._3083 + 4  @ 0xfffffbff\n\
-	and	r2, r2, r0\n\
-	str	r2, [r4]\n\
-	ldr	r6, ._3083 + 8  @ gBattlescriptCurrInstr\n\
-	ldr	r5, ._3083 + 12 @ gBattleScriptsForMoveEffects\n\
-	ldr	r3, ._3083 + 16 @ gBattleMoves\n\
-	ldrh	r1, [r7]\n\
-	lsl	r0, r1, #0x1\n\
-	add	r0, r0, r1\n\
-	lsl	r0, r0, #0x2\n\
-	add	r0, r0, r3\n\
-	ldrb	r0, [r0]\n\
-	lsl	r0, r0, #0x2\n\
-	add	r0, r0, r5\n\
-	ldr	r0, [r0]\n\
-	str	r0, [r6]\n\
-	mov	r0, #0x80\n\
-	lsl	r0, r0, #0x4\n\
-	orr	r2, r2, r0\n\
-	str	r2, [r4]\n\
-	ldrh	r0, [r7]\n\
-	b	._3082\n\
+    ldr	r4, ._3083      @ gHitMarker\n\
+    ldr	r2, [r4]\n\
+    ldr	r0, ._3083 + 4  @ 0xfffffbff\n\
+    and	r2, r2, r0\n\
+    str	r2, [r4]\n\
+    ldr	r6, ._3083 + 8  @ gBattlescriptCurrInstr\n\
+    ldr	r5, ._3083 + 12 @ gBattleScriptsForMoveEffects\n\
+    ldr	r3, ._3083 + 16 @ gBattleMoves\n\
+    ldrh	r1, [r7]\n\
+    lsl	r0, r1, #0x1\n\
+    add	r0, r0, r1\n\
+    lsl	r0, r0, #0x2\n\
+    add	r0, r0, r3\n\
+    ldrb	r0, [r0]\n\
+    lsl	r0, r0, #0x2\n\
+    add	r0, r0, r5\n\
+    ldr	r0, [r0]\n\
+    str	r0, [r6]\n\
+    mov	r0, #0x80\n\
+    lsl	r0, r0, #0x4\n\
+    orr	r2, r2, r0\n\
+    str	r2, [r4]\n\
+    ldrh	r0, [r7]\n\
+    b	._3082\n\
 ._3084:\n\
-	.align	2, 0\n\
+    .align	2, 0\n\
 ._3083:\n\
-	.word	gHitMarker\n\
-	.word	0xfffffbff\n\
-	.word	gBattlescriptCurrInstr\n\
-	.word	gBattleScriptsForMoveEffects\n\
-	.word	gBattleMoves\n\
+    .word	gHitMarker\n\
+    .word	0xfffffbff\n\
+    .word	gBattlescriptCurrInstr\n\
+    .word	gBattleScriptsForMoveEffects\n\
+    .word	gBattleMoves\n\
 ._3071:\n\
-	ldr	r7, ._3090      @ gCurrentMove\n\
-	mov	r6, #0xb1\n\
-	lsl	r6, r6, #0x1\n\
-	ldr	r5, ._3090 + 4  @ sMovesForbiddenToCopy\n\
-	ldr	r0, ._3090 + 8  @ gBattlescriptCurrInstr\n\
-	mov	r8, r0\n\
+    ldr	r7, ._3090      @ gCurrentMove\n\
+    mov	r6, #0xb1\n\
+    lsl	r6, r6, #0x1\n\
+    ldr	r5, ._3090 + 4  @ sMovesForbiddenToCopy\n\
+    ldr	r0, ._3090 + 8  @ gBattlescriptCurrInstr\n\
+    mov	r8, r0\n\
 ._3089:\n\
-	bl	Random\n\
-	ldr	r2, ._3090 + 12 @ 0x1ff\n\
-	add	r1, r2, #0\n\
-	and	r0, r0, r1\n\
-	add	r0, r0, #0x1\n\
-	strh	r0, [r7]\n\
-	cmp	r0, r6\n\
-	bhi	._3089	@cond_branch\n\
-	mov	r0, #0x3\n\
+    bl	Random\n\
+    ldr	r2, ._3090 + 12 @ 0x1ff\n\
+    add	r1, r2, #0\n\
+    and	r0, r0, r1\n\
+    add	r0, r0, #0x1\n\
+    strh	r0, [r7]\n\
+    cmp	r0, r6\n\
+    bhi	._3089	@cond_branch\n\
+    mov	r0, #0x3\n\
 ._3086:\n\
-	sub	r0, r0, #0x1\n\
-	cmp	r0, #0\n\
-	bge	._3086	@cond_branch\n\
-	ldr	r4, ._3090      @ gCurrentMove\n\
-	ldrh	r2, [r4]\n\
-	ldr	r3, ._3090 + 16 @ 0xffff\n\
-	sub	r0, r5, #2\n\
+    sub	r0, r0, #0x1\n\
+    cmp	r0, #0\n\
+    bge	._3086	@cond_branch\n\
+    ldr	r4, ._3090      @ gCurrentMove\n\
+    ldrh	r2, [r4]\n\
+    ldr	r3, ._3090 + 16 @ 0xffff\n\
+    sub	r0, r5, #2\n\
 ._3088:\n\
-	add	r0, r0, #0x2\n\
-	ldrh	r1, [r0]\n\
-	cmp	r1, r2\n\
-	beq	._3087	@cond_branch\n\
-	cmp	r1, r3\n\
-	bne	._3088	@cond_branch\n\
+    add	r0, r0, #0x2\n\
+    ldrh	r1, [r0]\n\
+    cmp	r1, r2\n\
+    beq	._3087	@cond_branch\n\
+    cmp	r1, r3\n\
+    bne	._3088	@cond_branch\n\
 ._3087:\n\
-	ldr	r0, ._3090 + 16 @ 0xffff\n\
-	cmp	r1, r0\n\
-	bne	._3089	@cond_branch\n\
-	ldr	r2, ._3090 + 20 @ gHitMarker\n\
-	ldr	r0, [r2]\n\
-	ldr	r1, ._3090 + 24 @ 0xfffffbff\n\
-	and	r0, r0, r1\n\
-	str	r0, [r2]\n\
-	ldr	r3, ._3090 + 28 @ gBattleScriptsForMoveEffects\n\
-	ldr	r2, ._3090 + 32 @ gBattleMoves\n\
-	ldrh	r1, [r4]\n\
-	lsl	r0, r1, #0x1\n\
-	add	r0, r0, r1\n\
-	lsl	r0, r0, #0x2\n\
-	add	r0, r0, r2\n\
-	ldrb	r0, [r0]\n\
-	lsl	r0, r0, #0x2\n\
-	add	r0, r0, r3\n\
-	ldr	r0, [r0]\n\
-	mov	r1, r8\n\
-	str	r0, [r1]\n\
-	ldrh	r0, [r4]\n\
+    ldr	r0, ._3090 + 16 @ 0xffff\n\
+    cmp	r1, r0\n\
+    bne	._3089	@cond_branch\n\
+    ldr	r2, ._3090 + 20 @ gHitMarker\n\
+    ldr	r0, [r2]\n\
+    ldr	r1, ._3090 + 24 @ 0xfffffbff\n\
+    and	r0, r0, r1\n\
+    str	r0, [r2]\n\
+    ldr	r3, ._3090 + 28 @ gBattleScriptsForMoveEffects\n\
+    ldr	r2, ._3090 + 32 @ gBattleMoves\n\
+    ldrh	r1, [r4]\n\
+    lsl	r0, r1, #0x1\n\
+    add	r0, r0, r1\n\
+    lsl	r0, r0, #0x2\n\
+    add	r0, r0, r2\n\
+    ldrb	r0, [r0]\n\
+    lsl	r0, r0, #0x2\n\
+    add	r0, r0, r3\n\
+    ldr	r0, [r0]\n\
+    mov	r1, r8\n\
+    str	r0, [r1]\n\
+    ldrh	r0, [r4]\n\
 ._3082:\n\
-	mov	r1, #0x0\n\
-	bl	GetMoveTarget\n\
-	ldr	r1, ._3090 + 36 @ gBankTarget\n\
-	strb	r0, [r1]\n\
-	pop	{r3}\n\
-	mov	r8, r3\n\
-	pop	{r4, r5, r6, r7}\n\
-	pop	{r0}\n\
-	bx	r0\n\
+    mov	r1, #0x0\n\
+    bl	GetMoveTarget\n\
+    ldr	r1, ._3090 + 36 @ gBankTarget\n\
+    strb	r0, [r1]\n\
+    pop	{r3}\n\
+    mov	r8, r3\n\
+    pop	{r4, r5, r6, r7}\n\
+    pop	{r0}\n\
+    bx	r0\n\
 ._3091:\n\
-	.align	2, 0\n\
+    .align	2, 0\n\
 ._3090:\n\
-	.word	gCurrentMove\n\
-	.word	sMovesForbiddenToCopy\n\
-	.word	gBattlescriptCurrInstr\n\
-	.word	0x1ff\n\
-	.word	0xffff\n\
-	.word	gHitMarker\n\
-	.word	0xfffffbff\n\
-	.word	gBattleScriptsForMoveEffects\n\
-	.word	gBattleMoves\n\
-	.word	gBankTarget");
+    .word	gCurrentMove\n\
+    .word	sMovesForbiddenToCopy\n\
+    .word	gBattlescriptCurrInstr\n\
+    .word	0x1ff\n\
+    .word	0xffff\n\
+    .word	gHitMarker\n\
+    .word	0xfffffbff\n\
+    .word	gBattleScriptsForMoveEffects\n\
+    .word	gBattleMoves\n\
+    .word	gBankTarget");
 }
 #else
 #ifdef NONMATCHING
@@ -15706,7 +15710,7 @@ void atkEF_handleballthrow(void)
     {
         u32 odds;
         u8 catch_rate;
-        if (gLastUsedItem == ITEM_SAFARI_BALL)
+        if (gLastUsedItem == ITEM_SAFARI_BALL/* || gLastUsedItem == ITEM_SPORT_BALL*/)
             catch_rate = gBattleStruct->unk16089 * 1275 / 100; //correct the name to safariFleeRate
         else
             catch_rate = gBaseStats[gBattleMons[gBankTarget].species].catchRate;
@@ -15749,8 +15753,104 @@ void atkEF_handleballthrow(void)
                 break;
             case ITEM_LUXURY_BALL:
             case ITEM_PREMIER_BALL:
+            //case ITEM_HEAL_BALL:
+            //case ITEM_CHERISH_BALL:
+            //case ITEM_FRIEND_BALL:
                 ball_multiplier = 10;
                 break;
+            /*case ITEM_LEVEL_BALL:
+                if (gBattleMons[gBankAttacker].level <= gBattleMons[gBankTarget].level)
+                    ball_multiplier = 10;
+                else if (gBattleMons[gBankAttacker].level <= (2 * gBattleMons[gBankTarget].level))
+                    ball_multiplier = 20;
+                else if (gBattleMons[gBankAttacker].level <= (4 * gBattleMons[gBankTarget].level))
+                    ball_multiplier = 40;
+                else
+                    ball_multiplier = 80;
+                break;*/
+            /*case ITEM_LURE_BALL: // not exactly how it works but whatever
+                if (gBattleTerrain == BATTLE_TERRAIN_UNDERWATER || gBattleTerrain == BATTLE_TERRAIN_WATER || gBattleTerrain == BATTLE_TERRAIN_POND)
+                    ball_multiplier = 50;
+                else
+                    ball_multiplier = 10;
+                break;*/
+            /*case ITEM_MOON_BALL:
+                if (gBattleMons[gBankTarget].species == SPECIES_NIDORAN_F 
+                    || gBattleMons[gBankTarget].species == SPECIES_NIDORINA
+                    || gBattleMons[gBankTarget].species == SPECIES_NIDOQUEEN
+                    || gBattleMons[gBankTarget].species == SPECIES_NIDORAN_M
+                    || gBattleMons[gBankTarget].species == SPECIES_NIDORINO
+                    || gBattleMons[gBankTarget].species == SPECIES_NIDOKING
+                    || gBattleMons[gBankTarget].species == SPECIES_CLEFFA
+                    || gBattleMons[gBankTarget].species == SPECIES_CLEFAIRY
+                    || gBattleMons[gBankTarget].species == SPECIES_CLEFABLE
+                    || gBattleMons[gBankTarget].species == SPECIES_IGGLYBUFF
+                    || gBattleMons[gBankTarget].species == SPECIES_JIGGLYPUFF
+                    || gBattleMons[gBankTarget].species == SPECIES_WIGGLYTUFF
+                    || gBattleMons[gBankTarget].species == SPECIES_SKITTY
+                    || gBattleMons[gBankTarget].species == SPECIES_DELCATTY
+                    //|| gBattleMons[gBankTarget].species == SPECIES_MUNNA
+                    //|| gBattleMons[gBankTarget].species == SPECIES_MUSHARNA
+                    )
+                    ball_multiplier = 40;
+                else
+                    ball_multiplier = 10;
+                break;*/
+            /*case ITEM_LOVE_BALL:
+                if (gBattleMons[gBankTarget].species == gBattleMons[gBankAttacker].species
+                    && GetGenderFromSpeciesAndPersonality(gBattleMons[gBankTarget].species, gBattleMons[gBankTarget].personality) != GetGenderFromSpeciesAndPersonality(gBattleMons[gBankAttacker].species, gBattleMons[gBankAttacker].personality)
+                    && GetGenderFromSpeciesAndPersonality(gBattleMons[gBankTarget].species, gBattleMons[gBankTarget].personality) != MON_GENDERLESS
+                    && GetGenderFromSpeciesAndPersonality(gBattleMons[gBankAttacker].species, gBattleMons[gBankAttacker].personality) != MON_GENDERLESS)
+                    ball_multiplier = 80;
+                else
+                    ball_multiplier = 10;
+                break;*/
+            /*case ITEM_HEAVY_BALL: // all values in hectograms, current as of s/m
+                u16 weight = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBankTarget].species), 1);
+                if (weight <= 1000) //220.46 lbs
+                    if (catch_rate >= 21)				// this could result in some sort of shitty exception where a pokemon with catch rate 22 becomes harder to catch than one with like 19 but it's fine
+                        catch_rate += 20;
+                else if (weight <= 2000) //440.92 lbs
+                    ball_multiplier = 10;
+                else if (weight <= 3000) //661.38 lbs
+                    catch_rate += 20;
+                else
+                    catch_rate += 30;
+                ball_multiplier = 10;
+                break;*/
+            /*case ITEM_FAST_BALL:	// figure this one out later
+                u16 species = gBattleMons[gBankTarget].species;
+                // look in pokemon array structure for its base stats, specifically speed
+                break;*/
+            /*case ITEM_DUSK_BALL:	// figure this one out later
+                uXX time;
+                if (time == night || Overworld_GetMapTypeOfSaveblockLocation() == cavePlaces)
+                    ball_multiplier = 30;
+                else
+                    ball_multiplier = 10;
+                break;*/
+            /*case ITEM_QUICK_BALL:
+                if (gBattleResults.battleTurnCounter == 1)
+                    ball_multiplier = 50;
+                else
+                    ball_multiplier = 10;
+                break;*/
+            /*case ITEM_BEAST_BALL:
+                if (gBattleMons[gBankTarget].species == SPECIES_NIHILEGO
+                    && gBattleMons[gBankTarget].species == SPECIES_BUZZWOLE
+                    && gBattleMons[gBankTarget].species == SPECIES_PHEREMOSA
+                    && gBattleMons[gBankTarget].species == SPECIES_XURKITREE
+                    && gBattleMons[gBankTarget].species == SPECIES_CELESTEELA
+                    && gBattleMons[gBankTarget].species == SPECIES_KARTANA
+                    && gBattleMons[gBankTarget].species == SPECIES_GUZZLORD
+                    && gBattleMons[gBankTarget].species == SPECIES_POIPOLE
+                    && gBattleMons[gBankTarget].species == SPECIES_NAGANADEL
+                    && gBattleMons[gBankTarget].species == SPECIES_STAKATAKA
+                    && gBattleMons[gBankTarget].species == SPECIES_BLACEPHALON)
+                    ball_multiplier = 50;
+                else
+                    ball_multiplier = 1;
+                break;*/
             }
         }
         else
@@ -15758,13 +15858,13 @@ void atkEF_handleballthrow(void)
 
         odds = (catch_rate * ball_multiplier / 10) * (gBattleMons[gBankTarget].maxHP * 3 - gBattleMons[gBankTarget].hp * 2) / (3 * gBattleMons[gBankTarget].maxHP);
         if (gBattleMons[gBankTarget].status1 & (STATUS_SLEEP | STATUS_FREEZE))
-            odds *= 2;
-        if (gBattleMons[gBankTarget].status1 & (STATUS_POISON | STATUS_BURN | STATUS_PARALYSIS /*| STATUS_TOXIC_POISON */)) //nice one gf
+            odds *= 20 / 10;
+        if (gBattleMons[gBankTarget].status1 & (STATUS_POISON | STATUS_BURN | STATUS_PARALYSIS | STATUS_TOXIC_POISON))
             odds = (odds * 15) / 10;
 
-        if (gLastUsedItem != ITEM_SAFARI_BALL)
+        if (gLastUsedItem != ITEM_SAFARI_BALL/* && gLastUsedItem != ITEM_SPORT_BALL*/)
         {
-            if (gLastUsedItem == ITEM_MASTER_BALL)
+            if (gLastUsedItem == ITEM_MASTER_BALL/* || gLastUsedItem != ITEM_PARK_BALL || gLastUsedItem != ITEM_DREAM_BALL*/)
             {
                 gBattleResults.unk5_1 = 1;
             }

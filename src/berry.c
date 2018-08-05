@@ -15,135 +15,135 @@
 #include "constants/items.h"
 
 #ifdef ENGLISH
-#define NAME_CHERI_BERRY   _("CHERI")
-#define NAME_CHESTO_BERRY  _("CHESTO")
-#define NAME_PECHA_BERRY   _("PECHA")
-#define NAME_RAWST_BERRY   _("RAWST")
-#define NAME_ASPEAR_BERRY  _("ASPEAR")
-#define NAME_LEPPA_BERRY   _("LEPPA")
-#define NAME_ORAN_BERRY    _("ORAN")
-#define NAME_PERSIM_BERRY  _("PERSIM")
-#define NAME_LUM_BERRY     _("LUM")
-#define NAME_SITRUS_BERRY  _("SITRUS")
-#define NAME_FIGY_BERRY    _("FIGY")
-#define NAME_WIKI_BERRY    _("WIKI")
-#define NAME_MAGO_BERRY    _("MAGO")
-#define NAME_AGUAV_BERRY   _("AGUAV")
-#define NAME_IAPAPA_BERRY  _("IAPAPA")
-#define NAME_RAZZ_BERRY    _("RAZZ")
-#define NAME_BLUK_BERRY    _("BLUK")
-#define NAME_NANAB_BERRY   _("NANAB")
-#define NAME_WEPEAR_BERRY  _("WEPEAR")
-#define NAME_PINAP_BERRY   _("PINAP")
-#define NAME_POMEG_BERRY   _("POMEG")
-#define NAME_KELPSY_BERRY  _("KELPSY")
-#define NAME_QUALOT_BERRY  _("QUALOT")
-#define NAME_HONDEW_BERRY  _("HONDEW")
-#define NAME_GREPA_BERRY   _("GREPA")
-#define NAME_TAMATO_BERRY  _("TAMATO")
-#define NAME_CORNN_BERRY   _("CORNN")
-#define NAME_MAGOST_BERRY  _("MAGOST")
-#define NAME_RABUTA_BERRY  _("RABUTA")
-#define NAME_NOMEL_BERRY   _("NOMEL")
-#define NAME_SPELON_BERRY  _("SPELON")
-#define NAME_PAMTRE_BERRY  _("PAMTRE")
-#define NAME_WATMEL_BERRY  _("WATMEL")
-#define NAME_DURIN_BERRY   _("DURIN")
-#define NAME_BELUE_BERRY   _("BELUE")
-#define NAME_LIECHI_BERRY  _("LIECHI")
-#define NAME_GANLON_BERRY  _("GANLON")
-#define NAME_SALAC_BERRY   _("SALAC")
-#define NAME_PETAYA_BERRY  _("PETAYA")
-#define NAME_APICOT_BERRY  _("APICOT")
-#define NAME_LANSAT_BERRY  _("LANSAT")
-#define NAME_STARF_BERRY   _("STARF")
-#define NAME_ENIGMA_BERRY  _("ENIGMA")
+#define NAME_CHERI_BERRY   _("Cheri")
+#define NAME_CHESTO_BERRY  _("Chesto")
+#define NAME_PECHA_BERRY   _("Pecha")
+#define NAME_RAWST_BERRY   _("Rawst")
+#define NAME_ASPEAR_BERRY  _("Aspear")
+#define NAME_LEPPA_BERRY   _("Leppa")
+#define NAME_ORAN_BERRY    _("Oran")
+#define NAME_PERSIM_BERRY  _("Persim")
+#define NAME_LUM_BERRY     _("Lum")
+#define NAME_SITRUS_BERRY  _("Sitrus")
+#define NAME_FIGY_BERRY    _("Figy")
+#define NAME_WIKI_BERRY    _("Wiki")
+#define NAME_MAGO_BERRY    _("Mago")
+#define NAME_AGUAV_BERRY   _("Aguav")
+#define NAME_IAPAPA_BERRY  _("Iapapa")
+#define NAME_RAZZ_BERRY    _("Razz")
+#define NAME_BLUK_BERRY    _("Bluk")
+#define NAME_NANAB_BERRY   _("Nanab")
+#define NAME_WEPEAR_BERRY  _("Wepear")
+#define NAME_PINAP_BERRY   _("Pinap")
+#define NAME_POMEG_BERRY   _("Pomeg")
+#define NAME_KELPSY_BERRY  _("Kelpsy")
+#define NAME_QUALOT_BERRY  _("Qualot")
+#define NAME_HONDEW_BERRY  _("Hondew")
+#define NAME_GREPA_BERRY   _("Grepa")
+#define NAME_TAMATO_BERRY  _("Tamato")
+#define NAME_CORNN_BERRY   _("Cornn")
+#define NAME_MAGOST_BERRY  _("Magost")
+#define NAME_RABUTA_BERRY  _("Rabuta")
+#define NAME_NOMEL_BERRY   _("Nomel")
+#define NAME_SPELON_BERRY  _("Spelon")
+#define NAME_PAMTRE_BERRY  _("Pamtre")
+#define NAME_WATMEL_BERRY  _("Watmel")
+#define NAME_DURIN_BERRY   _("Durin")
+#define NAME_BELUE_BERRY   _("Belue")
+#define NAME_LIECHI_BERRY  _("Liechi")
+#define NAME_GANLON_BERRY  _("Ganlon")
+#define NAME_SALAC_BERRY   _("Salac")
+#define NAME_PETAYA_BERRY  _("Petaya")
+#define NAME_APICOT_BERRY  _("Apicot")
+#define NAME_LANSAT_BERRY  _("Lansat")
+#define NAME_STARF_BERRY   _("Srarf")
+#define NAME_ENIGMA_BERRY  _("Enigma")
 
 static const u8 gBerryDescriptionPart1_Cheri[] = _("Blooms with delicate pretty flowers.");
-static const u8 gBerryDescriptionPart2_Cheri[] = _("The bright red BERRY is very spicy.");
-static const u8 gBerryDescriptionPart1_Chesto[] = _("The BERRY’s thick skin and fruit are");
+static const u8 gBerryDescriptionPart2_Cheri[] = _("The bright red Berry is very spicy.");
+static const u8 gBerryDescriptionPart1_Chesto[] = _("The Berry’s thick skin and fruit are");
 static const u8 gBerryDescriptionPart2_Chesto[] = _("very tough. It is dry-tasting all over.");
 static const u8 gBerryDescriptionPart1_Pecha[] = _("Very sweet and delicious.");
 static const u8 gBerryDescriptionPart2_Pecha[] = _("Also very tender - handle with care.");
 static const u8 gBerryDescriptionPart1_Rawst[] = _("If the leaves grow long and curly,");
-static const u8 gBerryDescriptionPart2_Rawst[] = _("the BERRY seems to grow very bitter.");
-static const u8 gBerryDescriptionPart1_Aspear[] = _("The hard BERRY is dense with a rich");
+static const u8 gBerryDescriptionPart2_Rawst[] = _("the Berry seems to grow very bitter.");
+static const u8 gBerryDescriptionPart1_Aspear[] = _("The hard Berry is dense with a rich");
 static const u8 gBerryDescriptionPart2_Aspear[] = _("juice. It is quite sour.");
-static const u8 gBerryDescriptionPart1_Leppa[] = _("Grows slower than CHERI and others.");
-static const u8 gBerryDescriptionPart2_Leppa[] = _("The smaller the BERRY, the tastier.");
-static const u8 gBerryDescriptionPart1_Oran[] = _("A peculiar BERRY with a mix of flavors.");
-static const u8 gBerryDescriptionPart2_Oran[] = _("BERRIES grow in half a day.");
-static const u8 gBerryDescriptionPart1_Persim[] = _("Loves sunlight. The BERRY’s color");
+static const u8 gBerryDescriptionPart1_Leppa[] = _("Grows slower than Cheri and others.");
+static const u8 gBerryDescriptionPart2_Leppa[] = _("The smaller the Berry, the tastier.");
+static const u8 gBerryDescriptionPart1_Oran[] = _("A peculiar Berry with a mix of flavors.");
+static const u8 gBerryDescriptionPart2_Oran[] = _("Berries grow in half a day.");
+static const u8 gBerryDescriptionPart1_Persim[] = _("Loves sunlight. The Berry’s color");
 static const u8 gBerryDescriptionPart2_Persim[] = _("grows vivid when exposed to the sun.");
 static const u8 gBerryDescriptionPart1_Lum[] = _("Slow to grow. If raised with loving");
-static const u8 gBerryDescriptionPart2_Lum[] = _("care, it may grow two BERRIES.");
-static const u8 gBerryDescriptionPart1_Sitrus[] = _("Closely related to ORAN. The large");
-static const u8 gBerryDescriptionPart2_Sitrus[] = _("BERRY has a well-rounded flavor.");
-static const u8 gBerryDescriptionPart1_Figy[] = _("The BERRY, which looks chewed up,");
+static const u8 gBerryDescriptionPart2_Lum[] = _("care, it may grow two Berries.");
+static const u8 gBerryDescriptionPart1_Sitrus[] = _("Closely related to Oran. The large");
+static const u8 gBerryDescriptionPart2_Sitrus[] = _("Berry has a well-rounded flavor.");
+static const u8 gBerryDescriptionPart1_Figy[] = _("The Berry, which looks chewed up,");
 static const u8 gBerryDescriptionPart2_Figy[] = _("brims with spicy substances.");
-static const u8 gBerryDescriptionPart1_Wiki[] = _("The BERRY is said to have grown lumpy");
-static const u8 gBerryDescriptionPart2_Wiki[] = _("to help POKéMON grip it.");
-static const u8 gBerryDescriptionPart1_Mago[] = _("The BERRY turns curvy as it grows.");
+static const u8 gBerryDescriptionPart1_Wiki[] = _("The Berry is said to have grown lumpy");
+static const u8 gBerryDescriptionPart2_Wiki[] = _("to help Pokémon grip it.");
+static const u8 gBerryDescriptionPart1_Mago[] = _("The Berry turns curvy as it grows.");
 static const u8 gBerryDescriptionPart2_Mago[] = _("The curvier, the sweeter and tastier.");
 static const u8 gBerryDescriptionPart1_Aguav[] = _("The flower is dainty. It is rare in its");
 static const u8 gBerryDescriptionPart2_Aguav[] = _("ability to grow without light.");
-static const u8 gBerryDescriptionPart1_Iapapa[] = _("The BERRY is very big and sour.");
+static const u8 gBerryDescriptionPart1_Iapapa[] = _("The Berry is very big and sour.");
 static const u8 gBerryDescriptionPart2_Iapapa[] = _("It takes at least a day to grow.");
-static const u8 gBerryDescriptionPart1_Razz[] = _("The red BERRY tastes slightly spicy.");
+static const u8 gBerryDescriptionPart1_Razz[] = _("The red Berry tastes slightly spicy.");
 static const u8 gBerryDescriptionPart2_Razz[] = _("It grows quickly in just four hours.");
-static const u8 gBerryDescriptionPart1_Bluk[] = _("The BERRY is blue on the outside, but");
+static const u8 gBerryDescriptionPart1_Bluk[] = _("The Berry is blue on the outside, but");
 static const u8 gBerryDescriptionPart2_Bluk[] = _("it blackens the mouth when eaten.");
-static const u8 gBerryDescriptionPart1_Nanab[] = _("This BERRY was the seventh");
+static const u8 gBerryDescriptionPart1_Nanab[] = _("This Berry was the seventh");
 static const u8 gBerryDescriptionPart2_Nanab[] = _("discovered in the world. It is sweet.");
 static const u8 gBerryDescriptionPart1_Wepear[] = _("The flower is small and white. It has a");
 static const u8 gBerryDescriptionPart2_Wepear[] = _("delicate balance of bitter and sour.");
 static const u8 gBerryDescriptionPart1_Pinap[] = _("Weak against wind and cold.");
 static const u8 gBerryDescriptionPart2_Pinap[] = _("The fruit is spicy and the skin, sour.");
 static const u8 gBerryDescriptionPart1_Pomeg[] = _("However much it is watered,");
-static const u8 gBerryDescriptionPart2_Pomeg[] = _("it only grows up to six BERRIES.");
+static const u8 gBerryDescriptionPart2_Pomeg[] = _("it only grows up to six Berries.");
 static const u8 gBerryDescriptionPart1_Kelpsy[] = _("A rare variety shaped like a root.");
 static const u8 gBerryDescriptionPart2_Kelpsy[] = _("Grows a very large flower.");
 static const u8 gBerryDescriptionPart1_Qualot[] = _("Loves water. Grows strong even in");
 static const u8 gBerryDescriptionPart2_Qualot[] = _("locations with constant rainfall.");
-static const u8 gBerryDescriptionPart1_Hondew[] = _("A BERRY that is very valuable and");
+static const u8 gBerryDescriptionPart1_Hondew[] = _("A Berry that is very valuable and");
 static const u8 gBerryDescriptionPart2_Hondew[] = _("rarely seen. It is very delicious.");
 static const u8 gBerryDescriptionPart1_Grepa[] = _("Despite its tenderness and round");
-static const u8 gBerryDescriptionPart2_Grepa[] = _("shape, the BERRY is unimaginably sour.");
-static const u8 gBerryDescriptionPart1_Tamato[] = _("The BERRY is lip-bendingly spicy.");
+static const u8 gBerryDescriptionPart2_Grepa[] = _("shape, the Berry is unimaginably sour.");
+static const u8 gBerryDescriptionPart1_Tamato[] = _("The Berry is lip-bendingly spicy.");
 static const u8 gBerryDescriptionPart2_Tamato[] = _("It takes time to grow.");
-static const u8 gBerryDescriptionPart1_Cornn[] = _("A BERRY from an ancient era. May not");
+static const u8 gBerryDescriptionPart1_Cornn[] = _("A Berry from an ancient era. May not");
 static const u8 gBerryDescriptionPart2_Cornn[] = _("grow unless planted in quantity.");
-static const u8 gBerryDescriptionPart1_Magost[] = _("A BERRY that is widely said to have");
+static const u8 gBerryDescriptionPart1_Magost[] = _("A Berry that is widely said to have");
 static const u8 gBerryDescriptionPart2_Magost[] = _("a finely balanced flavor.");
 static const u8 gBerryDescriptionPart1_Rabuta[] = _("A rare variety that is overgrown with");
 static const u8 gBerryDescriptionPart2_Rabuta[] = _("hair. It is quite bitter.");
 static const u8 gBerryDescriptionPart1_Nomel[] = _("Quite sour. Just one bite makes it");
 static const u8 gBerryDescriptionPart2_Nomel[] = _("impossible to taste for three days.");
-static const u8 gBerryDescriptionPart1_Spelon[] = _("The vividly red BERRY is very spicy.");
+static const u8 gBerryDescriptionPart1_Spelon[] = _("The vividly red Berry is very spicy.");
 static const u8 gBerryDescriptionPart2_Spelon[] = _("Its warts secrete a spicy substance.");
 static const u8 gBerryDescriptionPart1_Pamtre[] = _("Drifts on the sea from somewhere.");
 static const u8 gBerryDescriptionPart2_Pamtre[] = _("It is thought to grow elsewhere.");
-static const u8 gBerryDescriptionPart1_Watmel[] = _("A huge BERRY, with some over 20");
+static const u8 gBerryDescriptionPart1_Watmel[] = _("A huge Berry, with some over 20");
 static const u8 gBerryDescriptionPart2_Watmel[] = _("inches discovered. Exceedingly sweet.");
 static const u8 gBerryDescriptionPart1_Durin[] = _("Bitter to even look at. It is so");
 static const u8 gBerryDescriptionPart2_Durin[] = _("bitter, no one has ever eaten it as is.");
 static const u8 gBerryDescriptionPart1_Belue[] = _("It is glossy and looks delicious, but");
 static const u8 gBerryDescriptionPart2_Belue[] = _("it is awfully sour. Takes time to grow.");
-static const u8 gBerryDescriptionPart1_Liechi[] = _("A mysterious BERRY. It is rumored to");
+static const u8 gBerryDescriptionPart1_Liechi[] = _("A mysterious Berry. It is rumored to");
 static const u8 gBerryDescriptionPart2_Liechi[] = _("contain the power of the sea.");
-static const u8 gBerryDescriptionPart1_Ganlon[] = _("A mysterious BERRY. It is rumored to");
+static const u8 gBerryDescriptionPart1_Ganlon[] = _("A mysterious Berry. It is rumored to");
 static const u8 gBerryDescriptionPart2_Ganlon[] = _("contain the power of the land.");
-static const u8 gBerryDescriptionPart1_Salac[] = _("A mysterious BERRY. It is rumored to");
+static const u8 gBerryDescriptionPart1_Salac[] = _("A mysterious Berry. It is rumored to");
 static const u8 gBerryDescriptionPart2_Salac[] = _("contain the power of the sky.");
-static const u8 gBerryDescriptionPart1_Petaya[] = _("A mysterious BERRY. It is rumored to");
+static const u8 gBerryDescriptionPart1_Petaya[] = _("A mysterious Berry. It is rumored to");
 static const u8 gBerryDescriptionPart2_Petaya[] = _("contain the power of all living things.");
-static const u8 gBerryDescriptionPart1_Apicot[] = _("A very mystifying BERRY. No telling");
+static const u8 gBerryDescriptionPart1_Apicot[] = _("A very mystifying Berry. No telling");
 static const u8 gBerryDescriptionPart2_Apicot[] = _("what may happen or how it can be used.");
-static const u8 gBerryDescriptionPart1_Lansat[] = _("Said to be a legendary BERRY.");
+static const u8 gBerryDescriptionPart1_Lansat[] = _("Said to be a legendary Berry.");
 static const u8 gBerryDescriptionPart2_Lansat[] = _("Holding it supposedly brings joy.");
 static const u8 gBerryDescriptionPart1_Starf[] = _("So strong, it was abandoned at the");
 static const u8 gBerryDescriptionPart2_Starf[] = _("world’s edge. Considered a mirage.");
-static const u8 gBerryDescriptionPart1_Enigma[] = _("A completely enigmatic BERRY.");
+static const u8 gBerryDescriptionPart1_Enigma[] = _("A completely enigmatic Berry.");
 static const u8 gBerryDescriptionPart2_Enigma[] = _("Appears to have the power of stars.");
 #elif defined(GERMAN)
 #define NAME_CHERI_BERRY   _("AMRENA")

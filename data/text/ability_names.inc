@@ -1,79 +1,79 @@
 gAbilityNames:: @ 81FA248
 	.string "-------$", 13
-	.string "STENCH$", 13
-	.string "DRIZZLE$", 13
-	.string "SPEED BOOST$", 13
-	.string "BATTLE ARMOR$", 13
-	.string "STURDY$", 13
-	.string "DAMP$", 13
-	.string "LIMBER$", 13
-	.string "SAND VEIL$", 13
-	.string "STATIC$", 13
-	.string "VOLT ABSORB$", 13
-	.string "WATER ABSORB$", 13
-	.string "OBLIVIOUS$", 13
-	.string "CLOUD NINE$", 13
-	.string "COMPOUNDEYES$", 13
-	.string "INSOMNIA$", 13
-	.string "COLOR CHANGE$", 13
-	.string "IMMUNITY$", 13
-	.string "FLASH FIRE$", 13
-	.string "SHIELD DUST$", 13
-	.string "OWN TEMPO$", 13
-	.string "SUCTION CUPS$", 13
-	.string "INTIMIDATE$", 13
-	.string "SHADOW TAG$", 13
-	.string "ROUGH SKIN$", 13
-	.string "WONDER GUARD$", 13
-	.string "LEVITATE$", 13
-	.string "EFFECT SPORE$", 13
-	.string "SYNCHRONIZE$", 13
-	.string "CLEAR BODY$", 13
-	.string "NATURAL CURE$", 13
-	.string "LIGHTNINGROD$", 13
-	.string "SERENE GRACE$", 13
-	.string "SWIFT SWIM$", 13
-	.string "CHLOROPHYLL$", 13
-	.string "ILLUMINATE$", 13
-	.string "TRACE$", 13
-	.string "HUGE POWER$", 13
-	.string "POISON POINT$", 13
-	.string "INNER FOCUS$", 13
-	.string "MAGMA ARMOR$", 13
-	.string "WATER VEIL$", 13
-	.string "MAGNET PULL$", 13
-	.string "SOUNDPROOF$", 13
-	.string "RAIN DISH$", 13
-	.string "SAND STREAM$", 13
-	.string "PRESSURE$", 13
-	.string "THICK FAT$", 13
-	.string "EARLY BIRD$", 13
-	.string "FLAME BODY$", 13
-	.string "RUN AWAY$", 13
-	.string "KEEN EYE$", 13
-	.string "HYPER CUTTER$", 13
-	.string "PICKUP$", 13
-	.string "TRUANT$", 13
-	.string "HUSTLE$", 13
-	.string "CUTE CHARM$", 13
-	.string "PLUS$", 13
-	.string "MINUS$", 13
-	.string "FORECAST$", 13
-	.string "STICKY HOLD$", 13
-	.string "SHED SKIN$", 13
-	.string "GUTS$", 13
-	.string "MARVEL SCALE$", 13
-	.string "LIQUID OOZE$", 13
-	.string "OVERGROW$", 13
-	.string "BLAZE$", 13
-	.string "TORRENT$", 13
-	.string "SWARM$", 13
-	.string "ROCK HEAD$", 13
-	.string "DROUGHT$", 13
-	.string "ARENA TRAP$", 13
-	.string "VITAL SPIRIT$", 13
-	.string "WHITE SMOKE$", 13
-	.string "PURE POWER$", 13
-	.string "SHELL ARMOR$", 13
-	.string "CACOPHONY$", 13
-	.string "AIR LOCK$", 13
+	.string "Stench$", 13
+	.string "Drizzle$", 13
+	.string "Speed Boost$", 13
+	.string "Battle Armor$", 13
+	.string "Sturdy$", 13
+	.string "Damp$", 13
+	.string "Limber$", 13
+	.string "Sand Veil$", 13
+	.string "Static$", 13
+	.string "Volt Absorb$", 13
+	.string "Water Absorb$", 13
+	.string "Oblivious$", 13
+	.string "Cloud Nine$", 13
+	.string "Compund Eyes$", 13
+	.string "Insomnia$", 13
+	.string "Color Change$", 13
+	.string "Immunity$", 13
+	.string "Flash Fire$", 13
+	.string "Shield Dust$", 13
+	.string "Own Tempo$", 13
+	.string "Suction Cups$", 13
+	.string "Intimidate$", 13
+	.string "Shadow Tag$", 13
+	.string "Rough Skin$", 13
+	.string "Wonder Guard$", 13
+	.string "Levitate$", 13
+	.string "Effect Spore$", 13
+	.string "Synchronize$", 13
+	.string "Clear Boy$", 13
+	.string "Natural Cure$", 13
+	.string "LightningRod$", 13
+	.string "Serene Grace$", 13
+	.string "Swift Swim$", 13
+	.string "Chlorophyll$", 13
+	.string "Illuminate$", 13
+	.string "Trace$", 13
+	.string "Huge Power$", 13
+	.string "Poison Point$", 13
+	.string "Inner Focus$", 13
+	.string "Magma Armor$", 13
+	.string "Water Veil$", 13
+	.string "Magnet Pull$", 13
+	.string "Soundproof$", 13
+	.string "Rain Dish$", 13
+	.string "Sand Stream$", 13
+	.string "Pressure$", 13
+	.string "Thick Fat$", 13
+	.string "Early Bird$", 13
+	.string "Flame Body$", 13
+	.string "Run Away$", 13
+	.string "Keen Eye$", 13
+	.string "Hyper Cutter$", 13
+	.string "Pickup$", 13
+	.string "Truant$", 13
+	.string "Hustle$", 13
+	.string "Cute Charm$", 13
+	.string "Plus$", 13
+	.string "Minus$", 13
+	.string "Forecast$", 13
+	.string "Sticky Hold$", 13
+	.string "Shed Skin$", 13
+	.string "Guts$", 13
+	.string "Marvel Scale$", 13
+	.string "Liquid Ooze$", 13
+	.string "Overgrow$", 13
+	.string "Blaze$", 13
+	.string "Torrent$", 13
+	.string "Swarm$", 13
+	.string "Rock Head$", 13
+	.string "Drought$", 13
+	.string "Arena Trap$", 13
+	.string "Vital Spirit$", 13
+	.string "White Smoke$", 13
+	.string "Pure Power$", 13
+	.string "Shell Armor$", 13
+	.string "Cacophony$", 13
+	.string "Air Lock$", 13
