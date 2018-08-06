@@ -262,8 +262,8 @@ static const u8 gItemDescription_MoonBall[] = _(
 
 static const u8 gItemDescription_FriendBall[] = _(
 	"A Ball that makes\n"
-	"caught Pokémon more\n"
-	"friendly.");
+	"caught Pokémon\n"
+	"more friendly.");
 
 static const u8 gItemDescription_LoveBall[] = _(
 	"A Ball that works\n"
@@ -282,8 +282,8 @@ static const u8 gItemDescription_FastBall[] = _(
 
 static const u8 gItemDescription_SportBall[] = _(
 	"A special Ball made\n"
-	"for the Bug-Catching\n"
-	"Contest.");
+	"for the Bug-\n"
+	"Catching Contest.");
 
 static const u8 gItemDescription_HealBall[] = _(
 	"A special Ball that\n"

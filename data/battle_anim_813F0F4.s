@@ -26,7 +26,7 @@ gUnknown_0840B258:: @ 840B258
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65301
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65302
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65303
-	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65304
+	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65535
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65305
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65306
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65307
@@ -56,7 +56,7 @@ gUnknown_0840B2B8:: @ 840B2B8
 	obj_pal gBattleAnimSpritePalette_136, 65301
 	obj_pal gBattleAnimSpritePalette_136, 65302
 	obj_pal gBattleAnimSpritePalette_136, 65303
-	obj_pal gBattleAnimSpritePalette_136, 65304
+	obj_pal gBattleAnimSpritePalette_136, 65535
 	obj_pal gBattleAnimSpritePalette_136, 65305
 	obj_pal gBattleAnimSpritePalette_136, 65306
 	obj_pal gBattleAnimSpritePalette_136, 65307
@@ -109,8 +109,7 @@ gSpriteAnimTable_840B360:: @ 840B360
 	.4byte gSpriteAnim_840B358
 
 gUnknown_0840B378:: @ 840B378 @ type of particle per ball
-	.byte 0, 0, 0, 5, 1, 2, 2, 3, 5, 5, 4, 4 @ old balls
-	.byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	.byte 0, 0, 0, 5, 1, 2, 2, 3, 5, 5, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 
 	.align 2
 gUnknown_0840B384:: @ 840B384 @ particle animation table?  particle animation table per ball
@@ -126,21 +125,21 @@ gUnknown_0840B384:: @ 840B384 @ particle animation table?  particle animation ta
 	.4byte sub_8140A64
 	.4byte sub_8140DC4
 	.4byte sub_8141164
-	.4byte sub_8140930 @ level ball
-	.4byte sub_8140930 @ lure ball
-	.4byte sub_8140930 @ moon ball
-	.4byte sub_8140930 @ friend ball
-	.4byte sub_8140930 @ love ball
-	.4byte sub_8140930 @ heavy ball
-	.4byte sub_8140930 @ fast ball
-	.4byte sub_8140930 @ sport ball
-	.4byte sub_8140930 @ heal ball
-	.4byte sub_8140930 @ quick ball
-	.4byte sub_8140930 @ dusk ball
-	.4byte sub_8140930 @ cherish ball
-	.4byte sub_8140930 @ park ball
-	.4byte sub_8140930 @ dream ball
-	.4byte sub_8140930 @ cherish ball
+	.4byte sub_8140DC4 @ level ball
+	.4byte sub_8140DC4 @ lure ball
+	.4byte sub_8140DC4 @ moon ball
+	.4byte sub_8140DC4 @ friend ball
+	.4byte sub_8140DC4 @ love ball
+	.4byte sub_8140DC4 @ heavy ball
+	.4byte sub_8140DC4 @ fast ball
+	.4byte sub_8140DC4 @ sport ball
+	.4byte sub_8140DC4 @ heal ball
+	.4byte sub_8140DC4 @ quick ball
+	.4byte sub_8140DC4 @ dusk ball
+	.4byte sub_8140DC4 @ cherish ball
+	.4byte sub_8140DC4 @ park ball
+	.4byte sub_8140DC4 @ dream ball
+	.4byte sub_8140DC4 @ cherish ball
 
 	.align 2
 gSpriteTemplate_840B3B4:: @ 840B3B4
@@ -228,7 +227,7 @@ gSpriteTemplate_HealBall::
 
 	.align 2
 gSpriteTemplate_QuickBall::
-	spr_template 65304, 65304, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
+	spr_template 65535, 65535, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
 
 	.align 2
 gSpriteTemplate_DuskBall::

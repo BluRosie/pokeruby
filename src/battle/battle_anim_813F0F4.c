@@ -1143,7 +1143,7 @@ u8 sub_814086C(u8 x, u8 y, u8 priority, u8 subpriority, u8 ballIndex)
     return taskId;
 }
 
-void sub_8140930(u8 taskId)
+void sub_8140930(u8 taskId) // first animation type
 {
     u8 spriteId;
     u8 x, y;
@@ -1197,7 +1197,7 @@ static void sub_8140A28(struct Sprite *sprite)
         sub_8141294(sprite);
 }
 
-void sub_8140A64(u8 taskId)
+void sub_8140A64(u8 taskId) // eighth animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1225,7 +1225,7 @@ void sub_8140A64(u8 taskId)
     DestroyTask(taskId);
 }
 
-void sub_8140B3C(u8 taskId)
+void sub_8140B3C(u8 taskId) // sixth animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1253,7 +1253,7 @@ void sub_8140B3C(u8 taskId)
     DestroyTask(taskId);
 }
 
-void sub_8140C14(u8 taskId)
+void sub_8140C14(u8 taskId) // third animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1281,7 +1281,7 @@ void sub_8140C14(u8 taskId)
     DestroyTask(taskId);
 }
 
-void sub_8140CE8(u8 taskId)
+void sub_8140CE8(u8 taskId) // fourth animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1309,7 +1309,7 @@ void sub_8140CE8(u8 taskId)
     DestroyTask(taskId);
 }
 
-void sub_8140DC4(u8 taskId)
+void sub_8140DC4(u8 taskId) // second animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1359,7 +1359,7 @@ static void sub_8140ECC(struct Sprite *sprite)
         sub_8141294(sprite);
 }
 
-void sub_8140F24(u8 taskId)
+void sub_8140F24(u8 taskId) // seventh animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1395,7 +1395,7 @@ static void sub_8140FF8(struct Sprite *sprite)
         sub_8141294(sprite);
 }
 
-void sub_8141058(u8 taskId)
+void sub_8141058(u8 taskId) // fifth animation type
 {
     u8 i, j;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1435,7 +1435,7 @@ void sub_8141058(u8 taskId)
     DestroyTask(taskId);
 }
 
-void sub_8141164(u8 taskId)
+void sub_8141164(u8 taskId) // ninth and final animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;

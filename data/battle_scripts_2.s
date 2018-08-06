@@ -23,6 +23,21 @@ gBattlescriptsForBallThrow:: @ 81D9E48
 	.4byte BattleScript_BallThrow
 	.4byte BattleScript_BallThrow
 	.4byte BattleScript_BallThrow
+	@ new entries for new balls (they actually overlap bc of 0-indexing of the secondaryId but whatever it is fine)
+	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow
+	.4byte BattleScript_SafariBallThrow
+	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow
+	.4byte BattleScript_BallThrow
 
 gBattlescriptsForUsingItem:: @ 81D9E7C
 	.4byte BattleScript_PlayerUsesItem

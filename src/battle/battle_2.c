@@ -9,6 +9,7 @@
 #include "gba/flash_internal.h"
 #include "battle.h"
 #include "battle_ai.h"
+#include "battle_anim_813F0F4.h"
 #include "battle_interface.h"
 #include "battle_message.h"
 #include "battle_setup.h"
@@ -6748,7 +6749,7 @@ void HandleAction_Switch(void)
         gBattleResults.unk2++;
 }
 
-#ifdef NONMATCHING
+//#ifdef NONMATCHING
 void HandleAction_UseItem(void)
 {
     gBankAttacker = gBankTarget = gBanksByTurnOrder[gCurrentTurnActionNumber];
@@ -6757,9 +6758,16 @@ void HandleAction_UseItem(void)
     gDisableStructs[gBankAttacker].furyCutterCounter = 0;
     gLastUsedItem = gBattleBufferB[gBankAttacker][1] | (gBattleBufferB[gBankAttacker][2] << 8);
 
-    if (gLastUsedItem <= ITEM_PREMIER_BALL) // is ball
+    if (ItemId_GetPocket(gLastUsedItem) == 2) // is ball
     {
-        gBattlescriptCurrInstr = gBattlescriptsForBallThrow[gLastUsedItem];
+        if (gLastUsedItem > ITEM_PREMIER_BALL)
+		{
+			gBattlescriptCurrInstr = gBattlescriptsForBallThrow[ball_number_to_ball_processing_index(gLastUsedItem)];
+		}
+		else
+		{
+			gBattlescriptCurrInstr = gBattlescriptsForBallThrow[gLastUsedItem];
+		}
     }
     else if (gLastUsedItem == ITEM_POKE_DOLL || gLastUsedItem == ITEM_FLUFFY_TAIL)
     {
@@ -6826,8 +6834,8 @@ void HandleAction_UseItem(void)
     }
     gCurrentActionFuncId = ACTION_RUN_BATTLESCRIPT;
 }
-#else
-NAKED
+//#else
+/*NAKED
 void HandleAction_UseItem(void)
 {
     asm(".syntax unified\n\
@@ -7195,7 +7203,7 @@ _08014AB0: .4byte 0x000160d8\n\
 _08014AB4: .4byte gCurrentActionFuncId\n\
     .syntax divided\n");
 }
-#endif // NONMATCHING
+#endif // NONMATCHING*/
 
 bool8 TryRunFromBattle(u8 bank)
 {

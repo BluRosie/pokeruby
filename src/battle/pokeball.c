@@ -47,7 +47,7 @@ extern u8 gHealthboxIDs[];
 #define GFX_TAG_FASTBALL	65286
 #define GFX_TAG_SPORTBALL	65287
 #define GFX_TAG_HEALBALL	65288
-#define GFX_TAG_QUICKBALL	65289
+#define GFX_TAG_QUICKBALL	65535
 #define GFX_TAG_DUSKBALL	65290
 #define GFX_TAG_CHERISHBALL	65291
 #define GFX_TAG_PARKBALL	65292
@@ -1347,10 +1347,10 @@ void sub_80478DC(u8 a)
     }
     switch (a)
     {
-//    case 6:
-//    case 10:
-//    case 11:
-//        break;
+    case 6:
+    case 10:
+    case 11:
+        break;
     default:
         var = GetSpriteTileStartByTag(sBallSpriteSheets[a].tag);
         LZDecompressVram(gUnknown_08D030D0, (void *)(VRAM + 0x10100 + var * 32));
