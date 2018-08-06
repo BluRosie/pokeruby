@@ -4,6 +4,7 @@ This is a disassembly of Pokémon Ruby and Sapphire with various edits to show o
 
 Current implemented features:
 * a ton of decapitalization
+* moves are mostly updated to current generation, exceptions noted in src/data/battle_moves.c
 * gen vi exp. share, toggleable from the bag and everything
 * poison fades after reaching 1 hp in the overworld
 
