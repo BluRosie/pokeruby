@@ -226,8 +226,8 @@ struct PokemonSubstruct3
     /*0x01*/ u8 metLocation;
 
     /*0x02*/ u16 metLevel:7;
-    /*0x02*/ u16 metGame:3;  // sacrificed most significant bit here to give me 16 more ball slots, sorry xd and colosseum
-    /*0x03*/ u16 pokeball:5; // now 5 bits for 32 total slots
+    /*0x02*/ u16 metGame:3;
+    /*0x03*/ u16 pokeball:8; // gave the balls 8 fucking bits so it would actually work
     /*0x03*/ u16 otGender:1;
 
     /*0x04*/ u32 hpIV:5;
@@ -258,7 +258,7 @@ struct PokemonSubstruct3
     /*0x0B*/ u32 giftRibbon5:1;
     /*0x0B*/ u32 giftRibbon6:1;
     /*0x0B*/ u32 giftRibbon7:1;
-    /*0x0B*/ u32 fatefulEncounter:5; // unused in Ruby/Sapphire, but the high bit must be set for Mew/Deoxys to obey in FR/LG/Emerald
+    /*0x0B*/ u32 fatefulEncounter:2; // unused in Ruby/Sapphire, but the high bit must be set for Mew/Deoxys to obey in FR/LG/Emerald
 };
 
 union PokemonSubstruct

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_anim_813F0F4.h"
 #include "battle_message.h"
 #include "battle_string_ids.h"
 #include "battle_script_commands.h"
@@ -15713,6 +15714,7 @@ void atkEF_handleballthrow(void)
         u32 status = 0;
         u16 weight;
 		
+		
         if (gLastUsedItem == ITEM_SAFARI_BALL || gLastUsedItem == ITEM_SPORT_BALL)
             catch_rate = gBattleStruct->unk16089 * 1275 / 100; //correct the name to safariFleeRate
         else
@@ -15814,16 +15816,12 @@ void atkEF_handleballthrow(void)
 				if (weight <= 1000) //220.46 lbs
                 {    if (catch_rate >= 21)				// this could result in some sort of shitty exception where a pokemon with catch rate 22 becomes harder to catch than one with like 19 but it's fine
                     {
-						catch_rate += 20;
+						catch_rate -= 20;
 					}
                 }
-				else if (weight <= 2000) //440.92 lbs
+				else if (weight <= 3000 && weight > 2000) //440.92-661.38 lbs
                 {
-					ball_multiplier = 10;
-                }
-				else if (weight <= 3000) //661.38 lbs
-                {
-				catch_rate += 20;
+					catch_rate += 20;
                 }
 				else
 				{

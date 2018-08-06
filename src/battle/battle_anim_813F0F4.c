@@ -379,62 +379,124 @@ u8 ball_number_to_ball_processing_index(u16 ballItem)
     switch (ballItem)
     {
     case ITEM_MASTER_BALL:
-        return 4;
+        return BALLID_MASTER_BALL;
     case ITEM_ULTRA_BALL:
-        return 3;
+        return BALLID_ULTRA_BALL;
     case ITEM_GREAT_BALL:
-        return 1;
+        return BALLID_GREAT_BALL;
     case ITEM_SAFARI_BALL:
-        return 2;
+        return BALLID_SAFARI_BALL;
     case ITEM_NET_BALL:
-        return 5;
+        return BALLID_NET_BALL;
     case ITEM_DIVE_BALL:
-        return 6;
+        return BALLID_DIVE_BALL;
     case ITEM_NEST_BALL:
-        return 7;
+        return BALLID_NEST_BALL;
     case ITEM_REPEAT_BALL:
-        return 8;
+        return BALLID_REPEAT_BALL;
     case ITEM_TIMER_BALL:
-        return 9;
+        return BALLID_TIMER_BALL;
     case ITEM_LUXURY_BALL:
-        return 10;
+        return BALLID_LUXURY_BALL;
     case ITEM_PREMIER_BALL:
-        return 11;
+        return BALLID_PREMIER_BALL;
 	case ITEM_LEVEL_BALL:
-		return 12;
+		return BALLID_LEVEL_BALL;
 	case ITEM_LURE_BALL:
-		return 13;
+		return BALLID_LURE_BALL;
 	case ITEM_MOON_BALL:
-		return 14;
+		return BALLID_MOON_BALL;
 	case ITEM_FRIEND_BALL:
-		return 15;
+		return BALLID_FRIEND_BALL;
     case ITEM_LOVE_BALL:
-		return 16;
+		return BALLID_LOVE_BALL;
     case ITEM_HEAVY_BALL:
-		return 17;
+		return BALLID_HEAVY_BALL;
     case ITEM_FAST_BALL:
-		return 18;
+		return BALLID_FAST_BALL;
     case ITEM_SPORT_BALL:
-		return 19;
+		return BALLID_SPORT_BALL;
     case ITEM_HEAL_BALL:
-		return 20;
+		return BALLID_HEAL_BALL;
     case ITEM_QUICK_BALL:
-		return 21;
+		return BALLID_QUICK_BALL;
     case ITEM_DUSK_BALL:
-		return 22;
+		return BALLID_DUSK_BALL;
     case ITEM_CHERISH_BALL:
-		return 23;
+		return BALLID_CHERISH_BALL;
     case ITEM_PARK_BALL:
-		return 24;
+		return BALLID_PARK_BALL;
     case ITEM_DREAM_BALL:
-		return 25;
+		return BALLID_DREAM_BALL;
     case ITEM_BEAST_BALL:
-		return 26;
+		return BALLID_BEAST_BALL;
     case ITEM_POKE_BALL:
     default:
-        return 0;
+        return BALLID_POKE_BALL;
     }
 }
+
+/*u8 ball_processing_index_to_ball_number(u16 ballID)
+{
+    switch (ballID)
+    {
+    case BALLID_MASTER_BALL:
+        return ITEM_MASTER_BALL;
+    case BALLID_ULTRA_BALL:
+        return ITEM_ULTRA_BALL;
+    case BALLID_GREAT_BALL:
+        return ITEM_GREAT_BALL;
+    case BALLID_SAFARI_BALL:
+        return ITEM_SAFARI_BALL;
+    case BALLID_NET_BALL:
+        return ITEM_NET_BALL;
+    case BALLID_DIVE_BALL:
+        return ITEM_DIVE_BALL;
+    case BALLID_NEST_BALL:
+        return ITEM_NEST_BALL;
+    case BALLID_REPEAT_BALL:
+        return ITEM_REPEAT_BALL;
+    case BALLID_TIMER_BALL:
+        return ITEM_TIMER_BALL;
+    case BALLID_LUXURY_BALL:
+        return ITEM_LUXURY_BALL;
+    case BALLID_PREMIER_BALL:
+        return ITEM_PREMIER_BALL;
+	case BALLID_LEVEL_BALL:
+		return ITEM_LEVEL_BALL;
+	case BALLID_LURE_BALL:
+		return ITEM_LURE_BALL;
+	case BALLID_MOON_BALL:
+		return ITEM_MOON_BALL;
+	case BALLID_FRIEND_BALL:
+		return ITEM_FRIEND_BALL;
+    case BALLID_LOVE_BALL:
+		return ITEM_LOVE_BALL;
+    case BALLID_HEAVY_BALL:
+		return ITEM_HEAVY_BALL;
+    case BALLID_FAST_BALL:
+		return ITEM_FAST_BALL;
+    case BALLID_SPORT_BALL:
+		return ITEM_SPORT_BALL;
+    case BALLID_HEAL_BALL:
+		return ITEM_HEAL_BALL;
+    case BALLID_QUICK_BALL:
+		return ITEM_QUICK_BALL;
+    case BALLID_DUSK_BALL:
+		return ITEM_DUSK_BALL;
+    case BALLID_CHERISH_BALL:
+		return ITEM_CHERISH_BALL;
+    case BALLID_PARK_BALL:
+		return ITEM_PARK_BALL;
+    case BALLID_DREAM_BALL:
+		return ITEM_DREAM_BALL;
+    case BALLID_BEAST_BALL:
+		return ITEM_BEAST_BALL;
+    case BALLID_POKE_BALL:
+    default:
+        return ITEM_POKE_BALL;
+    }
+}*/
 
 void sub_813FA94(u8 taskId)
 {

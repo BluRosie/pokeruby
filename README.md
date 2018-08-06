@@ -7,8 +7,6 @@ Current implemented features:
 * moves are mostly updated to current generation, exceptions noted in src/data/battle_moves.c
 * gen vi exp. share, toggleable from the bag and everything
 * poison fades after reaching 1 hp in the overworld
-
-In progress:
 * ball expansion
 
 It builds the following rom:
