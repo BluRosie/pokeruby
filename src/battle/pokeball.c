@@ -38,21 +38,21 @@ extern u8 gHealthboxIDs[];
 #define GFX_TAG_TIMERBALL   55009
 #define GFX_TAG_LUXURYBALL  55010
 #define GFX_TAG_PREMIERBALL 55011
-#define GFX_TAG_LEVELBALL	55012
-#define GFX_TAG_LUREBALL	55013
-#define GFX_TAG_MOONBALL	55014
-#define GFX_TAG_FRIENDBALL	55015
-#define GFX_TAG_LOVEBALL	55016
-#define GFX_TAG_HEAVYBALL	55017
-#define GFX_TAG_FASTBALL	55018
-#define GFX_TAG_SPORTBALL	55019
-#define GFX_TAG_HEALBALL	55020
-#define GFX_TAG_QUICKBALL	55021
-#define GFX_TAG_DUSKBALL	55022
-#define GFX_TAG_CHERISHBALL	55023
-#define GFX_TAG_PARKBALL	55024
-#define GFX_TAG_DREAMBALL	55025
-#define GFX_TAG_BEASTBALL	55026
+#define GFX_TAG_LEVELBALL	65280
+#define GFX_TAG_LUREBALL	65281
+#define GFX_TAG_MOONBALL	65282
+#define GFX_TAG_FRIENDBALL	65283
+#define GFX_TAG_LOVEBALL	65284
+#define GFX_TAG_HEAVYBALL	65285
+#define GFX_TAG_FASTBALL	65286
+#define GFX_TAG_SPORTBALL	65287
+#define GFX_TAG_HEALBALL	65288
+#define GFX_TAG_QUICKBALL	65289
+#define GFX_TAG_DUSKBALL	65290
+#define GFX_TAG_CHERISHBALL	65291
+#define GFX_TAG_PARKBALL	65292
+#define GFX_TAG_DREAMBALL	65293
+#define GFX_TAG_BEASTBALL	65294
 
 static const struct CompressedSpriteSheet sBallSpriteSheets[] =
 {
@@ -1347,10 +1347,10 @@ void sub_80478DC(u8 a)
     }
     switch (a)
     {
-    case 6:
-    case 10:
-    case 11:
-        break;
+//    case 6:
+//    case 10:
+//    case 11:
+//        break;
     default:
         var = GetSpriteTileStartByTag(sBallSpriteSheets[a].tag);
         LZDecompressVram(gUnknown_08D030D0, (void *)(VRAM + 0x10100 + var * 32));

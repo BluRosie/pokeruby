@@ -400,6 +400,36 @@ u8 ball_number_to_ball_processing_index(u16 ballItem)
         return 10;
     case ITEM_PREMIER_BALL:
         return 11;
+	case ITEM_LEVEL_BALL:
+		return 12;
+	case ITEM_LURE_BALL:
+		return 13;
+	case ITEM_MOON_BALL:
+		return 14;
+	case ITEM_FRIEND_BALL:
+		return 15;
+    case ITEM_LOVE_BALL:
+		return 16;
+    case ITEM_HEAVY_BALL:
+		return 17;
+    case ITEM_FAST_BALL:
+		return 18;
+    case ITEM_SPORT_BALL:
+		return 19;
+    case ITEM_HEAL_BALL:
+		return 20;
+    case ITEM_QUICK_BALL:
+		return 21;
+    case ITEM_DUSK_BALL:
+		return 22;
+    case ITEM_CHERISH_BALL:
+		return 23;
+    case ITEM_PARK_BALL:
+		return 24;
+    case ITEM_DREAM_BALL:
+		return 25;
+    case ITEM_BEAST_BALL:
+		return 26;
     case ITEM_POKE_BALL:
     default:
         return 0;
@@ -521,7 +551,7 @@ static void sub_813FDC0(struct Sprite *sprite)
             sprite->callback = sub_813FE70;
             ballIndex = ball_number_to_ball_processing_index(gLastUsedItem);
             ballIndex2 = ballIndex;
-            if (ballIndex2 > 11)
+            if (ballIndex2 > 26)
                 return;
             if (ballIndex2 < 0)
                 return;
@@ -941,7 +971,7 @@ static void sub_81405F4(struct Sprite *sprite)
 
     ballIndex = ball_number_to_ball_processing_index(gLastUsedItem);
     ballIndex2 = ballIndex;
-    if (ballIndex2 > 11)
+    if (ballIndex2 > 26)
         goto LABEL;
     if (ballIndex2 < 0)
         goto LABEL;

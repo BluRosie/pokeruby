@@ -1422,7 +1422,7 @@ const struct Item gItems[] =
         .fieldUseFunc = NULL,
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
-        .secondaryId = 0,
+        .secondaryId = 24,
     },
     {
         .name = _("Dream Ball"),
@@ -1438,7 +1438,7 @@ const struct Item gItems[] =
         .fieldUseFunc = NULL,
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
-        .secondaryId = 0,
+        .secondaryId = 25,
     },
     {
         .name = _("Beast Ball"),
@@ -1454,7 +1454,7 @@ const struct Item gItems[] =
         .fieldUseFunc = NULL,
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
-        .secondaryId = 0,
+        .secondaryId = 26,
     },
     {
         .name = _("????????"),

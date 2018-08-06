@@ -267,8 +267,8 @@ static const u8 gItemDescription_FriendBall[] = _(
 
 static const u8 gItemDescription_LoveBall[] = _(
 	"A Ball that works\n"
-	"better on Pokémon\n"
-	"of the other gender.");
+	"better on opposite\n"
+	"gendered Pokémon.");
 
 static const u8 gItemDescription_HeavyBall[] = _(
 	"A Ball that works\n"
