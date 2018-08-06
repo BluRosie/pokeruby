@@ -207,7 +207,7 @@ bool8 IsTradedMon(struct Pokemon*);
 void BattleScriptPop(void);
 void SwitchInClearSetData(void);
 u8* ConvertIntToDecimalStringN(u8*, s32, u8, u8);
-u8 GetSetPokedexFlag(u16 nationalNum, u8 caseID);
+s8 GetSetPokedexFlag(u16 nationalNum, u8 caseID);
 u16 SpeciesToNationalPokedexNum(u16 species);
 u8 sub_803FC34(u8 bank);
 u16 sub_803FBFC(u8 a);
@@ -15711,7 +15711,8 @@ void atkEF_handleballthrow(void)
         u32 odds;
         u8 catch_rate;
         u32 status = 0;
-        
+        u16 weight;
+		
         if (gLastUsedItem == ITEM_SAFARI_BALL || gLastUsedItem == ITEM_SPORT_BALL)
             catch_rate = gBattleStruct->unk16089 * 1275 / 100; //correct the name to safariFleeRate
         else
@@ -15808,16 +15809,26 @@ void atkEF_handleballthrow(void)
                     ball_multiplier = 10;
                 break;
             case ITEM_HEAVY_BALL: // all values in hectograms, current as of s/m
-                u16 weight = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBankTarget].species), 1);
-                if (weight <= 1000) //220.46 lbs
-                    if (catch_rate >= 21)				// this could result in some sort of shitty exception where a pokemon with catch rate 22 becomes harder to catch than one with like 19 but it's fine
-                        catch_rate += 20;
-                else if (weight <= 2000) //440.92 lbs
-                    ball_multiplier = 10;
-                else if (weight <= 3000) //661.38 lbs
-                    catch_rate += 20;
-                else
+                weight = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBankTarget].species), 1);
+                
+				if (weight <= 1000) //220.46 lbs
+                {    if (catch_rate >= 21)				// this could result in some sort of shitty exception where a pokemon with catch rate 22 becomes harder to catch than one with like 19 but it's fine
+                    {
+						catch_rate += 20;
+					}
+                }
+				else if (weight <= 2000) //440.92 lbs
+                {
+					ball_multiplier = 10;
+                }
+				else if (weight <= 3000) //661.38 lbs
+                {
+				catch_rate += 20;
+                }
+				else
+				{
                     catch_rate += 30;
+				}
                 ball_multiplier = 10;
                 break;
             /*case ITEM_FAST_BALL:	// figure this one out later
@@ -15882,10 +15893,10 @@ void atkEF_handleballthrow(void)
             MarkBufferBankForExecution(gActiveBattler);
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_POKEBALL, (const void*) &gLastUsedItem);
-            if (LastUsedItem == ITEM_HEAL_BALL) // kachow, gotta add that heal ball
+            if (gLastUsedItem == ITEM_HEAL_BALL) // kachow, gotta add that heal ball
             {
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_HP, &gEnemyParty[gBattlerPartyIndexes[gBankTarget]].maxHP);
-                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_STATUS, &status)
+                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_STATUS, &status);
             }
             if (CalculatePlayerPartyCount() == 6)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
@@ -15906,10 +15917,10 @@ void atkEF_handleballthrow(void)
             {
                 gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_POKEBALL, (const void*) &gLastUsedItem);
-				if (LastUsedItem == ITEM_HEAL_BALL) // heal ball copy
+				if (gLastUsedItem == ITEM_HEAL_BALL) // heal ball copy
 				{
 					SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_HP, &gEnemyParty[gBattlerPartyIndexes[gBankTarget]].maxHP);
-					SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_STATUS, &status)
+					SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_STATUS, &status);
 				}
                 if (CalculatePlayerPartyCount() == 6)
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;
