@@ -245,6 +245,61 @@ static const u8 gItemDescription_GreenShard[] = _(
     "ancient item.\n"
     "Can be sold cheaply.");
 
+static const u8 gItemDescription_LevelBall[] = _(
+	"A Ball that works\n"
+	"better on lower-\n"
+	"level Pokémon.");
+
+static const u8 gItemDescription_LureBall[] = _(
+	"A Ball that works\n"
+	"better on Pokémon\n"
+	"hooked by a rod.");
+
+static const u8 gItemDescription_MoonBall[] = _(
+	"A Ball that works\n"
+	"better on Moon\n"
+	"Stone evolvers.");
+
+static const u8 gItemDescription_FriendBall[] = _(
+	"A Ball that makes\n"
+	"caught Pokémon more\n"
+	"friendly.");
+
+static const u8 gItemDescription_LoveBall[] = _(
+	"A Ball that works\n"
+	"better on Pokémon\n"
+	"of the other gender.");
+
+static const u8 gItemDescription_HeavyBall[] = _(
+	"A Ball that works\n"
+	"better on heavier\n"
+	"Pokémon.");
+
+static const u8 gItemDescription_FastBall[] = _(
+	"A Ball that works\n"
+	"better on faster\n"
+	"Pokémon.");
+
+static const u8 gItemDescription_SportBall[] = _(
+	"A special Ball made\n"
+	"for the Bug-Catching\n"
+	"Contest.");
+
+static const u8 gItemDescription_HealBall[] = _(
+	"A special Ball that\n"
+	"heals Pokémon upon\n"
+	"capture.");
+
+static const u8 gItemDescription_QuickBall[] = _(
+	"A Ball that works\n"
+	"best when used at\n"
+	"the start of battle.");
+
+static const u8 gItemDescription_DuskBall[] = _(
+	"A Ball that works\n"
+	"better when used\n"
+	"at night.");
+
 static const u8 gItemDescription_HPUp[] = _(
     "Raises the HP of\n"
     "one Pokémon.");
@@ -353,6 +408,24 @@ static const u8 gItemDescription_Repel[] = _(
     "Repels weak wild\n"
     "Pokémon for 100\n"
     "steps.");
+
+static const u8 gItemDescription_CherishBall[] = _(
+	"A special Ball to\n"
+	"commemorate a\n"
+	"special event.");
+
+static const u8 gItemDescription_ParkBall[] = _(
+	"A special Ball for\n"
+	"the Pal Park.");
+
+static const u8 gItemDescription_DreamBall[] = _(
+	"A special Ball for\n"
+	"the Entree Forest.");
+
+static const u8 gItemDescription_BeastBall[] = _(
+	"A special Ball for\n"
+	"catching Ultra\n"
+	"Beasts.");
 
 static const u8 gItemDescription_SunStone[] = _(
     "Makes certain\n"

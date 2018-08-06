@@ -74,6 +74,70 @@ gInterfacePal_MasterBall::
 	.incbin "graphics/interface/ball/master.gbapal.lz"
 
 	.align 2
+gInterfaceGfx_LevelBall::
+	.incbin "graphics/interface/ball/level.4bpp.lz"
+
+	.align 2
+gInterfacePal_LevelBall::
+	.incbin "graphics/interface/ball/level.gbapal.lz"
+	
+	.align 2
+gInterfaceGfx_LureBall::
+	.incbin "graphics/interface/ball/lure.4bpp.lz"
+
+	.align 2
+gInterfacePal_LureBall::
+	.incbin "graphics/interface/ball/lure.gbapal.lz"
+	
+	.align 2
+gInterfaceGfx_MoonBall::
+	.incbin "graphics/interface/ball/moon.4bpp.lz"
+
+	.align 2
+gInterfacePal_MoonBall::
+	.incbin "graphics/interface/ball/moon.gbapal.lz"
+	
+	.align 2
+gInterfaceGfx_FriendBall::
+	.incbin "graphics/interface/ball/friend.4bpp.lz"
+
+	.align 2
+gInterfacePal_FriendBall::
+	.incbin "graphics/interface/ball/friend.gbapal.lz"
+	
+	.align 2
+gInterfaceGfx_LoveBall::
+	.incbin "graphics/interface/ball/love.4bpp.lz"
+
+	.align 2
+gInterfacePal_LoveBall::
+	.incbin "graphics/interface/ball/love.gbapal.lz"
+	
+	.align 2
+gInterfaceGfx_HeavyBall::
+	.incbin "graphics/interface/ball/heavy.4bpp.lz"
+
+	.align 2
+gInterfacePal_HeavyBall::
+	.incbin "graphics/interface/ball/heavy.gbapal.lz"
+	
+	.align 2
+gInterfaceGfx_FastBall::
+	.incbin "graphics/interface/ball/fast.4bpp.lz"
+
+	.align 2
+gInterfacePal_FastBall::
+	.incbin "graphics/interface/ball/fast.gbapal.lz"
+	
+	.align 2
+gInterfaceGfx_SportBall::
+	.incbin "graphics/interface/ball/sport.4bpp.lz"
+
+	.align 2
+gInterfacePal_SportBall::
+	.incbin "graphics/interface/ball/sport.gbapal.lz"
+	
+	.align 2
 gInterfaceGfx_NetBall::
 	.incbin "graphics/interface/ball/net.4bpp.lz" @ 0xBC
 
@@ -128,6 +192,62 @@ gInterfaceGfx_PremierBall::
 	.align 2
 gInterfacePal_PremierBall::
 	.incbin "graphics/interface/ball/premier.gbapal.lz"
+
+	.align 2
+gInterfaceGfx_HealBall::
+	.incbin "graphics/interface/ball/heal.4bpp.lz"
+
+	.align 2
+gInterfacePal_HealBall::
+	.incbin "graphics/interface/ball/heal.gbapal.lz"
+	
+	.align 2
+gInterfaceGfx_QuickBall::
+	.incbin "graphics/interface/ball/quick.4bpp.lz"
+
+	.align 2
+gInterfacePal_QuickBall::
+	.incbin "graphics/interface/ball/quick.gbapal.lz"
+	
+	.align 2
+gInterfaceGfx_DuskBall::
+	.incbin "graphics/interface/ball/dusk.4bpp.lz"
+
+	.align 2
+gInterfacePal_DuskBall::
+	.incbin "graphics/interface/ball/dusk.gbapal.lz"
+	
+	.align 2
+gInterfaceGfx_CherishBall::
+	.incbin "graphics/interface/ball/cherish.4bpp.lz"
+
+	.align 2
+gInterfacePal_CherishBall::
+	.incbin "graphics/interface/ball/cherish.gbapal.lz"
+	
+	.align 2
+gInterfaceGfx_ParkBall::
+	.incbin "graphics/interface/ball/park.4bpp.lz"
+
+	.align 2
+gInterfacePal_ParkBall::
+	.incbin "graphics/interface/ball/park.gbapal.lz"
+
+	.align 2
+gInterfaceGfx_DreamBall::
+	.incbin "graphics/interface/ball/dream.4bpp.lz"
+
+	.align 2
+gInterfacePal_DreamBall::
+	.incbin "graphics/interface/ball/dream.gbapal.lz"
+
+	.align 2
+gInterfaceGfx_BeastBall::
+	.incbin "graphics/interface/ball/beast.4bpp.lz"
+
+	.align 2
+gInterfacePal_BeastBall::
+	.incbin "graphics/interface/ball/beast.gbapal.lz"
 
 	.align 2
 gUnknown_08D030D0:: @ 8D030D0

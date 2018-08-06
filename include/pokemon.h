@@ -226,8 +226,8 @@ struct PokemonSubstruct3
     /*0x01*/ u8 metLocation;
 
     /*0x02*/ u16 metLevel:7;
-    /*0x02*/ u16 metGame:4;
-    /*0x03*/ u16 pokeball:4;
+    /*0x02*/ u16 metGame:3;  // sacrificed most significant bit here to give me 16 more ball slots, sorry xd and colosseum
+    /*0x03*/ u16 pokeball:5; // now 5 bits for 32 total slots
     /*0x03*/ u16 otGender:1;
 
     /*0x04*/ u32 hpIV:5;
@@ -238,6 +238,8 @@ struct PokemonSubstruct3
     /*0x06*/ u32 spDefenseIV:5;
     /*0x07*/ u32 isEgg:1;
     /*0x07*/ u32 altAbility:1;
+
+    // new structure should have a byte as opposed to a bit for abilities?
 
     /*0x08*/ u32 coolRibbon:3;
     /*0x08*/ u32 beautyRibbon:3;

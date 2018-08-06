@@ -1,6 +1,9 @@
 #ifndef GUARD_CONSTANTS_ITEMS_H
 #define GUARD_CONSTANTS_ITEMS_H
 
+// free slots:  72, 82, 91-92, 99-102, 105, 112-120, 176-178 (end of items usable on mons) 226-253, 347-348
+// total of 
+
 #define ITEM_NONE 0
 
 // Balls
@@ -16,6 +19,24 @@
 #define ITEM_TIMER_BALL 10
 #define ITEM_LUXURY_BALL 11
 #define ITEM_PREMIER_BALL 12
+
+// Apricorn/New Balls
+#define ITEM_LEVEL_BALL 52
+#define ITEM_LURE_BALL 53
+#define ITEM_MOON_BALL 54
+#define ITEM_FRIEND_BALL 55
+#define ITEM_LOVE_BALL 56
+#define ITEM_HEAVY_BALL 57
+#define ITEM_FAST_BALL 58
+#define ITEM_SPORT_BALL 59
+#define ITEM_HEAL_BALL 60
+#define ITEM_QUICK_BALL 61
+#define ITEM_DUSK_BALL 62
+
+#define ITEM_CHERISH_BALL 87
+#define ITEM_PARK_BALL 88
+#define ITEM_DREAM_BALL 89
+#define ITEM_BEAST_BALL 90
 
 // Pokemon Items
 #define ITEM_POTION 13
@@ -57,7 +78,7 @@
 #define ITEM_BLUE_SHARD 49
 #define ITEM_YELLOW_SHARD 50
 #define ITEM_GREEN_SHARD 51
-#define ITEM_034 52
+/*#define ITEM_034 52
 #define ITEM_035 53
 #define ITEM_036 54
 #define ITEM_037 55
@@ -67,7 +88,7 @@
 #define ITEM_03B 59
 #define ITEM_03C 60
 #define ITEM_03D 61
-#define ITEM_03E 62
+#define ITEM_03E 62*/
 #define ITEM_HP_UP 63
 #define ITEM_PROTEIN 64
 #define ITEM_IRON 65
@@ -92,10 +113,10 @@
 #define ITEM_MAX_REPEL 84
 #define ITEM_ESCAPE_ROPE 85
 #define ITEM_REPEL 86
-#define ITEM_057 87
+/*#define ITEM_057 87
 #define ITEM_058 88
 #define ITEM_059 89
-#define ITEM_05A 90
+#define ITEM_05A 90*/
 #define ITEM_05B 91
 #define ITEM_05C 92
 #define ITEM_SUN_STONE 93

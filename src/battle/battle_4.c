@@ -15710,7 +15710,9 @@ void atkEF_handleballthrow(void)
     {
         u32 odds;
         u8 catch_rate;
-        if (gLastUsedItem == ITEM_SAFARI_BALL/* || gLastUsedItem == ITEM_SPORT_BALL*/)
+        u32 status = 0;
+        
+        if (gLastUsedItem == ITEM_SAFARI_BALL || gLastUsedItem == ITEM_SPORT_BALL)
             catch_rate = gBattleStruct->unk16089 * 1275 / 100; //correct the name to safariFleeRate
         else
             catch_rate = gBaseStats[gBattleMons[gBankTarget].species].catchRate;
@@ -15753,12 +15755,12 @@ void atkEF_handleballthrow(void)
                 break;
             case ITEM_LUXURY_BALL:
             case ITEM_PREMIER_BALL:
-            //case ITEM_HEAL_BALL:
-            //case ITEM_CHERISH_BALL:
-            //case ITEM_FRIEND_BALL:
+            case ITEM_HEAL_BALL:
+            case ITEM_CHERISH_BALL:
+            case ITEM_FRIEND_BALL:
                 ball_multiplier = 10;
                 break;
-            /*case ITEM_LEVEL_BALL:
+            case ITEM_LEVEL_BALL:
                 if (gBattleMons[gBankAttacker].level <= gBattleMons[gBankTarget].level)
                     ball_multiplier = 10;
                 else if (gBattleMons[gBankAttacker].level <= (2 * gBattleMons[gBankTarget].level))
@@ -15767,14 +15769,14 @@ void atkEF_handleballthrow(void)
                     ball_multiplier = 40;
                 else
                     ball_multiplier = 80;
-                break;*/
-            /*case ITEM_LURE_BALL: // not exactly how it works but whatever
+                break;
+            case ITEM_LURE_BALL: // not exactly how it works but whatever
                 if (gBattleTerrain == BATTLE_TERRAIN_UNDERWATER || gBattleTerrain == BATTLE_TERRAIN_WATER || gBattleTerrain == BATTLE_TERRAIN_POND)
                     ball_multiplier = 50;
                 else
                     ball_multiplier = 10;
-                break;*/
-            /*case ITEM_MOON_BALL:
+                break;
+            case ITEM_MOON_BALL:
                 if (gBattleMons[gBankTarget].species == SPECIES_NIDORAN_F 
                     || gBattleMons[gBankTarget].species == SPECIES_NIDORINA
                     || gBattleMons[gBankTarget].species == SPECIES_NIDOQUEEN
@@ -15795,8 +15797,8 @@ void atkEF_handleballthrow(void)
                     ball_multiplier = 40;
                 else
                     ball_multiplier = 10;
-                break;*/
-            /*case ITEM_LOVE_BALL:
+                break;
+            case ITEM_LOVE_BALL:
                 if (gBattleMons[gBankTarget].species == gBattleMons[gBankAttacker].species
                     && GetGenderFromSpeciesAndPersonality(gBattleMons[gBankTarget].species, gBattleMons[gBankTarget].personality) != GetGenderFromSpeciesAndPersonality(gBattleMons[gBankAttacker].species, gBattleMons[gBankAttacker].personality)
                     && GetGenderFromSpeciesAndPersonality(gBattleMons[gBankTarget].species, gBattleMons[gBankTarget].personality) != MON_GENDERLESS
@@ -15804,8 +15806,8 @@ void atkEF_handleballthrow(void)
                     ball_multiplier = 80;
                 else
                     ball_multiplier = 10;
-                break;*/
-            /*case ITEM_HEAVY_BALL: // all values in hectograms, current as of s/m
+                break;
+            case ITEM_HEAVY_BALL: // all values in hectograms, current as of s/m
                 u16 weight = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBankTarget].species), 1);
                 if (weight <= 1000) //220.46 lbs
                     if (catch_rate >= 21)				// this could result in some sort of shitty exception where a pokemon with catch rate 22 becomes harder to catch than one with like 19 but it's fine
@@ -15817,7 +15819,7 @@ void atkEF_handleballthrow(void)
                 else
                     catch_rate += 30;
                 ball_multiplier = 10;
-                break;*/
+                break;
             /*case ITEM_FAST_BALL:	// figure this one out later
                 u16 species = gBattleMons[gBankTarget].species;
                 // look in pokemon array structure for its base stats, specifically speed
@@ -15829,12 +15831,12 @@ void atkEF_handleballthrow(void)
                 else
                     ball_multiplier = 10;
                 break;*/
-            /*case ITEM_QUICK_BALL:
+            case ITEM_QUICK_BALL:
                 if (gBattleResults.battleTurnCounter == 1)
                     ball_multiplier = 50;
                 else
                     ball_multiplier = 10;
-                break;*/
+                break;
             /*case ITEM_BEAST_BALL:
                 if (gBattleMons[gBankTarget].species == SPECIES_NIHILEGO
                     && gBattleMons[gBankTarget].species == SPECIES_BUZZWOLE
@@ -15862,9 +15864,9 @@ void atkEF_handleballthrow(void)
         if (gBattleMons[gBankTarget].status1 & (STATUS_POISON | STATUS_BURN | STATUS_PARALYSIS | STATUS_TOXIC_POISON))
             odds = (odds * 15) / 10;
 
-        if (gLastUsedItem != ITEM_SAFARI_BALL/* && gLastUsedItem != ITEM_SPORT_BALL*/)
+        if (gLastUsedItem != ITEM_SAFARI_BALL && gLastUsedItem != ITEM_SPORT_BALL)
         {
-            if (gLastUsedItem == ITEM_MASTER_BALL/* || gLastUsedItem != ITEM_PARK_BALL || gLastUsedItem != ITEM_DREAM_BALL*/)
+            if (gLastUsedItem == ITEM_MASTER_BALL || gLastUsedItem != ITEM_PARK_BALL || gLastUsedItem != ITEM_DREAM_BALL)
             {
                 gBattleResults.unk5_1 = 1;
             }
@@ -15880,6 +15882,11 @@ void atkEF_handleballthrow(void)
             MarkBufferBankForExecution(gActiveBattler);
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_POKEBALL, (const void*) &gLastUsedItem);
+            if (LastUsedItem == ITEM_HEAL_BALL) // kachow, gotta add that heal ball
+            {
+                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_HP, &gEnemyParty[gBattlerPartyIndexes[gBankTarget]].maxHP);
+                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_STATUS, &status)
+            }
             if (CalculatePlayerPartyCount() == 6)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
             else
@@ -15899,6 +15906,11 @@ void atkEF_handleballthrow(void)
             {
                 gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_POKEBALL, (const void*) &gLastUsedItem);
+				if (LastUsedItem == ITEM_HEAL_BALL) // heal ball copy
+				{
+					SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_HP, &gEnemyParty[gBattlerPartyIndexes[gBankTarget]].maxHP);
+					SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBankTarget]], MON_DATA_STATUS, &status)
+				}
                 if (CalculatePlayerPartyCount() == 6)
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;
                 else

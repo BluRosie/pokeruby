@@ -12,6 +12,24 @@ extern const u8 gInterfaceGfx_UltraBall[];
 extern const u8 gInterfacePal_UltraBall[];
 extern const u8 gInterfaceGfx_MasterBall[];
 extern const u8 gInterfacePal_MasterBall[];
+	// apricorn balls
+extern const u8 gInterfaceGfx_LevelBall[];
+extern const u8 gInterfacePal_LevelBall[];
+extern const u8 gInterfaceGfx_LureBall[];
+extern const u8 gInterfacePal_LureBall[];
+extern const u8 gInterfaceGfx_MoonBall[];
+extern const u8 gInterfacePal_MoonBall[];
+extern const u8 gInterfaceGfx_FriendBall[];
+extern const u8 gInterfacePal_FriendBall[];
+extern const u8 gInterfaceGfx_LoveBall[];
+extern const u8 gInterfacePal_LoveBall[];
+extern const u8 gInterfaceGfx_HeavyBall[];
+extern const u8 gInterfacePal_HeavyBall[];
+extern const u8 gInterfaceGfx_FastBall[];
+extern const u8 gInterfacePal_FastBall[];
+extern const u8 gInterfaceGfx_SportBall[];
+extern const u8 gInterfacePal_SportBall[];
+
 extern const u8 gInterfaceGfx_NetBall[];
 extern const u8 gInterfacePal_NetBall[];
 extern const u8 gInterfaceGfx_DiveBall[];
@@ -26,6 +44,22 @@ extern const u8 gInterfaceGfx_LuxuryBall[];
 extern const u8 gInterfacePal_LuxuryBall[];
 extern const u8 gInterfaceGfx_PremierBall[];
 extern const u8 gInterfacePal_PremierBall[];
+	// new balls
+extern const u8 gInterfaceGfx_HealBall[];
+extern const u8 gInterfacePal_HealBall[];
+extern const u8 gInterfaceGfx_QuickBall[];
+extern const u8 gInterfacePal_QuickBall[];
+extern const u8 gInterfaceGfx_DuskBall[];
+extern const u8 gInterfacePal_DuskBall[];
+extern const u8 gInterfaceGfx_CherishBall[];
+extern const u8 gInterfacePal_CherishBall[];
+extern const u8 gInterfaceGfx_ParkBall[];
+extern const u8 gInterfacePal_ParkBall[];
+extern const u8 gInterfaceGfx_DreamBall[];
+extern const u8 gInterfacePal_DreamBall[];
+extern const u8 gInterfaceGfx_BeastBall[];
+extern const u8 gInterfacePal_BeastBall[];
+
 extern const u8 gUnknown_08D030D0[];
 
 extern const u8 gUnknown_08D17144[];
