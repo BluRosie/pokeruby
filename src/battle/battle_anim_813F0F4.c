@@ -400,36 +400,36 @@ u8 ball_number_to_ball_processing_index(u16 ballItem)
         return BALLID_LUXURY_BALL;
     case ITEM_PREMIER_BALL:
         return BALLID_PREMIER_BALL;
-	case ITEM_LEVEL_BALL:
-		return BALLID_LEVEL_BALL;
-	case ITEM_LURE_BALL:
-		return BALLID_LURE_BALL;
-	case ITEM_MOON_BALL:
-		return BALLID_MOON_BALL;
-	case ITEM_FRIEND_BALL:
-		return BALLID_FRIEND_BALL;
+    case ITEM_LEVEL_BALL:
+        return BALLID_LEVEL_BALL;
+    case ITEM_LURE_BALL:
+        return BALLID_LURE_BALL;
+    case ITEM_MOON_BALL:
+        return BALLID_MOON_BALL;
+    case ITEM_FRIEND_BALL:
+        return BALLID_FRIEND_BALL;
     case ITEM_LOVE_BALL:
-		return BALLID_LOVE_BALL;
+        return BALLID_LOVE_BALL;
     case ITEM_HEAVY_BALL:
-		return BALLID_HEAVY_BALL;
+        return BALLID_HEAVY_BALL;
     case ITEM_FAST_BALL:
-		return BALLID_FAST_BALL;
+        return BALLID_FAST_BALL;
     case ITEM_SPORT_BALL:
-		return BALLID_SPORT_BALL;
+        return BALLID_SPORT_BALL;
     case ITEM_HEAL_BALL:
-		return BALLID_HEAL_BALL;
+        return BALLID_HEAL_BALL;
     case ITEM_QUICK_BALL:
-		return BALLID_QUICK_BALL;
+        return BALLID_QUICK_BALL;
     case ITEM_DUSK_BALL:
-		return BALLID_DUSK_BALL;
+        return BALLID_DUSK_BALL;
     case ITEM_CHERISH_BALL:
-		return BALLID_CHERISH_BALL;
+        return BALLID_CHERISH_BALL;
     case ITEM_PARK_BALL:
-		return BALLID_PARK_BALL;
+        return BALLID_PARK_BALL;
     case ITEM_DREAM_BALL:
-		return BALLID_DREAM_BALL;
+        return BALLID_DREAM_BALL;
     case ITEM_BEAST_BALL:
-		return BALLID_BEAST_BALL;
+        return BALLID_BEAST_BALL;
     case ITEM_POKE_BALL:
     default:
         return BALLID_POKE_BALL;
@@ -462,36 +462,36 @@ u8 ball_number_to_ball_processing_index(u16 ballItem)
         return ITEM_LUXURY_BALL;
     case BALLID_PREMIER_BALL:
         return ITEM_PREMIER_BALL;
-	case BALLID_LEVEL_BALL:
-		return ITEM_LEVEL_BALL;
-	case BALLID_LURE_BALL:
-		return ITEM_LURE_BALL;
-	case BALLID_MOON_BALL:
-		return ITEM_MOON_BALL;
-	case BALLID_FRIEND_BALL:
-		return ITEM_FRIEND_BALL;
+    case BALLID_LEVEL_BALL:
+        return ITEM_LEVEL_BALL;
+    case BALLID_LURE_BALL:
+        return ITEM_LURE_BALL;
+    case BALLID_MOON_BALL:
+        return ITEM_MOON_BALL;
+    case BALLID_FRIEND_BALL:
+        return ITEM_FRIEND_BALL;
     case BALLID_LOVE_BALL:
-		return ITEM_LOVE_BALL;
+        return ITEM_LOVE_BALL;
     case BALLID_HEAVY_BALL:
-		return ITEM_HEAVY_BALL;
+        return ITEM_HEAVY_BALL;
     case BALLID_FAST_BALL:
-		return ITEM_FAST_BALL;
+        return ITEM_FAST_BALL;
     case BALLID_SPORT_BALL:
-		return ITEM_SPORT_BALL;
+        return ITEM_SPORT_BALL;
     case BALLID_HEAL_BALL:
-		return ITEM_HEAL_BALL;
+        return ITEM_HEAL_BALL;
     case BALLID_QUICK_BALL:
-		return ITEM_QUICK_BALL;
+        return ITEM_QUICK_BALL;
     case BALLID_DUSK_BALL:
-		return ITEM_DUSK_BALL;
+        return ITEM_DUSK_BALL;
     case BALLID_CHERISH_BALL:
-		return ITEM_CHERISH_BALL;
+        return ITEM_CHERISH_BALL;
     case BALLID_PARK_BALL:
-		return ITEM_PARK_BALL;
+        return ITEM_PARK_BALL;
     case BALLID_DREAM_BALL:
-		return ITEM_DREAM_BALL;
+        return ITEM_DREAM_BALL;
     case BALLID_BEAST_BALL:
-		return ITEM_BEAST_BALL;
+        return ITEM_BEAST_BALL;
     case BALLID_POKE_BALL:
     default:
         return ITEM_POKE_BALL;
