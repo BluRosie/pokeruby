@@ -15848,8 +15848,8 @@ void atkEF_handleballthrow(void)
                 else
                     ball_multiplier = 10;
                 break;
-            /*case ITEM_BEAST_BALL:
-                if (gBattleMons[gBankTarget].species == SPECIES_NIHILEGO
+            case ITEM_BEAST_BALL:
+                /*if (gBattleMons[gBankTarget].species == SPECIES_NIHILEGO
                     && gBattleMons[gBankTarget].species == SPECIES_BUZZWOLE
                     && gBattleMons[gBankTarget].species == SPECIES_PHEREMOSA
                     && gBattleMons[gBankTarget].species == SPECIES_XURKITREE
@@ -15862,8 +15862,8 @@ void atkEF_handleballthrow(void)
                     && gBattleMons[gBankTarget].species == SPECIES_BLACEPHALON)
                     ball_multiplier = 50;
                 else
-                    ball_multiplier = 1;
-                break;*/
+                    */ball_multiplier = 1;
+                break;
             }
         }
         else

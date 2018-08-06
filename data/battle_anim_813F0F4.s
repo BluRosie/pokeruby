@@ -26,7 +26,7 @@ gUnknown_0840B258:: @ 840B258
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65301
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65302
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65303
-	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65535
+	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65304
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65305
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65306
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65307
@@ -56,7 +56,7 @@ gUnknown_0840B2B8:: @ 840B2B8
 	obj_pal gBattleAnimSpritePalette_136, 65301
 	obj_pal gBattleAnimSpritePalette_136, 65302
 	obj_pal gBattleAnimSpritePalette_136, 65303
-	obj_pal gBattleAnimSpritePalette_136, 65535
+	obj_pal gBattleAnimSpritePalette_136, 65304
 	obj_pal gBattleAnimSpritePalette_136, 65305
 	obj_pal gBattleAnimSpritePalette_136, 65306
 	obj_pal gBattleAnimSpritePalette_136, 65307
@@ -227,7 +227,7 @@ gSpriteTemplate_HealBall::
 
 	.align 2
 gSpriteTemplate_QuickBall::
-	spr_template 65535, 65535, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
+	spr_template 65304, 65304, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
 
 	.align 2
 gSpriteTemplate_DuskBall::

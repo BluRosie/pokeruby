@@ -47,7 +47,7 @@ extern u8 gHealthboxIDs[];
 #define GFX_TAG_FASTBALL	65286
 #define GFX_TAG_SPORTBALL	65287
 #define GFX_TAG_HEALBALL	65288
-#define GFX_TAG_QUICKBALL	65535
+#define GFX_TAG_QUICKBALL	65289
 #define GFX_TAG_DUSKBALL	65290
 #define GFX_TAG_CHERISHBALL	65291
 #define GFX_TAG_PARKBALL	65292
@@ -450,7 +450,7 @@ const struct SpriteTemplate gBallSpriteTemplates[] =
 	},
 	{
 	    .tileTag = GFX_TAG_PARKBALL,
-		.paletteTag = GFX_TAG_BEASTBALL,
+		.paletteTag = GFX_TAG_PARKBALL,
 		.oam = &sBallOamData,
         .anims = sBallAnimSequences,
         .images = NULL,
@@ -459,7 +459,7 @@ const struct SpriteTemplate gBallSpriteTemplates[] =
 	},
 	{
 	    .tileTag = GFX_TAG_DREAMBALL,
-		.paletteTag = GFX_TAG_BEASTBALL,
+		.paletteTag = GFX_TAG_DREAMBALL,
 		.oam = &sBallOamData,
         .anims = sBallAnimSequences,
         .images = NULL,
