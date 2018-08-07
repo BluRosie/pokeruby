@@ -190,7 +190,7 @@ enum {
     NATURE_QUIRKY,
 };
 
-struct PokemonSubstruct0
+struct PokemonSubstruct0 // size: 0xA
 {
     u16 species;
     u16 heldItem;
@@ -199,13 +199,13 @@ struct PokemonSubstruct0
     u8 friendship;
 };
 
-struct PokemonSubstruct1
+struct PokemonSubstruct1 // size: 0xC
 {
     u16 moves[4];
     u8 pp[4];
 };
 
-struct PokemonSubstruct2
+struct PokemonSubstruct2 // size: 0xC
 {
     u8 hpEV;
     u8 attackEV;
@@ -221,25 +221,26 @@ struct PokemonSubstruct2
     u8 sheen;
 };
 
-struct PokemonSubstruct3
+struct PokemonSubstruct3 // size: 0xB
 {
     /*0x00*/ u8 pokerus;
     /*0x01*/ u8 metLocation;
 
-    /*0x02*/ u16 metLevel:7;
-    /*0x02*/ u16 metGame:3;
-    /*0x03*/ u16 pokeball:8; // gave the balls 8 fucking bits so it would actually work
-    /*0x03*/ u16 otGender:1;
+    /*0x02*/ u8 pokeBall;
+	
+    /*0x03*/ u16 metLevel:7;
+    /*0x03*/ u16 metGame:3;
+    /*0x04*/ u16 otGender:1;
 
     /*0x04*/ u32 hpIV:5;
-    /*0x04*/ u32 attackIV:5;
+    /*0x05*/ u32 attackIV:5;
     /*0x05*/ u32 defenseIV:5;
-    /*0x05*/ u32 speedIV:5;
-    /*0x05*/ u32 spAttackIV:5;
+    /*0x06*/ u32 speedIV:5;
+    /*0x06*/ u32 spAttackIV:5;
     /*0x06*/ u32 spDefenseIV:5;
     /*0x07*/ u32 isEgg:1;
     /*0x07*/ u32 altAbility:1;
-             u32 hiddenAbility:1; // toggle HA
+    /*0x07*/ u32 hiddenAbility:1; // toggle HA, 5th bit of 07
 
     /*0x08*/ u32 coolRibbon:3;
     /*0x08*/ u32 beautyRibbon:3;
@@ -261,7 +262,7 @@ struct PokemonSubstruct3
     /*0x0B*/ u32 fatefulEncounter:1; // unused in Ruby/Sapphire, but the high bit must be set for Mew/Deoxys to obey in FR/LG/Emerald
 };
 
-union PokemonSubstruct
+union PokemonSubstruct // EACH IS PADDED SO THE NEXT IS ALIGNED BY 4
 {
     struct PokemonSubstruct0 type0;
     struct PokemonSubstruct1 type1;

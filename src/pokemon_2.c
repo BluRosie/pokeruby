@@ -176,22 +176,22 @@ void GetMonSpriteTemplate_803C5A0(u16 species, u8 a2)
 
 void EncryptBoxMon(struct BoxPokemon *boxMon)
 {
-    u32 i;
+/*    u32 i;
     for (i = 0; i < 12; i++)
     {
         boxMon->secure.raw[i] ^= boxMon->personality;
         boxMon->secure.raw[i] ^= boxMon->otId;
-    }
+    }*/
 }
 
 void DecryptBoxMon(struct BoxPokemon *boxMon)
 {
-    u32 i;
+/*    u32 i;
     for (i = 0; i < 12; i++)
     {
         boxMon->secure.raw[i] ^= boxMon->otId;
         boxMon->secure.raw[i] ^= boxMon->personality;
-    }
+    }*/
 }
 
 #define SUBSTRUCT_CASE(n, v1, v2, v3, v4)  \
@@ -218,7 +218,7 @@ union PokemonSubstruct *GetSubstruct(struct BoxPokemon *boxMon, u32 personality,
     union PokemonSubstruct *substruct = NULL;
 
     union PokemonSubstruct *substructs0 = boxMon->secure.substructs;
-    union PokemonSubstruct *substructs1 = boxMon->secure.substructs;
+/*    union PokemonSubstruct *substructs1 = boxMon->secure.substructs;
     union PokemonSubstruct *substructs2 = boxMon->secure.substructs;
     union PokemonSubstruct *substructs3 = boxMon->secure.substructs;
     union PokemonSubstruct *substructs4 = boxMon->secure.substructs;
@@ -240,12 +240,13 @@ union PokemonSubstruct *GetSubstruct(struct BoxPokemon *boxMon, u32 personality,
     union PokemonSubstruct *substructs20 = boxMon->secure.substructs;
     union PokemonSubstruct *substructs21 = boxMon->secure.substructs;
     union PokemonSubstruct *substructs22 = boxMon->secure.substructs;
-    union PokemonSubstruct *substructs23 = boxMon->secure.substructs;
+    union PokemonSubstruct *substructs23 = boxMon->secure.substructs;*/
 
     switch (personality % 24)
     {
+	default:
     SUBSTRUCT_CASE( 0,0,1,2,3)
-    SUBSTRUCT_CASE( 1,0,1,3,2)
+/*    SUBSTRUCT_CASE( 1,0,1,3,2)
     SUBSTRUCT_CASE( 2,0,2,1,3)
     SUBSTRUCT_CASE( 3,0,3,1,2)
     SUBSTRUCT_CASE( 4,0,2,3,1)
@@ -267,7 +268,7 @@ union PokemonSubstruct *GetSubstruct(struct BoxPokemon *boxMon, u32 personality,
     SUBSTRUCT_CASE(20,2,1,3,0)
     SUBSTRUCT_CASE(21,3,1,2,0)
     SUBSTRUCT_CASE(22,2,3,1,0)
-    SUBSTRUCT_CASE(23,3,2,1,0)
+    SUBSTRUCT_CASE(23,3,2,1,0)*/
     }
 
     return substruct;
@@ -319,12 +320,12 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
 
         DecryptBoxMon(boxMon);
 
-        if (CalculateBoxMonChecksum(boxMon) != boxMon->checksum)
+/*        if (CalculateBoxMonChecksum(boxMon) != boxMon->checksum)
         {
             boxMon->isBadEgg = 1;
             boxMon->isEgg = 1;
             substruct3->isEgg = 1;
-        }
+        }*/
     }
 
     switch (field)
@@ -702,14 +703,14 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const u8 *data)
 
         DecryptBoxMon(boxMon);
 
-        if (CalculateBoxMonChecksum(boxMon) != boxMon->checksum)
+/*        if (CalculateBoxMonChecksum(boxMon) != boxMon->checksum)
         {
             boxMon->isBadEgg = 1;
             boxMon->isEgg = 1;
             substruct3->isEgg = 1;
             EncryptBoxMon(boxMon);
             return;
-        }
+        }*/
     }
 
     switch (field)
