@@ -50,7 +50,6 @@
 #define MON_DATA_SPDEF_IV          44
 #define MON_DATA_IS_EGG            45
 #define MON_DATA_ALT_ABILITY       46
-#define MON_DATA_HIDDEN_ABILITY    89
 #define MON_DATA_TOUGH             47
 #define MON_DATA_SHEEN             48
 #define MON_DATA_OT_GENDER         49
@@ -93,6 +92,7 @@
 #define MON_DATA_SPEED2            86
 #define MON_DATA_SPATK2            87
 #define MON_DATA_SPDEF2            88
+#define MON_DATA_HIDDEN_ABILITY    89
 
 #define MAX_LEVEL 100
 
@@ -536,6 +536,7 @@ void CreateMaleMon(struct Pokemon *mon, u16 species, u8 level);
 void CreateMonWithIVsPersonality(struct Pokemon *mon, u16 species, u8 level, u32 ivs, u32 personality);
 void CreateMonWithIVsOTID(struct Pokemon *mon, u16 species, u8 level, u8 *ivs, u32 otId);
 void CreateMonWithEVSpread(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 evSpread);
+//void CreateMonWithFeature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 field, u16 value);
 void sub_803ADE8(struct Pokemon *mon, struct UnknownPokemonStruct *src);
 void sub_803AF78(struct Pokemon *mon, struct UnknownPokemonStruct *dest);
 u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon);
