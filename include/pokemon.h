@@ -226,7 +226,7 @@ struct PokemonSubstruct3 // size: 0xB
     /*0x00*/ u8 pokerus;
     /*0x01*/ u8 metLocation;
 
-    /*0x02*/ u8 pokeBall;
+    /*0x02*/ u8 pokeball;
 	
     /*0x03*/ u16 metLevel:7;
     /*0x03*/ u16 metGame:3;
@@ -336,7 +336,7 @@ struct UnknownPokemonStruct
 
 #define BATTLE_STATS_NO 8
 
-struct BattlePokemon
+struct BattlePokemon	// okay let's see if this works, taking a bit out of maxHP and giving it to hidden abilities
 {
     /*0x00*/ u16 species;
     /*0x02*/ u16 attack;
@@ -357,7 +357,8 @@ struct BattlePokemon
     /*0x20*/ u8 ability;
     /*0x21*/ u8 type1;
     /*0x22*/ u8 type2;
-    /*0x23*/ u8 unknown;
+	/*0x23*/ u8 hiddenAbility:1;
+    /*0x23*/ u8 unknown:7; //dedicating this to hidden abilities
     /*0x24*/ u8 pp[4];
     /*0x28*/ u16 hp;
     /*0x2A*/ u8 level;
@@ -584,8 +585,7 @@ u8 SendMonToPC(struct Pokemon *mon);
 u8 CalculatePlayerPartyCount(void);
 u8 CalculateEnemyPartyCount(void);
 u8 sub_803DAA0(void);
-u8 GetAbilityBySpecies(u16 species, bool8 altAbility);
-u8 GetHiddenAbilityBySpecies(u16 species);
+u8 GetAbilityBySpecies(u16 species, bool8 altAbility, bool8 hiddenAbility);
 u8 GetMonAbility(struct Pokemon *mon);
 void CreateSecretBaseEnemyParty(struct SecretBaseRecord *secretBaseRecord);
 u8 GetSecretBaseTrainerPicIndex(void);

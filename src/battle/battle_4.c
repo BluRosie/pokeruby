@@ -8328,7 +8328,7 @@ static void atk4D_switchindataupdate(void)
 
     gBattleMons[gActiveBattler].type1 = gBaseStats[gBattleMons[gActiveBattler].species].type1;
     gBattleMons[gActiveBattler].type2 = gBaseStats[gBattleMons[gActiveBattler].species].type2;
-    gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].altAbility);
+    gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].altAbility, gBattleMons[gActiveBattler].hiddenAbility);
 
     // check knocked off item
     i = GetBattlerSide(gActiveBattler);
@@ -13597,6 +13597,7 @@ static void atkAE_healpartystatus(void)
         {
             u16 species = GetMonData(&party[i], MON_DATA_SPECIES2);
             u8 abilityBit = GetMonData(&party[i], MON_DATA_ALT_ABILITY);
+            u8 hiddenAbilityBit = GetMonData(&party[i], MON_DATA_HIDDEN_ABILITY);
             if (species != 0 && species != SPECIES_EGG)
             {
                 u8 ability;
@@ -13605,7 +13606,7 @@ static void atkAE_healpartystatus(void)
                 else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && gBattlerPartyIndexes[gActiveBattler] == i && !(gAbsentBattlerFlags & gBitTable[gActiveBattler]))
                     ability = gBattleMons[gActiveBattler].ability;
                 else
-                    ability = GetAbilityBySpecies(species, abilityBit);
+                    ability = GetAbilityBySpecies(species, abilityBit, hiddenAbilityBit);
                 if (ability != ABILITY_SOUNDPROOF)
                     to_heal |= (1 << i);
             }
@@ -15713,7 +15714,7 @@ void atkEF_handleballthrow(void)
         u8 catch_rate;
         u32 status = 0;
         u16 weight;
-		u16 species;
+        u16 species;
         
         
         if (gLastUsedItem == ITEM_SAFARI_BALL || gLastUsedItem == ITEM_SPORT_BALL)

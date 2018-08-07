@@ -3924,7 +3924,7 @@ void sub_8011384(void)
                 MEMSET_ALT(&gBattleMons[gActiveBattler], gBattleBufferB[gActiveBattler][4 + i], 0x58, i, ptr);
                 gBattleMons[gActiveBattler].type1 = gBaseStats[gBattleMons[gActiveBattler].species].type1;
                 gBattleMons[gActiveBattler].type2 = gBaseStats[gBattleMons[gActiveBattler].species].type2;
-                gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].altAbility);
+                gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].altAbility, gBattleMons[gActiveBattler].hiddenAbility);
                 r0 = GetBattlerSide(gActiveBattler);
                 ewram160BC[r0] = gBattleMons[gActiveBattler].hp;
                 for (i = 0; i < 8; i++)
