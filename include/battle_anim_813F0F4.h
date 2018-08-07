@@ -2,8 +2,8 @@
 #define GUARD_BATTLE_ANIM_813F0F4_H
 
 void sub_8141828(u8, struct Pokemon *);
-//u8 ball_number_to_ball_processing_index(u16);
-u8 ball_processing_index_to_ball_number(u16);
+u8 ball_number_to_ball_processing_index(u16);
+//u8 ball_processing_index_to_ball_number(u16);
 u8 sub_814086C(u8, u8, u8, u8, u8);
 u8 sub_8141314(u8, u8, u32, u8);
 

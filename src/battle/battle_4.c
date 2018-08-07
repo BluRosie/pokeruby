@@ -15713,6 +15713,7 @@ void atkEF_handleballthrow(void)
         u8 catch_rate;
         u32 status = 0;
         u16 weight;
+		u16 species;
         
         
         if (gLastUsedItem == ITEM_SAFARI_BALL || gLastUsedItem == ITEM_SPORT_BALL)
@@ -15762,6 +15763,11 @@ void atkEF_handleballthrow(void)
             case ITEM_CHERISH_BALL:
             case ITEM_FRIEND_BALL:
                 ball_multiplier = 10;
+                break;
+            case ITEM_SPORT_BALL:
+            case ITEM_PARK_BALL:
+            case ITEM_DREAM_BALL:
+                ball_multiplier = 15;
                 break;
             case ITEM_LEVEL_BALL:
                 if (gBattleMons[gBankAttacker].level <= gBattleMons[gBankTarget].level)
@@ -15829,17 +15835,19 @@ void atkEF_handleballthrow(void)
                 }
                 ball_multiplier = 10;
                 break;
-            /*case ITEM_FAST_BALL:	// figure this one out later
-                u16 species = gBattleMons[gBankTarget].species;
-                // look in pokemon array structure for its base stats, specifically speed
-                break;*/
-            /*case ITEM_DUSK_BALL:	// figure this one out later
-                uXX time;
+            case ITEM_FAST_BALL:
+                species = gBattleMons[gBankTarget].species;
+                ball_multiplier = 10;
+                if (gBaseStats[species].baseSpeed > 100)
+                    ball_multiplier = 40;
+                break;
+            case ITEM_DUSK_BALL:	// figure this one out later
+                /*uXX time;
                 if (time == night || Overworld_GetMapTypeOfSaveblockLocation() == cavePlaces)
                     ball_multiplier = 30;
-                else
+                else*/
                     ball_multiplier = 10;
-                break;*/
+                break;
             case ITEM_QUICK_BALL:
                 if (gBattleResults.battleTurnCounter == 1)
                     ball_multiplier = 50;

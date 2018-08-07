@@ -50,6 +50,7 @@
 #define MON_DATA_SPDEF_IV          44
 #define MON_DATA_IS_EGG            45
 #define MON_DATA_ALT_ABILITY       46
+#define MON_DATA_HIDDEN_ABILITY    89
 #define MON_DATA_TOUGH             47
 #define MON_DATA_SHEEN             48
 #define MON_DATA_OT_GENDER         49
@@ -238,8 +239,7 @@ struct PokemonSubstruct3
     /*0x06*/ u32 spDefenseIV:5;
     /*0x07*/ u32 isEgg:1;
     /*0x07*/ u32 altAbility:1;
-
-    // new structure should have a byte as opposed to a bit for abilities?
+             u32 hiddenAbility:1; // toggle HA
 
     /*0x08*/ u32 coolRibbon:3;
     /*0x08*/ u32 beautyRibbon:3;
@@ -258,7 +258,7 @@ struct PokemonSubstruct3
     /*0x0B*/ u32 giftRibbon5:1;
     /*0x0B*/ u32 giftRibbon6:1;
     /*0x0B*/ u32 giftRibbon7:1;
-    /*0x0B*/ u32 fatefulEncounter:2; // unused in Ruby/Sapphire, but the high bit must be set for Mew/Deoxys to obey in FR/LG/Emerald
+    /*0x0B*/ u32 fatefulEncounter:1; // unused in Ruby/Sapphire, but the high bit must be set for Mew/Deoxys to obey in FR/LG/Emerald
 };
 
 union PokemonSubstruct
@@ -428,6 +428,7 @@ struct BaseStats
     /*0x18*/ u8 safariZoneFleeRate;
     /*0x19*/ u8 bodyColor:7;
              u8 noFlip:1;
+    /*0x20*/ u8 hiddenAbility;
 };
 
 struct BattleMove
@@ -582,6 +583,7 @@ u8 CalculatePlayerPartyCount(void);
 u8 CalculateEnemyPartyCount(void);
 u8 sub_803DAA0(void);
 u8 GetAbilityBySpecies(u16 species, bool8 altAbility);
+u8 GetHiddenAbilityBySpecies(u16 species);
 u8 GetMonAbility(struct Pokemon *mon);
 void CreateSecretBaseEnemyParty(struct SecretBaseRecord *secretBaseRecord);
 u8 GetSecretBaseTrainerPicIndex(void);

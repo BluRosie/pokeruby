@@ -628,6 +628,8 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 | (substruct3->giftRibbon7 << 26);
         }
         break;
+    case MON_DATA_HIDDEN_ABILITY:
+        retVal = substruct3->hiddenAbility;
     default:
         break;
     }
@@ -930,11 +932,11 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const u8 *data)
         break;
     case MON_DATA_IVS:
     {
-#ifdef BUGFIX_SETMONIVS
+//#ifdef BUGFIX_SETMONIVS
         u32 ivs = data[0] | (data[1] << 8) | (data[2] << 16) | (data[3] << 24);
-#else
-        u32 ivs = *data; // Bug: Only the HP IV and the lower 3 bits of the Attack IV are read. The rest become 0.
-#endif
+//#else
+//        u32 ivs = *data; // Bug: Only the HP IV and the lower 3 bits of the Attack IV are read. The rest become 0.
+//#endif
         substruct3->hpIV = ivs & 0x1F;
         substruct3->attackIV = (ivs >> 5) & 0x1F;
         substruct3->defenseIV = (ivs >> 10) & 0x1F;
@@ -943,6 +945,8 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const u8 *data)
         substruct3->spDefenseIV = (ivs >> 25) & 0x1F;
         break;
     }
+    case MON_DATA_HIDDEN_ABILITY:
+        SET8(substruct3->hiddenAbility);
     default:
         break;
     }
@@ -1061,11 +1065,23 @@ u8 GetAbilityBySpecies(u16 species, bool8 altAbility)
     return gLastUsedAbility;
 }
 
+u8 GetHiddenAbilityBySpecies(u16 species)
+{
+    gLastUsedAbility = gBaseStats[species].hiddenAbility;
+    
+    return gLastUsedAbility;
+}
+
 u8 GetMonAbility(struct Pokemon *mon)
 {
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8 altAbility = GetMonData(mon, MON_DATA_ALT_ABILITY, NULL);
-    return GetAbilityBySpecies(species, altAbility);
+    u8 hiddenAbility = GetMonData(mon, MON_DATA_HIDDEN_ABILITY, NULL);
+    
+    if (hiddenAbility)
+        return GetHiddenAbilityBySpecies(species);
+    else
+        return GetAbilityBySpecies(species, altAbility);
 }
 
 void CreateSecretBaseEnemyParty(struct SecretBaseRecord *secretBaseRecord)
