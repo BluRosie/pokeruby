@@ -129,7 +129,7 @@ gAbilityDescription_WaterVeil: @ 81F9D8D
 	.string "Prevents burns.$"
 
 gAbilityDescription_MagnetPull: @ 81F9D9D
-	.string "Traps STEEL-type Pokémon.$"
+	.string "Traps Steel-type Pokémon.$"
 
 gAbilityDescription_Soundproof: @ 81F9DB7
 	.string "Avoids sound-based moves.$"
@@ -241,484 +241,484 @@ gAbilityDescription_AirLock: @ 81FA0F6
 @@@@@@@@@@
 
 gAbilityDescription_TangledFeet:
-	.string ".$"
+	.string "Ups evasion if confused.$"
 
 gAbilityDescription_MotorDrive:
-	.string ".$"
+	.string "Electricity raises Speed.$"
 
 gAbilityDescription_Rivalry:
-	.string ".$"
+	.string "Powers up against rivals.$"
 
 gAbilityDescription_Steadfast:
-	.string ".$"
+	.string "Flinching raises Speed.$"
 
 gAbilityDescription_SnowCloak:
-	.string ".$"
+	.string "Ups evasion in Hail.$"
 
 gAbilityDescription_Gluttony:
-	.string ".$"
+	.string "Eats Berries early.$"
 
 gAbilityDescription_AngerPoint:
-	.string ".$"
+	.string "Critical hits raise Attack.$"
 
 gAbilityDescription_Unburden:
-	.string ".$"
+	.string "Using a hold item ups Speed.$"
 
 gAbilityDescription_Heatproof:
-	.string ".$"
+	.string "Heat and burn protection.$"
 
 gAbilityDescription_Simple:
-	.string ".$"
+	.string "Prone to wild stat changes.$"
 
 gAbilityDescription_DrySkin:
-	.string ".$"
+	.string "Prefers moisture to heat.$"
 
 gAbilityDescription_Download:
-	.string ".$"
+	.string "Adjusts power favorably.$"
 
 gAbilityDescription_IronFist:
-	.string ".$"
+	.string "Boosts punching moves.$"
 
 gAbilityDescription_PoisonHeal:
-	.string ".$"
+	.string "Restores HP if poisoned.$"
 
 gAbilityDescription_Adaptability:
-	.string ".$"
+	.string "Boosts same type attacks.$"
 
 gAbilityDescription_SkillLink:
-	.string ".$"
+	.string "Mult-hit moves hit 5 times.$"
 
 gAbilityDescription_Hydration:
-	.string ".$"
+	.string "Cures status in rain.$"
 
 gAbilityDescription_SolarPower:
-	.string ".$"
+	.string "Powers up in sunshine.$"
 
 gAbilityDescription_QuickFeet:
-	.string ".$"
+	.string "Ups speed if suffering.$"
 
 gAbilityDescription_Normalize:
-	.string ".$"
+	.string "Moves become Normal-type.$"
 
 gAbilityDescription_Sniper:
-	.string ".$"
+	.string "Boosts critical hits.$"
 
 gAbilityDescription_MagicGuard:
-	.string ".$"
+	.string "Onlh damaged by attacks.$"
 
 gAbilityDescription_NoGuard:
-	.string ".$"
+	.string "Ensures that all moves hit.$"
 
 gAbilityDescription_Stall:
-	.string ".$"
+	.string "Always moves last.$"
 
 gAbilityDescription_Technician:
-	.string ".$"
+	.string "Boosts weaker moves.$"
 
 gAbilityDescription_LeafGuard:
-	.string ".$"
+	.string "Blocks status in sunshine.$"
 
 gAbilityDescription_Klutz:
-	.string ".$"
+	.string "Can’t use hold items.$"
 
 gAbilityDescription_MoldBreaker:
-	.string ".$"
+	.string "Moves hit through abilities.$"
 
 gAbilityDescription_SuperLuck:
-	.string ".$"
+	.string "Critical hits land often.$"
 
 gAbilityDescription_Aftermath:
-	.string ".$"
+	.string "Fainting damages the foe.$"
 
 gAbilityDescription_Anticipation:
-	.string ".$"
+	.string "Senses dangerous moves.$"
 
 gAbilityDescription_Forewarn:
-	.string ".$"
+	.string "Determines a foe’s move.$"
 
 gAbilityDescription_Unaware:
-	.string ".$"
+	.string "Ignores stat changes.$"
 
 gAbilityDescription_TintedLens:
-	.string ".$"
+	.string "Ups “not very effective“.$"
 
 gAbilityDescription_Filter:
-	.string ".$"
+	.string "Weakens “super effective.“$"
 
 gAbilityDescription_SlowStart:
-	.string ".$"
+	.string "Takes a while to get going.$"
 
 gAbilityDescription_Scrappy:
-	.string ".$"
+	.string "Hits Ghost-type Pokémon.$"
 
 gAbilityDescription_StormDrain:
-	.string ".$"
+	.string "Draws in Water moves.$"
 
 gAbilityDescription_IceBody:
-	.string ".$"
+	.string "Slight HP recovery in Hail.$"
 
-gAbilityDescription_SolidRock:
-	.string ".$"
+@gAbilityDescription_SolidRock:
+@	.string ".$"
 
 gAbilityDescription_SnowWarning:
-	.string ".$"
+	.string "Summons a hailstorm.$"
 
 gAbilityDescription_HoneyGather:
-	.string ".$"
+	.string "May gather Honey.$"
 
 gAbilityDescription_Frisk:
-	.string ".$"
+	.string "Checks a foe’s item.$"
 
 gAbilityDescription_Reckless:
-	.string ".$"
+	.string "Boosts moves with recoil.$"
 
 gAbilityDescription_Multitype:
-	.string ".$"
+	.string "Changes type to its Plate.$"
 
 gAbilityDescription_FlowerGift:
-	.string ".$"
+	.string "Transforms in sunshine.$"
 
 gAbilityDescription_BadDreams:
-	.string ".$"
+	.string "Damages sleeping Pokémon.$"
 
 @@@@@@@@@
 @ GEN V @
 @@@@@@@@@
 
 gAbilityDescription_Pickpocket:
-	.string ".$"
+	.string "Steals the foe’s hold item.$"
 
 gAbilityDescription_SheerForce:
-	.string ".$"
+	.string "Trades effects for power.$"
 
 gAbilityDescription_Contrary:
-	.string ".$"
+	.string "Inverts stat changes.$"
 
 gAbilityDescription_Unnerve:
-	.string ".$"
+	.string "Fies can’t eat Berries.$"
 
 gAbilityDescription_Defiant:
-	.string ".$"
+	.string "Lowered stats up Attack.$"
 
 gAbilityDescription_Defeatist:
-	.string ".$"
+	.string "Gives up at half HP.$"
 
 gAbilityDescription_CursedBody:
-	.string ".$"
+	.string "Disables moves on contact.$"
 
 gAbilityDescription_Healer:
-	.string ".$"
+	.string "Heals partner Pokémon.$"
 
 gAbilityDescription_FriendGuard:
-	.string ".$"
+	.string "Lowers damage to partner.$"
 
 gAbilityDescription_WeakArmor:
-	.string ".$"
+	.string "Its stats change when hit.$"
 
 gAbilityDescription_HeavyMetal:
-	.string ".$"
+	.string "Doubles weight.$"
 
 gAbilityDescription_LightMetal:
-	.string ".$"
+	.string "Halves weight.$"
 
 gAbilityDescription_Multiscale:
-	.string ".$"
+	.string "Halves damage at full HP.$"
 
 gAbilityDescription_ToxicBoost:
-	.string ".$"
+	.string "Ups Attack if poisoned.$"
 
 gAbilityDescription_FlareBoost:
-	.string ".$"
+	.string "Ups Sp. Atk if burned.$"
 
 gAbilityDescription_Harvest:
-	.string ".$"
+	.string "May recycle a used Berry.$"
 
 gAbilityDescription_Telepathy:
-	.string ".$"
+	.string "Can’t be damaged by an ally.$"
 
 gAbilityDescription_Moody:
-	.string ".$"
+	.string "Stats change gradually.$"
 
 gAbilityDescription_Overcoat:
-	.string ".$"
+	.string "Blocks weather and powder.$"
 
-gAbilityDescription_PoisonTouch:
-	.string ".$"
+@gAbilityDescription_PoisonTouch:
+@	.string ".$"
 
-gAbilityDescription_Regenerator:
-	.string ".$"
+@gAbilityDescription_Regenerator:
+@	.string ".$"
 
 gAbilityDescription_BigPecks:
-	.string ".$"
+	.string "Prevents Defense loss.$"
 
 gAbilityDescription_SandRush:
-	.string ".$"
+	.string "Ups Speed in a sandstorm.$"
 
 gAbilityDescription_WonderSkin:
-	.string ".$"
+	.string "May avoid status problems.$"
 
 gAbilityDescription_Analytic:
-	.string ".$"
+	.string "Moving last boosts power.$"
 
 gAbilityDescription_Illusion:
-	.string ".$"
+	.string "Appears as a partner.$"
 
 gAbilityDescription_Imposter:
-	.string ".$"
+	.string "Transforms into the foe.$"
 
 gAbilityDescription_Infiltrator:
-	.string ".$"
+	.string "Passes through barriers.$"
 
 gAbilityDescription_Mummy:
-	.string ".$"
+	.string "Spreads with contact.$"
 
 gAbilityDescription_Moxie:
-	.string ".$"
+	.string "KOs raise Attack.$"
 
 gAbilityDescription_Justified:
-	.string ".$"
+	.string "Dark hits raise Attack.$"
 
 gAbilityDescription_Rattled:
-	.string ".$"
+	.string "Raises Speed when scared.$"
 
 gAbilityDescription_MagicBounce:
-	.string ".$"
+	.string "Reflects status moves.$"
 
 gAbilityDescription_SapSipper:
-	.string ".$"
+	.string "Turns grass into Attack.$"
 
 gAbilityDescription_Prankster:
-	.string ".$"
+	.string "Status moves go first.$"
 
 gAbilityDescription_SandForce:
-	.string ".$"
+	.string "Powers up in a sandstorm.$"
 
-gAbilityDescription_IronBarbs:
-	.string ".$"
+@gAbilityDescription_IronBarbs:
+@	.string ".$"
 
 gAbilityDescription_ZenMode:
-	.string ".$"
+	.string "Transforms at half HP.$"
 
 gAbilityDescription_VictoryStar:
-	.string ".$"
+	.string "Raises party accuracy.$"
 
-gAbilityDescription_Turboblaze:
-	.string ".$"
+@gAbilityDescription_Turboblaze:
+@	.string ".$"
 
-gAbilityDescription_Teravolt:
-	.string ".$"
+@gAbilityDescription_Teravolt:
+@	.string ".$"
 
 @@@@@@@@@@
 @ GEN VI @
 @@@@@@@@@@
 
 gAbilityDescription_AromaVeil:
-	.string ".$"
+	.string "Prevents limiting of moves.$"
 
 gAbilityDescription_FlowerVeil:
-	.string ".$"
+	.string "Protects Grass-types.$"
 
 gAbilityDescription_CheekPouch:
-	.string ".$"
+	.string "Eating Berries restores HP.$"
 
 gAbilityDescription_Protean:
-	.string ".$"
+	.string "Changes type to used move.$"
 
 gAbilityDescription_FurCoat:
-	.string ".$"
+	.string "Raises Defense.$"
 
-gAbilityDescription_Magician:
-	.string ".$"
+@gAbilityDescription_Magician:
+@	.string ".$"
 
 gAbilityDescription_Bulletproof:
-	.string ".$"
+	.string "Avoids some projectiles.$"
 
 gAbilityDescription_Competitive:
-	.string ".$"
+	.string "Lowered stats up Sp. Atk.$"
 
 gAbilityDescription_StrongJaw:
-	.string ".$"
+	.string "Boosts biting moves.$"
 
 gAbilityDescription_Refrigerate:
-	.string ".$"
+	.string "Normal moves become Ice.$"
 
 gAbilityDescription_SweetVeil:
-	.string ".$"
+	.string "Prevents party from sleep.$"
 
 gAbilityDescription_StanceChange:
-	.string ".$"
+	.string "Transforms as it battles.$"
 
 gAbilityDescription_GaleWings:
-	.string ".$"
+	.string "Flying moves go first.$"
 
 gAbilityDescription_MegaLauncher:
-	.string ".$"
+	.string "Boosts pulse moves.$"
 
 gAbilityDescription_GrassPelt:
-	.string ".$"
+	.string "Ups Defense in grass.$"
 
 gAbilityDescription_Symbiosis:
-	.string ".$"
+	.string "Passes its item to an item.$"
 
 gAbilityDescription_ToughClaws:
-	.string ".$"
+	.string "Boosts contact moves.$"
 
 gAbilityDescription_Pixilate:
-	.string ".$"
+	.string "Normal moves become Fairy.$"
 
 gAbilityDescription_Gooey:
-	.string ".$"
+	.string "Lowers Speed on contact.$"
 
 gAbilityDescription_Aerilate:
-	.string ".$"
+	.string "Normal moves become Flying.$"
 
 gAbilityDescription_ParentalBond:
-	.string ".$"
+	.string "Moves hit twice.$"
 
 gAbilityDescription_DarkAura:
-	.string ".$"
+	.string "Boosts Dark moves.$"
 
 gAbilityDescription_FairyAura:
-	.string ".$"
+	.string "Boosts Fairy moves.$"
 
 gAbilityDescription_AuraBreak:
-	.string ".$"
+	.string "Reverse aura abilities.$"
 
 gAbilityDescription_PrimordialSea:
-	.string ".$"
+	.string "Summons heavy rain.$"
 
 gAbilityDescription_DesolateLand:
-	.string ".$"
+	.string "Summons intense sunlight.$"
 
 gAbilityDescription_DeltaStream:
-	.string ".$"
+	.string "Summons strong winds.$"
 
 @@@@@@@@@@@
 @ GEN VII @
 @@@@@@@@@@@
 
 gAbilityDescription_Stamina:
-	.string ".$"
+	.string "Boosts Defense when hit.$"
 
 gAbilityDescription_WimpOut:
-	.string ".$"
+	.string "Flees at half HP.$"
 
-gAbilityDescription_EmergencyExit:
-	.string ".$"
+@gAbilityDescription_EmergencyExit:
+@	.string ".$"
 
 gAbilityDescription_WaterCompaction:
-	.string ".$"
+	.string "Water boosts Defense.$"
 
 gAbilityDescription_Merciless:
-	.string ".$"
+	.string "Criticals poisoned foes.$"
 
 gAbilityDescription_ShieldsDown:
-	.string ".$"
+	.string "Shell breaks at half HP.$"
 
 gAbilityDescription_Stakeout:
-	.string ".$"
+	.string "Stronger as foes switch in.$"
 
 gAbilityDescription_WaterBubble:
-	.string ".$"
+	.string "Guards from fire and burns.$"
 
 gAbilityDescription_Steelworker:
-	.string ".$"
+	.string "Powers up Steel moves.$"
 
 gAbilityDescription_Berserk:
-	.string ".$"
+	.string "Boosts Sp. Atk at low HP.$"
 
 gAbilityDescription_SlushRush:
-	.string ".$"
+	.string "Raises Speed in hail.$"
 
 gAbilityDescription_LongReach:
-	.string ".$"
+	.string "Never makes contact.$"
 
 gAbilityDescription_LiquidVoice:
-	.string ".$"
+	.string "Makes sound moves Water.$"
 
 gAbilityDescription_Triage:
-	.string ".$"
+	.string "Healing moves go first.$"
 
 gAbilityDescription_Galvanize:
-	.string ".$"
+	.string "Normal moves turn Electric.$"
 
 gAbilityDescription_SurgeSurfer:
-	.string ".$"
+	.string "Faster on electricity.$"
 
 gAbilityDescription_Schooling:
-	.string ".$"
+	.string "Forms a school when strong.$"
 
 gAbilityDescription_Disguise:
-	.string ".$"
+	.string "Decoy protects it once.$"
 
 gAbilityDescription_BattleBond:
-	.string ".$"
+	.string "Changes form after a KO.$"
 
 gAbilityDescription_PowerConstruct:
-	.string ".$"
+	.string "Cells aid it when weakened.$"
 
 gAbilityDescription_Corrosion:
-	.string ".$"
+	.string "Poisons any type.$"
 
 gAbilityDescription_Comatose:
-	.string ".$"
+	.string "Always drowsing.$"
 
 gAbilityDescription_QueenlyMajesty:
-	.string ".$"
+	.string "Protects from priority.$"
 
 gAbilityDescription_InnardsOut:
-	.string ".$"
+	.string "Hurts foe when defeated.$"
 
 gAbilityDescription_Dancer:
-	.string ".$"
+	.string "Dances along with others.$"
 
 gAbilityDescription_Battery:
-	.string ".$"
+	.string "Boosts ally’s Sp. Atk.$"
 
 gAbilityDescription_Fluffy:
-	.string ".$"
+	.string "Tougher but flammable.$"
 
-gAbilityDescription_Dazzling:
-	.string ".$"
+@gAbilityDescription_Dazzling:
+@	.string ".$"
 
 gAbilityDescription_SoulHeart:
-	.string ".$"
+	.string "KOs raise Sp. Atk.$"
 
 gAbilityDescription_TanglingHair:
-	.string ".$"
+	.string "Contact lowers Speed.$"
 
 gAbilityDescription_Receiver:
-	.string ".$"
+	.string "Copies ally’s ability.$"
 
-gAbilityDescription_PowerOfAlchemy:
-	.string ".$"
+@gAbilityDescription_PowerOfAlchemy:
+@	.string ".$"
 
 gAbilityDescription_BeastBoost:
-	.string ".$"
+	.string "KOs boost best stat.$"
 
 gAbilityDescription_RKSSystem:
-	.string ".$"
+	.string "Memories change its type.$"
 
 gAbilityDescription_ElectricSurge:
-	.string ".$"
+	.string "Field becomes Electric.$"
 
 gAbilityDescription_PsychicSurge:
-	.string ".$"
+	.string "Field becomes weird.$"
 
 gAbilityDescription_MistySurge:
-	.string ".$"
+	.string "Field becomes misty.$"
 
 gAbilityDescription_GrassySurge:
-	.string ".$"
+	.string "Field becomes grassy.$"
 
 gAbilityDescription_FullMetalBody:
-	.string ".$"
+	.string "Prevents stat reduction.$"
 
-gAbilityDescription_ShadowShield:
-	.string ".$"
+@gAbilityDescription_ShadowShield:
+@	.string ".$"
 
-gAbilityDescription_PrismArmor:
-	.string ".$"
+@gAbilityDescription_PrismArmor:
+@	.string ".$"
 
 	.align 2
 gAbilityDescriptions:: @ 81FA110
@@ -849,7 +849,7 @@ gAbilityDescriptions:: @ 81FA110
 	.4byte gAbilityDescription_Scrappy
 	.4byte gAbilityDescription_StormDrain
 	.4byte gAbilityDescription_IceBody
-	.4byte gAbilityDescription_SolidRock
+	.4byte gAbilityDescription_Filter @Solid Rock
 	.4byte gAbilityDescription_SnowWarning
 	.4byte gAbilityDescription_HoneyGather
 	.4byte gAbilityDescription_Frisk
@@ -881,8 +881,8 @@ gAbilityDescriptions:: @ 81FA110
 	.4byte gAbilityDescription_Telepathy
 	.4byte gAbilityDescription_Moody
 	.4byte gAbilityDescription_Overcoat
-	.4byte gAbilityDescription_PoisonTouch
-	.4byte gAbilityDescription_Regenerator
+	.4byte gAbilityDescription_PoisonPoint @Poison Touch
+	.4byte gAbilityDescription_Regenerator @Natural Cure
 	.4byte gAbilityDescription_BigPecks
 	.4byte gAbilityDescription_SandRush
 	.4byte gAbilityDescription_WonderSkin
@@ -898,11 +898,11 @@ gAbilityDescriptions:: @ 81FA110
 	.4byte gAbilityDescription_SapSipper
 	.4byte gAbilityDescription_Prankster
 	.4byte gAbilityDescription_SandForce
-	.4byte gAbilityDescription_IronBarbs
+	.4byte gAbilityDescription_RoughSkin @Iron Barbs
 	.4byte gAbilityDescription_ZenMode
 	.4byte gAbilityDescription_VictoryStar
-	.4byte gAbilityDescription_Turboblaze
-	.4byte gAbilityDescription_Teravolt
+	.4byte gAbilityDescription_MoldBreaker @Turboblaze
+	.4byte gAbilityDescription_MoldBreaker @Teravolt
 
 @@@@@@@@@@
 @ GEN VI @
@@ -913,7 +913,7 @@ gAbilityDescriptions:: @ 81FA110
 	.4byte gAbilityDescription_CheekPouch
 	.4byte gAbilityDescription_Protean
 	.4byte gAbilityDescription_FurCoat
-	.4byte gAbilityDescription_Magician
+	.4byte gAbilityDescription_Pickpocket @Magician
 	.4byte gAbilityDescription_Bulletproof
 	.4byte gAbilityDescription_Competitive
 	.4byte gAbilityDescription_StrongJaw
@@ -942,7 +942,7 @@ gAbilityDescriptions:: @ 81FA110
 
 	.4byte gAbilityDescription_Stamina
 	.4byte gAbilityDescription_WimpOut
-	.4byte gAbilityDescription_EmergencyExit
+	.4byte gAbilityDescription_WimpOut @Emergency Exit
 	.4byte gAbilityDescription_WaterCompaction
 	.4byte gAbilityDescription_Merciless
 	.4byte gAbilityDescription_ShieldsDown
@@ -967,11 +967,11 @@ gAbilityDescriptions:: @ 81FA110
 	.4byte gAbilityDescription_Dancer
 	.4byte gAbilityDescription_Battery
 	.4byte gAbilityDescription_Fluffy
-	.4byte gAbilityDescription_Dazzling
+	.4byte gAbilityDescription_QueenlyMajesty @Dazzling
 	.4byte gAbilityDescription_SoulHeart
-	.4byte gAbilityDescription_TanglingHair
+	.4byte gAbilityDescription_Gooey @Tangling Hair
 	.4byte gAbilityDescription_Receiver
-	.4byte gAbilityDescription_PowerOfAlchemy
+	.4byte gAbilityDescription_Receiver @Power of Alchemy
 	.4byte gAbilityDescription_BeastBoost
 	.4byte gAbilityDescription_RKSSystem
 	.4byte gAbilityDescription_ElectricSurge
@@ -979,5 +979,5 @@ gAbilityDescriptions:: @ 81FA110
 	.4byte gAbilityDescription_MistySurge
 	.4byte gAbilityDescription_GrassySurge
 	.4byte gAbilityDescription_FullMetalBody
-	.4byte gAbilityDescription_ShadowShield
-	.4byte gAbilityDescription_PrismArmor
+	.4byte gAbilityDescription_Multiscale @Shadow Shield
+	.4byte gAbilityDescription_Filter @Prism Armor

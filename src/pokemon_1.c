@@ -1584,14 +1584,19 @@ void CreateMonWithEVSpread(struct Pokemon *mon, u16 species, u8 level, u8 fixedI
 {
     CreateMon(mon, species, level, fixedIV, 0, 0, 0, 0);
     
-    SetMonData(mon, field, value);
-
-    switch (field)
+    if (field < 90)
+        SetMonData(mon, field, value);
+    else
     {
-        case 90: // make pokemon shiny
-            
-            break;
-    
+        switch (field)
+        {
+            case 91: // make mon hidden ability and shiny
+                
+            case 90: // make mon shiny
+                
+                break;
+        
+        }
     }
     
 }*/

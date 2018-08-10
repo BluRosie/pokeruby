@@ -11,7 +11,7 @@ Current implemented features:
 * hidden abilities 
 
 In Progress:
-* abilit expansion
+* ability expansion
 
 It builds the following rom:
 
