@@ -8,6 +8,10 @@ Current implemented features:
 * gen vi exp. share, toggleable from the bag and everything
 * poison fades after reaching 1 hp in the overworld
 * ball expansion
+* hidden abilities 
+
+In Progress:
+* abilit expansion
 
 It builds the following rom:
 
