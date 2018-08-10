@@ -11,7 +11,8 @@ Current implemented features:
 * hidden abilities 
 
 In Progress:
-* ability expansion
+* ability expansion (thanks znogyrop and dizzy for ability descriptions)
+* move expansion (thanks dizzy)
 
 It builds the following rom:
 

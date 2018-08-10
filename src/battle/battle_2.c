@@ -5973,13 +5973,17 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     if (WEATHER_HAS_EFFECT)
     {
         if ((gBattleMons[bank1].ability == ABILITY_SWIFT_SWIM && (gBattleWeather & WEATHER_RAIN_ANY))
-            || (gBattleMons[bank1].ability == ABILITY_CHLOROPHYLL && (gBattleWeather & WEATHER_SUN_ANY)))
+            || (gBattleMons[bank1].ability == ABILITY_CHLOROPHYLL && (gBattleWeather & WEATHER_SUN_ANY))
+            || (ggBattleMons[bank1].ability == ABILITY_SAND_RUSH && (gBattleWeather & WEATHER_SANDSTORM_ANY))
+            || (gBattleMons[bank1].ability == ABILITY_SLUSH_RUSH && (gBattleWeather & WEATHER_HAIL)))
             bank1SpeedMultiplier = 2;
         else
             bank1SpeedMultiplier = 1;
 
         if ((gBattleMons[bank2].ability == ABILITY_SWIFT_SWIM && (gBattleWeather & WEATHER_RAIN_ANY))
-            || (gBattleMons[bank2].ability == ABILITY_CHLOROPHYLL && (gBattleWeather & WEATHER_SUN_ANY)))
+            || (gBattleMons[bank2].ability == ABILITY_CHLOROPHYLL && (gBattleWeather & WEATHER_SUN_ANY))
+            || (ggBattleMons[bank2].ability == ABILITY_SAND_RUSH && (gBattleWeather & WEATHER_SANDSTORM_ANY))
+            || (gBattleMons[bank2].ability == ABILITY_SLUSH_RUSH && (gBattleWeather & WEATHER_HAIL)))
             bank2SpeedMultiplier = 2;
         else
             bank2SpeedMultiplier = 1;
@@ -6004,10 +6008,12 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
         heldItemEffect = ItemId_GetHoldEffect(gBattleMons[bank1].item);
         heldItemEffectParam = ItemId_GetHoldEffectParam(gBattleMons[bank1].item);
     }
-
-    // Only give badge speed boost to the player's mon.
-    if (!(gBattleTypeFlags & BATTLE_TYPE_LINK) && FlagGet(FLAG_BADGE03_GET) && GetBattlerSide(bank1) == 0)
-        bank1AdjustedSpeed = (bank1AdjustedSpeed * 110) / 100;
+    
+    if (gBattleMons[bank1].status1 & STATUS_ANY && gBattleMons[bank1].ability == ABILITY_QUICK_FEET)
+        bank1AdjustedSpeed *= (15 / 10);
+    
+    if (gBattleMons[bank1].ability == ABILITY_STALL)
+        bank1AdjustedSpeed = 0;
 
     if (heldItemEffect == HOLD_EFFECT_MACHO_BRACE)
         bank1AdjustedSpeed /= 2;
@@ -6033,11 +6039,11 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
         heldItemEffectParam = ItemId_GetHoldEffectParam(gBattleMons[bank2].item);
     }
 
-    // Only give badge speed boost to the player's mon.
-    if (!(gBattleTypeFlags & BATTLE_TYPE_LINK) && FlagGet(FLAG_BADGE03_GET) && GetBattlerSide(bank2) == 0)
-    {
-        bank2AdjustedSpeed = (bank2AdjustedSpeed * 110) / 100;
-    }
+    if (gBattleMons[bank2].status1 & STATUS_ANY && gBattleMons[bank2].ability == ABILITY_QUICK_FEET)
+        bank2AdjustedSpeed *= (15 / 10);
+
+    if (gBattleMons[bank2].ability == ABILITY_STALL)
+        bank2AdjustedSpeed = 0;
 
     if (heldItemEffect == HOLD_EFFECT_MACHO_BRACE)
         bank2AdjustedSpeed /= 2;
@@ -6075,6 +6081,16 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
         else
             bank2Move = MOVE_NONE;
     }
+
+    if (gBattleMoves[bank1Move].type == TYPE_FLYING && gBattleMons[bank1].ability == ABILITY_GALE_WINGS)
+//        || gBattleMoves[bank1Move].split == MOVE_STATUS && gBattleMons[bank1].ability == ABILITY_PRANKSTER
+//        || gBattleMoves[bank1Move].effect == /*healing battle script*/ && gBattleMons[bank1].ability == ABILITY_TRIAGE)
+        gBattleMoves[bank1Move].priority = 1;
+
+    if (gBattleMoves[bank2Move].type == TYPE_FLYING && gBattleMons[bank2].ability == ABILITY_GALE_WINGS)
+//        || gBattleMoves[bank2Move].split == MOVE_STATUS && gBattleMons[bank2].ability == ABILITY_PRANKSTER
+//        || gBattleMoves[bank2Move].effect? == /*healing battle script*/ && gBattleMons[bank2].ability == ABILITY_TRIAGE)
+        gBattleMoves[bank2Move].priority = 1;
 
     if (gBattleMoves[bank1Move].priority != 0 || gBattleMoves[bank2Move].priority != 0)
     {

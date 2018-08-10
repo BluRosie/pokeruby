@@ -6,7 +6,7 @@ gAbilityDescription_None: @ 81F99CC
 	.string "No special ability.$"
 
 gAbilityDescription_Stench: @ 81F99E0
-	.string "Helps repel wild Pokémon.$"
+	.string "Helps repel wild Pok�mon.$"
 
 gAbilityDescription_Drizzle: @ 81F99FA
 	.string "Summons rain in battle.$"
@@ -51,7 +51,7 @@ gAbilityDescription_Insomnia: @ 81F9B2C
 	.string "Prevents sleep.$"
 
 gAbilityDescription_ColorChange: @ 81F9B3C
-	.string "Changes type to foe’s move.$"
+	.string "Changes type to foe�s move.$"
 
 gAbilityDescription_Immunity: @ 81F9B58
 	.string "Prevents poisoning.$"
@@ -69,16 +69,16 @@ gAbilityDescription_SuctionCups: @ 81F9BB2
 	.string "Firmly anchors the body.$"
 
 gAbilityDescription_Intimidate: @ 81F9BCB
-	.string "Lowers the foe’s Attack.$"
+	.string "Lowers the foe�s Attack.$"
 
 gAbilityDescription_ShadowTag: @ 81F9BE4
-	.string "Prevents the foe’s escape.$"
+	.string "Prevents the foe�s escape.$"
 
 gAbilityDescription_RoughSkin: @ 81F9BFF
 	.string "Hurts to touch.$"
 
 gAbilityDescription_WonderGuard: @ 81F9C0F
-	.string "“Super effective” hits.$"
+	.string "�Super effective� hits.$"
 
 gAbilityDescription_Levitate: @ 81F9C27
 	.string "Not hit by Ground attacks.$"
@@ -129,7 +129,7 @@ gAbilityDescription_WaterVeil: @ 81F9D8D
 	.string "Prevents burns.$"
 
 gAbilityDescription_MagnetPull: @ 81F9D9D
-	.string "Traps Steel-type Pokémon.$"
+	.string "Traps Steel-type Pok�mon.$"
 
 gAbilityDescription_Soundproof: @ 81F9DB7
 	.string "Avoids sound-based moves.$"
@@ -141,7 +141,7 @@ gAbilityDescription_SandStream: @ 81F9DED
 	.string "Summons a sandstorm.$"
 
 gAbilityDescription_Pressure: @ 81F9E02
-	.string "Raises foe’s PP usage.$"
+	.string "Raises foe�s PP usage.$"
 
 gAbilityDescription_ThickFat: @ 81F9E19
 	.string "Heat-and-cold protection.$"
@@ -294,8 +294,6 @@ gAbilityDescription_Hydration:
 gAbilityDescription_SolarPower:
 	.string "Powers up in sunshine.$"
 
-gAbilityDescription_QuickFeet:
-	.string "Ups Speed if suffering.$"
 
 gAbilityDescription_Normalize:
 	.string "Moves become Normal-type.$"
@@ -309,8 +307,6 @@ gAbilityDescription_MagicGuard:
 gAbilityDescription_NoGuard:
 	.string "Ensures that all moves hit.$"
 
-gAbilityDescription_Stall:
-	.string "Always moves last.$"
 
 gAbilityDescription_Technician:
 	.string "Boosts weaker moves.$"
@@ -319,7 +315,7 @@ gAbilityDescription_LeafGuard:
 	.string "Blocks status in sunshine.$"
 
 gAbilityDescription_Klutz:
-	.string "Can’t use hold items.$"
+	.string "Can�t use hold items.$"
 
 gAbilityDescription_MoldBreaker:
 	.string "Moves hit through abilities.$"
@@ -334,22 +330,22 @@ gAbilityDescription_Anticipation:
 	.string "Senses dangerous moves.$"
 
 gAbilityDescription_Forewarn:
-	.string "Determines a foe’s move.$"
+	.string "Determines a foe�s move.$"
 
 gAbilityDescription_Unaware:
 	.string "Ignores stat changes.$"
 
 gAbilityDescription_TintedLens:
-	.string "Ups “not very effective“.$"
+	.string "Ups �not very effective�.$"
 
 gAbilityDescription_Filter:
-	.string "Weakens “super effective.“$"
+	.string "Weakens �super effective.�$"
 
 gAbilityDescription_SlowStart:
 	.string "Takes a while to get going.$"
 
 gAbilityDescription_Scrappy:
-	.string "Hits Ghost-type Pokémon.$"
+	.string "Hits Ghost-type Pok�mon.$"
 
 gAbilityDescription_StormDrain:
 	.string "Draws in Water moves.$"
@@ -367,7 +363,7 @@ gAbilityDescription_HoneyGather:
 	.string "May gather Honey.$"
 
 gAbilityDescription_Frisk:
-	.string "Checks a foe’s item.$"
+	.string "Checks a foe�s item.$"
 
 gAbilityDescription_Reckless:
 	.string "Boosts moves with recoil.$"
@@ -379,14 +375,14 @@ gAbilityDescription_FlowerGift:
 	.string "Transforms in sunshine.$"
 
 gAbilityDescription_BadDreams:
-	.string "Damages sleeping Pokémon.$"
+	.string "Damages sleeping Pok�mon.$"
 
 @@@@@@@@@
 @ GEN V @
 @@@@@@@@@
 
 gAbilityDescription_Pickpocket:
-	.string "Steals the foe’s hold item.$"
+	.string "Steals the foe�s hold item.$"
 
 gAbilityDescription_SheerForce:
 	.string "Trades effects for power.$"
@@ -395,7 +391,7 @@ gAbilityDescription_Contrary:
 	.string "Inverts stat changes.$"
 
 gAbilityDescription_Unnerve:
-	.string "Fies can’t eat Berries.$"
+	.string "Fies can�t eat Berries.$"
 
 gAbilityDescription_Defiant:
 	.string "Lowered stats up Attack.$"
@@ -407,7 +403,7 @@ gAbilityDescription_CursedBody:
 	.string "Disables moves on contact.$"
 
 gAbilityDescription_Healer:
-	.string "Heals partner Pokémon.$"
+	.string "Heals partner Pok�mon.$"
 
 gAbilityDescription_FriendGuard:
 	.string "Lowers damage to partner.$"
@@ -434,7 +430,7 @@ gAbilityDescription_Harvest:
 	.string "May recycle a used Berry.$"
 
 gAbilityDescription_Telepathy:
-	.string "Can’t be damaged by an ally.$"
+	.string "Can�t be damaged by an ally.$"
 
 gAbilityDescription_Moody:
 	.string "Stats change gradually.$"
@@ -451,8 +447,8 @@ gAbilityDescription_Overcoat:
 gAbilityDescription_BigPecks:
 	.string "Prevents Defense loss.$"
 
-gAbilityDescription_SandRush:
-	.string "Ups Speed in a sandstorm.$"
+DONEgAbilityDescription_SandRush:
+DONE.string "Ups Speed in a sandstorm.$"
 
 gAbilityDescription_WonderSkin:
 	.string "May avoid status problems.$"
@@ -627,8 +623,8 @@ gAbilityDescription_Steelworker:
 gAbilityDescription_Berserk:
 	.string "Boosts Sp. Atk at low HP.$"
 
-gAbilityDescription_SlushRush:
-	.string "Raises Speed in hail.$"
+DONEgAbilityDescription_SlushRush:
+DONE.string "Raises Speed in hail.$"
 
 gAbilityDescription_LongReach:
 	.string "Never makes contact.$"
@@ -673,7 +669,7 @@ gAbilityDescription_Dancer:
 	.string "Dances along with others.$"
 
 gAbilityDescription_Battery:
-	.string "Boosts ally’s Sp. Atk.$"
+	.string "Boosts ally�s Sp. Atk.$"
 
 gAbilityDescription_Fluffy:
 	.string "Tougher but flammable.$"
@@ -684,11 +680,9 @@ gAbilityDescription_Fluffy:
 gAbilityDescription_SoulHeart:
 	.string "KOs raise Sp. Atk.$"
 
-gAbilityDescription_TanglingHair:
-	.string "Contact lowers Speed.$"
 
 gAbilityDescription_Receiver:
-	.string "Copies ally’s ability.$"
+	.string "Copies ally�s ability.$"
 
 @gAbilityDescription_PowerOfAlchemy:
 @	.string ".$"
