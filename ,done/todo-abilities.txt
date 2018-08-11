@@ -240,8 +240,8 @@ gAbilityDescription_AirLock: @ 81FA0F6
 @ GEN IV @
 @@@@@@@@@@
 
-gAbilityDescription_TangledFeet:
-	.string "Ups evasion if confused.$"
+DONEgAbilityDescription_TangledFeet:
+DONE.string "Ups evasion if confused.$"
 
 gAbilityDescription_MotorDrive:
 	.string "Electricity raises Speed.$"
@@ -252,8 +252,8 @@ gAbilityDescription_Rivalry:
 gAbilityDescription_Steadfast:
 	.string "Flinching raises Speed.$"
 
-gAbilityDescription_SnowCloak:
-	.string "Ups evasion in Hail.$"
+DONEgAbilityDescription_SnowCloak:
+DONE.string "Ups evasion in Hail.$"
 
 gAbilityDescription_Gluttony:
 	.string "Eats Berries early.$"
@@ -345,8 +345,8 @@ gAbilityDescription_TintedLens:
 gAbilityDescription_Filter:
 	.string "Weakens “super effective.“$"
 
-gAbilityDescription_SlowStart:
-	.string "Takes a while to get going.$"
+DONEgAbilityDescription_SlowStart:
+DONE.string "Takes a while to get going.$"
 
 gAbilityDescription_Scrappy:
 	.string "Hits Ghost-type Pokémon.$"
@@ -499,8 +499,8 @@ gAbilityDescription_SandForce:
 gAbilityDescription_ZenMode:
 	.string "Transforms at half HP.$"
 
-gAbilityDescription_VictoryStar:
-	.string "Raises party accuracy.$"
+DONEgAbilityDescription_VictoryStar:
+DONE.string "Raises party accuracy.$"
 
 @gAbilityDescription_Turboblaze:
 @	.string ".$"

@@ -1337,8 +1337,14 @@ static void atk01_accuracycheck(void)
             calc = (calc * 130) / 100; // 1.3 compound eyes boost
         if (WEATHER_HAS_EFFECT && gBattleMons[gBankTarget].ability == ABILITY_SAND_VEIL && gBattleWeather & WEATHER_SANDSTORM_ANY)
             calc = (calc * 80) / 100; // 1.2 sand veil loss;
-        if (gBattleMons[gBankAttacker].ability == ABILITY_HUSTLE && type < 9)
+        if (gBattleMons[gBankAttacker].ability == ABILITY_HUSTLE && gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL)
             calc = (calc * 80) / 100; // 1.2 hustle loss;
+        if (WEATHER_HAS_EFFECT && gBattleMons[gBankTarget].ability == ABILITY_SNOW_CLOAK && gBattleWeather & WEATHER_HAIL)
+            calc = (calc * 80) / 100; // 1.2 snow cloak loss;
+        if (gBattleMons[gBankTarget].ability == ABILITY_TANGLED_FEET && gBattleMons[gBankTarget].status2 & STATUS2_CONFUSION)
+            calc = (calc * 50) / 100; // halve it for tangled feet
+        if (gBattleMons[gBankAttacker].ability == ABILITY_VICTORY_STAR) // while it doesn't check the party, it's close enough?
+            calc = (calc * 110) / 100; // 1.1 victory star boost;
 
         if (gBattleMons[gBankTarget].item == ITEM_ENIGMA_BERRY)
         {
@@ -2088,7 +2094,7 @@ static void atk0C_datahpupdate(void)
                 if (!gSpecialStatuses[gActiveBattler].moveturnLostHP && !(gHitMarker & HITMARKER_x100000))
                     gSpecialStatuses[gActiveBattler].moveturnLostHP = gHpDealt;
 
-                if (TYPE_IS_PHYSICAL(moveType) && !(gHitMarker & HITMARKER_x100000) && gCurrentMove != MOVE_PAIN_SPLIT)
+                if (gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL && !(gHitMarker & HITMARKER_x100000) && gCurrentMove != MOVE_PAIN_SPLIT)
                 {
                     gProtectStructs[gActiveBattler].physicalDmg = gHpDealt;
                     gSpecialStatuses[gActiveBattler].moveturnLostHP_physical = gHpDealt;
@@ -2103,7 +2109,7 @@ static void atk0C_datahpupdate(void)
                         gSpecialStatuses[gActiveBattler].moveturnPhysicalBank = gBankTarget;
                     }
                 }
-                else if (!TYPE_IS_PHYSICAL(moveType) && !(gHitMarker & HITMARKER_x100000))
+                else if (gBattleMoves[gCurrentMove].split != MOVE_PHYSICAL && !(gHitMarker & HITMARKER_x100000))
                 {
                     gProtectStructs[gActiveBattler].specialDmg = gHpDealt;
                     gSpecialStatuses[gActiveBattler].moveturnLostHP_special = gHpDealt;
