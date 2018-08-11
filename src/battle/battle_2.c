@@ -5968,13 +5968,15 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     u16 bank1Move;
     u16 bank2Move;
     u8 strikesFirst = 0;
+    u8 priority1;
+    u8 priority2;
 
     // Check for abilities that boost speed in weather.
     if (WEATHER_HAS_EFFECT)
     {
         if ((gBattleMons[bank1].ability == ABILITY_SWIFT_SWIM && (gBattleWeather & WEATHER_RAIN_ANY))
             || (gBattleMons[bank1].ability == ABILITY_CHLOROPHYLL && (gBattleWeather & WEATHER_SUN_ANY))
-            || (ggBattleMons[bank1].ability == ABILITY_SAND_RUSH && (gBattleWeather & WEATHER_SANDSTORM_ANY))
+            || (gBattleMons[bank1].ability == ABILITY_SAND_RUSH && (gBattleWeather & WEATHER_SANDSTORM_ANY))
             || (gBattleMons[bank1].ability == ABILITY_SLUSH_RUSH && (gBattleWeather & WEATHER_HAIL)))
             bank1SpeedMultiplier = 2;
         else
@@ -5982,7 +5984,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
 
         if ((gBattleMons[bank2].ability == ABILITY_SWIFT_SWIM && (gBattleWeather & WEATHER_RAIN_ANY))
             || (gBattleMons[bank2].ability == ABILITY_CHLOROPHYLL && (gBattleWeather & WEATHER_SUN_ANY))
-            || (ggBattleMons[bank2].ability == ABILITY_SAND_RUSH && (gBattleWeather & WEATHER_SANDSTORM_ANY))
+            || (gBattleMons[bank2].ability == ABILITY_SAND_RUSH && (gBattleWeather & WEATHER_SANDSTORM_ANY))
             || (gBattleMons[bank2].ability == ABILITY_SLUSH_RUSH && (gBattleWeather & WEATHER_HAIL)))
             bank2SpeedMultiplier = 2;
         else
@@ -6082,26 +6084,29 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
             bank2Move = MOVE_NONE;
     }
 
-    if (gBattleMoves[bank1Move].type == TYPE_FLYING && gBattleMons[bank1].ability == ABILITY_GALE_WINGS
-        || gBattleMoves[bank1Move].split == MOVE_STATUS && gBattleMons[bank1].ability == ABILITY_PRANKSTER
-        || gBattleMoves[bank1Move].effect == EFFECT_RESTORE_HP && gBattleMons[bank1].ability == ABILITY_TRIAGE)
-        gBattleMoves[bank1Move].priority = 1;
+    priority1 = gBattleMoves[bank1Move].priority;
+    priority2 = gBattleMoves[bank2Move].priority;
 
-    if (gBattleMoves[bank2Move].type == TYPE_FLYING && gBattleMons[bank2].ability == ABILITY_GALE_WINGS
-        || gBattleMoves[bank2Move].split == MOVE_STATUS && gBattleMons[bank2].ability == ABILITY_PRANKSTER
-        || gBattleMoves[bank2Move].effect? == EFFECT_RESTORE_HP && gBattleMons[bank2].ability == ABILITY_TRIAGE)
-        gBattleMoves[bank2Move].priority = 1;
+    if ((gBattleMoves[bank1Move].type == TYPE_FLYING && gBattleMons[bank1].ability == ABILITY_GALE_WINGS)
+        || (gBattleMoves[bank1Move].split == MOVE_STATUS && gBattleMons[bank1].ability == ABILITY_PRANKSTER)
+        || (gBattleMoves[bank1Move].effect == EFFECT_RESTORE_HP && gBattleMons[bank1].ability == ABILITY_TRIAGE))
+        priority1++;
 
-    if (gBattleMoves[bank1Move].priority != 0 || gBattleMoves[bank2Move].priority != 0)
+    if ((gBattleMoves[bank2Move].type == TYPE_FLYING && gBattleMons[bank2].ability == ABILITY_GALE_WINGS)
+        || (gBattleMoves[bank2Move].split == MOVE_STATUS && gBattleMons[bank2].ability == ABILITY_PRANKSTER)
+        || (gBattleMoves[bank2Move].effect == EFFECT_RESTORE_HP && gBattleMons[bank2].ability == ABILITY_TRIAGE))
+        priority2++;
+
+    if (priority1 != 0 || priority2 != 0)
     {
-        if (gBattleMoves[bank1Move].priority == gBattleMoves[bank2Move].priority)
+        if (priority1 == priority2)
         {
             if (bank1AdjustedSpeed == bank2AdjustedSpeed && (Random() & 1))
                 strikesFirst = 2;
             else if (bank1AdjustedSpeed < bank2AdjustedSpeed)
                 strikesFirst = 1;
         }
-        else if (gBattleMoves[bank1Move].priority < gBattleMoves[bank2Move].priority)
+        else if (priority1 < priority2)
             strikesFirst = 1;
     }
     else
