@@ -882,7 +882,7 @@ gAbilityDescriptions:: @ 81FA110
 	.4byte gAbilityDescription_Moody
 	.4byte gAbilityDescription_Overcoat
 	.4byte gAbilityDescription_PoisonPoint @Poison Touch
-	.4byte gAbilityDescription_Regenerator @Natural Cure
+	.4byte gAbilityDescription_NaturalCure @Regenerator
 	.4byte gAbilityDescription_BigPecks
 	.4byte gAbilityDescription_SandRush
 	.4byte gAbilityDescription_WonderSkin
