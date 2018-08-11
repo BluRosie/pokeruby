@@ -132,45 +132,12 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (attacker->ability == ABILITY_HUGE_POWER || attacker->ability == ABILITY_PURE_POWER)
         attack *= 2;
 
-    if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_EREADER_TRAINER)))
-    {
-        if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-            && gTrainerBattleOpponent != 1024
-            && FlagGet(FLAG_BADGE01_GET)
-            && !GetBattlerSide(bankAtk))
-            attack = (110 * attack) / 100;
-    }
-    if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_EREADER_TRAINER)))
-    {
-        if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-            && gTrainerBattleOpponent != 1024
-            && FlagGet(FLAG_BADGE05_GET)
-            && !GetBattlerSide(bankDef))
-            defense = (110 * defense) / 100;
-    }
-    if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_EREADER_TRAINER)))
-    {
-        if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-            && gTrainerBattleOpponent != 1024
-            && FlagGet(FLAG_BADGE07_GET)
-            && !GetBattlerSide(bankAtk))
-            spAttack = (110 * spAttack) / 100;
-    }
-    if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_EREADER_TRAINER)))
-    {
-        if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-            && gTrainerBattleOpponent != 1024
-            && FlagGet(FLAG_BADGE07_GET)
-            && !GetBattlerSide(bankDef))
-            spDefense = (110 * spDefense) / 100;
-    }
-
     for (i = 0; i < 17; i++)
     {
         if (attackerHoldEffect == gHoldEffectToType[i][0]
             && type == gHoldEffectToType[i][1])
         {
-            if (TYPE_IS_PHYSICAL(type))
+            if (gBattleMoves[move].split == MOVE_PHYSICAL)
                 attack = (attack * (attackerHoldEffectParam + 100)) / 100;
             else
                 spAttack = (spAttack * (attackerHoldEffectParam + 100)) / 100;
@@ -221,7 +188,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (gBattleMoves[gCurrentMove].effect == EFFECT_EXPLOSION)
         defense /= 2;
 
-    if (TYPE_IS_PHYSICAL(type)) // type < TYPE_MYSTERY
+    if (gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL)
     {
         if (gCritMultiplier == 2)
         {

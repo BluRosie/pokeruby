@@ -6082,14 +6082,14 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
             bank2Move = MOVE_NONE;
     }
 
-    if (gBattleMoves[bank1Move].type == TYPE_FLYING && gBattleMons[bank1].ability == ABILITY_GALE_WINGS)
-//        || gBattleMoves[bank1Move].split == MOVE_STATUS && gBattleMons[bank1].ability == ABILITY_PRANKSTER
-//        || gBattleMoves[bank1Move].effect == /*healing battle script*/ && gBattleMons[bank1].ability == ABILITY_TRIAGE)
+    if (gBattleMoves[bank1Move].type == TYPE_FLYING && gBattleMons[bank1].ability == ABILITY_GALE_WINGS
+        || gBattleMoves[bank1Move].split == MOVE_STATUS && gBattleMons[bank1].ability == ABILITY_PRANKSTER
+        || gBattleMoves[bank1Move].effect == EFFECT_RESTORE_HP && gBattleMons[bank1].ability == ABILITY_TRIAGE)
         gBattleMoves[bank1Move].priority = 1;
 
-    if (gBattleMoves[bank2Move].type == TYPE_FLYING && gBattleMons[bank2].ability == ABILITY_GALE_WINGS)
-//        || gBattleMoves[bank2Move].split == MOVE_STATUS && gBattleMons[bank2].ability == ABILITY_PRANKSTER
-//        || gBattleMoves[bank2Move].effect? == /*healing battle script*/ && gBattleMons[bank2].ability == ABILITY_TRIAGE)
+    if (gBattleMoves[bank2Move].type == TYPE_FLYING && gBattleMons[bank2].ability == ABILITY_GALE_WINGS
+        || gBattleMoves[bank2Move].split == MOVE_STATUS && gBattleMons[bank2].ability == ABILITY_PRANKSTER
+        || gBattleMoves[bank2Move].effect? == EFFECT_RESTORE_HP && gBattleMons[bank2].ability == ABILITY_TRIAGE)
         gBattleMoves[bank2Move].priority = 1;
 
     if (gBattleMoves[bank1Move].priority != 0 || gBattleMoves[bank2Move].priority != 0)
