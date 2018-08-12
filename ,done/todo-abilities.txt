@@ -291,8 +291,8 @@ gAbilityDescription_SkillLink:
 gAbilityDescription_Hydration:
 	.string "Cures status in rain.$"
 
-gAbilityDescription_SolarPower:
-	.string "Powers up in sunshine.$"
+DONEgAbilityDescription_SolarPower:
+DONE.string "Powers up in sunshine.$" @sorta
 
 DONEgAbilityDescription_QuickFeet:
 DONE.string "Ups Speed if suffering.$"

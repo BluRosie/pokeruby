@@ -190,6 +190,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         spAttack *= 2;
     if (attacker->ability == ABILITY_TOXIC_BOOST && attacker->status1 & STATUS_PSN_ANY)
         attack *= 2;
+    if (attacker->ability == ABILITY_SOLAR_POWER && gBattleWeather & WEATHER_SUN_ANY)
+        spAttack = (150 * spAttack) / 100;
 
     if (type == TYPE_ELECTRIC && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFD, 0))
         gBattleMovePower /= 2;

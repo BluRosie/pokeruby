@@ -286,7 +286,7 @@ gAbilityDescription_Adaptability:
 	.string "Boosts same type attacks.$"
 
 gAbilityDescription_SkillLink:
-	.string "Mult-hit moves hit 5 times.$"
+	.string "Multi-hit moves hit 5 times.$"
 
 gAbilityDescription_Hydration:
 	.string "Cures status in rain.$"
