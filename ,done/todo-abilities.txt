@@ -300,8 +300,8 @@ DONE.string "Ups Speed if suffering.$"
 gAbilityDescription_Normalize:
 	.string "Moves become Normal-type.$"
 
-gAbilityDescription_Sniper:
-	.string "Boosts critical hits.$"
+DONEgAbilityDescription_Sniper:
+DONE.string "Boosts critical hits.$"
 
 gAbilityDescription_MagicGuard:
 	.string "Onlh damaged by attacks.$"
@@ -324,8 +324,8 @@ gAbilityDescription_Klutz:
 gAbilityDescription_MoldBreaker:
 	.string "Moves hit through abilities.$"
 
-gAbilityDescription_SuperLuck:
-	.string "Critical hits land often.$"
+DONEgAbilityDescription_SuperLuck:
+DONE.string "Critical hits land often.$"
 
 gAbilityDescription_Aftermath:
 	.string "Fainting damages the foe.$"
@@ -609,8 +609,8 @@ gAbilityDescription_WimpOut:
 gAbilityDescription_WaterCompaction:
 	.string "Water boosts Defense.$"
 
-gAbilityDescription_Merciless:
-	.string "Criticals poisoned foes.$"
+DONEgAbilityDescription_Merciless:
+DONE.string "Criticals poisoned foes.$"
 
 gAbilityDescription_ShieldsDown:
 	.string "Shell breaks at half HP.$"

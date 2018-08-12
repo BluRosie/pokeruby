@@ -880,7 +880,7 @@ static const struct StatFractions gAccuracyStageRatios[] =
 };
 
 // The chance is 1/N for each stage.
-static const u16 sCriticalHitChance[] = {16, 8, 4, 3, 2};
+static const u16 sCriticalHitChance[] = {16, 8, 4, 3, 2, 1};
 
 static const u32 sStatusFlagsForMoveEffects[] =
 {
@@ -1452,6 +1452,7 @@ static void atk04_critcalc(void)
     gStringBank = gBankAttacker;
 
     critChance  = 2 * ((gBattleMons[gBankAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
+                + (gBattleMons[gBankAttacker].ability == ABILITY_SUPER_LUCK)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_HIGH_CRITICAL)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_SKY_ATTACK)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_BLAZE_KICK)
@@ -1463,11 +1464,16 @@ static void atk04_critcalc(void)
     if (critChance > 4)
         critChance = 4;
 
+    if (gBattleMons[gBankAttacker].ability == ABILITY_MERCILESS && gBattleMons[gBankTarget].status1 & STATUS_PSN_ANY)
+        critChange = 5;
+
     if ((gBattleMons[gBankTarget].ability != ABILITY_BATTLE_ARMOR && gBattleMons[gBankTarget].ability != ABILITY_SHELL_ARMOR)
      && !(gStatuses3[gBankAttacker] & STATUS3_CANT_SCORE_A_CRIT)
      && !(gBattleTypeFlags & (BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FIRST_BATTLE))
      && !(Random() % sCriticalHitChance[critChance]))
         gCritMultiplier = 2;
+    else if (gBattleMons[gBankAttacker].ability == ABILITY_SNIPER)
+        gCritMultiplier = 3;
     else
         gCritMultiplier = 1;
 
