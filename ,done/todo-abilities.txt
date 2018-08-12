@@ -400,8 +400,8 @@ gAbilityDescription_Unnerve:
 gAbilityDescription_Defiant:
 	.string "Lowered stats up Attack.$"
 
-gAbilityDescription_Defeatist:
-	.string "Gives up at half HP.$"
+DONEgAbilityDescription_Defeatist:
+DONE.string "Gives up at half HP.$"
 
 gAbilityDescription_CursedBody:
 	.string "Disables moves on contact.$"
@@ -424,11 +424,11 @@ gAbilityDescription_LightMetal:
 gAbilityDescription_Multiscale:
 	.string "Halves damage at full HP.$"
 
-gAbilityDescription_ToxicBoost:
-	.string "Ups Attack if poisoned.$"
+DONEgAbilityDescription_ToxicBoost:
+DONE.string "Ups Attack if poisoned.$"
 
-gAbilityDescription_FlareBoost:
-	.string "Ups Sp. Atk if burned.$"
+DONEgAbilityDescription_FlareBoost:
+DONE.string "Ups Sp. Atk if burned.$"
 
 gAbilityDescription_Harvest:
 	.string "May recycle a used Berry.$"
@@ -624,8 +624,8 @@ gAbilityDescription_WaterBubble:
 gAbilityDescription_Steelworker:
 	.string "Powers up Steel moves.$"
 
-gAbilityDescription_Berserk:
-	.string "Boosts Sp. Atk at low HP.$"
+DONEgAbilityDescription_Berserk:
+DONE.string "Boosts Sp. Atk at low HP.$"
 
 DONEgAbilityDescription_SlushRush:
 DONE.string "Raises Speed in hail.$"

@@ -177,8 +177,19 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack = (150 * attack) / 100;
     if (defender->ability == ABILITY_MARVEL_SCALE && defender->status1)
         defense = (150 * defense) / 100;
-    if (attacker->ability == ABILITY_SLOW_START && gBattleResults.battleTurnCounter <= 4)
-        attack = (50 * attack) / 100;
+    if (attacker->ability == ABILITY_SLOW_START && gDisableStructs[bankAtk].slowStartTimer)
+        attack /= 2;
+    if (attacker->ability == ABILITY_DEFEATIST && attacker->hp <= (attacker->maxHP / 2))
+        {
+        spAttack /= 2;
+        attack /= 2;
+        }
+    if (attacker->ability == ABILITY_BERSERK && attacker->hp <= (attacker->maxHP / 2))
+        spAttack *= 2;
+    if (attacker->ability == ABILITY_FLARE_BOOST && attacker->status1 & STATUS_BURN)
+        spAttack *= 2;
+    if (attacker->ability == ABILITY_TOXIC_BOOST && attacker->status1 & STATUS_PSN_ANY)
+        attack *= 2;
 
     if (type == TYPE_ELECTRIC && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFD, 0))
         gBattleMovePower /= 2;
@@ -245,7 +256,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (type == TYPE_MYSTERY)
         damage = 0; // is ??? type. does 0 damage.
 
-    if (TYPE_IS_SPECIAL(type)) // type > TYPE_MYSTERY
+    if (gBattleMoves[gCurrentMove].split == MOVE_SPECIAL)
     {
         if (gCritMultiplier == 2)
         {

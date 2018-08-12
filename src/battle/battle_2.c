@@ -6017,7 +6017,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     if (gBattleMons[bank1].ability == ABILITY_STALL)
         bank1AdjustedSpeed = 0;
 
-    if (gBattleMons[bank1].ability == ABILITY_SLOW_START && gBattleResults.battleTurnCounter <= 5)
+    if (gBattleMons[bank1].ability == ABILITY_SLOW_START && gDisableStructs[bank1].slowStartTimer)
         bank1AdjustedSpeed /= 2;
 
 /*    if (gBattleMons[bank1].ability == ABILITY_SURGE_SURFER && gBattleSomething & BATTLE_ELECTRIC_TERRAIN)
@@ -6053,7 +6053,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     if (gBattleMons[bank2].ability == ABILITY_STALL)
         bank2AdjustedSpeed = 0;
 
-    if (gBattleMons[bank2].ability == ABILITY_SLOW_START && gBattleResults.battleTurnCounter <= 4)
+    if (gBattleMons[bank2].ability == ABILITY_SLOW_START && gDisableStructs[bank2].slowStartTimer)
         bank2AdjustedSpeed /= 2;
 
 /*    if (gBattleMons[bank2].ability == ABILITY_SURGE_SURFER && gBattleSomething & BATTLE_ELECTRIC_TERRAIN)
@@ -6255,6 +6255,11 @@ static void TurnValuesCleanUp(bool8 var0)
                 gDisableStructs[gActiveBattler].rechargeCounter--;
                 if (gDisableStructs[gActiveBattler].rechargeCounter == 0)
                     gBattleMons[gActiveBattler].status2 &= ~(STATUS2_RECHARGE);
+            }
+
+            if (gDisableStructs[gActiveBattler].slowStartTimer)
+            {
+                gDisableStructs[gActiveBattler].slowStartTimer--;
             }
         }
 
@@ -6777,6 +6782,8 @@ void HandleAction_Switch(void)
     ewram16003 = gBankAttacker;
     gBattlescriptCurrInstr = BattleScript_ActionSwitch;
     gCurrentActionFuncId = ACTION_RUN_BATTLESCRIPT;
+    
+    gDisableStructs[gBankAttacker].slowStartTimer = 5;
 
     if (gBattleResults.unk2 < 255)
         gBattleResults.unk2++;

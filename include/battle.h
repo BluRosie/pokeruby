@@ -396,6 +396,7 @@ struct DisableStruct
     /*0x18*/ u8 unk18_b : 4;
     /*0x19*/ u8 rechargeCounter;
     /*0x1A*/ u8 unk1A[2];
+             u8 slowStartTimer : 4;
 };
 
 struct BattleResults
