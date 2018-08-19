@@ -304,7 +304,7 @@ gAbilityDescription_Sniper:
 	.string "Boosts critical hits.$"
 
 gAbilityDescription_MagicGuard:
-	.string "Onlh damaged by attacks.$"
+	.string "Only damaged by attacks.$"
 
 gAbilityDescription_NoGuard:
 	.string "Ensures that all moves hit.$"
@@ -386,7 +386,7 @@ gAbilityDescription_BadDreams:
 @@@@@@@@@
 
 gAbilityDescription_Pickpocket:
-	.string "Steals the foe’s hold item.$"
+	.string "Steals the foe’s held item.$"
 
 gAbilityDescription_SheerForce:
 	.string "Trades effects for power.$"
@@ -395,7 +395,7 @@ gAbilityDescription_Contrary:
 	.string "Inverts stat changes.$"
 
 gAbilityDescription_Unnerve:
-	.string "Fies can’t eat Berries.$"
+	.string "Foes can’t eat Berries.$"
 
 gAbilityDescription_Defiant:
 	.string "Lowered stats up Attack.$"
@@ -558,7 +558,7 @@ gAbilityDescription_GrassPelt:
 	.string "Ups Defense in grass.$"
 
 gAbilityDescription_Symbiosis:
-	.string "Passes its item to an item.$"
+	.string "Passes its item to an ally.$"
 
 gAbilityDescription_ToughClaws:
 	.string "Boosts contact moves.$"
