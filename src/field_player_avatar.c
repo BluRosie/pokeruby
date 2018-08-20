@@ -258,14 +258,13 @@ static void MovePlayerAvatarUsingKeypadInput(u8 direction, u16 newKeys, u16 held
         {
             if (!FlagGet(FLAG_SYS_MENU_RUN))
             {
-                PlaySE(SE_DANSA);
                 FlagSet(FLAG_SYS_MENU_RUN);
             }
             else
             {
-                PlaySE(SE_DANSA);
                 FlagClear(FLAG_SYS_MENU_RUN);
             }
+            PlaySE(SE_DANSA);
         }
         MovePlayerNotOnBike(direction, heldKeys);
     }
