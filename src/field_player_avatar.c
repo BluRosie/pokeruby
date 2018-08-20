@@ -253,7 +253,22 @@ static void MovePlayerAvatarUsingKeypadInput(u8 direction, u16 newKeys, u16 held
      || (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ACRO_BIKE))
         MovePlayerOnBike(direction, newKeys, heldKeys);
     else
+    {
+        if (heldKeys & R_BUTTON)
+        {
+            if (!FlagGet(FLAG_SYS_MENU_RUN))
+            {
+                PlaySE(SE_DANSA);
+                FlagSet(FLAG_SYS_MENU_RUN);
+            }
+            else
+            {
+                PlaySE(SE_DANSA);
+                FlagClear(FLAG_SYS_MENU_RUN);
+            }
+        }
         MovePlayerNotOnBike(direction, heldKeys);
+    }
 }
 
 static void PlayerAllowForcedMovementIfMovingSameDirection(void)
@@ -473,6 +488,19 @@ static u8 CheckMovementInputNotOnBike(u8 direction)
 void PlayerNotOnBikeNotMoving(u8 direction, u16 heldKeys)
 {
     PlayerFaceDirection(GetPlayerFacingDirection());
+
+    if (gMain.newKeys & R_BUTTON)
+        if (!FlagGet(FLAG_SYS_MENU_RUN))
+        {
+            PlaySE(SE_DANSA);
+            FlagSet(FLAG_SYS_MENU_RUN);
+        }
+        else
+        {
+            PlaySE(SE_DANSA);
+            FlagClear(FLAG_SYS_MENU_RUN);
+	}
+    }
 }
 
 void PlayerNotOnBikeTurningInPlace(u8 direction, u16 heldKeys)
@@ -494,14 +522,15 @@ void sub_8058D0C(u8 direction, u16 heldKeys)
             PlayerNotOnBikeCollide(direction);
         return;
     case 0:
-        if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
-        {
-			// speed 2 is fast, same speed as running
-            PlayerGoSpeed2(direction);
+        if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING || gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER)
+	{
+            if (FlagGet(FLAG_SYS_RUN_TOGGLE))
+                PlayerGoSpeed4(direction);
+	    else
+		PlayerGoSpeed2(direction);
             return;
         }
-        if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER) && (heldKeys & B_BUTTON) && FlagGet(FLAG_SYS_B_DASH)
-         && IsRunningDisallowed(gEventObjects[gPlayerAvatar.eventObjectId].currentMetatileBehavior) == 0)
+        if (FlagGet(FLAG_SYS_B_DASH) && FlagGet(FLAG_SYS_RUN_TOGGLE))
         {
             sub_805940C(direction);
             gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
