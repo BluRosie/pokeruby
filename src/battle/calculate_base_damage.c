@@ -147,6 +147,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
 
     if (attackerHoldEffect == HOLD_EFFECT_CHOICE_BAND)
         attack = (150 * attack) / 100;
+    if (attackerHoldEffect == HOLD_EFFECT_CHOICE_SPECS)
+        spAttack = (150 * spAttack) / 100;
     if (attackerHoldEffect == HOLD_EFFECT_SOUL_DEW && !(gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER) && (attacker->species == SPECIES_LATIAS || attacker->species == SPECIES_LATIOS))
         spAttack = (150 * spAttack) / 100;
     if (defenderHoldEffect == HOLD_EFFECT_SOUL_DEW && !(gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER) && (defender->species == SPECIES_LATIAS || defender->species == SPECIES_LATIOS))
@@ -156,7 +158,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (defenderHoldEffect == HOLD_EFFECT_DEEP_SEA_SCALE && defender->species == SPECIES_CLAMPERL)
         spDefense *= 2;
     if (attackerHoldEffect == HOLD_EFFECT_LIGHT_BALL && attacker->species == SPECIES_PIKACHU)
+    {
+        attack *= 2;
         spAttack *= 2;
+    }
     if (defenderHoldEffect == HOLD_EFFECT_METAL_POWDER && defender->species == SPECIES_DITTO)
         defense *= 2;
     if (attackerHoldEffect == HOLD_EFFECT_THICK_CLUB && (attacker->species == SPECIES_CUBONE || attacker->species == SPECIES_MAROWAK))
@@ -275,10 +280,15 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
 
         if (gCritMultiplier == 2)
         {
-            if (defender->statStages[STAT_STAGE_SPDEF] < 6)
+            /*if (gBattleMoves[gCurrentMove].effect == EFFECT_PSYCHO_CUT && defender->statStages[STAT_STAGE_DEF] < 6)
+                APPLY_STAT_MOD(damageHelper, defender, defense, STAT_STAGE_DEF)
+            else */if (defender->statStages[STAT_STAGE_SPDEF] < 6)
                 APPLY_STAT_MOD(damageHelper, defender, spDefense, STAT_STAGE_SPDEF)
             else
-                damageHelper = spDefense;
+                /*if (if (gBattleMoves[gCurrentMove].effect == EFFECT_PSYCHO_CUT)
+                    damageHelper = defense;
+                else*/
+                    damageHelper = spDefense;
         }
         else
             APPLY_STAT_MOD(damageHelper, defender, spDefense, STAT_STAGE_SPDEF)
