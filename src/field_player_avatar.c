@@ -491,14 +491,13 @@ void PlayerNotOnBikeNotMoving(u8 direction, u16 heldKeys)
     if (gMain.newKeys & R_BUTTON)
         if (!FlagGet(FLAG_SYS_MENU_RUN))
         {
-            PlaySE(SE_DANSA);
             FlagSet(FLAG_SYS_MENU_RUN);
         }
         else
         {
-            PlaySE(SE_DANSA);
             FlagClear(FLAG_SYS_MENU_RUN);
 	}
+	PlaySE(SE_DANSA);
     }
 }
 
