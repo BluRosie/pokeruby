@@ -253,21 +253,7 @@ static void MovePlayerAvatarUsingKeypadInput(u8 direction, u16 newKeys, u16 held
      || (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ACRO_BIKE))
         MovePlayerOnBike(direction, newKeys, heldKeys);
     else
-    {
-        if (heldKeys & R_BUTTON)
-        {
-            if (!FlagGet(FLAG_SYS_RUN_TOGGLE))
-            {
-                FlagSet(FLAG_SYS_RUN_TOGGLE);
-            }
-            else
-            {
-                FlagClear(FLAG_SYS_RUN_TOGGLE);
-            }
-            PlaySE(SE_DANSA);
-        }
         MovePlayerNotOnBike(direction, heldKeys);
-    }
 }
 
 static void PlayerAllowForcedMovementIfMovingSameDirection(void)
@@ -487,19 +473,6 @@ static u8 CheckMovementInputNotOnBike(u8 direction)
 void PlayerNotOnBikeNotMoving(u8 direction, u16 heldKeys)
 {
     PlayerFaceDirection(GetPlayerFacingDirection());
-
-    if (gMain.newKeys & R_BUTTON)
-	{
-        if (!FlagGet(FLAG_SYS_RUN_TOGGLE))
-        {
-            FlagSet(FLAG_SYS_RUN_TOGGLE);
-        }
-        else
-        {
-            FlagClear(FLAG_SYS_RUN_TOGGLE);
-		}
-	PlaySE(SE_DANSA);
-    }
 }
 
 void PlayerNotOnBikeTurningInPlace(u8 direction, u16 heldKeys)
@@ -522,14 +495,14 @@ void sub_8058D0C(u8 direction, u16 heldKeys)
         return;
     case 0:
         if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING || gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER)
-	{
+	    {
             if (FlagGet(FLAG_SYS_RUN_TOGGLE))
                 PlayerGoSpeed4(direction);
-	    else
-		PlayerGoSpeed2(direction);
+	        else
+		        PlayerGoSpeed2(direction);
             return;
         }
-        if (FlagGet(FLAG_SYS_B_DASH) && FlagGet(FLAG_SYS_RUN_TOGGLE))
+        if ((heldKeys & B_BUTTON) || FlagGet(FLAG_SYS_RUN_TOGGLE))
         {
             sub_805940C(direction);
             gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
