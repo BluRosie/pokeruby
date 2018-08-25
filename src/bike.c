@@ -132,7 +132,7 @@ static const struct BikeHistoryInputInfo gAcroBikeTricksList[] =
 
 void MovePlayerOnBike(u8 direction, u16 newKeys, u16 heldKeys)
 {
-    if (heldKeys & B_BUTTON)
+    if (heldKeys & R_BUTTON)
     {
         if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_MACH_BIKE)
         {

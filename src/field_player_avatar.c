@@ -256,13 +256,13 @@ static void MovePlayerAvatarUsingKeypadInput(u8 direction, u16 newKeys, u16 held
     {
         if (heldKeys & R_BUTTON)
         {
-            if (!FlagGet(FLAG_SYS_MENU_RUN))
+            if (!FlagGet(FLAG_SYS_RUN_TOGGLE))
             {
-                FlagSet(FLAG_SYS_MENU_RUN);
+                FlagSet(FLAG_SYS_RUN_TOGGLE);
             }
             else
             {
-                FlagClear(FLAG_SYS_MENU_RUN);
+                FlagClear(FLAG_SYS_RUN_TOGGLE);
             }
             PlaySE(SE_DANSA);
         }
@@ -489,14 +489,15 @@ void PlayerNotOnBikeNotMoving(u8 direction, u16 heldKeys)
     PlayerFaceDirection(GetPlayerFacingDirection());
 
     if (gMain.newKeys & R_BUTTON)
-        if (!FlagGet(FLAG_SYS_MENU_RUN))
+	{
+        if (!FlagGet(FLAG_SYS_RUN_TOGGLE))
         {
-            FlagSet(FLAG_SYS_MENU_RUN);
+            FlagSet(FLAG_SYS_RUN_TOGGLE);
         }
         else
         {
-            FlagClear(FLAG_SYS_MENU_RUN);
-	}
+            FlagClear(FLAG_SYS_RUN_TOGGLE);
+		}
 	PlaySE(SE_DANSA);
     }
 }
