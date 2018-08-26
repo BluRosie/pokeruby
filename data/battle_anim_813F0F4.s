@@ -4,7 +4,7 @@
 	.section .rodata
 
 	.align 2
-gUnknown_0840B258:: @ 840B258
+gBallOpenParticleSpriteSheets:: @ 840B258
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 55020
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 55021
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 55022
@@ -34,7 +34,7 @@ gUnknown_0840B258:: @ 840B258
 	obj_tiles gBattleAnimSpriteSheet_Particles, 0x100, 65309
 
 	.align 2
-gUnknown_0840B2B8:: @ 840B2B8
+gBallOpenParticlePalettes:: @ 840B2B8
 	obj_pal gBattleAnimSpritePalette_136, 55020
 	obj_pal gBattleAnimSpritePalette_136, 55021
 	obj_pal gBattleAnimSpritePalette_136, 55022
@@ -108,145 +108,67 @@ gSpriteAnimTable_840B360:: @ 840B360
 	.4byte gSpriteAnim_840B34C
 	.4byte gSpriteAnim_840B358
 
-gUnknown_0840B378:: @ 840B378 @ type of particle per ball
+gBallOpenParticleAnimNums:: @ 840B378 @ type of particle per ball
 	.byte 0, 0, 0, 5, 1, 2, 2, 3, 5, 5, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 
 	.align 2
-gUnknown_0840B384:: @ 840B384 @ particle animation table?  particle animation table per ball
-	.4byte sub_8140930
-	.4byte sub_8140DC4
-	.4byte sub_8140C14
-	.4byte sub_8140CE8
-	.4byte sub_8141058
-	.4byte sub_8140C14
-	.4byte sub_8140B3C
-	.4byte sub_8140CE8
-	.4byte sub_8140F24
-	.4byte sub_8140A64
-	.4byte sub_8140DC4
-	.4byte sub_8141164
-	.4byte sub_8140DC4 @ level ball
-	.4byte sub_8140DC4 @ lure ball
-	.4byte sub_8140DC4 @ moon ball
-	.4byte sub_8140DC4 @ friend ball
-	.4byte sub_8140DC4 @ love ball
-	.4byte sub_8140DC4 @ heavy ball
-	.4byte sub_8140DC4 @ fast ball
-	.4byte sub_8140DC4 @ sport ball
-	.4byte sub_8140DC4 @ heal ball
-	.4byte sub_8140DC4 @ quick ball
-	.4byte sub_8140DC4 @ dusk ball
-	.4byte sub_8140DC4 @ cherish ball
-	.4byte sub_8140DC4 @ park ball
-	.4byte sub_8140DC4 @ dream ball
-	.4byte sub_8140DC4 @ cherish ball
+gBallOpenParticleAnimationFuncs:: @ 840B384 @ particle animation table?  particle animation table per ball
+	.4byte PokeBallOpenParticleAnimation
+	.4byte GreatBallOpenParticleAnimation
+	.4byte SafariBallOpenParticleAnimation
+	.4byte UltraBallOpenParticleAnimation
+	.4byte MasterBallOpenParticleAnimation
+	.4byte SafariBallOpenParticleAnimation
+	.4byte DiveBallOpenParticleAnimation
+	.4byte UltraBallOpenParticleAnimation
+	.4byte RepeatBallOpenParticleAnimation
+	.4byte TimerBallOpenParticleAnimation
+	.4byte GreatBallOpenParticleAnimation
+	.4byte PremierBallOpenParticleAnimation
+	.4byte GreatBallOpenParticleAnimation @ level ball
+	.4byte GreatBallOpenParticleAnimation @ lure ball
+	.4byte GreatBallOpenParticleAnimation @ moon ball
+	.4byte GreatBallOpenParticleAnimation @ friend ball
+	.4byte GreatBallOpenParticleAnimation @ love ball
+	.4byte GreatBallOpenParticleAnimation @ heavy ball
+	.4byte GreatBallOpenParticleAnimation @ fast ball
+	.4byte GreatBallOpenParticleAnimation @ sport ball
+	.4byte GreatBallOpenParticleAnimation @ heal ball
+	.4byte GreatBallOpenParticleAnimation @ quick ball
+	.4byte GreatBallOpenParticleAnimation @ dusk ball
+	.4byte GreatBallOpenParticleAnimation @ cherish ball
+	.4byte GreatBallOpenParticleAnimation @ park ball
+	.4byte GreatBallOpenParticleAnimation @ dream ball
+	.4byte GreatBallOpenParticleAnimation @ cherish ball
 
 	.align 2
-gSpriteTemplate_840B3B4:: @ 840B3B4
+gSpriteTemplates_840B3B4:: @ 840B3B4
 	spr_template 55020, 55020, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_840B3CC:: @ 840B3CC
 	spr_template 55021, 55021, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_840B3E4:: @ 840B3E4
 	spr_template 55022, 55022, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_840B3FC:: @ 840B3FC
 	spr_template 55023, 55023, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_840B414:: @ 840B414
 	spr_template 55024, 55024, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_840B42C:: @ 840B42C
 	spr_template 55025, 55025, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_840B444:: @ 840B444
 	spr_template 55026, 55026, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_840B45C:: @ 840B45C
 	spr_template 55027, 55027, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_840B474:: @ 840B474
 	spr_template 55028, 55028, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_840B48C:: @ 840B48C
 	spr_template 55029, 55029, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_840B4A4:: @ 840B4A4
 	spr_template 55030, 55030, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_840B4BC:: @ 840B4BC
 	spr_template 55031, 55031, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_LevelBall::
 	spr_template 65295, 65295, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_LureBall::
 	spr_template 65296, 65296, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_MoonBall::
 	spr_template 65297, 65297, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_FriendBall::
 	spr_template 65298, 65298, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_LoveBall::
 	spr_template 65299, 65299, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_HeavyBall::
 	spr_template 65300, 65300, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_FastBall::
 	spr_template 65301, 65301, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_SportBall::
 	spr_template 65302, 65302, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_HealBall::
 	spr_template 65303, 65303, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_QuickBall::
 	spr_template 65304, 65304, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_DuskBall::
 	spr_template 65305, 65305, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_CherishBall::
 	spr_template 65306, 65306, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_ParkBall::
 	spr_template 65307, 65307, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_DreamBall::
 	spr_template 65308, 65308, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
-
-	.align 2
-gSpriteTemplate_BeastBall::
 	spr_template 65309, 65309, gOamData_837DF24, gSpriteAnimTable_840B360, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
 
 	.align 1

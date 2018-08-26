@@ -36,13 +36,13 @@ extern u8 gEffectBank;
 extern const u8 gUnknown_08D2EE48[];
 extern const u8 gUnknown_08D2EDFC[];
 extern const u16 gUnknown_08D2E150[];
-extern const struct CompressedSpritePalette gUnknown_0840B2B8[];
-extern const struct SpriteTemplate gSpriteTemplate_840B3B4[];
+extern const struct CompressedSpritePalette gBallOpenParticlePalettes[];
+extern const struct SpriteTemplate gSpriteTemplates_840B3B4[];
 extern const struct SpriteTemplate gSpriteTemplate_8402500;
 extern const struct SpriteTemplate gBattleAnimSpriteTemplate_84024E8;
-extern const u8 gUnknown_0840B378[];
-extern const struct CompressedSpriteSheet gUnknown_0840B258[];
-extern const TaskFunc gUnknown_0840B384[];
+extern const u8 gBallOpenParticleAnimNums[];
+extern const struct CompressedSpriteSheet gBallOpenParticleSpriteSheets[];
+extern const TaskFunc gBallOpenParticlesAnimationFuncs[];
 extern const u16 gUnknown_0840B4D4[];
 extern const struct CompressedSpriteSheet gBattleAnimPicTable[];
 extern const struct CompressedSpritePalette gBattleAnimPaletteTable[];
@@ -69,12 +69,12 @@ static void sub_81404E4(struct Sprite *sprite);
 static void sub_81405C8(struct Sprite *sprite);
 static void sub_81406BC(struct Sprite *sprite);
 static void sub_81407F4(struct Sprite *sprite);
-static void sub_8140A08(struct Sprite *sprite);
-static void sub_8140A28(struct Sprite *sprite);
-static void sub_8141294(struct Sprite *sprite);
-static void sub_8140ECC(struct Sprite *sprite);
-static void sub_8140FF8(struct Sprite *sprite);
-static void sub_8141230(struct Sprite *sprite);
+static void PokeBallOpenParticleAnimation_Step1(struct Sprite *sprite);
+static void PokeBallOpenParticleAnimation_Step2(struct Sprite *sprite);
+static void DestroyBallOpenAnimationParticle(struct Sprite *sprite);
+static void FanOutBallOpenParticles_Step1(struct Sprite *sprite);
+static void RepeatBallOpenParticleAnimation_Step1(struct Sprite *sprite);
+static void PremierBallOpenParticleAnimation_Step1(struct Sprite *sprite);
 static void sub_81413DC(u8 taskId);
 static void sub_814146C(u8 taskId);
 static void sub_81414BC(u8 taskId);
@@ -338,7 +338,7 @@ void sub_813F844(u8 taskId)
         y = GetBattlerSpriteCoord(gAnimBankAttacker, 1);
         priority = gSprites[spriteId].oam.priority;
         subpriority = gSprites[spriteId].subpriority;
-        gTasks[taskId].data[10] = sub_814086C(x, y + 32, priority, subpriority, ballIndex);
+        gTasks[taskId].data[10] = AnimateBallOpenParticles(x, y + 32, priority, subpriority, ballIndex);
         selectedPalettes = sub_80791A8(1, 0, 0, 0, 0, 0, 0);
         gTasks[taskId].data[11] = sub_8141314(0, gAnimBankAttacker, selectedPalettes, ballIndex);
         gTasks[taskId].data[0]++;
@@ -353,14 +353,14 @@ void sub_813F844(u8 taskId)
 void sub_813F990(u8 taskId)
 {
     u8 ballIndex = ball_number_to_ball_processing_index(gLastUsedItem);
-    sub_80478DC(ballIndex);
+    LoadBallGraphics(ballIndex);
     DestroyAnimVisualTask(taskId);
 }
 
 void sub_813F9B8(u8 taskId)
 {
     u8 ballIndex = ball_number_to_ball_processing_index(gLastUsedItem);
-    sub_804794C(ballIndex);
+    FreeBallGraphics(ballIndex);
     DestroyAnimVisualTask(taskId);
 }
 
@@ -618,7 +618,7 @@ static void sub_813FDC0(struct Sprite *sprite)
             if (ballIndex2 < 0)
                 return;
 
-            sub_814086C(sprite->pos1.x, sprite->pos1.y - 5, 1, 28, ballIndex);
+            AnimateBallOpenParticles(sprite->pos1.x, sprite->pos1.y - 5, 1, 28, ballIndex);
             sub_8141314(0, gAnimBankTarget, 14, ballIndex);
         }
     }
@@ -1038,7 +1038,7 @@ static void sub_81405F4(struct Sprite *sprite)
     if (ballIndex2 < 0)
         goto LABEL;
 
-    sub_814086C(sprite->pos1.x, sprite->pos1.y - 5, 1, 28, ballIndex);
+    AnimateBallOpenParticles(sprite->pos1.x, sprite->pos1.y - 5, 1, 28, ballIndex);
     sub_8141314(1, gAnimBankTarget, 14, ballIndex);
 
     LABEL:
@@ -1182,17 +1182,17 @@ _08140868: .4byte gDoingBattleAnim\n\
 }
 #endif // NONMATCHING
 
-u8 sub_814086C(u8 x, u8 y, u8 priority, u8 subpriority, u8 ballIndex)
+u8 AnimateBallOpenParticles(u8 x, u8 y, u8 priority, u8 subpriority, u8 ballIndex)
 {
     u8 taskId;
 
-    if (GetSpriteTileStartByTag(gUnknown_0840B258[ballIndex].tag) == 0xFFFF)
+    if (GetSpriteTileStartByTag(gBallOpenParticleSpriteSheets[ballIndex].tag) == 0xFFFF)
     {
-        LoadCompressedObjectPic(&gUnknown_0840B258[ballIndex]);
-        LoadCompressedObjectPalette(&gUnknown_0840B2B8[ballIndex]);
+        LoadCompressedObjectPic(&gBallOpenParticleSpriteSheets[ballIndex]);
+        LoadCompressedObjectPalette(&gBallOpenParticlePalettes[ballIndex]);
     }
 
-    taskId = CreateTask(gUnknown_0840B384[ballIndex], 5);
+    taskId = CreateTask(gBallOpenParticlesAnimationFuncs[ballIndex], 5);
     gTasks[taskId].data[1] = x;
     gTasks[taskId].data[2] = y;
     gTasks[taskId].data[3] = priority;
@@ -1205,7 +1205,7 @@ u8 sub_814086C(u8 x, u8 y, u8 priority, u8 subpriority, u8 ballIndex)
     return taskId;
 }
 
-void sub_8140930(u8 taskId) // first animation type
+void PokeBallOpenParticleAnimation(u8 taskId) // first animation type
 {
     u8 spriteId;
     u8 x, y;
@@ -1221,9 +1221,9 @@ void sub_8140930(u8 taskId) // first animation type
         priority = gTasks[taskId].data[3];
         subpriority = gTasks[taskId].data[4];
 
-        spriteId = CreateSprite(&gSpriteTemplate_840B3B4[ballIndex], x, y, subpriority);
-        StartSpriteAnim(&gSprites[spriteId], gUnknown_0840B378[ballIndex]);
-        gSprites[spriteId].callback = sub_8140A08;
+        spriteId = CreateSprite(&gSpriteTemplates_840B3B4[ballIndex], x, y, subpriority);
+        StartSpriteAnim(&gSprites[spriteId], gBallOpenParticleAnimNums[ballIndex]);
+        gSprites[spriteId].callback = PokeBallOpenParticleAnimation_Step1;
         gSprites[spriteId].oam.priority = priority;
 
         var0 = (u8)gTasks[taskId].data[0];
@@ -1242,24 +1242,24 @@ void sub_8140930(u8 taskId) // first animation type
     gTasks[taskId].data[0]++;
 }
 
-static void sub_8140A08(struct Sprite *sprite)
+static void PokeBallOpenParticleAnimation_Step1(struct Sprite *sprite)
 {
     if (sprite->data[1] == 0)
-        sprite->callback = sub_8140A28;
+        sprite->callback = PokeBallOpenParticleAnimation_Step2;
     else
         sprite->data[1]--;
 }
 
-static void sub_8140A28(struct Sprite *sprite)
+static void PokeBallOpenParticleAnimation_Step2(struct Sprite *sprite)
 {
     sprite->pos2.x = Sin(sprite->data[0], sprite->data[1]);
     sprite->pos2.y = Cos(sprite->data[0], sprite->data[1]);
     sprite->data[1] += 2;
     if (sprite->data[1] == 50)
-        sub_8141294(sprite);
+        DestroyBallOpenAnimationParticle(sprite);
 }
 
-void sub_8140A64(u8 taskId) // eighth animation type
+void TimerBallOpenParticleAnimation(u8 taskId) // eighth animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1273,9 +1273,9 @@ void sub_8140A64(u8 taskId) // eighth animation type
 
     for (i = 0; i < 8; i++)
     {
-        spriteId = CreateSprite(&gSpriteTemplate_840B3B4[ballIndex], x, y, subpriority);
-        StartSpriteAnim(&gSprites[spriteId], gUnknown_0840B378[ballIndex]);
-        gSprites[spriteId].callback = sub_8140ECC;
+        spriteId = CreateSprite(&gSpriteTemplates_840B3B4[ballIndex], x, y, subpriority);
+        StartSpriteAnim(&gSprites[spriteId], gBallOpenParticleAnimNums[ballIndex]);
+        gSprites[spriteId].callback = FanOutBallOpenParticles_Step1;
         gSprites[spriteId].oam.priority = priority;
         gSprites[spriteId].data[0] = i * 32;
         gSprites[spriteId].data[4] = 10;
@@ -1287,7 +1287,7 @@ void sub_8140A64(u8 taskId) // eighth animation type
     DestroyTask(taskId);
 }
 
-void sub_8140B3C(u8 taskId) // sixth animation type
+void DiveBallOpenParticleAnimation(u8 taskId) // sixth animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1301,9 +1301,9 @@ void sub_8140B3C(u8 taskId) // sixth animation type
 
     for (i = 0; i < 8; i++)
     {
-        spriteId = CreateSprite(&gSpriteTemplate_840B3B4[ballIndex], x, y, subpriority);
-        StartSpriteAnim(&gSprites[spriteId], gUnknown_0840B378[ballIndex]);
-        gSprites[spriteId].callback = sub_8140ECC;
+        spriteId = CreateSprite(&gSpriteTemplates_840B3B4[ballIndex], x, y, subpriority);
+        StartSpriteAnim(&gSprites[spriteId], gBallOpenParticleAnimNums[ballIndex]);
+        gSprites[spriteId].callback = FanOutBallOpenParticles_Step1;
         gSprites[spriteId].oam.priority = priority;
         gSprites[spriteId].data[0] = i * 32;
         gSprites[spriteId].data[4] = 10;
@@ -1315,7 +1315,7 @@ void sub_8140B3C(u8 taskId) // sixth animation type
     DestroyTask(taskId);
 }
 
-void sub_8140C14(u8 taskId) // third animation type
+void SafariBallOpenParticleAnimation(u8 taskId) // third animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1329,9 +1329,9 @@ void sub_8140C14(u8 taskId) // third animation type
 
     for (i = 0; i < 8; i++)
     {
-        spriteId = CreateSprite(&gSpriteTemplate_840B3B4[ballIndex], x, y, subpriority);
-        StartSpriteAnim(&gSprites[spriteId], gUnknown_0840B378[ballIndex]);
-        gSprites[spriteId].callback = sub_8140ECC;
+        spriteId = CreateSprite(&gSpriteTemplates_840B3B4[ballIndex], x, y, subpriority);
+        StartSpriteAnim(&gSprites[spriteId], gBallOpenParticleAnimNums[ballIndex]);
+        gSprites[spriteId].callback = FanOutBallOpenParticles_Step1;
         gSprites[spriteId].oam.priority = priority;
         gSprites[spriteId].data[0] = i * 32;
         gSprites[spriteId].data[4] = 4;
@@ -1343,7 +1343,7 @@ void sub_8140C14(u8 taskId) // third animation type
     DestroyTask(taskId);
 }
 
-void sub_8140CE8(u8 taskId) // fourth animation type
+void UltraBallOpenParticleAnimation(u8 taskId) // fourth animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1357,9 +1357,9 @@ void sub_8140CE8(u8 taskId) // fourth animation type
 
     for (i = 0; i < 10; i++)
     {
-        spriteId = CreateSprite(&gSpriteTemplate_840B3B4[ballIndex], x, y, subpriority);
-        StartSpriteAnim(&gSprites[spriteId], gUnknown_0840B378[ballIndex]);
-        gSprites[spriteId].callback = sub_8140ECC;
+        spriteId = CreateSprite(&gSpriteTemplates_840B3B4[ballIndex], x, y, subpriority);
+        StartSpriteAnim(&gSprites[spriteId], gBallOpenParticleAnimNums[ballIndex]);
+        gSprites[spriteId].callback = FanOutBallOpenParticles_Step1;
         gSprites[spriteId].oam.priority = priority;
         gSprites[spriteId].data[0] = i * 25;
         gSprites[spriteId].data[4] = 5;
@@ -1371,7 +1371,7 @@ void sub_8140CE8(u8 taskId) // fourth animation type
     DestroyTask(taskId);
 }
 
-void sub_8140DC4(u8 taskId) // second animation type
+void GreatBallOpenParticleAnimation(u8 taskId) // second animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1391,9 +1391,9 @@ void sub_8140DC4(u8 taskId) // second animation type
 
         for (i = 0; i < 8; i++)
         {
-            spriteId = CreateSprite(&gSpriteTemplate_840B3B4[ballIndex], x, y, subpriority);
-            StartSpriteAnim(&gSprites[spriteId], gUnknown_0840B378[ballIndex]);
-            gSprites[spriteId].callback = sub_8140ECC;
+            spriteId = CreateSprite(&gSpriteTemplates_840B3B4[ballIndex], x, y, subpriority);
+            StartSpriteAnim(&gSprites[spriteId], gBallOpenParticleAnimNums[ballIndex]);
+            gSprites[spriteId].callback = FanOutBallOpenParticles_Step1;
             gSprites[spriteId].oam.priority = priority;
             gSprites[spriteId].data[0] = i * 32;
             gSprites[spriteId].data[4] = 8;
@@ -1410,7 +1410,7 @@ void sub_8140DC4(u8 taskId) // second animation type
     }
 }
 
-static void sub_8140ECC(struct Sprite *sprite)
+static void FanOutBallOpenParticles_Step1(struct Sprite *sprite)
 {
     sprite->pos2.x = Sin(sprite->data[0], sprite->data[1]);
     sprite->pos2.y = Cos(sprite->data[0], sprite->data[2]);
@@ -1421,7 +1421,7 @@ static void sub_8140ECC(struct Sprite *sprite)
         sub_8141294(sprite);
 }
 
-void sub_8140F24(u8 taskId) // seventh animation type
+void RepeatBallOpenParticleAnimation(u8 taskId) // seventh animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1435,9 +1435,9 @@ void sub_8140F24(u8 taskId) // seventh animation type
 
     for (i = 0; i < 12; i++)
     {
-        spriteId = CreateSprite(&gSpriteTemplate_840B3B4[ballIndex], x, y, subpriority);
-        StartSpriteAnim(&gSprites[spriteId], gUnknown_0840B378[ballIndex]);
-        gSprites[spriteId].callback = sub_8140FF8;
+        spriteId = CreateSprite(&gSpriteTemplates_840B3B4[ballIndex], x, y, subpriority);
+        StartSpriteAnim(&gSprites[spriteId], gBallOpenParticleAnimNums[ballIndex]);
+        gSprites[spriteId].callback = RepeatBallOpenParticleAnimation_Step1;
         gSprites[spriteId].oam.priority = priority;
         gSprites[spriteId].data[0] = i * 21;
     }
@@ -1446,7 +1446,7 @@ void sub_8140F24(u8 taskId) // seventh animation type
     DestroyTask(taskId);
 }
 
-static void sub_8140FF8(struct Sprite *sprite)
+static void RepeatBallOpenParticleAnimation_Step1(struct Sprite *sprite)
 {
     sprite->pos2.x = Sin(sprite->data[0], sprite->data[1]);
     sprite->pos2.y = Cos(sprite->data[0], Sin(sprite->data[0], sprite->data[2]));
@@ -1454,10 +1454,10 @@ static void sub_8140FF8(struct Sprite *sprite)
     sprite->data[1]++;
     sprite->data[2]++;
     if (++sprite->data[3] == 51)
-        sub_8141294(sprite);
+        DestroyBallOpenAnimationParticle(sprite);
 }
 
-void sub_8141058(u8 taskId) // fifth animation type
+void MasterBallOpenParticleAnimation(u8 taskId) // fifth animation type
 {
     u8 i, j;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1473,9 +1473,9 @@ void sub_8141058(u8 taskId) // fifth animation type
     {
         for (i = 0; i < 8; i++)
         {
-            spriteId = CreateSprite(&gSpriteTemplate_840B3B4[ballIndex], x, y, subpriority);
-            StartSpriteAnim(&gSprites[spriteId], gUnknown_0840B378[ballIndex]);
-            gSprites[spriteId].callback = sub_8140ECC;
+            spriteId = CreateSprite(&gSpriteTemplates_840B3B4[ballIndex], x, y, subpriority);
+            StartSpriteAnim(&gSprites[spriteId], gBallOpenParticleAnimNums[ballIndex]);
+            gSprites[spriteId].callback = FanOutBallOpenParticles_Step1;
             gSprites[spriteId].oam.priority = priority;
             gSprites[spriteId].data[0] = i * 32;
             gSprites[spriteId].data[4] = 8;
@@ -1497,7 +1497,7 @@ void sub_8141058(u8 taskId) // fifth animation type
     DestroyTask(taskId);
 }
 
-void sub_8141164(u8 taskId) // ninth and final animation type
+void PremierBallOpenParticleAnimation(u8 taskId) // ninth and final animation type
 {
     u8 i;
     u8 x, y, priority, subpriority, ballIndex;
@@ -1511,9 +1511,9 @@ void sub_8141164(u8 taskId) // ninth and final animation type
 
     for (i = 0; i < 8; i++)
     {
-        spriteId = CreateSprite(&gSpriteTemplate_840B3B4[ballIndex], x, y, subpriority);
-        StartSpriteAnim(&gSprites[spriteId], gUnknown_0840B378[ballIndex]);
-        gSprites[spriteId].callback = sub_8141230;
+        spriteId = CreateSprite(&gSpriteTemplates_840B3B4[ballIndex], x, y, subpriority);
+        StartSpriteAnim(&gSprites[spriteId], gBallOpenParticleAnimNums[ballIndex]);
+        gSprites[spriteId].callback = PremierBallOpenParticleAnimation_Step1;
         gSprites[spriteId].oam.priority = priority;
         gSprites[spriteId].data[0] = i * 32;
     }
@@ -1522,7 +1522,7 @@ void sub_8141164(u8 taskId) // ninth and final animation type
     DestroyTask(taskId);
 }
 
-static void sub_8141230(struct Sprite *sprite)
+static void PremierBallOpenParticleAnimation_Step1(struct Sprite *sprite)
 {
     sprite->pos2.x = Sin(sprite->data[0], sprite->data[1]);
     sprite->pos2.y = Cos(sprite->data[0], Sin(sprite->data[0] & 0x3F, sprite->data[2]));
@@ -1530,10 +1530,10 @@ static void sub_8141230(struct Sprite *sprite)
     sprite->data[1]++;
     sprite->data[2]++;
     if (++sprite->data[3] == 51)
-        sub_8141294(sprite);
+        DestroyBallOpenAnimationParticle(sprite);
 }
 
-static void sub_8141294(struct Sprite *sprite)
+static void DestroyBallOpenAnimationParticle(struct Sprite *sprite)
 {
     int i;
     int temp;
@@ -1552,8 +1552,8 @@ static void sub_8141294(struct Sprite *sprite)
         {
             for (i = 0; i < 12; i++)
             {
-                FreeSpriteTilesByTag(gUnknown_0840B258[i].tag);
-                FreeSpritePaletteByTag(gUnknown_0840B2B8[i].tag);
+                FreeSpriteTilesByTag(gBallOpenParticleSpriteSheets[i].tag);
+                FreeSpritePaletteByTag(gBallOpenParticlePalettes[i].tag);
             }
 
             DestroySprite(sprite);
