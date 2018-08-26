@@ -42,7 +42,7 @@ extern const struct SpriteTemplate gSpriteTemplate_8402500;
 extern const struct SpriteTemplate gBattleAnimSpriteTemplate_84024E8;
 extern const u8 gBallOpenParticleAnimNums[];
 extern const struct CompressedSpriteSheet gBallOpenParticleSpriteSheets[];
-extern const TaskFunc gBallOpenParticlesAnimationFuncs[];
+extern const TaskFunc gBallOpenParticleAnimationFuncs[];
 extern const u16 gUnknown_0840B4D4[];
 extern const struct CompressedSpriteSheet gBattleAnimPicTable[];
 extern const struct CompressedSpritePalette gBattleAnimPaletteTable[];
@@ -1192,7 +1192,7 @@ u8 AnimateBallOpenParticles(u8 x, u8 y, u8 priority, u8 subpriority, u8 ballInde
         LoadCompressedObjectPalette(&gBallOpenParticlePalettes[ballIndex]);
     }
 
-    taskId = CreateTask(gBallOpenParticlesAnimationFuncs[ballIndex], 5);
+    taskId = CreateTask(gBallOpenParticleAnimationFuncs[ballIndex], 5);
     gTasks[taskId].data[1] = x;
     gTasks[taskId].data[2] = y;
     gTasks[taskId].data[3] = priority;
@@ -1418,7 +1418,7 @@ static void FanOutBallOpenParticles_Step1(struct Sprite *sprite)
     sprite->data[1] += sprite->data[5];
     sprite->data[2] += sprite->data[6];
     if (++sprite->data[3] == 51)
-        sub_8141294(sprite);
+        DestroyBallOpenAnimationParticle(sprite);
 }
 
 void RepeatBallOpenParticleAnimation(u8 taskId) // seventh animation type
