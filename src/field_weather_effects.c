@@ -884,7 +884,7 @@ void Snow_InitVars(void)
     gWeatherPtr->weatherGfxLoaded = FALSE;
     gWeatherPtr->gammaTargetIndex = 3;
     gWeatherPtr->gammaStepDelay = 20;
-    gWeatherPtr->unknown_6E5 = 16;
+    gWeatherPtr->unknown_6E5 = 50;
     gWeatherPtr->unknown_6E0 = 0;
 }
 
@@ -1016,7 +1016,6 @@ void sub_807ECEC(struct Sprite *sprite)
 void sub_807ED48(struct Sprite *sprite)
 {
     s16 r3;
-    s16 r2;
 
     sprite->data[0] += sprite->data[1];
     sprite->pos1.y = sprite->data[0] >> 7;
@@ -1030,33 +1029,6 @@ void sub_807ED48(struct Sprite *sprite)
         sprite->pos1.x = 242 - (gSpriteCoordOffsetX + sprite->centerToCornerVecX);
     else if (r3 > 242)
         sprite->pos1.x = -3 - (gSpriteCoordOffsetX + sprite->centerToCornerVecX);
-
-    r2 = (sprite->pos1.y + sprite->centerToCornerVecY + gSpriteCoordOffsetY) & 0xFF;
-    if (r2 > 163 && r2 < 171)
-    {
-        sprite->pos1.y = 250 - (gSpriteCoordOffsetY + sprite->centerToCornerVecY);
-        sprite->data[0] = sprite->pos1.y * 128;
-        sprite->data[5] = 0;
-        sprite->data[6] = 220;
-    }
-    else if (r2 > 242 && r2 < 250)
-    {
-        sprite->pos1.y = 163;
-        sprite->data[0] = sprite->pos1.y * 128;
-        sprite->data[5] = 0;
-        sprite->data[6] = 220;
-        sprite->invisible = TRUE;
-        sprite->callback = sub_807ECEC;
-    }
-
-    sprite->data[5]++;
-    if (sprite->data[5] == sprite->data[6])
-    {
-        sub_807EC40(sprite);
-        sprite->pos1.y = 250;
-        sprite->invisible = TRUE;
-        sprite->callback = sub_807ECEC;
-    }
 }
 
 //------------------------------------------------------------------------------
@@ -2288,6 +2260,31 @@ void unc_0807DAB4(struct Sprite *sprite)
     sprite->pos1.y -= 3;
     if (++sprite->data[2] > 0x77)
         DestroySprite(sprite);
+}
+
+//------------------------------------------------------------------------------
+// Fog which literally just adds a white tint
+//------------------------------------------------------------------------------
+
+void White_InitVars(void)
+{
+    gWeatherPtr->initStep = 0;
+    gWeatherPtr->gammaTargetIndex = 0;
+    gWeatherPtr->gammaStepDelay = 20;
+}
+
+void White_InitAll(void)
+{
+    White_InitVars();
+}
+
+void White_Main(void)
+{
+}
+
+bool8 White_Finish(void)
+{
+    return FALSE;
 }
 
 //------------------------------------------------------------------------------

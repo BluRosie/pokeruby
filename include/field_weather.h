@@ -166,6 +166,8 @@ void ResetDroughtWeatherPaletteLoading(void);
 bool8 LoadDroughtWeatherPalettes(void);
 u8 GetCurrentWeather(void);
 void LoadCustomWeatherSpritePalette(const u16 *palette);
+void ApplyGammaShiftWithBlend(u8, u8, s8, u8, u16);
+void ApplyGammaShift(u8, u8, s8)
 
 
 extern struct Weather gWeather;

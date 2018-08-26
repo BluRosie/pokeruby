@@ -78,13 +78,14 @@ struct Weather *const gWeatherPtr = &gWeather;
 static bool8 LightenSpritePaletteInFog(u8);
 static void BuildGammaShiftTables(void);
 static void UpdateWeatherGammaShift(void);
-static void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex);
-static void ApplyGammaShiftWithBlend(u8 startPalIndex, u8 numPalettes, s8 gammaIndex, u8 blendCoeff, u16 blendColor);
+//static void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex);
+//static void ApplyGammaShiftWithBlend(u8 startPalIndex, u8 numPalettes, s8 gammaIndex, u8 blendCoeff, u16 blendColor);
 static void ApplyDroughtGammaShiftWithBlend(s8 gammaIndex, u8 blendCoeff, u16 blendColor);
 static void ApplyFogBlend(u8 blendCoeff, u16 blendColor);
 static bool8 FadeInScreen_RainShowShade(void);
 static bool8 FadeInScreen_Drought(void);
 static bool8 FadeInScreen_Fog1(void);
+//static bool8 FadeInScreen_White(void);
 static void FadeInScreenWithWeather(void);
 static void DoNothing(void);
 void None_Init(void);
@@ -146,6 +147,10 @@ void Bubbles_InitVars(void);
 void Bubbles_Main(void);
 void Bubbles_InitAll(void);
 bool8 Bubbles_Finish(void);
+void White_InitVars(void);
+void White_Main(void);
+void White_InitAll(void);
+bool8 White_Finish(void);
 
 static const struct WeatherCallbacks sWeatherFuncs[] =
 {
@@ -159,7 +164,7 @@ static const struct WeatherCallbacks sWeatherFuncs[] =
     {Ash_InitVars,       Ash_Main,       Ash_InitAll,       Ash_Finish},
     {Sandstorm_InitVars, Sandstorm_Main, Sandstorm_InitAll, Sandstorm_Finish},
     {Fog2_InitVars,      Fog2_Main,      Fog2_InitAll,      Fog2_Finish},
-    {Fog1_InitVars,      Fog1_Main,      Fog1_InitAll,      Fog1_Finish},
+    {White_InitVars,     White_Main,     White_InitAll,     White_Finish},
     {Shade_InitVars,     Shade_Main,     Shade_InitAll,     Shade_Finish},
     {Drought_InitVars,   Drought_Main,   Drought_InitAll,   Drought_Finish},
     {HeavyRain_InitVars, Rain_Main,      HeavyRain_InitAll, Rain_Finish},
@@ -470,7 +475,7 @@ static void FadeInScreenWithWeather(void)
     case WEATHER_RAIN_MED:
     case WEATHER_RAIN_HEAVY:
     case WEATHER_SNOW:
-	case WEATHER_ASH:
+    case WEATHER_ASH:
     case WEATHER_SHADE:
         if (FadeInScreen_RainShowShade() == FALSE)
         {
@@ -492,9 +497,15 @@ static void FadeInScreenWithWeather(void)
             gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
         }
         break;
+/*    case WEATHER_FOG_3:
+        if (FadeInScreen_White() == FALSE)
+        {
+            gWeatherPtr->gammaIndex = 2;
+            gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
+        }
+        break;*/
     case WEATHER_SANDSTORM:
     case WEATHER_FOG_2:
-    case WEATHER_FOG_3:
     default:
         if (!gPaletteFade.active)
         {
@@ -547,6 +558,22 @@ bool8 FadeInScreen_Fog1(void)
     return TRUE;
 }
 
+/*bool8 FadeInScreen_White(void)
+{
+    if (gWeatherPtr->fadeScreenCounter == 48)
+        return FALSE;
+
+    if (++gWeatherPtr->fadeScreenCounter >= 48)
+    {
+//        ApplyGammaShift(0, 32, 3);
+        gWeatherPtr->fadeScreenCounter = 48;
+        return FALSE;
+    }
+
+    ApplyGammaShiftWithBlend(0, 32, 3, gWeatherPtr->fadeScreenCounter / 4, 0x7FFF);
+    return TRUE;
+}*/
+
 static void DoNothing(void)
 { }
 
@@ -564,7 +591,7 @@ static void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex)
         numPalettes += startPalIndex;
         curPalIndex = startPalIndex;
 
-        // Loop through the speficied palette range and apply necessary gamma shifts to the colors.
+        // Loop through the specified palette range and apply necessary gamma shifts to the colors.
         while (curPalIndex < numPalettes)
         {
             if (sPaletteGammaTypes[curPalIndex] == GAMMA_NONE)
@@ -668,7 +695,7 @@ static void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex)
     }
 }
 
-static void ApplyGammaShiftWithBlend(u8 startPalIndex, u8 numPalettes, s8 gammaIndex, u8 blendCoeff, u16 blendColor)
+/*static */void ApplyGammaShiftWithBlend(u8 startPalIndex, u8 numPalettes, s8 gammaIndex, u8 blendCoeff, u16 blendColor)
 {
     u16 palOffset;
     u16 curPalIndex;
@@ -899,8 +926,10 @@ void FadeScreen(u8 mode, u8 delay)
     case WEATHER_RAIN_MED:
     case WEATHER_RAIN_HEAVY:
     case WEATHER_SNOW:
+	case WEATHER_ASH:
     case WEATHER_FOG_1:
     case WEATHER_SHADE:
+	case WEATHER_FOG_3:
     case WEATHER_DROUGHT:
         useWeatherPal = TRUE;
         break;

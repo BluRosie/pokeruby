@@ -9,6 +9,10 @@ Current implemented features:
 * poison fades after reaching 1 hp in the overworld
 * ball expansion
 * hidden abilities 
+* gen 4 bike (toggle between acro and mach using the r button)
+* run toggle using the r button
+* fix snow
+* add fog (fog 3), loads a bit jankily though
 
 In Progress:
 * ability expansion (thanks znogyrop and dizzy for ability descriptions)

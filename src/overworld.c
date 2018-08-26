@@ -1,4 +1,5 @@
 #include "global.h"
+#include "constants/weather.h"
 #include "overworld.h"
 #include "battle_setup.h"
 #include "berry.h"
@@ -1207,6 +1208,19 @@ void c1_overworld_normal(u16 newKeys, u16 heldKeys)
                 player_step(fieldInput.dpadDirection, newKeys, heldKeys);
         }
     }
+    if (GetCurrentWeather() == WEATHER_FOG_3)
+    {
+        if (++gWeatherPtr->fadeScreenCounter <= 60)
+            ApplyGammaShiftWithBlend(0, 32, 3, gWeatherPtr->fadeScreenCounter / 6, 0x7FFF);
+        else
+        {
+            gWeatherPtr->fadeScreenCounter = 60;
+            ApplyGammaShiftWithBlend(0, 6, 3, 12, 0x7FFF);
+            ApplyGammaShiftWithBlend(16, 9, 3, 12, 0x7FFF);
+        }
+    }
+    else
+        ApplyGammaShift(0, 32, 0);
 }
 
 void c1_overworld(void)
