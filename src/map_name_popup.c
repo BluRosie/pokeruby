@@ -1,7 +1,9 @@
 #include "global.h"
+#include "field_weather.h"
 #include "map_name_popup.h"
 #include "event_data.h"
 #include "menu.h"
+#include "palette.h"
 #include "region_map.h"
 #include "task.h"
 
@@ -36,6 +38,7 @@ void ShowMapNamePopup(void)
             gTasks[sTaskId].data[3] = 1;
         }
     }
+    gWeatherPtr->blendFrameCounter = 0;
 }
 
 void Task_MapNamePopup(u8 taskId)

@@ -1208,19 +1208,39 @@ void c1_overworld_normal(u16 newKeys, u16 heldKeys)
                 player_step(fieldInput.dpadDirection, newKeys, heldKeys);
         }
     }
+
     if (GetCurrentWeather() == WEATHER_FOG_3)
     {
-        if (++gWeatherPtr->fadeScreenCounter <= 60)
-            ApplyGammaShiftWithBlend(0, 32, 3, gWeatherPtr->fadeScreenCounter / 6, 0x7FFF);
+        gWeatherPtr->isFog = 1;
+        if (++gWeatherPtr->blendFrameCounter <= 60)
+        {
+            ApplyGammaShiftWithBlend(0, 14, 1, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
+            ApplyGammaShift(14, 2, 0);
+            ApplyGammaShiftWithBlend(16, 9, 1, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
+            ApplyGammaShift(26, 3, 0);
+            ApplyGammaShiftWithBlend(30, 3, 1, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
+        }
+        else
+            gWeatherPtr->blendFrameCounter = 60;
+            ApplyGammaShiftWithBlend(30, 3, 1, 10, RGB(31, 31, 31));
+    }
+    else if (gWeatherPtr->isFog == 1 && GetCurrentWeather() != WEATHER_FOG_3)
+    {
+        if (++gWeatherPtr->blendFrameCounter <= 60)
+        {
+            ApplyGammaShiftWithBlend(0, 13, 1, 10 - (gWeatherPtr->blendFrameCounter / 6), RGB(31, 31, 31));
+            ApplyGammaShift(14, 2, 0);
+            ApplyGammaShiftWithBlend(16, 13, 1, 10 - (gWeatherPtr->blendFrameCounter / 6), RGB(31, 31, 31));
+            ApplyGammaShift(26, 3, 0);
+            ApplyGammaShiftWithBlend(30, 3, 1, 10 - (gWeatherPtr->blendFrameCounter / 6), RGB(31, 31, 31));
+        }
         else
         {
-            gWeatherPtr->fadeScreenCounter = 60;
-            ApplyGammaShiftWithBlend(0, 6, 3, 12, 0x7FFF);
-            ApplyGammaShiftWithBlend(16, 9, 3, 12, 0x7FFF);
+            gWeatherPtr->blendFrameCounter = 60;
+            gWeatherPtr->isFog = 0;
+//            ApplyGammaShift(0, 32, 0);
         }
     }
-    else
-        ApplyGammaShift(0, 32, 0);
 }
 
 void c1_overworld(void)

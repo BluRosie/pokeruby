@@ -119,6 +119,7 @@ struct Weather
     u8 filler_744[0xD-4];
     s8 loadDroughtPalsIndex;
     u8 loadDroughtPalsOffset;
+	u8 isFog;
 };
 
 void StartWeather(void);
@@ -166,8 +167,8 @@ void ResetDroughtWeatherPaletteLoading(void);
 bool8 LoadDroughtWeatherPalettes(void);
 u8 GetCurrentWeather(void);
 void LoadCustomWeatherSpritePalette(const u16 *palette);
-void ApplyGammaShiftWithBlend(u8, u8, s8, u8, u16);
-void ApplyGammaShift(u8, u8, s8)
+void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex);
+void ApplyGammaShiftWithBlend(u8 startPalIndex, u8 numPalettes, s8 gammaIndex, u8 blendCoeff, u16 blendColor);
 
 
 extern struct Weather gWeather;

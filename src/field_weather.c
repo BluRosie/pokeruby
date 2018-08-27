@@ -78,14 +78,11 @@ struct Weather *const gWeatherPtr = &gWeather;
 static bool8 LightenSpritePaletteInFog(u8);
 static void BuildGammaShiftTables(void);
 static void UpdateWeatherGammaShift(void);
-//static void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex);
-//static void ApplyGammaShiftWithBlend(u8 startPalIndex, u8 numPalettes, s8 gammaIndex, u8 blendCoeff, u16 blendColor);
 static void ApplyDroughtGammaShiftWithBlend(s8 gammaIndex, u8 blendCoeff, u16 blendColor);
 static void ApplyFogBlend(u8 blendCoeff, u16 blendColor);
 static bool8 FadeInScreen_RainShowShade(void);
 static bool8 FadeInScreen_Drought(void);
 static bool8 FadeInScreen_Fog1(void);
-//static bool8 FadeInScreen_White(void);
 static void FadeInScreenWithWeather(void);
 static void DoNothing(void);
 void None_Init(void);
@@ -497,13 +494,8 @@ static void FadeInScreenWithWeather(void)
             gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
         }
         break;
-/*    case WEATHER_FOG_3:
-        if (FadeInScreen_White() == FALSE)
-        {
-            gWeatherPtr->gammaIndex = 2;
-            gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
-        }
-        break;*/
+    case WEATHER_FOG_3:
+        gWeatherPtr->gammaIndex = 3;
     case WEATHER_SANDSTORM:
     case WEATHER_FOG_2:
     default:
@@ -558,26 +550,10 @@ bool8 FadeInScreen_Fog1(void)
     return TRUE;
 }
 
-/*bool8 FadeInScreen_White(void)
-{
-    if (gWeatherPtr->fadeScreenCounter == 48)
-        return FALSE;
-
-    if (++gWeatherPtr->fadeScreenCounter >= 48)
-    {
-//        ApplyGammaShift(0, 32, 3);
-        gWeatherPtr->fadeScreenCounter = 48;
-        return FALSE;
-    }
-
-    ApplyGammaShiftWithBlend(0, 32, 3, gWeatherPtr->fadeScreenCounter / 4, 0x7FFF);
-    return TRUE;
-}*/
-
 static void DoNothing(void)
 { }
 
-static void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex)
+void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex)
 {
     u16 curPalIndex;
     u16 palOffset;
@@ -695,7 +671,7 @@ static void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex)
     }
 }
 
-/*static */void ApplyGammaShiftWithBlend(u8 startPalIndex, u8 numPalettes, s8 gammaIndex, u8 blendCoeff, u16 blendColor)
+void ApplyGammaShiftWithBlend(u8 startPalIndex, u8 numPalettes, s8 gammaIndex, u8 blendCoeff, u16 blendColor)
 {
     u16 palOffset;
     u16 curPalIndex;
@@ -712,7 +688,7 @@ static void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex)
 
     while (curPalIndex < numPalettes)
     {
-        if (sPaletteGammaTypes[curPalIndex] == GAMMA_NONE)
+        if (sPaletteGammaTypes[curPalIndex] == GAMMA_NONE || gammaIndex == 0)
         {
             // No gamma shift. Simply blend the colors.
             BlendPalette(palOffset, 16, blendCoeff, blendColor);

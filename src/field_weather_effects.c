@@ -2271,6 +2271,7 @@ void White_InitVars(void)
     gWeatherPtr->initStep = 0;
     gWeatherPtr->gammaTargetIndex = 0;
     gWeatherPtr->gammaStepDelay = 20;
+    gWeatherPtr->blendFrameCounter = 0;
 }
 
 void White_InitAll(void)
