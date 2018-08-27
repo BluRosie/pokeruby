@@ -151,6 +151,7 @@ extern u8 BattleScript_OverworldWeatherStarts[]; //load weather from overworld
 extern u8 BattleScript_DrizzleActivates[];
 extern u8 BattleScript_SandstreamActivates[];
 extern u8 BattleScript_DroughtActivates[];
+extern u8 BattleScript_SnowWarningActivates[];
 extern u8 BattleScript_CastformChange[];
 extern u8 BattleScript_RainDishActivates[];
 extern u8 BattleScript_ShedSkinActivates[];
@@ -824,7 +825,7 @@ u8 UpdateTurnCounters(void)
         case 9:
             if (gBattleWeather & WEATHER_HAIL)
             {
-                if (--gWishFutureKnock.weatherDuration == 0)
+                if (!gNewBattleEffects.hailPermanent && --gWishFutureKnock.weatherDuration == 0)
                 {
                     gBattleWeather &= ~WEATHER_HAIL;
                     gBattlescriptCurrInstr = BattleScript_SandStormHailEnds;
@@ -1777,6 +1778,25 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                         effect++;
                     }
                     break;
+                case WEATHER_SNOW:
+                    if (!(gBattleWeather & WEATHER_HAIL))
+                    {
+                        gBattleWeather = WEATHER_HAIL;
+                        gNewBattleEffects.hailPermanent = TRUE;
+                        gBattleStruct->animArg1 = B_ANIM_HAIL_CONTINUES;
+                        gBattleStruct->scriptingActive = bank;
+                        effect++;
+                    }
+                    break;
+                case WEATHER_FOG_3:
+                    if (!gNewBattleEffects.fog)
+                    {
+                        gNewBattleEffects.fog = TRUE;
+                        //gBattleStruct->animArg1 = B_ANIM_FOG;
+                        gBattleStruct->scriptingActive = bank;
+                        effect++;
+                    }
+                    break;
                 }
                 if (effect)
                 {
@@ -1807,6 +1827,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                 {
                     gBattleWeather = (WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY);
                     BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
+                    gBattleStruct->scriptingActive = bank;
+                    effect++;
+                }
+                break;
+            case ABILITY_SNOW_WARNING:
+                if (!(gBattleWeather & WEATHER_HAIL))
+                {
+                    gBattleWeather = WEATHER_HAIL;
+                    gNewBattleEffects.hailPermanent = TRUE;
+                    BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
                     gBattleStruct->scriptingActive = bank;
                     effect++;
                 }

@@ -151,7 +151,7 @@ const u16 gUnknown_084016BC[] =
 
 const u8 gUnknown_084017A8[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}; // empty flags
 
-extern const u8* const gBattleStringsTable[BATTLESTRINGS_NO];
+//extern const u8* const gBattleStringsTable[BATTLESTRINGS_NO];
 
 extern u16 gLastUsedItem;
 extern u8 gLastUsedAbility;

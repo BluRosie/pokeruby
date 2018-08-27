@@ -1326,12 +1326,16 @@ static void atk01_accuracycheck(void)
             buff = 0xC;
 
         moveAcc = gBattleMoves[move].accuracy;
+
         // check Thunder on sunny weather
         if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && gBattleMoves[move].effect == EFFECT_THUNDER)
             moveAcc = 50;
 
         calc = gAccuracyStageRatios[buff].dividend * moveAcc;
         calc /= gAccuracyStageRatios[buff].divisor;
+
+        if (gNewBattleEffects.fog)
+            calc = (calc * 60) / 100; // .6 fog multiplier
 
         if (gBattleMons[gBankAttacker].ability == ABILITY_COMPOUND_EYES)
             calc = (calc * 130) / 100; // 1.3 compound eyes boost

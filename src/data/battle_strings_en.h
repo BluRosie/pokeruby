@@ -240,6 +240,7 @@ enum
     BATTLE_TEXT_HailStart,
     BATTLE_TEXT_HailCont,
     BATTLE_TEXT_HailStop,
+    BATTLE_TEXT_FogIsDeep,
     BATTLE_TEXT_SpitUpFail,
     BATTLE_TEXT_SwallowFail,
     BATTLE_TEXT_WindHeatWave,
@@ -360,7 +361,7 @@ enum
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
-const u8 BattleText_GainExpPoints[] = _("{STRING 0} gained{STRING 1}\n{STRING 42} EXP. Points!\p");
+const u8 BattleText_GainExpPoints[] = _("{STRING 0} gained{STRING 1}\n{STRING 42} Exp. Points!\p");
 const u8 BattleText_Terminator[] = _("");
 const u8 BattleText_BoostedExp[] = _(" a boosted");
 const u8 BattleText_GrewLevel[] = _("{STRING 0} grew to\nLV. {STRING 1}!{UNKNOWN_A}\p");
@@ -371,11 +372,11 @@ const u8 BattleText_DeleteMove[] = _("Delete a move to make\nroom for {STRING 1}
 const u8 BattleText_DeletedMove[] = _("{STRING 0} forgot\n{STRING 1}.\p");
 const u8 BattleText_StopLearning[] = _("{PAUSE 32}Stop learning\n{STRING 1}?");
 const u8 BattleText_DidNotLearn[] = _("{STRING 0} did not learn\n{STRING 1}.\p");
-const u8 BattleText_UseNext[] = _("Use next POKéMON?");
+const u8 BattleText_UseNext[] = _("Use next Pokémon?");
 const u8 BattleText_AttackMissed[] = _("{DEFENDING_MON}\navoided the attack!");
 const u8 BattleText_ProtectedItself[] = _("{DEFENDING_MON}\nprotected itself!");
 const u8 BattleText_AvoidedDamage[] = _("{DEFENDING_MON} avoided\ndamage with {STRING 22}!");
-const u8 BattleText_GroundMoveNegate[] = _("{DEFENDING_MON} makes GROUND\nmoves miss with {STRING 22}!");
+const u8 BattleText_GroundMoveNegate[] = _("{DEFENDING_MON} makes Ground\nmoves miss with {STRING 22}!");
 const u8 BattleText_AvoidedAttack[] = _("{DEFENDING_MON} avoided\nthe attack!");
 const u8 BattleText_DoesntAffect[] = _("It doesn’t affect\n{DEFENDING_MON}...");
 const u8 BattleText_AttackingFainted[] = _("{ATTACKING_MON}\nfainted!\p");
@@ -655,6 +656,7 @@ const u8 BattleText_SunFaded[] = _("The sunlight faded.");
 const u8 BattleText_HailStart[] = _("It started to hail!"); // even done at the start of battle
 const u8 BattleText_HailCont[] = _("Hail continues to fall.");
 const u8 BattleText_HailStop[] = _("The hail  stopped.");
+const u8 BattleText_FogIsDeep[] = _("The fog is deep...");
 const u8 BattleText_SpitUpFail[] = _("But it failed to Spit Up\na thing!");
 const u8 BattleText_SwallowFail[] = _("But it failed to Swallow\na thing!");
 const u8 BattleText_WindHeatWave[] = _("The wind turned into a\nHeat Wave!");
@@ -1103,6 +1105,7 @@ const u8 *const gBattleStringsTable[] =
     BattleText_HailStart,
     BattleText_HailCont,
     BattleText_HailStop,
+    BattleText_FogIsDeep,
     BattleText_SpitUpFail,
     BattleText_SwallowFail,
     BattleText_WindHeatWave,
@@ -1484,22 +1487,22 @@ const u16 gBallEscapeStringIds[] =
 
 const u16 gWeatherContinuesStringIds[] =
 {
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_Sandstorm,
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_SunStrong,
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_Raining,
-    BATTLE_TEXT_Raining,
+    BATTLE_TEXT_Raining,    // none
+    BATTLE_TEXT_Raining,    // clouds
+    BATTLE_TEXT_Raining,    // sunny
+    BATTLE_TEXT_Raining,    // light rain
+    BATTLE_TEXT_HailStart,  // snow
+    BATTLE_TEXT_Raining,    // medium rain
+    BATTLE_TEXT_Raining,    // fog 1
+    BATTLE_TEXT_Raining,    // ash
+    BATTLE_TEXT_Sandstorm,  // sandstorm
+    BATTLE_TEXT_Raining,    // fog 2
+    BATTLE_TEXT_FogIsDeep,  // fog 3
+    BATTLE_TEXT_Raining,    // shade
+    BATTLE_TEXT_SunStrong,  // drought
+    BATTLE_TEXT_Raining,    // heavy rain
+    BATTLE_TEXT_Raining,    // bubbles
+    BATTLE_TEXT_Raining,    // end?
 };
 
 const u16 gInobedientStringIds[] =

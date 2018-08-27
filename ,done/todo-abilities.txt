@@ -122,8 +122,8 @@ gAbilityDescription_IceBody:
 @gAbilityDescription_SolidRock:
 @	.string ".$"
 
-gAbilityDescription_SnowWarning:
-	.string "Summons a hailstorm.$"
+DONEgAbilityDescription_SnowWarning:
+DONE.string "Summons a hailstorm.$"
 
 gAbilityDescription_HoneyGather:
 	.string "May gather Honey.$"

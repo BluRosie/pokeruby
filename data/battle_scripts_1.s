@@ -4030,6 +4030,14 @@ BattleScript_SandstreamActivates:: @ 81D9744
 	call BattleScript_WeatherFormChanges
 	end3
 
+BattleScript_SnowWarningActivates::
+	pause 32
+	printstring BATTLE_TEXT_HailStart
+	waitstate
+	playanimation 7, B_ANIM_HAIL_CONTINUES, NULL
+	call BattleScript_WeatherFormChanges
+	end3
+
 BattleScript_ShedSkinActivates:: @ 81D9758
 	printstring BATTLE_TEXT_CuredProblem
 	waitmessage 64

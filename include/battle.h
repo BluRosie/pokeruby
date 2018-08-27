@@ -560,6 +560,17 @@ struct WishFutureKnock
     u8 knockedOffPokes[2];
 };
 
+struct NewBattleEffects
+{
+    u32 hailPermanent:1;
+    u32 fog:1;
+    u8 fogCounter; //maybe?
+    u16 reserved2;
+    u32 reserved3;
+    u32 reserved4;
+    u32 reserved5;
+};
+
 extern struct BattleHistory unk_2016A00;
 extern struct DisableStruct gDisableStructs[MAX_BATTLERS_COUNT];
 extern struct BattleResults gBattleResults;
@@ -567,6 +578,7 @@ extern struct ProtectStruct gProtectStructs[MAX_BATTLERS_COUNT];
 extern struct SpecialStatus gSpecialStatuses[MAX_BATTLERS_COUNT];
 extern struct sideTimer gSideTimers[2];
 extern struct WishFutureKnock gWishFutureKnock;
+extern struct NewBattleEffects gNewBattleEffects;
 extern struct AI_ThinkingStruct gAIThinkingSpace;
 extern struct Struct20238C8 gUnknown_020238C8;
 

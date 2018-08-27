@@ -119,7 +119,7 @@ struct Weather
     u8 filler_744[0xD-4];
     s8 loadDroughtPalsIndex;
     u8 loadDroughtPalsOffset;
-	u8 isFog;
+    u8 isFog;
 };
 
 void StartWeather(void);
