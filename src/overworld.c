@@ -1209,9 +1209,8 @@ void c1_overworld_normal(u16 newKeys, u16 heldKeys)
         }
     }
 
-    if (GetCurrentWeather() == WEATHER_FOG_3)
+    if (GetCurrentWeather() == WEATHER_FOG_3 && gWeatherPtr->isFog == 0) // transition to fog from no fog
     {
-        gWeatherPtr->isFog = 1;
         if (++gWeatherPtr->blendFrameCounter <= 60)
         {
             ApplyGammaShiftWithBlend(0, 14, 1, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
@@ -1221,10 +1220,12 @@ void c1_overworld_normal(u16 newKeys, u16 heldKeys)
             ApplyGammaShiftWithBlend(30, 3, 1, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
         }
         else
+        {
             gWeatherPtr->blendFrameCounter = 60;
-            ApplyGammaShiftWithBlend(30, 3, 1, 10, RGB(31, 31, 31));
+            gWeatherPtr->isFog = 1;
+        }
     }
-    else if (gWeatherPtr->isFog == 1 && GetCurrentWeather() != WEATHER_FOG_3)
+    else if (gWeatherPtr->isFog == 1 && GetCurrentWeather() != WEATHER_FOG_3) // transition to not fog from fog
     {
         if (++gWeatherPtr->blendFrameCounter <= 60)
         {
@@ -1240,6 +1241,19 @@ void c1_overworld_normal(u16 newKeys, u16 heldKeys)
             gWeatherPtr->isFog = 0;
 //            ApplyGammaShift(0, 32, 0);
         }
+    }
+    else if (gWeatherPtr->isFog == 1 && GetCurrentWeather() == WEATHER_FOG_3) // during fog, transition to fog
+    {
+        if (++gWeatherPtr->blendFrameCounter <= 60)
+        {
+            ApplyGammaShiftWithBlend(0, 13, 1, 10, RGB(31, 31, 31));
+            ApplyGammaShift(14, 2, 0);
+            ApplyGammaShiftWithBlend(16, 13, 1, 10, RGB(31, 31, 31));
+            ApplyGammaShift(26, 3, 0);
+            ApplyGammaShiftWithBlend(30, 3, 1, 10, RGB(31, 31, 31));
+        }
+        else
+            ApplyGammaShiftWithBlend(30, 3, 1, 10, RGB(31, 31, 31));
     }
 }
 

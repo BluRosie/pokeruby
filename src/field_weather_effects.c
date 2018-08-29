@@ -4,12 +4,12 @@
 #include "overworld.h"
 #include "random.h"
 #include "script.h"
-#include "constants/weather.h"
 #include "constants/songs.h"
 #include "sound.h"
 #include "sprite.h"
 #include "task.h"
 #include "trig.h"
+#include "constants/weather.h"
 
 extern struct Weather *const gWeatherPtr;
 
@@ -2271,7 +2271,10 @@ void White_InitVars(void)
     gWeatherPtr->initStep = 0;
     gWeatherPtr->gammaTargetIndex = 0;
     gWeatherPtr->gammaStepDelay = 20;
-    gWeatherPtr->blendFrameCounter = 0;
+    if (GetCurrentWeather() == WEATHER_FOG_3)
+        gWeatherPtr->blendFrameCounter = 59;
+	else
+        gWeatherPtr->blendFrameCounter = 0;
 }
 
 void White_InitAll(void)
