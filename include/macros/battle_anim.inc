@@ -265,6 +265,7 @@
 	.byte 0x2F
 	.endm
 
-	.macro fogeffect
+	.macro fogeffect coefficient
 	.byte 0x30
+	.byte \coefficient
 	.endm

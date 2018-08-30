@@ -848,6 +848,7 @@ u8 UpdateTurnCounters(void)
             /*else
                 gBattlescriptCurrInstr = BattleScript_FogFaded*/
                 BattleScriptExecute(gBattlescriptCurrInstr);
+                effect++;
             }
             gBattleStruct->turncountersTracker++;
             break;            

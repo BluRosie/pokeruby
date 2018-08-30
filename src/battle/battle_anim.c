@@ -3181,32 +3181,13 @@ static void ScriptCmd_stopsound(void)
 
 static void ScriptCmd_fogeffect(void)
 {
-    s32 blend1;
-    s32 wait;
-    s32 blend2;
+    u32 coefficient;
 
-    while (blend1 <= 900)
-    {
-        ApplyGammaShiftWithBlend(0, 4, 1, blend1 / 90, RGB(31, 31, 31));
-        ApplyGammaShift(8, 1, 0);
-        ApplyGammaShiftWithBlend(16, 1, 1, blend1 / 90, RGB(31, 31, 31));
-        ApplyGammaShift(26, 3, 0);
-        blend1++;
-    }
+    coefficient = T1_READ_8(sBattleAnimScriptPtr + 1);
 
-/*    while (wait <= 900)
-    { 
-        wait++;
-    }*/
-
-    while (blend2 <= 900)
-    {
-        ApplyGammaShiftWithBlend(0, 4, 1, 10 - (blend2 / 90), RGB(31, 31, 31));
-        ApplyGammaShift(8, 1, 0);
-        ApplyGammaShiftWithBlend(16, 1, 1, 10 - (blend2 / 90), RGB(31, 31, 31));
-        ApplyGammaShift(26, 3, 0);
-        blend2++;
-    }
-
-    sBattleAnimScriptPtr++;
+    ApplyGammaShiftWithBlend(1, 4, 1, coefficient, RGB(31, 31, 31));
+    ApplyGammaShift(8, 2, 0);
+    ApplyGammaShiftWithBlend(16, 2, 1, coefficient, RGB(31, 31, 31));
+    ApplyGammaShift(26, 4, 0);    
+    sBattleAnimScriptPtr += 2;
 }

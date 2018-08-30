@@ -10521,7 +10521,25 @@ General_Hail: @ 81D680E
 	goto Move_HAIL
 
 General_Fog:
-	@fogeffect
+	fogeffect 2
+	delay 3
+	fogeffect 4
+	delay 3
+	fogeffect 6
+	delay 3
+	fogeffect 8
+	delay 3
+	fogeffect 10
+	delay 90
+	fogeffect 8
+	delay 3
+	fogeffect 6
+	delay 3
+	fogeffect 4
+	delay 3
+	fogeffect 2
+	delay 3
+	fogeffect 0
 	end
 
 General_LeechSeedDrain: @ 81D6813

@@ -253,9 +253,6 @@ gBattleWeather = .; /* 2024DB8 */
 gWishFutureKnock = .; /* 2024DBC */
     . += 0x20;
 
-gNewBattleEffects = .;
-    . += 0x10;
-
 gUnknown_02024DDC = .; /* 2024DDC */
     . += 0xC;
 
@@ -303,6 +300,9 @@ gMoveToLearn = .; /* 2024E82 */
 
 gBattleMonForms = .; /* 2024E84 */
     . += 0x4;
+
+gNewBattleEffects = .;
+    . += 0x10;
 
 . = ALIGN(4); src/pokemon_1.o(ewram_data);
 . = ALIGN(4); src/pokemon_2.o(ewram_data);
