@@ -233,6 +233,7 @@
 	enum BATTLE_TEXT_HailStart
 	enum BATTLE_TEXT_HailCont
 	enum BATTLE_TEXT_HailStop
+	enum BATTLE_TEXT_FogIsDeep
 	enum BATTLE_TEXT_SpitUpFail
 	enum BATTLE_TEXT_SwallowFail
 	enum BATTLE_TEXT_WindHeatWave

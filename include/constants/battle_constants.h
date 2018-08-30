@@ -314,15 +314,16 @@
 #define B_ANIM_SUN_CONTINUES            0xB
 #define B_ANIM_SANDSTORM_CONTINUES      0xC
 #define B_ANIM_HAIL_CONTINUES           0xD
-#define B_ANIM_LEECH_SEED_DRAIN         0xE
-#define B_ANIM_MON_HIT                  0xF
-#define B_ANIM_ITEM_STEAL               0x10
-#define B_ANIM_SNATCH_MOVE              0x11
-#define B_ANIM_FUTURE_SIGHT_HIT         0x12
-#define B_ANIM_DOOM_DESIRE_HIT          0x13
-#define B_ANIM_FOCUS_PUNCH_SET_UP       0x14
-#define B_ANIM_INGRAIN_HEAL             0x15
-#define B_ANIM_WISH_HEAL                0x16
+#define B_ANIM_FOG_IS_DEEP              0xE
+#define B_ANIM_LEECH_SEED_DRAIN         0xF
+#define B_ANIM_MON_HIT                  0x10
+#define B_ANIM_ITEM_STEAL               0x11
+#define B_ANIM_SNATCH_MOVE              0x12
+#define B_ANIM_FUTURE_SIGHT_HIT         0x13
+#define B_ANIM_DOOM_DESIRE_HIT          0x14
+#define B_ANIM_FOCUS_PUNCH_SET_UP       0x15
+#define B_ANIM_INGRAIN_HEAL             0x16
+#define B_ANIM_WISH_HEAL                0x17
 
 // special animation table
 #define B_ANIM_LVL_UP                   0x0

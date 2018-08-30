@@ -1253,6 +1253,7 @@ void c1_overworld_normal(u16 newKeys, u16 heldKeys)
             ApplyGammaShiftWithBlend(30, 3, 1, 10, RGB(31, 31, 31));
         }
         else
+            gWeatherPtr->blendFrameCounter = 60;
             ApplyGammaShiftWithBlend(30, 3, 1, 10, RGB(31, 31, 31));
     }
 }

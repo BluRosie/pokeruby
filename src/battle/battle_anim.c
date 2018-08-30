@@ -5,6 +5,7 @@
 #include "battle_interface.h"
 #include "contest.h"
 #include "decompress.h"
+#include "field_weather.h"
 #include "m4a.h"
 #include "main.h"
 #include "palette.h"
@@ -1382,6 +1383,7 @@ static void ScriptCmd_visible(void);
 static void ScriptCmd_doublebattle_2D(void);
 static void ScriptCmd_doublebattle_2E(void);
 static void ScriptCmd_stopsound(void);
+static void ScriptCmd_fogeffect(void);
 
 static void (*const sScriptCmdTable[])(void) = {
     ScriptCmd_loadspritegfx,
@@ -1432,6 +1434,7 @@ static void (*const sScriptCmdTable[])(void) = {
     ScriptCmd_doublebattle_2D,
     ScriptCmd_doublebattle_2E,
     ScriptCmd_stopsound,
+    ScriptCmd_fogeffect,
 };
 
 void ClearBattleAnimationVars(void)
@@ -3173,5 +3176,37 @@ static void ScriptCmd_stopsound(void)
 {
     m4aMPlayStop(&gMPlay_SE1);
     m4aMPlayStop(&gMPlay_SE2);
+    sBattleAnimScriptPtr++;
+}
+
+static void ScriptCmd_fogeffect(void)
+{
+    s32 blend1;
+    s32 wait;
+    s32 blend2;
+
+    while (blend1 <= 900)
+    {
+        ApplyGammaShiftWithBlend(0, 4, 1, blend1 / 90, RGB(31, 31, 31));
+        ApplyGammaShift(8, 1, 0);
+        ApplyGammaShiftWithBlend(16, 1, 1, blend1 / 90, RGB(31, 31, 31));
+        ApplyGammaShift(26, 3, 0);
+        blend1++;
+    }
+
+/*    while (wait <= 900)
+    { 
+        wait++;
+    }*/
+
+    while (blend2 <= 900)
+    {
+        ApplyGammaShiftWithBlend(0, 4, 1, 10 - (blend2 / 90), RGB(31, 31, 31));
+        ApplyGammaShift(8, 1, 0);
+        ApplyGammaShiftWithBlend(16, 1, 1, 10 - (blend2 / 90), RGB(31, 31, 31));
+        ApplyGammaShift(26, 3, 0);
+        blend2++;
+    }
+
     sBattleAnimScriptPtr++;
 }

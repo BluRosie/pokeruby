@@ -6339,7 +6339,8 @@ static void atk45_playanimation(void)
     else if (gBattlescriptCurrInstr[2] == B_ANIM_RAIN_CONTINUES
              || gBattlescriptCurrInstr[2] == B_ANIM_SUN_CONTINUES
              || gBattlescriptCurrInstr[2] == B_ANIM_SANDSTORM_CONTINUES
-             || gBattlescriptCurrInstr[2] == B_ANIM_HAIL_CONTINUES)
+             || gBattlescriptCurrInstr[2] == B_ANIM_HAIL_CONTINUES
+             || gBattlescriptCurrInstr[2] == B_ANIM_FOG_IS_DEEP)
     {
         EmitBattleAnimation(0, gBattlescriptCurrInstr[2], *argumentPtr);
         MarkBufferBankForExecution(gActiveBattler);

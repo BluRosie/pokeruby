@@ -264,3 +264,7 @@
 	.macro stopsound
 	.byte 0x2F
 	.endm
+
+	.macro fogeffect
+	.byte 0x30
+	.endm

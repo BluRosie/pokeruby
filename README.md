@@ -13,7 +13,7 @@ Current implemented features:
 * run toggle using the r button
 * fix snow
 * add fog (replaces weather_fog_3)
-* add snow and fog corresponding to in-battle
+* add snow and fog corresponding to in-battle (fog wip for now)
 
 In Progress:
 * ability expansion (thanks znogyrop and dizzy for ability descriptions)

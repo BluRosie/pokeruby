@@ -3286,6 +3286,12 @@ BattleScript_SunlightFaded:: @ 81D9016
 	waitmessage 64
 	end2
 
+BattleScript_FogIsDeep::
+	printstring BATTLE_TEXT_FogIsDeep
+	waitmessage 64
+	playanimation USER, B_ANIM_FOG_IS_DEEP, NULL
+	end2
+
 BattleScript_OverworldWeatherStarts:: @ 81D901D
 	printfromtable gWeatherContinuesStringIds
 	waitmessage 64

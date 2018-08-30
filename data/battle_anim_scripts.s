@@ -403,6 +403,7 @@ gBattleAnims_General:: @ 81C771C
 	.4byte General_Sun
 	.4byte General_Sandstorm
 	.4byte General_Hail
+	.4byte General_Fog
 	.4byte General_LeechSeedDrain
 	.4byte General_MonHit
 	.4byte General_ItemSteal
@@ -10518,6 +10519,10 @@ General_Sandstorm: @ 81D6809
 
 General_Hail: @ 81D680E
 	goto Move_HAIL
+
+General_Fog:
+	@fogeffect
+	end
 
 General_LeechSeedDrain: @ 81D6813
 	createvisualtask sub_8141E10, 5

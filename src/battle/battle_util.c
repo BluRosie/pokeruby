@@ -115,6 +115,7 @@ extern u8 BattleScript_SideStatusWoreOff[];
 extern u8 BattleScript_RainContinuesOrEnds[];
 extern u8 BattleScript_SandStormHailEnds[];
 extern u8 BattleScript_DamagingWeatherContinues[];
+extern u8 BattleScript_FogIsDeep[];
 extern u8 BattleScript_SunlightFaded[];
 extern u8 BattleScript_SunlightContinues[];
 extern u8 BattleScript_SafeguardEnds[];
@@ -841,6 +842,16 @@ u8 UpdateTurnCounters(void)
             gBattleStruct->turncountersTracker++;
             break;
         case 10:
+            if (gNewBattleEffects.fog)
+            {
+                gBattlescriptCurrInstr = BattleScript_FogIsDeep;
+            /*else
+                gBattlescriptCurrInstr = BattleScript_FogFaded*/
+                BattleScriptExecute(gBattlescriptCurrInstr);
+            }
+            gBattleStruct->turncountersTracker++;
+            break;            
+        case 11:
             effect++;
             break;
         }
@@ -1792,7 +1803,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                     if (!gNewBattleEffects.fog)
                     {
                         gNewBattleEffects.fog = TRUE;
-                        //gBattleStruct->animArg1 = B_ANIM_FOG;
+                        gBattleStruct->animArg1 = B_ANIM_FOG_IS_DEEP;
                         gBattleStruct->scriptingActive = bank;
                         effect++;
                     }

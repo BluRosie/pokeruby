@@ -2273,7 +2273,7 @@ void White_InitVars(void)
     gWeatherPtr->gammaStepDelay = 20;
     if (GetCurrentWeather() == WEATHER_FOG_3)
         gWeatherPtr->blendFrameCounter = 59;
-	else
+    else
         gWeatherPtr->blendFrameCounter = 0;
 }
 
