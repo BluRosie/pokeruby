@@ -240,7 +240,6 @@ enum
     BATTLE_TEXT_HailStart,
     BATTLE_TEXT_HailCont,
     BATTLE_TEXT_HailStop,
-    BATTLE_TEXT_FogIsDeep,
     BATTLE_TEXT_SpitUpFail,
     BATTLE_TEXT_SwallowFail,
     BATTLE_TEXT_WindHeatWave,
@@ -358,6 +357,7 @@ enum
     BATTLE_TEXT_Obtained3,
     BATTLE_TEXT_NoEffect,
     BATTLE_TEXT_NoEffectOn,
+    BATTLE_TEXT_FogIsDeep,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -1105,7 +1105,6 @@ const u8 *const gBattleStringsTable[] =
     BattleText_HailStart,
     BattleText_HailCont,
     BattleText_HailStop,
-    BattleText_FogIsDeep,
     BattleText_SpitUpFail,
     BattleText_SwallowFail,
     BattleText_WindHeatWave,
@@ -1223,6 +1222,7 @@ const u8 *const gBattleStringsTable[] =
     BattleText_Obtained3,
     BattleText_NoEffect,
     BattleText_NoEffectOn,
+    BattleText_FogIsDeep,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
