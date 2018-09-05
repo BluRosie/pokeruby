@@ -267,8 +267,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             damage = 1;
     }
 
-    if (type == TYPE_MYSTERY)
-        damage = 0; // is ??? type. does 0 damage.
+//    if (type == TYPE_MYSTERY)
+//        damage = 0; // is ??? type. does 0 damage.
 
     if (gBattleMoves[gCurrentMove].split == MOVE_SPECIAL)
     {
@@ -292,7 +292,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             else */if (defender->statStages[STAT_STAGE_SPDEF] < 6)
                 APPLY_STAT_MOD(damageHelper, defender, spDefense, STAT_STAGE_SPDEF)
             else
-                /*if (if (gBattleMoves[gCurrentMove].effect == EFFECT_PSYCHO_CUT)
+                /*if (gBattleMoves[gCurrentMove].effect == EFFECT_PSYCHO_CUT)
                     damageHelper = defense;
                 else*/
                     damageHelper = spDefense;

@@ -1,11 +1,14 @@
 #include "global.h"
 #include "constants/hold_effects.h"
 #include "constants/items.h"
+#include "constants/maps.h"
 #include "constants/moves.h"
+#include "constants/weather.h"
 #include "battle.h"
 #include "battle_message.h"
 #include "data2.h"
 #include "event_data.h"
+#include "field_weather.h"
 #include "item.h"
 #include "link.h"
 #include "m4a.h"
@@ -15,6 +18,7 @@
 #include "pokedex.h"
 #include "random.h"
 #include "overworld.h"
+#include "party_menu.h"
 #include "rom_8077ABC.h"
 #include "rom_8094928.h"
 #include "rtc.h"
@@ -266,6 +270,7 @@ u8 GetNatureFromPersonality(u32 personality)
 u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
 {
     int i;
+    int j;
     u16 targetSpecies = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u16 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
@@ -275,6 +280,9 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
     u8 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
     u16 upperPersonality = personality >> 16;
     u8 holdEffect;
+    u8 gender = GetMonGender(mon);
+    u8 mapGroup = gSaveBlock1.location.mapGroup;
+    u8 mapNum = gSaveBlock1.location.mapNum;
 
     if (heldItem == ITEM_ENIGMA_BERRY)
         holdEffect = gSaveBlock1.enigmaBerry.holdEffect;
@@ -343,6 +351,66 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                 if (gEvolutionTable[species][i].param <= beauty)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
+            case EVO_LEVEL_MALE:
+                if (gEvolutionTable[species][i].param <= level && gender == MON_MALE)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_LEVEL_FEMALE:
+                if (gEvolutionTable[species][i].param <= level && gender == MON_FEMALE)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_MOVE:
+                if (pokemon_has_move(&gPlayerParty[i], gEvolutionTable[species][i].param) == TRUE)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_MAPNUM:
+                if (EVO_MAP_GROUP(gEvolutionTable[species][i].param) == mapGroup && EVO_MAP_NUM(gEvolutionTable[species][i].param) == mapNum)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_LEVEL_DAY:
+                RtcCalcLocalTime();
+                if (gLocalTime.hours >= 12 && gLocalTime.hours < 24 && gEvolutionTable[species][i].param <= level)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_LEVEL_NIGHT:
+                RtcCalcLocalTime();
+                if (gLocalTime.hours >= 0 && gLocalTime.hours < 12 && gEvolutionTable[species][i].param <= level)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_ITEM_DAY:
+                RtcCalcLocalTime();
+                if (gLocalTime.hours >= 12 && gLocalTime.hours < 24 && gEvolutionTable[species][i].param == heldItem)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_ITEM_NIGHT:
+                RtcCalcLocalTime();
+                if (gLocalTime.hours >= 0 && gLocalTime.hours < 12 && gEvolutionTable[species][i].param == heldItem)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_LEVEL_MON:
+                for (j = 0; j < PARTY_SIZE; j++)
+				{
+                    u16 checkSpecies = GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL);
+                    if (checkSpecies == gEvolutionTable[species][i].param)
+                        targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                }	
+                break;
+            case EVO_LEVEL_DARK:
+                for (j = 0; j < PARTY_SIZE; j++)
+                {
+                    u16 checkType1 = gBaseStats[GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL)].type1;
+                    u16 checkType2 = gBaseStats[GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL)].type2;
+                    if ((checkType1 == TYPE_DARK || checkType2 == TYPE_DARK) && gEvolutionTable[species][i].param <= level  && i != j) // i != j because pancham can't evolve itself
+                        targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                }	
+                break;
+            case EVO_LEVEL_RAIN:
+                if ((GetCurrentWeather() == WEATHER_RAIN_LIGHT
+                    || GetCurrentWeather() == WEATHER_RAIN_MED
+                    || GetCurrentWeather() == WEATHER_RAIN_HEAVY)
+                    && gEvolutionTable[species][i].param <= level)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
             }
         }
         break;
@@ -367,10 +435,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
         break;
     case 2:
     case 3:
+        RtcCalcLocalTime();
         for (i = 0; i < 5; i++)
         {
-            if (gEvolutionTable[species][i].method == EVO_ITEM
-             && gEvolutionTable[species][i].param == evolutionItem)
+            if ((gEvolutionTable[species][i].method == EVO_ITEM && gEvolutionTable[species][i].param == evolutionItem)
+             || (gEvolutionTable[species][i].method == EVO_ITEM_MALE && gEvolutionTable[species][i].param == evolutionItem && gender == MON_MALE)
+             || (gEvolutionTable[species][i].method == EVO_ITEM_FEMALE && gEvolutionTable[species][i].param == evolutionItem && gender == MON_FEMALE))
             {
                 targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;

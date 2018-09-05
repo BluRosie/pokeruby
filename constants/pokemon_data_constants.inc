@@ -61,6 +61,8 @@
 
 	.set F_SUMMARY_SCREEN_FLIP_SPRITE, 0x80
 
+	@ see "/include/pokemon.h" for descriptions
+
 	.set EVO_FRIENDSHIP,       0x0001 @ Pokémon levels up with friendship ≥ 220
 	.set EVO_FRIENDSHIP_DAY,   0x0002 @ Pokémon levels up during the day with friendship ≥ 220
 	.set EVO_FRIENDSHIP_NIGHT, 0x0003 @ Pokémon levels up at night with friendship ≥ 220
@@ -76,3 +78,17 @@
 	.set EVO_LEVEL_NINJASK,    0x000d @ Pokémon reaches the specified level (special value for Ninjask)
 	.set EVO_LEVEL_SHEDINJA,   0x000e @ Pokémon reaches the specified level (special value for Shedinja)
 	.set EVO_BEAUTY,           0x000f @ Pokémon levels up with beauty ≥ specified value
+	.set EVO_LEVEL_MALE,       0x0010
+	.set EVO_LEVEL_FEMALE,     0x0011
+	.set EVO_ITEM_MALE,        0x0012
+	.set EVO_ITEM_FEMALE,      0x0013
+	.set EVO_MOVE,             0x0014
+	.set EVO_MAPNUM,           0x0015
+	.set EVO_LEVEL_DAY,        0x0016
+	.set EVO_LEVEL_NIGHT,      0x0017
+	.set EVO_ITEM_DAY,         0x0018
+	.set EVO_ITEM_NIGHT,       0x0019
+	.set EVO_LEVEL_MON,        0x001a
+	.set EVO_LEVEL_DARK,       0x001b
+	.set EVO_LEVEL_RAIN,       0x001c
+@	.set EVO_TRADE_MON,        0x001d
