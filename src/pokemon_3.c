@@ -3,6 +3,8 @@
 #include "constants/items.h"
 #include "constants/maps.h"
 #include "constants/moves.h"
+#include "constants/songs.h"
+#include "constants/species.h"
 #include "constants/weather.h"
 #include "battle.h"
 #include "battle_message.h"
@@ -22,9 +24,7 @@
 #include "rom_8077ABC.h"
 #include "rom_8094928.h"
 #include "rtc.h"
-#include "constants/songs.h"
 #include "sound.h"
-#include "constants/species.h"
 #include "sprite.h"
 #include "string_util.h"
 #include "text.h"
@@ -380,12 +380,20 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
             case EVO_ITEM_DAY:
                 RtcCalcLocalTime();
                 if (gLocalTime.hours >= 12 && gLocalTime.hours < 24 && gEvolutionTable[species][i].param == heldItem)
+                {
+                    heldItem = 0;
+                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                }
                 break;
             case EVO_ITEM_NIGHT:
                 RtcCalcLocalTime();
                 if (gLocalTime.hours >= 0 && gLocalTime.hours < 12 && gEvolutionTable[species][i].param == heldItem)
+                {
+                    heldItem = 0;
+                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                }
                 break;
             case EVO_LEVEL_MON:
                 for (j = 0; j < PARTY_SIZE; j++)
