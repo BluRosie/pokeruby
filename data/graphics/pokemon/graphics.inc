@@ -6122,6 +6122,11 @@ gMonPalette_Torchic:: @ 8DE00A0
 gMonBackPic_Torchic:: @ 8DE00C8
 	.incbin "graphics/pokemon/torchic/back.4bpp.lz"
 
+@ includede to show an example of female backsprite or something 
+@	.align 2
+@gMonBackPic_Torchic::
+@	.incbin "graphics/pokemon/torchic/backfemale.4bpp.lz"
+
 	.align 2
 gMonShinyPalette_Torchic:: @ 8DE03A0
 	.incbin "graphics/pokemon/torchic/shiny.gbapal.lz"

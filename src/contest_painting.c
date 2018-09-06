@@ -338,28 +338,50 @@ static void sub_8106AC4(u16 species, u8 arg1)
 
     if (arg1 == 1)
     {
-        HandleLoadSpecialPokePic(
-            &gMonFrontPicTable[species],
-            gMonFrontPicCoords[species].x,
-            gMonFrontPicCoords[species].y,
-            0x2000000,
-            gUnknown_081FAF4C[1],
-            species,
-            (u32)gUnknown_03005E8C->personality
-        );
+        if (GetGenderFromSpeciesAndPersonality(species, (u32)gUnknown_03005E8C->personality) == MON_FEMALE)
+            HandleLoadSpecialPokePic(
+                &gMonFrontPicTableFemale[species],
+                gMonFrontPicCoords[species].x,
+                gMonFrontPicCoords[species].y,
+                0x2000000,
+                gUnknown_081FAF4C[1],
+                species,
+                (u32)gUnknown_03005E8C->personality
+            );
+        else
+            HandleLoadSpecialPokePic(
+                &gMonFrontPicTable[species],
+                gMonFrontPicCoords[species].x,
+                gMonFrontPicCoords[species].y,
+                0x2000000,
+                gUnknown_081FAF4C[1],
+                species,
+                (u32)gUnknown_03005E8C->personality
+            );
         sub_8106B90(gUnknown_081FAF4C[1], gUnknown_03005E90, gUnknown_03005E10);
     }
     else
     {
-        HandleLoadSpecialPokePic(
-            &gMonBackPicTable[species],
-            gMonBackPicCoords[species].x,
-            gMonBackPicCoords[species].y,
-            0x2000000,
-            gUnknown_081FAF4C[0],
-            species,
-            (u32)gUnknown_03005E8C->personality
-        );
+        if (GetGenderFromSpeciesAndPersonality(species, (u32)gUnknown_03005E8C->personality) == MON_FEMALE)
+            HandleLoadSpecialPokePic(
+                &gMonBackPicTableFemale[species],
+                gMonBackPicCoords[species].x,
+                gMonBackPicCoords[species].y,
+                0x2000000,
+                gUnknown_081FAF4C[0],
+                species,
+                (u32)gUnknown_03005E8C->personality
+            );
+        else
+            HandleLoadSpecialPokePic(
+                &gMonBackPicTable[species],
+                gMonBackPicCoords[species].x,
+                gMonBackPicCoords[species].y,
+                0x2000000,
+                gUnknown_081FAF4C[0],
+                species,
+                (u32)gUnknown_03005E8C->personality
+            );
         sub_8106B90(gUnknown_081FAF4C[0], gUnknown_03005E90, gUnknown_03005E10);
     }
 }

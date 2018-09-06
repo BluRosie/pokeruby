@@ -397,7 +397,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                 break;
             case EVO_LEVEL_MON:
                 for (j = 0; j < PARTY_SIZE; j++)
-				{
+                {
                     u16 checkSpecies = GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL);
                     if (checkSpecies == gEvolutionTable[species][i].param)
                         targetSpecies = gEvolutionTable[species][i].targetSpecies;
