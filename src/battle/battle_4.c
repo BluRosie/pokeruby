@@ -1295,6 +1295,7 @@ static void atk01_accuracycheck(void)
     }
     else
     {
+        int i;
         u8 type, moveAcc, holdEffect, quality;
         s8 buff;
         u16 calc;
@@ -1347,8 +1348,12 @@ static void atk01_accuracycheck(void)
             calc = (calc * 80) / 100; // 1.2 snow cloak loss;
         if (gBattleMons[gBankTarget].ability == ABILITY_TANGLED_FEET && gBattleMons[gBankTarget].status2 & STATUS2_CONFUSION)
             calc = (calc * 50) / 100; // halve it for tangled feet
-        if (gBattleMons[gBankAttacker].ability == ABILITY_VICTORY_STAR) // while it doesn't check the party, it's close enough?
-            calc = (calc * 110) / 100; // 1.1 victory star boost;
+        for (i = 0; i < 5; i++)
+            if (GetAbilityBySpecies(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL), GetMonData(&gPlayerParty[i], MON_DATA_ALT_ABILITY, NULL), GetMonData(&gPlayerParty[i], MON_DATA_HIDDEN_ABILITY, NULL)) == ABILITY_VICTORY_STAR)
+            {
+                calc = (calc * 110) / 100; // 1.1 victory star boost
+                break;
+            }
 
         if (gBattleMons[gBankTarget].item == ITEM_ENIGMA_BERRY)
         {
@@ -15536,7 +15541,9 @@ static void atkE5_pickup(void)
         u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2);
         u16 held_item = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
         u8 ability;
-        if (GetMonData(&gPlayerParty[i], MON_DATA_ALT_ABILITY))
+        if (GetMonData(&gPlayerParty[i], MON_DATA_HIDDEN_ABILITY))
+            ability = gBaseStats[species].hiddenAbility;
+        else if (GetMonData(&gPlayerParty[i], MON_DATA_ALT_ABILITY))
             ability = gBaseStats[species].ability2;
         else
             ability = gBaseStats[species].ability1;

@@ -505,6 +505,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     case MON_DATA_HIDDEN_ABILITY:
         retVal = substruct3->hiddenAbility;
+        break;
     case MON_DATA_COOL_RIBBON:
         retVal = substruct3->coolRibbon;
         break;

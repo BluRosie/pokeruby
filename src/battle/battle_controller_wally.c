@@ -563,6 +563,7 @@ u32 sub_8137A84(u8 a, u8 *buffer)
         battlePokemon.spDefense = GetMonData(&gPlayerParty[a], MON_DATA_SPDEF);
         battlePokemon.isEgg = GetMonData(&gPlayerParty[a], MON_DATA_IS_EGG);
         battlePokemon.altAbility = GetMonData(&gPlayerParty[a], MON_DATA_ALT_ABILITY);
+        battlePokemon.hiddenAbility = GetMonData(&gPlayerParty[a], MON_DATA_HIDDEN_ABILITY);
         battlePokemon.otId = GetMonData(&gPlayerParty[a], MON_DATA_OT_ID);
         GetMonData(&gPlayerParty[a], MON_DATA_NICKNAME, nickname);
         StringCopy10(battlePokemon.nickname, nickname);
