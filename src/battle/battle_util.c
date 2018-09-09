@@ -1671,7 +1671,7 @@ u8 CastformDataTypeChange(u8 bank)
     }
     if (!WEATHER_HAS_EFFECT)
         return CASTFORM_NO_CHANGE;
-    if (!(gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_SUN_ANY | WEATHER_HAIL)) && gBattleMons[bank].type1 != TYPE_NORMAL && gBattleMons[bank].type2 != TYPE_NORMAL)
+    if ((!(gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_SUN_ANY | WEATHER_HAIL)) || gNewBattleEffects.fog) && gBattleMons[bank].type1 != TYPE_NORMAL && gBattleMons[bank].type2 != TYPE_NORMAL)
     {
         gBattleMons[bank].type1 = TYPE_NORMAL;
         gBattleMons[bank].type2 = TYPE_NORMAL;

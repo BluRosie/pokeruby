@@ -6387,7 +6387,8 @@ static void atk46_playanimation2(void) // animation Id is stored in the first po
     else if (*animationIdPtr == B_ANIM_RAIN_CONTINUES
              || *animationIdPtr == B_ANIM_SUN_CONTINUES
              || *animationIdPtr == B_ANIM_SANDSTORM_CONTINUES
-             || *animationIdPtr == B_ANIM_HAIL_CONTINUES)
+             || *animationIdPtr == B_ANIM_HAIL_CONTINUES
+             || *animationIdPtr == B_ANIM_FOG_IS_DEEP)
     {
         EmitBattleAnimation(0, *animationIdPtr, *argumentPtr);
         MarkBufferBankForExecution(gActiveBattler);
@@ -11296,6 +11297,7 @@ static void atk7D_setrain(void)
     }
     else
     {
+        gNewBattleEffects.fog = 0;
         gBattleWeather = WEATHER_RAIN_TEMPORARY;
         gBattleCommunication[MULTISTRING_CHOOSER] = 0;
         gWishFutureKnock.weatherDuration = 5;
@@ -13928,6 +13930,7 @@ static void atkBB_setsunny(void)
     }
     else
     {
+        gNewBattleEffects.fog = 0;
         gBattleWeather = WEATHER_SUN_TEMPORARY;
         gBattleCommunication[MULTISTRING_CHOOSER] = 4;
         gWishFutureKnock.weatherDuration = 5;
@@ -14565,6 +14568,7 @@ static void atkC8_sethail(void)
     }
     else
     {
+        gNewBattleEffects.fog = 0;
         gBattleWeather = WEATHER_HAIL;
         gBattleCommunication[MULTISTRING_CHOOSER] = 5;
         gWishFutureKnock.weatherDuration = 5;
@@ -15595,7 +15599,10 @@ static void atkE5_pickup(void)
             || (level <= 80 && ((Random() * 100) % 250) == 0) // 2/5
             || (level <= 90 && ((Random() * 100) % 222) == 0) // ~9/20
             || (level <= 100 && Random() % 2 == 0)))          // 1/2
-            SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, ITEM_HONEY);
+        {
+            held_item = ITEM_HONEY;
+            SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &held_item);
+        }
     }
     gBattlescriptCurrInstr++;
 }
