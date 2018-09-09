@@ -78,17 +78,7 @@
 #define ITEM_BLUE_SHARD 49
 #define ITEM_YELLOW_SHARD 50
 #define ITEM_GREEN_SHARD 51
-/*#define ITEM_034 52
-#define ITEM_035 53
-#define ITEM_036 54
-#define ITEM_037 55
-#define ITEM_038 56
-#define ITEM_039 57
-#define ITEM_03A 58
-#define ITEM_03B 59
-#define ITEM_03C 60
-#define ITEM_03D 61
-#define ITEM_03E 62*/
+// balls - level-dusk
 #define ITEM_HP_UP 63
 #define ITEM_PROTEIN 64
 #define ITEM_IRON 65
@@ -113,11 +103,8 @@
 #define ITEM_MAX_REPEL 84
 #define ITEM_ESCAPE_ROPE 85
 #define ITEM_REPEL 86
-/*#define ITEM_057 87
-#define ITEM_058 88
-#define ITEM_059 89
-#define ITEM_05A 90*/
-#define ITEM_05B 91
+//balls - cherish-beast
+#define ITEM_HONEY 91
 #define ITEM_05C 92
 #define ITEM_SUN_STONE 93
 #define ITEM_MOON_STONE 94

@@ -427,6 +427,11 @@ static const u8 gItemDescription_BeastBall[] = _(
 	"catching Ultra\n"
 	"Beasts.");
 
+static const u8 gItemDescription_Honey[] = _(
+	"A sweet honey with\n"
+	"a lush aroma.\n"
+	"Lures wild Pokémon.");
+
 static const u8 gItemDescription_SunStone[] = _(
     "Makes certain\n"
     "species of Pokémon\n"

@@ -1063,18 +1063,18 @@ static const u16 sWeightToDamageTable[] =
     0xFFFF, 0xFFFF
 };
 
-static const u16 sPickupItems[] =
+static const u16 sPickupItems[10][22] =
 {
-    ITEM_SUPER_POTION, 30,
-    ITEM_FULL_HEAL, 40,
-    ITEM_ULTRA_BALL, 50,
-    ITEM_RARE_CANDY, 60,
-    ITEM_FULL_RESTORE, 70,
-    ITEM_REVIVE, 80,
-    ITEM_NUGGET, 90,
-    ITEM_PROTEIN, 95,
-    ITEM_PP_UP, 99,
-    ITEM_KINGS_ROCK, 1
+    {ITEM_POTION,       30, ITEM_ANTIDOTE,     40, ITEM_SUPER_POTION, 50, ITEM_GREAT_BALL,   60, ITEM_REPEL,        70, ITEM_ESCAPE_ROPE,  80, ITEM_X_ATTACK,     90, ITEM_FULL_HEAL,    94, ITEM_ULTRA_BALL,   98, ITEM_HYPER_POTION,     99, ITEM_NUGGET,           1},
+    {ITEM_ANTIDOTE,     30, ITEM_SUPER_POTION, 40, ITEM_GREAT_BALL,   50, ITEM_REPEL,        60, ITEM_ESCAPE_ROPE,  70, ITEM_X_ATTACK,     80, ITEM_FULL_HEAL,    90, ITEM_ULTRA_BALL,   94, ITEM_HYPER_POTION, 98, ITEM_NUGGET,           99, ITEM_KINGS_ROCK,       1},
+    {ITEM_SUPER_POTION, 30, ITEM_GREAT_BALL,   40, ITEM_REPEL,        50, ITEM_ESCAPE_ROPE,  60, ITEM_X_ATTACK,     70, ITEM_FULL_HEAL,    80, ITEM_ULTRA_BALL,   90, ITEM_HYPER_POTION, 94, ITEM_RARE_CANDY,   98, ITEM_KINGS_ROCK,       99, ITEM_FULL_RESTORE,     1},
+    {ITEM_GREAT_BALL,   30, ITEM_REPEL,        40, ITEM_ESCAPE_ROPE,  50, ITEM_X_ATTACK,     60, ITEM_FULL_HEAL,    70, ITEM_ULTRA_BALL,   80, ITEM_HYPER_POTION, 90, ITEM_RARE_CANDY,   94, ITEM_PROTEIN,      98, ITEM_FULL_RESTORE,     99, ITEM_ETHER,            1},
+    {ITEM_REPEL,        30, ITEM_ESCAPE_ROPE,  40, ITEM_X_ATTACK,     50, ITEM_FULL_HEAL,    60, ITEM_ULTRA_BALL,   70, ITEM_HYPER_POTION, 80, ITEM_RARE_CANDY,   90, ITEM_PROTEIN,      94, ITEM_REVIVE,       98, ITEM_ETHER,            99, ITEM_WHITE_HERB,       1},
+    {ITEM_ESCAPE_ROPE,  30, ITEM_X_ATTACK,     40, ITEM_FULL_HEAL,    50, ITEM_ULTRA_BALL,   60, ITEM_HYPER_POTION, 70, ITEM_RARE_CANDY,   80, ITEM_PROTEIN,      90, ITEM_REVIVE,       94, ITEM_HP_UP,        98, ITEM_WHITE_HERB,       99, ITEM_TM44_REST,        1},
+    {ITEM_X_ATTACK,     30, ITEM_FULL_HEAL,    40, ITEM_ULTRA_BALL,   50, ITEM_HYPER_POTION, 60, ITEM_RARE_CANDY,   70, ITEM_PROTEIN,      80, ITEM_REVIVE,       90, ITEM_HP_UP,        94, ITEM_FULL_RESTORE, 98, ITEM_TM44_REST,        99, ITEM_ELIXIR,           1},
+    {ITEM_FULL_HEAL,    30, ITEM_ULTRA_BALL,   40, ITEM_HYPER_POTION, 50, ITEM_RARE_CANDY,   60, ITEM_PROTEIN,      70, ITEM_REVIVE,       80, ITEM_HP_UP,        90, ITEM_FULL_RESTORE, 94, ITEM_MAX_REVIVE,   98, ITEM_ELIXIR,           99, ITEM_TM01_FOCUS_PUNCH, 1},
+    {ITEM_ULTRA_BALL,   30, ITEM_HYPER_POTION, 40, ITEM_RARE_CANDY,   50, ITEM_PROTEIN,      60, ITEM_REVIVE,       70, ITEM_HP_UP,        80, ITEM_FULL_RESTORE, 90, ITEM_MAX_REVIVE,   94, ITEM_PP_UP,        98, ITEM_TM01_FOCUS_PUNCH, 99, ITEM_LEFTOVERS,        1},
+    {ITEM_HYPER_POTION, 30, ITEM_RARE_CANDY,   40, ITEM_PROTEIN,      50, ITEM_REVIVE,       60, ITEM_HP_UP,        70, ITEM_FULL_RESTORE, 80, ITEM_MAX_REVIVE,   90, ITEM_PP_UP,        94, ITEM_MAX_ELIXIR,   98, ITEM_LEFTOVERS,        99, ITEM_TM26_EARTHQUAKE,  1},
 };
 
 static const u8 sTerrainToType[] =
@@ -15540,6 +15540,7 @@ static void atkE5_pickup(void)
     {
         u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2);
         u16 held_item = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
+        u8 level = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
         u8 ability;
         if (GetMonData(&gPlayerParty[i], MON_DATA_HIDDEN_ABILITY))
             ability = gBaseStats[species].hiddenAbility;
@@ -15552,13 +15553,49 @@ static void atkE5_pickup(void)
         {
             s32 chance = Random() % 100;
             s32 j;
-            for (j = 0; j < 18; j += 2)
+            s32 i;
+
+            if (level <= 10)
+				i = 1;
+            else if (level <= 20)
+				i = 2;
+            else if (level <= 30)
+				i = 3;
+            else if (level <= 40)
+				i = 4;
+            else if (level <= 50)
+				i = 5;
+            else if (level <= 60)
+				i = 6;
+            else if (level <= 70)
+				i = 7;
+            else if (level <= 80)
+				i = 8;
+            else if (level <= 90)
+				i = 9;
+            else
+                i = 10;
+
+            for (j = 0; j < 22; j += 2)
             {
-                if (sPickupItems[j + 1] > chance)
+                if (sPickupItems[i][j + 1] > chance)
                     break;
             }
-            SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, (const void*) &sPickupItems[j]);
+            SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, (const void*) &sPickupItems[i][j]);
         }
+
+        if (ability == ABILITY_HONEY_GATHER && species != 0 && species != SPECIES_EGG && held_item == 0
+            && ((level <= 10 && Random() % 20 == 0)           // 1/20
+            || (level <= 20 && Random() % 10 == 0)            // 1/10
+            || (level <= 30 && ((Random() * 100) % 666) == 0) // ~3/20
+            || (level <= 40 && Random() % 5 == 0)             // 1/5
+            || (level <= 50 && Random() % 4 == 0)             // 1/4
+            || (level <= 60 && ((Random() * 100) % 333) == 0) // ~3/10
+            || (level <= 70 && ((Random() * 100) % 286) == 0) // ~7/20
+            || (level <= 80 && ((Random() * 100) % 250) == 0) // 2/5
+            || (level <= 90 && ((Random() * 100) % 222) == 0) // ~9/20
+            || (level <= 100 && Random() % 2 == 0)))          // 1/2
+            SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, ITEM_HONEY);
     }
     gBattlescriptCurrInstr++;
 }
