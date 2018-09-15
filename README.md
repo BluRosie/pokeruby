@@ -1,4 +1,4 @@
-# Pokémon Ruby and Sapphire [![Build Status][travis-badge]][travis]
+# Pokémon Ruby and Sapphire
 
 This is a disassembly of Pokémon Ruby and Sapphire with various edits to show off just what is all super easily done with a disassembly.
 
@@ -14,10 +14,12 @@ Current implemented features:
 * fix snow
 * add fog (replaces weather_fog_3)
 * add snow and fog corresponding to in-battle
+* support for gender differences (working on implementation)
 
 In Progress:
 * ability expansion (thanks znogyrop and dizzy for ability descriptions)
 * move expansion (thanks dizzy)
+* eventually, pokémon expansion
 
 It builds the following rom:
 
