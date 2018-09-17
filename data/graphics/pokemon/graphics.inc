@@ -655,10 +655,6 @@ gMonBackPic_Raichu:: @ 8D413D0
 	.incbin "graphics/pokemon/raichu/back.4bpp.lz"
 
 	.align 2
-gMonBackPic_RaichuFemale::
-	.incbin "graphics/pokemon/raichu/backf.4bpp.lz"
-
-	.align 2
 gMonShinyPalette_Raichu:: @ 8D416F0
 	.incbin "graphics/pokemon/raichu/shiny.gbapal.lz"
 
