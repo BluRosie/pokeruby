@@ -1592,7 +1592,7 @@ gMonFrontPic_Kadabra:: @ 8D5AFBC
 
 	.align 2
 gMonFrontPic_KadabraFemale::
-	.incbin "graphics/pokemon/kadabra/front.4bpp.lz"
+	.incbin "graphics/pokemon/kadabra/frontf.4bpp.lz"
 
 	.align 2
 gMonPalette_Kadabra:: @ 8D5B420
@@ -1600,10 +1600,6 @@ gMonPalette_Kadabra:: @ 8D5B420
 
 	.align 2
 gMonBackPic_Kadabra:: @ 8D5B448
-	.incbin "graphics/pokemon/kadabra/back.4bpp.lz"
-
-	.align 2
-gMonBackPic_KadabraFemale::
 	.incbin "graphics/pokemon/kadabra/back.4bpp.lz"
 
 	.align 2
@@ -1624,7 +1620,7 @@ gMonFrontPic_Alakazam:: @ 8D5BC6C
 
 	.align 2
 gMonFrontPic_AlakazamFemale::
-	.incbin "graphics/pokemon/alakazam/front.4bpp.lz"
+	.incbin "graphics/pokemon/alakazam/frontf.4bpp.lz"
 
 	.align 2
 gMonPalette_Alakazam:: @ 8D5C068
@@ -1636,7 +1632,7 @@ gMonBackPic_Alakazam:: @ 8D5C090
 
 	.align 2
 gMonBackPic_AlakazamFemale::
-	.incbin "graphics/pokemon/alakazam/back.4bpp.lz"
+	.incbin "graphics/pokemon/alakazam/backf.4bpp.lz"
 
 	.align 2
 gMonShinyPalette_Alakazam:: @ 8D5C4D4
@@ -2088,7 +2084,7 @@ gMonFrontPic_Doduo:: @ 8D69220
 
 	.align 2
 gMonFrontPic_DoduoFemale::
-	.incbin "graphics/pokemon/doduo/front.4bpp.lz"
+	.incbin "graphics/pokemon/doduo/frontf.4bpp.lz"
 
 	.align 2
 gMonPalette_Doduo:: @ 8D69574
@@ -2100,7 +2096,7 @@ gMonBackPic_Doduo:: @ 8D69598
 
 	.align 2
 gMonBackPic_DoduoFemale::
-	.incbin "graphics/pokemon/doduo/back.4bpp.lz"
+	.incbin "graphics/pokemon/doduo/backf.4bpp.lz"
 
 	.align 2
 gMonShinyPalette_Doduo:: @ 8D698B0
@@ -2120,7 +2116,7 @@ gMonFrontPic_Dodrio:: @ 8D69CF4
 
 	.align 2
 gMonFrontPic_DodrioFemale::
-	.incbin "graphics/pokemon/dodrio/front.4bpp.lz"
+	.incbin "graphics/pokemon/dodrio/frontf.4bpp.lz"
 
 	.align 2
 gMonPalette_Dodrio:: @ 8D6A1D0
@@ -2132,7 +2128,7 @@ gMonBackPic_Dodrio:: @ 8D6A1F8
 
 	.align 2
 gMonBackPic_DodrioFemale::
-	.incbin "graphics/pokemon/dodrio/back.4bpp.lz"
+	.incbin "graphics/pokemon/dodrio/backf.4bpp.lz"
 
 	.align 2
 gMonShinyPalette_Dodrio:: @ 8D6A65C
@@ -2416,7 +2412,7 @@ gMonFrontPic_Hypno:: @ 8D72518
 
 	.align 2
 gMonFrontPic_HypnoFemale::
-	.incbin "graphics/pokemon/hypno/front.4bpp.lz"
+	.incbin "graphics/pokemon/hypno/frontf.4bpp.lz"
 
 	.align 2
 gMonPalette_Hypno:: @ 8D72904
@@ -2428,7 +2424,7 @@ gMonBackPic_Hypno:: @ 8D72928
 
 	.align 2
 gMonBackPic_HypnoFemale::
-	.incbin "graphics/pokemon/hypno/back.4bpp.lz"
+	.incbin "graphics/pokemon/hypno/backf.4bpp.lz"
 
 	.align 2
 gMonShinyPalette_Hypno:: @ 8D72C58
@@ -2760,7 +2756,7 @@ gMonFrontPic_Rhyhorn:: @ 8D7C1B0
 
 	.align 2
 gMonFrontPic_RhyhornFemale::
-	.incbin "graphics/pokemon/rhyhorn/front.4bpp.lz"
+	.incbin "graphics/pokemon/rhyhorn/frontf.4bpp.lz"
 
 	.align 2
 gMonPalette_Rhyhorn:: @ 8D7C5B4
@@ -2772,7 +2768,7 @@ gMonBackPic_Rhyhorn:: @ 8D7C5D4
 
 	.align 2
 gMonBackPic_RhyhornFemale::
-	.incbin "graphics/pokemon/rhyhorn/back.4bpp.lz"
+	.incbin "graphics/pokemon/rhyhorn/backf.4bpp.lz"
 
 	.align 2
 gMonShinyPalette_Rhyhorn:: @ 8D7C91C
@@ -2792,7 +2788,7 @@ gMonFrontPic_Rhydon:: @ 8D7CD5C
 
 	.align 2
 gMonFrontPic_RhydonFemale::
-	.incbin "graphics/pokemon/rhydon/front.4bpp.lz"
+	.incbin "graphics/pokemon/rhydon/frontf.4bpp.lz"
 
 	.align 2
 gMonPalette_Rhydon:: @ 8D7D264
@@ -2804,7 +2800,7 @@ gMonBackPic_Rhydon:: @ 8D7D28C
 
 	.align 2
 gMonBackPic_RhydonFemale::
-	.incbin "graphics/pokemon/rhydon/back.4bpp.lz"
+	.incbin "graphics/pokemon/rhydon/backf.4bpp.lz"
 
 	.align 2
 gMonShinyPalette_Rhydon:: @ 8D7D6DC
@@ -2944,7 +2940,7 @@ gMonFrontPic_Goldeen:: @ 8D814CC
 
 	.align 2
 gMonFrontPic_GoldeenFemale::
-	.incbin "graphics/pokemon/goldeen/front.4bpp.lz"
+	.incbin "graphics/pokemon/goldeen/frontf.4bpp.lz"
 
 	.align 2
 gMonPalette_Goldeen:: @ 8D81834
@@ -2956,7 +2952,7 @@ gMonBackPic_Goldeen:: @ 8D8185C
 
 	.align 2
 gMonBackPic_GoldeenFemale::
-	.incbin "graphics/pokemon/goldeen/back.4bpp.lz"
+	.incbin "graphics/pokemon/goldeen/backf.4bpp.lz"
 
 	.align 2
 gMonShinyPalette_Goldeen:: @ 8D81BCC
@@ -2976,7 +2972,7 @@ gMonFrontPic_Seaking:: @ 8D82014
 
 	.align 2
 gMonFrontPic_SeakingFemale::
-	.incbin "graphics/pokemon/seaking/front.4bpp.lz"
+	.incbin "graphics/pokemon/seaking/frontf.4bpp.lz"
 
 	.align 2
 gMonPalette_Seaking:: @ 8D82488
@@ -2988,7 +2984,7 @@ gMonBackPic_Seaking:: @ 8D824B0
 
 	.align 2
 gMonBackPic_SeakingFemale::
-	.incbin "graphics/pokemon/seaking/back.4bpp.lz"
+	.incbin "graphics/pokemon/seaking/backf.4bpp.lz"
 
 	.align 2
 gMonShinyPalette_Seaking:: @ 8D82800
@@ -3080,7 +3076,7 @@ gMonFrontPic_Scyther:: @ 8D84CA8
 
 	.align 2
 gMonFrontPic_ScytherFemale::
-	.incbin "graphics/pokemon/scyther/front.4bpp.lz"
+	.incbin "graphics/pokemon/scyther/frontf.4bpp.lz"
 
 	.align 2
 gMonPalette_Scyther:: @ 8D85154
@@ -3088,10 +3084,6 @@ gMonPalette_Scyther:: @ 8D85154
 
 	.align 2
 gMonBackPic_Scyther:: @ 8D8517C
-	.incbin "graphics/pokemon/scyther/back.4bpp.lz"
-
-	.align 2
-gMonBackPic_ScytherFemale::
 	.incbin "graphics/pokemon/scyther/back.4bpp.lz"
 
 	.align 2
@@ -3232,7 +3224,7 @@ gMonFrontPic_Magikarp:: @ 8D895A4
 
 	.align 2
 gMonFrontPic_MagikarpFemale::
-	.incbin "graphics/pokemon/magikarp/front.4bpp.lz"
+	.incbin "graphics/pokemon/magikarp/frontf.4bpp.lz"
 
 	.align 2
 gMonPalette_Magikarp:: @ 8D898F4
@@ -3240,10 +3232,6 @@ gMonPalette_Magikarp:: @ 8D898F4
 
 	.align 2
 gMonBackPic_Magikarp:: @ 8D8991C
-	.incbin "graphics/pokemon/magikarp/back.4bpp.lz"
-
-	.align 2
-gMonBackPic_MagikarpFemale::
 	.incbin "graphics/pokemon/magikarp/back.4bpp.lz"
 
 	.align 2
@@ -3264,7 +3252,7 @@ gMonFrontPic_Gyarados:: @ 8D8A094
 
 	.align 2
 gMonFrontPic_GyaradosFemale::
-	.incbin "graphics/pokemon/gyarados/front.4bpp.lz"
+	.incbin "graphics/pokemon/gyarados/frontf.4bpp.lz"
 
 	.align 2
 gMonPalette_Gyarados:: @ 8D8A5FC
@@ -3276,7 +3264,7 @@ gMonBackPic_Gyarados:: @ 8D8A624
 
 	.align 2
 gMonBackPic_GyaradosFemale::
-	.incbin "graphics/pokemon/gyarados/back.4bpp.lz"
+	.incbin "graphics/pokemon/gyarados/backf.4bpp.lz"
 
 	.align 2
 gMonShinyPalette_Gyarados:: @ 8D8AAF8

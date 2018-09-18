@@ -64,7 +64,7 @@ gMonBackPicTableFemale:: @ 81E97F4
 	obj_tiles gMonBackPic_Poliwhirl, 0x800, SPECIES_POLIWHIRL
 	obj_tiles gMonBackPic_Poliwrath, 0x800, SPECIES_POLIWRATH
 	obj_tiles gMonBackPic_Abra, 0x800, SPECIES_ABRA
-	obj_tiles gMonBackPic_KadabraFemale, 0x800, SPECIES_KADABRA
+	obj_tiles gMonBackPic_Kadabra, 0x800, SPECIES_KADABRA
 	obj_tiles gMonBackPic_AlakazamFemale, 0x800, SPECIES_ALAKAZAM
 	obj_tiles gMonBackPic_Machop, 0x800, SPECIES_MACHOP
 	obj_tiles gMonBackPic_Machoke, 0x800, SPECIES_MACHOKE
@@ -123,13 +123,13 @@ gMonBackPicTableFemale:: @ 81E97F4
 	obj_tiles gMonBackPic_Staryu, 0x800, SPECIES_STARYU
 	obj_tiles gMonBackPic_Starmie, 0x800, SPECIES_STARMIE
 	obj_tiles gMonBackPic_Mrmime, 0x800, SPECIES_MR_MIME
-	obj_tiles gMonBackPic_ScytherFemale, 0x800, SPECIES_SCYTHER
+	obj_tiles gMonBackPic_Scyther, 0x800, SPECIES_SCYTHER
 	obj_tiles gMonBackPic_Jynx, 0x800, SPECIES_JYNX
 	obj_tiles gMonBackPic_Electabuzz, 0x800, SPECIES_ELECTABUZZ
 	obj_tiles gMonBackPic_Magmar, 0x800, SPECIES_MAGMAR
 	obj_tiles gMonBackPic_Pinsir, 0x800, SPECIES_PINSIR
 	obj_tiles gMonBackPic_Tauros, 0x800, SPECIES_TAUROS
-	obj_tiles gMonBackPic_MagikarpFemale, 0x800, SPECIES_MAGIKARP
+	obj_tiles gMonBackPic_Magikarp, 0x800, SPECIES_MAGIKARP
 	obj_tiles gMonBackPic_GyaradosFemale, 0x800, SPECIES_GYARADOS
 	obj_tiles gMonBackPic_Lapras, 0x800, SPECIES_LAPRAS
 	obj_tiles gMonBackPic_Ditto, 0x800, SPECIES_DITTO
