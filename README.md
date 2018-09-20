@@ -14,7 +14,7 @@ Current implemented features:
 * fix snow
 * add fog (replaces weather_fog_3)
 * add snow and fog corresponding to in-battle
-* support for gender differences (working on implementation)
+* gender differences
 
 In Progress:
 * ability expansion (thanks znogyrop and dizzy for ability descriptions)
