@@ -517,6 +517,9 @@ enum {
 #define EVO_LEVEL_RAIN       0x001c // Pokémon reaches specified level while raining in the overworld
 //#define EVO_TRADE_MON        0X001d // Pokémon is traded with specified Pokémon
 
+#define EVO_MAP_GROUP(map) (map >> 8)
+#define EVO_MAP_NUM(map) (map & 0xFF)
+
 struct Evolution
 {
     u16 method;

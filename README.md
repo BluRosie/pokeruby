@@ -1,6 +1,7 @@
 # Pokémon Ruby and Sapphire
 
-This is a disassembly of Pokémon Ruby and Sapphire with various edits to show off just what is all super easily done with a disassembly.
+Pokémon Ruby and Sapphire, but with various edits to show off just what is all super easily done with a decompilation.
+Everything here is public to use, no permission required.
 
 Current implemented features:
 * a ton of decapitalization
@@ -8,7 +9,7 @@ Current implemented features:
 * gen vi exp. share, toggleable from the bag and everything
 * poison fades after reaching 1 hp in the overworld
 * ball expansion
-* hidden abilities 
+* hidden abilities
 * gen 4 bike (toggle between acro and mach using the r button)
 * run toggle using the r button
 * fix snow
@@ -19,7 +20,7 @@ Current implemented features:
 In Progress:
 * ability expansion (thanks znogyrop and dizzy for ability descriptions)
 * move expansion (thanks dizzy)
-* eventually, pokémon expansion
+* eventually, pokémon expansion (huge thanks to lunos)
 
 It builds the following rom:
 

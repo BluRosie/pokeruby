@@ -471,7 +471,4 @@
 #define MAP_GROUP(map) (MAP_##map >> 8)
 #define MAP_NUM(map) (MAP_##map & 0xFF)
 
-#define EVO_MAP_GROUP(map) (map >> 8)
-#define EVO_MAP_NUM(map) (map & 0xFF)
-
 #endif  // GUARD_CONSTANTS_MAPS_H
