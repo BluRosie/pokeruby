@@ -281,8 +281,8 @@ gMonFrontPicTableFemale:: @ 81E8354
 	obj_tiles gMonFrontPic_Grovyle, 0x800, SPECIES_GROVYLE
 	obj_tiles gMonFrontPic_Sceptile, 0x800, SPECIES_SCEPTILE
 	obj_tiles gMonFrontPic_Torchic, 0x800, SPECIES_TORCHIC
-	obj_tiles gMonFrontPic_Combusken, 0x800, SPECIES_COMBUSKEN
-	obj_tiles gMonFrontPic_Blaziken, 0x800, SPECIES_BLAZIKEN
+	obj_tiles gMonFrontPic_CombuskenFemale, 0x800, SPECIES_COMBUSKEN
+	obj_tiles gMonFrontPic_BlazikenFemale, 0x800, SPECIES_BLAZIKEN
 	obj_tiles gMonFrontPic_Mudkip, 0x800, SPECIES_MUDKIP
 	obj_tiles gMonFrontPic_Marshtomp, 0x800, SPECIES_MARSHTOMP
 	obj_tiles gMonFrontPic_Swampert, 0x800, SPECIES_SWAMPERT
@@ -292,15 +292,15 @@ gMonFrontPicTableFemale:: @ 81E8354
 	obj_tiles gMonFrontPic_Linoone, 0x800, SPECIES_LINOONE
 	obj_tiles gMonFrontPic_Wurmple, 0x800, SPECIES_WURMPLE
 	obj_tiles gMonFrontPic_Silcoon, 0x800, SPECIES_SILCOON
-	obj_tiles gMonFrontPic_Beautifly, 0x800, SPECIES_BEAUTIFLY
+	obj_tiles gMonFrontPic_BeautiflyFemale, 0x800, SPECIES_BEAUTIFLY
 	obj_tiles gMonFrontPic_Cascoon, 0x800, SPECIES_CASCOON
-	obj_tiles gMonFrontPic_Dustox, 0x800, SPECIES_DUSTOX
+	obj_tiles gMonFrontPic_DustoxFemale, 0x800, SPECIES_DUSTOX
 	obj_tiles gMonFrontPic_Lotad, 0x800, SPECIES_LOTAD
 	obj_tiles gMonFrontPic_Lombre, 0x800, SPECIES_LOMBRE
-	obj_tiles gMonFrontPic_Ludicolo, 0x800, SPECIES_LUDICOLO
+	obj_tiles gMonFrontPic_LudicoloFemale, 0x800, SPECIES_LUDICOLO
 	obj_tiles gMonFrontPic_Seedot, 0x800, SPECIES_SEEDOT
-	obj_tiles gMonFrontPic_Nuzleaf, 0x800, SPECIES_NUZLEAF
-	obj_tiles gMonFrontPic_Shiftry, 0x800, SPECIES_SHIFTRY
+	obj_tiles gMonFrontPic_NuzleafFemale, 0x800, SPECIES_NUZLEAF
+	obj_tiles gMonFrontPic_ShiftryFemale, 0x800, SPECIES_SHIFTRY
 	obj_tiles gMonFrontPic_Nincada, 0x800, SPECIES_NINCADA
 	obj_tiles gMonFrontPic_Ninjask, 0x800, SPECIES_NINJASK
 	obj_tiles gMonFrontPic_Shedinja, 0x800, SPECIES_SHEDINJA
@@ -329,7 +329,7 @@ gMonFrontPicTableFemale:: @ 81E8354
 	obj_tiles gMonFrontPic_Corphish, 0x800, SPECIES_CORPHISH
 	obj_tiles gMonFrontPic_Crawdaunt, 0x800, SPECIES_CRAWDAUNT
 	obj_tiles gMonFrontPic_Feebas, 0x800, SPECIES_FEEBAS
-	obj_tiles gMonFrontPic_Milotic, 0x800, SPECIES_MILOTIC
+	obj_tiles gMonFrontPic_MiloticFemale, 0x800, SPECIES_MILOTIC
 	obj_tiles gMonFrontPic_Carvanha, 0x800, SPECIES_CARVANHA
 	obj_tiles gMonFrontPic_Sharpedo, 0x800, SPECIES_SHARPEDO
 	obj_tiles gMonFrontPic_Trapinch, 0x800, SPECIES_TRAPINCH
@@ -339,13 +339,13 @@ gMonFrontPicTableFemale:: @ 81E8354
 	obj_tiles gMonFrontPic_Hariyama, 0x800, SPECIES_HARIYAMA
 	obj_tiles gMonFrontPic_Electrike, 0x800, SPECIES_ELECTRIKE
 	obj_tiles gMonFrontPic_Manectric, 0x800, SPECIES_MANECTRIC
-	obj_tiles gMonFrontPic_Numel, 0x800, SPECIES_NUMEL
-	obj_tiles gMonFrontPic_Camerupt, 0x800, SPECIES_CAMERUPT
+	obj_tiles gMonFrontPic_NumelFemale, 0x800, SPECIES_NUMEL
+	obj_tiles gMonFrontPic_CameruptFemale, 0x800, SPECIES_CAMERUPT
 	obj_tiles gMonFrontPic_Spheal, 0x800, SPECIES_SPHEAL
 	obj_tiles gMonFrontPic_Sealeo, 0x800, SPECIES_SEALEO
 	obj_tiles gMonFrontPic_Walrein, 0x800, SPECIES_WALREIN
 	obj_tiles gMonFrontPic_Cacnea, 0x800, SPECIES_CACNEA
-	obj_tiles gMonFrontPic_Cacturne, 0x800, SPECIES_CACTURNE
+	obj_tiles gMonFrontPic_CacturneFemale, 0x800, SPECIES_CACTURNE
 	obj_tiles gMonFrontPic_Snorunt, 0x800, SPECIES_SNORUNT
 	obj_tiles gMonFrontPic_Glalie, 0x800, SPECIES_GLALIE
 	obj_tiles gMonFrontPic_Lunatone, 0x800, SPECIES_LUNATONE
@@ -356,19 +356,19 @@ gMonFrontPicTableFemale:: @ 81E8354
 	obj_tiles gMonFrontPic_Plusle, 0x800, SPECIES_PLUSLE
 	obj_tiles gMonFrontPic_Minun, 0x800, SPECIES_MINUN
 	obj_tiles gMonFrontPic_Mawile, 0x800, SPECIES_MAWILE
-	obj_tiles gMonFrontPic_Meditite, 0x800, SPECIES_MEDITITE
-	obj_tiles gMonFrontPic_Medicham, 0x800, SPECIES_MEDICHAM
+	obj_tiles gMonFrontPic_MedititeFemale, 0x800, SPECIES_MEDITITE
+	obj_tiles gMonFrontPic_MedichamFemale, 0x800, SPECIES_MEDICHAM
 	obj_tiles gMonFrontPic_Swablu, 0x800, SPECIES_SWABLU
 	obj_tiles gMonFrontPic_Altaria, 0x800, SPECIES_ALTARIA
 	obj_tiles gMonFrontPic_Wynaut, 0x800, SPECIES_WYNAUT
 	obj_tiles gMonFrontPic_Duskull, 0x800, SPECIES_DUSKULL
 	obj_tiles gMonFrontPic_Dusclops, 0x800, SPECIES_DUSCLOPS
-	obj_tiles gMonFrontPic_Roselia, 0x800, SPECIES_ROSELIA
+	obj_tiles gMonFrontPic_RoseliaFemale, 0x800, SPECIES_ROSELIA
 	obj_tiles gMonFrontPic_Slakoth, 0x800, SPECIES_SLAKOTH
 	obj_tiles gMonFrontPic_Vigoroth, 0x800, SPECIES_VIGOROTH
 	obj_tiles gMonFrontPic_Slaking, 0x800, SPECIES_SLAKING
-	obj_tiles gMonFrontPic_Gulpin, 0x800, SPECIES_GULPIN
-	obj_tiles gMonFrontPic_Swalot, 0x800, SPECIES_SWALOT
+	obj_tiles gMonFrontPic_GulpinFemale, 0x800, SPECIES_GULPIN
+	obj_tiles gMonFrontPic_SwalotFemale, 0x800, SPECIES_SWALOT
 	obj_tiles gMonFrontPic_Tropius, 0x800, SPECIES_TROPIUS
 	obj_tiles gMonFrontPic_Whismur, 0x800, SPECIES_WHISMUR
 	obj_tiles gMonFrontPic_Loudred, 0x800, SPECIES_LOUDRED
@@ -381,7 +381,7 @@ gMonFrontPicTableFemale:: @ 81E8354
 	obj_tiles gMonFrontPic_Banette, 0x800, SPECIES_BANETTE
 	obj_tiles gMonFrontPic_Seviper, 0x800, SPECIES_SEVIPER
 	obj_tiles gMonFrontPic_Zangoose, 0x800, SPECIES_ZANGOOSE
-	obj_tiles gMonFrontPic_Relicanth, 0x800, SPECIES_RELICANTH
+	obj_tiles gMonFrontPic_RelicanthFemale, 0x800, SPECIES_RELICANTH
 	obj_tiles gMonFrontPic_Aron, 0x800, SPECIES_ARON
 	obj_tiles gMonFrontPic_Lairon, 0x800, SPECIES_LAIRON
 	obj_tiles gMonFrontPic_Aggron, 0x800, SPECIES_AGGRON
