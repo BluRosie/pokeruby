@@ -32,7 +32,7 @@ EWRAM_DATA u32 unk_2038798 = 0;
 #endif
 EWRAM_DATA s8 gUnknown_020384E4 = 0;
 EWRAM_DATA s8 gUnknown_020384E5 = 0;
-EWRAM_DATA bool8 gUnknown_020384E6 = FALSE;
+EWRAM_DATA bool8 gCarryingMon = FALSE;
 EWRAM_DATA u8 gUnknown_020384E7 = 0;
 EWRAM_DATA u8 gUnknown_020384E8 = 0;
 EWRAM_DATA u8 gUnknown_020384E9 = 0;
@@ -1163,7 +1163,7 @@ void sub_809AA24(void)
     else
         gUnknown_020384E4 = 1;
     gUnknown_020384E5 = 0;
-    gUnknown_020384E6 = FALSE;
+    gCarryingMon = FALSE;
     gUnknown_020384E7 = 0;
     gUnknown_020384E8 = 0;
     gUnknown_020384E9 = 0;
@@ -1178,7 +1178,7 @@ void sub_809AA98(void)
     sub_809CC04();
     sub_809C028();
     gPokemonStorageSystemPtr->unk_11e2 = 1;
-    if (gUnknown_020384E6)
+    if (gCarryingMon)
         sub_8098BF0();
 }
 
@@ -1212,7 +1212,7 @@ void sub_809AACC(u8 a0, u8 a1, u16 *a2, u16 *a3)
             *a3 = 0x0c;
             break;
         case 3:
-            *a3 = gUnknown_020384E6 ? 8 : 14;
+            *a3 = gCarryingMon ? 8 : 14;
             *a2 = a1 * 0x58 + 0x78;
             break;
         case 4:
@@ -1337,7 +1337,7 @@ void sub_809AF18(u8 a0, u8 a1)
 {
     sub_809AD3C(a0, a1);
     sub_809AD94();
-    if (!gUnknown_020384E6)
+    if (!gCarryingMon)
         StartSpriteAnim(gPokemonStorageSystemPtr->unk_11c0, 1);
     if (a0 == 1 && gUnknown_020384E4 != 1)
     {
@@ -1359,7 +1359,7 @@ void sub_809AFB8(void)
 {
     gUnknown_020384E4 = gPokemonStorageSystemPtr->unk_11e0;
     gUnknown_020384E5 = gPokemonStorageSystemPtr->unk_11e1;
-    if (!gUnknown_020384E6)
+    if (!gCarryingMon)
         StartSpriteAnim(gPokemonStorageSystemPtr->unk_11c0, 0);
     sub_809BF74();
     switch (gUnknown_020384E4)
@@ -1381,7 +1381,7 @@ void sub_809AFB8(void)
 void sub_809B068(void)
 {
     u8 partyCount;
-    if (!gUnknown_020384E6)
+    if (!gCarryingMon)
         partyCount = 0;
     else
     {
@@ -1430,7 +1430,7 @@ bool8 sub_809B150(void)
     switch (gPokemonStorageSystemPtr->unk_12a8)
     {
         case 0:
-            if (gUnknown_020384E6)
+            if (gCarryingMon)
                 return FALSE;
             StartSpriteAnim(gPokemonStorageSystemPtr->unk_11c0, 2);
             gPokemonStorageSystemPtr->unk_12a8++;
@@ -1556,7 +1556,7 @@ void sub_809B384(void)
         default:
             return;
     }
-    gUnknown_020384E6 = TRUE;
+    gCarryingMon = TRUE;
 }
 
 void sub_809B3E0(void)
@@ -1576,7 +1576,7 @@ void sub_809B3E0(void)
         default:
             return;
     }
-    gUnknown_020384E6 = FALSE;
+    gCarryingMon = FALSE;
 }
 
 void sub_809B440(void)
@@ -1634,11 +1634,11 @@ bool8 sub_809B62C(u8 boxId)
     s16 monIdx = GetIndexOfFirstEmptySpaceInBoxN(boxId);
     if (monIdx == -1)
         return FALSE;
-    if (gUnknown_020384E6)
+    if (gCarryingMon)
     {
         diegohint2(boxId, monIdx);
         sub_8099480();
-        gUnknown_020384E6 = FALSE;
+        gCarryingMon = FALSE;
     }
     else
     {
@@ -1662,7 +1662,7 @@ void sub_809B6DC(void)
 {
     u8 mode;
 
-    if (gUnknown_020384E6)
+    if (gCarryingMon)
         mode = 2;
     else if (gUnknown_020384E4 == 1)
         mode = 0;
@@ -1685,8 +1685,8 @@ bool8 sub_809B734(void)
 void sub_809B760(void)
 {
     sub_8099920();
-    if (gUnknown_020384E6)
-        gUnknown_020384E6 = FALSE;
+    if (gCarryingMon)
+        gCarryingMon = FALSE;
     else
     {
         u8 boxId;
@@ -1701,14 +1701,14 @@ void sub_809B760(void)
 
 void sub_809B7AC(void)
 {
-    if (gUnknown_020384E6)
+    if (gCarryingMon)
         StartSpriteAnim(gPokemonStorageSystemPtr->unk_11c0, 3);
 }
 
 void sub_809B7D4(void)
 {
     u16 knownMoves;
-    if (gUnknown_020384E6)
+    if (gCarryingMon)
     {
         gPokemonStorageSystemPtr->unk_2618 = gPokemonStorageSystemPtr->unk_25b4;
         gPokemonStorageSystemPtr->unk_2682 = -1;
@@ -1813,13 +1813,13 @@ s8 sub_809B960(void)
 
 void sub_809BB90(void)
 {
-    if (gUnknown_020384E6)
+    if (gCarryingMon)
         gUnknown_02038480 = gPokemonStorageSystemPtr->unk_25b4;
 }
 
 void sub_809BBC0(void)
 {
-    if (gUnknown_020384E6)
+    if (gCarryingMon)
     {
         if (gUnknown_020384E7 == 14)
             gPokemonStorageSystemPtr->unk_25b4 = gUnknown_02038480;
@@ -1830,7 +1830,7 @@ void sub_809BBC0(void)
 
 void sub_809BC18(void)
 {
-    if (gUnknown_020384E6)
+    if (gCarryingMon)
     {
         sub_809BB90();
         gPokemonStorageSystemPtr->unk_2690.pokemon = &gUnknown_02038480;
@@ -1856,7 +1856,7 @@ void sub_809BC18(void)
 
 void sub_809BD14(void)
 {
-    if (gUnknown_020384E6)
+    if (gCarryingMon)
         sub_809BBC0();
     else
         gUnknown_020384E5 = pssData.monIndex;
@@ -1887,7 +1887,7 @@ s16 party_compaction(void)
 void sub_809BDD8(u8 markings)
 {
     gPokemonStorageSystemPtr->unk_11f7 = markings;
-    if (gUnknown_020384E6)
+    if (gCarryingMon)
         SetMonData(&gPokemonStorageSystemPtr->unk_25b4, MON_DATA_MARKINGS, &markings);
     else
     {
@@ -1900,14 +1900,14 @@ void sub_809BDD8(u8 markings)
 
 bool8 sub_809BE80(void)
 {
-    if (gUnknown_020384E4 == 1 && !gUnknown_020384E6 && CountAlivePartyMonsExceptOne(gUnknown_020384E5) == 0)
+    if (gUnknown_020384E4 == 1 && !gCarryingMon && CountAlivePartyMonsExceptOne(gUnknown_020384E5) == 0)
         return TRUE;
     return FALSE;
 }
 
 bool8 sub_809BEBC(void)
 {
-    if (gUnknown_020384E6)
+    if (gCarryingMon)
     {
         if (gUnknown_020384E4 == 1 && CountAlivePartyMonsExceptOne(gUnknown_020384E5) == 0)
         {
@@ -1921,7 +1921,7 @@ bool8 sub_809BEBC(void)
 
 bool8 sub_809BF20(void)
 {
-    return gUnknown_020384E6;
+    return gCarryingMon;
 }
 
 bool8 sub_809BF2C(void)
@@ -1936,8 +1936,8 @@ bool8 sub_809BF48(void)
 
 void sub_809BF74(void)
 {
-    gPokemonStorageSystemPtr->unk_11f6 = gUnknown_020384E6 ? 0 : 1;
-    if (!gUnknown_020384E6)
+    gPokemonStorageSystemPtr->unk_11f6 = gCarryingMon ? 0 : 1;
+    if (!gCarryingMon)
     {
         switch (gUnknown_020384E4)
         {
@@ -1961,7 +1961,7 @@ void sub_809BF74(void)
 
 void sub_809C028(void)
 {
-    if (gUnknown_020384E6)
+    if (gCarryingMon)
         sub_809C04C(&gUnknown_02038480.box, 0);
     else
         sub_809BF74();
@@ -3177,7 +3177,7 @@ u8 debug_sub_80AA40C(void)
 }
 #endif
 
-bool8 sub_809CAB0(void)
+bool8 sub_809CAB0(void) // create menu for manipulating pokemon in pc
 {
     u16 var0;
 
@@ -3204,7 +3204,7 @@ bool8 sub_809CAB0(void)
             return 0;
         break;
     case 2:
-        if (gUnknown_020384E6)
+        if (gCarryingMon)
         {
             if (var0)
                 sub_809CDEC(4);
@@ -3244,7 +3244,7 @@ void sub_809CB74(struct Sprite *sprite)
     sprite->pos1.y = gPokemonStorageSystemPtr->unk_11c0->pos1.y + 20;
 }
 
-void sub_809CB94(struct Pokemon *mon)
+void sub_809CB94(struct Pokemon *mon) // possibly copying the mon?
 {
     if (gUnknown_020384E4 == 1)
     {
@@ -3278,7 +3278,7 @@ void sub_809CC04(void)
     {
         gPokemonStorageSystemPtr->unk_11c0 = &gSprites[spriteId];
         gPokemonStorageSystemPtr->unk_11c0->oam.paletteNum = gPokemonStorageSystemPtr->unk_11e4[gUnknown_020384E9];
-        if (gUnknown_020384E6)
+        if (gCarryingMon)
             StartSpriteAnim(gPokemonStorageSystemPtr->unk_11c0, 3);
     }
     else

@@ -25,7 +25,7 @@
 
 EWRAM_DATA u8 gUnknown_0203847C = 0;
 EWRAM_DATA u8 gUnknown_0203847D = 0;
-EWRAM_DATA u8 gUnknown_0203847E = 0;
+EWRAM_DATA u8 gLastBoxNumberDeposited = 0;
 EWRAM_DATA u8 gUnknown_0203847F = 0;
 
 // Static ROM declarations
@@ -36,7 +36,7 @@ void sub_8096B38(void);
 void SetPSSCallback(void (*func)(void));
 void sub_8096BF0(void);
 void sub_8096C68(void);
-void sub_8096C84(void);
+void HandleBoxInput(void);
 void sub_8096FC8(void);
 void sub_8097004(void);
 void sub_8097078(void);
@@ -184,7 +184,7 @@ void sub_8096848(void)
 {
     sub_809B0D4();
     gUnknown_0203847C = (gPokemonStorageSystemPtr->unk_0005 == 1 ? 1 : 0);
-    gUnknown_0203847E = 0;
+    gLastBoxNumberDeposited = 0;
 }
 
 void sub_8096874(void)
@@ -193,6 +193,7 @@ void sub_8096874(void)
 }
 
 extern u8 unk_2038790;
+extern u8 gUnknown_020384E4;
 
 void sub_8096884(void)
 {
@@ -423,7 +424,7 @@ void sub_8096BF0(void)
         break;
     case 2:
         if (sub_80C5DCC())
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         break;
     }
 }
@@ -431,10 +432,10 @@ void sub_8096BF0(void)
 void sub_8096C68(void)
 {
     if (!UpdatePaletteFade())
-        SetPSSCallback(sub_8096C84);
+        SetPSSCallback(HandleBoxInput);
 }
 
-void sub_8096C84(void)
+void HandleBoxInput(void) // pokemon box general handling?  orange hand?
 {
     switch (gPokemonStorageSystemPtr->unk_0004)
     {
@@ -446,7 +447,7 @@ void sub_8096C84(void)
             gPokemonStorageSystemPtr->unk_0004 = 1;
             break;
         case 5:
-            if (gPokemonStorageSystemPtr->unk_0005 != 2)
+            if (gPokemonStorageSystemPtr->unk_0005 != 2) // when withdrawing, don't open menu
             {
                 PrintStorageActionText(PC_TEXT_WHICH_ONE_WILL_TAKE);
                 gPokemonStorageSystemPtr->unk_0004 = 3;
@@ -504,12 +505,16 @@ void sub_8096C84(void)
             sub_8099C70(gPokemonStorageSystemPtr->unk_08b2);
             gPokemonStorageSystemPtr->unk_0004 = 2;
             break;
-        case 11:
+        case 11: // deposit
             if (!sub_809BE80())
             {
                 if (ItemIsMail(gPokemonStorageSystemPtr->unk_11f2))
                 {
                     gPokemonStorageSystemPtr->unk_0004 = 5;
+                }
+                else if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR)
+                {
+                    gPokemonStorageSystemPtr->unk_0004 = 8;
                 }
                 else
                 {
@@ -522,7 +527,7 @@ void sub_8096C84(void)
                 gPokemonStorageSystemPtr->unk_0004 = 4;
             }
             break;
-        case 13:
+        case 13: // move
             if (sub_809BE80())
             {
                 gPokemonStorageSystemPtr->unk_0004 = 4;
@@ -533,10 +538,14 @@ void sub_8096C84(void)
                 SetPSSCallback(sub_80972A8);
             }
             break;
-        case 14:
-            if (!sub_809BEBC())
+        case 14: // switch
+            if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR && gUnknown_020384E4 != 1)
             {
-                gPokemonStorageSystemPtr->unk_0004 = 4;
+                gPokemonStorageSystemPtr->unk_0004 = 9;
+            }
+            else if (!sub_809BEBC())
+            {
+                gPokemonStorageSystemPtr->unk_0004 = 2;
             }
             else
             {
@@ -548,9 +557,16 @@ void sub_8096C84(void)
             PlaySE(SE_SELECT);
             SetPSSCallback(sub_8097390);
             break;
-        case 15:
-            PlaySE(SE_SELECT);
-            SetPSSCallback(sub_80972FC);
+        case 15: // place
+            if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR && gUnknown_020384E4 != 1)
+            {
+                gPokemonStorageSystemPtr->unk_0004 = 9;
+            }
+            else
+            {
+                PlaySE(SE_SELECT);
+                SetPSSCallback(sub_80972FC);
+            }
             break;
         }
         break;
@@ -595,11 +611,26 @@ void sub_8096C84(void)
         PrintStorageActionText(PC_TEXT_PLEASE_REMOVE_MAIL);
         gPokemonStorageSystemPtr->unk_0004 = 6;
         break;
+    case 7:
+        PlaySE(SE_HAZURE);
+        PrintStorageActionText(PC_TEXT_CANT_RELEASE_POKEMON);
+        gPokemonStorageSystemPtr->unk_0004 = 6;
+        break;
+    case 8:
+        PlaySE(SE_HAZURE);
+        PrintStorageActionText(PC_TEXT_CANT_DEPOSIT_POKEMON);
+        gPokemonStorageSystemPtr->unk_0004 = 6;
+        break;
+    case 9:
+        PlaySE(SE_HAZURE);
+        PrintStorageActionText(PC_TEXT_CANT_MOVE_POKEMON);
+        gPokemonStorageSystemPtr->unk_0004 = 6;
+        break;
     case 6:
         if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             sub_8098A5C();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         break;
     }
@@ -615,7 +646,7 @@ void sub_8096FC8(void)
             break;
         case 1:
             if (!sub_8098830())
-                SetPSSCallback(sub_8096C84);
+                SetPSSCallback(HandleBoxInput);
             break;
     }
 }
@@ -641,13 +672,13 @@ void sub_8097004(void)
             {
                 if (gPokemonStorageSystemPtr->unk_11f6)
                     BoxSetMosaic();
-                SetPSSCallback(sub_8096C84);
+                SetPSSCallback(HandleBoxInput);
             }
             break;
     }
 }
 
-void sub_8097078(void)
+void sub_8097078(void) // selecting a pokemon in the pc
 {
     switch (gPokemonStorageSystemPtr->unk_0004)
     {
@@ -660,11 +691,11 @@ void sub_8097078(void)
         switch (sub_809CF30())
         {
         case -1:
-        case  0:
+        case  0: // cancel
             sub_8098A5C();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
             break;
-        case 3:
+        case 3: // move
             if (sub_809BE80())
             {
                 gPokemonStorageSystemPtr->unk_0004 = 2;
@@ -676,13 +707,24 @@ void sub_8097078(void)
                 SetPSSCallback(sub_80972A8);
             }
             break;
-        case 5:
-            PlaySE(SE_SELECT);
-            sub_8098A5C();
-            SetPSSCallback(sub_80972FC);
+        case 5: // place
+            if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR && gUnknown_020384E4 != 1)
+            {
+                gPokemonStorageSystemPtr->unk_0004 = 8;
+            }
+            else
+            {
+                PlaySE(SE_SELECT);
+                sub_8098A5C();
+                SetPSSCallback(sub_80972FC);
+            }
             break;
-        case 4:
-            if (!sub_809BEBC())
+        case 4: // switch
+            if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR && gUnknown_020384E4 != 1)
+            {
+                gPokemonStorageSystemPtr->unk_0004 = 8;
+            }
+            else if (!sub_809BEBC())
             {
                 gPokemonStorageSystemPtr->unk_0004 = 2;
             }
@@ -693,12 +735,12 @@ void sub_8097078(void)
                 SetPSSCallback(c3_0808DC50);
             }
             break;
-        case 2:
+        case 2: // withdraw
             PlaySE(SE_SELECT);
             sub_8098A5C();
             SetPSSCallback(sub_8097390);
             break;
-        case 1:
+        case 1: // deposit
             if (sub_809BE80())
             {
                 gPokemonStorageSystemPtr->unk_0004 = 2;
@@ -707,6 +749,8 @@ void sub_8097078(void)
             {
                 gPokemonStorageSystemPtr->unk_0004 = 3;
             }
+            else if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR)
+                gPokemonStorageSystemPtr->unk_0004 = 7;
             else
             {
                 PlaySE(SE_SELECT);
@@ -714,7 +758,7 @@ void sub_8097078(void)
                 SetPSSCallback(sub_809746C);
             }
             break;
-        case 7:
+        case 7: // release
             if (sub_809BE80())
             {
                 gPokemonStorageSystemPtr->unk_0004 = 2;
@@ -727,22 +771,24 @@ void sub_8097078(void)
             {
                 gPokemonStorageSystemPtr->unk_0004 = 3;
             }
+            else if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR)
+                gPokemonStorageSystemPtr->unk_0004 = 6;
             else
             {
                 PlaySE(SE_SELECT);
                 SetPSSCallback(sub_8097594);
             }
             break;
-        case 6:
+        case 6: // summary
             PlaySE(SE_SELECT);
             SetPSSCallback(sub_8097788);
             break;
-        case 8:
+        case 8: // mark
             PlaySE(SE_SELECT);
             SetPSSCallback(sub_80977E4);
             break;
 #if DEBUG
-        case 32:
+        case 32: // gUnknown_Debug_0x83E6268
             PlaySE(SE_SELECT);
             sub_8098A5C();
             SetPSSCallback(debug_sub_80A435C);
@@ -765,11 +811,26 @@ void sub_8097078(void)
         PrintStorageActionText(PC_TEXT_PLEASE_REMOVE_MAIL);
         gPokemonStorageSystemPtr->unk_0004 = 5;
         break;
+    case 6:
+        PlaySE(SE_HAZURE);
+        PrintStorageActionText(PC_TEXT_CANT_RELEASE_POKEMON);
+        gPokemonStorageSystemPtr->unk_0004 = 5;
+        break;
+    case 7:
+        PlaySE(SE_HAZURE);
+        PrintStorageActionText(PC_TEXT_CANT_DEPOSIT_POKEMON);
+        gPokemonStorageSystemPtr->unk_0004 = 5;
+        break;
+    case 8:
+        PlaySE(SE_HAZURE);
+        PrintStorageActionText(PC_TEXT_CANT_MOVE_POKEMON);
+        gPokemonStorageSystemPtr->unk_0004 = 5;
+        break;
     case 5:
         if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             sub_8098A5C();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         break;
     }
@@ -789,7 +850,7 @@ void sub_80972A8(void)
             if (gUnknown_0203847C)
                 SetPSSCallback(sub_8097858);
             else
-                SetPSSCallback(sub_8096C84);
+                SetPSSCallback(HandleBoxInput);
         }
         break;
     }
@@ -809,7 +870,7 @@ void sub_80972FC(void)
             if (gUnknown_0203847C)
                 SetPSSCallback(sub_8097858);
             else
-                SetPSSCallback(sub_8096C84);
+                SetPSSCallback(HandleBoxInput);
         }
         break;
     }
@@ -827,7 +888,7 @@ void c3_0808DC50(void)
         if (!sub_809B130())
         {
             BoxSetMosaic();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         break;
     }
@@ -854,7 +915,7 @@ void sub_8097390(void)
         if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             sub_8098A5C();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         break;
     case 2:
@@ -890,25 +951,25 @@ void sub_809746C(void)
 
     switch (gPokemonStorageSystemPtr->unk_0004)
     {
-    case 0:
+    case 0: // init deposit textbox
         PrintStorageActionText(PC_TEXT_DEPOSIT_IN_WHICH_BOX);
         sub_8096264(&gPokemonStorageSystemPtr->unk_2370, 0x0007, 0xdaca, 3);
-        sub_809634C(gUnknown_0203847E);
+        sub_809634C(gLastBoxNumberDeposited); //box number deposited into last
         gPokemonStorageSystemPtr->unk_0004++;
         break;
-    case 1:
+    case 1: // take input
         r4 = sub_8096368();
-        if (r4 == 200);
-        else if (r4 == 201)
+        if (r4 == 200); // nothing done
+        else if (r4 == 201) // b button pressed to cancel
         {
             sub_8098A5C();
             sub_809635C();
             sub_8096310();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         else
         {
-            if (sub_809B62C(r4))
+            if (sub_809B62C(r4)) // if deposit was successful (box isn't full), then close out of everything and move on to next step
             {
                 sub_8098A5C();
                 sub_809635C();
@@ -920,12 +981,12 @@ void sub_809746C(void)
                 PrintStorageActionText(PC_TEXT_BOX_IS_FULL);
                 gPokemonStorageSystemPtr->unk_0004 = 4;
             }
-            gUnknown_0203847E = r4;
+            gLastBoxNumberDeposited = r4;
         }
         break;
     case 2:
         party_compaction();
-        sub_8099310();
+        sub_8099310(); // redraw icons?
         gPokemonStorageSystemPtr->unk_0004++;
         break;
     case 3:
@@ -934,7 +995,7 @@ void sub_809746C(void)
             sub_809B6BC();
             BoxSetMosaic();
             sub_80987DC();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         break;
     case 4:
@@ -962,7 +1023,7 @@ void sub_8097594(void)
             case -1:
             case  1:
                 sub_8098A5C();
-                SetPSSCallback(sub_8096C84);
+                SetPSSCallback(HandleBoxInput);
                 break;
             case  0:
                 sub_8098A5C();
@@ -1031,7 +1092,7 @@ void sub_8097594(void)
         }
         break;
     case 7:
-        SetPSSCallback(sub_8096C84);
+        SetPSSCallback(HandleBoxInput);
         break;
     case 8:
         PrintStorageActionText(PC_TEXT_WAS_RELEASED);
@@ -1071,7 +1132,7 @@ void sub_8097594(void)
         if (gMain.newKeys & (A_BUTTON | B_BUTTON))
         {
             sub_8098A5C();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         break;
     }
@@ -1114,7 +1175,7 @@ void sub_80977E4(void)
             sub_8098A5C();
             sub_809BDD8(gPokemonStorageSystemPtr->unk_12bc.markings);
             sub_809801C();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         break;
     }
@@ -1133,7 +1194,7 @@ void sub_8097858(void)
         if (sub_8099374() == 0)
         {
             sub_80987DC();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         break;
     }
@@ -1155,7 +1216,7 @@ void sub_809789C(void)
         case  0:
             sub_809A860(TRUE);
             sub_8098A5C();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
             break;
         case 11:
             PlaySE(SE_SELECT);
@@ -1192,7 +1253,7 @@ void sub_8097974(void)
         case -1:
             sub_809A860(TRUE);
             sub_8098A5C();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
             break;
         case 12 ... 15:
             PlaySE(SE_SELECT);
@@ -1226,7 +1287,7 @@ void sub_8097974(void)
         if (!sub_8099E08())
         {
             sub_809A860(TRUE);
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         break;
     }
@@ -1255,7 +1316,7 @@ void sub_8097A64(void)
             if (gPokemonStorageSystemPtr->unk_08b2 == 201 || gPokemonStorageSystemPtr->unk_08b2 == gPokemonStorage.currentBox)
             {
                 sub_809A860(TRUE);
-                SetPSSCallback(sub_8096C84);
+                SetPSSCallback(HandleBoxInput);
             }
             else
             {
@@ -1272,7 +1333,7 @@ void sub_8097A64(void)
         if (!sub_8099D34())
         {
             gPokemonStorage.currentBox = gPokemonStorageSystemPtr->unk_08b2;
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         break;
     }
@@ -1321,7 +1382,7 @@ void sub_8097BA0(void)
         if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             sub_8098A5C();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         break;
     case 2:
@@ -1330,7 +1391,7 @@ void sub_8097BA0(void)
         case 1:
         case -1:
             sub_8098A5C();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
             break;
         case 0:
             PlaySE(SE_PC_OFF);
@@ -1380,7 +1441,7 @@ void sub_8097CC0(void)
         if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             sub_8098A5C();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
         }
         break;
     case 2:
@@ -1388,7 +1449,7 @@ void sub_8097CC0(void)
         {
         case 0:
             sub_8098A5C();
-            SetPSSCallback(sub_8096C84);
+            SetPSSCallback(HandleBoxInput);
             break;
         case -1:
         case 1:
@@ -1706,7 +1767,10 @@ void sub_80981F0(u16 species, u32 pid)
     {
         if (species != SPECIES_NONE)
         {
-            HandleLoadSpecialPokePic(gMonFrontPicTable + species, gMonFrontPicCoords[species].coords, 1, (intptr_t)gPokemonStorageSystemPtr->unk_4784, gPokemonStorageSystemPtr->unk_2784, species, pid);
+            if (GetGenderFromSpeciesAndPersonality(species, pid) == MON_FEMALE)
+                HandleLoadSpecialPokePic(gMonFrontPicTableFemale + species, gMonFrontPicCoords[species].coords, 1, (intptr_t)gPokemonStorageSystemPtr->unk_4784, gPokemonStorageSystemPtr->unk_2784, species, pid);
+            else
+                HandleLoadSpecialPokePic(gMonFrontPicTable + species, gMonFrontPicCoords[species].coords, 1, (intptr_t)gPokemonStorageSystemPtr->unk_4784, gPokemonStorageSystemPtr->unk_2784, species, pid);
             LZ77UnCompWram(gPokemonStorageSystemPtr->unk_11e8, gPokemonStorageSystemPtr->unk_2704);
             CpuCopy32(gPokemonStorageSystemPtr->unk_2784, gPokemonStorageSystemPtr->unk_26fc, 0x800);
             LoadPalette(gPokemonStorageSystemPtr->unk_2704, gPokemonStorageSystemPtr->unk_26fa, 0x20);
@@ -1940,7 +2004,10 @@ const struct StorageAction gPCStorageActionTexts[] =
     {PCText_CameBack, 1},
     {PCText_Worried, 0},
     {PCText_Surprise, 0},
-    {PCText_PleaseRemoveMail, 0}
+    {PCText_PleaseRemoveMail, 0},
+    {PCText_CantReleasePokemon, 0},
+    {PCText_CantDepositPokemon, 0},
+    {PCText_CantMovePokemon, 0}
 };
 
 void PrintStorageActionText(u8 index)
