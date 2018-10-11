@@ -766,6 +766,9 @@ extern const u8 PCText_MovePokeToParty[];
 extern const u8 PCText_StorePokeInBox[];
 extern const u8 PCText_OrganizeBoxesParty[];
 extern const u8 PCText_ReturnToPrevMenu[];
+extern const u8 PCText_CantReleasePokemon[];
+extern const u8 PCText_CantDepositPokemon[];
+extern const u8 PCText_CantMovePokemon[];
 
 extern const u8 gPCText_OnlyOne[];
 extern const u8 gPCText_PartyFull2[];

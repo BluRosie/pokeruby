@@ -790,6 +790,9 @@ const u8 PCText_MovePokeToParty[] = _("Move POKéMON stored in BOXES to\nyour pa
 const u8 PCText_StorePokeInBox[] = _("Store POKéMON in your party in BOXES.");
 const u8 PCText_OrganizeBoxesParty[] = _("Organize the POKéMON in BOXES and\nin your party.");
 const u8 PCText_ReturnToPrevMenu[] = _("Return to the previous menu.");
+const u8 PCText_CantReleasePokemon[] = _("That would make Meltan sad!");
+const u8 PCText_CantDepositPokemon[] = _("Meltan doesn’t want to go!");
+const u8 PCText_CantMovePokemon[] = _("Meltan wants to stay!");
 
 const u8 gPCText_OnlyOne[] = _("There is just one POKéMON with you.");
 const u8 gPCText_PartyFull2[] = _("Your party is full!");
