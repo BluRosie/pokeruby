@@ -1876,4 +1876,16 @@ const struct SpriteFrameImage gEventObjectPicTable_Mom[] = {
     overworld_frame(gEventObjectPic_Mom, 2, 4, 8),
 };
 
+const struct SpriteFrameImage gEventObjectPicTable_Meltan[] = {
+    overworld_frame(gEventObjectPic_Meltan, 2, 2, 0),
+    overworld_frame(gEventObjectPic_Meltan, 2, 2, 2),
+    overworld_frame(gEventObjectPic_Meltan, 2, 2, 4),
+    overworld_frame(gEventObjectPic_Meltan, 2, 2, 1),
+    overworld_frame(gEventObjectPic_Meltan, 2, 2, 1),
+    overworld_frame(gEventObjectPic_Meltan, 2, 2, 3),
+    overworld_frame(gEventObjectPic_Meltan, 2, 2, 3),
+    overworld_frame(gEventObjectPic_Meltan, 2, 2, 5),
+    overworld_frame(gEventObjectPic_Meltan, 2, 2, 5)
+};
+
 #endif //POKERUBY_EVENT_OBJECT_PIC_TABLES_H

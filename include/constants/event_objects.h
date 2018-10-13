@@ -219,6 +219,7 @@
 #define EVENT_OBJ_GFX_MOM 215
 #define EVENT_OBJ_GFX_LINK_BRENDAN 216
 #define EVENT_OBJ_GFX_LINK_MAY 217
+#define EVENT_OBJ_GFX_MELTAN 218
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.

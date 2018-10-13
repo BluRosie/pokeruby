@@ -1680,8 +1680,8 @@ const struct EventObjectGraphicsInfo *GetEventObjectGraphicsInfo(u8 graphicsId)
 {
     if (graphicsId > 0xEF)
         graphicsId = VarGetEventObjectGraphicsId(graphicsId + 16);
-    if (graphicsId > 0xD9)
-        graphicsId = 5;
+//    if (graphicsId > 0xD9)
+//        graphicsId = 5;
     return gEventObjectGraphicsInfoPointers[graphicsId];
 }
 
