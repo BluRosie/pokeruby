@@ -1,11 +1,7 @@
-# Pokémon Ruby and Sapphire [![Build Status][travis-badge]][travis]
+# Pokémon Ruby and Sapphire
 
-This is a disassembly of Pokémon Ruby and Sapphire.
-
-It builds the following roms:
-
-* pokeruby.gba `sha1: f28b6ffc97847e94a6c21a63cacf633ee5c8df1e`
-* pokesapphire.gba `sha1: 3ccbbd45f8553c36463f13b938e833f652b793e4`
+This is a disassembly of Pokémon Ruby and Sapphire edited to be the ROM of Team 2 for the Hackoff.
+Build it to play the hack.
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
@@ -32,5 +28,3 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 [pokeemerald]: https://github.com/pret/pokeemerald
 [Discord]: https://discord.gg/cJxDDVP
 [irc]: https://kiwiirc.com/client/irc.freenode.net/?#pret
-[travis]: https://travis-ci.org/pret/pokeruby
-[travis-badge]: https://travis-ci.org/pret/pokeruby.svg?branch=master
