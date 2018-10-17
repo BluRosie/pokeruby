@@ -4863,6 +4863,25 @@ static const u8 DexDescription_Chimecho_2[] = _(
 #endif
 
 #ifdef SAPPHIRE
+static const u8 DexDescription_Meltan_1[] = _(
+  "In high winds, MELTAN cries as it\n"
+  "hangs from a tree branch or the eaves\n"
+  "of a building using a suction cup on its");
+static const u8 DexDescription_Meltan_2[] = _(
+  "head.\n"
+  "This POKéMON plucks berries with its\n"
+  "long tail and eats them.");
+#else
+static const u8 DexDescription_Meltan_1[] = _(
+  "MELTAN makes its cries echo\n"
+  "inside its hollow body. When this\n"
+  "POKéMON becomes enraged, its cries");
+static const u8 DexDescription_Meltan_2[] = _(
+  "result in ultrasonic waves that have\n"
+  "the power to knock foes flying.");
+#endif
+
+#ifdef SAPPHIRE
 static const u8 DexDescription_Absol_1[] = _(
   "ABSOL has the ability to foretell the\n"
   "coming of natural disasters.\n"
@@ -9335,6 +9354,17 @@ const struct PokedexEntry gPokedexEntries[] =
         .weight = 10,
         .descriptionPage1 = DexDescription_Chimecho_1,
         .descriptionPage2 = DexDescription_Chimecho_2,
+        .pokemonScale = 505,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+    {  //Meltan
+        .categoryName = _("HEX NUT"),
+        .height = 6,
+        .weight = 10,
+        .descriptionPage1 = DexDescription_Meltan_1,
+        .descriptionPage2 = DexDescription_Meltan_2,
         .pokemonScale = 505,
         .pokemonOffset = 0,
         .trainerScale = 256,

@@ -13539,6 +13539,39 @@ const struct BaseStats gBaseStats[] =
         .noFlip = TRUE,
     },
 
+[SPECIES_MELTAN] =
+    {
+        .baseHP        = 50,
+        .baseAttack    = 150,
+        .baseDefense   = 50,
+        .baseSpeed     = 150,
+        .baseSpAttack  = 150,
+        .baseSpDefense = 50,
+        .type1 = TYPE_PSYCHIC,
+        .type2 = TYPE_PSYCHIC,
+        .catchRate = 3,
+        .expYield = 215,
+        .evYield_HP        = 0,
+        .evYield_Attack    = 1,
+        .evYield_Defense   = 0,
+        .evYield_Speed     = 1,
+        .evYield_SpAttack  = 1,
+        .evYield_SpDefense = 0,
+        .item1 = ITEM_NONE,
+        .item2 = ITEM_NONE,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .ability1 = ABILITY_PRESSURE,
+        .ability2 = ABILITY_NONE,
+        .safariZoneFleeRate = 0,
+        .bodyColor = BODY_COLOR_RED,
+        .noFlip = TRUE,
+    },
+
     [SPECIES_CHIMECHO] =
     {
         .baseHP        = 65,
@@ -13572,5 +13605,7 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     }
 };
+
+
 
 #endif //GUARD_BASE_STATS_H

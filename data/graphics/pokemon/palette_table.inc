@@ -412,6 +412,7 @@ gMonPaletteTable:: @ 81EA5B4
 	obj_pal gMonPalette_Jirachi, SPECIES_JIRACHI
 	obj_pal gMonPalette_Deoxys, SPECIES_DEOXYS
 	obj_pal gMonPalette_Chimecho, SPECIES_CHIMECHO
+        obj_pal gMonPalette_Meltan, SPECIES_MELTAN
 	obj_pal gMonPalette_Egg, SPECIES_EGG
 	obj_pal gMonPalette_Unown, SPECIES_UNOWN_B
 	obj_pal gMonPalette_Unown, SPECIES_UNOWN_C

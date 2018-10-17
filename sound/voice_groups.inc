@@ -12522,6 +12522,7 @@ gCryTable:: @ 8452590
 	cry Cry_Jirachi
 	cry Cry_Deoxys
 	cry Cry_Chimecho
+	cry Cry_Meltan
 
 	.align 2
 gCryTable2:: @ 84537C0
@@ -12913,6 +12914,7 @@ gCryTable2:: @ 84537C0
 	cry2 Cry_Jirachi
 	cry2 Cry_Deoxys
 	cry2 Cry_Chimecho
+	cry2 Cry_Meltan
 
 	.align 2
 voicegroup112:: @ 84549F0

@@ -414,6 +414,7 @@ gMonShinyPaletteTable:: @ 81EB374
 	obj_pal gMonShinyPalette_Jirachi, PAL_ID_SHINY + SPECIES_JIRACHI
 	obj_pal gMonShinyPalette_Deoxys, PAL_ID_SHINY + SPECIES_DEOXYS
 	obj_pal gMonShinyPalette_Chimecho, PAL_ID_SHINY + SPECIES_CHIMECHO
+        obj_pal gMonShinyPalette_Meltan, PAL_ID_SHINY + SPECIES_MELTAN
 	obj_pal gMonPalette_Egg, PAL_ID_SHINY + SPECIES_EGG
 	obj_pal gMonShinyPalette_Unown, PAL_ID_SHINY + SPECIES_UNOWN_B
 	obj_pal gMonShinyPalette_Unown, PAL_ID_SHINY + SPECIES_UNOWN_C

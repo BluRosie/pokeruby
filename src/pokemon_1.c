@@ -437,7 +437,8 @@ const u16 gSpeciesToHoennPokedexNum[] = // Assigns all species to the Hoenn Dex 
 	HOENN_DEX_LATIOS,          	// SPECIES_LATIOS
 	HOENN_DEX_JIRACHI,         	// SPECIES_JIRACHI
 	HOENN_DEX_DEOXYS,          	// SPECIES_DEOXYS
-	HOENN_DEX_CHIMECHO         	// SPECIES_CHIMECHO
+	HOENN_DEX_CHIMECHO,         	// SPECIES_CHIMECHO
+        HOENN_DEX_MELTAN         	// SPECIES_MELTAN
 };
 
 const u16 gSpeciesToNationalPokedexNum[] = // Assigns all species to the National Dex Index (Summary No. for National Dex)
@@ -853,7 +854,8 @@ const u16 gSpeciesToNationalPokedexNum[] = // Assigns all species to the Nationa
 	NATIONAL_DEX_LATIOS,          	// SPECIES_LATIOS
 	NATIONAL_DEX_JIRACHI,         	// SPECIES_JIRACHI
 	NATIONAL_DEX_DEOXYS,          	// SPECIES_DEOXYS
-	NATIONAL_DEX_CHIMECHO         	// SPECIES_CHIMECHO
+	NATIONAL_DEX_CHIMECHO,         	// SPECIES_CHIMECHO
+        NATIONAL_DEX_MELTAN		// SPECIES_MELTAN
 };
 
 const u16 gHoennToNationalOrder[] = // Assigns Hoenn Dex Pokémon (Using National Dex Index)
@@ -1010,6 +1012,7 @@ const u16 gHoennToNationalOrder[] = // Assigns Hoenn Dex Pokémon (Using Nationa
 	NATIONAL_DEX_DUSCLOPS,  	// HOENN_DEX_DUSCLOPS
 	NATIONAL_DEX_TROPIUS,   	// HOENN_DEX_TROPIUS
 	NATIONAL_DEX_CHIMECHO,   	// HOENN_DEX_CHIMECHO
+        NATIONAL_DEX_MELTAN,		// HOENN_DEX_MELTAN
 	NATIONAL_DEX_ABSOL,     	// HOENN_DEX_ABSOL
 	NATIONAL_DEX_VULPIX,     	// HOENN_DEX_VULPIX
 	NATIONAL_DEX_NINETALES,  	// HOENN_DEX_NINETALES
