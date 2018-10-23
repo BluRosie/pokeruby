@@ -512,7 +512,7 @@ void HandleBoxInput(void) // pokemon box general handling?  orange hand?
                 {
                     gPokemonStorageSystemPtr->unk_0004 = 5;
                 }
-                else if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR)
+                else if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_MELTAN)
                 {
                     gPokemonStorageSystemPtr->unk_0004 = 8;
                 }
@@ -539,7 +539,7 @@ void HandleBoxInput(void) // pokemon box general handling?  orange hand?
             }
             break;
         case 14: // switch
-            if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR && gUnknown_020384E4 != 1)
+            if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_MELTAN && gUnknown_020384E4 != 1)
             {
                 gPokemonStorageSystemPtr->unk_0004 = 9;
             }
@@ -558,7 +558,7 @@ void HandleBoxInput(void) // pokemon box general handling?  orange hand?
             SetPSSCallback(sub_8097390);
             break;
         case 15: // place
-            if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR && gUnknown_020384E4 != 1)
+            if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_MELTAN && gUnknown_020384E4 != 1)
             {
                 gPokemonStorageSystemPtr->unk_0004 = 9;
             }
@@ -708,7 +708,7 @@ void sub_8097078(void) // selecting a pokemon in the pc
             }
             break;
         case 5: // place
-            if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR && gUnknown_020384E4 != 1)
+            if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_MELTAN && gUnknown_020384E4 != 1)
             {
                 gPokemonStorageSystemPtr->unk_0004 = 8;
             }
@@ -720,7 +720,7 @@ void sub_8097078(void) // selecting a pokemon in the pc
             }
             break;
         case 4: // switch
-            if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR && gUnknown_020384E4 != 1)
+            if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_MELTAN && gUnknown_020384E4 != 1)
             {
                 gPokemonStorageSystemPtr->unk_0004 = 8;
             }
@@ -749,7 +749,7 @@ void sub_8097078(void) // selecting a pokemon in the pc
             {
                 gPokemonStorageSystemPtr->unk_0004 = 3;
             }
-            else if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR)
+            else if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_MELTAN)
                 gPokemonStorageSystemPtr->unk_0004 = 7;
             else
             {
@@ -771,7 +771,7 @@ void sub_8097078(void) // selecting a pokemon in the pc
             {
                 gPokemonStorageSystemPtr->unk_0004 = 3;
             }
-            else if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_BULBASAUR)
+            else if (gPokemonStorageSystemPtr->unk_11f0 == SPECIES_MELTAN)
                 gPokemonStorageSystemPtr->unk_0004 = 6;
             else
             {
