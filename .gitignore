@@ -43,3 +43,4 @@ build/
 .vs/
 .projects/ARM/
 pokeruby.ss1
+*.diff
