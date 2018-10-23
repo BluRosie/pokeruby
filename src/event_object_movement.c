@@ -8211,3 +8211,31 @@ void DoRippleFieldEffect(struct EventObject *eventObject, struct Sprite *sprite)
     gFieldEffectArguments[3] = 3;
     FieldEffectStart(FLDEFF_RIPPLE);
 }
+
+u8 GetDestDirection(struct EventObject *playerEvObj, struct EventObject *followerEvObj)
+{
+    s16 deltaX = (playerEvObj->currentCoords.x - followerEvObj->currentCoords.x);
+    s16 deltaY = (playerEvObj->currentCoords.y - followerEvObj->currentCoords.y);
+
+    if ((deltaX >= deltaY && deltaY > 0) || (deltaX <= deltaY && deltaY < 0))
+    {
+        if (deltaX > 0)
+            return DIR_EAST;
+        else if (deltaX < 0)
+            return DIR_WEST;
+    }
+    else
+    {
+        if (deltaY > 0)
+            return DIR_NORTH;
+        else if (deltaY < 0)
+            return DIR_SOUTH;
+    }
+    return DIR_NONE;
+}
+/*
+void SetFollowerID(u8 id)
+{
+    gFollowerEventObject->eventObjId = id;
+}*/
+
