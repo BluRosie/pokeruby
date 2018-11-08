@@ -139,10 +139,16 @@ s32 DoPoisonFieldEffect(void)
         mon++;
     }
     if (numSurviving != 0 || numPoisoned != 0)
+    {
         FldeffPoison_Start();
+    }
     if (numSurviving != 0)
+    {
         return 2;
+    }
     if (numPoisoned != 0)
+    {
         return 1;
+    }
     return 0;
 }
