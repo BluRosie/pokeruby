@@ -8233,9 +8233,71 @@ u8 GetDestDirection(struct EventObject *playerEvObj, struct EventObject *followe
     }
     return DIR_NONE;
 }
-/*
-void SetFollowerID(u8 id)
+
+u8 GetFollowerId(void)
 {
-    gFollowerEventObject->eventObjId = id;
+    return gFollowerStruct->eventObjectId;
+}
+
+void SetFollowerId(u8 id)
+{
+    gFollowerStruct->eventObjectId = id;
+}
+
+u8 GetFollowerSpriteId(void)
+{
+    return gFollowerStruct->spriteId;
+}
+
+void SetFollowerSpriteId(u8 id)
+{
+    gFollowerStruct->spriteId = id;
+}
+
+/*struct EventObject GetPlayerEventObject(void)
+{
+    return gEventObjects[gPlayerAvatar.eventObjectId];
+}
+
+struct EventObject GetFollowerEventObject(void)
+{
+    return gEventObjects[gFollowerStruct->eventObjectId];
 }*/
 
+bool8 IsFollowerActive(void)
+{
+    return gFollowerStruct->active;
+}
+
+void ActivateFollower(void)
+{
+    struct EventObject *follower;
+    struct Sprite *sprite;
+    u8 spriteId = GetFollowerSpriteId();
+    u8 followerId = GetFollowerId();
+
+    sprite = &gSprites[spriteId];
+    follower = &gEventObjects[followerId];
+    gFollowerStruct->active = TRUE;
+    follower->invisible = FALSE;
+    UpdateEventObjectVisibility(follower, sprite);
+}
+
+void DeactivateFollower(void)
+{
+    struct EventObject *follower;
+    struct Sprite *sprite;
+    u8 spriteId = GetFollowerSpriteId();
+    u8 followerId = GetFollowerId();
+
+    sprite = &gSprites[spriteId];
+    follower = &gEventObjects[followerId];
+    gFollowerStruct->active = FALSE;
+    follower->invisible = TRUE;
+    UpdateEventObjectVisibility(follower, sprite);
+}
+
+bool8 CanFollowerMove(void)
+{
+    return !gFollowerStruct->cantMove;
+}

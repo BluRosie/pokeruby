@@ -17,15 +17,17 @@ struct LinkPlayerEventObject
     u8 mode;
 };
 
-struct FollowerEventObject
+struct FollowerStruct
 {
-    u8 eventObjId; // the id loaded from 0x0-0x10
+//    struct Coords16 destCoords; // player's previous coords
+//    struct Coords16 currCoords; // follower's current coordinates
+    u8 nextDir; // player's last movement direction
+    u8 lastDir; // follower's last movement direction (2 times ago for player)
+    u8 eventObjectId; // the id loaded from 0x0-0x10
     u8 spriteId; // the graphics id for the follower
     u8 delayed; // like a ledge or something
-    struct Coords16 prevCoords; // follower's previous coordinates
-    struct Coords16 currCoords; // follower's current coordinates
-    u16 active:1; // set to hide follower during like surf/biking
-    u16 noMovement:1; // set if for whatever reason the follower doesn't need to move (i.e. rest by jigglypuff)
+    u32 active:1; // set to hide follower during like surf/biking
+    u32 cantMove:1; // set if for whatever reason the follower doesn't need to move (i.e. rest by jigglypuff)
 };
 
 struct UCoords32
@@ -37,7 +39,7 @@ extern const struct UCoords32 gDirectionToVectors[];
 extern void (*gFieldCallback)(void);
 extern u8 gFieldLinkPlayerCount;
 extern u8 gUnknown_03004860;
-extern struct FollowerEventObject gFollowerEventObject[];
+extern struct FollowerStruct gFollowerStruct[];
 
 // sub_8052F5C
 void Overworld_ResetStateAfterFly(void);

@@ -404,3 +404,7 @@ gUnknown_02039760 = .; /* 2039760 */
     . += 0xC00;
 
 . = ALIGN(4); src/menu_cursor.o(ewram_data);
+
+. = ALIGN(8);
+gFollowerStruct = .;
+    . += 0xC;
