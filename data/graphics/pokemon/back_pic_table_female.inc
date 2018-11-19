@@ -292,7 +292,7 @@ gMonBackPicTableFemale:: @ 81E97F4
 	obj_tiles gMonBackPic_Linoone, 0x800, SPECIES_LINOONE
 	obj_tiles gMonBackPic_Wurmple, 0x800, SPECIES_WURMPLE
 	obj_tiles gMonBackPic_Silcoon, 0x800, SPECIES_SILCOON
-	obj_tiles gMonBackPic_BeautiflyFemale, 0x800, SPECIES_BEAUTIFLY
+	obj_tiles gMonBackPic_Beautifly, 0x800, SPECIES_BEAUTIFLY
 	obj_tiles gMonBackPic_Cascoon, 0x800, SPECIES_CASCOON
 	obj_tiles gMonBackPic_DustoxFemale, 0x800, SPECIES_DUSTOX
 	obj_tiles gMonBackPic_Lotad, 0x800, SPECIES_LOTAD
@@ -300,7 +300,7 @@ gMonBackPicTableFemale:: @ 81E97F4
 	obj_tiles gMonBackPic_LudicoloFemale, 0x800, SPECIES_LUDICOLO
 	obj_tiles gMonBackPic_Seedot, 0x800, SPECIES_SEEDOT
 	obj_tiles gMonBackPic_NuzleafFemale, 0x800, SPECIES_NUZLEAF
-	obj_tiles gMonBackPic_ShiftryFemale, 0x800, SPECIES_SHIFTRY
+	obj_tiles gMonBackPic_Shiftry, 0x800, SPECIES_SHIFTRY
 	obj_tiles gMonBackPic_Nincada, 0x800, SPECIES_NINCADA
 	obj_tiles gMonBackPic_Ninjask, 0x800, SPECIES_NINJASK
 	obj_tiles gMonBackPic_Shedinja, 0x800, SPECIES_SHEDINJA
@@ -329,7 +329,7 @@ gMonBackPicTableFemale:: @ 81E97F4
 	obj_tiles gMonBackPic_Corphish, 0x800, SPECIES_CORPHISH
 	obj_tiles gMonBackPic_Crawdaunt, 0x800, SPECIES_CRAWDAUNT
 	obj_tiles gMonBackPic_Feebas, 0x800, SPECIES_FEEBAS
-	obj_tiles gMonBackPic_MiloticFemale, 0x800, SPECIES_MILOTIC
+	obj_tiles gMonBackPic_Milotic, 0x800, SPECIES_MILOTIC
 	obj_tiles gMonBackPic_Carvanha, 0x800, SPECIES_CARVANHA
 	obj_tiles gMonBackPic_Sharpedo, 0x800, SPECIES_SHARPEDO
 	obj_tiles gMonBackPic_Trapinch, 0x800, SPECIES_TRAPINCH
