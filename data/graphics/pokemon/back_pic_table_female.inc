@@ -381,7 +381,7 @@ gMonBackPicTableFemale:: @ 81E97F4
 	obj_tiles gMonBackPic_Banette, 0x800, SPECIES_BANETTE
 	obj_tiles gMonBackPic_Seviper, 0x800, SPECIES_SEVIPER
 	obj_tiles gMonBackPic_Zangoose, 0x800, SPECIES_ZANGOOSE
-	obj_tiles gMonBackPic_RelicanthFemale, 0x800, SPECIES_RELICANTH
+	obj_tiles gMonBackPic_Relicanth, 0x800, SPECIES_RELICANTH
 	obj_tiles gMonBackPic_Aron, 0x800, SPECIES_ARON
 	obj_tiles gMonBackPic_Lairon, 0x800, SPECIES_LAIRON
 	obj_tiles gMonBackPic_Aggron, 0x800, SPECIES_AGGRON

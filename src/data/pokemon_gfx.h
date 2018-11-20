@@ -2243,7 +2243,6 @@ const u8 gMonFrontPic_Relicanth[] = INCBIN_U8("graphics/pokemon/relicanth/front.
 const u8 gMonFrontPic_RelicanthFemale[] = INCBIN_U8("graphics/pokemon/relicanth/frontf.4bpp.lz");
 const u8 gMonPalette_Relicanth[] = INCBIN_U8("graphics/pokemon/relicanth/normal.gbapal.lz");
 const u8 gMonBackPic_Relicanth[] = INCBIN_U8("graphics/pokemon/relicanth/back.4bpp.lz");
-const u8 gMonBackPic_RelicanthFemale[] = INCBIN_U8("graphics/pokemon/relicanth/backf.4bpp.lz");
 const u8 gMonShinyPalette_Relicanth[] = INCBIN_U8("graphics/pokemon/relicanth/shiny.gbapal.lz");
 const u8 gMonIcon_Relicanth[] = INCBIN_U8("graphics/pokemon/relicanth/icon.4bpp");
 const u8 gMonFootprint_Relicanth[] = INCBIN_U8("graphics/pokemon/relicanth/footprint.1bpp");
