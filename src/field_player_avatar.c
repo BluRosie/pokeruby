@@ -588,6 +588,17 @@ static u8 CheckForPlayerAvatarCollision(u8 direction)
     return CheckForEventObjectCollision(playerEventObj, x, y, direction, MapGridGetMetatileBehaviorAt(x, y));
 }
 
+u8 CheckForPlayerAvatarCollisionPrevCoords(u8 direction)
+{
+    s16 x, y;
+    struct EventObject *playerEventObj = &gEventObjects[gPlayerAvatar.eventObjectId];
+
+    x = playerEventObj->previousCoords.x;
+    y = playerEventObj->previousCoords.y;
+    MoveCoords(direction, &x, &y);
+    return CheckForEventObjectCollision(playerEventObj, x, y, direction, MapGridGetMetatileBehaviorAt(x, y));
+}
+
 u8 CheckForEventObjectCollision(struct EventObject *a, s16 x, s16 y, u8 direction, u8 e)
 {
     u8 collision;
@@ -864,13 +875,13 @@ static void PlayerRun(u8 a)
 void PlayerOnBikeCollide(u8 a)
 {
     PlayCollisionSoundIfNotFacingWarp(a);
-    PlayerSetAnimId(GetWalkInPlaceNormalMovementAction(a), 1);
+    PlayerSetAnimId(GetWalkInPlaceNormalMovementAction(a), 0);
 }
 
 static void PlayerNotOnBikeCollide(u8 a)
 {
     PlayCollisionSoundIfNotFacingWarp(a);
-    PlayerSetAnimId(GetWalkInPlaceSlowMovementAction(a), 1);
+    PlayerSetAnimId(GetWalkInPlaceSlowMovementAction(a), 0);
 }
 
 void PlayerFaceDirection(u8 direction)
@@ -947,7 +958,7 @@ void PlayerAcroTurnJump(u8 direction)
 void sub_80595DC(u8 direction)
 {
     PlaySE(SE_WALL_HIT);
-    PlayerSetAnimId(GetAcroWheelieInPlaceDirectionMovementAction(direction), 1);
+    PlayerSetAnimId(GetAcroWheelieInPlaceDirectionMovementAction(direction), 0);
 }
 
 void sub_8059600(u8 direction)

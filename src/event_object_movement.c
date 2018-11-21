@@ -8392,10 +8392,15 @@ bool8 IsFollowerActive(void)
 static void InitFollower(struct EventObject *eventObject)
 {
     gFollowerStruct->active = TRUE;
-//    gFollowerStruct->currDir = GetPlayerFacingDirection();
     gFollowerStruct->nextDir = GetPlayerFacingDirection();
-//    gFollowerStruct->eventObjectId = 
     gFollowerStruct->graphicsId = eventObject->graphicsId;
+    gFollowerStruct->initCoords.x = gEventObjects[gPlayerAvatar.eventObjectId].initialCoords.x;
+    gFollowerStruct->initCoords.y = gEventObjects[gPlayerAvatar.eventObjectId].initialCoords.y;
+    gFollowerStruct->eventObjectId = GetEventObjectIdByXY(eventObject->currentCoords.x, eventObject->currentCoords.y);
+    eventObject->currentCoords.x = gFollowerStruct->initCoords.x;
+	eventObject->currentCoords.y = gFollowerStruct->initCoords.y;
+    gEventObjects[gFollowerStruct->eventObjectId].currentCoords.x = eventObject->currentCoords.x;
+    gEventObjects[gFollowerStruct->eventObjectId].currentCoords.y = eventObject->currentCoords.y;
     gFollowerStruct->init = TRUE;
 }
 
@@ -8454,7 +8459,7 @@ bool8 MovementType_Follower_Step1(struct EventObject *eventObject, struct Sprite
         return FALSE;
     }
     gFollowerStruct->currDir = gFollowerStruct->nextDir;
-    if (gFollowerStruct->nextDir != GetPlayerMovementDirection() && gPlayerAvatar.runningState == MOVING)
+    if (gFollowerStruct->nextDir != GetPlayerMovementDirection() && gPlayerAvatar.runningState == MOVING && !CheckForPlayerAvatarCollisionPrevCoords(GetPlayerMovementDirection()))
         gFollowerStruct->nextDir = GetPlayerMovementDirection();
     
     return gFollowerMovementFuncs[PlayerGetCopyableMovement()](eventObject, sprite, GetPlayerMovementDirection(), NULL);

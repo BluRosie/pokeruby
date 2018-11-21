@@ -66,5 +66,6 @@ void sub_8059BF4(void);
 void sub_8059C94(u8);
 void sub_8059D08(u8);
 void StartFishing(u8 a);
+u8 CheckForPlayerAvatarCollisionPrevCoords(u8 direction);
 
 #endif

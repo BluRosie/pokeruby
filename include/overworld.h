@@ -19,6 +19,7 @@ struct LinkPlayerEventObject
 
 struct FollowerStruct
 {
+    struct Coords16 initCoords;
     u8 nextDir; // player's last movement direction
     u8 currDir; // follower's current
     u8 eventObjectId; // the id loaded from 0x0-0x10
