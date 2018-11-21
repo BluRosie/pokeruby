@@ -24,6 +24,7 @@ struct FollowerStruct
     u8 currDir; // follower's current
     u8 eventObjectId; // the id loaded from 0x0-0x10
     u8 graphicsId; // the graphics id for the follower
+    u8 localId;
     u8 delayed; // like a ledge or something
     u32 active:1; // set to hide follower during like surf/biking
     u32 cantMove:1; // set if for whatever reason the follower doesn't need to move (i.e. rest by jigglypuff)
@@ -83,8 +84,8 @@ void gpu_sync_bg_hide();
 // GetMapConnection
 bool8 SetDiveWarpEmerge(u16 x, u16 y);
 bool8 SetDiveWarpDive(u16 x, u16 y);
-void sub_80538F0(u8 mapGroup, u8 mapNum);
-// sub_8053994
+void LoadMapFromConnection(u8 mapGroup, u8 mapNum);
+// LoadMapFromWarp
 void ResetInitialPlayerAvatarState(void);
 void StoreInitialPlayerAvatarState(void);
 u16 GetCenterScreenMetatileBehavior(void);
@@ -102,7 +103,7 @@ void Overworld_ResetMapMusic(void);
 void Overworld_PlaySpecialMapMusic(void);
 void Overworld_SetSavedMusic(u16);
 void Overworld_ClearSavedMusic(void);
-void sub_8053F0C(void);
+void MusicChange(void);
 void Overworld_ChangeMusicToDefault(void);
 void Overworld_ChangeMusicTo(u16);
 // GetMapMusicFadeoutSpeed

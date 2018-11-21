@@ -729,7 +729,7 @@ bool8 CameraMove(int x, int y)
         old_y = gSaveBlock1.pos.y;
         connection = sub_8056A64(direction, gSaveBlock1.pos.x, gSaveBlock1.pos.y);
         sub_8056918(connection, direction, x, y);
-        sub_80538F0(connection->mapGroup, connection->mapNum);
+        LoadMapFromConnection(connection->mapGroup, connection->mapNum);
         gCamera.active = TRUE;
         gCamera.x = old_x - gSaveBlock1.pos.x;
         gCamera.y = old_y - gSaveBlock1.pos.y;

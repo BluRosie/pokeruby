@@ -8394,13 +8394,11 @@ static void InitFollower(struct EventObject *eventObject)
     gFollowerStruct->active = TRUE;
     gFollowerStruct->nextDir = GetPlayerFacingDirection();
     gFollowerStruct->graphicsId = eventObject->graphicsId;
-    gFollowerStruct->initCoords.x = gEventObjects[gPlayerAvatar.eventObjectId].initialCoords.x;
-    gFollowerStruct->initCoords.y = gEventObjects[gPlayerAvatar.eventObjectId].initialCoords.y;
-    gFollowerStruct->eventObjectId = GetEventObjectIdByXY(eventObject->currentCoords.x, eventObject->currentCoords.y);
-    eventObject->currentCoords.x = gFollowerStruct->initCoords.x;
-	eventObject->currentCoords.y = gFollowerStruct->initCoords.y;
-    gEventObjects[gFollowerStruct->eventObjectId].currentCoords.x = eventObject->currentCoords.x;
-    gEventObjects[gFollowerStruct->eventObjectId].currentCoords.y = eventObject->currentCoords.y;
+    gFollowerStruct->initCoords.x = gEventObjects[gPlayerAvatar.eventObjectId].previousCoords.x;
+    gFollowerStruct->initCoords.y = gEventObjects[gPlayerAvatar.eventObjectId].previousCoords.y;
+    gFollowerStruct->localId = eventObject->localId;
+    gFollowerStruct->eventObjectId = GetEventObjectIdByXY(0, 0);
+    Overworld_SetEventObjTemplateCoords(eventObject->localId, gEventObjects[gPlayerAvatar.eventObjectId].initialCoords.x, gEventObjects[gPlayerAvatar.eventObjectId].initialCoords.y);
     gFollowerStruct->init = TRUE;
 }
 

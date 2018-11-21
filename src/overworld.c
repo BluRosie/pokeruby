@@ -45,6 +45,7 @@
 #include "tv.h"
 #include "scanline_effect.h"
 #include "wild_encounter.h"
+#include "constants/event_object_movement_constants.h"
 #include "constants/map_types.h"
 #include "constants/maps.h"
 #include "constants/songs.h"
@@ -602,15 +603,24 @@ bool8 SetDiveWarpDive(u16 x, u16 y)
     return SetDiveWarp(CONNECTION_DIVE, x, y);
 }
 
-void sub_80538F0(u8 mapGroup, u8 mapNum)
+void LoadMapFromConnection(u8 mapGroup, u8 mapNum)
 {
     s32 paletteIndex;
+    int i;
 
     Overworld_SetWarpDestination(mapGroup, mapNum, -1, -1, -1);
-    sub_8053F0C();
+    MusicChange();
     ApplyCurrentWarp();
     LoadCurrentMapData();
     LoadEventObjTemplatesFromHeader();
+    for (i = 0; i < 64; i++)
+    {
+        if (gSaveBlock1.eventObjectTemplates[i].movementType == MOVEMENT_TYPE_FOLLOWER)
+        {
+            Overworld_SetEventObjTemplateCoords(gSaveBlock1.eventObjectTemplates[i].localId, gSaveBlock1.pos.x, gSaveBlock1.pos.y);
+            gFollowerStruct->nextDir = GetPlayerFacingDirection();
+        }
+    }
     ClearTempFieldEventData();
     ResetCyclingRoadChallengeData();
     RestartWildEncounterImmunitySteps();
@@ -637,13 +647,22 @@ void sub_80538F0(u8 mapGroup, u8 mapNum)
     ShowMapNamePopup();
 }
 
-void sub_8053994(u32 a1)
+void LoadMapFromWarp(u32 a1)
 {
     bool8 v2;
     bool8 v3;
+    int i;
 
     LoadCurrentMapData();
     LoadEventObjTemplatesFromHeader();
+    for (i = 0; i < 64; i++)
+    {
+        if (gSaveBlock1.eventObjectTemplates[i].movementType == MOVEMENT_TYPE_FOLLOWER)
+        {
+            Overworld_SetEventObjTemplateCoords(gSaveBlock1.eventObjectTemplates[i].localId, gSaveBlock1.pos.x, gSaveBlock1.pos.y);
+            gFollowerStruct->nextDir = GetPlayerFacingDirection();
+        }
+    }
     v2 = is_map_type_1_2_3_5_or_6(gMapHeader.mapType);
     v3 = Overworld_MapTypeIsIndoors(gMapHeader.mapType);
     ClearTempFieldEventData();
@@ -924,7 +943,7 @@ void Overworld_ClearSavedMusic(void)
     gSaveBlock1.savedMusic = 0;
 }
 
-void sub_8053F0C(void)
+void MusicChange(void)
 {
     if (FlagGet(FLAG_SPECIAL_FLAG_1) != TRUE)
     {
@@ -1544,7 +1563,7 @@ static bool32 sub_805483C(u8 *state)
         (*state)++;
         break;
     case 1:
-        sub_8053994(1);
+        LoadMapFromWarp(1);
         (*state)++;
         break;
     case 2:
@@ -1608,7 +1627,7 @@ bool32 sub_805493C(u8 *state, u32 a2)
     {
     case 0:
         FieldClearVBlankHBlankCallbacks();
-        sub_8053994(a2);
+        LoadMapFromWarp(a2);
         (*state)++;
         break;
     case 1:
