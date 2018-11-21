@@ -78,6 +78,7 @@
 #define MOVEMENT_TYPE_RUN_IN_PLACE_LEFT                0x4A
 #define MOVEMENT_TYPE_RUN_IN_PLACE_RIGHT               0x4B
 #define MOVEMENT_TYPE_INVISIBLE                        0x4C
+#define MOVEMENT_TYPE_FOLLOWER                         0x4D
 
 #define MOVEMENT_ACTION_FACE_DOWN                   0x0
 #define MOVEMENT_ACTION_FACE_UP                     0x1

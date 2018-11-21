@@ -92,6 +92,7 @@ static void GetGroundEffectFlags_Seaweed(struct EventObject *, u32 *);
 static void GetGroundEffectFlags_JumpLanding(struct EventObject *, u32 *);
 static u8 EventObjectCheckForReflectiveSurface(struct EventObject *);
 static void DoRippleFieldEffect(struct EventObject *eventObj, struct Sprite *sprite);
+static void InitFollower(struct EventObject *);
 
 const u8 gReflectionEffectPaletteMap[] = {1, 1, 6, 7, 8, 9, 6, 7, 8, 9, 11, 11, 0, 0, 0, 0};
 
@@ -186,6 +187,7 @@ static void (*const sMovementTypeCallbacks[])(struct Sprite *) =
     MovementType_RunInPlace,                   // MOVEMENT_TYPE_RUN_IN_PLACE_LEFT
     MovementType_RunInPlace,                   // MOVEMENT_TYPE_RUN_IN_PLACE_RIGHT
     MovementType_Invisible,                    // MOVEMENT_TYPE_INVISIBLE
+    MovementType_Follower,
 };
 
 const u8 gRangedMovementTypes[] = {
@@ -266,6 +268,7 @@ const u8 gRangedMovementTypes[] = {
     0, // MOVEMENT_TYPE_RUN_IN_PLACE_LEFT
     0, // MOVEMENT_TYPE_RUN_IN_PLACE_RIGHT
     0, // MOVEMENT_TYPE_INVISIBLE
+    0, // MOVEMENT_TYPE_FOLLOWER
 };
 
 const u8 gInitialMovementTypeFacingDirections[] = {
@@ -346,6 +349,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
     DIR_WEST,  // MOVEMENT_TYPE_RUN_IN_PLACE_LEFT
     DIR_EAST,  // MOVEMENT_TYPE_RUN_IN_PLACE_RIGHT
     DIR_SOUTH, // MOVEMENT_TYPE_INVISIBLE
+    DIR_NORTH, // MOVEMENT_TYPE_FOLLOWER
 };
 
 #define EVENT_OBJ_PAL_TAG_0  0x1103
@@ -4496,6 +4500,10 @@ static bool8 IsCoordOutsideEventObjectMovementRange(struct EventObject *eventObj
     s16 minv;
     s16 maxv;
 
+    if (eventObject->movementType == MOVEMENT_TYPE_FOLLOWER)
+    {
+        return FALSE;
+    }
     if (eventObject->range.as_nybbles.x != 0)
     {
         minv = eventObject->initialCoords.x - (eventObject->range.as_nybbles.x);
@@ -4533,8 +4541,10 @@ static bool8 DoesObjectCollideWithObjectAt(struct EventObject *eventObject, s16 
 
         if (eventObject2->active && eventObject2 != eventObject)
         {
-            if (((eventObject2->currentCoords.x == x && eventObject2->currentCoords.y == y) || (eventObject2->previousCoords.x == x && eventObject2->previousCoords.y == y))
-             && AreZCoordsCompatible(eventObject->currentElevation, eventObject2->currentElevation))
+            if (((eventObject2->currentCoords.x == x && eventObject2->currentCoords.y == y) // if the destination coords are the same as an npc
+                || (eventObject2->previousCoords.x == x && eventObject2->previousCoords.y == y && eventObject->movementType != MOVEMENT_TYPE_FOLLOWER)) // if the previous coords are the same as an npc and the one in question isn't the follower (this one for the follower specifically)
+                && AreZCoordsCompatible(eventObject->currentElevation, eventObject2->currentElevation) // if they're on the same height
+                && eventObject2->movementType != MOVEMENT_TYPE_FOLLOWER) // if an npc blocks the way that isn't the follower
                 return TRUE;
         }
     }
@@ -8354,14 +8364,14 @@ void SetFollowerId(u8 id)
     gFollowerStruct->eventObjectId = id;
 }
 
-u8 GetFollowerSpriteId(void)
+u8 GetFollowerGraphicsId(void)
 {
-    return gFollowerStruct->spriteId;
+    return gFollowerStruct->graphicsId;
 }
 
-void SetFollowerSpriteId(u8 id)
+void SetFollowerGraphicsId(u8 id)
 {
-    gFollowerStruct->spriteId = id;
+    gFollowerStruct->graphicsId = id;
 }
 
 /*struct EventObject GetPlayerEventObject(void)
@@ -8379,11 +8389,21 @@ bool8 IsFollowerActive(void)
     return gFollowerStruct->active;
 }
 
+static void InitFollower(struct EventObject *eventObject)
+{
+    gFollowerStruct->active = TRUE;
+//    gFollowerStruct->currDir = GetPlayerFacingDirection();
+    gFollowerStruct->nextDir = GetPlayerFacingDirection();
+//    gFollowerStruct->eventObjectId = 
+    gFollowerStruct->graphicsId = eventObject->graphicsId;
+    gFollowerStruct->init = TRUE;
+}
+
 void ActivateFollower(void)
 {
     struct EventObject *follower;
     struct Sprite *sprite;
-    u8 spriteId = GetFollowerSpriteId();
+    u8 spriteId = GetFollowerGraphicsId();
     u8 followerId = GetFollowerId();
 
     sprite = &gSprites[spriteId];
@@ -8397,7 +8417,7 @@ void DeactivateFollower(void)
 {
     struct EventObject *follower;
     struct Sprite *sprite;
-    u8 spriteId = GetFollowerSpriteId();
+    u8 spriteId = GetFollowerGraphicsId();
     u8 followerId = GetFollowerId();
 
     sprite = &gSprites[spriteId];
@@ -8410,4 +8430,172 @@ void DeactivateFollower(void)
 bool8 CanFollowerMove(void)
 {
     return !gFollowerStruct->cantMove;
+}
+
+movement_type_def(MovementType_Follower, gMovementTypeFuncs_Follower);
+
+bool8 MovementType_Follower_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (!gFollowerStruct->init)
+        InitFollower(eventObject);
+    ClearEventObjectMovement(eventObject, sprite);
+    if (eventObject->directionSequenceIndex == 0)
+    {
+        eventObject->directionSequenceIndex = GetPlayerMovementDirection();
+    }
+    sprite->data[1] = 1;
+    return TRUE;
+}
+
+bool8 MovementType_Follower_Step1(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (gEventObjects[gPlayerAvatar.eventObjectId].movementActionId == 0xFF || gPlayerAvatar.tileTransitionState == T_TILE_CENTER)
+    {
+        return FALSE;
+    }
+    gFollowerStruct->currDir = gFollowerStruct->nextDir;
+    if (gFollowerStruct->nextDir != GetPlayerMovementDirection() && gPlayerAvatar.runningState == MOVING)
+        gFollowerStruct->nextDir = GetPlayerMovementDirection();
+    
+    return gFollowerMovementFuncs[PlayerGetCopyableMovement()](eventObject, sprite, GetPlayerMovementDirection(), NULL);
+}
+
+bool8 MovementType_Follower_Step2(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (EventObjectExecSingleMovementAction(eventObject, sprite))
+    {
+        eventObject->singleMovementActive = 0;
+        sprite->data[1] = 1;
+    }
+
+    return FALSE;
+}
+
+bool8 FollowerMovement_FaceDirection(struct EventObject *eventObject, struct Sprite *sprite, u8 playerDirection, bool8 tileCallback(u8))
+{
+    EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(playerDirection));
+    eventObject->singleMovementActive = 1;
+    sprite->data[1] = 2;
+    return TRUE;
+}
+
+bool8 FollowerMovement_GoSpeed0(struct EventObject *eventObject, struct Sprite *sprite, u8 playerDirection, bool8 tileCallback(u8))
+{
+    u32 direction;
+    s16 x;
+    s16 y;
+
+    direction = gFollowerStruct->currDir;
+    EventObjectMoveDestCoords(eventObject, direction, &x, &y);
+    EventObjectSetSingleMovement(eventObject, sprite, GetWalkNormalMovementAction(direction));
+    if (GetCollisionAtCoords(eventObject, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
+    {
+        EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(direction));
+    }
+    eventObject->singleMovementActive = 1;
+    sprite->data[1] = 2;
+    return TRUE;
+}
+
+bool8 FollowerMovement_GoSpeed1(struct EventObject *eventObject, struct Sprite *sprite, u8 playerDirection, bool8 tileCallback(u8))
+{
+    u32 direction;
+    s16 x;
+    s16 y;
+
+    direction = gFollowerStruct->currDir;
+    EventObjectMoveDestCoords(eventObject, direction, &x, &y);
+    EventObjectSetSingleMovement(eventObject, sprite, GetWalkFastMovementAction(direction));
+    if (GetCollisionAtCoords(eventObject, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
+    {
+        EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(direction));
+    }
+    eventObject->singleMovementActive = TRUE;
+    sprite->data[1] = 2;
+    return TRUE;
+}
+
+bool8 FollowerMovement_GoSpeed2(struct EventObject *eventObject, struct Sprite *sprite, u8 playerDirection, bool8 tileCallback(u8))
+{
+    u32 direction;
+    s16 x;
+    s16 y;
+
+    direction = gFollowerStruct->currDir;
+    EventObjectMoveDestCoords(eventObject, direction, &x, &y);
+    EventObjectSetSingleMovement(eventObject, sprite, GetWalkFastestMovementAction(direction));
+    if (GetCollisionAtCoords(eventObject, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
+    {
+        EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(direction));
+    }
+    eventObject->singleMovementActive = TRUE;
+    sprite->data[1] = 2;
+    return TRUE;
+}
+
+bool8 FollowerMovement_Slide(struct EventObject *eventObject, struct Sprite *sprite, u8 playerDirection, bool8 tileCallback(u8))
+{
+    u32 direction;
+    s16 x;
+    s16 y;
+
+    direction = gFollowerStruct->currDir;
+    EventObjectMoveDestCoords(eventObject, direction, &x, &y);
+    EventObjectSetSingleMovement(eventObject, sprite, GetSlideMovementAction(direction));
+    if (GetCollisionAtCoords(eventObject, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
+    {
+        EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(direction));
+    }
+    eventObject->singleMovementActive = TRUE;
+    sprite->data[1] = 2;
+    return TRUE;
+}
+
+bool8 follower_IM_DIFFERENT(struct EventObject *eventObject, struct Sprite *sprite, u8 playerDirection, bool8 tileCallback(u8))
+{
+    u32 direction;
+
+    direction = gFollowerStruct->currDir;
+    EventObjectSetSingleMovement(eventObject, sprite, GetJumpInPlaceMovementAction(direction));
+    eventObject->singleMovementActive = TRUE;
+    sprite->data[1] = 2;
+    return TRUE;
+}
+
+bool8 FollowerMovement_GoSpeed4(struct EventObject *eventObject, struct Sprite *sprite, u8 playerDirection, bool8 tileCallback(u8))
+{
+    u32 direction;
+    s16 x;
+    s16 y;
+
+    direction = gFollowerStruct->currDir;
+    EventObjectMoveDestCoords(eventObject, direction, &x, &y);
+    EventObjectSetSingleMovement(eventObject, sprite, GetJumpMovementAction(direction));
+    if (GetCollisionAtCoords(eventObject, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
+    {
+        EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(direction));
+    }
+    eventObject->singleMovementActive = TRUE;
+    sprite->data[1] = 2;
+    return TRUE;
+}
+
+bool8 FollowerMovement_Jump(struct EventObject *eventObject, struct Sprite *sprite, u8 playerDirection, bool8 tileCallback(u8))
+{
+    u32 direction;
+    s16 x;
+    s16 y;
+
+    direction = gFollowerStruct->currDir;
+    x = eventObject->currentCoords.x;
+    y = eventObject->currentCoords.y;
+    MoveCoordsInDirection(direction, &x, &y, 2, 2);
+    EventObjectSetSingleMovement(eventObject, sprite, GetJump2MovementAction(direction));
+    if (GetCollisionAtCoords(eventObject, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
+    {
+        EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(direction));
+    }
+    eventObject->singleMovementActive = TRUE;
+    sprite->data[1] = 2;
+    return TRUE;
 }

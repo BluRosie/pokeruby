@@ -435,4 +435,24 @@ u8 (*const gMovementTypeFuncs_Invisible[])(struct EventObject *, struct Sprite *
     MovementType_Invisible_Step2
 };
 
+u8 (*const gMovementTypeFuncs_Follower[])(struct EventObject *, struct Sprite *) = {
+    MovementType_Follower_Step0,
+    MovementType_Follower_Step1,
+    MovementType_Follower_Step2
+};
+
+u8 (*const gFollowerMovementFuncs[])(struct EventObject *, struct Sprite *, u8, bool8(u8)) = {
+    CopyablePlayerMovement_None,
+    CopyablePlayerMovement_None,
+    FollowerMovement_GoSpeed0,
+    FollowerMovement_GoSpeed1,
+    FollowerMovement_GoSpeed2,
+    FollowerMovement_Slide,
+    follower_IM_DIFFERENT,
+    FollowerMovement_GoSpeed4,
+    FollowerMovement_Jump,
+    CopyablePlayerMovement_None,
+    CopyablePlayerMovement_None
+};
+
 #endif //POKERUBY_MOVEMENT_TYPE_FUNC_TABLES_H

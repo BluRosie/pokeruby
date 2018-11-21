@@ -19,6 +19,7 @@ void SetPlayerAvatarTransitionFlags(u16 a);
 void sub_8059204(void);
 u8 PlayerGetCopyableMovement(void);
 void PlayerSetAnimId(u8 a, u8 b);
+void PlayerSetAnimIdCollide(u8 a);
 void PlayerGoSpeed1(u8 a);
 void PlayerGoSpeed2(u8 a);
 void PlayerRideWaterCurrent(u8 a);

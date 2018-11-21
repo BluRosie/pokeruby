@@ -60,9 +60,9 @@ static void PlayerNotOnBikeNotMoving(u8 direction, u16 heldKeys);
 static void PlayerNotOnBikeTurningInPlace(u8 direction, u16 heldKeys);
 static void sub_8058D0C(u8 direction, u16 heldKeys);
 static u8 CheckForPlayerAvatarCollision(u8 a);
-static bool8 sub_8058EF0(s16 x, s16 y, u8 direction);
+static bool8 SurfCollision(s16 x, s16 y, u8 direction);
 static bool8 ShouldJumpLedge(s16 a, s16 b, u8 c);
-static u8 sub_8058F6C(s16 a, s16 b, u8 c);
+static u8 StrengthRockCollision(s16 a, s16 b, u8 c);
 static void check_acro_bike_metatile(s16 unused1, s16 unused2, u8 c, u8 *d);
 static void DoPlayerAvatarTransition(void);
 static void nullsub_49(struct EventObject *a);
@@ -94,7 +94,7 @@ static bool8 PlayerAvatar_SecretBaseMatSpinStep0(struct Task *task, struct Event
 static bool8 PlayerAvatar_SecretBaseMatSpinStep1(struct Task *task, struct EventObject *eventObject);
 static bool8 PlayerAvatar_SecretBaseMatSpinStep2(struct Task *task, struct EventObject *eventObject);
 static bool8 PlayerAvatar_SecretBaseMatSpinStep3(struct Task *task, struct EventObject *eventObject);
-static void sub_805A20C(u8 a);
+static void GetOffSurfer(u8 a);
 static void taskFF_0805D1D4(u8 taskId);
 static void sub_805A2D0(u8 taskId);
 static void Task_Fishing(u8 taskId);
@@ -517,17 +517,17 @@ static void MovePlayerNotOnBike(u8 direction, u16 heldKeys)
 
 static u8 CheckMovementInputNotOnBike(u8 direction)
 {
-    if (direction == DIR_NONE)
+    if (direction == DIR_NONE) // not moving whatsoever
     {
         gPlayerAvatar.runningState = NOT_MOVING;
         return 0;
     }
-    else if (direction != GetPlayerMovementDirection() && gPlayerAvatar.runningState != MOVING)
+    else if (direction != GetPlayerMovementDirection() && gPlayerAvatar.runningState != MOVING) // turn in place
     {
         gPlayerAvatar.runningState = TURN_DIRECTION;
         return 1;
     }
-    else
+    else // moving in general
     {
         gPlayerAvatar.runningState = MOVING;
         return 2;
@@ -593,14 +593,14 @@ u8 CheckForEventObjectCollision(struct EventObject *a, s16 x, s16 y, u8 directio
     u8 collision;
 
     collision = GetCollisionAtCoords(a, x, y, direction);
-    if (collision == 3 && sub_8058EF0(x, y, direction))
+    if (collision == 3 && SurfCollision(x, y, direction))
         return 5;
     if (ShouldJumpLedge(x, y, direction))
     {
         IncrementGameStat(GAME_STAT_JUMPED_DOWN_LEDGES);
         return COLLISION_LEDGE_JUMP;
     }
-    if (collision == 4 && sub_8058F6C(x, y, direction))
+    if (collision == 4 && StrengthRockCollision(x, y, direction))
         return 7;
 
     if (collision == 0)
@@ -612,13 +612,13 @@ u8 CheckForEventObjectCollision(struct EventObject *a, s16 x, s16 y, u8 directio
     return collision;
 }
 
-static bool8 sub_8058EF0(s16 x, s16 y, u8 direction)
+static bool8 SurfCollision(s16 x, s16 y, u8 direction)
 {
     if ((gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
      && MapGridGetZCoordAt(x, y) == 3
      && GetEventObjectIdByXYZ(x, y, 3) == 16)
     {
-        sub_805A20C(direction);
+        GetOffSurfer(direction);
         return TRUE;
     }
     else
@@ -635,7 +635,7 @@ static bool8 ShouldJumpLedge(s16 x, s16 y, u8 z)
         return FALSE;
 }
 
-static u8 sub_8058F6C(s16 x, s16 y, u8 direction)
+static u8 StrengthRockCollision(s16 x, s16 y, u8 direction)
 {
     if (FlagGet(FLAG_SYS_USE_STRENGTH))
     {
@@ -864,13 +864,13 @@ static void PlayerRun(u8 a)
 void PlayerOnBikeCollide(u8 a)
 {
     PlayCollisionSoundIfNotFacingWarp(a);
-    PlayerSetAnimId(GetWalkInPlaceNormalMovementAction(a), 2);
+    PlayerSetAnimId(GetWalkInPlaceNormalMovementAction(a), 1);
 }
 
 static void PlayerNotOnBikeCollide(u8 a)
 {
     PlayCollisionSoundIfNotFacingWarp(a);
-    PlayerSetAnimId(GetWalkInPlaceSlowMovementAction(a), 2);
+    PlayerSetAnimId(GetWalkInPlaceSlowMovementAction(a), 1);
 }
 
 void PlayerFaceDirection(u8 direction)
@@ -947,7 +947,7 @@ void PlayerAcroTurnJump(u8 direction)
 void sub_80595DC(u8 direction)
 {
     PlaySE(SE_WALL_HIT);
-    PlayerSetAnimId(GetAcroWheelieInPlaceDirectionMovementAction(direction), 2);
+    PlayerSetAnimId(GetAcroWheelieInPlaceDirectionMovementAction(direction), 1);
 }
 
 void sub_8059600(u8 direction)
@@ -1436,7 +1436,7 @@ static bool8 PlayerAvatar_SecretBaseMatSpinStep3(struct Task *task, struct Event
 
 /* Some Field effect */
 
-static void sub_805A20C(u8 a)
+static void GetOffSurfer(u8 a)
 {
     u8 taskId;
 
