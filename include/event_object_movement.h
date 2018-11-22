@@ -465,6 +465,10 @@ void SetObjectSubpriorityByZCoord(u8, struct Sprite *, u8);
 
 void MovementType_Follower(struct Sprite *);
 
+void ActivateFollower(void);
+void StopFollower(void);
+bool8 CanFollowerMove(void);
+
 u8 MovementType_Follower_Step0(struct EventObject *, struct Sprite *);
 u8 MovementType_Follower_Step1(struct EventObject *, struct Sprite *);
 u8 MovementType_Follower_Step2(struct EventObject *, struct Sprite *);
@@ -477,5 +481,6 @@ u8 FollowerMovement_Slide(struct EventObject *, struct Sprite *, u8, bool8(u8));
 u8 follower_IM_DIFFERENT(struct EventObject *, struct Sprite *, u8, bool8(u8));
 u8 FollowerMovement_GoSpeed4(struct EventObject *, struct Sprite *, u8, bool8(u8));
 u8 FollowerMovement_Jump(struct EventObject *, struct Sprite *, u8, bool8(u8));
+u8 FollowerMovement_DelayedPrep(struct EventObject *, struct Sprite *, u8, bool8(u8));
 
 #endif // GUARD_EVENTOBJMV_H

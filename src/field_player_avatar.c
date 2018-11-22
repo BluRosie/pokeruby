@@ -820,7 +820,7 @@ static bool8 PlayerCheckIfAnimFinishedOrInactive(void)
     return EventObjectCheckHeldMovementStatus(&gEventObjects[gPlayerAvatar.eventObjectId]);
 }
 
-static void PlayerSetCopyableMovement(u8 a)
+void PlayerSetCopyableMovement(u8 a)
 {
     gEventObjects[gPlayerAvatar.eventObjectId].playerCopyableMovement = a;
 }

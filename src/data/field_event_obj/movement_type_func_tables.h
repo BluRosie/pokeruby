@@ -450,9 +450,10 @@ u8 (*const gFollowerMovementFuncs[])(struct EventObject *, struct Sprite *, u8, 
     FollowerMovement_Slide,
     follower_IM_DIFFERENT,
     FollowerMovement_GoSpeed4,
-    FollowerMovement_Jump,
+    FollowerMovement_DelayedPrep,
     CopyablePlayerMovement_None,
-    CopyablePlayerMovement_None
+    CopyablePlayerMovement_None,
+    FollowerMovement_Jump
 };
 
 #endif //POKERUBY_MOVEMENT_TYPE_FUNC_TABLES_H

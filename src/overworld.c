@@ -618,7 +618,6 @@ void LoadMapFromConnection(u8 mapGroup, u8 mapNum)
         if (gSaveBlock1.eventObjectTemplates[i].movementType == MOVEMENT_TYPE_FOLLOWER)
         {
             Overworld_SetEventObjTemplateCoords(gSaveBlock1.eventObjectTemplates[i].localId, gSaveBlock1.pos.x, gSaveBlock1.pos.y);
-            gFollowerStruct->nextDir = GetPlayerFacingDirection();
         }
     }
     ClearTempFieldEventData();

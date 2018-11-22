@@ -18,6 +18,7 @@ u8 CheckForEventObjectCollision(struct EventObject *a, s16 b, s16 c, u8 d, u8 e)
 void SetPlayerAvatarTransitionFlags(u16 a);
 void sub_8059204(void);
 u8 PlayerGetCopyableMovement(void);
+void PlayerSetCopyableMovement(u8 a);
 void PlayerSetAnimId(u8 a, u8 b);
 void PlayerSetAnimIdCollide(u8 a);
 void PlayerGoSpeed1(u8 a);
