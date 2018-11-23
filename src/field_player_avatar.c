@@ -840,7 +840,8 @@ void PlayerSetAnimId(u8 movementActionId, u8 copyableMovement)
 {
     if (!PlayerIsAnimActive())
     {
-        PlayerSetCopyableMovement(copyableMovement);
+        if (copyableMovement != 0)
+            PlayerSetCopyableMovement(copyableMovement);
         EventObjectSetHeldMovement(&gEventObjects[gPlayerAvatar.eventObjectId], movementActionId);
     }
 }

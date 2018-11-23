@@ -8668,7 +8668,9 @@ bool8 FollowerMovement_GoSpeed0(struct EventObject *eventObject, struct Sprite *
     s16 y;
 
     if (playerDirection == 0)
+    {
         return FALSE;
+    }
     else if (playerDirection == 5)
         return FollowerMovement_Jump(eventObject, sprite, playerDirection, tileCallback);
     else if (playerDirection > 5)
@@ -8678,6 +8680,7 @@ bool8 FollowerMovement_GoSpeed0(struct EventObject *eventObject, struct Sprite *
     EventObjectSetSingleMovement(eventObject, sprite, GetWalkNormalMovementAction(direction));
     if (GetCollisionAtCoords(eventObject, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
     {
+        gFollowerStruct->nextDir = gFollowerStruct->currDir;
         EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(direction));
     }
     eventObject->singleMovementActive = 1;
@@ -8698,6 +8701,7 @@ bool8 FollowerMovement_GoSpeed1(struct EventObject *eventObject, struct Sprite *
     EventObjectSetSingleMovement(eventObject, sprite, GetWalkFastMovementAction(direction));
     if (GetCollisionAtCoords(eventObject, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
     {
+        gFollowerStruct->nextDir = gFollowerStruct->currDir;
         EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(direction));
     }
     eventObject->singleMovementActive = TRUE;
@@ -8718,6 +8722,7 @@ bool8 FollowerMovement_GoSpeed2(struct EventObject *eventObject, struct Sprite *
     EventObjectSetSingleMovement(eventObject, sprite, GetWalkFastestMovementAction(direction));
     if (GetCollisionAtCoords(eventObject, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
     {
+        gFollowerStruct->nextDir = gFollowerStruct->currDir;
         EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(direction));
     }
     eventObject->singleMovementActive = TRUE;
@@ -8738,6 +8743,7 @@ bool8 FollowerMovement_Slide(struct EventObject *eventObject, struct Sprite *spr
     EventObjectSetSingleMovement(eventObject, sprite, GetSlideMovementAction(direction));
     if (GetCollisionAtCoords(eventObject, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
     {
+        gFollowerStruct->nextDir = gFollowerStruct->currDir;
         EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(direction));
     }
     eventObject->singleMovementActive = TRUE;
@@ -8771,6 +8777,7 @@ bool8 FollowerMovement_GoSpeed4(struct EventObject *eventObject, struct Sprite *
     EventObjectSetSingleMovement(eventObject, sprite, GetJumpMovementAction(direction));
     if (GetCollisionAtCoords(eventObject, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
     {
+        gFollowerStruct->nextDir = gFollowerStruct->currDir;
         EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(direction));
     }
     eventObject->singleMovementActive = TRUE;
