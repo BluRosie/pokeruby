@@ -30,6 +30,8 @@ struct FollowerStruct
     u32 active:1; // set to hide follower during like surf/biking
     u32 cantMove:1; // set if for whatever reason the follower doesn't need to move (i.e. rest by jigglypuff)
     u32 init:1; // used for setting the follower up right when you enter the map
+    u32 runTransition:1; // set when the player starts running to augment the nextDir by 5
+    u32 isDelayed:1;
 };
 
 struct UCoords32

@@ -454,6 +454,7 @@ bool8 sub_806468C(struct Sprite *sprite);
 void sub_80646E4(struct Sprite *sprite, u8 a2, u8 a3, u8 a4);
 void DoShadowFieldEffect(struct EventObject *eventObject);
 u8 sub_8064704(struct Sprite *);
+u8 move_follower_for_jump(struct Sprite *);
 u8 sub_806478C(struct Sprite *);
 void SetAndStartSpriteAnim(struct Sprite *sprite, u8 a2, u8 a3);
 bool8 IsZCoordMismatchAt(u8 z, s16 x, s16 y);
