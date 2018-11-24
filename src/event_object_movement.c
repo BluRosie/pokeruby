@@ -8585,6 +8585,8 @@ bool8 CanFollowerMove(void)
 
 movement_type_def(MovementType_Follower, gMovementTypeFuncs_Follower);
 
+// inits follower, says that it's about to start moving
+
 bool8 MovementType_Follower_Step0(struct EventObject *eventObject, struct Sprite *sprite)
 {
     if (!gFollowerStruct->init)
@@ -8598,6 +8600,8 @@ bool8 MovementType_Follower_Step0(struct EventObject *eventObject, struct Sprite
     return TRUE;
 }
 
+// where all the bulk is handled 
+
 bool8 MovementType_Follower_Step1(struct EventObject *eventObject, struct Sprite *sprite)
 {
     if (gEventObjects[gPlayerAvatar.eventObjectId].movementActionId == 0xFF || gPlayerAvatar.tileTransitionState == T_TILE_CENTER)
@@ -8605,30 +8609,26 @@ bool8 MovementType_Follower_Step1(struct EventObject *eventObject, struct Sprite
         return FALSE;
     }
 
-    if (gFollowerStruct->runTransition)
+    if (gFollowerStruct->runTransition) // if transitioning to a run, make the follower do so as well.  handled in sub_8058D0C in field_player_avatar
     {
-        gFollowerStruct->currDir = (gFollowerStruct->nextDir + 5);
+        gFollowerStruct->currDir = (gFollowerStruct->nextDir + 5); // every direction + 5 is the corresponding running direction
         gFollowerStruct->runTransition = FALSE;
     }
     else
         gFollowerStruct->currDir = gFollowerStruct->nextDir;
 
-    if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_DASH && !CheckForPlayerAvatarCollisionPrevCoords(GetPlayerMovementDirection()))
-    {
-        if (gFollowerStruct->nextDir != GetPlayerMovementDirection() + 5)
-        {
-            gFollowerStruct->nextDir = GetPlayerMovementDirection();
-        }
-    }
-    else if (gFollowerStruct->nextDir != GetPlayerMovementDirection() && gPlayerAvatar.runningState == MOVING && !(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_DASH) && !CheckForPlayerAvatarCollisionPrevCoords(GetPlayerMovementDirection()))
-        gFollowerStruct->nextDir = GetPlayerMovementDirection();
+    if (((gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_DASH && gFollowerStruct->nextDir != (GetPlayerMovementDirection() + 5)) // if the player is running and the follower isn't
+        || (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_DASH) && gFollowerStruct->nextDir != GetPlayerMovementDirection() && gPlayerAvatar.runningState == MOVING))
+        //if the player isn't running, the follower isn't, but the player is still moving
+        && !CheckForPlayerAvatarCollisionPrevCoords(GetPlayerMovementDirection())) //collision passes
+        gFollowerStruct->nextDir = GetPlayerMovementDirection(); // augmented by 5 in the next iteration if running
 
-    if (gFollowerStruct->delayedMovement != 0)
+    if (gFollowerStruct->delayedMovement != 0) // currently only used for ledges
     {
-        u8 delayedMovement = gFollowerStruct->delayedMovement;
+        u8 delayedMovement = gFollowerStruct->delayedMovement; // we set it to a local var here so we can use it after zeroing it out one the next line
         gFollowerStruct->delayedMovement = 0;
-        gFollowerStruct->nextDir = 0;
-        gFollowerStruct->isDelayed = 1;
+        gFollowerStruct->nextDir = 0; // queue no movement so that the follower doesn't yeet off the edge early
+        gFollowerStruct->isDelayed = 1; // used to tell the player that it can't run before the follower jumps (there was a bug there ok)
         return gFollowerMovementFuncs[delayedMovement](eventObject, sprite, gFollowerStruct->currDir, NULL);
     }
     else
@@ -8639,9 +8639,9 @@ bool8 MovementType_Follower_Step1(struct EventObject *eventObject, struct Sprite
 
 bool8 MovementType_Follower_Step2(struct EventObject *eventObject, struct Sprite *sprite)
 {
-    if (CanFollowerMove)
+    if (CanFollowerMove()) // add this so we can stop the follower for whatever reason
     {
-        if (EventObjectExecSingleMovementAction(eventObject, sprite))
+        if (EventObjectExecSingleMovementAction(eventObject, sprite)) // finally do the movement
         {
             eventObject->singleMovementActive = 0;
             sprite->data[1] = 1;
@@ -8671,9 +8671,9 @@ bool8 FollowerMovement_GoSpeed0(struct EventObject *eventObject, struct Sprite *
     {
         return FALSE;
     }
-    else if (playerDirection == 5)
+    else if (playerDirection == 5) // if direction fed into this is 5, treat this movement as a ledge
         return FollowerMovement_Jump(eventObject, sprite, playerDirection, tileCallback);
-    else if (playerDirection > 5)
+    else if (playerDirection > 5) // if direction fed into this is above 5, this is actually running
         return FollowerMovement_GoSpeed1(eventObject, sprite, playerDirection, tileCallback);
     direction = gFollowerStruct->currDir;
     EventObjectMoveDestCoords(eventObject, direction, &x, &y);
@@ -8685,6 +8685,7 @@ bool8 FollowerMovement_GoSpeed0(struct EventObject *eventObject, struct Sprite *
     }
     eventObject->singleMovementActive = 1;
     sprite->data[1] = 2;
+    gFollowerStruct->cantRun = FALSE;
     return TRUE;
 }
 

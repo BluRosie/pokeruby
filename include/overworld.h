@@ -32,6 +32,7 @@ struct FollowerStruct
     u32 init:1; // used for setting the follower up right when you enter the map
     u32 runTransition:1; // set when the player starts running to augment the nextDir by 5
     u32 isDelayed:1;
+    u32 cantRun:1;
 };
 
 struct UCoords32

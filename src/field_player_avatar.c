@@ -564,7 +564,7 @@ static void sub_8058D0C(u8 direction, u16 heldKeys)
             PlayerGoSpeed2(direction);
             return;
         }
-        if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER) && (heldKeys & B_BUTTON) && gFollowerStruct->isDelayed == 0//&& FlagGet(FLAG_SYS_B_DASH)
+        if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER) && (heldKeys & B_BUTTON) && gFollowerStruct->isDelayed == FALSE && gFollowerStruct->cantRun == FALSE//&& FlagGet(FLAG_SYS_B_DASH)
          && IsRunningDisallowed(gEventObjects[gPlayerAvatar.eventObjectId].currentMetatileBehavior) == 0)
         {
             PlayerRun(direction);
