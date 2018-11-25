@@ -8625,11 +8625,9 @@ bool8 MovementType_Follower_Step1(struct EventObject *eventObject, struct Sprite
 
     if (gFollowerStruct->delayedMovement != 0) // currently only used for ledges
     {
-        u8 delayedMovement = gFollowerStruct->delayedMovement; // we set it to a local var here so we can use it after zeroing it out one the next line
-        gFollowerStruct->delayedMovement = 0;
         gFollowerStruct->nextDir = 0; // queue no movement so that the follower doesn't yeet off the edge early
         gFollowerStruct->isDelayed = 1; // used to tell the player that it can't run before the follower jumps (there was a bug there ok)
-        return gFollowerMovementFuncs[delayedMovement](eventObject, sprite, gFollowerStruct->currDir, NULL);
+        return gFollowerMovementFuncs[gFollowerStruct->delayedMovement](eventObject, sprite, gFollowerStruct->currDir, NULL);
     }
     else
     {
@@ -8806,14 +8804,19 @@ bool8 FollowerMovement_Jump(struct EventObject *eventObject, struct Sprite *spri
     {
         EventObjectSetSingleMovement(eventObject, sprite, GetFaceDirectionMovementAction(direction));
         gFollowerStruct->nextDir = 5;
-        gFollowerStruct->ledgeDirection = GetPlayerMovementDirection();
+        gFollowerStruct->delayedMovement = 11;
+        if (!gFollowerStruct->ledgeDirection)
+            gFollowerStruct->ledgeDirection = GetPlayerMovementDirection();
         eventObject->singleMovementActive = TRUE;
         sprite->data[1] = 2;
         return TRUE;
     }
     eventObject->singleMovementActive = TRUE;
     sprite->data[1] = 2;
+    gFollowerStruct->ledgeDirection = 0;
     gFollowerStruct->isDelayed = 0;
+    gFollowerStruct->delayedMovement = 0;
+    gFollowerStruct->nextDir = GetPlayerMovementDirection();
     return TRUE;
 }
 

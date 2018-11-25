@@ -606,20 +606,12 @@ bool8 SetDiveWarpDive(u16 x, u16 y)
 void LoadMapFromConnection(u8 mapGroup, u8 mapNum)
 {
     s32 paletteIndex;
-    int i;
 
     Overworld_SetWarpDestination(mapGroup, mapNum, -1, -1, -1);
     MusicChange();
     ApplyCurrentWarp();
     LoadCurrentMapData();
     LoadEventObjTemplatesFromHeader();
-    for (i = 0; i < 64; i++)
-    {
-        if (gSaveBlock1.eventObjectTemplates[i].movementType == MOVEMENT_TYPE_FOLLOWER)
-        {
-            Overworld_SetEventObjTemplateCoords(gSaveBlock1.eventObjectTemplates[i].localId, gSaveBlock1.pos.x, gSaveBlock1.pos.y);
-        }
-    }
     ClearTempFieldEventData();
     ResetCyclingRoadChallengeData();
     RestartWildEncounterImmunitySteps();
