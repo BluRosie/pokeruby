@@ -1,4 +1,4 @@
-Route125:: @ 83058A8
+Route125::
 	.4byte Route125_Layout
 	.4byte Route125_MapEvents
 	.4byte Route125_MapScripts

@@ -1,4 +1,4 @@
-MossdeepCity:: @ 83054F0
+MossdeepCity::
 	.4byte MossdeepCity_Layout
 	.4byte MossdeepCity_MapEvents
 	.4byte MossdeepCity_MapScripts

@@ -1,4 +1,4 @@
-MossdeepCity_EventObjects:: @ 838042C
+MossdeepCity_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_SAILOR, 0, 42, 24, 5, MOVEMENT_TYPE_WANDER_AROUND, 1, 1, 0, 0, MossdeepCity_EventScript_14CFB7, 0
 	object_event 2, EVENT_OBJ_GFX_OLD_MAN_1, 0, 50, 34, 5, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT, 1, 0, 0, 0, MossdeepCity_EventScript_14CFC9, 0
 	object_event 3, EVENT_OBJ_GFX_WOMAN_2, 0, 32, 12, 5, MOVEMENT_TYPE_WANDER_AROUND, 1, 1, 0, 0, MossdeepCity_EventScript_14CFAE, 0
@@ -9,7 +9,7 @@ MossdeepCity_EventObjects:: @ 838042C
 	object_event 8, EVENT_OBJ_GFX_GIRL_1, 0, 56, 21, 7, MOVEMENT_TYPE_FACE_RIGHT, 1, 1, 0, 0, MossdeepCity_EventScript_14CFDB, 0
 	object_event 9, EVENT_OBJ_GFX_BOY_2, 0, 23, 13, 5, MOVEMENT_TYPE_WANDER_AROUND, 1, 1, 0, 0, MossdeepCity_EventScript_14D027, 0
 
-MossdeepCity_MapWarps:: @ 8380504
+MossdeepCity_MapWarps::
 	warp_def 28, 9, 0, 0, MAP_MOSSDEEP_CITY_HOUSE1
 	warp_def 38, 9, 0, 0, MAP_MOSSDEEP_CITY_GYM
 	warp_def 28, 16, 0, 0, MAP_MOSSDEEP_CITY_POKEMON_CENTER_1F
@@ -21,13 +21,13 @@ MossdeepCity_MapWarps:: @ 8380504
 	warp_def 64, 13, 0, 0, MAP_MOSSDEEP_CITY_SPACE_CENTER_1F
 	warp_def 36, 24, 0, 0, MAP_MOSSDEEP_CITY_GAME_CORNER_1F
 
-MossdeepCity_MapCoordEvents:: @ 8380554
+MossdeepCity_MapCoordEvents::
 	coord_event 25, 25, 0, VAR_TEMP_1, 0, MossdeepCity_EventScript_14D008
 	coord_event 26, 25, 0, VAR_TEMP_1, 0, MossdeepCity_EventScript_14D008
 	coord_event 32, 27, 0, VAR_TEMP_1, 0, MossdeepCity_EventScript_14D008
 	coord_event 33, 27, 0, VAR_TEMP_1, 0, MossdeepCity_EventScript_14D008
 
-MossdeepCity_MapBGEvents:: @ 8380594
+MossdeepCity_MapBGEvents::
 	bg_event 25, 16, 0, BG_EVENT_PLAYER_FACING_ANY, MossdeepCity_EventScript_14CFF6
 	bg_event 34, 9, 0, BG_EVENT_PLAYER_FACING_ANY, MossdeepCity_EventScript_14CFED
 	bg_event 29, 16, 0, BG_EVENT_PLAYER_FACING_NORTH, MossdeepCity_EventScript_1A00EA
@@ -37,5 +37,5 @@ MossdeepCity_MapBGEvents:: @ 8380594
 	bg_event 39, 18, 0, BG_EVENT_PLAYER_FACING_NORTH, MossdeepCity_EventScript_1A00E1
 	bg_event 57, 21, 7, BG_EVENT_PLAYER_FACING_ANY, MossdeepCity_EventScript_14CFE4
 
-MossdeepCity_MapEvents:: @ 83805F4
+MossdeepCity_MapEvents::
 	map_events MossdeepCity_EventObjects, MossdeepCity_MapWarps, MossdeepCity_MapCoordEvents, MossdeepCity_MapBGEvents

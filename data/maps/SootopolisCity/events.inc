@@ -1,4 +1,4 @@
-SootopolisCity_EventObjects:: @ 8380608
+SootopolisCity_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_BEAUTY, 0, 29, 20, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, SootopolisCity_EventScript_14D18D, FLAG_HIDE_CAVE_OF_ORIGIN_ENTRANCE_WOMAN_1
 	object_event 2, EVENT_OBJ_GFX_BEAUTY, 0, 33, 20, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, SootopolisCity_EventScript_14D196, FLAG_HIDE_CAVE_OF_ORIGIN_ENTRANCE_WOMAN_2
 	object_event 3, EVENT_OBJ_GFX_OLD_MAN_1, 0, 36, 21, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, SootopolisCity_EventScript_14D16E, FLAG_HIDE_SOOTOPOLIS_RESIDENTS
@@ -11,7 +11,7 @@ SootopolisCity_EventObjects:: @ 8380608
 	object_event 10, EVENT_OBJ_GFX_STEVEN, 0, 30, 21, 3, MOVEMENT_TYPE_FACE_RIGHT, 1, 1, 0, 0, SootopolisCity_EventScript_14D498, FLAG_HIDE_STEVEN_SOOTOPOLIS
 	object_event 11, EVENT_OBJ_GFX_WOMAN_7, 0, 49, 34, 3, MOVEMENT_TYPE_WANDER_UP_AND_DOWN, 1, 1, 0, 0, SootopolisCity_EventScript_14D2A6, FLAG_HIDE_SOOTOPOLIS_RESIDENTS
 
-SootopolisCity_MapWarps:: @ 8380710
+SootopolisCity_MapWarps::
 	warp_def 43, 31, 0, 0, MAP_SOOTOPOLIS_CITY_POKEMON_CENTER_1F
 	warp_def 17, 29, 0, 0, MAP_SOOTOPOLIS_CITY_MART
 	warp_def 31, 32, 0, 0, MAP_SOOTOPOLIS_CITY_GYM_1F
@@ -25,10 +25,10 @@ SootopolisCity_MapWarps:: @ 8380710
 	warp_def 8, 35, 0, 0, MAP_SOOTOPOLIS_CITY_HOUSE7
 	warp_def 48, 25, 0, 0, MAP_SOOTOPOLIS_CITY_HOUSE8
 
-SootopolisCity_MapCoordEvents:: @ 8380770
+SootopolisCity_MapCoordEvents::
 	coord_event 25, 6, 3, VAR_SOOTOPOLIS_STATE, 1, SootopolisCity_EventScript_14D308
 
-SootopolisCity_MapBGEvents:: @ 8380780
+SootopolisCity_MapBGEvents::
 	bg_event 32, 34, 0, BG_EVENT_PLAYER_FACING_ANY, SootopolisCity_EventScript_14D2ED
 	bg_event 19, 29, 0, BG_EVENT_PLAYER_FACING_NORTH, SootopolisCity_EventScript_1A00E1
 	bg_event 44, 31, 0, BG_EVENT_PLAYER_FACING_NORTH, SootopolisCity_EventScript_1A00EA
@@ -36,5 +36,5 @@ SootopolisCity_MapBGEvents:: @ 8380780
 	bg_event 18, 29, 0, BG_EVENT_PLAYER_FACING_NORTH, SootopolisCity_EventScript_1A00E1
 	bg_event 41, 37, 0, BG_EVENT_PLAYER_FACING_ANY, SootopolisCity_EventScript_14D2F6
 
-SootopolisCity_MapEvents:: @ 83807C8
+SootopolisCity_MapEvents::
 	map_events SootopolisCity_EventObjects, SootopolisCity_MapWarps, SootopolisCity_MapCoordEvents, SootopolisCity_MapBGEvents

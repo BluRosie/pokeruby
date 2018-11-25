@@ -1,4 +1,4 @@
-Route124_EventObjects:: @ 8384D10
+Route124_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_SWIMMER_M, 0, 58, 59, 1, MOVEMENT_TYPE_LOOK_AROUND, 5, 0, 1, 3, Route124_EventScript_151DF8, 0
 	object_event 2, EVENT_OBJ_GFX_SWIMMER_M, 0, 33, 25, 1, MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_DOWN_LEFT_UP, 5, 3, 1, 3, Route124_EventScript_151E0F, 0
 	object_event 3, EVENT_OBJ_GFX_SWIMMER_F, 0, 14, 27, 1, MOVEMENT_TYPE_ROTATE_CLOCKWISE, 0, 0, 1, 3, Route124_EventScript_151E26, 0
@@ -10,11 +10,11 @@ Route124_EventObjects:: @ 8384D10
 	object_event 9, EVENT_OBJ_GFX_SWIMMER_F, 0, 18, 44, 1, MOVEMENT_TYPE_FACE_DOWN, 1, 1, 1, 0, Route124_EventScript_151E92, 0
 	object_event 10, EVENT_OBJ_GFX_TUBER_M_SWIMMING, 0, 17, 44, 1, MOVEMENT_TYPE_FACE_DOWN, 1, 1, 1, 0, Route124_EventScript_151ED8, 0
 
-Route124_MapWarps:: @ 8384E00
+Route124_MapWarps::
 	warp_def 70, 48, 3, 0, MAP_ROUTE124_DIVING_TREASURE_HUNTERS_HOUSE
 
-Route124_MapBGEvents:: @ 8384E08
+Route124_MapBGEvents::
 	bg_event 73, 48, 3, BG_EVENT_PLAYER_FACING_ANY, Route124_EventScript_151DEF
 
-Route124_MapEvents:: @ 8384E14
+Route124_MapEvents::
 	map_events Route124_EventObjects, Route124_MapWarps, 0x0, Route124_MapBGEvents

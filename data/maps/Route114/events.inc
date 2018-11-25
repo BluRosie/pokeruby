@@ -1,4 +1,4 @@
-Route114_EventObjects:: @ 8382C48
+Route114_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_BERRY_TREE, 0, 31, 43, 3, MOVEMENT_TYPE_BERRY_TREE_GROWTH, 0, 0, 0, 77, S_BerryTree, 0
 	object_event 2, EVENT_OBJ_GFX_BERRY_TREE, 0, 31, 44, 3, MOVEMENT_TYPE_BERRY_TREE_GROWTH, 0, 0, 0, 78, S_BerryTree, 0
 	object_event 3, EVENT_OBJ_GFX_HIKER, 0, 15, 65, 7, MOVEMENT_TYPE_FACE_RIGHT, 0, 0, 1, 6, Route114_EventScript_1507F1, 0
@@ -23,12 +23,12 @@ Route114_EventObjects:: @ 8382C48
 	object_event 22, EVENT_OBJ_GFX_LASS, 0, 24, 44, 3, MOVEMENT_TYPE_FACE_DOWN, 1, 1, 1, 0, Route114_EventScript_150912, 0
 	object_event 23, EVENT_OBJ_GFX_LASS, 0, 23, 44, 3, MOVEMENT_TYPE_FACE_DOWN, 1, 1, 1, 0, Route114_EventScript_1508F7, 0
 
-Route114_MapWarps:: @ 8382E70
+Route114_MapWarps::
 	warp_def 8, 63, 0, 0, MAP_METEOR_FALLS_1F_1R
 	warp_def 29, 5, 0, 0, MAP_ROUTE114_FOSSIL_MANIACS_HOUSE
 	warp_def 27, 36, 0, 0, MAP_ROUTE114_LANETTES_HOUSE
 
-Route114_MapBGEvents:: @ 8382E88
+Route114_MapBGEvents::
 	bg_event 7, 64, 0, BG_EVENT_PLAYER_FACING_ANY, Route114_EventScript_1507D6
 	bg_event 31, 7, 0, BG_EVENT_PLAYER_FACING_ANY, Route114_EventScript_1507DF
 	bg_secret_base_event 9, 47, 0, SECRET_BASE_BROWN_CAVE1_1
@@ -42,5 +42,5 @@ Route114_MapBGEvents:: @ 8382E88
 	bg_secret_base_event 32, 57, 0, SECRET_BASE_BROWN_CAVE4_3
 	bg_hidden_item_event 7, 30, 3, ITEM_REVIVE, FLAG_HIDDEN_ITEM_2A
 
-Route114_MapEvents:: @ 8382F18
+Route114_MapEvents::
 	map_events Route114_EventObjects, Route114_MapWarps, 0x0, Route114_MapBGEvents

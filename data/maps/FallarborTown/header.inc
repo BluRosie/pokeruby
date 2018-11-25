@@ -1,4 +1,4 @@
-FallarborTown:: @ 83055B4
+FallarborTown::
 	.4byte FallarborTown_Layout
 	.4byte FallarborTown_MapEvents
 	.4byte FallarborTown_MapScripts

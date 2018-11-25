@@ -1,4 +1,4 @@
-Route114:: @ 8305774
+Route114::
 	.4byte Route114_Layout
 	.4byte Route114_MapEvents
 	.4byte Route114_MapScripts

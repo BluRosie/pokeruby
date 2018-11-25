@@ -1,4 +1,4 @@
-Route127:: @ 83058E0
+Route127::
 	.4byte Route127_Layout
 	.4byte Route127_MapEvents
 	.4byte Route127_MapScripts

@@ -12,10 +12,11 @@ PetalburgWoods_EventObjects::
 	object_event 11, EVENT_OBJ_GFX_BOY_3, 0, 33, 36, 3, MOVEMENT_TYPE_WANDER_AROUND, 2, 1, 0, 0, PetalburgWoods_EventScript_15CED3, 0
 	object_event 12, EVENT_OBJ_GFX_ITEM_BALL, 0, 35, 29, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, PetalburgWoods_EventScript_1B1779, FLAG_ITEM_PETALBURG_WOODS_4
 	object_event 13, EVENT_OBJ_GFX_GIRL_2, 0, 32, 8, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, PetalburgWoods_EventScript_15CEDC, 0
+	object_event 14, EVENT_OBJ_GFX_MELTAN, 0, 7, 17, 3, MOVEMENT_TYPE_NONE, 0, 0, FALSE, 0, NULL, 0
 
 PetalburgWoods_MapWarps::
-	warp_def 36, 38, 0, 6, MAP_ROUTE104
-	warp_def 37, 38, 0, 7, MAP_ROUTE104
+	warp_def 36, 38, 0, 6, MAP_ROUTE102
+	warp_def 37, 38, 0, 7, MAP_ROUTE102
 
 PetalburgWoods_MapCoordEvents::
 	coord_event 13, 19, 3, VAR_PETALBURG_WOODS_STATE, 0, PetalburgWoods_EventScript_15CCA8

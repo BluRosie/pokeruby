@@ -1,4 +1,4 @@
-Route124:: @ 830588C
+Route124::
 	.4byte Route124_Layout
 	.4byte Route124_MapEvents
 	.4byte Route124_MapScripts

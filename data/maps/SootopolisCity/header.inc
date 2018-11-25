@@ -1,4 +1,4 @@
-SootopolisCity:: @ 830550C
+SootopolisCity::
 	.4byte SootopolisCity_Layout
 	.4byte SootopolisCity_MapEvents
 	.4byte SootopolisCity_MapScripts
