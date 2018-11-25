@@ -12,3 +12,4 @@ UnknownMap_082FF894_Layout::
 	.4byte UnknownMap_082FF894_MapBlockdata
 	.4byte gTileset_General
 	.4byte gTileset_Cave
+

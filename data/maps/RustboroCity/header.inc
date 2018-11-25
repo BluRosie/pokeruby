@@ -1,4 +1,4 @@
-RustboroCity:: @ 830549C
+RustboroCity::
 	.4byte RustboroCity_Layout
 	.4byte RustboroCity_MapEvents
 	.4byte RustboroCity_MapScripts

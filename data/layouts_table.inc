@@ -1,5 +1,5 @@
 	.align 2
-gMapLayouts:: @ 8304F18
+gMapLayouts::
 	.4byte PetalburgCity_Layout
 	.4byte SlateportCity_Layout
 	.4byte MauvilleCity_Layout
@@ -170,7 +170,7 @@ gMapLayouts:: @ 8304F18
 	.4byte ShoalCave_LowTideLowerRoom_Layout
 	.4byte ShoalCave_HighTideEntranceRoom_Layout
 	.4byte ShoalCave_HighTideInnerRoom_Layout
-	.4byte UnknownMap_082E55C8_Layout @ unused maps
+	.4byte UnknownMap_082E55C8_Layout
 	.4byte UnknownMap_082E55EC_Layout
 	.4byte UnknownMap_082E5610_Layout
 	.4byte UnknownMap_082E5634_Layout

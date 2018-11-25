@@ -1,4 +1,4 @@
-Route116:: @ 83057AC
+Route116::
 	.4byte Route116_Layout
 	.4byte Route116_MapEvents
 	.4byte Route116_MapScripts

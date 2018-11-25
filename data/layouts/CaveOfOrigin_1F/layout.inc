@@ -1,14 +1,15 @@
-CaveOfOrigin_1F_MapBorder:: @ 82DFE0C
+CaveOfOrigin_1F_MapBorder::
 	.incbin "data/layouts/CaveOfOrigin_1F/border.bin"
 
-CaveOfOrigin_1F_MapBlockdata:: @ 82DFE14
+CaveOfOrigin_1F_MapBlockdata::
 	.incbin "data/layouts/CaveOfOrigin_1F/map.bin"
 
 	.align 2
-CaveOfOrigin_1F_Layout:: @ 82E0238
+CaveOfOrigin_1F_Layout::
 	.4byte 0x17
 	.4byte 0x17
 	.4byte CaveOfOrigin_1F_MapBorder
 	.4byte CaveOfOrigin_1F_MapBlockdata
 	.4byte gTileset_General
 	.4byte gTileset_Cave
+

@@ -1,14 +1,15 @@
-Route104_MrBrineysHouse_MapBorder:: @ 82D1FDC
+Route104_MrBrineysHouse_MapBorder::
 	.incbin "data/layouts/Route104_MrBrineysHouse/border.bin"
 
-Route104_MrBrineysHouse_MapBlockdata:: @ 82D1FE4
+Route104_MrBrineysHouse_MapBlockdata::
 	.incbin "data/layouts/Route104_MrBrineysHouse/map.bin"
 
 	.align 2
-Route104_MrBrineysHouse_Layout:: @ 82D20BC
+Route104_MrBrineysHouse_Layout::
 	.4byte 0xc
 	.4byte 0x9
 	.4byte Route104_MrBrineysHouse_MapBorder
 	.4byte Route104_MrBrineysHouse_MapBlockdata
 	.4byte gTileset_Building
 	.4byte gTileset_GenericBuilding
+

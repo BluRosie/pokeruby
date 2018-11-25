@@ -1,14 +1,15 @@
-UnreferencedMap_MapBorder:: @ 82BD8DC
+UnreferencedMap_MapBorder::
 	.incbin "data/layouts/UnreferencedMap/border.bin"
 
-UnreferencedMap_MapBlockdata: @ 82BD8E4
+UnreferencedMap_MapBlockdata::
 	.incbin "data/layouts/UnreferencedMap/map.bin"
 
 	.align 2
-UnreferencedMap_Layout:: @ 82BF1E4
+UnreferencedMap_Layout::
 	.4byte 0x50
 	.4byte 0x28
 	.4byte UnreferencedMap_MapBorder
 	.4byte UnreferencedMap_MapBlockdata
 	.4byte gTileset_General
 	.4byte gTileset_Cave
+

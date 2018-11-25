@@ -1,4 +1,4 @@
-Route113:: @ 8305758
+Route113::
 	.4byte Route113_Layout
 	.4byte Route113_MapEvents
 	.4byte Route113_MapScripts

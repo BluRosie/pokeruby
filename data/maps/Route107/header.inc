@@ -1,4 +1,4 @@
-Route107:: @ 83056B0
+Route107::
 	.4byte Route107_Layout
 	.4byte Route107_MapEvents
 	.4byte Route107_MapScripts

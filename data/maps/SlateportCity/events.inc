@@ -1,4 +1,4 @@
-SlateportCity_EventObjects:: @ 837F7AC
+SlateportCity_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_FAT_MAN, 0, 21, 11, 3, MOVEMENT_TYPE_WANDER_AROUND, 1, 1, 0, 0, SlateportCity_EventScript_14BBD6, 0
 	object_event 2, EVENT_OBJ_GFX_MAN_1, 0, 35, 27, 3, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT, 1, 0, 0, 0, SlateportCity_EventScript_14BBF3, 0
 	object_event 3, EVENT_OBJ_GFX_BOY_4, 0, 15, 13, 3, MOVEMENT_TYPE_WANDER_AROUND, 1, 2, 0, 0, SlateportCity_EventScript_14BBB5, 0
@@ -31,7 +31,7 @@ SlateportCity_EventObjects:: @ 837F7AC
 	object_event 30, EVENT_OBJ_GFX_VAR_1, 0, 21, 26, 3, MOVEMENT_TYPE_FACE_RIGHT, 1, 1, 0, 0, SlateportCity_EventScript_14BDC4, FLAG_HIDE_EVIL_TEAM_SLATEPORT
 	object_event 31, EVENT_OBJ_GFX_VAR_1, 0, 20, 26, 3, MOVEMENT_TYPE_FACE_RIGHT, 1, 1, 0, 0, SlateportCity_EventScript_14BDDB, FLAG_HIDE_EVIL_TEAM_SLATEPORT
 
-SlateportCity_MapWarps:: @ 837FA94
+SlateportCity_MapWarps::
 	warp_def 19, 19, 0, 0, MAP_SLATEPORT_CITY_POKEMON_CENTER_1F
 	warp_def 13, 26, 0, 0, MAP_SLATEPORT_CITY_MART
 	warp_def 26, 38, 0, 0, MAP_SLATEPORT_CITY_STERNS_SHIPYARD_1F
@@ -44,7 +44,7 @@ SlateportCity_MapWarps:: @ 837FA94
 	warp_def 40, 7, 0, 2, MAP_SLATEPORT_CITY_HARBOR
 	warp_def 21, 44, 0, 0, MAP_SLATEPORT_CITY_HOUSE2
 
-SlateportCity_MapBGEvents:: @ 837FAEC
+SlateportCity_MapBGEvents::
 	bg_event 8, 19, 0, BG_EVENT_PLAYER_FACING_ANY, SlateportCity_EventScript_14BCAF
 	bg_event 20, 19, 0, BG_EVENT_PLAYER_FACING_NORTH, SlateportCity_EventScript_1A00EA
 	bg_event 21, 19, 0, BG_EVENT_PLAYER_FACING_NORTH, SlateportCity_EventScript_1A00EA
@@ -58,5 +58,5 @@ SlateportCity_MapBGEvents:: @ 837FAEC
 	bg_event 7, 13, 0, BG_EVENT_PLAYER_FACING_ANY, SlateportCity_EventScript_14BC33
 	bg_event 23, 38, 0, BG_EVENT_PLAYER_FACING_ANY, SlateportCity_EventScript_14BC3C
 
-SlateportCity_MapEvents:: @ 837FB7C
+SlateportCity_MapEvents::
 	map_events SlateportCity_EventObjects, SlateportCity_MapWarps, 0x0, SlateportCity_MapBGEvents

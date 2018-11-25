@@ -1,4 +1,4 @@
-Route101:: @ 8305608
+Route101::
 	.4byte Route101_Layout
 	.4byte Route101_MapEvents
 	.4byte Route101_MapScripts

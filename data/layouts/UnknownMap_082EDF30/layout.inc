@@ -12,3 +12,4 @@ UnknownMap_082EDF30_Layout::
 	.4byte UnknownMap_082EDF30_MapBlockdata
 	.4byte gTileset_General
 	.4byte 0
+

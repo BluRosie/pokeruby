@@ -1,4 +1,4 @@
-Route119:: @ 8305800
+Route119::
 	.4byte Route119_Layout
 	.4byte Route119_MapEvents
 	.4byte Route119_MapScripts

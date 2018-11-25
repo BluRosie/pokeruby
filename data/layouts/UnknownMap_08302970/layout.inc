@@ -12,3 +12,4 @@ UnknownMap_08302970_Layout::
 	.4byte UnknownMap_08302970_MapBlockdata
 	.4byte gTileset_General
 	.4byte gTileset_Pacifidlog
+

@@ -1,4 +1,4 @@
-Route111_EventObjects:: @ 83821A0
+Route111_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_MAN_1, 0, 13, 114, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, Route111_EventScript_1501D1, FLAG_HIDE_VICTOR_WINSTRATE
 	object_event 2, EVENT_OBJ_GFX_WOMAN_2, 0, 13, 113, 0, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, 0x0, FLAG_HIDE_VICTORIA_WINSTRATE
 	object_event 3, EVENT_OBJ_GFX_LASS, 0, 13, 113, 0, MOVEMENT_TYPE_FACE_DOWN, 1, 0, 0, 0, 0x0, FLAG_HIDE_VIVI_WINSTRATE
@@ -36,12 +36,12 @@ Route111_EventObjects:: @ 83821A0
 	object_event 35, EVENT_OBJ_GFX_FOSSIL, 0, 33, 38, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, Route111_EventScript_150069, FLAG_HIDE_CLAW_FOSSIL
 	object_event 36, EVENT_OBJ_GFX_MAN_5, 0, 20, 114, 3, MOVEMENT_TYPE_WANDER_AROUND, 1, 1, 0, 0, Route111_EventScript_15039E, 0
 
-Route111_MapWarps:: @ 8382500
+Route111_MapWarps::
 	warp_def 13, 113, 0, 0, MAP_ROUTE111_WINSTRATE_FAMILYS_HOUSE
 	warp_def 29, 87, 0, 0, MAP_DESERT_RUINS
 	warp_def 26, 18, 0, 0, MAP_ROUTE111_OLD_LADYS_REST_STOP
 
-Route111_MapCoordEvents:: @ 8382518
+Route111_MapCoordEvents::
 	coord_event 12, 62, 3, 0, 0, Route111_EventScript_1501C9
 	coord_event 11, 61, 3, VAR_TEMP_3, 0, Route111_EventScript_150116
 	coord_event 12, 61, 3, VAR_TEMP_3, 0, Route111_EventScript_150116
@@ -77,7 +77,7 @@ Route111_MapCoordEvents:: @ 8382518
 	coord_event 12, 43, 3, 0, 0, Route111_EventScript_1501C9
 	coord_event 11, 44, 3, 0, 0, Route111_EventScript_1501C9
 
-Route111_MapBGEvents:: @ 8382738
+Route111_MapBGEvents::
 	bg_event 16, 114, 0, BG_EVENT_PLAYER_FACING_ANY, Route111_EventScript_150368
 	bg_event 24, 126, 0, BG_EVENT_PLAYER_FACING_ANY, Route111_EventScript_15035F
 	bg_event 7, 66, 0, BG_EVENT_PLAYER_FACING_ANY, Route111_EventScript_150371
@@ -96,5 +96,5 @@ Route111_MapBGEvents:: @ 8382738
 	bg_hidden_item_event 19, 55, 0, ITEM_PROTEIN, FLAG_HIDDEN_ITEM_38
 	bg_hidden_item_event 35, 66, 0, ITEM_RARE_CANDY, FLAG_HIDDEN_ITEM_39
 
-Route111_MapEvents:: @ 8382804
+Route111_MapEvents::
 	map_events Route111_EventObjects, Route111_MapWarps, Route111_MapCoordEvents, Route111_MapBGEvents

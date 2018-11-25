@@ -1,4 +1,4 @@
-Route108:: @ 83056CC
+Route108::
 	.4byte Route108_Layout
 	.4byte Route108_MapEvents
 	.4byte Route108_MapScripts

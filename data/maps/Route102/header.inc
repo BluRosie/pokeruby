@@ -1,4 +1,4 @@
-Route102:: @ 8305624
+Route102::
 	.4byte Route102_Layout
 	.4byte Route102_MapEvents
 	.4byte Route102_MapScripts

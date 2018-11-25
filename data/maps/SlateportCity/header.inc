@@ -1,4 +1,4 @@
-SlateportCity:: @ 8305464
+SlateportCity::
 	.4byte SlateportCity_Layout
 	.4byte SlateportCity_MapEvents
 	.4byte SlateportCity_MapScripts

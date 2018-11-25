@@ -1,4 +1,4 @@
-Route106:: @ 8305694
+Route106::
 	.4byte Route106_Layout
 	.4byte Route106_MapEvents
 	.4byte Route106_MapScripts

@@ -1,4 +1,4 @@
-Route117_EventObjects:: @ 8383440
+Route117_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_WOMAN_1, 0, 13, 13, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, Route117_EventScript_150D57, 0
 	object_event 2, EVENT_OBJ_GFX_LITTLE_BOY_2, 0, 26, 13, 3, MOVEMENT_TYPE_WALK_SEQUENCE_UP_LEFT_RIGHT_DOWN, 2, 2, 0, 0, Route117_EventScript_150D60, 0
 	object_event 3, EVENT_OBJ_GFX_OLD_MAN_2, 0, 47, 4, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, Route117_EventScript_1B222D, 0
@@ -21,14 +21,14 @@ Route117_EventObjects:: @ 8383440
 	object_event 20, EVENT_OBJ_GFX_LASS, 0, 45, 15, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 1, 0, Route117_EventScript_150E9C, 0
 	object_event 21, EVENT_OBJ_GFX_GIRL_2, 0, 48, 10, 3, MOVEMENT_TYPE_WANDER_AROUND, 1, 1, 0, 0, Route117_EventScript_150D69, 0
 
-Route117_MapWarps:: @ 8383638
+Route117_MapWarps::
 	warp_def 51, 5, 0, 0, MAP_ROUTE117_POKEMON_DAY_CARE
 
-Route117_MapBGEvents:: @ 8383640
+Route117_MapBGEvents::
 	bg_event 16, 6, 0, BG_EVENT_PLAYER_FACING_ANY, Route117_EventScript_150D72
 	bg_event 49, 12, 0, BG_EVENT_PLAYER_FACING_ANY, Route117_EventScript_150D7B
 	bg_event 49, 5, 0, BG_EVENT_PLAYER_FACING_ANY, Route117_EventScript_150D84
 	bg_hidden_item_event 3, 18, 3, ITEM_REPEL, FLAG_HIDDEN_ITEM_48
 
-Route117_MapEvents:: @ 8383670
+Route117_MapEvents::
 	map_events Route117_EventObjects, Route117_MapWarps, 0x0, Route117_MapBGEvents

@@ -1,14 +1,15 @@
-LavaridgeTown_MapBorder:: @ 8291D6C
+LavaridgeTown_MapBorder::
 	.incbin "data/layouts/LavaridgeTown/border.bin"
 
-LavaridgeTown_MapBlockdata:: @ 8291D74
+LavaridgeTown_MapBlockdata::
 	.incbin "data/layouts/LavaridgeTown/map.bin"
 
 	.align 2
-LavaridgeTown_Layout:: @ 8292094
+LavaridgeTown_Layout::
 	.4byte 0x14
 	.4byte 0x14
 	.4byte LavaridgeTown_MapBorder
 	.4byte LavaridgeTown_MapBlockdata
 	.4byte gTileset_General
 	.4byte gTileset_Lavaridge
+

@@ -1,4 +1,4 @@
-Route116_EventObjects:: @ 8383170
+Route116_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_BERRY_TREE, 0, 18, 2, 3, MOVEMENT_TYPE_BERRY_TREE_GROWTH, 0, 0, 0, 25, S_BerryTree, 0
 	object_event 2, EVENT_OBJ_GFX_BERRY_TREE, 0, 19, 2, 3, MOVEMENT_TYPE_BERRY_TREE_GROWTH, 0, 0, 0, 26, S_BerryTree, 0
 	object_event 3, EVENT_OBJ_GFX_YOUNGSTER, 0, 12, 7, 3, MOVEMENT_TYPE_FACE_UP_AND_RIGHT, 0, 0, 1, 3, Route116_EventScript_150C62, 0
@@ -22,15 +22,15 @@ Route116_EventObjects:: @ 8383170
 	object_event 21, EVENT_OBJ_GFX_BLACK_BELT, 0, 38, 9, 3, MOVEMENT_TYPE_FACE_RIGHT, 1, 1, 0, 0, Route116_EventScript_150A49, FLAG_HIDE_TUNNER_DIGGER_ROUTE116
 	object_event 22, EVENT_OBJ_GFX_MANIAC, 0, 74, 13, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, Route116_EventScript_150B8F, FLAG_HIDE_LOST_GLASSES_MAN
 
-Route116_MapWarps:: @ 8383380
+Route116_MapWarps::
 	warp_def 47, 8, 0, 0, MAP_RUSTURF_TUNNEL
 	warp_def 38, 8, 0, 0, MAP_ROUTE116_TUNNELERS_REST_HOUSE
 	warp_def 65, 10, 0, 2, MAP_RUSTURF_TUNNEL
 
-Route116_MapCoordEvents:: @ 8383398
+Route116_MapCoordEvents::
 	coord_event 47, 9, 3, VAR_ROUTE116_STATE, 1, Route116_EventScript_150B6E
 
-Route116_MapBGEvents:: @ 83833A8
+Route116_MapBGEvents::
 	bg_event 5, 10, 0, BG_EVENT_PLAYER_FACING_ANY, Route116_EventScript_150B30
 	bg_event 48, 9, 0, BG_EVENT_PLAYER_FACING_ANY, Route116_EventScript_150B39
 	bg_event 40, 9, 0, BG_EVENT_PLAYER_FACING_ANY, Route116_EventScript_150B42
@@ -43,5 +43,5 @@ Route116_MapBGEvents:: @ 83833A8
 	bg_hidden_item_event 22, 9, 3, ITEM_SUPER_POTION, FLAG_HIDDEN_ITEM_2D
 	bg_hidden_item_event 70, 13, 3, ITEM_BLACK_GLASSES, FLAG_HIDDEN_ITEM_BLACK_GLASSES
 
-Route116_MapEvents:: @ 838342C
+Route116_MapEvents::
 	map_events Route116_EventObjects, Route116_MapWarps, Route116_MapCoordEvents, Route116_MapBGEvents

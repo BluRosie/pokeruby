@@ -1,4 +1,4 @@
-LittlerootTown:: @ 8305544
+LittlerootTown::
 	.4byte LittlerootTown_Layout
 	.4byte LittlerootTown_MapEvents
 	.4byte LittlerootTown_MapScripts

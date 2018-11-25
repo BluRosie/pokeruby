@@ -1,4 +1,4 @@
-Route110:: @ 8305704
+Route110::
 	.4byte Route110_Layout
 	.4byte Route110_MapEvents
 	.4byte Route110_MapScripts

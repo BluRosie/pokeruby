@@ -1,5 +1,5 @@
 	.align 2
-gMapGroup0:: @ 8307F60
+gMapGroup0::
 	.4byte PetalburgCity
 	.4byte SlateportCity
 	.4byte MauvilleCity
@@ -56,7 +56,7 @@ gMapGroup0:: @ 8307F60
 	.4byte Underwater4
 
 	.align 2
-gMapGroup1:: @ 8308038
+gMapGroup1::
 	.4byte LittlerootTown_BrendansHouse_1F
 	.4byte LittlerootTown_BrendansHouse_2F
 	.4byte LittlerootTown_MaysHouse_1F
@@ -64,7 +64,7 @@ gMapGroup1:: @ 8308038
 	.4byte LittlerootTown_ProfessorBirchsLab
 
 	.align 2
-gMapGroup2:: @ 830804C
+gMapGroup2::
 	.4byte OldaleTown_House1
 	.4byte OldaleTown_House2
 	.4byte OldaleTown_PokemonCenter_1F
@@ -72,7 +72,7 @@ gMapGroup2:: @ 830804C
 	.4byte OldaleTown_Mart
 
 	.align 2
-gMapGroup3:: @ 8308060
+gMapGroup3::
 	.4byte DewfordTown_House1
 	.4byte DewfordTown_PokemonCenter_1F
 	.4byte DewfordTown_PokemonCenter_2F
@@ -81,7 +81,7 @@ gMapGroup3:: @ 8308060
 	.4byte DewfordTown_House2
 
 	.align 2
-gMapGroup4:: @ 8308078
+gMapGroup4::
 	.4byte LavaridgeTown_HerbShop
 	.4byte LavaridgeTown_Gym_1F
 	.4byte LavaridgeTown_Gym_B1F
@@ -91,7 +91,7 @@ gMapGroup4:: @ 8308078
 	.4byte LavaridgeTown_PokemonCenter_2F
 
 	.align 2
-gMapGroup5:: @ 8308094
+gMapGroup5::
 	.4byte FallarborTown_Mart
 	.4byte FallarborTown_ContestLobby
 	.4byte FallarborTown_ContestHall
@@ -101,7 +101,7 @@ gMapGroup5:: @ 8308094
 	.4byte FallarborTown_House2
 
 	.align 2
-gMapGroup6:: @ 83080B0
+gMapGroup6::
 	.4byte VerdanturfTown_ContestLobby
 	.4byte VerdanturfTown_ContestHall
 	.4byte VerdanturfTown_Mart
@@ -112,7 +112,7 @@ gMapGroup6:: @ 83080B0
 	.4byte VerdanturfTown_House
 
 	.align 2
-gMapGroup7:: @ 83080D0
+gMapGroup7::
 	.4byte PacifidlogTown_PokemonCenter_1F
 	.4byte PacifidlogTown_PokemonCenter_2F
 	.4byte PacifidlogTown_House1
@@ -122,7 +122,7 @@ gMapGroup7:: @ 83080D0
 	.4byte PacifidlogTown_House5
 
 	.align 2
-gMapGroup8:: @ 83080EC
+gMapGroup8::
 	.4byte PetalburgCity_WallysHouse
 	.4byte PetalburgCity_Gym
 	.4byte PetalburgCity_House1
@@ -132,7 +132,7 @@ gMapGroup8:: @ 83080EC
 	.4byte PetalburgCity_Mart
 
 	.align 2
-gMapGroup9:: @ 8308108
+gMapGroup9::
 	.4byte SlateportCity_SternsShipyard_1F
 	.4byte SlateportCity_SternsShipyard_2F
 	.4byte SlateportCity_ContestLobby
@@ -148,7 +148,7 @@ gMapGroup9:: @ 8308108
 	.4byte SlateportCity_Mart
 
 	.align 2
-gMapGroup10:: @ 830813C
+gMapGroup10::
 	.4byte MauvilleCity_Gym
 	.4byte MauvilleCity_BikeShop
 	.4byte MauvilleCity_House1
@@ -159,7 +159,7 @@ gMapGroup10:: @ 830813C
 	.4byte MauvilleCity_Mart
 
 	.align 2
-gMapGroup11:: @ 830815C
+gMapGroup11::
 	.4byte RustboroCity_DevonCorp_1F
 	.4byte RustboroCity_DevonCorp_2F
 	.4byte RustboroCity_DevonCorp_3F
@@ -179,7 +179,7 @@ gMapGroup11:: @ 830815C
 	.4byte RustboroCity_House3
 
 	.align 2
-gMapGroup12:: @ 83081A0
+gMapGroup12::
 	.4byte FortreeCity_House1
 	.4byte FortreeCity_Gym
 	.4byte FortreeCity_PokemonCenter_1F
@@ -192,7 +192,7 @@ gMapGroup12:: @ 83081A0
 	.4byte FortreeCity_DecorationShop
 
 	.align 2
-gMapGroup13:: @ 83081C8
+gMapGroup13::
 	.4byte LilycoveCity_CoveLilyMotel_1F
 	.4byte LilycoveCity_CoveLilyMotel_2F
 	.4byte LilycoveCity_LilycoveMuseum_1F
@@ -219,7 +219,7 @@ gMapGroup13:: @ 83081C8
 	.4byte LilycoveCity_DepartmentStoreElevator
 
 	.align 2
-gMapGroup14:: @ 8308228
+gMapGroup14::
 	.4byte MossdeepCity_Gym
 	.4byte MossdeepCity_House1
 	.4byte MossdeepCity_House2
@@ -235,7 +235,7 @@ gMapGroup14:: @ 8308228
 	.4byte MossdeepCity_GameCorner_B1F
 
 	.align 2
-gMapGroup15:: @ 830825C
+gMapGroup15::
 	.4byte SootopolisCity_Gym_1F
 	.4byte SootopolisCity_Gym_B1F
 	.4byte SootopolisCity_PokemonCenter_1F
@@ -251,7 +251,7 @@ gMapGroup15:: @ 830825C
 	.4byte SootopolisCity_House8
 
 	.align 2
-gMapGroup16:: @ 8308290
+gMapGroup16::
 	.4byte EverGrandeCity_SidneysRoom
 	.4byte EverGrandeCity_PhoebesRoom
 	.4byte EverGrandeCity_GlaciasRoom
@@ -268,40 +268,40 @@ gMapGroup16:: @ 8308290
 	.4byte EverGrandeCity_PokemonCenter_2F
 
 	.align 2
-gMapGroup17:: @ 83082C8
+gMapGroup17::
 	.4byte Route104_MrBrineysHouse
 	.4byte Route104_PrettyPetalFlowerShop
 
 	.align 2
-gMapGroup18:: @ 83082D0
+gMapGroup18::
 	.4byte Route111_WinstrateFamilysHouse
 	.4byte Route111_OldLadysRestStop
 
 	.align 2
-gMapGroup19:: @ 83082D8
+gMapGroup19::
 	.4byte Route112_CableCarStation
 	.4byte MtChimney_CableCarStation
 
 	.align 2
-gMapGroup20:: @ 83082E0
+gMapGroup20::
 	.4byte Route114_FossilManiacsHouse
 	.4byte Route114_FossilManiacsTunnel
 	.4byte Route114_LanettesHouse
 
 	.align 2
-gMapGroup21:: @ 83082EC
+gMapGroup21::
 	.4byte Route116_TunnelersRestHouse
 
 	.align 2
-gMapGroup22:: @ 83082F0
+gMapGroup22::
 	.4byte Route117_PokemonDayCare
 
 	.align 2
-gMapGroup23:: @ 83082F4
+gMapGroup23::
 	.4byte Route121_SafariZoneEntrance
 
 	.align 2
-gMapGroup24:: @ 83082F8
+gMapGroup24::
 	.4byte MeteorFalls_1F_1R
 	.4byte MeteorFalls_1F_2R
 	.4byte MeteorFalls_B1F_1R
@@ -390,7 +390,7 @@ gMapGroup24:: @ 83082F8
 	.4byte SkyPillar_Top
 
 	.align 2
-gMapGroup25:: @ 8308450
+gMapGroup25::
 	.4byte SecretBase_RedCave1
 	.4byte SecretBase_BrownCave1
 	.4byte SecretBase_BlueCave1
@@ -437,7 +437,7 @@ gMapGroup25:: @ 8308450
 	.4byte SSTidalRooms
 
 	.align 2
-gMapGroup26:: @ 8308500
+gMapGroup26::
 	.4byte SafariZone_Northwest
 	.4byte SafariZone_Northeast
 	.4byte SafariZone_Southwest
@@ -452,16 +452,16 @@ gMapGroup26:: @ 8308500
 	.4byte SafariZone_RestHouse
 
 	.align 2
-gMapGroup27:: @ 8308530
+gMapGroup27::
 	.4byte Route104_Prototype
 	.4byte Route104_PrototypePrettyPetalFlowerShop
 
 	.align 2
-gMapGroup28:: @ 8308538
+gMapGroup28::
 	.4byte Route109_SeashoreHouse
 
 	.align 2
-gMapGroup29:: @ 830853C
+gMapGroup29::
 	.4byte Route110_TrickHouseEntrance
 	.4byte Route110_TrickHouseEnd
 	.4byte Route110_TrickHouseCorridor
@@ -477,25 +477,25 @@ gMapGroup29:: @ 830853C
 	.4byte Route110_SeasideCyclingRoadNorthEntrance
 
 	.align 2
-gMapGroup30:: @ 8308570
+gMapGroup30::
 	.4byte Route113_GlassWorkshop
 
 	.align 2
-gMapGroup31:: @ 8308574
+gMapGroup31::
 	.4byte Route123_BerryMastersHouse
 
 	.align 2
-gMapGroup32:: @ 8308578
+gMapGroup32::
 	.4byte Route119_WeatherInstitute_1F
 	.4byte Route119_WeatherInstitute_2F
 	.4byte Route119_House
 
 	.align 2
-gMapGroup33:: @ 8308584
+gMapGroup33::
 	.4byte Route124_DivingTreasureHuntersHouse
 
 	.align 2
-gMapGroups:: @ 8308588
+gMapGroups::
 	.4byte gMapGroup0
 	.4byte gMapGroup1
 	.4byte gMapGroup2

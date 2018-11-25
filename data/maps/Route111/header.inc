@@ -1,4 +1,4 @@
-Route111:: @ 8305720
+Route111::
 	.4byte Route111_Layout
 	.4byte Route111_MapEvents
 	.4byte Route111_MapScripts

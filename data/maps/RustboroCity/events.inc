@@ -1,4 +1,4 @@
-RustboroCity_EventObjects:: @ 837FD14
+RustboroCity_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_WOMAN_7, 0, 22, 34, 3, MOVEMENT_TYPE_WANDER_UP_AND_DOWN, 0, 1, 0, 0, RustboroCity_EventScript_14C3B1, 0
 	object_event 2, EVENT_OBJ_GFX_FAT_MAN, 0, 19, 13, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, RustboroCity_EventScript_14C386, 0
 	object_event 3, EVENT_OBJ_GFX_LITTLE_BOY_1, 0, 25, 37, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, RustboroCity_EventScript_14C401, 0
@@ -14,7 +14,7 @@ RustboroCity_EventObjects:: @ 837FD14
 	object_event 13, EVENT_OBJ_GFX_MAN_5, 0, 19, 27, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 1, 0, 0, RustboroCity_EventScript_14C475, 0
 	object_event 14, EVENT_OBJ_GFX_VAR_0, 0, 16, 50, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, RustboroCity_EventScript_14C8DA, FLAG_HIDE_RIVAL_RUSTBORO
 
-RustboroCity_MapWarps:: @ 837FE64
+RustboroCity_MapWarps::
 	warp_def 27, 19, 0, 0, MAP_RUSTBORO_CITY_GYM
 	warp_def 13, 30, 0, 0, MAP_RUSTBORO_CITY_FLAT1_1F
 	warp_def 16, 45, 0, 0, MAP_RUSTBORO_CITY_MART
@@ -28,7 +28,7 @@ RustboroCity_MapWarps:: @ 837FE64
 	warp_def 5, 51, 0, 0, MAP_RUSTBORO_CITY_FLAT2_1F
 	warp_def 26, 46, 0, 0, MAP_RUSTBORO_CITY_HOUSE3
 
-RustboroCity_MapCoordEvents:: @ 837FEC4
+RustboroCity_MapCoordEvents::
 	coord_event 23, 20, 3, VAR_RUSTBORO_STATE, 1, RustboroCity_EventScript_14C481
 	coord_event 23, 21, 3, VAR_RUSTBORO_STATE, 1, RustboroCity_EventScript_14C498
 	coord_event 23, 22, 3, VAR_RUSTBORO_STATE, 1, RustboroCity_EventScript_14C4AF
@@ -43,7 +43,7 @@ RustboroCity_MapCoordEvents:: @ 837FEC4
 	coord_event 30, 11, 3, VAR_RUSTBORO_STATE, 4, RustboroCity_EventScript_14C765
 	coord_event 30, 12, 3, VAR_RUSTBORO_STATE, 4, RustboroCity_EventScript_14C771
 
-RustboroCity_MapBGEvents:: @ 837FF94
+RustboroCity_MapBGEvents::
 	bg_event 23, 19, 0, BG_EVENT_PLAYER_FACING_ANY, RustboroCity_EventScript_14C41C
 	bg_event 25, 35, 0, BG_EVENT_PLAYER_FACING_ANY, RustboroCity_EventScript_14C437
 	bg_event 17, 45, 0, BG_EVENT_PLAYER_FACING_NORTH, RustboroCity_EventScript_1A00E1
@@ -55,5 +55,5 @@ RustboroCity_MapBGEvents:: @ 837FF94
 	bg_event 30, 8, 0, BG_EVENT_PLAYER_FACING_ANY, RustboroCity_EventScript_14C40A
 	bg_event 12, 38, 3, BG_EVENT_PLAYER_FACING_ANY, RustboroCity_EventScript_14C440
 
-RustboroCity_MapEvents:: @ 838000C
+RustboroCity_MapEvents::
 	map_events RustboroCity_EventObjects, RustboroCity_MapWarps, RustboroCity_MapCoordEvents, RustboroCity_MapBGEvents

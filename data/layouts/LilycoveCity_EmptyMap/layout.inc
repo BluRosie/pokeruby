@@ -1,14 +1,15 @@
-LilycoveCity_EmptyMap_MapBorder:: @ 82D369C
+LilycoveCity_EmptyMap_MapBorder::
 	.incbin "data/layouts/LilycoveCity_EmptyMap/border.bin"
 
-LilycoveCity_EmptyMap_MapBlockdata:: @ 82D36A4
+LilycoveCity_EmptyMap_MapBlockdata::
 	.incbin "data/layouts/LilycoveCity_EmptyMap/map.bin"
 
 	.align 2
-LilycoveCity_EmptyMap_Layout:: @ 82D36A8
+LilycoveCity_EmptyMap_Layout::
 	.4byte 0x1
 	.4byte 0x1
 	.4byte LilycoveCity_EmptyMap_MapBorder
 	.4byte LilycoveCity_EmptyMap_MapBlockdata
 	.4byte gTileset_General
 	.4byte gTileset_Facility
+

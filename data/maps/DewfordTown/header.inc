@@ -1,4 +1,4 @@
-DewfordTown:: @ 830557C
+DewfordTown::
 	.4byte DewfordTown_Layout
 	.4byte DewfordTown_MapEvents
 	.4byte DewfordTown_MapScripts

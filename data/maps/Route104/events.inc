@@ -1,4 +1,4 @@
-Route104_EventObjects:: @ 8381488
+Route104_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_BUG_CATCHER, 0, 15, 60, 3, MOVEMENT_TYPE_FACE_LEFT, 0, 0, 0, 0, Route104_EventScript_14EF4B, 0
 	object_event 2, EVENT_OBJ_GFX_GIRL_2, 0, 25, 49, 3, MOVEMENT_TYPE_WANDER_AROUND, 1, 1, 0, 0, Route104_EventScript_14EF42, 0
 	object_event 3, EVENT_OBJ_GFX_LASS, 0, 31, 24, 3, MOVEMENT_TYPE_FACE_LEFT, 0, 0, 1, 7, Route104_EventScript_14F1A0, 0
@@ -32,7 +32,7 @@ Route104_EventObjects:: @ 8381488
 	object_event 31, EVENT_OBJ_GFX_ITEM_BALL, 0, 5, 8, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, Route104_EventScript_1B147A, FLAG_ITEM_ROUTE104_4
 	object_event 32, EVENT_OBJ_GFX_BOY_2, 0, 5, 26, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, Route104_EventScript_14EF93, 0
 
-Route104_MapWarps:: @ 8381788
+Route104_MapWarps::
 	warp_def 17, 50, 0, 0, MAP_ROUTE104_MR_BRINEYS_HOUSE
 	warp_def 5, 18, 0, 0, MAP_ROUTE104_PRETTY_PETAL_FLOWER_SHOP
 	warp_def 10, 30, 3, 0, MAP_PETALBURG_WOODS
@@ -42,7 +42,7 @@ Route104_MapWarps:: @ 8381788
 	warp_def 32, 42, 3, 4, MAP_PETALBURG_WOODS
 	warp_def 33, 42, 3, 5, MAP_PETALBURG_WOODS
 
-Route104_MapBGEvents:: @ 83817C8
+Route104_MapBGEvents::
 	bg_event 20, 50, 0, BG_EVENT_PLAYER_FACING_ANY, Route104_EventScript_14EF54
 	bg_event 27, 66, 0, BG_EVENT_PLAYER_FACING_ANY, Route104_EventScript_14EF5D
 	bg_event 23, 5, 0, BG_EVENT_PLAYER_FACING_ANY, Route104_EventScript_14EF66
@@ -54,5 +54,5 @@ Route104_MapBGEvents:: @ 83817C8
 	bg_hidden_item_event 16, 72, 3, ITEM_ANTIDOTE, FLAG_HIDDEN_ITEM_55
 	bg_hidden_item_event 16, 64, 3, ITEM_HEART_SCALE, FLAG_HIDDEN_ITEM_58
 
-Route104_MapEvents:: @ 8381840
+Route104_MapEvents::
 	map_events Route104_EventObjects, Route104_MapWarps, 0x0, Route104_MapBGEvents

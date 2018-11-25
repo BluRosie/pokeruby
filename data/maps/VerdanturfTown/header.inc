@@ -1,4 +1,4 @@
-VerdanturfTown:: @ 83055D0
+VerdanturfTown::
 	.4byte VerdanturfTown_Layout
 	.4byte VerdanturfTown_MapEvents
 	.4byte VerdanturfTown_MapScripts

@@ -1,4 +1,4 @@
-Route104:: @ 830565C
+Route104::
 	.4byte Route104_Layout
 	.4byte Route104_MapEvents
 	.4byte Route104_MapScripts

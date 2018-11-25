@@ -1,14 +1,15 @@
-ScorchedSlab_MapBorder:: @ 82FF340
+ScorchedSlab_MapBorder::
 	.incbin "data/layouts/ScorchedSlab/border.bin"
 
-ScorchedSlab_MapBlockdata:: @ 82FF348
+ScorchedSlab_MapBlockdata::
 	.incbin "data/layouts/ScorchedSlab/map.bin"
 
 	.align 2
-ScorchedSlab_Layout:: @ 82FF5A0
+ScorchedSlab_Layout::
 	.4byte 0xf
 	.4byte 0x14
 	.4byte ScorchedSlab_MapBorder
 	.4byte ScorchedSlab_MapBlockdata
 	.4byte gTileset_General
 	.4byte gTileset_Cave
+

@@ -1,14 +1,15 @@
-PetalburgWoods_MapBorder:: @ 82D91BC
+PetalburgWoods_MapBorder::
 	.incbin "data/layouts/PetalburgWoods/border.bin"
 
-PetalburgWoods_MapBlockdata:: @ 82D91C4
+PetalburgWoods_MapBlockdata::
 	.incbin "data/layouts/PetalburgWoods/map.bin"
 
 	.align 2
-PetalburgWoods_Layout:: @ 82DA244
+PetalburgWoods_Layout::
 	.4byte 0x30
 	.4byte 0x2c
 	.4byte PetalburgWoods_MapBorder
 	.4byte PetalburgWoods_MapBlockdata
 	.4byte gTileset_General
 	.4byte gTileset_Rustboro
+

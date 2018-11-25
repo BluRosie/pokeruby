@@ -1,4 +1,4 @@
-Route105:: @ 8305678
+Route105::
 	.4byte Route105_Layout
 	.4byte Route105_MapEvents
 	.4byte Route105_MapScripts

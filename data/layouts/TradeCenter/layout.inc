@@ -1,14 +1,15 @@
-TradeCenter_MapBorder:: @ 82E9368
+TradeCenter_MapBorder::
 	.incbin "data/layouts/TradeCenter/border.bin"
 
-TradeCenter_MapBlockdata:: @ 82E9370
+TradeCenter_MapBlockdata::
 	.incbin "data/layouts/TradeCenter/map.bin"
 
 	.align 2
-TradeCenter_Layout:: @ 82E9448
+TradeCenter_Layout::
 	.4byte 0xc
 	.4byte 0x9
 	.4byte TradeCenter_MapBorder
 	.4byte TradeCenter_MapBlockdata
 	.4byte gTileset_Building
 	.4byte gTileset_CableClub
+

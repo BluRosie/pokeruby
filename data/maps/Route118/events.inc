@@ -1,4 +1,4 @@
-Route118_EventObjects:: @ 8383684
+Route118_EventObjects::
 	object_event 1, EVENT_OBJ_GFX_BERRY_TREE, 0, 35, 5, 3, MOVEMENT_TYPE_BERRY_TREE_GROWTH, 0, 0, 0, 31, S_BerryTree, 0
 	object_event 2, EVENT_OBJ_GFX_BERRY_TREE, 0, 36, 5, 3, MOVEMENT_TYPE_BERRY_TREE_GROWTH, 0, 0, 0, 32, S_BerryTree, 0
 	object_event 3, EVENT_OBJ_GFX_BERRY_TREE, 0, 37, 5, 3, MOVEMENT_TYPE_BERRY_TREE_GROWTH, 0, 0, 0, 33, S_BerryTree, 0
@@ -20,12 +20,12 @@ Route118_EventObjects:: @ 8383684
 	object_event 19, EVENT_OBJ_GFX_STEVEN, 0, 44, 7, 3, MOVEMENT_TYPE_FACE_DOWN, 1, 1, 0, 0, 0x0, FLAG_HIDE_STEVEN_ROUTE118
 	object_event 20, EVENT_OBJ_GFX_ITEM_BALL, 0, 69, 7, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, Route118_EventScript_1B15B2, FLAG_ITEM_ROUTE118_1
 
-Route118_MapCoordEvents:: @ 8383864
+Route118_MapCoordEvents::
 	coord_event 43, 11, 3, VAR_ROUTE118_STATE, 0, Route118_EventScript_150FAE
 	coord_event 44, 11, 3, VAR_ROUTE118_STATE, 0, Route118_EventScript_150FCE
 	coord_event 45, 11, 3, VAR_ROUTE118_STATE, 0, Route118_EventScript_150FE4
 
-Route118_MapBGEvents:: @ 8383894
+Route118_MapBGEvents::
 	bg_secret_base_event 47, 14, 0, SECRET_BASE_RED_CAVE1_1
 	bg_event 13, 6, 0, BG_EVENT_PLAYER_FACING_ANY, Route118_EventScript_150F9C
 	bg_event 56, 8, 0, BG_EVENT_PLAYER_FACING_ANY, Route118_EventScript_150FA5
@@ -36,5 +36,5 @@ Route118_MapBGEvents:: @ 8383894
 	bg_hidden_item_event 31, 13, 3, ITEM_IRON, FLAG_HIDDEN_ITEM_43
 	bg_hidden_item_event 12, 14, 3, ITEM_HEART_SCALE, FLAG_HIDDEN_ITEM_42
 
-Route118_MapEvents:: @ 8383900
+Route118_MapEvents::
 	map_events Route118_EventObjects, 0x0, Route118_MapCoordEvents, Route118_MapBGEvents

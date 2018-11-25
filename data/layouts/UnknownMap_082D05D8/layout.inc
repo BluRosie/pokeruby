@@ -12,3 +12,4 @@ UnknownMap_082D05D8_Layout::
 	.4byte UnknownMap_082D05D8_MapBlockdata
 	.4byte gTileset_Building
 	.4byte gTileset_Contest
+

@@ -1,4 +1,4 @@
-MauvilleCity:: @ 8305480
+MauvilleCity::
 	.4byte MauvilleCity_Layout
 	.4byte MauvilleCity_MapEvents
 	.4byte MauvilleCity_MapScripts

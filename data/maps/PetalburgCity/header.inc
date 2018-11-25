@@ -1,4 +1,4 @@
-PetalburgCity:: @ 8305448
+PetalburgCity::
 	.4byte PetalburgCity_Layout
 	.4byte PetalburgCity_MapEvents
 	.4byte PetalburgCity_MapScripts

@@ -1,4 +1,4 @@
-Route103:: @ 8305640
+Route103::
 	.4byte Route103_Layout
 	.4byte Route103_MapEvents
 	.4byte Route103_MapScripts

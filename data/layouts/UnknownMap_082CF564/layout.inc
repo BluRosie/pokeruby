@@ -12,3 +12,4 @@ UnknownMap_082CF564_Layout::
 	.4byte UnknownMap_082CF564_MapBlockdata
 	.4byte gTileset_Building
 	.4byte gTileset_Contest
+

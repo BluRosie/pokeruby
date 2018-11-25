@@ -1,4 +1,4 @@
-Route117:: @ 83057C8
+Route117::
 	.4byte Route117_Layout
 	.4byte Route117_MapEvents
 	.4byte Route117_MapScripts

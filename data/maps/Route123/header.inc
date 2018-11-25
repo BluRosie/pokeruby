@@ -1,4 +1,4 @@
-Route123:: @ 8305870
+Route123::
 	.4byte Route123_Layout
 	.4byte Route123_MapEvents
 	.4byte Route123_MapScripts

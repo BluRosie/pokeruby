@@ -1,4 +1,4 @@
-Route134:: @ 83059A4
+Route134::
 	.4byte Route134_Layout
 	.4byte Route134_MapEvents
 	.4byte Route134_MapScripts

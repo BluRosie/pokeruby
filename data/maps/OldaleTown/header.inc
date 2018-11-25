@@ -1,4 +1,4 @@
-OldaleTown:: @ 8305560
+OldaleTown::
 	.4byte OldaleTown_Layout
 	.4byte OldaleTown_MapEvents
 	.4byte OldaleTown_MapScripts
