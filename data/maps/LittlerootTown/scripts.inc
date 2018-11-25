@@ -306,13 +306,30 @@ LittlerootTown_Movement_14D7C0:: @ 814D7C0
 	walk_in_place_fastest_down
 	end_movement
 
+LittlerootTown_Guy_Text::
+	.string "Hello\n"
+
+LittlerootTown_Guy_EventScript::
+	lockall
+	applymovement 1, LittlerootTown_Movement_1A0843
+	waitmovement 0
+	applymovement 255, LittlerootTown_Movement_1A083F
+	waitmovement 0
+	msgbox LittlerootTown_Guy_Text, 4
+	closemessage
+	applymovement 1, LittlerootTown_Movement_1A083D
+	waitmovement 0
+	setvar VAR_LITTLEROOT_STATE, 2
+	releaseall
+	end
+
 LittlerootTown_EventScript_14D7C7:: @ 814D7C7
 	lockall
 	applymovement 1, LittlerootTown_Movement_1A0843
 	waitmovement 0
 	applymovement 255, LittlerootTown_Movement_1A083F
 	waitmovement 0
-	msgbox LittlerootTown_Text_16AD82, 4
+	msgbox LittlerootTown_Guy_Text, 4
 	closemessage
 	applymovement 1, LittlerootTown_Movement_1A083D
 	waitmovement 0
