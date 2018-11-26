@@ -3,17 +3,16 @@ LittlerootTown_BrendansHouse_2F_MapScripts:: @ 81527A4
 	.byte 0
 
 LittlerootTown_BrendansHouse_2F_MapScript1_1527AF:: @ 81527AF
-	map_script_2 EVENT_VAR_MELTANHACK, 0, TownOne_PlayerHouse2F_LevelScript
+	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 0, TownOne_PlayerHouse2F_LevelScript
 	.2byte 0
 
 TownOne_PlayerHouse2F_LevelScript::
 	lockall
-	applymovement 0xFF, PlayerMovementHouse1
+	applymovement 1, PlayerMovementHouse1
 	msgbox TownOne_PlayerHouse2F_MomTextA, 4
-	waitmovement
-	msgbox TownOne_PlayerHouse2F_MomTextB, 4
-	setvar EVENT_VAR_MELTANHACK, 1
+	setvar VAR_LITTLEROOT_INTRO_STATE, 1
 	setflag FLAG_RECEIVED_RUNNING_SHOES
+	clearflag FLAG_HIDE_BELDUM_BALL_STEVENS_HOUSE
 	releaseall
 	end
 
@@ -22,10 +21,8 @@ PlayerMovementHouse1::
     end_movement
 
 TownOne_PlayerHouse2F_MomTextA::
-.string "Mom: {PLAYER}, dear!\nIts time to get ready!"
-
-TownOne_PlayerHouse2F_MomTextB::
-.string "Come downstairs when youre ready!\nIts your big day!"
+.string "Mom: {PLAYER}, dear!\nIts time to get ready!\p"
+.string "Come downstairs when youre ready!\nIts your big day!$"
 
 gUnknown_0815281E:: @ 815281E
 gBrendanHouse_TurnPCOff:: @ 8152850
@@ -34,4 +31,3 @@ gBrendanHouse_TurnPCOff:: @ 8152850
     special DoPCTurnOffEffect
     releaseall
     end
-
