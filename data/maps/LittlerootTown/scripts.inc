@@ -307,7 +307,7 @@ LittlerootTown_Movement_14D7C0:: @ 814D7C0
 	end_movement
 
 LittlerootTown_Guy_Text::
-	.string "Hello\n"
+	.string "Hello$"
 
 LittlerootTown_Guy_EventScript::
 	lockall

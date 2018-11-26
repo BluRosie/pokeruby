@@ -41,38 +41,27 @@ PetalburgWoods_EventScript_15CCA8:: @ 815CCA8
 
 PetalburgWoods_EventScript_15CD42:: @ 815CD42
 	lockall
-	call PetalburgWoods_EventScript_15CDE6
-	applymovement 4, PetalburgWoods_Movement_15CE8E
+	applymovement 14, PetalburgWoods_Movement_Meltan
 	waitmovement 0
-	applymovement 255, PetalburgWoods_Movement_1A083F
-	waitmovement 0
-	msgbox PetalburgWoods_Text_194D92, 4
-	closemessage
-	playbgm MUS_EVIL_TEAM, FALSE
-	applymovement 3, PetalburgWoods_Movement_15CEC3
-	waitmovement 0
-	msgbox PetalburgWoods_Text_194DED, 4
-	closemessage
-	applymovement 3, PetalburgWoods_Movement_15CEBF
-	waitmovement 0
-	applymovement 4, PetalburgWoods_Movement_1A0841
-	waitmovement 0
-	msgbox PetalburgWoods_Text_194E6B, 4
-	closemessage
-	applymovement 4, PetalburgWoods_Movement_15CEA4
-	waitmovement 0
-	msgbox PetalburgWoods_Text_194E9A, 4
-	applymovement 255, PetalburgWoods_Movement_1A0841
-	waitmovement 0
-	msgbox PetalburgWoods_Text_194EE8, 4
-	trainerbattle 3, TRAINER_PETALBURG_WOODS_GRUNT, 0, PetalburgWoods_Text_194F83
-	applymovement 3, PetalburgWoods_Movement_15CEB3
-	waitmovement 0
-	call PetalburgWoods_EventScript_15CDFA
-	applymovement 4, PetalburgWoods_Movement_15CE95
-	waitmovement 0
-	goto PetalburgWoods_EventScript_15CE69
+	msgbox PetalburgWoods_Text_MeltanJoin
+	givemon SPECIES_MELTAN 10, 0, 0, 0, 0
+	setobjectmovementtype 13, 0x4D
+	setvar VAR_PETALBURG_WOODS_STATE, 1
+	releaseall
 	end
+
+PetalburgWoods_Text_MeltanJoin::
+	.string "Meltan has joined\n your Party!$"
+
+PetalburgWoods_Movement_Meltan::
+	walk_fast_down
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	delay_16
+	end_movement
 
 PetalburgWoods_EventScript_15CDE6:: @ 815CDE6
 	applymovement 4, PetalburgWoods_Movement_15CE73

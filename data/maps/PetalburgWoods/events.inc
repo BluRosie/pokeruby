@@ -19,7 +19,7 @@ PetalburgWoods_MapWarps::
 	warp_def 37, 38, 0, 7, MAP_ROUTE102
 
 PetalburgWoods_MapCoordEvents::
-	coord_event 13, 19, 3, VAR_PETALBURG_WOODS_STATE, 0, PetalburgWoods_EventScript_15CCA8
+	coord_event 13, 19, 3, VAR_PETALBURG_WOODS_STATE, 0, PetalburgWoods_EventScript_15CD42
 	coord_event 13, 18, 3, VAR_PETALBURG_WOODS_STATE, 0, PetalburgWoods_EventScript_15CD42
 
 PetalburgWoods_MapBGEvents::
