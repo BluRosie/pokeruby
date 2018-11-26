@@ -16,8 +16,8 @@ PetalburgWoods_EventObjects::
 	object_event 15, EVENT_OBJ_GFX_MELTAN, 0, 0, 17, 3, MOVEMENT_TYPE_FOLLOWER, 0, 0, FALSE, 0, PetalburgWoods_Follower_EventScript, 0
 
 PetalburgWoods_MapWarps::
-	warp_def 36, 38, 0, 6, MAP_ROUTE102
-	warp_def 37, 38, 0, 7, MAP_ROUTE102
+	warp_def 36, 38, 0, 0, MAP_ROUTE102
+	warp_def 37, 38, 0, 1, MAP_ROUTE102
 
 PetalburgWoods_MapCoordEvents::
 	coord_event 13, 19, 3, VAR_PETALBURG_WOODS_STATE, 0, PetalburgWoods_EventScript_15CD42
