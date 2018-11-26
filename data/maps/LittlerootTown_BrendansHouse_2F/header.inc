@@ -1,4 +1,4 @@
-LittlerootTown_BrendansHouse_2F:: @ 8305A4C
+LittlerootTown_BrendansHouse_2F::
 	.4byte LittlerootTown_BrendansHouse_2F_Layout
 	.4byte LittlerootTown_BrendansHouse_2F_MapEvents
 	.4byte LittlerootTown_BrendansHouse_2F_MapScripts

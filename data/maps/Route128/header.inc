@@ -1,4 +1,4 @@
-Route128:: @ 83058FC
+Route128::
 	.4byte Route128_Layout
 	.4byte Route128_MapEvents
 	.4byte Route128_MapScripts

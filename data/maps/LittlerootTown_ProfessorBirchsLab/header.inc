@@ -1,4 +1,4 @@
-LittlerootTown_ProfessorBirchsLab:: @ 8305AA0
+LittlerootTown_ProfessorBirchsLab::
 	.4byte LittlerootTown_ProfessorBirchsLab_Layout
 	.4byte LittlerootTown_ProfessorBirchsLab_MapEvents
 	.4byte LittlerootTown_ProfessorBirchsLab_MapScripts

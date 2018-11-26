@@ -666,6 +666,8 @@ void LoadMapFromWarp(u32 a1)
             }
         }
     }
+    else
+        FlagSet(FLAG_HIDE_MOM_LITTLEROOT);
     v2 = is_map_type_1_2_3_5_or_6(gMapHeader.mapType);
     v3 = Overworld_MapTypeIsIndoors(gMapHeader.mapType);
     ClearTempFieldEventData();

@@ -1,4 +1,4 @@
-EverGrandeCity:: @ 8305528
+EverGrandeCity::
 	.4byte EverGrandeCity_Layout
 	.4byte EverGrandeCity_MapEvents
 	.4byte EverGrandeCity_MapScripts

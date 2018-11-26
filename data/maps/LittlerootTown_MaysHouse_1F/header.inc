@@ -1,4 +1,4 @@
-LittlerootTown_MaysHouse_1F:: @ 8305A68
+LittlerootTown_MaysHouse_1F::
 	.4byte LittlerootTown_MaysHouse_1F_Layout
 	.4byte LittlerootTown_MaysHouse_1F_MapEvents
 	.4byte LittlerootTown_MaysHouse_1F_MapScripts
