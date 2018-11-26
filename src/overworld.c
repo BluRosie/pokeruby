@@ -643,15 +643,27 @@ void LoadMapFromWarp(u32 a1)
     bool8 v2;
     bool8 v3;
     int i;
+    u16 *var = GetVarPointer(VAR_PETALBURG_WOODS_STATE);
 
     LoadCurrentMapData();
     LoadEventObjTemplatesFromHeader();
-    for (i = 0; i < 64; i++)
+    if (*var != 0)
     {
-        if (gSaveBlock1.eventObjectTemplates[i].movementType == MOVEMENT_TYPE_FOLLOWER)
+        for (i = 0; i < 64; i++)
         {
-            Overworld_SetEventObjTemplateCoords(gSaveBlock1.eventObjectTemplates[i].localId, gSaveBlock1.pos.x, gSaveBlock1.pos.y);
-            gFollowerStruct->nextDir = GetPlayerFacingDirection();
+            if (gSaveBlock1.eventObjectTemplates[i].movementType == MOVEMENT_TYPE_FOLLOWER)
+            {
+                Overworld_SetEventObjTemplateCoords(gSaveBlock1.eventObjectTemplates[i].localId, gSaveBlock1.pos.x, gSaveBlock1.pos.y);
+                if (*var == 1)
+                {
+                    gFollowerStruct->nextDir = 4;
+                    *var = 2;
+                }
+                else
+                {
+                    gFollowerStruct->nextDir = GetPlayerFacingDirection();
+                }
+            }
         }
     }
     v2 = is_map_type_1_2_3_5_or_6(gMapHeader.mapType);

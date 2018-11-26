@@ -8637,7 +8637,9 @@ bool8 MovementType_Follower_Step1(struct EventObject *eventObject, struct Sprite
 
 bool8 MovementType_Follower_Step2(struct EventObject *eventObject, struct Sprite *sprite)
 {
-    if (CanFollowerMove()) // add this so we can stop the follower for whatever reason
+    u16 *var = GetVarPointer(VAR_PETALBURG_WOODS_STATE);
+
+    if (CanFollowerMove() && *var != 0) // add this so we can stop the follower for whatever reason
     {
         if (EventObjectExecSingleMovementAction(eventObject, sprite)) // finally do the movement
         {
