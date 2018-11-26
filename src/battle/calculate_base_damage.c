@@ -151,8 +151,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         spAttack = (150 * spAttack) / 100;
     if (attackerHoldEffect == HOLD_EFFECT_LIFE_ORB)
     {
-        attack = (5324 * attack) / 4096;
-        spAttack = (5324 * spAttack) / 4096;
+        attack = (1331 * attack) / 1024;
+        spAttack = (1331 * spAttack) / 1024;
     }
     if (attackerHoldEffect == HOLD_EFFECT_ASSAULT_VEST)
         spDefense = (150 * spDefense) / 100;*/
@@ -204,7 +204,21 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack *= 2;
     if (attacker->ability == ABILITY_SOLAR_POWER && gBattleWeather & WEATHER_SUN_ANY)
         spAttack = (150 * spAttack) / 100;
-
+    if (attacker->ability == RIVALRY)
+    {
+        if (GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) == GetGenderFromSpeciesAndPersonality(defender->species, defender->personality)
+            && GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) != 0xFF)
+        {
+            attack *= 2;
+            spAttack *= 2;
+        }
+        else if (GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) != GetGenderFromSpeciesAndPersonality(defender->species, defender->personality)
+            && GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) != 0xFF)
+        {
+            attack /= 2;
+            spAttack /= 2;
+        }
+    }
     if (type == TYPE_ELECTRIC && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFD, 0))
         gBattleMovePower /= 2;
     if (type == TYPE_FIRE && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFE, 0))
