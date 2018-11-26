@@ -22,6 +22,7 @@ TownOne_PlayerHouse1F_LevelScript::
 	applymovement 255, WalktoHoundour
 	waitmovement 0
 	removeobject 2
+	playmoncry SPECIES_HOUNDOUR, 0
 	playfanfare MUS_FANFA4
 	message HoundourJoined
 	waitfanfare
@@ -51,28 +52,28 @@ HoundourHop::
 	end_movement
 
 TownOne_PlayerHouse1F_MomTextA::
-.string "Mom: {PLAYER}, you must be excited!\pIts your first day as\nProf. Alloys assistant!$"
+.string "Mom: {PLAYER}, you must be excited!\pIt’s your first day as\nProf. Alloy’s assistant!$"
 
 TownOne_PlayerHouse1F_HoundourA::
-.string "Houndour: Gruff!$"
+.string "HOUNDOUR: Gruff!$"
 
 TownOne_PlayerHouse1F_MomTextB::
-.string "Mom: See? Even Houndours excited!\p"
+.string "Mom: See? Even Houndour’s excited!\p"
 .string "Actually, Prof. Alloy called a\nlittle while ago.\lHe wants to see you right away!\p"
-.string "If youre starting out on a\njourney as the Professors\lassistant, {PLAYER}, you really\lshould take Houndour along.\p"
-.string "When youre just at home, things\nare different.\p"
-.string "But if youre out traveling, you\nshould know Tellum isnt like\lother regions.\p"
+.string "If you’re starting out on a\njourney as the Professors\lassistant, {PLAYER}, you really\lshould take HOUNDOUR along.\p"
+.string "When you’re just at home, things\nare different.\p"
+.string "But if you’re out traveling, you\nshould know Tellum isn’t like\lother regions.\p"
 .string "Theres all kinds of strong\nPokémon out there.\p"
 .string "The Tellum frontier is not for the\nfaint of heart!\p"
 .string "I know that first-hand from my own\ndays as a Trainer!$"
 
 TownOne_PlayerHouse1F_HoundourB::
-.string "Houndour: Grrruff!!$"
+.string "HOUNDOUR: Grrruff!!$"
 
 TownOne_PlayerHouse1F_MomTextC::
-.string "Mom: I think thats Houndours way\n of saying, Count me in!\p"
+.string "Mom: I think thats HOUNDOUR’s way\n of saying, Count me in!\p"
 .string "Mom: You two will make an\nexcellent team!\pNow, you better get going.\pYou dont want to keep the\nProfessor waiting!$"
 
 HoundourJoined::
-.string "{PLAYER} brought Houndour along!$"
+.string "{PLAYER} brought HOUNDOUR along!$"
 

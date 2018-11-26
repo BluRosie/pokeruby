@@ -43,7 +43,7 @@ PetalburgWoods_Follower_EventScript::
 	lockall
 	playmoncry SPECIES_MELTAN 0
 	waitmoncry
-	applymovement 15, PetalburgWoods_Movement_Follower
+	applymovement 14, PetalburgWoods_Movement_Follower
 	msgbox PetalburgWoods_Follower_Text
 	releaseall
 	end
@@ -58,7 +58,7 @@ PetalburgWoods_Movement_Follower::
 
 PetalburgWoods_EventScript_15CD42:: @ 815CD42
 	lockall
-	applymovement 14, PetalburgWoods_Movement_Meltan
+	applymovement 13, PetalburgWoods_Movement_Meltan
 	waitmovement 0
 	playmoncry SPECIES_MELTAN 0
 	waitmoncry
