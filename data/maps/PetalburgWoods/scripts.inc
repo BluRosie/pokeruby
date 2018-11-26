@@ -39,10 +39,31 @@ PetalburgWoods_EventScript_15CCA8:: @ 815CCA8
 	goto PetalburgWoods_EventScript_15CE69
 	end
 
+PetalburgWoods_Follower_EventScript::
+	lockall
+	playmoncry SPECIES_MELTAN 0
+	waitmoncry
+	applymovement 15, PetalburgWoods_Movement_Follower
+	msgbox PetalburgWoods_Follower_Text
+	releaseall
+	end
+
+PetalburgWoods_Follower_Text::
+	.string "MELTAN is happy to have met you!$"
+
+PetalburgWoods_Movement_Follower::
+	jump_in_place_down
+	jump_in_place_down
+	end_movement
+
 PetalburgWoods_EventScript_15CD42:: @ 815CD42
 	lockall
 	applymovement 14, PetalburgWoods_Movement_Meltan
 	waitmovement 0
+	playmoncry SPECIES_MELTAN 0
+	waitmoncry
+	playse MUS_ME_BACHI
+	waitse
 	msgbox PetalburgWoods_Text_MeltanJoin
 	givemon SPECIES_MELTAN, 10, 0, 0, 0, 0
 	setvar VAR_PETALBURG_WOODS_STATE, 1
