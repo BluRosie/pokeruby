@@ -8,17 +8,17 @@ TownOne_ProfLab_AideNPC::
 TownOne_ProfLab_AideNPC_Text::
     .string "It’s just me and the Prof.\nIn this lab...\lSometimes it gets really lonely.$"
 
-
 TownOne_ProfLab_ProfNPC::
 	lock
 	faceplayer
-	goto_if_set FLAG_HIDE_MOM_LITTLEROOT, TownOne_ProfLab_ProfNPC_FoundMeltan
-	msgbox TownOne_ProfLab_ProfNPC_TextA, 4
+	goto_if_set FLAG_HIDE_MOM_LITTLEROOT, TownOne_ProfLab_ProfNPC_TextA
+	msgbox TownOne_ProfLab_ProfNPC_FoundMeltan, 4
 	closemessage
     end
 
 TownOne_ProfLab_ProfNPC_FoundMeltan::
 	msgbox TownOne_ProfLab_ProfNPC_TextB, 4
+	setvar VAR_LITTLEROOT_INTRO_STATE, 3
 	closemessage
     end
 

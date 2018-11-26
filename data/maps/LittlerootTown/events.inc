@@ -8,15 +8,14 @@ LittlerootTown_MapWarps::
 	warp_def 16, 6, 0, 0, MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB
 
 LittlerootTown_MapCoordEvents::
-	coord_event 10, 1, 3, EVENT_VAR_MELTANHACK, 2, LittlerootTown_Guy_EventScript
-	coord_event 11, 1, 3, VAR_LITTLEROOT_STATE, 0, LittlerootTown_EventScript_14D797
-	coord_event 11, 1, 3, EVENT_VAR_MELTANHACK, 2, LittlerootTown_Guy_EventScript
-	coord_event 13, 1, 3, EVENT_VAR_MELTANHACK, 2, LittlerootTown_Guy_EventScript
-	coord_event 12, 1, 3, EVENT_VAR_MELTANHACK, 2, LittlerootTown_Guy_EventScript
+	coord_event 10, 2, 3, VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_Guy_EventScript
+	coord_event 11, 2, 3, VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_Guy_EventScript
+	coord_event 13, 2, 3, VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_Guy_EventScript
+	coord_event 12, 2, 3, VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_Guy_EventScript
 
 LittlerootTown_MapBGEvents::
-	bg_event 14, 14, 0, BG_EVENT_PLAYER_FACING_ANY, LittlerootTown_EventScript_14D7F6
-	bg_event 14, 7, 0, BG_EVENT_PLAYER_FACING_ANY, LittlerootTown_EventScript_14D7FF
+	bg_event 14, 7, 0, BG_EVENT_PLAYER_FACING_ANY, LittlerootTown_EventScript_14D7F6
+	bg_event 14, 14, 0, BG_EVENT_PLAYER_FACING_ANY, LittlerootTown_EventScript_14D7FF
 	bg_event 10, 8, 3, BG_EVENT_PLAYER_FACING_ANY, LittlerootTown_EventScript_14D808
 	bg_event 9, 12, 3, BG_EVENT_PLAYER_FACING_ANY, LittlerootTown_EventScript_14D834
 
