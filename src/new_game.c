@@ -134,9 +134,9 @@ void debug_sub_8052E04()
 }
 #endif
 
-void WarpToTruck(void)
+void WarpToInitialMap(void)
 {
-    Overworld_SetWarpDestination(MAP_GROUP(INSIDE_OF_TRUCK), MAP_NUM(INSIDE_OF_TRUCK), -1, -1, -1);
+    Overworld_SetWarpDestination(1, 1, -1, -1, -1);
     WarpIntoMap();
 }
 
@@ -201,8 +201,9 @@ void NewGameInitData(void)
     InitDewfordTrend();
     ResetFanClub();
     ResetLotteryCorner();
-    WarpToTruck();
+    WarpToInitialMap();
     ScriptContext2_RunNewScript(gUnknown_0819FA81);
+    EnableNationalPokedex();
 }
 
 #if DEBUG
