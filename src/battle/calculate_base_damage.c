@@ -207,16 +207,17 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (attacker->ability == ABILITY_RIVALRY)
     {
         if (GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) == GetGenderFromSpeciesAndPersonality(defender->species, defender->personality)
-            && GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) != 0xFF)
+            && GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) != 0xFF
+            && (attacker->personality != defender->personality && attacker->otId != defender->otId)) // this just added so that confusion damage isn't boosted either
         {
-            attack *= 2;
-            spAttack *= 2;
+            attack = (125 * attack) / 100;
+            spAttack = (125 * spAttack) / 100;
         }
         else if (GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) != GetGenderFromSpeciesAndPersonality(defender->species, defender->personality)
             && GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) != 0xFF)
         {
-            attack /= 2;
-            spAttack /= 2;
+            attack = (75 * attack) / 100;
+            spAttack = (75 * spAttack) / 100;
         }
     }
     if (type == TYPE_ELECTRIC && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFD, 0))
@@ -346,7 +347,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             }
 
             // any weather except sun weakens solar beam
-            if ((gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_SANDSTORM_ANY | WEATHER_HAIL)) && gCurrentMove == MOVE_SOLAR_BEAM)
+            if (((gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_SANDSTORM_ANY | WEATHER_HAIL)) || gNewBattleEffects.fog == 1) && gCurrentMove == MOVE_SOLAR_BEAM)
                 damage /= 2;
 
             // sunny

@@ -2064,13 +2064,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                 }
                 break;
             case ABILITY_ROUGH_SKIN:
+            case ABILITY_IRON_BARBS:
                 if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                  && gBattleMons[gBankAttacker].hp != 0
                  && !gProtectStructs[gBankAttacker].confusionSelfDmg
                  && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
                  && (gBattleMoves[move].flags & F_MAKES_CONTACT))
                 {
-                    gBattleMoveDamage = gBattleMons[gBankAttacker].maxHP / 16;
+                    gBattleMoveDamage = gBattleMons[gBankAttacker].maxHP / 8;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
                     BattleScriptPushCursor();

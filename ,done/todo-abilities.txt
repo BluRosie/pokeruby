@@ -255,8 +255,8 @@ gAbilityDescription_Prankster:
 gAbilityDescription_SandForce:
 	.string "Powers up in a sandstorm.$"
 
-@gAbilityDescription_IronBarbs:
-@	.string ".$"
+DONE@gAbilityDescription_IronBarbs:
+DONE@	.string ".$"
 
 gAbilityDescription_ZenMode:
 	.string "Transforms at half HP.$"
