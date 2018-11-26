@@ -204,7 +204,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack *= 2;
     if (attacker->ability == ABILITY_SOLAR_POWER && gBattleWeather & WEATHER_SUN_ANY)
         spAttack = (150 * spAttack) / 100;
-    if (attacker->ability == RIVALRY)
+    if (attacker->ability == ABILITY_RIVALRY)
     {
         if (GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) == GetGenderFromSpeciesAndPersonality(defender->species, defender->personality)
             && GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) != 0xFF)

@@ -8,8 +8,8 @@ DONE.string "Ups evasion if confused.$"
 gAbilityDescription_MotorDrive:
 	.string "Electricity raises Speed.$"
 
-gAbilityDescription_Rivalry:
-	.string "Powers up against rivals.$"
+DONEgAbilityDescription_Rivalry:
+DONE.string "Powers up against rivals.$"
 
 gAbilityDescription_Steadfast:
 	.string "Flinching raises Speed.$"
