@@ -5,7 +5,7 @@ PetalburgWoods_EventObjects::
 	object_event 4, EVENT_OBJ_GFX_MAN_2, 0, 25, 20, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, 0x0, FLAG_HIDE_DEVON_PETALBURG_WOODS
 	object_event 5, EVENT_OBJ_GFX_ITEM_BALL, 0, 41, 6, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, PetalburgWoods_EventScript_1B175F, FLAG_ITEM_PETALBURG_WOODS_2
 	object_event 6, EVENT_OBJ_GFX_ITEM_BALL, 0, 34, 25, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, PetalburgWoods_EventScript_1B1752, FLAG_ITEM_PETALBURG_WOODS_1
-	object_event 7, EVENT_OBJ_GFX_ITEM_BALL, 0, 4, 8, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, PetalburgWoods_EventScript_1B176C, FLAG_ITEM_PETALBURG_WOODS_3
+	object_event 7, EVENT_OBJ_GFX_ITEM_BALL, 0, 4, 7, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, PetalburgWoods_EventScript_1B176C, FLAG_ITEM_PETALBURG_WOODS_3
 	object_event 8, EVENT_OBJ_GFX_BOY_2, 0, 19, 4, 3, MOVEMENT_TYPE_WANDER_UP_AND_DOWN, 1, 2, 0, 0, PetalburgWoods_EventScript_15CECA, 0
 	object_event 9, EVENT_OBJ_GFX_BUG_CATCHER, 0, 7, 32, 3, MOVEMENT_TYPE_FACE_DOWN_LEFT_AND_RIGHT, 0, 0, 1, 3, PetalburgWoods_EventScript_15CF27, 0
 	object_event 10, EVENT_OBJ_GFX_BUG_CATCHER, 0, 45, 22, 3, MOVEMENT_TYPE_FACE_DOWN_UP_AND_RIGHT, 0, 0, 1, 3, PetalburgWoods_EventScript_15CF3E, 0
@@ -26,7 +26,7 @@ PetalburgWoods_MapBGEvents::
 	bg_event 38, 35, 3, BG_EVENT_PLAYER_FACING_ANY, PetalburgWoods_EventScript_15CF15
 	bg_hidden_item_event 43, 34, 3, ITEM_POTION, FLAG_HIDDEN_ITEM_3A
 	bg_hidden_item_event 26, 6, 3, ITEM_TINY_MUSHROOM, FLAG_HIDDEN_ITEM_3B
-	bg_hidden_item_event 4, 19, 3, ITEM_POKE_BALL, FLAG_HIDDEN_ITEM_3D
+	bg_hidden_item_event 4, 18, 3, ITEM_POKE_BALL, FLAG_HIDDEN_ITEM_3D
 
 PetalburgWoods_MapEvents::
 	map_events PetalburgWoods_EventObjects, PetalburgWoods_MapWarps, PetalburgWoods_MapCoordEvents, PetalburgWoods_MapBGEvents
