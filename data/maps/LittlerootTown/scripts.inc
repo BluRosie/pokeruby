@@ -331,23 +331,21 @@ LittlerootTown_EventScript_14D7F6:: @ 814D7F6
     end
 
 TownOne_Outside_ProfLabSign::
-    .string "Prof. Alloys Lab"
+    .string "Prof. Alloys Lab$"
 
 LittlerootTown_EventScript_14D7FF:: @ 814D7FF
     msgbox TownOne_Outside_ProfHouseSign, 3
     end
 
 TownOne_Outside_ProfHouseSign::
-    .string "Prof. Alloys House"
-
-
+    .string "Prof. Alloys House$"
 
 LittlerootTown_EventScript_14D808:: @ 814D808
     msgbox TownOne_Outside_PlayerHouseSign, 3
     end
 
 TownOne_Outside_PlayerHouseSign::
-    .string "{PLAYER}s House"
+    .string "{PLAYER}s House$"
 
 LittlerootTown_EventScript_14D822:: @ 814D822
 	msgbox LittlerootTown_Text_16AEA1, 4
@@ -362,7 +360,7 @@ LittlerootTown_EventScript_14D834:: @ 814D834
     end
 
 TownOne_Outside_TownSign::
-    .string "Magnus Town\nA Place of Great Work and Love."
+    .string "Magnus Town\nA Place of Great Work and Love.$"
 
 
 LittlerootTown_EventScript_14D84E:: @ 814D84E
