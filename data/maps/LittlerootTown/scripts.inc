@@ -1,24 +1,27 @@
 LittlerootTown_MapScripts:: @ 814D509
 	map_script 3, LittlerootTown_MapScript1_14D514
-	map_script 2, LittlerootTown_MapScript2_14D5D5
 	.byte 0
 
 LittlerootTown_MapScript1_14D514:: @ 814D514
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
-	compare VAR_LITTLEROOT_INTRO_STATE, 2
-	call_if_eq LittlerootTown_EventScript_14D57B
-	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_14D583
-	compare VAR_LITTLEROOT_STATE, 3
-	call_if_eq LittlerootTown_EventScript_14D5A6
-	compare VAR_LITTLEROOT_HOUSES_STATE, 4
-	call_if_eq LittlerootTown_EventScript_14D570
-	compare VAR_LITTLEROOT_HOUSES_STATE_2, 4
-	call_if_eq LittlerootTown_EventScript_14D570
-	compare VAR_OLDALE_STATE, 1
-	call_if_eq LittlerootTown_EventScript_14D567
-	compare VAR_LITTLEROOT_RIVAL_STATE, 3
-	call_if_eq LittlerootTown_EventScript_14D563
 	end
+
+LittlerootTown_Guy_EventScript::
+	lockall
+	delay 0x28
+	msgbox TownOne_Outside_CantLeaveText, 4
+	applymovement 255, TownOne_Outside_CantLeaveMovement
+	waitmovement 0
+	closemessage
+	releaseall
+	end
+
+TownOne_Outside_CantLeaveText::
+	.string "We should go to the Prof.s Lab!$"
+
+TownOne_Outside_CantLeaveMovement::
+	walk_down
+	end_movement
 
 LittlerootTown_EventScript_14D563:: @ 814D563
 	setflag FLAG_RIVAL_LEFT_FOR_ROUTE103
@@ -309,20 +312,6 @@ LittlerootTown_Movement_14D7C0:: @ 814D7C0
 LittlerootTown_Guy_Text::
 	.string "Hello$"
 
-LittlerootTown_Guy_EventScript::
-	lockall
-	applymovement 1, LittlerootTown_Movement_1A0843
-	waitmovement 0
-	applymovement 255, LittlerootTown_Movement_1A083F
-	waitmovement 0
-	msgbox LittlerootTown_Guy_Text, 4
-	closemessage
-	applymovement 1, LittlerootTown_Movement_1A083D
-	waitmovement 0
-	setvar VAR_LITTLEROOT_STATE, 2
-	releaseall
-	end
-
 LittlerootTown_EventScript_14D7C7:: @ 814D7C7
 	lockall
 	applymovement 1, LittlerootTown_Movement_1A0843
@@ -338,22 +327,27 @@ LittlerootTown_EventScript_14D7C7:: @ 814D7C7
 	end
 
 LittlerootTown_EventScript_14D7F6:: @ 814D7F6
-	msgbox LittlerootTown_Text_16AE50, 3
-	end
+    msgbox TownOne_Outside_ProfLabSign, 3
+    end
+
+TownOne_Outside_ProfLabSign::
+    .string "Prof. Alloys Lab"
 
 LittlerootTown_EventScript_14D7FF:: @ 814D7FF
-	msgbox LittlerootTown_Text_16AE87, 3
-	end
+    msgbox TownOne_Outside_ProfHouseSign, 3
+    end
+
+TownOne_Outside_ProfHouseSign::
+    .string "Prof. Alloys House"
+
+
 
 LittlerootTown_EventScript_14D808:: @ 814D808
-	lockall
-	checkplayergender
-	compare RESULT, 0
-	call_if_eq LittlerootTown_EventScript_14D822
-	compare RESULT, 1
-	call_if_eq LittlerootTown_EventScript_14D82B
-	releaseall
-	end
+    msgbox TownOne_Outside_PlayerHouseSign, 3
+    end
+
+TownOne_Outside_PlayerHouseSign::
+    .string "{PLAYER}s House"
 
 LittlerootTown_EventScript_14D822:: @ 814D822
 	msgbox LittlerootTown_Text_16AEA1, 4
@@ -364,14 +358,12 @@ LittlerootTown_EventScript_14D82B:: @ 814D82B
 	return
 
 LittlerootTown_EventScript_14D834:: @ 814D834
-	lockall
-	checkplayergender
-	compare RESULT, 0
-	call_if_eq LittlerootTown_EventScript_14D84E
-	compare RESULT, 1
-	call_if_eq LittlerootTown_EventScript_14D857
-	releaseall
-	end
+    msgbox TownOne_Outside_TownSign, 3
+    end
+
+TownOne_Outside_TownSign::
+    .string "Magnus Town\nA Place of Great Work and Love."
+
 
 LittlerootTown_EventScript_14D84E:: @ 814D84E
 	msgbox LittlerootTown_Text_16AEAC, 4

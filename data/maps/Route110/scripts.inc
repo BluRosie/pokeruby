@@ -199,7 +199,7 @@ Route110_EventScript_14FB11:: @ 814FB11
 	end
 
 Route110_EventScript_14FB28:: @ 814FB28
-	trainerbattle 0, TRAINER_ANTHONY, 0, Route110_Text_1BA2D4, Route110_Text_1BA2FC
+	trainerbattle 0, TRAINER_STEVEN, 0, Route110_Text_1BA2D4, Route110_Text_1BA2FC
 	msgbox Route110_Text_1BA30C, 6
 	end
 

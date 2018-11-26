@@ -67,13 +67,14 @@ PetalburgWoods_EventScript_15CD42:: @ 815CD42
 	msgbox PetalburgWoods_Text_MeltanJoin
 	givemon SPECIES_MELTAN, 10, 0, 0, 0, 0
 	setvar VAR_PETALBURG_WOODS_STATE, 1
+	clearflag FLAG_HIDE_MOM_LITTLEROOT
 	warpsilent MAP_PETALBURG_WOODS, 255, 14, 18
 	setflag FLAG_HIDE_FAT_MAN_LITTLEROOT
 	releaseall
 	end
 
 PetalburgWoods_Text_MeltanJoin::
-	.string "Meltan has joined\nyour Party!$"
+	.string "MELTAN has joined\nyour Party!$"
 
 PetalburgWoods_Movement_Meltan::
 	walk_fast_down

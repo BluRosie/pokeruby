@@ -13,7 +13,7 @@ PetalburgWoods_EventObjects::
 	object_event 12, EVENT_OBJ_GFX_ITEM_BALL, 0, 35, 29, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, PetalburgWoods_EventScript_1B1779, FLAG_ITEM_PETALBURG_WOODS_4
 	object_event 13, EVENT_OBJ_GFX_GIRL_2, 0, 32, 8, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, PetalburgWoods_EventScript_15CEDC, 0
 	object_event 14, EVENT_OBJ_GFX_MELTAN, 0, 7, 17, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, FALSE, 0, NULL, FLAG_HIDE_FAT_MAN_LITTLEROOT
-	object_event 15, EVENT_OBJ_GFX_MELTAN, 0, 0, 17, 3, MOVEMENT_TYPE_FOLLOWER, 0, 0, FALSE, 0, PetalburgWoods_Follower_EventScript, 0
+	object_event 15, EVENT_OBJ_GFX_MELTAN, 0, 0, 17, 3, MOVEMENT_TYPE_FOLLOWER, 0, 0, FALSE, 0, PetalburgWoods_Follower_EventScript, FLAG_HIDE_MOM_LITTLEROOT
 
 PetalburgWoods_MapWarps::
 	warp_def 36, 38, 0, 0, MAP_ROUTE102
