@@ -175,10 +175,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack *= 2;
 
     if (defender->ability == ABILITY_THICK_FAT && (type == TYPE_FIRE || type == TYPE_ICE))
-        {
+    {
         spAttack /= 2;
         attack /= 2;
-        }
+    }
     if (attacker->ability == ABILITY_HUSTLE)
         attack = (150 * attack) / 100;
     if (attacker->ability == ABILITY_PLUS && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, ABILITY_MINUS, 0, 0))
@@ -219,6 +219,11 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             attack = (75 * attack) / 100;
             spAttack = (75 * spAttack) / 100;
         }
+    }
+    if (defender->ability == ABILITY_HEATPROOF && type == TYPE_FIRE)
+    {
+        spAttack /= 2;
+        attack /= 2;
     }
     if (type == TYPE_ELECTRIC && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFD, 0))
         gBattleMovePower /= 2;

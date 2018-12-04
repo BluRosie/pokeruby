@@ -26,8 +26,8 @@ gAbilityDescription_AngerPoint:
 gAbilityDescription_Unburden:
 	.string "Using a hold item ups Speed.$"
 
-gAbilityDescription_Heatproof:
-	.string "Heat and burn protection.$"
+DONEgAbilityDescription_Heatproof:
+DONE.string "Heat and burn protection.$"
 
 gAbilityDescription_Simple:
 	.string "Prone to wild stat changes.$"
@@ -140,8 +140,8 @@ gAbilityDescription_Multitype:
 gAbilityDescription_FlowerGift:
 	.string "Transforms in sunshine.$"
 
-gAbilityDescription_BadDreams:
-	.string "Damages sleeping Pokémon.$"
+DONEgAbilityDescription_BadDreams:
+DONE.string "Damages sleeping Pokémon.$"
 
 @@@@@@@@@
 @ GEN V @
