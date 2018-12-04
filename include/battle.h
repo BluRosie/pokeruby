@@ -516,13 +516,15 @@ struct ProtectStruct
 struct SpecialStatus
 {
     u8 statLowered : 1;
-    u8 lightningRodRedirected : 1;
     u8 restoredBankSprite: 1;
     u8 intimidatedPoke : 1;
     u8 traced : 1;
     u8 flag20 : 1;
     u8 flag40 : 1;
     u8 focusBanded : 1;
+    u8 lightningRodRedirected : 1;
+    u8 stormDrainRedirected : 1;
+    u8 padding : 7;
     u8 field1[3];
     s32 moveturnLostHP;
     s32 moveturnLostHP_physical;

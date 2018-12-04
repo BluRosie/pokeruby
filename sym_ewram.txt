@@ -245,7 +245,7 @@ gProtectStructs = .; /* 2024D28 */
     . += 0x40;
 
 gSpecialStatuses = .; /* 2024D68 */
-    . += 0x50;
+    . += 0x54;
 
 gBattleWeather = .; /* 2024DB8 */
     . += 0x4;

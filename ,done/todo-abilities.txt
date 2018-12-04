@@ -125,8 +125,8 @@ gAbilityDescription_IceBody:
 DONEgAbilityDescription_SnowWarning:
 DONE.string "Summons a hailstorm.$"
 
-gAbilityDescription_HoneyGather:
-	.string "May gather Honey.$"
+DONEgAbilityDescription_HoneyGather:
+DONE.string "May gather Honey.$"
 
 gAbilityDescription_Frisk:
 	.string "Checks a foe’s item.$"
@@ -140,8 +140,8 @@ gAbilityDescription_Multitype:
 gAbilityDescription_FlowerGift:
 	.string "Transforms in sunshine.$"
 
-DONEgAbilityDescription_BadDreams:
-DONE.string "Damages sleeping Pokémon.$"
+gAbilityDescription_BadDreams:
+	.string "Damages sleeping Pokémon.$"
 
 @@@@@@@@@
 @ GEN V @

@@ -6720,7 +6720,10 @@ void HandleAction_UseMove(void)
         {
             gActiveBattler = gBanksByTurnOrder[var];
             RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
-            gSpecialStatuses[gActiveBattler].lightningRodRedirected = 1;
+            if (gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
+                gSpecialStatuses[gActiveBattler].lightningRodRedirected = 1;
+            else if (gBattleMoves[gCurrentMove].type == TYPE_WATER)
+                gSpecialStatuses[gActiveBattler].stormDrainRedirected = 1;
             gBankTarget = gActiveBattler;
         }
     }
