@@ -1,5 +1,6 @@
 const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_NONE] = _("??????????"),
+	
     [SPECIES_BULBASAUR] = _("Bulbasaur"),
     [SPECIES_IVYSAUR] = _("Ivysaur"),
     [SPECIES_VENUSAUR] = _("Venusaur"),
@@ -82,7 +83,7 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_SLOWBRO] = _("Slowbro"),
     [SPECIES_MAGNEMITE] = _("Magnemite"),
     [SPECIES_MAGNETON] = _("Magneton"),
-    [SPECIES_FARFETCHD] = _("Farfetch’d"),
+    [SPECIES_FARFETCHD] = _("Farfetch'd"),
     [SPECIES_DODUO] = _("Doduo"),
     [SPECIES_DODRIO] = _("Dodrio"),
     [SPECIES_SEEL] = _("Seel"),

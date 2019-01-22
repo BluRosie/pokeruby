@@ -173,7 +173,7 @@ static const u8 gItemDescription_Elixir[] = _(
 
 static const u8 gItemDescription_MaxElixir[] = _(
     "Fully restores the\n"
-    "PP of a Pokémon’s\n"
+    "PP of a Pokémon's\n"
     "moves.");
 
 static const u8 gItemDescription_LavaCookie[] = _(
@@ -815,7 +815,7 @@ static const u8 gItemDescription_MentalHerb[] = _(
     "of infatuation.");
 
 static const u8 gItemDescription_ChoiceBand[] = _(
-    "Raises a move’s\n"
+    "Raises a move's\n"
     "power, but permits\n"
     "only that move.");
 
@@ -991,11 +991,11 @@ static const u8 gItemDescription_SeaIncense[] = _(
 static const u8 gItemDescription_LaxIncense[] = _(
     "A hold item that\n"
     "slightly lowers the\n"
-    "foe’s accuracy.");
+    "foe's accuracy.");
 
 static const u8 gItemDescription_LuckyPunch[] = _(
     "A hold item that\n"
-    "raises Chansey’s\n"
+    "raises Chansey's\n"
     "critical-hit rate.");
 
 static const u8 gItemDescription_MetalPowder[] = _(
@@ -1083,7 +1083,7 @@ static const u8 gItemDescription_WailmerPail[] = _(
 
 static const u8 gItemDescription_DevonGoods[] = _(
     "A package that\n"
-    "contains Devon’s\n"
+    "contains Devon's\n"
     "machine parts.");
 
 static const u8 gItemDescription_SootSack[] = _(
@@ -1377,7 +1377,7 @@ static const u8 gItemDescription_TM39[] = _(
 
 static const u8 gItemDescription_TM40[] = _(
     "An extremely fast\n"
-    "attack that can’t\n"
+    "attack that can't\n"
     "be avoided.");
 
 static const u8 gItemDescription_TM41[] = _(
@@ -1408,7 +1408,7 @@ static const u8 gItemDescription_TM45[] = _(
 static const u8 gItemDescription_TM46[] = _(
     "While attacking,\n"
     "it may steal the\n"
-    "foe’s held item.");
+    "foe's held item.");
 
 static const u8 gItemDescription_TM47[] = _(
     "Spreads hard-edged\n"

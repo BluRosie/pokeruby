@@ -14,7 +14,7 @@ gMultiText_2P3P4P:: @ 842C30A
 	.string "2 Players\n3 Players\n4 Players$"
 
 gMultiText_Saving:: @ 842C328
-	.string "Saving...\nDon’t turn off the power.$"
+	.string "Saving...\nDon't turn off the power.$"
 
 gMultiText_LinkError:: @ 842C34C
 	.string "{HIGHLIGHT TRANSPARENT}{COLOR WHITE2}Link error...\nCheck your Game Link cable connection,\nand turn the power off and on.$"
@@ -117,7 +117,7 @@ gSystemText_LoadingEvent:: @ 842C524
 	.string "Loading event...$"
 
 gSystemText_DontCutLink:: @ 842C535
-	.string "Don’t remove the Game Link cable.\nDon’t turn off the power.$"
+	.string "Don't remove the Game Link cable.\nDon't turn off the power.$"
 
 gSystemText_EventLoadSuccess:: @ 842C571
 	.string "The event was safely loaded.$$"
@@ -132,7 +132,7 @@ gOtherText_OhABite:: @ 842C5BB
 	.string "Oh! A bite!$"
 
 gOtherText_PokeOnHook:: @ 842C5C7
-	.string "A Pokémon’s on the hook!{PAUSE_UNTIL_PRESS}$"
+	.string "A Pokémon's on the hook!{PAUSE_UNTIL_PRESS}$"
 
 gOtherText_NotEvenANibble:: @ 842C5E2
 	.string "Not even a nibble...{PAUSE_UNTIL_PRESS}$"
@@ -173,9 +173,9 @@ TradeText_LinkStandby::
 TradeText_TradeCancelled::
 	.string "{COLOR DARK_GREY}{HIGHLIGHT WHITE2}{SHADOW LIGHT_GREY}The trade has\nbeen canceled.$"
 TradeText_OnlyPoke::
-	.string "{COLOR DARK_GREY}{HIGHLIGHT WHITE2}{SHADOW LIGHT_GREY}That’s your only\nPokémon for battle.$"
+	.string "{COLOR DARK_GREY}{HIGHLIGHT WHITE2}{SHADOW LIGHT_GREY}That's your only\nPokémon for battle.$"
 TradeText_NonTradablePoke::
-	.string "{COLOR DARK_GREY}{HIGHLIGHT WHITE2}{SHADOW LIGHT_GREY}Your friend can’t\ntrade that one.$"
+	.string "{COLOR DARK_GREY}{HIGHLIGHT WHITE2}{SHADOW LIGHT_GREY}Your friend can't\ntrade that one.$"
 TradeText_WaitingForFriend::
 	.string "{COLOR DARK_GREY}{HIGHLIGHT WHITE2}{SHADOW LIGHT_GREY}Waiting for your\nfriend to finish...$"
 TradeText_WantToTrade::
@@ -213,7 +213,7 @@ gOtherText_MixingComplete:: @ 842C8AC
 	.string "Record mixing completed.\nThank you for waiting.$"
 
 gOtherText_TrainersTrainerCard:: @ 842C8DC
-	.string "’s Trainer Card$"
+	.string "'s Trainer Card$"
 
 gOtherText_FirstHOF:: @ 842C8EC
 	.string "First Hall of Fame$"
@@ -261,7 +261,7 @@ OtherText_YourName::
 OtherText_BoxName::
 	.string "Box name?$"
 OtherText_PokeName::
-	.string "{STR_VAR_1}’s nickname?$"
+	.string "{STR_VAR_1}'s nickname?$"
 
 gOtherText_Marco:: @ 842C9E1
 	.string "Marco$" @ polo
@@ -270,7 +270,7 @@ gOtherText_Coins:: @ 842C9E7
 	.string "{STR_VAR_1} coins$"
 
 gOtherText_BattleResults:: @ 842C9F0
-	.string "{PLAYER}’s Battle Results$"
+	.string "{PLAYER}'s Battle Results$"
 
 gOtherText_WinRecord:: @ 842CA04
 	.string "Total Record W/{STR_VAR_1} L/{STR_VAR_2} D/{STR_VAR_3}$"
@@ -285,7 +285,7 @@ gOtherText_FourDashes:: @ 842CA44
 	.string "----$"
 
 gOtherText_BattleTowerResults:: @ 842CA49
-	.string "{PLAYER}’s Battle Tower Results$"
+	.string "{PLAYER}'s Battle Tower Results$"
 
 gOtherText_Lv50:: @ 842CA63
 	.string "LV 50$"
@@ -309,23 +309,23 @@ gOtherText_QuitGamePrompt:: @ 842CA90
 	.string "Quit the game?$"
 
 gOtherText_MaxCoins:: @ 842CA9F
-	.string "You’ve got 9,999 coins.$"
+	.string "You've got 9,999 coins.$"
 
 gOtherText_OutOfCoins:: @ 842CAB7
-	.string "You’ve run out of coins.\nGame over!$"
+	.string "You've run out of coins.\nGame over!$"
 
 gOtherText_DontHaveThreeCoins:: @ 842CADB
-	.string "You don’t have three coins.$"
+	.string "You don't have three coins.$"
 
 gOtherText_ReelTime:: @ 842CAF7
-	.string "Reel Time\nHere’s your chance to take\naim and nail marks!\nThe Reel Time continues for\nas often as the drawn number.\nIt all ends on a Big Bonus.$"
+	.string "Reel Time\nHere's your chance to take\naim and nail marks!\nThe Reel Time continues for\nas often as the drawn number.\nIt all ends on a Big Bonus.$"
 
 DaycareText_GetAlongVeryWell::
 	.string "The two seem to get along very well.$"
 DaycareText_GetAlong::
 	.string "The two seem to get along.$"
 DaycareText_DontLikeOther::
-	.string "The two don’t seem to like each other.$"
+	.string "The two don't seem to like each other.$"
 DaycareText_PlayOther::
 	.string "The two prefer to play with other\nPOKéMON than each other.$"
 
@@ -372,7 +372,7 @@ gOtherText_PokeLearnedMove:: @ 842CCE9
 	.string "{STR_VAR_1} learned {STR_VAR_2}.$"
 
 gOtherText_DeleteOlderMove:: @ 842CCF8
-	.string "{STR_VAR_1} is trying to learn\n{STR_VAR_2}.\pBut {STR_VAR_1} can’t learn more\nthan four moves.\pDelete an older move to make\nroom for {STR_VAR_2}?$"
+	.string "{STR_VAR_1} is trying to learn\n{STR_VAR_2}.\pBut {STR_VAR_1} can't learn more\nthan four moves.\pDelete an older move to make\nroom for {STR_VAR_2}?$"
 
 gOtherText_StopLearningMove:: @ 842CD65
 	.string "Stop learning {STR_VAR_2}?$"
@@ -406,7 +406,7 @@ gContestText_Round2Results:: @ 842CE91
 	.string "Round 2 results!$"
 
 gContestText_PokeWon:: @ 842CEA2
-	.string "{STR_VAR_1}’s {STR_VAR_2} won!$"
+	.string "{STR_VAR_1}'s {STR_VAR_2} won!$"
 
 gOtherText_LinkStandby:: @ 842CEAF
 	.string "Link standby...$"
@@ -497,7 +497,7 @@ gOtherText_BlendAnotherBerryPrompt:: @ 842D3B5
 	.string "Would you like to blend another Berry?$"
 
 gOtherText_OutOfBerries:: @ 842D3DC
-	.string "You’ve run out of Berries for\nblending in the Berry Blender.\p$"
+	.string "You've run out of Berries for\nblending in the Berry Blender.\p$"
 
 gOtherText_CaseIsFull:: @ 842D41A
 	.string "Your {POKEBLOCK} Case is full.\p$"
@@ -506,7 +506,7 @@ gOtherText_NoBerriesForBlend:: @ 842D434
 	.string " has no Berries to put in\nthe Berry Blender.$"
 
 gOtherText_OtherCaseIsFull:: @ 842D461
-	.string "’s {POKEBLOCK} Case is full.\p$"
+	.string "'s {POKEBLOCK} Case is full.\p$"
 
 gOtherText_ResultsOfBlending:: @ 842D479
 	.string "Results of Blending$"

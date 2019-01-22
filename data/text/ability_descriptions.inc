@@ -51,7 +51,7 @@ gAbilityDescription_Insomnia: @ 81F9B2C
 	.string "Prevents sleep.$"
 
 gAbilityDescription_ColorChange: @ 81F9B3C
-	.string "Changes type to foe’s move.$"
+	.string "Changes type to foe's move.$"
 
 gAbilityDescription_Immunity: @ 81F9B58
 	.string "Prevents poisoning.$"
@@ -69,10 +69,10 @@ gAbilityDescription_SuctionCups: @ 81F9BB2
 	.string "Firmly anchors the body.$"
 
 gAbilityDescription_Intimidate: @ 81F9BCB
-	.string "Lowers the foe’s Attack.$"
+	.string "Lowers the foe's Attack.$"
 
 gAbilityDescription_ShadowTag: @ 81F9BE4
-	.string "Prevents the foe’s escape.$"
+	.string "Prevents the foe's escape.$"
 
 gAbilityDescription_RoughSkin: @ 81F9BFF
 	.string "Hurts to touch.$"
@@ -141,7 +141,7 @@ gAbilityDescription_SandStream: @ 81F9DED
 	.string "Summons a sandstorm.$"
 
 gAbilityDescription_Pressure: @ 81F9E02
-	.string "Raises foe’s PP usage.$"
+	.string "Raises foe's PP usage.$"
 
 gAbilityDescription_ThickFat: @ 81F9E19
 	.string "Heat-and-cold protection.$"
@@ -319,7 +319,7 @@ gAbilityDescription_LeafGuard:
 	.string "Blocks status in sunshine.$"
 
 gAbilityDescription_Klutz:
-	.string "Can’t use hold items.$"
+	.string "Can't use hold items.$"
 
 gAbilityDescription_MoldBreaker:
 	.string "Moves hit through abilities.$"
@@ -334,7 +334,7 @@ gAbilityDescription_Anticipation:
 	.string "Senses dangerous moves.$"
 
 gAbilityDescription_Forewarn:
-	.string "Determines a foe’s move.$"
+	.string "Determines a foe's move.$"
 
 gAbilityDescription_Unaware:
 	.string "Ignores stat changes.$"
@@ -367,7 +367,7 @@ gAbilityDescription_HoneyGather:
 	.string "May gather Honey.$"
 
 gAbilityDescription_Frisk:
-	.string "Checks a foe’s item.$"
+	.string "Checks a foe's item.$"
 
 gAbilityDescription_Reckless:
 	.string "Boosts moves with recoil.$"
@@ -386,7 +386,7 @@ gAbilityDescription_BadDreams:
 @@@@@@@@@
 
 gAbilityDescription_Pickpocket:
-	.string "Steals the foe’s held item.$"
+	.string "Steals the foe's held item.$"
 
 gAbilityDescription_SheerForce:
 	.string "Trades effects for power.$"
@@ -395,7 +395,7 @@ gAbilityDescription_Contrary:
 	.string "Inverts stat changes.$"
 
 gAbilityDescription_Unnerve:
-	.string "Foes can’t eat Berries.$"
+	.string "Foes can't eat Berries.$"
 
 gAbilityDescription_Defiant:
 	.string "Lowered stats up Attack.$"
@@ -434,7 +434,7 @@ gAbilityDescription_Harvest:
 	.string "May recycle a used Berry.$"
 
 gAbilityDescription_Telepathy:
-	.string "Can’t be damaged by an ally.$"
+	.string "Can't be damaged by an ally.$"
 
 gAbilityDescription_Moody:
 	.string "Stats change gradually.$"
@@ -673,7 +673,7 @@ gAbilityDescription_Dancer:
 	.string "Dances along with others.$"
 
 gAbilityDescription_Battery:
-	.string "Boosts ally’s Sp. Atk.$"
+	.string "Boosts ally's Sp. Atk.$"
 
 gAbilityDescription_Fluffy:
 	.string "Tougher but flammable.$"
@@ -688,7 +688,7 @@ gAbilityDescription_TanglingHair:
 	.string "Contact lowers Speed.$"
 
 gAbilityDescription_Receiver:
-	.string "Copies ally’s ability.$"
+	.string "Copies ally's ability.$"
 
 @gAbilityDescription_PowerOfAlchemy:
 @	.string ".$"
