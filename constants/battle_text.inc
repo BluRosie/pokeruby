@@ -134,6 +134,7 @@
 	enum BATTLE_TEXT_CantEscapeNow
 	enum BATTLE_TEXT_NightmareStart
 	enum BATTLE_TEXT_NightmareLock
+	enum BATTLE_TEXT_BadDreamsLock
 	enum BATTLE_TEXT_CurseLay
 	enum BATTLE_TEXT_CurseAfflict
 	enum BATTLE_TEXT_SpikesScattered

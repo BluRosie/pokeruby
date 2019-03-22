@@ -141,6 +141,7 @@ enum
     BATTLE_TEXT_CantEscapeNow,
     BATTLE_TEXT_NightmareStart,
     BATTLE_TEXT_NightmareLock,
+    BATTLE_TEXT_BadDreamsLock,
     BATTLE_TEXT_CurseLay,
     BATTLE_TEXT_CurseAfflict,
     BATTLE_TEXT_SpikesScattered,
@@ -507,6 +508,7 @@ const u8 BattleText_StoleSomething[] = _("{ATTACKING_MON} stole\n{DEFENDING_MON}
 const u8 BattleText_CantEscapeNow[] = _("{DEFENDING_MON} can't\nescape now!");
 const u8 BattleText_NightmareStart[] = _("{DEFENDING_MON} fell into\na nightmare!");
 const u8 BattleText_NightmareLock[] = _("{ATTACKING_MON} is locked\nin a nightmare!");
+const u8 BattleText_BadDreamsLock[] = _("{ATTACKING_MON} is having\nBad Dreams!");
 const u8 BattleText_CurseLay[] = _("{ATTACKING_MON} cut its own HP\nand laid a curse on\l{DEFENDING_MON}!");
 const u8 BattleText_CurseAfflict[] = _("{ATTACKING_MON} is afflicted\nby the curse!");
 const u8 BattleText_SpikesScattered[] = _("{STRING 37} Pokémon team had spikes\nscattered around it!");
@@ -1008,6 +1010,7 @@ const u8 *const gBattleStringsTable[] =
     BattleText_CantEscapeNow,
     BattleText_NightmareStart,
     BattleText_NightmareLock,
+    BattleText_BadDreamsLock,
     BattleText_CurseLay,
     BattleText_CurseAfflict,
     BattleText_SpikesScattered,

@@ -40,6 +40,7 @@ extern u8 gBattlersCount;
 extern u32 gStatuses3[4];
 extern u8 gBankAttacker;
 extern u8 gBankTarget;
+extern u8 gBanksBySide[4];
 extern u8 gBanksByTurnOrder[4];
 extern u16 gSideAffecting[2];
 extern u16 gBattleWeather;
@@ -91,6 +92,7 @@ u16 sub_803FBFC(u8 a);
 void RecordAbilityBattle(u8 bank, u8 ability);
 void RecordItemBattle(u8 bank, u8 holdEffect);
 s8 GetPokeFlavourRelation(u32 pid, u8 flavor);
+u8 GetDefendingBattleBank(u8 bankAtk);
 
 extern u8 BattleScript_MoveSelectionDisabledMove[];
 extern u8 BattleScript_MoveSelectionTormented[];
@@ -106,6 +108,7 @@ extern u8 BattleScript_PoisonTurnDmg[];
 extern u8 BattleScript_PoisonTurnHeal[];
 extern u8 BattleScript_BurnTurnDmg[];
 extern u8 BattleScript_NightmareTurnDmg[];
+extern u8 BattleScript_BadDreamsTurnDmg[];
 extern u8 BattleScript_CurseTurnDmg[];
 extern u8 BattleScript_WrapTurnDmg[];
 extern u8 BattleScript_WrapEnds[];
@@ -866,11 +869,13 @@ u8 UpdateTurnCounters(void)
 u8 TurnBasedEffects(void)
 {
     u8 effect = 0;
+	u8 bankDef = 0;
 
     gHitMarker |= (HITMARKER_GRUDGE | HITMARKER_x20);
     while (gBattleStruct->turnEffectsBank < gBattlersCount && gBattleStruct->turnEffectsTracker <= TURNBASED_MAX_CASE)
     {
         gActiveBattler = gBankAttacker = gBanksByTurnOrder[gBattleStruct->turnEffectsBank];
+        bankDef = GetDefendingBattleBank(gActiveBattler);
         if (gAbsentBattlerFlags & gBitTable[gActiveBattler])
         {
             gBattleStruct->turnEffectsBank++;
@@ -969,13 +974,16 @@ u8 TurnBasedEffects(void)
                 gBattleStruct->turnEffectsTracker++;
                 break;
             case 7:  // spooky nightmares
-                if ((gBattleMons[gActiveBattler].status2 & STATUS2_NIGHTMARE) && gBattleMons[gActiveBattler].hp != 0)
+                if (((gBattleMons[gActiveBattler].status2 & STATUS2_NIGHTMARE) || (gBattleMons[bankDef].ability == ABILITY_BAD_DREAMS)) && gBattleMons[gActiveBattler].hp != 0)
                 {
                     // missing sleep check
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 4;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
-                    BattleScriptExecute(BattleScript_NightmareTurnDmg);
+					if (gBattleMons[bankDef].ability == ABILITY_BAD_DREAMS)
+						BattleScriptExecute(BattleScript_BadDreamsTurnDmg);
+					else
+						BattleScriptExecute(BattleScript_NightmareTurnDmg);
                     effect++;
                 }
                 gBattleStruct->turnEffectsTracker++;
@@ -3606,5 +3614,13 @@ u8 IsMonDisobedient(void)
             gBattlescriptCurrInstr = BattleScript_MoveUsedLoafingAround;
             return 1;
         }
+    }
+}
+    
+u8 GetDefendingBattleBank(u8 bankAtk) { // currently only supports single player battles
+    if (bankAtk == gBanksBySide[0]) {
+        return gBanksBySide[1];
+    } else {
+        return gBanksBySide[0];
     }
 }
