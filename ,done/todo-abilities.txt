@@ -41,8 +41,8 @@ gAbilityDescription_Download:
 gAbilityDescription_IronFist:
 	.string "Boosts punching moves.$"
 
-gAbilityDescription_PoisonHeal:
-	.string "Restores HP if poisoned.$"
+DONEgAbilityDescription_PoisonHeal:
+DONE.string "Restores HP if poisoned.$"
 
 gAbilityDescription_Adaptability:
 	.string "Boosts same type attacks.$"

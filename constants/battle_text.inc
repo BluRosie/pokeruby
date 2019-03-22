@@ -30,6 +30,7 @@
 	enum BATTLE_TEXT_Poisoned
 	enum BATTLE_TEXT_Poisoned2
 	enum BATTLE_TEXT_PoisonHurt
+	enum BATTLE_TEXT_PoisonHeal
 	enum BATTLE_TEXT_AlreadyPoisoned
 	enum BATTLE_TEXT_BadlyPoisoned
 	enum BATTLE_TEXT_EnergyDrained

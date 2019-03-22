@@ -3778,6 +3778,10 @@ BattleScript_PoisonTurnDmg:: @ 81D9518
 	printstring BATTLE_TEXT_PoisonHurt
 	waitmessage 64
 
+BattleScript_PoisonTurnHeal::
+	printstring BATTLE_TEXT_PoisonHeal
+	waitmessage 64
+
 BattleScript_DoStatusTurnDmg: @ 81D951E
 	statusanimation USER
 

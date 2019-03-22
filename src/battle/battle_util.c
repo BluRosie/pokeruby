@@ -103,6 +103,7 @@ extern u8 BattleScript_WishComesTrue[];
 extern u8 BattleScript_IngrainTurnHeal[];
 extern u8 BattleScript_LeechSeedTurnDrain[];
 extern u8 BattleScript_PoisonTurnDmg[];
+extern u8 BattleScript_PoisonTurnHeal[];
 extern u8 BattleScript_BurnTurnDmg[];
 extern u8 BattleScript_NightmareTurnDmg[];
 extern u8 BattleScript_CurseTurnDmg[];
@@ -925,9 +926,15 @@ u8 TurnBasedEffects(void)
                 if ((gBattleMons[gActiveBattler].status1 & STATUS_POISON) && gBattleMons[gActiveBattler].hp != 0)
                 {
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
-                    if (gBattleMoveDamage == 0)
+                    if (gBattleMoveDamage == 0) {
                         gBattleMoveDamage = 1;
-                    BattleScriptExecute(BattleScript_PoisonTurnDmg);
+                    }
+                    if (gBattleMons[gActiveBattler].ability == ABILITY_POISON_HEAL) {
+                        gBattleMoveDamage *= -1;
+                        BattleScriptExecute(BattleScript_PoisonTurnHeal);
+                    } else {
+                        BattleScriptExecute(BattleScript_PoisonTurnDmg);
+                    }
                     effect++;
                 }
                 gBattleStruct->turnEffectsTracker++;
@@ -940,7 +947,11 @@ u8 TurnBasedEffects(void)
                         gBattleMoveDamage = 1;
                     if ((gBattleMons[gActiveBattler].status1 & 0xF00) != 0xF00) //not 16 turns
                         gBattleMons[gActiveBattler].status1 += 0x100;
-                    gBattleMoveDamage *= (gBattleMons[gActiveBattler].status1 & 0xF00) >> 8;
+					gBattleMoveDamage *= (gBattleMons[gActiveBattler].status1 & 0xF00) >> 8;
+					
+                    if (gBattleMons[gActiveBattler].ability == ABILITY_POISON_HEAL) {
+                        gBattleMoveDamage = -gBattleMons[gActiveBattler].maxHP / 8;
+                    }
                     BattleScriptExecute(BattleScript_PoisonTurnDmg);
                     effect++;
                 }
@@ -2079,191 +2090,191 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                 }
                 break;
             case ABILITY_EFFECT_SPORE:
-		if (DEBUG && (gUnknown_02023A14_50 & 4))
-		{
-		    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-		    && gBattleMons[gBankAttacker].hp != 0
-		    && !gProtectStructs[gBankAttacker].confusionSelfDmg
-		    && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
-		    && (gBattleMoves[move].flags & F_MAKES_CONTACT))
-		    {
-			do
-			{
-			    gBattleCommunication[MOVE_EFFECT_BYTE] = Random() & 3;
-			} while (gBattleCommunication[MOVE_EFFECT_BYTE] == 0);
-			if (gBattleCommunication[MOVE_EFFECT_BYTE] == 3)
-			    gBattleCommunication[MOVE_EFFECT_BYTE] += 2;
-			gBattleCommunication[MOVE_EFFECT_BYTE] += 0x40;
-			BattleScriptPushCursor();
-			gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
-			gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
-			effect++;
-		    }
-		}
-		else
-		{
-		    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-		    && gBattleMons[gBankAttacker].hp != 0
-		    && !gProtectStructs[gBankAttacker].confusionSelfDmg
-		    && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
-		    && (gBattleMoves[move].flags & F_MAKES_CONTACT)
-		    && (Random() % 10) == 0)
-		    {
-			do
-			{
-			    gBattleCommunication[MOVE_EFFECT_BYTE] = Random() & 3;
-			} while (gBattleCommunication[MOVE_EFFECT_BYTE] == 0);
-			if (gBattleCommunication[MOVE_EFFECT_BYTE] == 3)
-			    gBattleCommunication[MOVE_EFFECT_BYTE] += 2;
-			gBattleCommunication[MOVE_EFFECT_BYTE] += 0x40;
-			BattleScriptPushCursor();
-			gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
-			gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
-			effect++;
-		    }
-		}
+        if (DEBUG && (gUnknown_02023A14_50 & 4))
+        {
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+            && gBattleMons[gBankAttacker].hp != 0
+            && !gProtectStructs[gBankAttacker].confusionSelfDmg
+            && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
+            && (gBattleMoves[move].flags & F_MAKES_CONTACT))
+            {
+            do
+            {
+                gBattleCommunication[MOVE_EFFECT_BYTE] = Random() & 3;
+            } while (gBattleCommunication[MOVE_EFFECT_BYTE] == 0);
+            if (gBattleCommunication[MOVE_EFFECT_BYTE] == 3)
+                gBattleCommunication[MOVE_EFFECT_BYTE] += 2;
+            gBattleCommunication[MOVE_EFFECT_BYTE] += 0x40;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
+            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+            effect++;
+            }
+        }
+        else
+        {
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+            && gBattleMons[gBankAttacker].hp != 0
+            && !gProtectStructs[gBankAttacker].confusionSelfDmg
+            && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
+            && (gBattleMoves[move].flags & F_MAKES_CONTACT)
+            && (Random() % 10) == 0)
+            {
+            do
+            {
+                gBattleCommunication[MOVE_EFFECT_BYTE] = Random() & 3;
+            } while (gBattleCommunication[MOVE_EFFECT_BYTE] == 0);
+            if (gBattleCommunication[MOVE_EFFECT_BYTE] == 3)
+                gBattleCommunication[MOVE_EFFECT_BYTE] += 2;
+            gBattleCommunication[MOVE_EFFECT_BYTE] += 0x40;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
+            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+            effect++;
+            }
+        }
                 break;
             case ABILITY_POISON_POINT:
-		if (DEBUG && (gUnknown_02023A14_50 & 4))
-		{
-		    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-		     && gBattleMons[gBankAttacker].hp != 0
-		     && !gProtectStructs[gBankAttacker].confusionSelfDmg
-		     && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
-		     && (gBattleMoves[move].flags & F_MAKES_CONTACT))
-		    {
-			gBattleCommunication[MOVE_EFFECT_BYTE] = 0x42;
-			BattleScriptPushCursor();
-			gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
-			gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
-			effect++;
-		    }
-		}
-		else
-		{
-		    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-		     && gBattleMons[gBankAttacker].hp != 0
-		     && !gProtectStructs[gBankAttacker].confusionSelfDmg
-		     && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
-		     && (gBattleMoves[move].flags & F_MAKES_CONTACT)
-		     && (Random() % 3) == 0)
-		    {
-			gBattleCommunication[MOVE_EFFECT_BYTE] = 0x42;
-			BattleScriptPushCursor();
-			gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
-			gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
-			effect++;
-		    }
-		}
+        if (DEBUG && (gUnknown_02023A14_50 & 4))
+        {
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBankAttacker].hp != 0
+             && !gProtectStructs[gBankAttacker].confusionSelfDmg
+             && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
+             && (gBattleMoves[move].flags & F_MAKES_CONTACT))
+            {
+            gBattleCommunication[MOVE_EFFECT_BYTE] = 0x42;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
+            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+            effect++;
+            }
+        }
+        else
+        {
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBankAttacker].hp != 0
+             && !gProtectStructs[gBankAttacker].confusionSelfDmg
+             && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
+             && (gBattleMoves[move].flags & F_MAKES_CONTACT)
+             && (Random() % 3) == 0)
+            {
+            gBattleCommunication[MOVE_EFFECT_BYTE] = 0x42;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
+            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+            effect++;
+            }
+        }
                 break;
             case ABILITY_STATIC:
-		if (DEBUG && (gUnknown_02023A14_50 & 4))
-		{
-		    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-		     && gBattleMons[gBankAttacker].hp != 0
-		     && !gProtectStructs[gBankAttacker].confusionSelfDmg
-		     && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
-		     && (gBattleMoves[move].flags & F_MAKES_CONTACT))
-		    {
-			gBattleCommunication[MOVE_EFFECT_BYTE] = 0x45;
-			BattleScriptPushCursor();
-			gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
-			gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
-			effect++;
-		    }
-		}
-		else
-		{
-		    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-		     && gBattleMons[gBankAttacker].hp != 0
-		     && !gProtectStructs[gBankAttacker].confusionSelfDmg
-		     && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
-		     && (gBattleMoves[move].flags & F_MAKES_CONTACT)
-		     && (Random() % 3) == 0)
-		    {
-			gBattleCommunication[MOVE_EFFECT_BYTE] = 0x45;
-			BattleScriptPushCursor();
-			gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
-			gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
-			effect++;
-		    }
-		}
+        if (DEBUG && (gUnknown_02023A14_50 & 4))
+        {
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBankAttacker].hp != 0
+             && !gProtectStructs[gBankAttacker].confusionSelfDmg
+             && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
+             && (gBattleMoves[move].flags & F_MAKES_CONTACT))
+            {
+            gBattleCommunication[MOVE_EFFECT_BYTE] = 0x45;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
+            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+            effect++;
+            }
+        }
+        else
+        {
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBankAttacker].hp != 0
+             && !gProtectStructs[gBankAttacker].confusionSelfDmg
+             && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
+             && (gBattleMoves[move].flags & F_MAKES_CONTACT)
+             && (Random() % 3) == 0)
+            {
+            gBattleCommunication[MOVE_EFFECT_BYTE] = 0x45;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
+            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+            effect++;
+            }
+        }
                 break;
             case ABILITY_FLAME_BODY:
-		if (DEBUG && (gUnknown_02023A14_50 & 4))
-		{
-		    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-		     && gBattleMons[gBankAttacker].hp != 0
-		     && !gProtectStructs[gBankAttacker].confusionSelfDmg
-		     && (gBattleMoves[move].flags & F_MAKES_CONTACT)
-		     && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special))
-		    {
-			gBattleCommunication[MOVE_EFFECT_BYTE] = 0x43;
-			BattleScriptPushCursor();
-			gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
-			gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
-			effect++;
-		    }
-		}
-		else
-		{
-		    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-		     && gBattleMons[gBankAttacker].hp != 0
-		     && !gProtectStructs[gBankAttacker].confusionSelfDmg
-		     && (gBattleMoves[move].flags & F_MAKES_CONTACT)
-		     && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
-		     && (Random() % 3) == 0)
-		    {
-			gBattleCommunication[MOVE_EFFECT_BYTE] = 0x43;
-			BattleScriptPushCursor();
-			gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
-			gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
-			effect++;
-		    }
-		}
+        if (DEBUG && (gUnknown_02023A14_50 & 4))
+        {
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBankAttacker].hp != 0
+             && !gProtectStructs[gBankAttacker].confusionSelfDmg
+             && (gBattleMoves[move].flags & F_MAKES_CONTACT)
+             && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special))
+            {
+            gBattleCommunication[MOVE_EFFECT_BYTE] = 0x43;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
+            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+            effect++;
+            }
+        }
+        else
+        {
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBankAttacker].hp != 0
+             && !gProtectStructs[gBankAttacker].confusionSelfDmg
+             && (gBattleMoves[move].flags & F_MAKES_CONTACT)
+             && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
+             && (Random() % 3) == 0)
+            {
+            gBattleCommunication[MOVE_EFFECT_BYTE] = 0x43;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
+            gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+            effect++;
+            }
+        }
                 break;
             case ABILITY_CUTE_CHARM:
-		if (DEBUG && (gUnknown_02023A14_50 & 4))
-		{
-		    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-		     && gBattleMons[gBankAttacker].hp != 0
-		     && !gProtectStructs[gBankAttacker].confusionSelfDmg
-		     && (gBattleMoves[move].flags & F_MAKES_CONTACT)
-		     && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
-		     && gBattleMons[gBankTarget].hp != 0
-		     && gBattleMons[gBankAttacker].ability != ABILITY_OBLIVIOUS
-		     && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != GetGenderFromSpeciesAndPersonality(speciesDef, pidDef)
-		     && !(gBattleMons[gBankAttacker].status2 & STATUS2_INFATUATION)
-		     && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != 0xFF
-		     && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != 0xFF)
-		    {
-			gBattleMons[gBankAttacker].status2 |= (gBitTable[gBankTarget] << 0x10);
-			BattleScriptPushCursor();
-			gBattlescriptCurrInstr = BattleScript_CuteCharmActivates;
-			effect++;
-		    }
-		}
-		else
-		{
-		    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-		     && gBattleMons[gBankAttacker].hp != 0
-		     && !gProtectStructs[gBankAttacker].confusionSelfDmg
-		     && (gBattleMoves[move].flags & F_MAKES_CONTACT)
-		     && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
-		     && gBattleMons[gBankTarget].hp != 0
-		     && (Random() % 3) == 0
-		     && gBattleMons[gBankAttacker].ability != ABILITY_OBLIVIOUS
-		     && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != GetGenderFromSpeciesAndPersonality(speciesDef, pidDef)
-		     && !(gBattleMons[gBankAttacker].status2 & STATUS2_INFATUATION)
-		     && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != 0xFF
-		     && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != 0xFF)
-		    {
-			gBattleMons[gBankAttacker].status2 |= (gBitTable[gBankTarget] << 0x10);
-			BattleScriptPushCursor();
-			gBattlescriptCurrInstr = BattleScript_CuteCharmActivates;
-			effect++;
-		    }
-		}
+        if (DEBUG && (gUnknown_02023A14_50 & 4))
+        {
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBankAttacker].hp != 0
+             && !gProtectStructs[gBankAttacker].confusionSelfDmg
+             && (gBattleMoves[move].flags & F_MAKES_CONTACT)
+             && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
+             && gBattleMons[gBankTarget].hp != 0
+             && gBattleMons[gBankAttacker].ability != ABILITY_OBLIVIOUS
+             && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != GetGenderFromSpeciesAndPersonality(speciesDef, pidDef)
+             && !(gBattleMons[gBankAttacker].status2 & STATUS2_INFATUATION)
+             && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != 0xFF
+             && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != 0xFF)
+            {
+            gBattleMons[gBankAttacker].status2 |= (gBitTable[gBankTarget] << 0x10);
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_CuteCharmActivates;
+            effect++;
+            }
+        }
+        else
+        {
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBankAttacker].hp != 0
+             && !gProtectStructs[gBankAttacker].confusionSelfDmg
+             && (gBattleMoves[move].flags & F_MAKES_CONTACT)
+             && (gSpecialStatuses[gBankTarget].moveturnLostHP_physical || gSpecialStatuses[gBankTarget].moveturnLostHP_special)
+             && gBattleMons[gBankTarget].hp != 0
+             && (Random() % 3) == 0
+             && gBattleMons[gBankAttacker].ability != ABILITY_OBLIVIOUS
+             && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != GetGenderFromSpeciesAndPersonality(speciesDef, pidDef)
+             && !(gBattleMons[gBankAttacker].status2 & STATUS2_INFATUATION)
+             && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != 0xFF
+             && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != 0xFF)
+            {
+            gBattleMons[gBankAttacker].status2 |= (gBitTable[gBankTarget] << 0x10);
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_CuteCharmActivates;
+            effect++;
+            }
+        }
                 break;
             }
             break;
@@ -3498,23 +3509,23 @@ u8 IsMonDisobedient(void)
     if (gBattleTypeFlags & BATTLE_TYPE_LINK
      || GetBattlerSide(gBankAttacker) == 1
      || !IsOtherTrainer(gBattleMons[gBankAttacker].otId, gBattleMons[gBankAttacker].otName))
-	return 0;
+    return 0;
 
     if (DEBUG && (gUnknown_02023A14_50 & 0x40))
     {
-	obedienceLevel = 10;
+    obedienceLevel = 10;
     }
     else
     {
-	if (FlagGet(FLAG_BADGE08_GET))
-	    return 0;
-	obedienceLevel = 10;
-	if (FlagGet(FLAG_BADGE02_GET))
-	    obedienceLevel = 30;
-	if (FlagGet(FLAG_BADGE04_GET))
-	    obedienceLevel = 50;
-	if (FlagGet(FLAG_BADGE06_GET))
-	    obedienceLevel = 70;
+    if (FlagGet(FLAG_BADGE08_GET))
+        return 0;
+    obedienceLevel = 10;
+    if (FlagGet(FLAG_BADGE02_GET))
+        obedienceLevel = 30;
+    if (FlagGet(FLAG_BADGE04_GET))
+        obedienceLevel = 50;
+    if (FlagGet(FLAG_BADGE06_GET))
+        obedienceLevel = 70;
     }
 
     if (gBattleMons[gBankAttacker].level <= obedienceLevel)
