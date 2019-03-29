@@ -935,7 +935,7 @@ u8 TurnBasedEffects(void)
                         gBattleMoveDamage = 1;
                     }
                     if (gBattleMons[gActiveBattler].ability == ABILITY_POISON_HEAL) {
-                        gBattleMoveDamage == 0;
+                        gBattleMoveDamage = 0;
                     } else {
                         BattleScriptExecute(BattleScript_PoisonTurnDmg);
                         effect++;
@@ -1925,7 +1925,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                     {
                         gLastUsedAbility = ABILITY_RAIN_DISH; // why
                         BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
-                        gBattleMoveDamage = gBattleMons[bank].maxHP / 16;
+                        gBattleMoveDamage = gBattleMons[bank].maxHP / 8;
                         if (gBattleMoveDamage == 0)
                             gBattleMoveDamage = 1;
                         gBattleMoveDamage *= -1;
@@ -1974,7 +1974,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                      && gBattleMons[bank].maxHP > gBattleMons[bank].hp)
                     {
                         BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
-                        gBattleMoveDamage = gBattleMons[bank].maxHP / 16;
+                        gBattleMoveDamage = gBattleMons[bank].maxHP / 8;
                         if (gBattleMoveDamage == 0)
                             gBattleMoveDamage = 1;
                         gBattleMoveDamage *= -1;
