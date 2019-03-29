@@ -324,6 +324,7 @@
 #define B_ANIM_FOCUS_PUNCH_SET_UP       0x15
 #define B_ANIM_INGRAIN_HEAL             0x16
 #define B_ANIM_WISH_HEAL                0x17
+#define B_ANIM_HEAL                     0x18
 
 // special animation table
 #define B_ANIM_LVL_UP                   0x0

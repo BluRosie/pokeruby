@@ -906,14 +906,14 @@ void EmitStatusIconUpdate(u8 a, u32 b, u32 c)
     PrepareBufferDataTransfer(a, gBattleBuffersTransferData, 9);
 }
 
-void EmitStatusAnimation(u8 a, u8 b, u32 c)
+void EmitStatusAnimation(u8 a, u8 b, u32 status)
 {
     gBattleBuffersTransferData[0] = 27;
     gBattleBuffersTransferData[1] = b;
-    gBattleBuffersTransferData[2] = c;
-    gBattleBuffersTransferData[3] = (c & 0x0000FF00) >> 8;
-    gBattleBuffersTransferData[4] = (c & 0x00FF0000) >> 16;
-    gBattleBuffersTransferData[5] = (c & 0xFF000000) >> 24;
+    gBattleBuffersTransferData[2] = status;
+    gBattleBuffersTransferData[3] = (status & 0x0000FF00) >> 8;
+    gBattleBuffersTransferData[4] = (status & 0x00FF0000) >> 16;
+    gBattleBuffersTransferData[5] = (status & 0xFF000000) >> 24;
     PrepareBufferDataTransfer(a, gBattleBuffersTransferData, 6);
 }
 

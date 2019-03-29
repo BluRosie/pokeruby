@@ -386,6 +386,7 @@ gBattleAnims_StatusConditions:: @ 81C76F8
 	.4byte StatusCondition_Ice
 	.4byte StatusCondition_Curse
 	.4byte StatusCondition_Nightmare
+	.4byte 0 @ for wrapped status condition
 
 	.align 2
 gBattleAnims_General:: @ 81C771C
@@ -413,6 +414,7 @@ gBattleAnims_General:: @ 81C771C
 	.4byte General_FocusPunchSetUp
 	.4byte General_IngrainHeal
 	.4byte General_WishHeal
+	.4byte General_Heal
 
 	.align 2
 gBattleAnims_Special:: @ 81C7778
@@ -10687,6 +10689,12 @@ General_WishHeal: @ 81D6A7C
 	call Unknown_81D5EF5
 	waitforvisualfinish
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 3, 10, 0, rgb(0, 0, 0)
+	end
+
+General_Heal:
+	loadspritegfx ANIM_TAG_BLUE_STAR
+	call Unknown_81D5EF5
+	waitforvisualfinish
 	end
 
 Unknown_81D6AB6: @ 81D6AB6

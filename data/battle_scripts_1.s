@@ -4022,6 +4022,7 @@ BattleScript_TraceActivates:: @ 81D9726
 
 BattleScript_RainDishActivates:: @ 81D9730
 	printstring BATTLE_TEXT_RestoredHPByItem
+	playanimation USER, B_ANIM_HEAL, sANIM_ARG1    
 	waitmessage 64
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate USER
@@ -4446,6 +4447,16 @@ BattleScript_HangedOnMsg:: @ 81D9AC6
 	printstring BATTLE_TEXT_FocusSash
 	waitmessage 64
 	return
+
+BattleScript_ToxicOrb::
+	setmoveeffect EFFECT_TOXIC | AFFECTS_USER
+	seteffectprimary
+	end2
+
+BattleScript_FlameOrb::
+	setmoveeffect EFFECT_BURN | AFFECTS_USER
+	seteffectprimary
+	end2
 
 BattleScript_BerryConfuseHealEnd2:: @ 81D9AD4
 	playanimation USER, B_ANIM_ITEM_EFFECT, NULL

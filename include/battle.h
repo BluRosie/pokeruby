@@ -736,7 +736,7 @@ void EmitChoosePokemon(u8 a, u8 b, u8 c, u8 d, u8 *e); //0x16
 //void EmitHealthBarUpdate(u8 a, u16 b); //0x18; Had to declare the second arg as u16 because s16 wont match in atk0b
 //void EmitExpBarUpdate(u8 a, u8 b, u16 c); //0x19
 void EmitStatusIconUpdate(u8 a, u32 b, u32 c); //0x1A
-void EmitStatusAnimation(u8 a, u8 b, u32 c); //0x1B
+void EmitStatusAnimation(u8 a, u8 b, u32 status); //0x1B
 void EmitStatusXor(u8 a, u8 b); //0x1C
 void EmitHitAnimation(u8 a); //0x29
 void EmitEffectivenessSound(u8 a, u16 sound); //0x2B

@@ -180,6 +180,8 @@ extern u8 BattleScript_WhiteHerbRet[];
 extern u8 BattleScript_ItemHealHP_RemoveItem[];
 extern u8 BattleScript_BerryPPHealEnd2[];
 extern u8 BattleScript_ItemHealHP_End2[];
+extern u8 BattleScript_ToxicOrb[];
+extern u8 BattleScript_FlameOrb[];
 extern u8 BattleScript_BerryConfuseHealEnd2[];
 extern u8 BattleScript_BerryStatRaiseEnd2[];
 extern u8 BattleScript_BerryFocusEnergyEnd2[];
@@ -3068,6 +3070,22 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     BattleScriptExecute(BattleScript_BerryCureChosenStatusEnd2);
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;
                     effect = ITEM_EFFECT_OTHER;
+                }
+                break;
+            case HOLD_EFFECT_TOXIC_ORB:
+                if (!(gBattleMons[bank].status1 & STATUS_TOXIC_POISON))
+                {
+                    gBattleMons[bank].status1 &= STATUS_TOXIC_POISON; // it has to overwrite the other types
+                    BattleScriptExecute(BattleScript_ToxicOrb);
+                    effect = ITEM_STATUS_CHANGE;
+                }
+                break;
+            case HOLD_EFFECT_FLAME_ORB:
+                if (!(gBattleMons[bank].status1 & STATUS_BURN))
+                {
+                    gBattleMons[bank].status1 &= STATUS_BURN; // it has to overwrite the other types
+                    BattleScriptExecute(BattleScript_FlameOrb);
+                    effect = ITEM_STATUS_CHANGE;
                 }
                 break;
             }
