@@ -37,7 +37,6 @@ enum
     BATTLE_TEXT_Poisoned,
     BATTLE_TEXT_Poisoned2,
     BATTLE_TEXT_PoisonHurt,
-    BATTLE_TEXT_PoisonHeal,
     BATTLE_TEXT_AlreadyPoisoned,
     BATTLE_TEXT_BadlyPoisoned,
     BATTLE_TEXT_EnergyDrained,
@@ -398,7 +397,6 @@ const u8 BattleText_WasntAffected[] = _("{DEFENDING_MON}\nwasn't affected!");
 const u8 BattleText_Poisoned[] = _("{STRING 14}\nwas poisoned!");
 const u8 BattleText_Poisoned2[] = _("{STRING 16}'s {STRING 23}\npoisoned {STRING 14}!");
 const u8 BattleText_PoisonHurt[] = _("{ATTACKING_MON} is hurt\nby poison!");
-const u8 BattleText_PoisonHeal[] = _("{ATTACKING_MON}'s Poison Heal\nheals when poisoned!");
 const u8 BattleText_AlreadyPoisoned[] = _("{DEFENDING_MON} is already\npoisoned.");
 const u8 BattleText_BadlyPoisoned[] = _("{STRING 14} is badly\npoisoned!");
 const u8 BattleText_EnergyDrained[] = _("{DEFENDING_MON} had its\nenergy drained!");
@@ -906,7 +904,6 @@ const u8 *const gBattleStringsTable[] =
     BattleText_Poisoned,
     BattleText_Poisoned2,
     BattleText_PoisonHurt,
-    BattleText_PoisonHeal,
     BattleText_AlreadyPoisoned,
     BattleText_BadlyPoisoned,
     BattleText_EnergyDrained,

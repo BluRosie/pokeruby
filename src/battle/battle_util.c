@@ -935,12 +935,11 @@ u8 TurnBasedEffects(void)
                         gBattleMoveDamage = 1;
                     }
                     if (gBattleMons[gActiveBattler].ability == ABILITY_POISON_HEAL) {
-                        gBattleMoveDamage *= -1;
-                        BattleScriptExecute(BattleScript_PoisonTurnHeal);
+                        gBattleMoveDamage == 0;
                     } else {
                         BattleScriptExecute(BattleScript_PoisonTurnDmg);
+                        effect++;
                     }
-                    effect++;
                 }
                 gBattleStruct->turnEffectsTracker++;
                 break;
@@ -950,15 +949,15 @@ u8 TurnBasedEffects(void)
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
-                    if ((gBattleMons[gActiveBattler].status1 & 0xF00) != 0xF00) //not 16 turns
-                        gBattleMons[gActiveBattler].status1 += 0x100;
-					gBattleMoveDamage *= (gBattleMons[gActiveBattler].status1 & 0xF00) >> 8;
-					
-                    if (gBattleMons[gActiveBattler].ability == ABILITY_POISON_HEAL) {
-                        gBattleMoveDamage = -gBattleMons[gActiveBattler].maxHP / 8;
+                    if (gBattleMons[gActiveBattler].ability == ABILITY_POISON_HEAL) { // essentially do nothing
+                        gBattleMoveDamage = 0;
+                    } else { // only if the ability isn't poison heal
+                        if ((gBattleMons[gActiveBattler].status1 & 0xF00) != 0xF00) //not 16 turns
+                            gBattleMons[gActiveBattler].status1 += 0x100;
+                        gBattleMoveDamage *= (gBattleMons[gActiveBattler].status1 & 0xF00) >> 8;
+                        BattleScriptExecute(BattleScript_PoisonTurnDmg);
+                        effect++;
                     }
-                    BattleScriptExecute(BattleScript_PoisonTurnDmg);
-                    effect++;
                 }
                 gBattleStruct->turnEffectsTracker++;
                 break;
@@ -1969,6 +1968,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                 case ABILITY_TRUANT:
                     gDisableStructs[gBankAttacker].truantCounter ^= 1;
                     break;
+				case ABILITY_POISON_HEAL:
+                    if (gBattleMons[bank].ability == ABILITY_POISON_HEAL
+					 && ((gBattleMons[bank].status1 & STATUS_POISON) || (gBattleMons[bank].status1 & STATUS_TOXIC_POISON))
+                     && gBattleMons[bank].maxHP > gBattleMons[bank].hp)
+                    {
+                        BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
+                        gBattleMoveDamage = gBattleMons[bank].maxHP / 16;
+                        if (gBattleMoveDamage == 0)
+                            gBattleMoveDamage = 1;
+                        gBattleMoveDamage *= -1;
+                        effect++;
+                    }
                 }
             }
             break;
