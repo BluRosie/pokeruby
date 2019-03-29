@@ -2708,7 +2708,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
 
     switch (caseID)
     {
-    case 0:
+    case 0: // whenever the white herb is activated
         switch (bankHoldEffect)
         {
         case HOLD_EFFECT_DOUBLE_PRIZE:
@@ -2733,7 +2733,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             break;
         }
         break;
-    case 1:
+    case 1: // end turn (hp basis)
         if (gBattleMons[bank].hp)
         {
             switch (bankHoldEffect)
@@ -2818,7 +2818,6 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     RecordItemBattle(bank, bankHoldEffect);
                 }
                 break;
-            // nice copy/paste there gamefreak, making a function for confuse berries was too much eh?
             case HOLD_EFFECT_CONFUSE_SPICY:
                 ConfuseBerry(bank, bankQuality, FLAVOR_SPICY, moveTurn);
                 break;
@@ -3093,7 +3092,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
         break;
     case 2:
         break;
-    case 3:
+    case 3: // end turn (no hp basis)
         for (bank = 0; bank < gBattlersCount; bank++)
         {
             gLastUsedItem = gBattleMons[bank].item;
@@ -3241,7 +3240,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             }
         }
         break;
-    case 4:
+    case 4: // upon attacking
         if (gBattleMoveDamage)
         {
             switch (atkHoldEffect)

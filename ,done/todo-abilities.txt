@@ -17,8 +17,8 @@ gAbilityDescription_Steadfast:
 DONEgAbilityDescription_SnowCloak:
 DONE.string "Ups evasion in Hail.$"
 
-gAbilityDescription_Gluttony:
-	.string "Eats Berries early.$"
+DONEgAbilityDescription_Gluttony:
+DONE.string "Eats Berries early.$"
 
 gAbilityDescription_AngerPoint:
 	.string "Critical hits raise Attack.$"
