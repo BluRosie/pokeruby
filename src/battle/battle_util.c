@@ -2820,104 +2820,19 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 break;
             // nice copy/paste there gamefreak, making a function for confuse berries was too much eh?
             case HOLD_EFFECT_CONFUSE_SPICY:
-                if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / 2 && !moveTurn)
-                {
-                    gBattleTextBuff1[0] = 0xFD;
-                    gBattleTextBuff1[1] = 8;
-                    gBattleTextBuff1[2] = FLAVOR_SPICY;
-                    gBattleTextBuff1[3] = EOS;
-                    gBattleMoveDamage = gBattleMons[bank].maxHP / bankQuality;
-                    if (gBattleMoveDamage == 0)
-                        gBattleMoveDamage = 1;
-                    if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
-                        gBattleMoveDamage = gBattleMons[bank].maxHP - gBattleMons[bank].hp;
-                    gBattleMoveDamage *= -1;
-                    if (GetPokeFlavourRelation(gBattleMons[bank].personality, FLAVOR_SPICY) < 0)
-                        BattleScriptExecute(BattleScript_BerryConfuseHealEnd2);
-                    else
-                        BattleScriptExecute(BattleScript_ItemHealHP_RemoveItem);
-                    effect = ITEM_HP_CHANGE;
-                }
+                ConfuseBerry(bank, bankQuality, FLAVOR_SPICY, moveTurn);
                 break;
             case HOLD_EFFECT_CONFUSE_DRY:
-                if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / 2 && !moveTurn)
-                {
-                    gBattleTextBuff1[0] = 0xFD;
-                    gBattleTextBuff1[1] = 8;
-                    gBattleTextBuff1[2] = FLAVOR_DRY;
-                    gBattleTextBuff1[3] = EOS;
-                    gBattleMoveDamage = gBattleMons[bank].maxHP / bankQuality;
-                    if (gBattleMoveDamage == 0)
-                        gBattleMoveDamage = 1;
-                    if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
-                        gBattleMoveDamage = gBattleMons[bank].maxHP - gBattleMons[bank].hp;
-                    gBattleMoveDamage *= -1;
-                    if (GetPokeFlavourRelation(gBattleMons[bank].personality, FLAVOR_DRY) < 0)
-                        BattleScriptExecute(BattleScript_BerryConfuseHealEnd2);
-                    else
-                        BattleScriptExecute(BattleScript_ItemHealHP_RemoveItem);
-                    effect = ITEM_HP_CHANGE;
-                }
+                ConfuseBerry(bank, bankQuality, FLAVOR_DRY, moveTurn);
                 break;
             case HOLD_EFFECT_CONFUSE_SWEET:
-                if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / 2 && !moveTurn)
-                {
-                    gBattleTextBuff1[0] = 0xFD;
-                    gBattleTextBuff1[1] = 8;
-                    gBattleTextBuff1[2] = FLAVOR_SWEET;
-                    gBattleTextBuff1[3] = EOS;
-                    gBattleMoveDamage = gBattleMons[bank].maxHP / bankQuality;
-                    if (gBattleMoveDamage == 0)
-                        gBattleMoveDamage = 1;
-                    if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
-                        gBattleMoveDamage = gBattleMons[bank].maxHP - gBattleMons[bank].hp;
-                    gBattleMoveDamage *= -1;
-                    if (GetPokeFlavourRelation(gBattleMons[bank].personality, FLAVOR_SWEET) < 0)
-                        BattleScriptExecute(BattleScript_BerryConfuseHealEnd2);
-                    else
-                        BattleScriptExecute(BattleScript_ItemHealHP_RemoveItem);
-                    effect = ITEM_HP_CHANGE;
-                }
+                ConfuseBerry(bank, bankQuality, FLAVOR_SWEET, moveTurn);
                 break;
             case HOLD_EFFECT_CONFUSE_BITTER:
-                if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / 2 && !moveTurn)
-                {
-                    gBattleTextBuff1[0] = 0xFD;
-                    gBattleTextBuff1[1] = 8;
-                    gBattleTextBuff1[2] = FLAVOR_BITTER;
-                    gBattleTextBuff1[3] = EOS;
-                    gBattleMoveDamage = gBattleMons[bank].maxHP / bankQuality;
-                    if (gBattleMoveDamage == 0)
-                        gBattleMoveDamage = 1;
-                    if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
-                        gBattleMoveDamage = gBattleMons[bank].maxHP - gBattleMons[bank].hp;
-                    gBattleMoveDamage *= -1;
-                    if (GetPokeFlavourRelation(gBattleMons[bank].personality, FLAVOR_BITTER) < 0)
-                        BattleScriptExecute(BattleScript_BerryConfuseHealEnd2);
-                    else
-                        BattleScriptExecute(BattleScript_ItemHealHP_RemoveItem);
-                    effect = ITEM_HP_CHANGE;
-                }
+                ConfuseBerry(bank, bankQuality, FLAVOR_BITTER, moveTurn);
                 break;
             case HOLD_EFFECT_CONFUSE_SOUR:
-                if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / 2 && !moveTurn)
-                {
-                    gBattleTextBuff1[0] = 0xFD;
-                    gBattleTextBuff1[1] = 8;
-                    gBattleTextBuff1[2] = FLAVOR_SOUR;
-                    gBattleTextBuff1[3] = EOS;
-                    gBattleMoveDamage = gBattleMons[bank].maxHP / bankQuality;
-                    if (gBattleMoveDamage == 0)
-                        gBattleMoveDamage = 1;
-                    if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
-                        gBattleMoveDamage = gBattleMons[bank].maxHP - gBattleMons[bank].hp;
-                    gBattleMoveDamage *= -1;
-                    if (GetPokeFlavourRelation(gBattleMons[bank].personality, FLAVOR_SOUR) < 0)
-                        BattleScriptExecute(BattleScript_BerryConfuseHealEnd2);
-                    else
-                        BattleScriptExecute(BattleScript_ItemHealHP_RemoveItem);
-                    effect = ITEM_HP_CHANGE;
-                }
+                ConfuseBerry(bank, bankQuality, FLAVOR_SOUR, moveTurn);
                 break;
             // copy/paste again, smh
             case HOLD_EFFECT_ATTACK_UP:
@@ -3372,6 +3287,28 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
     return effect;
 }
 
+void ConfuseBerry(u8 bank, u8 bankQuality, u8 flavor, bool8 moveTurn) {
+    if ((gBattleMons[bank].hp <= gBattleMons[bank].maxHP / 4
+        || (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / 2 && gBattleMons[bank].ability == ABILITY_GLUTTONY))
+        && !moveTurn)
+    {
+        gBattleTextBuff1[0] = 253;
+        gBattleTextBuff1[1] = 8;
+        gBattleTextBuff1[2] = flavor;
+        gBattleTextBuff1[3] = EOS; // please please work
+        gBattleMoveDamage = gBattleMons[bank].maxHP / bankQuality;
+        if (gBattleMoveDamage == 0)
+            gBattleMoveDamage = 1;
+        if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
+            gBattleMoveDamage = gBattleMons[bank].maxHP - gBattleMons[bank].hp;
+        gBattleMoveDamage *= -1;
+        if (GetPokeFlavourRelation(gBattleMons[bank].personality, FLAVOR_SPICY) < 0)
+            BattleScriptExecute(BattleScript_BerryConfuseHealEnd2);
+        else
+            BattleScriptExecute(BattleScript_ItemHealHP_RemoveItem);
+    }
+}
+                    
 struct CombinedMove
 {
     u16 move1;
