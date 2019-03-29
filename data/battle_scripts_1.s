@@ -3897,12 +3897,6 @@ BattleScript_NightmareTurnDmg:: @ 81D9613
 	status2animation USER, STATUS2_NIGHTMARE
 	goto BattleScript_DoTurnDmg
 
-BattleScript_BadDreamsTurnDmg::
-	printstring BATTLE_TEXT_BadDreamsLock
-	waitmessage 64
-	status2animation USER, STATUS2_NIGHTMARE
-	goto BattleScript_DoTurnDmg
-
 BattleScript_CurseTurnDmg:: @ 81D9624
 	printstring BATTLE_TEXT_CurseAfflict
 	waitmessage 64

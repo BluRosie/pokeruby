@@ -140,8 +140,8 @@ gAbilityDescription_Multitype:
 gAbilityDescription_FlowerGift:
 	.string "Transforms in sunshine.$"
 
-DONEgAbilityDescription_BadDreams:
-DONE.string "Damages sleeping Pokémon.$"
+gAbilityDescription_BadDreams:
+	.string "Damages sleeping Pokémon.$"
 
 @@@@@@@@@
 @ GEN V @
