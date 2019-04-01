@@ -19,6 +19,7 @@ Current implemented features:
 
 In Progress:
 * ability expansion (thanks znogyrop and dizzy for ability descriptions)
+* item expansion - maybe item pictures too?
 * move expansion (thanks dizzy)
 * eventually, pokémon expansion (huge thanks to lunos)
 
