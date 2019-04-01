@@ -249,7 +249,7 @@
 #define ITEM_DEEP_SEA_TOOTH         228
 #define ITEM_DEEP_SEA_SCALE         229
 #define ITEM_SMOKE_BALL             230
-#define ITEM_LUMINOUS_MOSS          231
+#define ITEM_LUMINOUS_MOSS          231 // new
 #define ITEM_SNOWBALL               232 // new
 #define ITEM_SAFETY_GOGGLES         233 // new
 #define ITEM_EVERSTONE              234
