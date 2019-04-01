@@ -2735,7 +2735,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             break;
         }
         break;
-    case 1: // end turn (hp basis)
+    case 1: // after attacking
         if (gBattleMons[bank].hp)
         {
             switch (bankHoldEffect)
