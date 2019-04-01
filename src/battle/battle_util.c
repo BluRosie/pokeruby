@@ -3072,6 +3072,22 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     effect = ITEM_EFFECT_OTHER;
                 }
                 break;
+            case HOLD_EFFECT_TOXIC_ORB:
+                if (!(gBattleMons[bank].status1 & STATUS_TOXIC_POISON))
+                {
+                    gBattleMons[bank].status1 &= STATUS_TOXIC_POISON; // it has to overwrite the other types
+                    BattleScriptExecute(BattleScript_ToxicOrb);
+                    effect = ITEM_STATUS_CHANGE;
+                }
+                break;
+            case HOLD_EFFECT_FLAME_ORB:
+                if (!(gBattleMons[bank].status1 & STATUS_BURN))
+                {
+                    gBattleMons[bank].status1 &= STATUS_BURN; // it has to overwrite the other types
+                    BattleScriptExecute(BattleScript_FlameOrb);
+                    effect = ITEM_STATUS_CHANGE;
+                }
+                break;
             }
             if (effect)
             {
@@ -3094,7 +3110,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
         break;
     case 2:
         break;
-    case 3: // end turn
+    case 3: // end turn (no hp basis)
         for (bank = 0; bank < gBattlersCount; bank++)
         {
             gLastUsedItem = gBattleMons[bank].item;
@@ -3228,22 +3244,6 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_WhiteHerbRet;
                     return effect; // unnecessary return
-                }
-                break;
-            case HOLD_EFFECT_TOXIC_ORB:
-                if (!(gBattleMons[bank].status1 & STATUS_TOXIC_POISON))
-                {
-                    gBattleMons[bank].status1 &= STATUS_TOXIC_POISON; // it has to overwrite the other types
-                    BattleScriptExecute(BattleScript_ToxicOrb);
-                    effect = ITEM_STATUS_CHANGE;
-                }
-                break;
-            case HOLD_EFFECT_FLAME_ORB:
-                if (!(gBattleMons[bank].status1 & STATUS_BURN))
-                {
-                    gBattleMons[bank].status1 &= STATUS_BURN; // it has to overwrite the other types
-                    BattleScriptExecute(BattleScript_FlameOrb);
-                    effect = ITEM_STATUS_CHANGE;
                 }
                 break;
             }
