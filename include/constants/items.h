@@ -451,24 +451,25 @@
 #define ITEM_X_ACCURACY_5           430
 #define ITEM_X_ATTACK_5             431
 #define ITEM_X_DEFEND_5             432
-#define ITEM_X_SPECIAL_5            434
-#define ITEM_X_SP_DEF_5             435
-#define ITEM_X_SPEED_5              436
-#define ITEM_DIRE_HIT_6             437
-#define ITEM_X_ACCURACY_6           438
-#define ITEM_X_ATTACK_6             439
-#define ITEM_X_DEFEND_6             440
-#define ITEM_X_SPECIAL_6            441
-#define ITEM_X_SP_DEF_6             442
-#define ITEM_X_SPEED_6              443
-#define ITEM_ABILITY_URGE           444
-#define ITEM_ITEM_DROP              445
-#define ITEM_ITEM_URGE              446
-#define ITEM_RESET_URGE             447
-#define ITEM_WEAKNESS_POLICY        448
-#define ITEM_WHIPPED_DREAM          449
-#define ITEM_SACHET                 450
-// mega stones
+#define ITEM_X_SPECIAL_5            433
+#define ITEM_X_SP_DEF_5             434
+#define ITEM_X_SPEED_5              435
+#define ITEM_DIRE_HIT_6             436
+#define ITEM_X_ACCURACY_6           437
+#define ITEM_X_ATTACK_6             438
+#define ITEM_X_DEFEND_6             439
+#define ITEM_X_SPECIAL_6            440
+#define ITEM_X_SP_DEF_6             441
+#define ITEM_X_SPEED_6              442
+#define ITEM_ABILITY_URGE           443
+#define ITEM_ITEM_DROP              444
+#define ITEM_ITEM_URGE              445
+#define ITEM_RESET_URGE             446
+#define ITEM_WEAKNESS_POLICY        447
+#define ITEM_WHIPPED_DREAM          448
+#define ITEM_SACHET                 449
+#define ITEM_SHOCK_ORB              450
+// mega stones                         
 #define ITEM_GENGARITE              451
 #define ITEM_GARDEVOIRITE           452
 #define ITEM_AMPHAROSITE            453
@@ -644,14 +645,14 @@
 #define ITEM_TM98                   620
 #define ITEM_TM99                   621
 #define ITEM_TM100                  622 // end new
-#define ITEM_HM01_CUT               623
-#define ITEM_HM02_FLY               624
-#define ITEM_HM03_SURF              625
-#define ITEM_HM04_STRENGTH          626
-#define ITEM_HM05_FLASH             627
-#define ITEM_HM06_ROCK_SMASH        628
-#define ITEM_HM07_WATERFALL         629
-#define ITEM_HM08_DIVE              630
+#define ITEM_HM01_CUT               623 - 50
+#define ITEM_HM02_FLY               624 - 50
+#define ITEM_HM03_SURF              625 - 50
+#define ITEM_HM04_STRENGTH          626 - 50
+#define ITEM_HM05_FLASH             627 - 50
+#define ITEM_HM06_ROCK_SMASH        628 - 50
+#define ITEM_HM07_WATERFALL         629 - 50
+#define ITEM_HM08_DIVE              630 - 50
 
 // Key Items
 #define ITEM_EXPLORER_KIT           631 // new on down

@@ -70,5 +70,6 @@
 #define HOLD_EFFECT_STICK          66
 #define HOLD_EFFECT_TOXIC_ORB      67
 #define HOLD_EFFECT_FLAME_ORB      68
+#define HOLD_EFFECT_SHOCK_ORB      69
 
 #endif // GUARD_CONSTANTS_HOLD_EFFECTS_H

@@ -182,6 +182,7 @@ extern u8 BattleScript_BerryPPHealEnd2[];
 extern u8 BattleScript_ItemHealHP_End2[];
 extern u8 BattleScript_ToxicOrb[];
 extern u8 BattleScript_FlameOrb[];
+extern u8 BattleScript_ShockOrb[];
 extern u8 BattleScript_BerryConfuseHealEnd2[];
 extern u8 BattleScript_BerryStatRaiseEnd2[];
 extern u8 BattleScript_BerryFocusEnergyEnd2[];
@@ -3075,7 +3076,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             case HOLD_EFFECT_TOXIC_ORB:
                 if (!(gBattleMons[bank].status1 & STATUS_TOXIC_POISON))
                 {
-                    gBattleMons[bank].status1 &= STATUS_TOXIC_POISON; // it has to overwrite the other types
+                    gBattleMons[bank].status1 &= STATUS_TOXIC_POISON;
                     BattleScriptExecute(BattleScript_ToxicOrb);
                     effect = ITEM_STATUS_CHANGE;
                 }
@@ -3083,8 +3084,16 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             case HOLD_EFFECT_FLAME_ORB:
                 if (!(gBattleMons[bank].status1 & STATUS_BURN))
                 {
-                    gBattleMons[bank].status1 &= STATUS_BURN; // it has to overwrite the other types
+                    gBattleMons[bank].status1 &= STATUS_BURN;
                     BattleScriptExecute(BattleScript_FlameOrb);
+                    effect = ITEM_STATUS_CHANGE;
+                }
+                break;
+            case HOLD_EFFECT_SHOCK_ORB:
+                if (!(gBattleMons[bank].status1 & STATUS_PARALYSIS))
+                {
+                    gBattleMons[bank].status1 &= STATUS_PARALYSIS;
+                    BattleScriptExecute(BattleScript_ShockOrb);
                     effect = ITEM_STATUS_CHANGE;
                 }
                 break;

@@ -4458,6 +4458,11 @@ BattleScript_FlameOrb::
 	seteffectprimary
 	end2
 
+BattleScript_ShockOrb::
+	setmoveeffect EFFECT_PARALYSIS | AFFECTS_USER
+	seteffectprimary
+	end2
+
 BattleScript_BerryConfuseHealEnd2:: @ 81D9AD4
 	playanimation USER, B_ANIM_ITEM_EFFECT, NULL
 	printstring BATTLE_TEXT_RestoredHealth
