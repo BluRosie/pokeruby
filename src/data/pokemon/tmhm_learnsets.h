@@ -7,9 +7,6 @@
 #define TMHM(tmhm) ((u64)1 << (ITEM_##tmhm - ITEM_TM01))
 #define TMHM2(tmhm) ((u64)1 << (ITEM_##tmhm - ITEM_TM65))
 
-// This table determines which TMs and HMs a species is capable of learning.
-// Each entry is a 64-bit bit array spread across two 32-bit values, with
-// each bit corresponding to a .
 const u32 gTMHMLearnsets[][4] =
 {
     [SPECIES_NONE]        = TMHM_LEARNSET(0,0),
