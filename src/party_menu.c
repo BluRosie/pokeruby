@@ -3914,7 +3914,7 @@ void Task_TeamMonTMMove(u8 taskId)
 #if DEBUG
          !gUnknown_020297ED &&
 #endif
-         !CanMonLearnTMHM(ewram1C000.pokemon, ewram1C000.secondarySelectedIndex - (ITEM_TM01 % 256))) //289 - 33 = 256
+         !CanMonLearnTMHM(ewram1C000.pokemon, ewram1C000.secondarySelectedIndex - (ITEM_TM01 % 256)))
         {
             StringExpandPlaceholders(gStringVar4, gOtherText_NotCompatible);
             sub_806E834(gStringVar4, 1);
