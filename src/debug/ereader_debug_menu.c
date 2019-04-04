@@ -124,7 +124,7 @@ size_t debug_sub_813C598(u8 * dest)
 
 size_t debug_sub_813C5A4(u8 * dest)
 {
-    return debug_sub_813C52C(dest, ITEM_TM01_FOCUS_PUNCH);
+    return debug_sub_813C52C(dest, ITEM_TM01);
 }
 
 extern u8 gUnknown_Debug_845DDB2[];

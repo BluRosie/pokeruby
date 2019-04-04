@@ -545,57 +545,57 @@
 
 
 // TMs/HMs
-#define ITEM_TM01_FOCUS_PUNCH       523
-#define ITEM_TM02_DRAGON_CLAW       524
-#define ITEM_TM03_WATER_PULSE       525
-#define ITEM_TM04_CALM_MIND         526
-#define ITEM_TM05_ROAR              527
-#define ITEM_TM06_TOXIC             528
-#define ITEM_TM07_HAIL              529
-#define ITEM_TM08_BULK_UP           530
-#define ITEM_TM09_BULLET_SEED       531
-#define ITEM_TM10_HIDDEN_POWER      532
-#define ITEM_TM11_SUNNY_DAY         533
-#define ITEM_TM12_TAUNT             534
-#define ITEM_TM13_ICE_BEAM          535
-#define ITEM_TM14_BLIZZARD          536
-#define ITEM_TM15_HYPER_BEAM        537
-#define ITEM_TM16_LIGHT_SCREEN      538
-#define ITEM_TM17_PROTECT           539
-#define ITEM_TM18_RAIN_DANCE        540
-#define ITEM_TM19_GIGA_DRAIN        541
-#define ITEM_TM20_SAFEGUARD         542
-#define ITEM_TM21_FRUSTRATION       543
-#define ITEM_TM22_SOLARBEAM         544
-#define ITEM_TM23_IRON_TAIL         545
-#define ITEM_TM24_THUNDERBOLT       546
-#define ITEM_TM25_THUNDER           547
-#define ITEM_TM26_EARTHQUAKE        548
-#define ITEM_TM27_RETURN            549
-#define ITEM_TM28_DIG               550
-#define ITEM_TM29_PSYCHIC           551
-#define ITEM_TM30_SHADOW_BALL       552
-#define ITEM_TM31_BRICK_BREAK       553
-#define ITEM_TM32_DOUBLE_TEAM       554
-#define ITEM_TM33_REFLECT           555
-#define ITEM_TM34_SHOCK_WAVE        556
-#define ITEM_TM35_FLAMETHROWER      557
-#define ITEM_TM36_SLUDGE_BOMB       558
-#define ITEM_TM37_SANDSTORM         559
-#define ITEM_TM38_FIRE_BLAST        560
-#define ITEM_TM39_ROCK_TOMB         561
-#define ITEM_TM40_AERIAL_ACE        562
-#define ITEM_TM41_TORMENT           563
-#define ITEM_TM42_FACADE            564
-#define ITEM_TM43_SECRET_POWER      565
-#define ITEM_TM44_REST              566
-#define ITEM_TM45_ATTRACT           567
-#define ITEM_TM46_THIEF             568
-#define ITEM_TM47_STEEL_WING        569
-#define ITEM_TM48_SKILL_SWAP        570
-#define ITEM_TM49_SNATCH            571
-#define ITEM_TM50_OVERHEAT          572
-#define ITEM_TM51                   573  // new on down
+#define ITEM_TM01                   523 // focus punch
+#define ITEM_TM02                   524 // dragon claw
+#define ITEM_TM03                   525 // water pulse
+#define ITEM_TM04                   526 // calm mind
+#define ITEM_TM05                   527 // roar
+#define ITEM_TM06                   528 // toxic
+#define ITEM_TM07                   529 // hail
+#define ITEM_TM08                   530 // bulk up
+#define ITEM_TM09                   531 // bullet seed
+#define ITEM_TM10                   532 // hidden power
+#define ITEM_TM11                   533 // sunny day
+#define ITEM_TM12                   534 // taunt
+#define ITEM_TM13                   535 // ice beam
+#define ITEM_TM14                   536 // blizzard
+#define ITEM_TM15                   537 // hyper beam
+#define ITEM_TM16                   538 // light screen
+#define ITEM_TM17                   539 // protect
+#define ITEM_TM18                   540 // rain dance
+#define ITEM_TM19                   541 // giga drain
+#define ITEM_TM20                   542 // safeguard
+#define ITEM_TM21                   543 // frustration
+#define ITEM_TM22                   544 // solar beam
+#define ITEM_TM23                   545 // iron tail
+#define ITEM_TM24                   546 // thunderbolt
+#define ITEM_TM25                   547 // thunder
+#define ITEM_TM26                   548 // earthquake
+#define ITEM_TM27                   549 // return
+#define ITEM_TM28                   550 // dig
+#define ITEM_TM29                   551 // psychic
+#define ITEM_TM30                   552 // shadow ball
+#define ITEM_TM31                   553 // brick break
+#define ITEM_TM32                   554 // double team
+#define ITEM_TM33                   555 // reflect
+#define ITEM_TM34                   556 // shock wave
+#define ITEM_TM35                   557 // flamethrower
+#define ITEM_TM36                   558 // sludge bomb
+#define ITEM_TM37                   559 // sandstorm
+#define ITEM_TM38                   560 // fire blast
+#define ITEM_TM39                   561 // rock tomb
+#define ITEM_TM40                   562 // aerial ace
+#define ITEM_TM41                   563 // torment
+#define ITEM_TM42                   564 // facade
+#define ITEM_TM43                   565 // secret power
+#define ITEM_TM44                   566 // rest
+#define ITEM_TM45                   567 // attract
+#define ITEM_TM46                   568 // thief
+#define ITEM_TM47                   569 // steel wing
+#define ITEM_TM48                   570 // skill swap
+#define ITEM_TM49                   571 // snatch
+#define ITEM_TM50                   572 // overheat
+#define ITEM_TM51                   573 // new on down
 #define ITEM_TM52                   574
 #define ITEM_TM53                   575
 #define ITEM_TM54                   576
@@ -645,14 +645,14 @@
 #define ITEM_TM98                   620
 #define ITEM_TM99                   621
 #define ITEM_TM100                  622 // end new
-#define ITEM_HM01_CUT               623 - 50
-#define ITEM_HM02_FLY               624 - 50
-#define ITEM_HM03_SURF              625 - 50
-#define ITEM_HM04_STRENGTH          626 - 50
-#define ITEM_HM05_FLASH             627 - 50
-#define ITEM_HM06_ROCK_SMASH        628 - 50
-#define ITEM_HM07_WATERFALL         629 - 50
-#define ITEM_HM08_DIVE              630 - 50
+#define ITEM_HM01                   623
+#define ITEM_HM02                   624
+#define ITEM_HM03                   625
+#define ITEM_HM04                   626
+#define ITEM_HM05                   627
+#define ITEM_HM06                   628
+#define ITEM_HM07                   629
+#define ITEM_HM08                   630
 
 // Key Items
 #define ITEM_EXPLORER_KIT           631 // new on down
@@ -909,8 +909,8 @@
 #define BALLID_DREAM_BALL 25
 #define BALLID_BEAST_BALL 26
 
-#define NUM_TECHNICAL_MACHINES 50
-#define NUM_HIDDEN_MACHINES     8
+#define NUM_TECHNICAL_MACHINES 100
+#define NUM_HIDDEN_MACHINES      8
 
 // Check if the item is one that can be used on a Pokemon.
 #define IS_POKEMON_ITEM(item) ((item) >= ITEM_POTION && (item) <= ITEM_MARANGA_BERRY)

@@ -933,7 +933,7 @@ void debug_sub_80986AC(void)
 static void sub_808AE8C(void)
 {
     u8 i;
-    u8 arg = gSpecialVar_ItemId - 33;
+    u16 arg = gSpecialVar_ItemId - 33;
     for (i = 0; i < 6; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES))

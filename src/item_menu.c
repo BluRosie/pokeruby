@@ -1242,7 +1242,7 @@ static void sub_80A4548(u16 taskId, int topItemOffset, int bottomItemOffset, int
         text = gStringVar1;
         text = sub_80A425C(taskId, text, i);
 
-        if (gCurrentBagPocketItemSlots[slot].itemId < ITEM_HM01_CUT)
+        if (gCurrentBagPocketItemSlots[slot].itemId < ITEM_HM01)
         {
             const u8 *moveName;
             gBGTilemapBuffers[2][tilemapOffset + 0] = 0x59;
@@ -1250,7 +1250,7 @@ static void sub_80A4548(u16 taskId, int topItemOffset, int bottomItemOffset, int
             gBGTilemapBuffers[2][tilemapOffset + 32] = 0x69;
             gBGTilemapBuffers[2][tilemapOffset + 33] = 0x4F;
             moveName = gMoveNames[ItemIdToBattleMoveId(gCurrentBagPocketItemSlots[slot].itemId)];
-            sub_80A41E0(text, gCurrentBagPocketItemSlots[slot].itemId - (ITEM_TM01_FOCUS_PUNCH - 1), moveName, gCurrentBagPocketItemSlots[slot].quantity, 2);
+            sub_80A41E0(text, gCurrentBagPocketItemSlots[slot].itemId - (ITEM_TM01 - 1), moveName, gCurrentBagPocketItemSlots[slot].quantity, 2);
         }
         else
         {
@@ -1263,7 +1263,7 @@ static void sub_80A4548(u16 taskId, int topItemOffset, int bottomItemOffset, int
             text[1] = 0x13;
             text[2] = 0x11;
             text += 3;
-            text = ConvertIntToDecimalString(text, gCurrentBagPocketItemSlots[slot].itemId - (ITEM_HM01_CUT - 1));
+            text = ConvertIntToDecimalString(text, gCurrentBagPocketItemSlots[slot].itemId - (ITEM_HM01 - 1));
             text[0] = EXT_CTRL_CODE_BEGIN;
             text[1] = 0x13;
             text[2] = 0x18;
