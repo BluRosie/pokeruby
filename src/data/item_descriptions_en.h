@@ -795,9 +795,6 @@ static const u8 gItemDescription_ExpShare[] = _(
     "A special device\n"
 	"that spreads Exp.\n"
 	"pts. from battles.");
-/*    "A hold item that\n"
-    "gets Exp. points\n"
-    "from battles.");*/
 
 static const u8 gItemDescription_QuickClaw[] = _(
     "A hold item that\n"

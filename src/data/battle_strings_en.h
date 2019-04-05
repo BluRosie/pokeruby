@@ -296,6 +296,7 @@ enum
     BATTLE_TEXT_RestoredPP,
     BATTLE_TEXT_RestoredStatus,
     BATTLE_TEXT_RestoredHPLittle,
+    BATTLE_TEXT_BerryWeakenedDamage,
     BATTLE_TEXT_ChoiceBand,
     BATTLE_TEXT_FocusSash,
     BATTLE_TEXT_Terminator2,
@@ -777,6 +778,7 @@ const u8 BattleText_RestoredHealth[] = _("{STRING 16}'s {STRING 19}\nrestored he
 const u8 BattleText_RestoredPP[] = _("{STRING 16}'s {STRING 19}\nrestored {STRING 0}'s PP!");
 const u8 BattleText_RestoredStatus[] = _("{STRING 16}'s {STRING 19}\nrestored its status!");
 const u8 BattleText_RestoredHPLittle[] = _("{STRING 16}'s {STRING 19}\nrestored its HP a little!");
+const u8 BattleText_BerryWeakenedDamage[] = _("{STRING 16}'s {STRING 19}\nweakened the damage!");
 const u8 BattleText_ChoiceBand[] = _("{STRING 19} allows the\nuse of only {STRING 17}!\p");
 const u8 BattleText_FocusSash[] = _("{DEFENDING_MON} hung on\nusing its {STRING 19}!");
 const u8 BattleText_Terminator2[] = _("");
@@ -1161,6 +1163,7 @@ const u8 *const gBattleStringsTable[] =
     BattleText_RestoredPP,
     BattleText_RestoredStatus,
     BattleText_RestoredHPLittle,
+    BattleText_BerryWeakenedDamage,
     BattleText_ChoiceBand,
     BattleText_FocusSash,
     BattleText_Terminator2,

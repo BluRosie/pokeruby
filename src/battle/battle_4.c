@@ -6,6 +6,7 @@
 #include "battle_script_commands.h"
 #include "battle_util.h"
 #include "constants/battle_move_effects.h"
+#include "constants/hold_effects.h"
 #include "constants/moves.h"
 #include "constants/abilities.h"
 #include "item.h"
@@ -94,6 +95,28 @@ enum
     /*new controllers should go here*/
     CONTROLLER_TERMINATOR_NOP,
     CONTROLLER_CMDS_COUNT
+};
+
+const u8 gBerryToType[][2] =
+{
+    {ITEM_TANGA_BERRY,    TYPE_BUG},
+    {ITEM_BABIRI_BERRY,   TYPE_STEEL},
+    {ITEM_SHUCA_BERRY,    TYPE_GROUND},
+    {ITEM_CHARTI_BERRY,   TYPE_ROCK},
+    {ITEM_RINDO_BERRY,    TYPE_GRASS},
+    {ITEM_COLBUR_BERRY,   TYPE_DARK},
+    {ITEM_CHOPLE_BERRY,   TYPE_FIGHTING},
+    {ITEM_WACAN_BERRY,    TYPE_ELECTRIC},
+    {ITEM_PASSHO_BERRY,   TYPE_WATER},
+    {ITEM_COBA_BERRY,     TYPE_FLYING},
+    {ITEM_KEBIA_BERRY,    TYPE_POISON},
+    {ITEM_YACHE_BERRY,    TYPE_ICE},
+    {ITEM_KASIB_BERRY,    TYPE_GHOST},
+    {ITEM_PAYAPA_BERRY,   TYPE_PSYCHIC},
+    {ITEM_OCCA_BERRY,     TYPE_FIRE},
+    {ITEM_HABAN_BERRY,    TYPE_DRAGON},
+    {ITEM_CHILAN_BERRY,   TYPE_NORMAL}
+//    {ITEM_ROSELI_BERRY,   TYPE_FAIRY}
 };
 
 //extern needed variables
@@ -1531,9 +1554,7 @@ void AI_CalcDmg(u8 BankAtk, u8 BankDef)
 
 static void ModulateDmgByType(u8 multiplier)
 {
-    gBattleMoveDamage = gBattleMoveDamage * multiplier / 10;
-    if (gBattleMoveDamage == 0 && multiplier != 0)
-        gBattleMoveDamage = 1;
+    int i;
 
     switch (multiplier)
     {
@@ -1541,26 +1562,46 @@ static void ModulateDmgByType(u8 multiplier)
         gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
         gMoveResultFlags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
         gMoveResultFlags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
+        gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
         break;
-    case 5: //not very effecting
+    case 5: //not very effective
         if (gBattleMoves[gCurrentMove].power && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
         {
             if (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
                 gMoveResultFlags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
             else
                 gMoveResultFlags |= MOVE_RESULT_NOT_VERY_EFFECTIVE;
+            gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
         }
         break;
     case 20: //super effective
         if (gBattleMoves[gCurrentMove].power && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
         {
-            if (gMoveResultFlags & MOVE_RESULT_NOT_VERY_EFFECTIVE)
+            if (gMoveResultFlags & MOVE_RESULT_NOT_VERY_EFFECTIVE) {
                 gMoveResultFlags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
-            else
+                gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
+            } else {
                 gMoveResultFlags |= MOVE_RESULT_SUPER_EFFECTIVE;
+                gNewBattleEffects.wasLastMoveSuperEffective = TRUE;
+            }
         }
         break;
     }
+
+    for (i = 0; i < NUMBER_OF_MON_TYPES - 1; i++)
+    {
+        if (ItemId_GetHoldEffect(gBattleMons[gBankTarget].item) == HOLD_EFFECT_HALVE_BERRIES
+            && multiplier == 20)
+        {
+            if (gBattleMons[gBankTarget].item == gBerryToType[i][0]
+                && gBattleMoves[gCurrentMove].type == gBerryToType[i][1])
+                multiplier = 10;
+        }
+    }
+
+    gBattleMoveDamage = gBattleMoveDamage * multiplier / 10;
+    if (gBattleMoveDamage == 0 && multiplier != 0)
+        gBattleMoveDamage = 1;
 }
 
 static void atk06_typecalc(void)
@@ -1708,9 +1749,7 @@ static void CheckWonderGuardAndLevitate(void)
 
 static void ModulateDmgByType2(u8 multiplier, u16 move, u8* flags) //a literal copy of the ModulateDmgbyType1 with different args...
 {
-    gBattleMoveDamage = gBattleMoveDamage * multiplier / 10;
-    if (gBattleMoveDamage == 0 && multiplier != 0)
-        gBattleMoveDamage = 1;
+    int i;
 
     switch (multiplier)
     {
@@ -1718,26 +1757,46 @@ static void ModulateDmgByType2(u8 multiplier, u16 move, u8* flags) //a literal c
         *flags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
         *flags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
         *flags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
+        gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
         break;
-    case 5: //not very effecting
+    case 5: //not very effective
         if (gBattleMoves[move].power && !(*flags & MOVE_RESULT_NO_EFFECT))
         {
             if (*flags & MOVE_RESULT_SUPER_EFFECTIVE)
                 *flags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
             else
                 *flags |= MOVE_RESULT_NOT_VERY_EFFECTIVE;
+            gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
         }
         break;
     case 20: //super effective
         if (gBattleMoves[move].power && !(*flags & MOVE_RESULT_NO_EFFECT))
         {
-            if (*flags & MOVE_RESULT_NOT_VERY_EFFECTIVE)
+            if (*flags & MOVE_RESULT_NOT_VERY_EFFECTIVE) {
                 *flags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
-            else
+                gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
+            } else {
                 *flags |= MOVE_RESULT_SUPER_EFFECTIVE;
+                gNewBattleEffects.wasLastMoveSuperEffective = TRUE;
+            }
         }
         break;
     }
+
+    for (i = 0; i < NUM_MON_TYPES - 1; i++)
+    {
+        if (ItemId_GetHoldEffect(gBattleMons[gBankTarget].item) == HOLD_EFFECT_HALVE_BERRIES
+            && multiplier == 20)
+        {
+            if (gBattleMons[gBankTarget].item == gBerryToType[i][0]
+                && gBattleMoves[gCurrentMove].type == gBerryToType[i][1])
+                multiplier = 10;
+        }
+    }
+    
+    gBattleMoveDamage = gBattleMoveDamage * multiplier / 10;
+    if (gBattleMoveDamage == 0 && multiplier != 0)
+        gBattleMoveDamage = 1;
 }
 
 u8 TypeCalc(u16 move, u8 bank_atk, u8 bank_def)
@@ -8256,7 +8315,7 @@ static void atk4A_typecalc2(void)
     }
     else
     {
-        while (gTypeEffectiveness[i]!= TYPE_ENDTABLE)
+        while (gTypeEffectiveness[i] != TYPE_ENDTABLE)
         {
             if (gTypeEffectiveness[i] == TYPE_FORESIGHT)
             {

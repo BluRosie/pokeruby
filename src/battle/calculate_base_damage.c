@@ -69,6 +69,7 @@ const u8 gHoldEffectToType[][2] =
     {HOLD_EFFECT_FIRE_POWER,     TYPE_FIRE},
     {HOLD_EFFECT_DRAGON_POWER,   TYPE_DRAGON},
     {HOLD_EFFECT_NORMAL_POWER,   TYPE_NORMAL}
+//    {HOLD_EFFECT_FAIRY_POWER,    TYPE_FAIRY}
 };
 
 u8 GetBattlerSide(u8 bank);
@@ -286,9 +287,6 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         if (damage == 0)
             damage = 1;
     }
-
-//    if (type == TYPE_MYSTERY)
-//        damage = 0; // is ??? type. does 0 damage.
 
     if (gBattleMoves[gCurrentMove].split == MOVE_SPECIAL)
     {

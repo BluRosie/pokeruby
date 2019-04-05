@@ -4021,8 +4021,8 @@ BattleScript_TraceActivates:: @ 81D9726
 	end3
 
 BattleScript_RainDishActivates:: @ 81D9730
+	playanimation USER, B_ANIM_HEAL, sANIM_ARG1 
 	printstring BATTLE_TEXT_RestoredHPByItem
-	playanimation USER, B_ANIM_HEAL, sANIM_ARG1    
 	waitmessage 64
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate USER
@@ -4436,6 +4436,13 @@ BattleScript_ItemHealHP_Ret:: @ 81D9AA7
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate USER
 	datahpupdate USER
+	return
+
+BattleScript_BerryWeakenedDamage::
+	playanimation SCRIPTING_BANK, B_ANIM_ITEM_EFFECT, NULL
+	printstring BATTLE_TEXT_BerryWeakenedDamage
+	waitmessage 64
+	removeitem SCRIPTING_BANK
 	return
 
 BattleScript_MoveSelectionChoiceBanded:: @ 81D9AC2

@@ -202,6 +202,7 @@ extern u8 BattleScript_BerryCureConfusionRet[];
 extern u8 BattleScript_BerryCureChosenStatusRet[]; //berry cure any status return
 
 extern u8 BattleScript_ItemHealHP_Ret[];
+extern u8 BattleScript_BerryWeakenedDamage[];
 
 extern u8 gUnknown_081D995F[]; //disobedient while asleep
 extern u8 BattleScript_IgnoresAndUsesRandomMove[]; //disobedient, uses a random move
@@ -2835,7 +2836,6 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             case HOLD_EFFECT_CONFUSE_SOUR:
                 ConfuseBerry(bank, bankQuality, FLAVOR_SOUR, moveTurn);
                 break;
-            // copy/paste again, smh
             case HOLD_EFFECT_ATTACK_UP:
                 effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_ATK, moveTurn, effect);
                 break;
@@ -3005,30 +3005,6 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     effect = ITEM_EFFECT_OTHER;
                 }
                 break;
-            case HOLD_EFFECT_TOXIC_ORB:
-                if (!(gBattleMons[bank].status1 & STATUS_TOXIC_POISON) && !moveTurn)
-                {
-                    gBattleMons[bank].status1 &= STATUS_TOXIC_POISON;
-                    BattleScriptExecute(BattleScript_ToxicOrb);
-                    effect = ITEM_STATUS_CHANGE;
-                }
-                break;
-            case HOLD_EFFECT_FLAME_ORB:
-                if (!(gBattleMons[bank].status1 & STATUS_BURN) && !moveTurn)
-                {
-                    gBattleMons[bank].status1 &= STATUS_BURN;
-                    BattleScriptExecute(BattleScript_FlameOrb);
-                    effect = ITEM_STATUS_CHANGE;
-                }
-                break;
-            case HOLD_EFFECT_SHOCK_ORB:
-                if (!(gBattleMons[bank].status1 & STATUS_PARALYSIS) && !moveTurn)
-                {
-                    gBattleMons[bank].status1 &= STATUS_PARALYSIS;
-                    BattleScriptExecute(BattleScript_ShockOrb);
-                    effect = ITEM_STATUS_CHANGE;
-                }
-                break;
             }
             if (effect)
             {
@@ -3051,7 +3027,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
         break;
     case 2:
         break;
-    case 3: // end turn (look at everyone's items_
+    case 3: // end turn (look at everyone's items)
         for (bank = 0; bank < gBattlersCount; bank++)
         {
             gLastUsedItem = gBattleMons[bank].item;
@@ -3184,7 +3160,30 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     gStringBank = bank;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_WhiteHerbRet;
-                    return effect; // unnecessary return
+                }
+                break;
+            case HOLD_EFFECT_TOXIC_ORB:
+                if (!(gBattleMons[bank].status1 & STATUS_TOXIC_POISON) && !moveTurn)
+                {
+                    gBattleMons[bank].status1 &= STATUS_TOXIC_POISON;
+                    BattleScriptExecute(BattleScript_ToxicOrb);
+                    effect = ITEM_STATUS_CHANGE;
+                }
+                break;
+            case HOLD_EFFECT_FLAME_ORB:
+                if (!(gBattleMons[bank].status1 & STATUS_BURN) && !moveTurn)
+                {
+                    gBattleMons[bank].status1 &= STATUS_BURN;
+                    BattleScriptExecute(BattleScript_FlameOrb);
+                    effect = ITEM_STATUS_CHANGE;
+                }
+                break;
+            case HOLD_EFFECT_SHOCK_ORB:
+                if (!(gBattleMons[bank].status1 & STATUS_PARALYSIS) && !moveTurn)
+                {
+                    gBattleMons[bank].status1 &= STATUS_PARALYSIS;
+                    BattleScriptExecute(BattleScript_ShockOrb);
+                    effect = ITEM_STATUS_CHANGE;
                 }
                 break;
             }
@@ -3199,7 +3198,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             }
         }
         break;
-    case 4: // upon attacking (attacking item hold effect) (this is where defending items hold effects would go)
+    case 4: // upon attacking (attacking item hold effect)
         if (gBattleMoveDamage)
         {
             switch (atkHoldEffect)
@@ -3234,6 +3233,24 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     gSpecialStatuses[gBankTarget].moveturnLostHP = 0;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_ItemHealHP_Ret;
+                    effect++;
+                }
+                break;
+            }
+            switch (defHoldEffect)
+            {
+            case HOLD_EFFECT_HALVE_BERRIES: // this will literally just take away the item & say it was used
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                    && gSpecialStatuses[gBankTarget].moveturnLostHP != 0
+                    && gSpecialStatuses[gBankTarget].moveturnLostHP != 0xFFFF
+                    && gBattleMons[gBankAttacker].hp != 0
+                    && gNewBattleEffects.wasLastMoveSuperEffective)
+                {
+                    gLastUsedItem = defItem;
+                    gStringBank = gBankTarget;
+                    gBattleStruct->scriptingActive = gBankTarget;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_BerryWeakenedDamage;
                     effect++;
                 }
                 break;
@@ -3286,7 +3303,8 @@ u8 StatChangeBerry(u8 bank, u8 bankQuality, u8 stat, bool8 moveTurn, u8 effect) 
     } else 
         return effect;
 }
-                    
+
+
 struct CombinedMove
 {
     u16 move1;
@@ -3294,7 +3312,7 @@ struct CombinedMove
     u16 newMove;
 };
 
-static const struct CombinedMove sCombinedMoves[2] =
+static const struct CombinedMove sCombinedMoves[2] = // bro this is so sad
 {
     {MOVE_EMBER, MOVE_GUST, MOVE_HEAT_WAVE},
     {0xFFFF, 0xFFFF, 0xFFFF}

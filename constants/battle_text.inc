@@ -289,6 +289,7 @@
 	enum BATTLE_TEXT_RestoredPP
 	enum BATTLE_TEXT_RestoredStatus
 	enum BATTLE_TEXT_RestoredHPLittle
+	enum BATTLE_TEXT_BerryWeakenedDamage
 	enum BATTLE_TEXT_ChoiceBand
 	enum BATTLE_TEXT_FocusSash
 	enum BATTLE_TEXT_Terminator2 @ terminator?
