@@ -700,12 +700,12 @@
 #define ITEM_APRICORN_BOX           673
 #define ITEM_UNOWN_REPORT           674
 #define ITEM_BERRY_POTS             675
-#define ITEM_ITEMFINDER             676
+#define ITEM_ITEMFINDER             676 // not new
 #define ITEM_BLUE_CARD              677
 #define ITEM_SLOWPOKE_TAIL          678
 #define ITEM_CLEAR_BELL             679
 #define ITEM_CARD_KEY               680
-#define ITEM_BASEMENT_KEY           681
+#define ITEM_BASEMENT_KEY           681 // not new
 #define ITEM_SQUIRT_BOTTLE          682
 #define ITEM_RED_SCALE              683
 #define ITEM_LOST_ITEM              684
@@ -762,11 +762,11 @@
 #define ITEM_TRAVEL_TRUNK           735
 #define ITEM_LOOKER_TICKET          736
 #define ITEM_HOLO_CASTER            737
-#define ITEM_SOOT_SACK              738
-#define ITEM_POKEBLOCK_CASE         739
-#define ITEM_LETTER                 740
+#define ITEM_SOOT_SACK              738 // not new
+#define ITEM_POKEBLOCK_CASE         739 // not new
+#define ITEM_LETTER                 740 // not new
 #define ITEM_EON_TICKET             741 // not new
-#define ITEM_SCANNER                742
+#define ITEM_SCANNER                742 // not new
 #define ITEM_GO_GOGGLES             743 // not new
 #define ITEM_METEORITE              744 // not new
 #define ITEM_ROOM_1_KEY             745 // not new
@@ -840,7 +840,7 @@
 #define ITEM_PIKASHUNIUM_Z          811
 #define ITEM_SOLGANIUM_Z            812
 #define ITEM_LUNALIUM_Z             813
-#define ITEM_ULTRANECRONIUM_Z       814
+#define ITEM_ULTRANECROZIUM_Z       814
 #define ITEM_MIMIKIUM_Z             815
 #define ITEM_LYCANIUM_Z             816
 #define ITEM_KOMMONIUM_Z            817
@@ -875,7 +875,7 @@
 #define ITEM_PIKASHUNIUM_Z_2        846
 #define ITEM_SOLGANIUM_Z_2          847
 #define ITEM_LUNALIUM_Z_2           848
-#define ITEM_ULTRANECRONIUM_Z_2     849
+#define ITEM_ULTRANECROZIUM_Z_2     849
 #define ITEM_MIMIKIUM_Z_2           850
 #define ITEM_LYCANIUM_Z_2           851
 #define ITEM_KOMMONIUM_Z_2          852
