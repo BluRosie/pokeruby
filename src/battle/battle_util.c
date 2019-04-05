@@ -3260,7 +3260,7 @@ void ConfuseBerry(u8 bank, u8 bankQuality, u8 flavor, bool8 moveTurn) {
         if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
             gBattleMoveDamage = gBattleMons[bank].maxHP - gBattleMons[bank].hp;
         gBattleMoveDamage *= -1;
-        if (GetPokeFlavourRelation(gBattleMons[bank].personality, FLAVOR_SPICY) < 0)
+        if (GetPokeFlavourRelation(gBattleMons[bank].personality, flavor) < 0)
             BattleScriptExecute(BattleScript_BerryConfuseHealEnd2);
         else
             BattleScriptExecute(BattleScript_ItemHealHP_RemoveItem);
