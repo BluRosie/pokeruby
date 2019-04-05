@@ -2696,7 +2696,6 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
         atkQuality = ItemId_GetHoldEffectParam(atkItem);
     }
 
-    // def variables are unused
     defItem = gBattleMons[gBankTarget].item;
     if (defItem == ITEM_ENIGMA_BERRY)
     {
@@ -2736,7 +2735,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             break;
         }
         break;
-    case 1: // after attacking
+    case 1: // after attacking, bankHoldEffect means it's whichever pokemon
         if (gBattleMons[bank].hp)
         {
             switch (bankHoldEffect)
@@ -2838,92 +2837,23 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 break;
             // copy/paste again, smh
             case HOLD_EFFECT_ATTACK_UP:
-                if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / bankQuality && !moveTurn && gBattleMons[bank].statStages[STAT_STAGE_ATK] < 0xC)
-                {
-                    gBattleTextBuff1[0] = 0xFD;
-                    gBattleTextBuff1[1] = 5;
-                    gBattleTextBuff1[2] = STAT_STAGE_ATK;
-                    gBattleTextBuff1[3] = EOS;
-
-                    gBattleTextBuff2[0] = 0xFD;
-                    gBattleTextBuff2[1] = 0;
-                    gBattleTextBuff2[2] = 0xD2;
-                    gBattleTextBuff2[3] = 0xD2 >> 8;
-                    gBattleTextBuff2[4] = EOS;
-
-                    gEffectBank = bank;
-                    gBattleStruct->statChanger = 0x10 + STAT_STAGE_ATK;
-                    gBattleStruct->animArg1 = 0xE + STAT_STAGE_ATK;
-                    gBattleStruct->animArg2 = 0;
-                    BattleScriptExecute(BattleScript_BerryStatRaiseEnd2);
-                    effect = ITEM_STATS_CHANGE;
-                }
+                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_ATK, moveTurn, effect);
                 break;
             case HOLD_EFFECT_DEFENSE_UP:
-                if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / bankQuality && !moveTurn && gBattleMons[bank].statStages[STAT_STAGE_DEF] < 0xC)
-                {
-                    gBattleTextBuff1[0] = 0xFD;
-                    gBattleTextBuff1[1] = 5;
-                    gBattleTextBuff1[2] = STAT_STAGE_DEF;
-                    gBattleTextBuff1[3] = EOS;
-
-                    gEffectBank = bank;
-                    gBattleStruct->statChanger = 0x10 + STAT_STAGE_DEF;
-                    gBattleStruct->animArg1 = 0xE + STAT_STAGE_DEF;
-                    gBattleStruct->animArg2 = 0;
-                    BattleScriptExecute(BattleScript_BerryStatRaiseEnd2);
-                    effect = ITEM_STATS_CHANGE;
-                }
+                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_DEF, moveTurn, effect);
                 break;
             case HOLD_EFFECT_SPEED_UP:
-                if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / bankQuality && !moveTurn && gBattleMons[bank].statStages[STAT_STAGE_SPEED] < 0xC)
-                {
-                    gBattleTextBuff1[0] = 0xFD;
-                    gBattleTextBuff1[1] = 5;
-                    gBattleTextBuff1[2] = STAT_STAGE_SPEED;
-                    gBattleTextBuff1[3] = EOS;
-
-                    gEffectBank = bank;
-                    gBattleStruct->statChanger = 0x10 + STAT_STAGE_SPEED;
-                    gBattleStruct->animArg1 = 0xE + STAT_STAGE_SPEED;
-                    gBattleStruct->animArg2 = 0;
-                    BattleScriptExecute(BattleScript_BerryStatRaiseEnd2);
-                    effect = ITEM_STATS_CHANGE;
-                }
+                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPEED, moveTurn, effect);
                 break;
             case HOLD_EFFECT_SP_ATTACK_UP:
-                if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / bankQuality && !moveTurn && gBattleMons[bank].statStages[STAT_STAGE_SPATK] < 0xC)
-                {
-                    gBattleTextBuff1[0] = 0xFD;
-                    gBattleTextBuff1[1] = 5;
-                    gBattleTextBuff1[2] = STAT_STAGE_SPATK;
-                    gBattleTextBuff1[3] = EOS;
-
-                    gEffectBank = bank;
-                    gBattleStruct->statChanger = 0x10 + STAT_STAGE_SPATK;
-                    gBattleStruct->animArg1 = 0xE + STAT_STAGE_SPATK;
-                    gBattleStruct->animArg2 = 0;
-                    BattleScriptExecute(BattleScript_BerryStatRaiseEnd2);
-                    effect = ITEM_STATS_CHANGE;
-                }
+                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPATK, moveTurn, effect);
                 break;
             case HOLD_EFFECT_SP_DEFENSE_UP:
-                if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / bankQuality && !moveTurn && gBattleMons[bank].statStages[STAT_STAGE_SPDEF] < 0xC)
-                {
-                    gBattleTextBuff1[0] = 0xFD;
-                    gBattleTextBuff1[1] = 5;
-                    gBattleTextBuff1[2] = STAT_STAGE_SPDEF;
-                    gBattleTextBuff1[3] = EOS;
-
-                    gEffectBank = bank;
-                    gBattleStruct->statChanger = 0x10 + STAT_STAGE_SPDEF;
-                    gBattleStruct->animArg1 = 0xE + STAT_STAGE_SPDEF;
-                    gBattleStruct->animArg2 = 0;
-                    BattleScriptExecute(BattleScript_BerryStatRaiseEnd2);
-                    effect = ITEM_STATS_CHANGE;
-                }
+                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPDEF, moveTurn, effect);
                 break;
             case HOLD_EFFECT_CRITICAL_UP:
+                if (gBattleMons[bank].ability == ABILITY_GLUTTONY)
+                    bankQuality /= 2;
                 if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / bankQuality && !moveTurn && !(gBattleMons[bank].status2 & STATUS2_FOCUS_ENERGY))
                 {
                     gBattleMons[bank].status2 |= STATUS2_FOCUS_ENERGY;
@@ -2932,6 +2862,8 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_RANDOM_STAT_UP:
+                if (gBattleMons[bank].ability == ABILITY_GLUTTONY)
+                    bankQuality /= 2;
                 if (!moveTurn && gBattleMons[bank].hp <= gBattleMons[bank].maxHP / bankQuality)
                 {
                     for (i = 0; i < 5; i++)
@@ -3074,7 +3006,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_TOXIC_ORB:
-                if (!(gBattleMons[bank].status1 & STATUS_TOXIC_POISON))
+                if (!(gBattleMons[bank].status1 & STATUS_TOXIC_POISON) && !moveTurn)
                 {
                     gBattleMons[bank].status1 &= STATUS_TOXIC_POISON;
                     BattleScriptExecute(BattleScript_ToxicOrb);
@@ -3082,7 +3014,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_FLAME_ORB:
-                if (!(gBattleMons[bank].status1 & STATUS_BURN))
+                if (!(gBattleMons[bank].status1 & STATUS_BURN) && !moveTurn)
                 {
                     gBattleMons[bank].status1 &= STATUS_BURN;
                     BattleScriptExecute(BattleScript_FlameOrb);
@@ -3090,7 +3022,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_SHOCK_ORB:
-                if (!(gBattleMons[bank].status1 & STATUS_PARALYSIS))
+                if (!(gBattleMons[bank].status1 & STATUS_PARALYSIS) && !moveTurn)
                 {
                     gBattleMons[bank].status1 &= STATUS_PARALYSIS;
                     BattleScriptExecute(BattleScript_ShockOrb);
@@ -3119,7 +3051,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
         break;
     case 2:
         break;
-    case 3: // end turn (no hp basis)
+    case 3: // end turn (look at everyone's items_
         for (bank = 0; bank < gBattlersCount; bank++)
         {
             gLastUsedItem = gBattleMons[bank].item;
@@ -3267,7 +3199,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             }
         }
         break;
-    case 4: // upon attacking
+    case 4: // upon attacking (attacking item hold effect) (this is where defending items hold effects would go)
         if (gBattleMoveDamage)
         {
             switch (atkHoldEffect)
@@ -3321,7 +3253,7 @@ void ConfuseBerry(u8 bank, u8 bankQuality, u8 flavor, bool8 moveTurn) {
         gBattleTextBuff1[0] = 253;
         gBattleTextBuff1[1] = 8;
         gBattleTextBuff1[2] = flavor;
-        gBattleTextBuff1[3] = EOS; // please please work
+        gBattleTextBuff1[3] = EOS;
         gBattleMoveDamage = gBattleMons[bank].maxHP / bankQuality;
         if (gBattleMoveDamage == 0)
             gBattleMoveDamage = 1;
@@ -3333,6 +3265,26 @@ void ConfuseBerry(u8 bank, u8 bankQuality, u8 flavor, bool8 moveTurn) {
         else
             BattleScriptExecute(BattleScript_ItemHealHP_RemoveItem);
     }
+}
+
+u8 StatChangeBerry(u8 bank, u8 bankQuality, u8 stat, bool8 moveTurn, u8 effect) {
+    if (gBattleMons[bank].ability == ABILITY_GLUTTONY)
+        bankQuality /= 2;
+    if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / bankQuality && !moveTurn && gBattleMons[bank].statStages[stat] < 0xC)
+    {
+        gBattleTextBuff1[0] = 0xFD;
+        gBattleTextBuff1[1] = 5;
+        gBattleTextBuff1[2] = stat;
+        gBattleTextBuff1[3] = EOS;
+
+        gEffectBank = bank;
+        gBattleStruct->statChanger = 0x10 + stat;
+        gBattleStruct->animArg1 = 0xE + stat;
+        gBattleStruct->animArg2 = 0;
+        BattleScriptExecute(BattleScript_BerryStatRaiseEnd2);
+        return ITEM_STATS_CHANGE;
+    } else 
+        return effect;
 }
                     
 struct CombinedMove

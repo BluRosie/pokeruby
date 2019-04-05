@@ -1670,3 +1670,33 @@ static const u8 gItemDescription_RoseliBerry[] = _(
     "Weakens a foe's\n"
     "super-effective\n"
     "Fairy-type attack.");
+
+static const u8 gItemDescription_MicleBerry[] = _(
+    "A hold item that\n"
+    "raises Accuracy\n"
+    "in a pinch.");
+
+static const u8 gItemDescription_CustapBerry[] = _(
+    "A hold item that\n"
+    "grants first move\n"
+    "in a pinch.");
+
+static const u8 gItemDescription_JabocaBerry[] = _(
+    "Damages the foe\n"
+    "after a physical\n"
+    "attack lands.");
+
+static const u8 gItemDescription_RowapBerry[] = _(
+    "Damages the foe\n"
+    "after a special\n"
+    "attack lands.");
+
+static const u8 gItemDescription_KeeBerry[] = _(
+    "Raises Defense\n"
+    "if hit by a\n"
+    "physical move.");
+
+static const u8 gItemDescription_MarangaBerry[] = _(
+    "Raises Sp. Def\n"
+    "if hit my a\n"
+    "special move.");

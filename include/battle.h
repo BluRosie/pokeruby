@@ -849,6 +849,7 @@ u8 HandleFaintedMonActions();
 u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 move);
 u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn);
 void ConfuseBerry(u8 bank, u8 bankQuality, u8 flavor, bool8 moveTurn);
+u8 StatChangeBerry(u8 bank, u8 bankQuality, u8 stat, bool8 moveTurn, u8 effect);
 u8 GetMoveTarget(u16 move, u8 useMoveTarget);
 
 // asm/battle_4.o
