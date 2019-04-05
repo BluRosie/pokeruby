@@ -1471,3 +1471,202 @@ static const u8 gItemDescription_HM08[] = _(
     "attacks next turn.");
 
 static const u8 gItemDescription_Dummy[] = _("");
+
+static const u8 gItemDescription_HealthWing[] = _(
+    "Slightly raises\n"
+    "the HP of one\n"
+    "Pokémon.");
+
+static const u8 gItemDescription_MuscleWing[] = _(
+    "Slightly raises\n"
+    "the Attack of one\n"
+    "Pokémon.");
+
+static const u8 gItemDescription_ResistWing[] = _(
+    "Slightly raises\n"
+    "the Defense of one\n"
+    "Pokémon.");
+
+static const u8 gItemDescription_GeniusWing[] = _(
+    "Slightly raises\n"
+    "the Sp. Atk of one\n"
+    "Pokémon.");
+
+static const u8 gItemDescription_CleverWing[] = _(
+    "Slightly raises\n"
+    "the Sp. Def of one\n"
+    "Pokémon.");
+
+static const u8 gItemDescription_SwiftWing[] = _(
+    "Slightly raises\n"
+    "the Speed of one\n"
+    "Pokémon.");
+
+static const u8 gItemDescription_OldGateau[] = _(
+    "Old Chateau's\n"
+    "hidden specialty.\n"
+    "Heals all status.");
+
+static const u8 gItemDescription_XSpDef[] = _(
+    "Raises the stat\n"
+    "Sp. Def during one\n"
+    "battle.");
+
+static const u8 gItemDescription_DawnStone[] = _(
+    "Makes certain\n"
+    "species and gender\n"
+    "evolve.");
+
+static const u8 gItemDescription_Casteliacone[] = _(
+    "Castelia's\n"
+    "special ice cream.\n"
+    "Heals all status.");
+
+static const u8 gItemDescription_AbilityCapsule[] = _(
+    "Switches one\n"
+    "Pokémon's ability.\n");
+
+static const u8 gItemDescription_LumioseGalette[] = _(
+    "A popular treat\n"
+    "in Lumiose.\n"
+    "Heals all status.");
+
+static const u8 gItemDescription_ShalourSable[] = _(
+    "Shortbread from\n"
+    "Shalour City.\n"
+    "Heals all status.");
+
+static const u8 gItemDescription_BottleCap[] = _(
+    "A shiny bottle\n"
+    "cap that some\n"
+    "might like.");
+
+static const u8 gItemDescription_GoldBottleCap[] = _(
+    "A golden bottle\n"
+    "cap that some\n"
+    "might like.");
+
+static const u8 gItemDescription_BigMalasada[] = _(
+    "Alola's special\n"
+    "fried bread.\n"
+    "Heals all status.");
+
+static const u8 gItemDescription_AdrenalineOrb[] = _(
+    "Makes enemy\n"
+    "more likely to\n"
+    "call for help.");
+
+static const u8 gItemDescription_RedNectar[] = _(
+    "A nectar from\n"
+    "Ula'ula Meadow.\n"
+    "Changes form.");
+
+static const u8 gItemDescription_YellowNectar[] = _(
+    "A nectar from\n"
+    "Melemele Meadow.\n"
+    "Changes form.");
+
+static const u8 gItemDescription_PinkNectar[] = _(
+    "A nectar from\n"
+    "Royal Avenue.\n"
+    "Changes form.");
+
+static const u8 gItemDescription_PurpleNectar[] = _(
+    "A nectar from\n"
+    "Poni Meadow.\n"
+    "Changes form.");
+
+static const u8 gItemDescription_HeartMail[] = _(
+    "A heart-print\n"
+    "Mail to be held by\n"
+    "a Pokémon.");
+
+static const u8 gItemDescription_OccaBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Fire-type attack.");
+
+static const u8 gItemDescription_PasshoBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Water-type attack.");
+
+static const u8 gItemDescription_WacanBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Elctrc-type attack.");
+
+static const u8 gItemDescription_RindoBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Grass-type attack.");
+
+static const u8 gItemDescription_YacheBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Ice-type attack.");
+
+static const u8 gItemDescription_ChopleBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Fight-type attack.");
+
+static const u8 gItemDescription_KebiaBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Poison-type attack.");
+
+static const u8 gItemDescription_ShucaBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Ground-type attack.");
+
+static const u8 gItemDescription_CobaBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Flying-type attack.");
+
+static const u8 gItemDescription_PayapaBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Pyshic-type attack.");
+
+static const u8 gItemDescription_TangaBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Bug-type attack.");
+
+static const u8 gItemDescription_ChartiBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Rock-type attack.");
+
+static const u8 gItemDescription_KasibBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Ghost-type attack.");
+
+static const u8 gItemDescription_HabanBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Dragon-type attack.");
+
+static const u8 gItemDescription_ColburBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Dark-type attack.");
+
+static const u8 gItemDescription_BabiriBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Steel-type attack.");
+
+static const u8 gItemDescription_ChilanBerry[] = _(
+    "Weakens a foe's\n"
+    "Normal-type\n"
+    "attack.");
+
+static const u8 gItemDescription_RoseliBerry[] = _(
+    "Weakens a foe's\n"
+    "super-effective\n"
+    "Fairy-type attack.");
