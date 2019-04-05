@@ -1783,7 +1783,7 @@ static void ModulateDmgByType2(u8 multiplier, u16 move, u8* flags) //a literal c
         break;
     }
 
-    for (i = 0; i < NUM_MON_TYPES - 1; i++)
+    for (i = 0; i < NUMBER_OF_MON_TYPES - 1; i++)
     {
         if (ItemId_GetHoldEffect(gBattleMons[gBankTarget].item) == HOLD_EFFECT_HALVE_BERRIES
             && multiplier == 20)
