@@ -44,3 +44,5 @@ build/
 .projects/ARM/
 pokeruby.ss1
 *.diff
+.vscode/c_cpp_properties.json
+.vscode/settings.json

@@ -98,7 +98,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
 
     if (!IS_POKEMON_ITEM(item))
         return TRUE;
-    if (gItemEffectTable[item - 13] == NULL && item != ITEM_ENIGMA_BERRY)
+    if (gItemEffectTable[item - (ITEM_POTION % 256_)] == NULL && item != ITEM_ENIGMA_BERRY)
         return TRUE;
 
     if (item == ITEM_ENIGMA_BERRY)
@@ -110,7 +110,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
     }
     else
     {
-        itemEffect = gItemEffectTable[item - 13];
+        itemEffect = gItemEffectTable[item - (ITEM_POTION % 256_)];
     }
 
     for (cmdIndex = 0; cmdIndex < 6; cmdIndex++)
@@ -398,6 +398,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                             }
                         }
                         break;
+                    // evolution stones
                     case 7:
                         {
                             u16 targetSpecies = GetEvolutionTargetSpecies(pkmn, 2, item);

@@ -4252,7 +4252,7 @@ bool8 IsHPRecoveryItem(u16 item)
     if (item == ITEM_ENIGMA_BERRY)
         itemEffect = gSaveBlock1.enigmaBerry.itemEffect;
     else
-        itemEffect = gItemEffectTable[item - ITEM_POTION];
+        itemEffect = gItemEffectTable[item - (ITEM_POTION % 256)];
 
     if (itemEffect[4] & 4)
         return TRUE;
@@ -4570,7 +4570,7 @@ void DoPPRecoveryItemEffect(u8 taskId, u16 item, TaskFunc c)
     if (item == ITEM_ENIGMA_BERRY)
         itemEffect = gSaveBlock1.enigmaBerry.itemEffect;
     else
-        itemEffect = gItemEffectTable[item - ITEM_POTION];
+        itemEffect = gItemEffectTable[item - (ITEM_POTION % 256)];
     gTasks[taskId].func = TaskDummy;
     taskId2 = CreateTask(TaskDummy, 5);
     sub_806E8D0(taskId, item, c);
@@ -4991,7 +4991,7 @@ u8 GetItemEffectType(u16 item)
     }
     else
     {
-        itemEffect = gItemEffectTable[item - ITEM_POTION];
+        itemEffect = gItemEffectTable[item - (ITEM_POTION % 256)];
     }
 
 #ifndef NONMATCHING

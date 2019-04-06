@@ -907,13 +907,13 @@ static bool8 ShouldUseItem(void)
         item = AI_BATTLE_HISTORY->trainerItems[i];
         if (item == ITEM_NONE)
             continue;
-        if (gItemEffectTable[item - 13] == NULL)
+        if (gItemEffectTable[item - (ITEM_POTION % 256)] == NULL)
             continue;
 
         if (item == ITEM_ENIGMA_BERRY)
             itemEffects = gSaveBlock1.enigmaBerry.itemEffect;
         else
-            itemEffects = gItemEffectTable[item - 13];
+            itemEffects = gItemEffectTable[item - (ITEM_POTION % 256)];
 
         ewram160D8(gActiveBattler) = GetAI_ItemType(item, itemEffects);
 
