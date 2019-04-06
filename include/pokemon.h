@@ -143,6 +143,37 @@
 #define NUM_STATS 6
 #define UNOWN_FORM_COUNT 28
 
+// item_effects.h
+//[0]
+#define AFFECTS_INFATUATION 0x80
+#define SACRED_ASH          0x40
+#define AFFECTS_CRIT_RATE   0x20
+#define X_ATTACK            0x01
+//[1]
+//[2]
+//[3]
+#define CURE_STATUS_FAINT     0x40 //?
+#define CURE_STATUS_SLEEP     0x20
+#define CURE_STATUS_POISON    0x10
+#define CURE_STATUS_BURN      0x08
+#define CURE_STATUS_ICE       0x04
+#define CURE_STATUS_PARALYSIS 0x02
+#define CURE_STATUS_CONFUSION 0x01
+//[4]
+#define EVO_STONE                0x80
+#define REVIVES                  0x40
+#define PP_UP                    0x20
+#define LIMITED_PP_RESTORE_ITEM  0x10
+#define PP_ITEM                  0x08
+#define HEALING_ITEM             0x04
+#define PROTEIN                  0x02
+#define HPUP                     0x01
+//[5]
+//[6]
+//[7]
+//[8]
+//[9]
+
 enum {
     EGG_GROUP_NONE,
     EGG_GROUP_MONSTER,
@@ -227,7 +258,7 @@ struct PokemonSubstruct3 // size: 0xB
     /*0x01*/ u8 metLocation;
 
     /*0x02*/ u8 pokeball;
-	
+
     /*0x03*/ u16 metLevel:7;
     /*0x03*/ u16 metGame:3;
     /*0x04*/ u16 otGender:1;
@@ -537,12 +568,75 @@ extern u8 gPlayerPartyCount;
 extern struct Pokemon gPlayerParty[PARTY_SIZE];
 extern u8 gEnemyPartyCount;
 extern struct Pokemon gEnemyParty[PARTY_SIZE];
-extern const u8 *const gItemEffectTable[];
 extern const struct BaseStats gBaseStats[];
 extern const u32 gExperienceTables[][101];
 extern const u16 *gLevelUpLearnsets[];
 extern struct Evolution gEvolutionTable[][5];
 extern struct PokemonStorage gPokemonStorage;
+
+extern const u8 gItemEffect_Potion[];
+extern const u8 gItemEffect_Antidote[];
+extern const u8 gItemEffect_BurnHeal[];
+extern const u8 gItemEffect_IceHeal[];
+extern const u8 gItemEffect_Awakening[];
+extern const u8 gItemEffect_ParalyzeHeal[];
+extern const u8 gItemEffect_FullRestore[];
+extern const u8 gItemEffect_MaxPotion[];
+extern const u8 gItemEffect_HyperPotion[];
+extern const u8 gItemEffect_SuperPotion[];
+extern const u8 gItemEffect_FullHeal[];
+extern const u8 gItemEffect_Revive[];
+extern const u8 gItemEffect_MaxRevive[];
+extern const u8 gItemEffect_FreshWater[];
+extern const u8 gItemEffect_SodaPop[];
+extern const u8 gItemEffect_Lemonade[];
+extern const u8 gItemEffect_MoomooMilk[];
+extern const u8 gItemEffect_EnergyPowder[];
+extern const u8 gItemEffect_EnergyRoot[];
+extern const u8 gItemEffect_HealPowder[];
+extern const u8 gItemEffect_RevivalHerb[];
+extern const u8 gItemEffect_Ether[];
+extern const u8 gItemEffect_MaxEther[];
+extern const u8 gItemEffect_Elixir[];
+extern const u8 gItemEffect_MaxElixir[];
+extern const u8 gItemEffect_LavaCookie[];
+extern const u8 gItemEffect_BlueFlute[];
+extern const u8 gItemEffect_YellowFlute[];
+extern const u8 gItemEffect_RedFlute[];
+extern const u8 gItemEffect_BerryJuice[];
+extern const u8 gItemEffect_SacredAsh[];
+extern const u8 gItemEffect_HPUp[];
+extern const u8 gItemEffect_Protein[];
+extern const u8 gItemEffect_Iron[];
+extern const u8 gItemEffect_Carbos[];
+extern const u8 gItemEffect_Calcium[];
+extern const u8 gItemEffect_RareCandy[];
+extern const u8 gItemEffect_PPUp[];
+extern const u8 gItemEffect_Zinc[];
+extern const u8 gItemEffect_PPMax[];
+extern const u8 gItemEffect_GuardSpec[];
+extern const u8 gItemEffect_DireHit[];
+extern const u8 gItemEffect_XAttack[];
+extern const u8 gItemEffect_XDefend[];
+extern const u8 gItemEffect_XSpeed[];
+extern const u8 gItemEffect_XAccuracy[];
+extern const u8 gItemEffect_XSpecial[];
+extern const u8 gItemEffect_SunStone[];
+extern const u8 gItemEffect_MoonStone[];
+extern const u8 gItemEffect_FireStone[];
+extern const u8 gItemEffect_ThunderStone[];
+extern const u8 gItemEffect_WaterStone[];
+extern const u8 gItemEffect_LeafStone[];
+extern const u8 gItemEffect_CheriBerry[];
+extern const u8 gItemEffect_ChestoBerry[];
+extern const u8 gItemEffect_PechaBerry[];
+extern const u8 gItemEffect_RawstBerry[];
+extern const u8 gItemEffect_AspearBerry[];
+extern const u8 gItemEffect_LeppaBerry[];
+extern const u8 gItemEffect_OranBerry[];
+extern const u8 gItemEffect_PersimBerry[];
+extern const u8 gItemEffect_LumBerry[];
+extern const u8 gItemEffect_SitrusBerry[];
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
 void ZeroMonData(struct Pokemon *mon);

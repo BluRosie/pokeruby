@@ -98,7 +98,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
 
     if (!IS_POKEMON_ITEM(item))
         return TRUE;
-    if (gItemEffectTable[item - (ITEM_POTION % 256)] == NULL && item != ITEM_ENIGMA_BERRY)
+    if (ItemId_GetEffect(item) == NULL && item != ITEM_ENIGMA_BERRY)
         return TRUE;
 
     if (item == ITEM_ENIGMA_BERRY)
@@ -110,7 +110,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
     }
     else
     {
-        itemEffect = gItemEffectTable[item - (ITEM_POTION % 256)];
+        itemEffect = ItemId_GetEffect(item);
     }
 
     for (cmdIndex = 0; cmdIndex < 6; cmdIndex++)

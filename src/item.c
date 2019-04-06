@@ -25,6 +25,7 @@ struct Item
     u8 battleUsage;
     ItemUseFunc battleUseFunc;
     u8 secondaryId;
+    const u8 *effect;
 };
 
 extern u8 gCurSelectedItemSlotIndex;
@@ -542,4 +543,9 @@ ItemUseFunc ItemId_GetBattleFunc(u16 itemId)
 u8 ItemId_GetSecondaryId(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].secondaryId;
+}
+
+const u8 *ItemId_GetEffect(u16 itemId)
+{
+    return gItems[SanitizeItemId(itemId)].effect;
 }

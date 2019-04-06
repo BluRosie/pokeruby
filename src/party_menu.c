@@ -4252,7 +4252,7 @@ bool8 IsHPRecoveryItem(u16 item)
     if (item == ITEM_ENIGMA_BERRY)
         itemEffect = gSaveBlock1.enigmaBerry.itemEffect;
     else
-        itemEffect = gItemEffectTable[item - (ITEM_POTION % 256)];
+        itemEffect = ItemId_GetEffect(item);
 
     if (itemEffect[4] & 4)
         return TRUE;
@@ -4570,11 +4570,11 @@ void DoPPRecoveryItemEffect(u8 taskId, u16 item, TaskFunc c)
     if (item == ITEM_ENIGMA_BERRY)
         itemEffect = gSaveBlock1.enigmaBerry.itemEffect;
     else
-        itemEffect = gItemEffectTable[item - (ITEM_POTION % 256)];
+        itemEffect = ItemId_GetEffect(item);
     gTasks[taskId].func = TaskDummy;
     taskId2 = CreateTask(TaskDummy, 5);
     sub_806E8D0(taskId, item, c);
-    if (!(itemEffect[4] & 0x10))
+    if (!(itemEffect[4] & LIMITED_PP_RESTORE_ITEM))
     {
         gTasks[taskId2].data[11] = 0;
         DoRecoverPP(taskId2);
@@ -4973,16 +4973,9 @@ void DoEvolutionStoneItemEffect(u8 taskId, u16 evolutionStoneItem, TaskFunc c)
 u8 GetItemEffectType(u16 item)
 {
     const u8 *itemEffect;
-#ifndef NONMATCHING
-    register u8 itemEffect0 asm("r1");
-    register u8 itemEffect3 asm("r3");
-    register u32 itemEffect0_r0 asm("r0"); // u32 to prevent shifting when transferring itemEffect0 to this
-    u8 mask;
-#else
-#define itemEffect0 itemEffect[0]
-#define itemEffect3 itemEffect[3]
-#define mask 0x3F
-#endif
+    #define itemEffect0 itemEffect[0]
+    #define itemEffect3 itemEffect[3]
+    #define mask 0x3F
 
     // Read the item's effect properties.
     if (item == ITEM_ENIGMA_BERRY)
@@ -4991,21 +4984,13 @@ u8 GetItemEffectType(u16 item)
     }
     else
     {
-        itemEffect = gItemEffectTable[item - (ITEM_POTION % 256)];
+        itemEffect = ItemId_GetEffect(item);
     }
-
-#ifndef NONMATCHING
-    itemEffect0 = itemEffect[0];
-    mask = 0x3F;
-#endif
 
     if ((itemEffect0 & mask) || itemEffect[1] || itemEffect[2])
     {
         return 0;
     }
-#ifndef NONMATCHING
-    itemEffect3 = itemEffect[3];
-#endif
     if (itemEffect3 & 0x80)
     {
         return 0;
@@ -5048,11 +5033,7 @@ u8 GetItemEffectType(u16 item)
         // itemEffect0_r0 = itemEffect0 >> 7;
         // asm(""); // increase live length for greg
         // if ((itemEffect0_r0 != 0) && (itemEffect3 & mask) == 0)
-#ifndef NONMATCHING
-        else if (((itemEffect0_r0 = itemEffect0 >> 7) != 0) && (itemEffect3 & mask) == 0)
-#else
         else if (((itemEffect[0] >> 7) != 0) && (itemEffect[3] & 0x3F) == 0)
-#endif
         {
             return 9;
         }
@@ -5109,210 +5090,10 @@ u8 GetItemEffectType(u16 item)
     {
         return 22;
     }
-#ifdef NONMATCHING
-#undef itemEffect0
-#undef itemEffect3
-#undef mask
-#endif
+    #undef itemEffect0
+    #undef itemEffect3
+    #undef mask
 }
-#if 0
-NAKED
-u8 GetItemEffectType(u16 item)
-{
-    asm(".syntax unified\n\
-    push {r4,r5,lr}\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    cmp r0, 0xAF\n\
-    bne _08070E5C\n\
-    ldr r4, _08070E58 @ =gSaveBlock1 + 0x3676\n\
-    b _08070E66\n\
-    .align 2, 0\n\
-_08070E58: .4byte gSaveBlock1 + 0x3676\n\
-_08070E5C:\n\
-    ldr r1, _08070E8C @ =gItemEffectTable\n\
-    subs r0, 0xD\n\
-    lsls r0, 2\n\
-    adds r0, r1\n\
-    ldr r4, [r0]\n\
-_08070E66:\n\
-    ldrb r1, [r4]\n\
-    movs r5, 0x3F\n\
-    adds r0, r5, 0\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    bne _08070E88\n\
-    ldrb r0, [r4, 0x1]\n\
-    cmp r0, 0\n\
-    bne _08070E88\n\
-    ldrb r0, [r4, 0x2]\n\
-    cmp r0, 0\n\
-    bne _08070E88\n\
-    ldrb r3, [r4, 0x3]\n\
-    movs r0, 0x80\n\
-    ands r0, r3\n\
-    cmp r0, 0\n\
-    beq _08070E90\n\
-_08070E88:\n\
-    movs r0, 0\n\
-    b _08070F8A\n\
-    .align 2, 0\n\
-_08070E8C: .4byte gItemEffectTable\n\
-_08070E90:\n\
-    movs r2, 0x40\n\
-    adds r0, r2, 0\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    beq _08070E9E\n\
-    movs r0, 0xA\n\
-    b _08070F8A\n\
-_08070E9E:\n\
-    adds r0, r2, 0\n\
-    ands r0, r3\n\
-    cmp r0, 0\n\
-    beq _08070EAA\n\
-    movs r0, 0x1\n\
-    b _08070F8A\n\
-_08070EAA:\n\
-    adds r2, r5, 0\n\
-    ands r2, r3\n\
-    cmp r2, 0\n\
-    bne _08070EB8\n\
-    lsrs r0, r1, 7\n\
-    cmp r0, 0\n\
-    beq _08070EFA\n\
-_08070EB8:\n\
-    cmp r2, 0x20\n\
-    bne _08070EC0\n\
-    movs r0, 0x4\n\
-    b _08070F8A\n\
-_08070EC0:\n\
-    cmp r2, 0x10\n\
-    bne _08070EC8\n\
-    movs r0, 0x3\n\
-    b _08070F8A\n\
-_08070EC8:\n\
-    cmp r2, 0x8\n\
-    bne _08070ED0\n\
-    movs r0, 0x5\n\
-    b _08070F8A\n\
-_08070ED0:\n\
-    cmp r2, 0x4\n\
-    bne _08070ED8\n\
-    movs r0, 0x6\n\
-    b _08070F8A\n\
-_08070ED8:\n\
-    cmp r2, 0x2\n\
-    bne _08070EE0\n\
-    movs r0, 0x7\n\
-    b _08070F8A\n\
-_08070EE0:\n\
-    cmp r2, 0x1\n\
-    bne _08070EE8\n\
-    movs r0, 0x8\n\
-    b _08070F8A\n\
-_08070EE8:\n\
-    lsrs r0, r1, 7\n\
-    cmp r0, 0\n\
-    beq _08070EF6\n\
-    cmp r2, 0\n\
-    bne _08070EF6\n\
-    movs r0, 0x9\n\
-    b _08070F8A\n\
-_08070EF6:\n\
-    movs r0, 0xB\n\
-    b _08070F8A\n\
-_08070EFA:\n\
-    ldrb r1, [r4, 0x4]\n\
-    movs r0, 0x44\n\
-    ands r0, r1\n\
-    adds r2, r1, 0\n\
-    cmp r0, 0\n\
-    beq _08070F0A\n\
-    movs r0, 0x2\n\
-    b _08070F8A\n\
-_08070F0A:\n\
-    movs r5, 0x2\n\
-    adds r0, r5, 0\n\
-    ands r0, r2\n\
-    cmp r0, 0\n\
-    beq _08070F18\n\
-    movs r0, 0xC\n\
-    b _08070F8A\n\
-_08070F18:\n\
-    movs r3, 0x1\n\
-    adds r0, r3, 0\n\
-    ands r0, r2\n\
-    cmp r0, 0\n\
-    beq _08070F26\n\
-    movs r0, 0xD\n\
-    b _08070F8A\n\
-_08070F26:\n\
-    ldrb r1, [r4, 0x5]\n\
-    movs r0, 0x8\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    beq _08070F34\n\
-    movs r0, 0xE\n\
-    b _08070F8A\n\
-_08070F34:\n\
-    movs r0, 0x4\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    beq _08070F40\n\
-    movs r0, 0xF\n\
-    b _08070F8A\n\
-_08070F40:\n\
-    adds r0, r5, 0\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    beq _08070F4C\n\
-    movs r0, 0x10\n\
-    b _08070F8A\n\
-_08070F4C:\n\
-    adds r0, r3, 0\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    beq _08070F58\n\
-    movs r0, 0x11\n\
-    b _08070F8A\n\
-_08070F58:\n\
-    movs r0, 0x80\n\
-    ands r0, r2\n\
-    cmp r0, 0\n\
-    beq _08070F64\n\
-    movs r0, 0x12\n\
-    b _08070F8A\n\
-_08070F64:\n\
-    movs r0, 0x20\n\
-    ands r0, r2\n\
-    cmp r0, 0\n\
-    beq _08070F70\n\
-    movs r0, 0x13\n\
-    b _08070F8A\n\
-_08070F70:\n\
-    movs r0, 0x10\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    beq _08070F7C\n\
-    movs r0, 0x14\n\
-    b _08070F8A\n\
-_08070F7C:\n\
-    movs r0, 0x18\n\
-    ands r0, r2\n\
-    cmp r0, 0\n\
-    bne _08070F88\n\
-    movs r0, 0x16\n\
-    b _08070F8A\n\
-_08070F88:\n\
-    movs r0, 0x15\n\
-_08070F8A:\n\
-    pop {r4,r5}\n\
-    pop {r1}\n\
-    bx r1\n\
-    .syntax divided\n");
-}
-#endif
 
 // Maybe this goes in start_menu.c
 #if !DEBUG

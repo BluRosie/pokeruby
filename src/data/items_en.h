@@ -15,6 +15,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Master Ball"),
@@ -31,6 +32,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ultra Ball"),
@@ -47,6 +49,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 1,
+        .effect = NULL,
     },
     {
         .name = _("Great Ball"),
@@ -63,6 +66,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 2,
+        .effect = NULL,
     },
     {
         .name = _("Poké Ball"),
@@ -79,6 +83,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 3,
+        .effect = NULL,
     },
     {
         .name = _("Safari Ball"),
@@ -95,6 +100,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 4,
+        .effect = NULL,
     },
     {
         .name = _("Net Ball"),
@@ -111,6 +117,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 5,
+        .effect = NULL,
     },
     {
         .name = _("Dive Ball"),
@@ -127,6 +134,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 6,
+        .effect = NULL,
     },
     {
         .name = _("Nest Ball"),
@@ -143,6 +151,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 7,
+        .effect = NULL,
     },
     {
         .name = _("Repeat Ball"),
@@ -159,6 +168,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 8,
+        .effect = NULL,
     },
     {
         .name = _("Timer Ball"),
@@ -175,6 +185,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 9,
+        .effect = NULL,
     },
     {
         .name = _("Luxury Ball"),
@@ -191,6 +202,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 10,
+        .effect = NULL,
     },
     {
         .name = _("Premier Ball"),
@@ -207,6 +219,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 11,
+        .effect = NULL,
     },
     {
         .name = _("Level Ball"),
@@ -223,6 +236,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 12,
+        .effect = NULL,
     },
     {
         .name = _("Lure Ball"),
@@ -239,6 +253,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 13,
+        .effect = NULL,
     },
     {
         .name = _("Moon Ball"),
@@ -255,6 +270,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 14,
+        .effect = NULL,
     },
     {
         .name = _("Friend Ball"),
@@ -271,6 +287,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 15,
+        .effect = NULL,
     },
     {
         .name = _("Love Ball"),
@@ -287,6 +304,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 16,
+        .effect = NULL,
     },
     {
         .name = _("Heavy Ball"),
@@ -303,6 +321,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 17,
+        .effect = NULL,
     },
     {
         .name = _("Fast Ball"),
@@ -319,6 +338,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 18,
+        .effect = NULL,
     },
     {
         .name = _("Sport Ball"),
@@ -335,6 +355,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 19,
+        .effect = NULL,
     },
     {
         .name = _("Heal Ball"),
@@ -351,6 +372,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 20,
+        .effect = NULL,
     },
     {
         .name = _("Quick Ball"),
@@ -367,6 +389,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 21,
+        .effect = NULL,
     },
     {
         .name = _("Dusk Ball"),
@@ -383,6 +406,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 22,
+        .effect = NULL,
     },
     {
         .name = _("Cherish Ball"),
@@ -399,6 +423,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 23,
+        .effect = NULL,
     },
     {
         .name = _("Park Ball"),
@@ -415,6 +440,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 24,
+        .effect = NULL,
     },
     {
         .name = _("Dream Ball"),
@@ -431,6 +457,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 25,
+        .effect = NULL,
     },
     {
         .name = _("Beast Ball"),
@@ -447,6 +474,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 26,
+        .effect = NULL,
     },
     {
         .name = _("Potion"),
@@ -463,6 +491,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_Potion,
     },
     {
         .name = _("Antidote"),
@@ -479,6 +508,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_Antidote,
     },
     {
         .name = _("Burn Heal"),
@@ -495,6 +525,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_BurnHeal,
     },
     {
         .name = _("Ice Heal"),
@@ -511,6 +542,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_IceHeal,
     },
     {
         .name = _("Awakening"),
@@ -527,6 +559,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_Awakening,
     },
     {
         .name = _("Parlyz Heal"),
@@ -543,6 +576,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_ParalyzeHeal,
     },
     {
         .name = _("Full Restore"),
@@ -559,6 +593,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_FullRestore,
     },
     {
         .name = _("Max Potion"),
@@ -575,6 +610,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_MaxPotion,
     },
     {
         .name = _("Hyper Potion"),
@@ -591,6 +627,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_HyperPotion,
     },
     {
         .name = _("Super Potion"),
@@ -607,6 +644,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_SuperPotion,
     },
     {
         .name = _("Full Heal"),
@@ -623,6 +661,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_FullHeal,
     },
     {
         .name = _("Revive"),
@@ -639,6 +678,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_Revive,
     },
     {
         .name = _("Max Revive"),
@@ -655,6 +695,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_MaxRevive,
     },
     {
         .name = _("Fresh Water"),
@@ -671,6 +712,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_FreshWater,
     },
     {
         .name = _("Soda Pop"),
@@ -687,6 +729,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_SodaPop,
     },
     {
         .name = _("Lemonade"),
@@ -703,6 +746,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_Lemonade,
     },
     {
         .name = _("Moomoo Milk"),
@@ -719,6 +763,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_MoomooMilk,
     },
     {
         .name = _("EnergyPowder"),
@@ -735,6 +780,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_EnergyPowder,
     },
     {
         .name = _("Energy Root"),
@@ -751,6 +797,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_EnergyRoot,
     },
     {
         .name = _("Heal Powder"),
@@ -767,6 +814,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_HealPowder,
     },
     {
         .name = _("Revival Herb"),
@@ -783,6 +831,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_RevivalHerb,
     },
     {
         .name = _("Ether"),
@@ -799,6 +848,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_PPRecovery,
         .secondaryId = 0,
+        .effect = gItemEffect_Ether,
     },
     {
         .name = _("Max Ether"),
@@ -815,6 +865,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_PPRecovery,
         .secondaryId = 0,
+        .effect = gItemEffect_MaxEther,
     },
     {
         .name = _("Elixir"),
@@ -831,6 +882,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_PPRecovery,
         .secondaryId = 0,
+        .effect = gItemEffect_Elixir,
     },
     {
         .name = _("Max Elixir"),
@@ -847,6 +899,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_PPRecovery,
         .secondaryId = 0,
+        .effect = gItemEffect_MaxElixir,
     },
     {
         .name = _("Lava Cookie"),
@@ -863,6 +916,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_LavaCookie,
     },
     {
         .name = _("Berry Juice"),
@@ -879,6 +933,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_BerryJuice,
     },
     {
         .name = _("Sacred Ash"),
@@ -895,6 +950,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_SacredAsh,
     },
     {
         .name = _("HP Up"),
@@ -911,6 +967,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_HPUp,
     },
     {
         .name = _("Protein"),
@@ -927,6 +984,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_Protein,
     },
     {
         .name = _("Iron"),
@@ -943,6 +1001,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_Iron,
     },
     {
         .name = _("Carbos"),
@@ -959,6 +1018,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_Carbos,
     },
     {
         .name = _("Calcium"),
@@ -975,6 +1035,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_Calcium,
     },
     {
         .name = _("Zinc"),
@@ -991,6 +1052,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_Zinc,
     },
     {
         .name = _("PP Up"),
@@ -1007,6 +1069,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_PPUp,
     },
     {
         .name = _("PP Max"),
@@ -1023,6 +1086,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_PPMax,
     },
     {
         .name = _("Rare Candy"),
@@ -1039,6 +1103,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_RareCandy,
     },
     {
         .name = _("Health Wing"),
@@ -1055,6 +1120,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Muscle Wing"),
@@ -1071,6 +1137,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Resist Wing"),
@@ -1087,6 +1154,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Genius Wing"),
@@ -1103,6 +1171,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Clever Wing"),
@@ -1119,6 +1188,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Swift Wing"),
@@ -1135,6 +1205,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Old Gateau"),
@@ -1151,6 +1222,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Guard Spec."),
@@ -1167,6 +1239,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .secondaryId = 0,
+        .effect = gItemEffect_GuardSpec,
     },
     {
         .name = _("Dire Hit"),
@@ -1183,6 +1256,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .secondaryId = 0,
+        .effect = gItemEffect_DireHit,
     },
     {
         .name = _("X Attack"),
@@ -1199,6 +1273,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .secondaryId = 0,
+        .effect = gItemEffect_XAttack,
     },
     {
         .name = _("X Defend"),
@@ -1215,6 +1290,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .secondaryId = 0,
+        .effect = gItemEffect_XDefend,
     },
     {
         .name = _("X Speed"),
@@ -1231,6 +1307,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .secondaryId = 0,
+        .effect = gItemEffect_XSpeed,
     },
     {
         .name = _("X Accuracy"),
@@ -1247,6 +1324,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .secondaryId = 0,
+        .effect = gItemEffect_XAccuracy,
     },
     {
         .name = _("X Special"),
@@ -1263,6 +1341,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .secondaryId = 0,
+        .effect = gItemEffect_XSpecial,
     },
     {
         .name = _("X Sp. Def"),
@@ -1279,6 +1358,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Poké Doll"),
@@ -1295,6 +1375,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_Escape,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fluffy Tail"),
@@ -1311,6 +1392,7 @@ const struct Item gItems[] =
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_Escape,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Blue Flute"),
@@ -1327,6 +1409,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_BlueFlute,
     },
     {
         .name = _("Yellow Flute"),
@@ -1343,6 +1426,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_YellowFlute,
     },
     {
         .name = _("Red Flute"),
@@ -1359,6 +1443,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_RedFlute,
     },
     {
         .name = _("Black Flute"),
@@ -1375,6 +1460,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("White Flute"),
@@ -1391,6 +1477,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Shoal Salt"),
@@ -1407,6 +1494,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Shoal Shell"),
@@ -1423,6 +1511,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Red Shard"),
@@ -1439,6 +1528,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Blue Shard"),
@@ -1455,6 +1545,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Yellow Shard"),
@@ -1471,6 +1562,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Green Shard"),
@@ -1487,6 +1579,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Super Repel"),
@@ -1503,6 +1596,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Max Repel"),
@@ -1519,6 +1613,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Escape Rope"),
@@ -1535,6 +1630,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Repel"),
@@ -1551,6 +1647,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sun Stone"),
@@ -1567,6 +1664,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_SunStone,
     },
     {
         .name = _("Moon Stone"),
@@ -1583,6 +1681,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_MoonStone,
     },
     {
         .name = _("Fire Stone"),
@@ -1599,6 +1698,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_FireStone,
     },
     {
         .name = _("ThunderStone"),
@@ -1615,6 +1715,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_ThunderStone,
     },
     {
         .name = _("Water Stone"),
@@ -1631,6 +1732,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_WaterStone,
     },
     {
         .name = _("Leaf Stone"),
@@ -1647,6 +1749,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = gItemEffect_LeafStone,
     },
     {
         .name = _("Shiny Stone"),
@@ -1663,6 +1766,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dusk Stone"),
@@ -1679,6 +1783,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dawn Stone"),
@@ -1695,6 +1800,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Oval Stone"),
@@ -1711,6 +1817,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ice Stone"),
@@ -1727,6 +1834,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Casteliacone"),
@@ -1743,6 +1851,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ability Pill"), // Ability Capsule
@@ -1759,6 +1868,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Galette"), // Lumiose Galette
@@ -1775,6 +1885,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("ShalourSable"),
@@ -1791,6 +1902,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Bottle Cap"),
@@ -1807,6 +1919,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Big Malasada"),
@@ -1823,6 +1936,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Gold Cap"), // Gold Bottle Cap
@@ -1839,6 +1953,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Scare Orb"), // Adrenaline Orb
@@ -1855,6 +1970,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Red Nectar"),
@@ -1871,6 +1987,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("YellowNectar"),
@@ -1887,6 +2004,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pink Nectar"),
@@ -1903,6 +2021,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("PurpleNectar"),
@@ -1919,6 +2038,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Heart Mail"),
@@ -1935,6 +2055,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Orange Mail"),
@@ -1951,6 +2072,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Harbor Mail"),
@@ -1967,6 +2089,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 1,
+        .effect = NULL,
     },
     {
         .name = _("Glitter Mail"),
@@ -1983,6 +2106,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 2,
+        .effect = NULL,
     },
     {
         .name = _("Mech Mail"),
@@ -1999,6 +2123,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 3,
+        .effect = NULL,
     },
     {
         .name = _("Wood Mail"),
@@ -2015,6 +2140,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 4,
+        .effect = NULL,
     },
     {
         .name = _("Wave Mail"),
@@ -2031,6 +2157,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 5,
+        .effect = NULL,
     },
     {
         .name = _("Bead Mail"),
@@ -2047,6 +2174,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 6,
+        .effect = NULL,
     },
     {
         .name = _("Shadow Mail"),
@@ -2063,6 +2191,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 7,
+        .effect = NULL,
     },
     {
         .name = _("Tropic Mail"),
@@ -2079,6 +2208,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 8,
+        .effect = NULL,
     },
     {
         .name = _("Dream Mail"),
@@ -2095,6 +2225,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 9,
+        .effect = NULL,
     },
     {
         .name = _("Fab Mail"),
@@ -2111,6 +2242,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 10,
+        .effect = NULL,
     },
     {
         .name = _("Retro Mail"),
@@ -2127,6 +2259,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 11,
+        .effect = NULL,
     },
     {
         .name = _("Cheri Berry"),
@@ -2143,6 +2276,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_CheriBerry,
     },
     {
         .name = _("Chesto Berry"),
@@ -2159,6 +2293,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_ChestoBerry,
     },
     {
         .name = _("Pecha Berry"),
@@ -2175,6 +2310,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_PechaBerry,
     },
     {
         .name = _("Rawst Berry"),
@@ -2191,6 +2327,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_RawstBerry,
     },
     {
         .name = _("Aspear Berry"),
@@ -2207,6 +2344,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_AspearBerry,
     },
     {
         .name = _("Leppa Berry"),
@@ -2223,6 +2361,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_PPRecovery,
         .secondaryId = 0,
+        .effect = gItemEffect_LeppaBerry,
     },
     {
         .name = _("Oran Berry"),
@@ -2239,6 +2378,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_OranBerry,
     },
     {
         .name = _("Persim Berry"),
@@ -2255,6 +2395,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_PersimBerry,
     },
     {
         .name = _("Lum Berry"),
@@ -2271,6 +2412,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_LumBerry,
     },
     {
         .name = _("Sitrus Berry"),
@@ -2287,6 +2429,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
+        .effect = gItemEffect_SitrusBerry,
     },
     {
         .name = _("Figy Berry"),
@@ -2303,6 +2446,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Wiki Berry"),
@@ -2319,6 +2463,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mago Berry"),
@@ -2335,6 +2480,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Aguav Berry"),
@@ -2351,6 +2497,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Iapapa Berry"),
@@ -2367,6 +2514,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Razz Berry"),
@@ -2383,6 +2531,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Bluk Berry"),
@@ -2399,6 +2548,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Nanab Berry"),
@@ -2415,6 +2565,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Wepear Berry"),
@@ -2431,6 +2582,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pinap Berry"),
@@ -2447,6 +2599,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pomeg Berry"),
@@ -2463,6 +2616,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Kelpsy Berry"),
@@ -2479,6 +2633,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Qualot Berry"),
@@ -2495,6 +2650,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Hondew Berry"),
@@ -2511,6 +2667,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Grepa Berry"),
@@ -2527,6 +2684,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Tamato Berry"),
@@ -2543,6 +2701,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Cornn Berry"),
@@ -2559,6 +2718,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Magost Berry"),
@@ -2575,6 +2735,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rabuta Berry"),
@@ -2591,6 +2752,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Nomel Berry"),
@@ -2607,6 +2769,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Spelon Berry"),
@@ -2623,6 +2786,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pamtre Berry"),
@@ -2639,6 +2803,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Watmel Berry"),
@@ -2655,6 +2820,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Durin Berry"),
@@ -2671,6 +2837,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Belue Berry"),
@@ -2687,6 +2854,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Occa Berry"),
@@ -2703,6 +2871,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Passho Berry"),
@@ -2719,6 +2888,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Wacan Berry"),
@@ -2735,6 +2905,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rindo Berry"),
@@ -2751,6 +2922,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Yache Berry"),
@@ -2767,6 +2939,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Chople Berry"),
@@ -2783,6 +2956,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Kebia Berry"),
@@ -2799,6 +2973,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Shuca Berry"),
@@ -2815,6 +2990,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Coba Berry"),
@@ -2831,6 +3007,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Payapa Berry"),
@@ -2847,6 +3024,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Tanga Berry"),
@@ -2863,6 +3041,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Charti Berry"),
@@ -2879,6 +3058,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Kasib Berry"),
@@ -2895,6 +3075,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Haban Berry"),
@@ -2911,6 +3092,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Colbur Berry"),
@@ -2927,6 +3109,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Babiri Berry"),
@@ -2943,6 +3126,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Chilan Berry"),
@@ -2959,6 +3143,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Roseli Berry"),
@@ -2975,6 +3160,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Liechi Berry"),
@@ -2991,6 +3177,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ganlon Berry"),
@@ -3007,6 +3194,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Salac Berry"),
@@ -3023,6 +3211,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Petaya Berry"),
@@ -3039,6 +3228,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Apicot Berry"),
@@ -3055,6 +3245,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lansat Berry"),
@@ -3071,6 +3262,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Starf Berry"),
@@ -3087,6 +3279,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Enigma Berry"),
@@ -3103,6 +3296,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_EnigmaBerry,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Micle Berry"),
@@ -3119,6 +3313,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Custap Berry"),
@@ -3135,6 +3330,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Jaboca Berry"),
@@ -3151,6 +3347,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rowap Berry"),
@@ -3167,6 +3364,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Kee Berry"),
@@ -3183,6 +3381,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("MarangaBerry"),
@@ -3199,6 +3398,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Growth Mulch"),
@@ -3215,6 +3415,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Damp Mulch"),
@@ -3231,6 +3432,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Stable Mulch"),
@@ -3247,6 +3449,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Gooey Mulch"),
@@ -3263,6 +3466,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rich Mulch"),
@@ -3279,6 +3483,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mutate Mulch"), // Surprise Mulch
@@ -3295,6 +3500,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Boost Mulch"),
@@ -3311,6 +3517,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Amaze Mulch"),
@@ -3327,6 +3534,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Red Apricorn"),
@@ -3343,6 +3551,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Blu Apricorn"),
@@ -3359,6 +3568,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ylw Apricorn"),
@@ -3375,6 +3585,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Grn Apricorn"),
@@ -3391,6 +3602,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pnk Apricorn"),
@@ -3407,6 +3619,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Wht Apricorn"),
@@ -3423,6 +3636,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Blk Apricorn"),
@@ -3439,6 +3653,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("BrightPowder"),
@@ -3455,6 +3670,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("White Herb"),
@@ -3471,6 +3687,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Macho Brace"),
@@ -3487,6 +3704,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Exp. Share"),
@@ -3503,6 +3721,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Quick Claw"),
@@ -3519,6 +3738,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Soothe Bell"),
@@ -3535,6 +3755,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mental Herb"),
@@ -3551,6 +3772,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Choice Band"),
@@ -3567,6 +3789,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("King's Rock"),
@@ -3583,6 +3806,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("SilverPowder"),
@@ -3599,6 +3823,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Amulet Coin"),
@@ -3615,6 +3840,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Cleanse Tag"),
@@ -3631,6 +3857,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Soul Dew"),
@@ -3647,6 +3874,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("DeepSeaTooth"),
@@ -3663,6 +3891,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("DeepSeaScale"),
@@ -3679,6 +3908,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Smoke Ball"),
@@ -3695,6 +3925,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("LuminousMoss"),
@@ -3711,6 +3942,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Snowball"),
@@ -3727,6 +3959,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Safety Specs"), // Safety Goggles
@@ -3743,6 +3976,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Everstone"),
@@ -3759,6 +3993,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Focus Band"),
@@ -3775,6 +4010,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lucky Egg"),
@@ -3791,6 +4027,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Scope Lens"),
@@ -3807,6 +4044,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Metal Coat"),
@@ -3823,6 +4061,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Leftovers"),
@@ -3839,6 +4078,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dragon Scale"),
@@ -3855,6 +4095,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Light Ball"),
@@ -3871,6 +4112,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Soft Sand"),
@@ -3887,6 +4129,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Hard Stone"),
@@ -3903,6 +4146,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Miracle Seed"),
@@ -3919,6 +4163,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("BlackGlasses"),
@@ -3935,6 +4180,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Black Belt"),
@@ -3951,6 +4197,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Magnet"),
@@ -3967,6 +4214,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mystic Water"),
@@ -3983,6 +4231,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sharp Beak"),
@@ -3999,6 +4248,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Poison Barb"),
@@ -4015,6 +4265,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("NeverMeltIce"),
@@ -4031,6 +4282,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Spell Tag"),
@@ -4047,6 +4299,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TwistedSpoon"),
@@ -4063,6 +4316,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Charcoal"),
@@ -4079,6 +4333,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dragon Fang"),
@@ -4095,6 +4350,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Silk Scarf"),
@@ -4111,6 +4367,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Up-Grade"),
@@ -4127,6 +4384,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Shell Bell"),
@@ -4143,6 +4401,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sea Incense"),
@@ -4159,6 +4418,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lax Incense"),
@@ -4175,6 +4435,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lucky Punch"),
@@ -4191,6 +4452,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Metal Powder"),
@@ -4207,6 +4469,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Thick Club"),
@@ -4223,6 +4486,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Stick"),
@@ -4239,6 +4503,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Red Scarf"),
@@ -4255,6 +4520,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Blue Scarf"),
@@ -4271,6 +4537,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pink Scarf"),
@@ -4287,6 +4554,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Green Scarf"),
@@ -4303,6 +4571,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Yellow Scarf"),
@@ -4319,6 +4588,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Wide Lens"),
@@ -4335,6 +4605,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Muscle Band"),
@@ -4351,6 +4622,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Wise Glasses"),
@@ -4367,6 +4639,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Expert Belt"),
@@ -4383,6 +4656,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Light Clay"),
@@ -4399,6 +4673,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Life Orb"),
@@ -4415,6 +4690,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Power Herb"),
@@ -4431,6 +4707,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Toxic Orb"),
@@ -4447,6 +4724,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Flame Orb"),
@@ -4463,6 +4741,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Quick Powder"),
@@ -4479,6 +4758,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Focus Sash"),
@@ -4495,6 +4775,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Zoom Lens"),
@@ -4511,6 +4792,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Metronome"),
@@ -4527,6 +4809,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Iron Ball"),
@@ -4543,6 +4826,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lagging Tail"),
@@ -4559,6 +4843,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Destiny Knot"),
@@ -4575,6 +4860,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Black Sludge"),
@@ -4591,6 +4877,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Icy Rock"),
@@ -4607,6 +4894,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Smooth Rock"),
@@ -4623,6 +4911,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Heat Rock"),
@@ -4639,6 +4928,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Damp Rock"),
@@ -4655,6 +4945,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Grip Claw"),
@@ -4671,6 +4962,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Choice Scarf"),
@@ -4687,6 +4979,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sticky Barb"),
@@ -4703,6 +4996,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Power Bracer"),
@@ -4719,6 +5013,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Power Belt"),
@@ -4735,6 +5030,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Power Lens"),
@@ -4751,6 +5047,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Power Band"),
@@ -4767,6 +5064,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Power Anklet"),
@@ -4783,6 +5081,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Power Weight"),
@@ -4799,6 +5098,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Shed Shell"),
@@ -4815,6 +5115,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Big Root"),
@@ -4831,6 +5132,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Choice Specs"),
@@ -4847,6 +5149,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Flame Plate"),
@@ -4863,6 +5166,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Splash Plate"),
@@ -4879,6 +5183,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Zap Plate"),
@@ -4895,6 +5200,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Meadow Plate"),
@@ -4911,6 +5217,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Icicle Plate"),
@@ -4927,6 +5234,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fist Plate"),
@@ -4943,6 +5251,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Toxic Plate"),
@@ -4959,6 +5268,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Earth Plate"),
@@ -4975,6 +5285,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sky Plate"),
@@ -4991,6 +5302,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mind Plate"),
@@ -5007,6 +5319,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Insect Plate"),
@@ -5023,6 +5336,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Stone Plate"),
@@ -5039,6 +5353,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Spooky Plate"),
@@ -5055,6 +5370,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Draco Plate"),
@@ -5071,6 +5387,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dread Plate"),
@@ -5087,6 +5404,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Iron Plate"),
@@ -5103,6 +5421,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pixie Plate"),
@@ -5119,6 +5438,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Assault Vest"),
@@ -5135,6 +5455,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Odd Incense"),
@@ -5151,6 +5472,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rock Incense"),
@@ -5167,6 +5489,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Full Incense"),
@@ -5183,6 +5506,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Wave Incense"),
@@ -5199,6 +5523,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rose Incense"),
@@ -5215,6 +5540,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Luck Incense"),
@@ -5231,6 +5557,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pure Incense"),
@@ -5247,6 +5574,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Protector"),
@@ -5263,6 +5591,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Electirizer"),
@@ -5279,6 +5608,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Magmarizer"),
@@ -5295,6 +5625,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dubious Disc"),
@@ -5311,6 +5642,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Reaper Cloth"),
@@ -5327,6 +5659,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Razor Claw"),
@@ -5343,6 +5676,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Razor Fang"),
@@ -5359,6 +5693,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TinyMushroom"),
@@ -5375,6 +5710,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Big Mushroom"),
@@ -5391,6 +5727,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pearl"),
@@ -5407,6 +5744,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Big Pearl"),
@@ -5423,6 +5761,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Stardust"),
@@ -5439,6 +5778,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Star Piece"),
@@ -5455,6 +5795,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Nugget"),
@@ -5471,6 +5812,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Heart Scale"),
@@ -5487,6 +5829,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Honey"),
@@ -5503,6 +5846,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Root Fossil"),
@@ -5519,6 +5863,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Claw Fossil"),
@@ -5535,6 +5880,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Helix Fossil"),
@@ -5551,6 +5897,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dome Fossil"),
@@ -5567,6 +5914,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Old Amber"),
@@ -5583,6 +5931,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Armor Fossil"),
@@ -5599,6 +5948,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Skull Fossil"),
@@ -5615,6 +5965,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Cover Fossil"),
@@ -5631,6 +5982,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Plume Fossil"),
@@ -5647,6 +5999,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Jaw Fossil"),
@@ -5663,6 +6016,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sail Fossil"),
@@ -5679,6 +6033,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rare Bone"),
@@ -5695,6 +6050,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Odd Keystone"),
@@ -5711,6 +6067,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Griseous Orb"),
@@ -5727,6 +6084,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Douse Drive"),
@@ -5743,6 +6101,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Shock Drive"),
@@ -5759,6 +6118,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Burn Drive"),
@@ -5775,6 +6135,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Chill Drive"),
@@ -5791,6 +6152,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sweet Heart"),
@@ -5807,6 +6169,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Adamant Orb"),
@@ -5823,6 +6186,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lustrous Orb"),
@@ -5839,6 +6203,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Prism Scale"),
@@ -5855,6 +6220,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Eviolite"),
@@ -5871,6 +6237,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Float Stone"),
@@ -5887,6 +6254,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rocky Helmet"),
@@ -5903,6 +6271,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Air Balloon"),
@@ -5919,6 +6288,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Red Card"),
@@ -5935,6 +6305,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ring Target"),
@@ -5951,6 +6322,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Binding Band"),
@@ -5967,6 +6339,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Absorb Bulb"),
@@ -5983,6 +6356,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Cell Battery"),
@@ -5999,6 +6373,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Eject Button"),
@@ -6015,6 +6390,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fire Gem"),
@@ -6031,6 +6407,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Water Gem"),
@@ -6047,6 +6424,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Electric Gem"),
@@ -6063,6 +6441,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Grass Gem"),
@@ -6079,6 +6458,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ice Gem"),
@@ -6095,6 +6475,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fighting Gem"),
@@ -6111,6 +6492,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Poison Gem"),
@@ -6127,6 +6509,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ground Gem"),
@@ -6143,6 +6526,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Flying Gem"),
@@ -6159,6 +6543,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Psychic Gem"),
@@ -6175,6 +6560,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Bug Gem"),
@@ -6191,6 +6577,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rock Gem"),
@@ -6207,6 +6594,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ghost Gem"),
@@ -6223,6 +6611,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dragon Gem"),
@@ -6239,6 +6628,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dark Gem"),
@@ -6255,6 +6645,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Steel Gem"),
@@ -6271,6 +6662,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Normal Gem"),
@@ -6287,6 +6679,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fairy Gem"),
@@ -6303,6 +6696,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pretty Wing"),
@@ -6319,6 +6713,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pass Orb"),
@@ -6335,6 +6730,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Poké Toy"),
@@ -6351,6 +6747,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("BalmMushroom"),
@@ -6367,6 +6764,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Big Nugget"),
@@ -6383,6 +6781,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pearl String"),
@@ -6399,6 +6798,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Comet Shard"),
@@ -6415,6 +6815,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Relic Copper"),
@@ -6431,6 +6832,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Relic Silver"),
@@ -6447,6 +6849,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Relic Gold"),
@@ -6463,6 +6866,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Relic Vase"),
@@ -6479,6 +6883,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Relic Band"),
@@ -6495,6 +6900,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Relic Statue"),
@@ -6511,6 +6917,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Relic Crown"),
@@ -6527,6 +6934,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dire Hit 2"),
@@ -6543,6 +6951,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Accuracy 2"),
@@ -6559,6 +6968,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Attack 2"),
@@ -6575,6 +6985,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Defend 2"),
@@ -6591,6 +7002,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Special 2"),
@@ -6607,6 +7019,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Sp. Def 2"),
@@ -6623,6 +7036,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Speed 2"),
@@ -6639,6 +7053,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dire Hit 3"),
@@ -6655,6 +7070,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Accuracy 3"),
@@ -6671,6 +7087,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Attack 3"),
@@ -6687,6 +7104,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Defend 3"),
@@ -6703,6 +7121,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Special 3"),
@@ -6719,6 +7138,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Sp. Def 3"),
@@ -6735,6 +7155,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Speed 3"),
@@ -6751,6 +7172,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dire Hit 4"),
@@ -6767,6 +7189,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Accuracy 4"),
@@ -6783,6 +7206,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Attack 4"),
@@ -6799,6 +7223,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Defend 4"),
@@ -6815,6 +7240,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Special 4"),
@@ -6831,6 +7257,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Sp. Def 4"),
@@ -6847,6 +7274,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Speed 4"),
@@ -6863,6 +7291,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dire Hit 5"),
@@ -6879,6 +7308,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Accuracy 5"),
@@ -6895,6 +7325,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Attack 5"),
@@ -6911,6 +7342,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Defend 5"),
@@ -6927,6 +7359,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Special 5"),
@@ -6943,6 +7376,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Sp. Def 5"),
@@ -6959,6 +7393,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Speed 5"),
@@ -6975,6 +7410,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dire Hit 6"),
@@ -6991,6 +7427,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Accuracy 6"),
@@ -7007,6 +7444,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Attack 6"),
@@ -7023,6 +7461,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Defend 6"),
@@ -7039,6 +7478,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Special 6"),
@@ -7055,6 +7495,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Sp. Def 6"),
@@ -7071,6 +7512,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("X Speed 6"),
@@ -7087,6 +7529,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ability Urge"),
@@ -7103,6 +7546,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Item Drop"),
@@ -7119,6 +7563,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Item Urge"),
@@ -7135,6 +7580,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Reset Urge"),
@@ -7151,6 +7597,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("HelpWeakness"), // Weakness Policy
@@ -7167,6 +7614,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Whipped Dream"),
@@ -7183,6 +7631,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sachet"),
@@ -7199,6 +7648,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Shock Orb"),
@@ -7215,6 +7665,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Gengarite"),
@@ -7231,6 +7682,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Gardevoirite"),
@@ -7247,6 +7699,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ampharosite"),
@@ -7263,6 +7716,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Venusaurite"),
@@ -7279,6 +7733,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Charizite X"), // Charizardite X
@@ -7295,6 +7750,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Charizite Y"), // Charizardite Y
@@ -7311,6 +7767,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Blastinite"), // Blastoisinite
@@ -7327,6 +7784,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mewtwonite X"),
@@ -7343,6 +7801,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mewtwonite Y"),
@@ -7359,6 +7818,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Blazikenite"),
@@ -7375,6 +7835,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Medichamite"),
@@ -7391,6 +7852,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Houndoomite"),
@@ -7407,6 +7869,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Aggronite"),
@@ -7423,6 +7886,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Banettite"),
@@ -7439,6 +7903,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Tyranitarite"),
@@ -7455,6 +7920,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Scizorite"),
@@ -7471,6 +7937,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pinsirite"),
@@ -7487,6 +7954,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Aerodite"), // Aerodactylite
@@ -7503,6 +7971,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lucarionite"),
@@ -7519,6 +7988,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Abomasite"),
@@ -7535,6 +8005,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Kangaskhite"), // Kangaskhanite
@@ -7551,6 +8022,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Gyaradosite"),
@@ -7567,6 +8039,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Absolite"),
@@ -7583,6 +8056,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Alakazite"),
@@ -7599,6 +8073,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Heracronite"),
@@ -7615,6 +8090,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mawilite"),
@@ -7631,6 +8107,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Manectite"),
@@ -7647,6 +8124,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Garchompite"),
@@ -7663,6 +8141,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Latiasite"),
@@ -7679,6 +8158,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Latiosite"),
@@ -7695,6 +8175,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Swampertite"),
@@ -7711,6 +8192,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sceptilite"),
@@ -7727,6 +8209,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sablenite"),
@@ -7743,6 +8226,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Altarianite"),
@@ -7759,6 +8243,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Galladite"),
@@ -7775,6 +8260,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Audinite"),
@@ -7791,6 +8277,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Metagrossite"),
@@ -7807,6 +8294,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sharpedonite"),
@@ -7823,6 +8311,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Slowbronite"),
@@ -7839,6 +8328,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Steelixite"),
@@ -7855,6 +8345,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pidgeotite"),
@@ -7871,6 +8362,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Glalitite"),
@@ -7887,6 +8379,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Diancite"),
@@ -7903,6 +8396,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Cameruptite"),
@@ -7919,6 +8413,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lopunnite"),
@@ -7935,6 +8430,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Salamencite"),
@@ -7951,6 +8447,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Beedrillite"),
@@ -7967,6 +8464,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Coupon"), // Discount Coupon
@@ -7983,6 +8481,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Odd Souvenir"), // Strange Souvenir
@@ -7999,6 +8498,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ground Coat"), // Terrain Extender
@@ -8015,6 +8515,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Protect Pads"), // Protective Pads
@@ -8031,6 +8532,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("ElectricSeed"),
@@ -8047,6 +8549,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Psychic Seed"),
@@ -8063,6 +8566,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Misty Seed"),
@@ -8079,6 +8583,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Grassy Seed"),
@@ -8095,6 +8600,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fight Memory"), // Fighting Memory
@@ -8111,6 +8617,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("FlyingMemory"),
@@ -8127,6 +8634,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("PoisonMemory"),
@@ -8143,6 +8651,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("GroundMemory"),
@@ -8159,6 +8668,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rock Memory"),
@@ -8175,6 +8685,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Bug Memory"),
@@ -8191,6 +8702,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ghost Memory"),
@@ -8207,6 +8719,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Steel Memory"),
@@ -8223,6 +8736,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fire Memory"),
@@ -8239,6 +8753,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Water Memory"),
@@ -8255,6 +8770,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Grass Memory"),
@@ -8271,6 +8787,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("ElctrcMemory"),
@@ -8287,6 +8804,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("PsychcMemory"),
@@ -8303,6 +8821,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ice Memory"),
@@ -8319,6 +8838,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("DragonMemory"),
@@ -8335,6 +8855,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dark Memory"),
@@ -8351,6 +8872,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fairy Memory"),
@@ -8367,6 +8889,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM01"),
@@ -8383,6 +8906,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM02"),
@@ -8399,6 +8923,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM03"),
@@ -8415,6 +8940,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM04"),
@@ -8431,6 +8957,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM05"),
@@ -8447,6 +8974,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM06"),
@@ -8463,6 +8991,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM07"),
@@ -8479,6 +9008,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM08"),
@@ -8495,6 +9025,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM09"),
@@ -8511,6 +9042,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM10"),
@@ -8527,6 +9059,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM11"),
@@ -8543,6 +9076,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM12"),
@@ -8559,6 +9093,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM13"),
@@ -8575,6 +9110,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM14"),
@@ -8591,6 +9127,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM15"),
@@ -8607,6 +9144,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM16"),
@@ -8623,6 +9161,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM17"),
@@ -8639,6 +9178,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM18"),
@@ -8655,6 +9195,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM19"),
@@ -8671,6 +9212,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM20"),
@@ -8687,6 +9229,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM21"),
@@ -8703,6 +9246,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM22"),
@@ -8719,6 +9263,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM23"),
@@ -8735,6 +9280,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM24"),
@@ -8751,6 +9297,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM25"),
@@ -8767,6 +9314,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM26"),
@@ -8783,6 +9331,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM27"),
@@ -8799,6 +9348,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM28"),
@@ -8815,6 +9365,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM29"),
@@ -8831,6 +9382,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM30"),
@@ -8847,6 +9399,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM31"),
@@ -8863,6 +9416,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM32"),
@@ -8879,6 +9433,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM33"),
@@ -8895,6 +9450,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM34"),
@@ -8911,6 +9467,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM35"),
@@ -8927,6 +9484,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM36"),
@@ -8943,6 +9501,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM37"),
@@ -8959,6 +9518,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM38"),
@@ -8975,6 +9535,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM39"),
@@ -8991,6 +9552,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM40"),
@@ -9007,6 +9569,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM41"),
@@ -9023,6 +9586,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM42"),
@@ -9039,6 +9603,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM43"),
@@ -9055,6 +9620,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM44"),
@@ -9071,6 +9637,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM45"),
@@ -9087,6 +9654,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM46"),
@@ -9103,6 +9671,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM47"),
@@ -9119,6 +9688,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM48"),
@@ -9135,6 +9705,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM49"),
@@ -9151,6 +9722,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM50"),
@@ -9167,6 +9739,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM51"),
@@ -9183,6 +9756,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM52"),
@@ -9199,6 +9773,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM53"),
@@ -9215,6 +9790,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM54"),
@@ -9231,6 +9807,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM55"),
@@ -9247,6 +9824,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM56"),
@@ -9263,6 +9841,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM57"),
@@ -9279,6 +9858,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM58"),
@@ -9295,6 +9875,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM59"),
@@ -9311,6 +9892,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM60"),
@@ -9327,6 +9909,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM61"),
@@ -9343,6 +9926,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM62"),
@@ -9359,6 +9943,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM63"),
@@ -9375,6 +9960,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM64"),
@@ -9391,6 +9977,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM65"),
@@ -9407,6 +9994,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM66"),
@@ -9423,6 +10011,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM67"),
@@ -9439,6 +10028,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM68"),
@@ -9455,6 +10045,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM69"),
@@ -9471,6 +10062,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM70"),
@@ -9487,6 +10079,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM71"),
@@ -9503,6 +10096,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM72"),
@@ -9519,6 +10113,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM73"),
@@ -9535,6 +10130,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM74"),
@@ -9551,6 +10147,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM75"),
@@ -9567,6 +10164,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM76"),
@@ -9583,6 +10181,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM77"),
@@ -9599,6 +10198,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM78"),
@@ -9615,6 +10215,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM79"),
@@ -9631,6 +10232,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM80"),
@@ -9647,6 +10249,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM81"),
@@ -9663,6 +10266,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM82"),
@@ -9679,6 +10283,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM83"),
@@ -9695,6 +10300,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM84"),
@@ -9711,6 +10317,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM85"),
@@ -9727,6 +10334,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM86"),
@@ -9743,6 +10351,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM87"),
@@ -9759,6 +10368,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM88"),
@@ -9775,6 +10385,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM89"),
@@ -9791,6 +10402,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM90"),
@@ -9807,6 +10419,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM91"),
@@ -9823,6 +10436,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM92"),
@@ -9839,6 +10453,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM93"),
@@ -9855,6 +10470,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM94"),
@@ -9871,6 +10487,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM95"),
@@ -9887,6 +10504,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM96"),
@@ -9903,6 +10521,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM97"),
@@ -9919,6 +10538,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM98"),
@@ -9935,6 +10555,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM99"),
@@ -9951,6 +10572,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TM100"),
@@ -9967,6 +10589,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("HM01"),
@@ -9983,6 +10606,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("HM02"),
@@ -9999,6 +10623,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("HM03"),
@@ -10015,6 +10640,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("HM04"),
@@ -10031,6 +10657,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("HM05"),
@@ -10047,6 +10674,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("HM06"),
@@ -10063,6 +10691,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("HM07"),
@@ -10079,6 +10708,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("HM08"),
@@ -10095,6 +10725,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Explorer Kit"),
@@ -10111,6 +10742,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Loot Sack"),
@@ -10127,6 +10759,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rule Book"),
@@ -10143,6 +10776,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Poké Radar"),
@@ -10159,6 +10793,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Point Card"),
@@ -10175,6 +10810,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Journal"),
@@ -10191,6 +10827,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Seal Case"),
@@ -10207,6 +10844,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fashion Case"),
@@ -10223,6 +10861,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Seal Bag"),
@@ -10239,6 +10878,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pal Pad"),
@@ -10255,6 +10895,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Works Key"),
@@ -10271,6 +10912,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Old Charm"),
@@ -10287,6 +10929,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Galactic Key"),
@@ -10303,6 +10946,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Red Chain"),
@@ -10319,6 +10963,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Town Map"),
@@ -10335,6 +10980,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Vs. Seeker"),
@@ -10351,6 +10997,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Coin Case"),
@@ -10367,6 +11014,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Old Rod"),
@@ -10383,6 +11031,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Good Rod"),
@@ -10399,6 +11048,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 1,
+        .effect = NULL,
     },
     {
         .name = _("Super Rod"),
@@ -10415,6 +11065,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 2,
+        .effect = NULL,
     },
     {
         .name = _("Wailmer Pail"),
@@ -10431,6 +11082,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Poffin Case"),
@@ -10447,6 +11099,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Bike"),
@@ -10463,6 +11116,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mach Bike"),
@@ -10479,6 +11133,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Acro Bike"),
@@ -10495,6 +11150,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 1,
+        .effect = NULL,
     },
     {
         .name = _("Suite Key"),
@@ -10511,6 +11167,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Oak's Letter"),
@@ -10527,6 +11184,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lunar Wing"),
@@ -10543,6 +11201,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Member Card"),
@@ -10559,6 +11218,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Azure Flute"),
@@ -10575,6 +11235,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("S.S. Ticket"),
@@ -10591,6 +11252,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Contest Pass"),
@@ -10607,6 +11269,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Magma Stone"),
@@ -10623,6 +11286,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Devon Goods"),
@@ -10639,6 +11303,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Coupon 1"),
@@ -10655,6 +11320,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Coupon 2"),
@@ -10671,6 +11337,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Coupon 3"),
@@ -10687,6 +11354,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Storage Key"),
@@ -10703,6 +11371,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Secret Potion"),
@@ -10719,6 +11388,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Vs. Recorder"),
@@ -10735,6 +11405,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Gracidea"),
@@ -10751,6 +11422,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Secret Key"),
@@ -10767,6 +11439,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Apricorn Box"),
@@ -10783,6 +11456,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Unown Report"),
@@ -10799,6 +11473,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Berry Pots"),
@@ -10815,6 +11490,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Itemfinder"),
@@ -10831,6 +11507,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Blue Card"),
@@ -10847,6 +11524,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("SlowpokeTail"),
@@ -10863,6 +11541,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Clear Bell"),
@@ -10879,6 +11558,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Card Key"),
@@ -10895,6 +11575,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Basement Key"),
@@ -10911,6 +11592,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Squirt Bottle"),
@@ -10927,6 +11609,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Red Scale"),
@@ -10943,6 +11626,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lost Item"),
@@ -10959,6 +11643,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pass"),
@@ -10975,6 +11660,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Machine Part"),
@@ -10991,6 +11677,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Silver Wing"),
@@ -11007,6 +11694,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rainbow Wing"),
@@ -11023,6 +11711,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mystery Egg"),
@@ -11039,6 +11728,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Photo Album"),
@@ -11055,6 +11745,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("GB Sounds"),
@@ -11071,6 +11762,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Tidal Bell"),
@@ -11087,6 +11779,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("RageCandyBar"),
@@ -11103,6 +11796,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Jade Orb"),
@@ -11119,6 +11813,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lock Capsule"),
@@ -11135,6 +11830,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Red Orb"),
@@ -11151,6 +11847,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Blue Orb"),
@@ -11167,6 +11864,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Enigma Stone"),
@@ -11183,6 +11881,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Liberty Pass"),
@@ -11199,6 +11898,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Prop Case"),
@@ -11215,6 +11915,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dragon Skull"),
@@ -11231,6 +11932,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Light Stone"),
@@ -11247,6 +11949,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dark Stone"),
@@ -11263,6 +11966,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Xtransceiver"),
@@ -11279,6 +11983,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Medal Box"),
@@ -11295,6 +12000,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("DNA Splicers"),
@@ -11311,6 +12017,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("DNA Splicers"),
@@ -11327,6 +12034,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Permit"),
@@ -11343,6 +12051,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Oval Charm"),
@@ -11359,6 +12068,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Shiny Charm"),
@@ -11375,6 +12085,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Plasma Card"),
@@ -11391,6 +12102,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dirty Hankey"), // Grubby Hankey
@@ -11407,6 +12119,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Colress Part"), // Colress Machine
@@ -11423,6 +12136,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Reveal Glass"),
@@ -11439,6 +12153,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Plant Pass"), // Power Plant Pass
@@ -11455,6 +12170,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mega Ring"),
@@ -11471,6 +12187,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mega Charm"),
@@ -11487,6 +12204,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mega Glove"),
@@ -11503,6 +12221,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("MegaBracelet"),
@@ -11519,6 +12238,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mega Pendant"),
@@ -11535,6 +12255,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mega Glasses"),
@@ -11551,6 +12272,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mega Anchor"),
@@ -11567,6 +12289,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("MegaStickpin"),
@@ -11583,6 +12306,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mega Tiara"),
@@ -11599,6 +12323,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mega Anklet"),
@@ -11615,6 +12340,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mega Cuff"),
@@ -11631,6 +12357,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Strange Rock"), // Intriguing Stone
@@ -11647,6 +12374,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Common Stone"),
@@ -11663,6 +12391,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("ElevatorKey"),
@@ -11679,6 +12408,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("TMV Pass"),
@@ -11695,6 +12425,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Kalos Honor"), // Honor of Kalos
@@ -11711,6 +12442,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rulebook"), // Adventure Rules
@@ -11727,6 +12459,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lens Case"),
@@ -11743,6 +12476,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Makeup Bag"),
@@ -11759,6 +12493,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Travel Trunk"),
@@ -11775,6 +12510,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("LookerTicket"),
@@ -11791,6 +12527,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Holo Caster"),
@@ -11807,6 +12544,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Soot Sack"),
@@ -11823,6 +12561,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("{POKEBLOCK} Case"),
@@ -11839,6 +12578,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Letter"),
@@ -11855,6 +12595,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Eon Ticket"),
@@ -11871,6 +12612,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 1,
+        .effect = NULL,
     },
     {
         .name = _("Scanner"),
@@ -11887,6 +12629,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Go-Goggles"),
@@ -11903,6 +12646,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Meteorite"),
@@ -11919,6 +12663,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Room 1 Key"),
@@ -11935,6 +12680,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Room 2 Key"),
@@ -11951,6 +12697,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Room 4 Key"),
@@ -11967,6 +12714,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Room 6 Key"),
@@ -11983,6 +12731,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Devon Scope"),
@@ -11999,6 +12748,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Scuba Gear"), // Devon Scuba Gear
@@ -12015,6 +12765,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Contest Suit"), // Contest Costume
@@ -12031,6 +12782,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Contest Suit"), // Contest Costume
@@ -12047,6 +12799,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Magma Suit"),
@@ -12063,6 +12816,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Aqua Suit"),
@@ -12079,6 +12833,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ticket Pair"),
@@ -12095,6 +12850,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("PrisonBottle"),
@@ -12111,6 +12867,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Key Stone"),
@@ -12127,6 +12884,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Meteor Shard"), // Meteorite Shard
@@ -12143,6 +12901,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Eon Flute"),
@@ -12159,6 +12918,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Z Ring"),
@@ -12175,6 +12935,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Forage Bag"),
@@ -12191,6 +12952,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Prof's Mask"),
@@ -12207,6 +12969,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("FestivalPass"), // Festival Pass
@@ -12223,6 +12986,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sparkle Rock"), // Sparkling Stone
@@ -12239,6 +13003,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Zygarde Cube"),
@@ -12255,6 +13020,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ride Pager"),
@@ -12271,6 +13037,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Sun Flute"),
@@ -12287,6 +13054,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Moon Flute"),
@@ -12303,6 +13071,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Enigma Card"), // Enigmatic Card
@@ -12319,6 +13088,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Z Power Ring"),
@@ -12335,6 +13105,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pink Petal"),
@@ -12351,6 +13122,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Orange Petal"),
@@ -12367,6 +13139,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Blue Petal"),
@@ -12383,6 +13156,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Red Petal"),
@@ -12399,6 +13173,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Green Petal"),
@@ -12415,6 +13190,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Yellow Petal"),
@@ -12431,6 +13207,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Purple Petal"),
@@ -12447,6 +13224,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rainbow Petal"), 
@@ -12463,6 +13241,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Surge Badge"),
@@ -12479,6 +13258,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("N Solarizer"),
@@ -12495,6 +13275,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("N Lunarizer"),
@@ -12511,6 +13292,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Left Ball"), // Left Poké Ball
@@ -12527,6 +13309,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Normalium Z"),
@@ -12543,6 +13326,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Firium Z"),
@@ -12559,6 +13343,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Waterium Z"),
@@ -12575,6 +13360,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Electrium Z"),
@@ -12591,6 +13377,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Grassium Z"),
@@ -12607,6 +13394,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Icium Z"),
@@ -12623,6 +13411,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fightnium Z"),
@@ -12639,6 +13428,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Poisonium Z"),
@@ -12655,6 +13445,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Groundium Z"),
@@ -12671,6 +13462,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Flyinium Z"),
@@ -12687,6 +13479,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Psychium Z"),
@@ -12703,6 +13496,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Buginium Z"),
@@ -12719,6 +13513,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rockium Z"),
@@ -12735,6 +13530,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ghostium Z"),
@@ -12751,6 +13547,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dragonium Z"),
@@ -12767,6 +13564,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Darkinium Z"),
@@ -12783,6 +13581,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Steelium Z"),
@@ -12799,6 +13598,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fairium Z"),
@@ -12815,6 +13615,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pikanium Z"),
@@ -12831,6 +13632,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Decidium Z"),
@@ -12847,6 +13649,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ininium Z"),
@@ -12863,6 +13666,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Primarium Z"),
@@ -12879,6 +13683,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Tapunium Z"),
@@ -12895,6 +13700,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Marshadium Z"),
@@ -12911,6 +13717,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("AloraichiumZ"),
@@ -12927,6 +13734,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Snorlium Z"),
@@ -12943,6 +13751,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Eevium Z"),
@@ -12959,6 +13768,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mewnium Z"),
@@ -12975,6 +13785,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("PikashuniumZ"),
@@ -12991,6 +13802,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Solganium Z"),
@@ -13007,6 +13819,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lunalium Z"),
@@ -13023,6 +13836,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Necrozium Z"), // Ultranecrozium Z
@@ -13039,6 +13853,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mimikium Z"),
@@ -13055,6 +13870,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lycanium Z"),
@@ -13071,6 +13887,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Kommonium Z"),
@@ -13087,6 +13904,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Normalium Z"),
@@ -13103,6 +13921,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Firium Z"),
@@ -13119,6 +13938,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Waterium Z"),
@@ -13135,6 +13955,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Electrium Z"),
@@ -13151,6 +13972,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Grassium Z"),
@@ -13167,6 +13989,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Icium Z"),
@@ -13183,6 +14006,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fightnium Z"),
@@ -13199,6 +14023,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Poisonium Z"),
@@ -13215,6 +14040,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Groundium Z"),
@@ -13231,6 +14057,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Flyinium Z"),
@@ -13247,6 +14074,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Psychium Z"),
@@ -13263,6 +14091,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Buginium Z"),
@@ -13279,6 +14108,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Rockium Z"),
@@ -13295,6 +14125,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ghostium Z"),
@@ -13311,6 +14142,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Dragonium Z"),
@@ -13327,6 +14159,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Darkinium Z"),
@@ -13343,6 +14176,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Steelium Z"),
@@ -13359,6 +14193,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Fairium Z"),
@@ -13375,6 +14210,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Pikanium Z"),
@@ -13391,6 +14227,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Decidium Z"),
@@ -13407,6 +14244,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Ininium Z"),
@@ -13423,6 +14261,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Primarium Z"),
@@ -13439,6 +14278,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Tapunium Z"),
@@ -13455,6 +14295,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Marshadium Z"),
@@ -13471,6 +14312,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("AloraichiumZ"),
@@ -13487,6 +14329,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Snorlium Z"),
@@ -13503,6 +14346,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Eevium Z"),
@@ -13519,6 +14363,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mewnium Z"),
@@ -13535,6 +14380,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("PikashuniumZ"),
@@ -13551,6 +14397,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Solganium Z"),
@@ -13567,6 +14414,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lunalium Z"),
@@ -13583,6 +14431,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Necrozium Z"), // Ultranecrozium Z
@@ -13599,6 +14448,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Mimikium Z"),
@@ -13615,6 +14465,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Lycanium Z"),
@@ -13631,6 +14482,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
     {
         .name = _("Kommonium Z"),
@@ -13647,5 +14499,6 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
+        .effect = NULL,
     },
 };

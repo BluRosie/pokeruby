@@ -95,7 +95,7 @@ u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit)
 
     offset = 6;
 
-    temp = gItemEffectTable[itemId - (ITEM_POTION % 256)];
+    temp = ItemId_GetEffect(itemId);
 
     if (!temp && itemId != ITEM_ENIGMA_BERRY)
         return 0;
@@ -120,7 +120,7 @@ u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit)
             break;
         case 4:
             val = itemEffect[4];
-            if (val & 0x20)
+            if (val & 0x20) // pp up something something
                 val &= 0xDF;
             j = 0;
             while (val)
@@ -225,7 +225,7 @@ u8 *sub_803F378(u16 itemId)
     }
     else
     {
-        itemEffect = gItemEffectTable[itemId - (ITEM_POTION % 256)];
+        itemEffect = ItemId_GetEffect(itemId);
     }
 
     gStringBank = gBankInMenu;

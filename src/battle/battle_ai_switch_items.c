@@ -4,6 +4,7 @@
 #include "battle_script_commands.h"
 #include "data2.h"
 #include "ewram.h"
+#include "item.h"
 #include "pokemon.h"
 #include "random.h"
 #include "rom_8077ABC.h"
@@ -907,13 +908,13 @@ static bool8 ShouldUseItem(void)
         item = AI_BATTLE_HISTORY->trainerItems[i];
         if (item == ITEM_NONE)
             continue;
-        if (gItemEffectTable[item - (ITEM_POTION % 256)] == NULL)
+        if (ItemId_GetEffect(item) == NULL)
             continue;
 
         if (item == ITEM_ENIGMA_BERRY)
             itemEffects = gSaveBlock1.enigmaBerry.itemEffect;
         else
-            itemEffects = gItemEffectTable[item - (ITEM_POTION % 256)];
+            itemEffects = ItemId_GetEffect(item);
 
         ewram160D8(gActiveBattler) = GetAI_ItemType(item, itemEffects);
 
