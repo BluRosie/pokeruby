@@ -4973,9 +4973,6 @@ void DoEvolutionStoneItemEffect(u8 taskId, u16 evolutionStoneItem, TaskFunc c)
 u8 GetItemEffectType(u16 item)
 {
     const u8 *itemEffect;
-    #define itemEffect0 itemEffect[0]
-    #define itemEffect3 itemEffect[3]
-    #define mask 0x3F
 
     // Read the item's effect properties.
     if (item == ITEM_ENIGMA_BERRY)
@@ -4987,53 +4984,49 @@ u8 GetItemEffectType(u16 item)
         itemEffect = ItemId_GetEffect(item);
     }
 
-    if ((itemEffect0 & mask) || itemEffect[1] || itemEffect[2])
+    if ((itemEffect[0] & 0x3F) || itemEffect[1] || itemEffect[2]) // if is x stat item
     {
         return 0;
     }
-    if (itemEffect3 & 0x80)
+    if (itemEffect[3] & PREVENT_STAT_LOSS) // gotta get guard specs in there too
     {
         return 0;
     }
-    else if (itemEffect0 & 0x40)
+    else if (itemEffect[0] & SACRED_ASH)
     {
         return 10;
     }
-    else if (itemEffect3 & 0x40)
+    else if (itemEffect[3] & CURE_FAINT) // rare candy though
     {
         return 1;
     }
-    else if ((itemEffect3 & mask) || (itemEffect0 >> 7))
+    else if ((itemEffect[3] & 0x3F) || (itemEffect[0] >> 7)) // if it cures something
     {
-        if ((itemEffect3 & mask) == 0x20)
+        if ((itemEffect[3] & 0x3F) == CURE_SLEEP)
         {
             return 4;
         }
-        else if ((itemEffect3 & mask) == 0x10)
+        else if ((itemEffect[3] & 0x3F) == CURE_POISON)
         {
             return 3;
         }
-        else if ((itemEffect3 & mask) == 0x8)
+        else if ((itemEffect[3] & 0x3F) == CURE_BURN)
         {
             return 5;
         }
-        else if ((itemEffect3 & mask) == 0x4)
+        else if ((itemEffect[3] & 0x3F) == CURE_ICE)
         {
             return 6;
         }
-        else if ((itemEffect3 & mask) == 0x2)
+        else if ((itemEffect[3] & 0x3F) == CURE_PARALYSIS)
         {
             return 7;
         }
-        else if ((itemEffect3 & mask) == 0x1)
+        else if ((itemEffect[3] & 0x3F) == CURE_CONFUSION)
         {
             return 8;
         }
-        // alternate fakematching
-        // itemEffect0_r0 = itemEffect0 >> 7;
-        // asm(""); // increase live length for greg
-        // if ((itemEffect0_r0 != 0) && (itemEffect3 & mask) == 0)
-        else if (((itemEffect[0] >> 7) != 0) && (itemEffect[3] & 0x3F) == 0)
+        else if (((itemEffect[0] >> 7) != 0) && (itemEffect[3] & 0x3F) == 0) // CURE_ATTRACT
         {
             return 9;
         }
@@ -5042,47 +5035,47 @@ u8 GetItemEffectType(u16 item)
             return 11;
         }
     }
-    else if (itemEffect[4] & 0x44)
+    else if (itemEffect[4] & CAN_REVIVE_MON) // if it can revive mon
     {
         return 2;
     }
-    else if (itemEffect[4] & 0x2)
+    else if (itemEffect[4] & PROTEIN) // if is protein
     {
         return 12;
     }
-    else if (itemEffect[4] & 0x1)
+    else if (itemEffect[4] & HPUP) // if is hp up
     {
         return 13;
     }
-    else if (itemEffect[5] & 0x8)
+    else if (itemEffect[5] & CALCIUM) // if is calcium
     {
         return 14;
     }
-    else if (itemEffect[5] & 0x4)
+    else if (itemEffect[5] & ZINC) // if is zinc
     {
         return 15;
     }
-    else if (itemEffect[5] & 0x2)
+    else if (itemEffect[5] & CARBOS) // if is carbos
     {
         return 16;
     }
-    else if (itemEffect[5] & 0x1)
+    else if (itemEffect[5] & IRON) // if is iron
     {
         return 17;
     }
-    else if (itemEffect[4] & 0x80)
+    else if (itemEffect[4] & EVO_STONE) // evolutionary stone
     {
         return 18;
     }
-    else if (itemEffect[4] & 0x20)
+    else if (itemEffect[4] & PP_UP) // is pp up
     {
         return 19;
     }
-    else if (itemEffect[5] & 0x10)
+    else if (itemEffect[5] & 0x10) // ?
     {
         return 20;
     }
-    else if (itemEffect[4] & 0x18)
+    else if (itemEffect[4] & 0x18) // pp manipulation
     {
         return 21;
     }
@@ -5090,9 +5083,6 @@ u8 GetItemEffectType(u16 item)
     {
         return 22;
     }
-    #undef itemEffect0
-    #undef itemEffect3
-    #undef mask
 }
 
 // Maybe this goes in start_menu.c

@@ -938,34 +938,34 @@ static bool8 ShouldUseItem(void)
             break;
         case AI_ITEM_CURE_CONDITION:
             ewram160DA(gActiveBattler) = 0;
-            if (itemEffects[3] & 0x20 && gBattleMons[gActiveBattler].status1 & STATUS_SLEEP)
+            if (itemEffects[3] & CURE_SLEEP && gBattleMons[gActiveBattler].status1 & STATUS_SLEEP)
             {
-               ewram160DA(gActiveBattler) |= 0x20;
+               ewram160DA(gActiveBattler) |= CURE_SLEEP;
                 shouldUse = TRUE;
             }
-            if (itemEffects[3] & 0x10 && (gBattleMons[gActiveBattler].status1 & STATUS_POISON || gBattleMons[gActiveBattler].status1 & STATUS_TOXIC_POISON))
+            if (itemEffects[3] & CURE_POISON && (gBattleMons[gActiveBattler].status1 & STATUS_POISON || gBattleMons[gActiveBattler].status1 & STATUS_TOXIC_POISON))
             {
-               ewram160DA(gActiveBattler) |= 0x10;
+               ewram160DA(gActiveBattler) |= CURE_POISON;
                 shouldUse = TRUE;
             }
-            if (itemEffects[3] & 0x8 && gBattleMons[gActiveBattler].status1 & STATUS_BURN)
+            if (itemEffects[3] & CURE_BURN && gBattleMons[gActiveBattler].status1 & STATUS_BURN)
             {
-               ewram160DA(gActiveBattler) |= 0x8;
+               ewram160DA(gActiveBattler) |= CURE_BURN;
                 shouldUse = TRUE;
             }
-            if (itemEffects[3] & 0x4 && gBattleMons[gActiveBattler].status1 & STATUS_FREEZE)
+            if (itemEffects[3] & CURE_ICE && gBattleMons[gActiveBattler].status1 & STATUS_FREEZE)
             {
-               ewram160DA(gActiveBattler) |= 0x4;
+               ewram160DA(gActiveBattler) |= CURE_ICE;
                 shouldUse = TRUE;
             }
-            if (itemEffects[3] & 0x2 && gBattleMons[gActiveBattler].status1 & STATUS_PARALYSIS)
+            if (itemEffects[3] & CURE_PARALYSIS && gBattleMons[gActiveBattler].status1 & STATUS_PARALYSIS)
             {
-               ewram160DA(gActiveBattler) |= 0x2;
+               ewram160DA(gActiveBattler) |= CURE_PARALYSIS;
                 shouldUse = TRUE;
             }
-            if (itemEffects[3] & 0x1 && gBattleMons[gActiveBattler].status2 & STATUS2_CONFUSION)
+            if (itemEffects[3] & CURE_CONFUSION && gBattleMons[gActiveBattler].status2 & STATUS2_CONFUSION)
             {
-               ewram160DA(gActiveBattler) |= 0x1;
+               ewram160DA(gActiveBattler) |= CURE_CONFUSION;
                 shouldUse = TRUE;
             }
             break;
@@ -973,17 +973,19 @@ static bool8 ShouldUseItem(void)
            ewram160DA(gActiveBattler) = 0;
             if (gDisableStructs[gActiveBattler].isFirstTurn == 0)
                 break;
-            if (itemEffects[0] & 0xF)
+            if (itemEffects[0] & 0xF) // x attack
                ewram160DA(gActiveBattler) |= 0x1;
-            if (itemEffects[1] & 0xF0)
+            if (itemEffects[1] & 0xF0) // x defend
                ewram160DA(gActiveBattler) |= 0x2;
-            if (itemEffects[1] & 0xF)
+            if (itemEffects[1] & 0xF) // x speed
                ewram160DA(gActiveBattler) |= 0x4;
-            if (itemEffects[2] & 0xF)
+            if (itemEffects[2] & 0xB) // x sp. def?
+               ewram160DA(gActiveBattler) |= 0x10;
+            if (itemEffects[2] & 0x3) // x special
                ewram160DA(gActiveBattler) |= 0x8;
-            if (itemEffects[2] & 0xF0)
+            if (itemEffects[2] & 0xF0) // x accuracy
                ewram160DA(gActiveBattler) |= 0x20;
-            if (itemEffects[0] & 0x30)
+            if (itemEffects[0] & 0x30) // dire hit
                ewram160DA(gActiveBattler) |= 0x80;
             shouldUse = TRUE;
             break;

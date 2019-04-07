@@ -145,20 +145,26 @@
 
 // item_effects.h
 //[0]
-#define AFFECTS_INFATUATION 0x80
-#define SACRED_ASH          0x40
-#define AFFECTS_CRIT_RATE   0x20
-#define X_ATTACK            0x01
+#define CURE_INFATUATION  0x80
+#define SACRED_ASH        0x40
+#define DIRE_HIT          0x20
+#define X_ATTACK          0x01
 //[1]
+#define X_DEFEND 0x10
+#define X_SPEED  0x01
 //[2]
+#define X_ACCURACY 0x10
+#define X_SP_DEF   0x04
+#define X_SPECIAL  0x01
 //[3]
-#define CURE_STATUS_FAINT     0x40 //?
-#define CURE_STATUS_SLEEP     0x20
-#define CURE_STATUS_POISON    0x10
-#define CURE_STATUS_BURN      0x08
-#define CURE_STATUS_ICE       0x04
-#define CURE_STATUS_PARALYSIS 0x02
-#define CURE_STATUS_CONFUSION 0x01
+#define PREVENT_STAT_LOSS 0x80
+#define CURE_FAINT        0x40 //?
+#define CURE_SLEEP        0x20
+#define CURE_POISON       0x10
+#define CURE_BURN         0x08
+#define CURE_ICE          0x04
+#define CURE_PARALYSIS    0x02
+#define CURE_CONFUSION    0x01
 //[4]
 #define EVO_STONE                0x80
 #define REVIVES                  0x40
@@ -168,9 +174,17 @@
 #define HEALING_ITEM             0x04
 #define PROTEIN                  0x02
 #define HPUP                     0x01
+
+#define CAN_REVIVE_MON           0x44
 //[5]
+#define CALCIUM 0X08
+#define ZINC    0x04
+#define CARBOS  0x02
+#define IRON    0x01
 //[6]
+// general quantity risen:  ff is max hp, fe is half, 7f is max pp
 //[7]
+// friendship raising
 //[8]
 //[9]
 
@@ -575,10 +589,12 @@ extern struct Evolution gEvolutionTable[][5];
 extern struct PokemonStorage gPokemonStorage;
 
 extern const u8 gItemEffect_Potion[];
-extern const u8 gItemEffect_Antidote[];
+extern const u8 gItemEffect_AttractHeal[];
+extern const u8 gItemEffect_ConfuseHeal[];
+extern const u8 gItemEffect_PoisonHeal[];
 extern const u8 gItemEffect_BurnHeal[];
 extern const u8 gItemEffect_IceHeal[];
-extern const u8 gItemEffect_Awakening[];
+extern const u8 gItemEffect_SleepHeal[];
 extern const u8 gItemEffect_ParalyzeHeal[];
 extern const u8 gItemEffect_FullRestore[];
 extern const u8 gItemEffect_MaxPotion[];
@@ -595,14 +611,10 @@ extern const u8 gItemEffect_EnergyPowder[];
 extern const u8 gItemEffect_EnergyRoot[];
 extern const u8 gItemEffect_HealPowder[];
 extern const u8 gItemEffect_RevivalHerb[];
-extern const u8 gItemEffect_Ether[];
+extern const u8 gItemEffect_Restore10PP[];
 extern const u8 gItemEffect_MaxEther[];
 extern const u8 gItemEffect_Elixir[];
 extern const u8 gItemEffect_MaxElixir[];
-extern const u8 gItemEffect_LavaCookie[];
-extern const u8 gItemEffect_BlueFlute[];
-extern const u8 gItemEffect_YellowFlute[];
-extern const u8 gItemEffect_RedFlute[];
 extern const u8 gItemEffect_BerryJuice[];
 extern const u8 gItemEffect_SacredAsh[];
 extern const u8 gItemEffect_HPUp[];
@@ -621,21 +633,8 @@ extern const u8 gItemEffect_XDefend[];
 extern const u8 gItemEffect_XSpeed[];
 extern const u8 gItemEffect_XAccuracy[];
 extern const u8 gItemEffect_XSpecial[];
-extern const u8 gItemEffect_SunStone[];
-extern const u8 gItemEffect_MoonStone[];
-extern const u8 gItemEffect_FireStone[];
-extern const u8 gItemEffect_ThunderStone[];
-extern const u8 gItemEffect_WaterStone[];
-extern const u8 gItemEffect_LeafStone[];
-extern const u8 gItemEffect_CheriBerry[];
-extern const u8 gItemEffect_ChestoBerry[];
-extern const u8 gItemEffect_PechaBerry[];
-extern const u8 gItemEffect_RawstBerry[];
-extern const u8 gItemEffect_AspearBerry[];
-extern const u8 gItemEffect_LeppaBerry[];
+extern const u8 gItemEffect_Stone[];
 extern const u8 gItemEffect_OranBerry[];
-extern const u8 gItemEffect_PersimBerry[];
-extern const u8 gItemEffect_LumBerry[];
 extern const u8 gItemEffect_SitrusBerry[];
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);

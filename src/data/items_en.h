@@ -508,7 +508,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_Antidote,
+        .effect = gItemEffect_PoisonHeal,
     },
     {
         .name = _("Burn Heal"),
@@ -559,7 +559,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_Awakening,
+        .effect = gItemEffect_SleepHeal,
     },
     {
         .name = _("Parlyz Heal"),
@@ -848,7 +848,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_PPRecovery,
         .secondaryId = 0,
-        .effect = gItemEffect_Ether,
+        .effect = gItemEffect_Restore10PP,
     },
     {
         .name = _("Max Ether"),
@@ -916,7 +916,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_LavaCookie,
+        .effect = gItemEffect_FullHeal,
     },
     {
         .name = _("Berry Juice"),
@@ -1409,7 +1409,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_BlueFlute,
+        .effect = gItemEffect_SleepHeal,
     },
     {
         .name = _("Yellow Flute"),
@@ -1426,7 +1426,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_YellowFlute,
+        .effect = gItemEffect_ConfuseHeal,
     },
     {
         .name = _("Red Flute"),
@@ -1443,7 +1443,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_RedFlute,
+        .effect = gItemEffect_AttractHeal,
     },
     {
         .name = _("Black Flute"),
@@ -1664,7 +1664,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
-        .effect = gItemEffect_SunStone,
+        .effect = gItemEffect_Stone,
     },
     {
         .name = _("Moon Stone"),
@@ -1681,7 +1681,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
-        .effect = gItemEffect_MoonStone,
+        .effect = gItemEffect_Stone,
     },
     {
         .name = _("Fire Stone"),
@@ -1698,7 +1698,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
-        .effect = gItemEffect_FireStone,
+        .effect = gItemEffect_Stone,
     },
     {
         .name = _("ThunderStone"),
@@ -1715,7 +1715,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
-        .effect = gItemEffect_ThunderStone,
+        .effect = gItemEffect_Stone,
     },
     {
         .name = _("Water Stone"),
@@ -1732,7 +1732,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
-        .effect = gItemEffect_WaterStone,
+        .effect = gItemEffect_Stone,
     },
     {
         .name = _("Leaf Stone"),
@@ -1749,7 +1749,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
-        .effect = gItemEffect_LeafStone,
+        .effect = gItemEffect_Stone,
     },
     {
         .name = _("Shiny Stone"),
@@ -1766,7 +1766,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
-        .effect = NULL,
+        .effect = gItemEffect_Stone,
     },
     {
         .name = _("Dusk Stone"),
@@ -1783,7 +1783,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
-        .effect = NULL,
+        .effect = gItemEffect_Stone,
     },
     {
         .name = _("Dawn Stone"),
@@ -1800,7 +1800,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
-        .effect = NULL,
+        .effect = gItemEffect_Stone,
     },
     {
         .name = _("Oval Stone"),
@@ -1834,7 +1834,7 @@ const struct Item gItems[] =
         .battleUsage = 0,
         .battleUseFunc = NULL,
         .secondaryId = 0,
-        .effect = NULL,
+        .effect = gItemEffect_Stone,
     },
     {
         .name = _("Casteliacone"),
@@ -2276,7 +2276,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_CheriBerry,
+        .effect = gItemEffect_ParalyzeHeal,
     },
     {
         .name = _("Chesto Berry"),
@@ -2293,7 +2293,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_ChestoBerry,
+        .effect = gItemEffect_SleepHeal,
     },
     {
         .name = _("Pecha Berry"),
@@ -2310,7 +2310,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_PechaBerry,
+        .effect = gItemEffect_PoisonHeal,
     },
     {
         .name = _("Rawst Berry"),
@@ -2327,7 +2327,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_RawstBerry,
+        .effect = gItemEffect_BurnHeal,
     },
     {
         .name = _("Aspear Berry"),
@@ -2344,7 +2344,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_AspearBerry,
+        .effect = gItemEffect_IceHeal,
     },
     {
         .name = _("Leppa Berry"),
@@ -2361,7 +2361,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_PPRecovery,
         .secondaryId = 0,
-        .effect = gItemEffect_LeppaBerry,
+        .effect = gItemEffect_Restore10PP,
     },
     {
         .name = _("Oran Berry"),
@@ -2395,7 +2395,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_PersimBerry,
+        .effect = gItemEffect_ConfuseHeal,
     },
     {
         .name = _("Lum Berry"),
@@ -2412,7 +2412,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_LumBerry,
+        .effect = gItemEffect_FullHeal,
     },
     {
         .name = _("Sitrus Berry"),
