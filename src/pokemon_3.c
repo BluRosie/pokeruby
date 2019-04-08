@@ -65,7 +65,7 @@ extern u8 BattleText_Rose[];
 extern u8 BattleText_UnknownString3[];
 extern u8 BattleText_MistShroud[];
 extern u8 BattleText_GetPumped[];
-extern u8 *gUnknown_08400F58[];
+extern u8 *gStatStrings[];
 
 bool8 HealStatusConditions(struct Pokemon *mon, u32 unused, u32 healMask, u8 battleId)
 {
@@ -204,7 +204,15 @@ const u8 gUnknown_082082F8[] = {1, 1, 3, 2, 4, 6};
 void sub_803F324(int stat)
 {
     gBankTarget = gBankInMenu;
-    StringCopy(gBattleTextBuff1, gUnknown_08400F58[gUnknown_082082F8[stat]]);
+    StringCopy(gBattleTextBuff1, gStatStrings[gUnknown_082082F8[stat]]);
+    StringCopy(gBattleTextBuff2, BattleText_Rose);
+    StrCpyDecodeToDisplayedStringBattle(BattleText_UnknownString3);
+}
+
+void statToMessage(int stat)
+{
+    gBankTarget = gBankInMenu;
+    StringCopy(gBattleTextBuff1, gStatStrings[stat + 1]);
     StringCopy(gBattleTextBuff2, BattleText_Rose);
     StrCpyDecodeToDisplayedStringBattle(BattleText_UnknownString3);
 }
@@ -234,23 +242,19 @@ u8 *sub_803F378(u16 itemId)
 
     // checking all the x items
     // TODO:  rewrite for x items
-    for (i = 0; i < 3; i++)
+    for (i = 0; i <= 6; i++)
     {
-        if (itemEffect[i] & 0xF)
-            sub_803F324(i * 2);
-        if (itemEffect[i] & 0xF0)
+        if (itemEffect[X_ITEMS] != RAISE_CRITICAL && itemEffect[X_ITEMS] << i & RAISE_ATTACK)
         {
-            if (i)
-            {
-                sub_803F324(i * 2 + 1);
-            }
-            else // dire hit
-            {
-                gBankAttacker = gBankInMenu;
-                StrCpyDecodeToDisplayedStringBattle(BattleText_GetPumped);
-            }
+            statToMessage(i);
         }
     }
+
+    if (itemEffect[X_ITEMS] & RAISE_CRITICAL) // dire hit
+        {
+            gBankAttacker = gBankInMenu;
+            StrCpyDecodeToDisplayedStringBattle(BattleText_GetPumped);
+        }
 
     if (itemEffect[X_ITEMS] & PREVENT_STAT_LOSS)
     {

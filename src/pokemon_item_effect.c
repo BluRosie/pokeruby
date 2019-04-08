@@ -61,6 +61,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
     u16 heldItem;
     u8 r10;
     u32 r4;
+    u32 evCount = GetMonEVCount(pkmn);
+    u8 i = 0;
 
     heldItem = GetMonData(pkmn, MON_DATA_HELD_ITEM, NULL);
     if (heldItem == ITEM_ENIGMA_BERRY)
@@ -182,13 +184,10 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                 retVal = FALSE;
             }
         case VITAMINS:
-            u32 evCount = GetMonEVCount(pkmn);
-            u8 i = 0;
-
             if (evCount >= 510)
                 return TRUE;
 
-            while (!(itemEffect[VITAMINS] << i & EV_HP)) { // ahaha
+            while (!(itemEffect[VITAMINS] << i & EV_HP)) { // runs through the items 
                 i++;
                 if (i >= 6) {
                     return TRUE;
@@ -198,7 +197,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             data = GetMonData(pkmn, sGetMonDataEVConstants[i], NULL);
             if (i < 6)
             {
-                if ((data + itemEffect[PARAMETER] > 100) && ITEM_IS_VITAMIN(item)) { // only the vitamins are limited to 100
+                if ((data + itemEffect[PARAMETER] > 100) && IS_ITEM_VITAMIN(item)) { // only the vitamins are limited to 100
                     r4 = itemEffect[PARAMETER];
                     data = 100 - r4;
                 }
@@ -277,7 +276,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             {
                 if (r10 & 1)
                 {
-                    u16 evCount;
+                    //u16 evCount;
                     s32 r5;
      
                     switch (sp28)
@@ -449,7 +448,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             {
                 if (r10 & 1)
                 {
-                    u16 evCount;
+                    //u16 evCount;
 
                     switch (sp28)
                     {

@@ -850,7 +850,7 @@ const u8 BattleText_Dragon[] = _("a Dragon move");
 const u8 BattleText_Dark[] = _("a Dark move");
 //const u8 BattleText_Fairy[] = _("a Fairy move");
 
-const u8 *const gUnknown_08400F58[] =
+const u8 *const gStatStrings[] =
 {
     BattleStatText_HP,
     BattleStatText_Attack,
