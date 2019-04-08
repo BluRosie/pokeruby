@@ -4254,7 +4254,7 @@ bool8 IsHPRecoveryItem(u16 item)
     else
         itemEffect = ItemId_GetEffect(item);
 
-    if (itemEffect[4] & 4)
+    if (itemEffect[4] & HEALING_ITEM)
         return TRUE;
     else
         return FALSE;
