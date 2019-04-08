@@ -868,13 +868,13 @@ static u8 GetAI_ItemType(u8 itemId, const u8 *itemEffect) // NOTE: should take u
 {
     if (itemId == ITEM_FULL_RESTORE)
         return AI_ITEM_FULL_RESTORE;
-    if (itemEffect[4] & 4)
+    if (itemEffect[4] & HEALING_ITEM)
         return AI_ITEM_HEAL_HP;
     if (itemEffect[3] & 0x3F)
         return AI_ITEM_CURE_CONDITION;
     if (itemEffect[0] & 0x3F || itemEffect[1] != 0 || itemEffect[2] != 0)
         return AI_ITEM_X_STAT;
-    if (itemEffect[3] & 0x80)
+    if (itemEffect[3] & PREVENT_STAT_LOSS)
         return AI_ITEM_GUARD_SPECS;
 
     return AI_ITEM_NOT_RECOGNIZABLE;
@@ -979,8 +979,6 @@ static bool8 ShouldUseItem(void)
                ewram160DA(gActiveBattler) |= 0x2;
             if (itemEffects[1] & 0xF) // x speed
                ewram160DA(gActiveBattler) |= 0x4;
-            if (itemEffects[2] & 0xB) // x sp. def?
-               ewram160DA(gActiveBattler) |= 0x10;
             if (itemEffects[2] & 0x3) // x special
                ewram160DA(gActiveBattler) |= 0x8;
             if (itemEffects[2] & 0xF0) // x accuracy

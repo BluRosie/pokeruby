@@ -933,7 +933,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_BerryJuice,
+        .effect = gItemEffect_Potion,
     },
     {
         .name = _("Sacred Ash"),

@@ -4996,7 +4996,7 @@ u8 GetItemEffectType(u16 item)
     {
         return 10;
     }
-    else if (itemEffect[3] & CURE_FAINT) // rare candy though
+    else if (itemEffect[3] & RAISE_LEVEL)
     {
         return 1;
     }
@@ -5039,27 +5039,27 @@ u8 GetItemEffectType(u16 item)
     {
         return 2;
     }
-    else if (itemEffect[4] & PROTEIN) // if is protein
+    else if (itemEffect[4] & EV_ATTACK) // if is protein
     {
         return 12;
     }
-    else if (itemEffect[4] & HPUP) // if is hp up
+    else if (itemEffect[4] & EV_HP) // if is hp up
     {
         return 13;
     }
-    else if (itemEffect[5] & CALCIUM) // if is calcium
+    else if (itemEffect[5] & EV_SP_ATK) // if is calcium
     {
         return 14;
     }
-    else if (itemEffect[5] & ZINC) // if is zinc
+    else if (itemEffect[5] & EV_SP_DEF) // if is zinc
     {
         return 15;
     }
-    else if (itemEffect[5] & CARBOS) // if is carbos
+    else if (itemEffect[5] & EV_SPEED) // if is carbos
     {
         return 16;
     }
-    else if (itemEffect[5] & IRON) // if is iron
+    else if (itemEffect[5] & EV_DEFENSE) // if is iron
     {
         return 17;
     }
@@ -5075,7 +5075,7 @@ u8 GetItemEffectType(u16 item)
     {
         return 20;
     }
-    else if (itemEffect[4] & 0x18) // pp manipulation
+    else if (itemEffect[4] & PP_LIMITED_ITEM) // pp manipulation
     {
         return 21;
     }

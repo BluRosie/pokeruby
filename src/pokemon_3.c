@@ -120,7 +120,7 @@ u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit)
             break;
         case 4:
             val = itemEffect[4];
-            if (val & 0x20) // pp up something something
+            if (val & PP_UP) 
                 val &= 0xDF;
             j = 0;
             while (val)
@@ -130,7 +130,7 @@ u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit)
                     switch (j)
                     {
                     case 2:
-                        if (val & 0x10)
+                        if (val & LIMITED_PP_RESTORE_ITEM)
                             val &= 0xEF;
                     case 0:
                         if (i == effectByte && (val & effectBit))
@@ -230,6 +230,7 @@ u8 *sub_803F378(u16 itemId)
 
     gStringBank = gBankInMenu;
 
+    // checking all the x items
     for (i = 0; i < 3; i++)
     {
         if (itemEffect[i] & 0xF)
@@ -240,7 +241,7 @@ u8 *sub_803F378(u16 itemId)
             {
                 sub_803F324(i * 2 + 1);
             }
-            else
+            else // dire hit
             {
                 gBankAttacker = gBankInMenu;
                 StrCpyDecodeToDisplayedStringBattle(BattleText_GetPumped);
@@ -248,7 +249,7 @@ u8 *sub_803F378(u16 itemId)
         }
     }
 
-    if (itemEffect[3] & 0x80)
+    if (itemEffect[3] & PREVENT_STAT_LOSS)
     {
         gBankAttacker = gBankInMenu;
         StrCpyDecodeToDisplayedStringBattle(BattleText_MistShroud);

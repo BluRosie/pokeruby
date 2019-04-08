@@ -147,18 +147,17 @@
 //[0]
 #define CURE_INFATUATION  0x80
 #define SACRED_ASH        0x40
-#define DIRE_HIT          0x20
-#define X_ATTACK          0x01
+#define RAISE_CRITICAL    0x20
+#define RAISE_ATTACK      0x01
 //[1]
-#define X_DEFEND 0x10
-#define X_SPEED  0x01
+#define RAISE_DEFENSE 0x10
+#define RAISE_SPEED   0x01
 //[2]
-#define X_ACCURACY 0x10
-#define X_SP_DEF   0x04
-#define X_SPECIAL  0x01
+#define RAISE_ACCURACY 0x10
+#define RAISE_SP_ATK   0x01
 //[3]
 #define PREVENT_STAT_LOSS 0x80
-#define CURE_FAINT        0x40 //?
+#define RAISE_LEVEL       0x40
 #define CURE_SLEEP        0x20
 #define CURE_POISON       0x10
 #define CURE_BURN         0x08
@@ -172,21 +171,25 @@
 #define LIMITED_PP_RESTORE_ITEM  0x10
 #define PP_ITEM                  0x08
 #define HEALING_ITEM             0x04
-#define PROTEIN                  0x02
-#define HPUP                     0x01
+#define EV_ATTACK                0x02
+#define EV_HP                    0x01
 
-#define CAN_REVIVE_MON           0x44
+#define CAN_REVIVE_MON           (REVIVES | HEALING_ITEM)
+#define PP_LIMITED_ITEM          (LIMITED_PP_RESTORE_ITEM | PP_ITEM)
+
 //[5]
-#define CALCIUM 0X08
-#define ZINC    0x04
-#define CARBOS  0x02
-#define IRON    0x01
+#define EV_SP_ATK  0x08
+#define EV_SP_DEF  0x04
+#define EV_SPEED   0x02
+#define EV_DEFENSE 0x01
 //[6]
 // general quantity risen:  ff is max hp, fe is half, 7f is max pp
 //[7]
-// friendship raising
+// friendship raising when horrible
 //[8]
+// friendship raising when okay
 //[9]
+// friendship raising when great
 
 enum {
     EGG_GROUP_NONE,

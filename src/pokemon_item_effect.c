@@ -119,22 +119,22 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
         {
         // status healing effects
         case 0:
-            if ((itemEffect[cmdIndex] & 0x80)
+            if ((itemEffect[cmdIndex] & CURE_INFATUATION)
              && gMain.inBattle && sp34 != 4 && (gBattleMons[sp34].status2 & STATUS2_INFATUATION))
             {
                 gBattleMons[sp34].status2 &= ~STATUS2_INFATUATION;
                 retVal = FALSE;
             }
-            if ((itemEffect[cmdIndex] & 0x30)
+            if ((itemEffect[cmdIndex] & RAISE_CRITICAL) // freeing up some bits okay
              && !(gBattleMons[gActiveBattler].status2 & STATUS2_FOCUS_ENERGY))
             {
                 gBattleMons[gActiveBattler].status2 |= STATUS2_FOCUS_ENERGY;
                 retVal = FALSE;
             }
-            if ((itemEffect[cmdIndex] & 0xF)
+            if ((itemEffect[cmdIndex] & RAISE_ATTACK)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] += itemEffect[cmdIndex] & 0xF;
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] += itemEffect[6];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] = 12;
                 retVal = FALSE;
@@ -142,18 +142,18 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             break;
         // in-battle stat boosting effects?
         case 1:
-            if ((itemEffect[cmdIndex] & 0xF0)
+            if ((itemEffect[cmdIndex] & RAISE_DEFENSE)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] += (itemEffect[cmdIndex] & 0xF0) >> 4;
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] += itemEffect[6];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] = 12;
                 retVal = FALSE;
             }
-            if ((itemEffect[cmdIndex] & 0xF)
+            if ((itemEffect[cmdIndex] & RAISE_SPEED)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] += itemEffect[cmdIndex] & 0xF;
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] += itemEffect[6];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] = 12;
                 retVal = FALSE;
@@ -161,31 +161,31 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             break;
         // more stat boosting effects?
         case 2:
-            if ((itemEffect[cmdIndex] & 0xF0)
+            if ((itemEffect[cmdIndex] & RAISE_ACCURACY)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] += (itemEffect[cmdIndex] & 0xF0) >> 4;
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] += itemEffect[6];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] = 12;
                 retVal = FALSE;
             }
-            if ((itemEffect[cmdIndex] & 0xF)
+            if ((itemEffect[cmdIndex] & RAISE_SP_ATK)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] += itemEffect[cmdIndex] & 0xF;
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] += itemEffect[6];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] = 12;
                 retVal = FALSE;
             }
             break;
         case 3:
-            if ((itemEffect[cmdIndex] & 0x80)
+            if ((itemEffect[cmdIndex] & PREVENT_STAT_LOSS)
              && gSideTimers[GetBattlerSide(gActiveBattler)].mistTimer == 0)
             {
                 gSideTimers[GetBattlerSide(gActiveBattler)].mistTimer = 5;
                 retVal = FALSE;
             }
-            if ((itemEffect[cmdIndex] & 0x40)  // raise level
+            if ((itemEffect[cmdIndex] & RAISE_LEVEL)  // raise level
              && GetMonData(pkmn, MON_DATA_LEVEL, NULL) != 100)
             {
                 data = gExperienceTables[gBaseStats[GetMonData(pkmn, MON_DATA_SPECIES, NULL)].growthRate][GetMonData(pkmn, MON_DATA_LEVEL, NULL) + 1];
@@ -193,22 +193,22 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                 CalculateMonStats(pkmn);
                 retVal = FALSE;
             }
-            if ((itemEffect[cmdIndex] & 0x20)
+            if ((itemEffect[cmdIndex] & CURE_SLEEP)
              && HealStatusConditions(pkmn, partyIndex, 7, sp34) == 0)
             {
                 if (sp34 != 4)
                     gBattleMons[sp34].status2 &= ~STATUS2_NIGHTMARE;
                 retVal = FALSE;
             }
-            if ((itemEffect[cmdIndex] & 0x10) && HealStatusConditions(pkmn, partyIndex, 0xF88, sp34) == 0)
+            if ((itemEffect[cmdIndex] & CURE_POISON) && HealStatusConditions(pkmn, partyIndex, 0xF88, sp34) == 0)
                 retVal = FALSE;
-            if ((itemEffect[cmdIndex] & 8) && HealStatusConditions(pkmn, partyIndex, 16, sp34) == 0)
+            if ((itemEffect[cmdIndex] & CURE_BURN) && HealStatusConditions(pkmn, partyIndex, 16, sp34) == 0)
                 retVal = FALSE;
-            if ((itemEffect[cmdIndex] & 4) && HealStatusConditions(pkmn, partyIndex, 32, sp34) == 0)
+            if ((itemEffect[cmdIndex] & CURE_ICE) && HealStatusConditions(pkmn, partyIndex, 32, sp34) == 0)
                 retVal = FALSE;
-            if ((itemEffect[cmdIndex] & 2) && HealStatusConditions(pkmn, partyIndex, 64, sp34) == 0)
+            if ((itemEffect[cmdIndex] & CURE_PARALYSIS) && HealStatusConditions(pkmn, partyIndex, 64, sp34) == 0)
                 retVal = FALSE;
-            if ((itemEffect[cmdIndex] & 1)  // heal confusion
+            if ((itemEffect[cmdIndex] & CURE_CONFUSION)
              && gMain.inBattle && sp34 != 4 && (gBattleMons[sp34].status2 & STATUS2_CONFUSION))
             {
                 gBattleMons[sp34].status2 &= ~STATUS2_CONFUSION;
@@ -218,9 +218,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
         // EV, HP, and PP raising effects
         case 4:
             r10 = itemEffect[cmdIndex];
-            if (r10 & 0x20)
+            if (r10 & PP_UP)
             {
-                r10 &= ~0x20;
+                r10 &= ~PP_UP;
                 data = (GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL) & gPPUpReadMasks[moveIndex]) >> (moveIndex * 2);
                 sp28 = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL), moveIndex);
                 if (data < 3 && sp28 > 4)
@@ -265,8 +265,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                             retVal = FALSE;
                         }
                         break;
+                    // if trying to revive
                     case 2:
-                        // revive?
                         if (r10 & 0x10)
                         {
                             if (GetMonData(pkmn, MON_DATA_HP, NULL) != 0)
@@ -291,7 +291,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                                 }
                             }
                         }
-                        else
+                        else // if trying to heal
                         {
                             if (GetMonData(pkmn, MON_DATA_HP, NULL) == 0)
                             {
@@ -302,18 +302,23 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         data = itemEffect[sp24++];
                         switch (data)
                         {
-                        case 0xFF:
+                        case 0xFF: // fully heal
                             data = GetMonData(pkmn, MON_DATA_MAX_HP, NULL) - GetMonData(pkmn, MON_DATA_HP, NULL);
                             break;
-                        case 0xFE:
+                        case 0xFE: // halfway heal
                             data = GetMonData(pkmn, MON_DATA_MAX_HP, NULL) / 2;
                             if (data == 0)
                                 data = 1;
                             break;
-                        case 0xFD:
+                        case 0xFD: // keep distance from max constant
                             data = eStatHp;
                             break;
                         }
+                        case 0xFC: // quarter heal
+                            data = GetMonData(pkmn, MON_DATA_MAX_HP, NULL) / 4;
+                            if (data == 0)
+                                data = 1;
+                            break;
                         if (GetMonData(pkmn, MON_DATA_MAX_HP, NULL) != GetMonData(pkmn, MON_DATA_HP, NULL))
                         {
                             if (e == 0)
@@ -325,7 +330,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                                 if (gMain.inBattle && sp34 != 4)
                                 {
                                     gBattleMons[sp34].hp = data;
-                                    if (!(r10 & 0x10) && GetBattlerSide(gActiveBattler) == 0)
+                                    if (!(r10 & 0x10) && GetBattlerSide(gActiveBattler) == 0) // won't let the opponent use revives?
                                     {
                                         if (gBattleResults.unk3 < 255)
                                             gBattleResults.unk3++;
@@ -346,6 +351,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         }
                         r10 &= 0xEF;
                         break;
+                    // pp things
                     case 3:
                         if (!(r10 & 2))
                         {
@@ -466,7 +472,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                             retVal = FALSE;
                         }
                         break;
-                    case 5:
+                    case 5: // bad friendship
                         if (GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL) < 100 && retVal == 0 && sp2C == 0)
                         {
                             sp2C = itemEffect[sp24];
@@ -490,7 +496,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         }
                         sp24++;
                         break;
-                    case 6:
+                    case 6: // good friendship
                         if (GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL) >= 100 && GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL) < 200
                          && retVal == 0 && sp2C == 0)
                         {
@@ -515,7 +521,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         }
                         sp24++;
                         break;
-                    case 7:
+                    case 7: // large friendship
                         if (GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL) >= 200 && retVal == 0 && sp2C == 0)
                         {
                             sp2C = itemEffect[sp24];
