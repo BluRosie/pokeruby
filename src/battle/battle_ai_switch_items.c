@@ -865,18 +865,18 @@ u8 GetMostSuitableMonToSwitchInto(void)
 }
 
 // TODO: use PokemonItemEffect struct instead of u8 once it's documented
-static u8 GetAI_ItemType(u8 itemId, const u8 *itemEffect) // NOTE: should take u16 as item Id argument
+static u8 GetAI_ItemType(u16 itemId, const u8 *itemEffect) // NOTE: should take u16 as item Id argument
 {
     if (itemId == ITEM_FULL_RESTORE)
         return AI_ITEM_FULL_RESTORE;
-    if (itemEffect[4] & HEALING_ITEM)
+    if (itemEffect[MISCELLANEOUS] & HEALING_ITEM)
         return AI_ITEM_HEAL_HP;
-    if (itemEffect[3] & 0x3F)
+    if (itemEffect[STATUS_HEALING] & 0x7F)
         return AI_ITEM_CURE_CONDITION;
-    if (itemEffect[0] & 0x3F || itemEffect[1] != 0 || itemEffect[2] != 0)
-        return AI_ITEM_X_STAT;
-    if (itemEffect[3] & PREVENT_STAT_LOSS)
+    if (itemEffect[X_ITEMS] & PREVENT_STAT_LOSS)
         return AI_ITEM_GUARD_SPECS;
+    if (itemEffect[X_ITEMS] != 0)
+        return AI_ITEM_X_STAT;
 
     return AI_ITEM_NOT_RECOGNIZABLE;
 }

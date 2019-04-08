@@ -917,4 +917,6 @@
 
 #define IS_ITEM_MAIL(item) ((item) >= ITEM_HEART_MAIL && (item) <= ITEM_RETRO_MAIL)
 
+#define IS_ITEM_VITAMIN(item) ((item) >= ITEM_HP_UP && (item) <= ITEM_ZINC)
+
 #endif  // GUARD_CONSTANTS_ITEMS_H

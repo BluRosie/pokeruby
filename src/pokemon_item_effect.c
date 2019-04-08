@@ -31,8 +31,8 @@ static const u8 sGetMonDataEVConstants[] =
     MON_DATA_ATK_EV,
     MON_DATA_DEF_EV,
     MON_DATA_SPEED_EV,
-    MON_DATA_SPDEF_EV,
-    MON_DATA_SPATK_EV
+    MON_DATA_SPATK_EV,
+    MON_DATA_SPDEF_EV
 };
 
 extern u8 gPPUpReadMasks[];
@@ -117,20 +117,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
     {
         switch (cmdIndex)
         {
-        // status healing effects
-        case 0:
-            if ((itemEffect[cmdIndex] & CURE_INFATUATION)
-             && gMain.inBattle && sp34 != 4 && (gBattleMons[sp34].status2 & STATUS2_INFATUATION))
-            {
-                gBattleMons[sp34].status2 &= ~STATUS2_INFATUATION;
-                retVal = FALSE;
-            }
-            if ((itemEffect[cmdIndex] & RAISE_CRITICAL) // freeing up some bits okay
-             && !(gBattleMons[gActiveBattler].status2 & STATUS2_FOCUS_ENERGY))
-            {
-                gBattleMons[gActiveBattler].status2 |= STATUS2_FOCUS_ENERGY;
-                retVal = FALSE;
-            }
+        case 0: // currently just sacred ash right here, no idea where that is handled currently though
+            break;
+        case X_ITEMS:
             if ((itemEffect[cmdIndex] & RAISE_ATTACK)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] < 12)
             {
@@ -139,9 +128,6 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] = 12;
                 retVal = FALSE;
             }
-            break;
-        // in-battle stat boosting effects?
-        case 1:
             if ((itemEffect[cmdIndex] & RAISE_DEFENSE)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] < 12)
             {
@@ -158,17 +144,6 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] = 12;
                 retVal = FALSE;
             }
-            break;
-        // more stat boosting effects?
-        case 2:
-            if ((itemEffect[cmdIndex] & RAISE_ACCURACY)
-             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] < 12)
-            {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] += itemEffect[6];
-                if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] > 12)
-                    gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] = 12;
-                retVal = FALSE;
-            }
             if ((itemEffect[cmdIndex] & RAISE_SP_ATK)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] < 12)
             {
@@ -177,20 +152,83 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] = 12;
                 retVal = FALSE;
             }
+            if ((itemEffect[cmdIndex] & RAISE_SP_DEF)
+             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] < 12)
+            {
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] += itemEffect[6];
+                if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] > 12)
+                    gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] = 12;
+                retVal = FALSE;
+            }
+            if ((itemEffect[cmdIndex] & RAISE_ACCURACY)
+             && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] < 12)
+            {
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] += itemEffect[6];
+                if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] > 12)
+                    gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] = 12;
+                retVal = FALSE;
+            }
+            if ((itemEffect[cmdIndex] & RAISE_CRITICAL) // freeing up some bits okay
+             && !(gBattleMons[gActiveBattler].status2 & STATUS2_FOCUS_ENERGY))
+            {
+                gBattleMons[gActiveBattler].status2 |= STATUS2_FOCUS_ENERGY;
+                retVal = FALSE;
+            }
             break;
-        case 3:
             if ((itemEffect[cmdIndex] & PREVENT_STAT_LOSS)
              && gSideTimers[GetBattlerSide(gActiveBattler)].mistTimer == 0)
             {
                 gSideTimers[GetBattlerSide(gActiveBattler)].mistTimer = 5;
                 retVal = FALSE;
             }
+        case VITAMINS:
+            u32 evCount = GetMonEVCount(pkmn);
+            u8 i = 0;
+
+            if (evCount >= 510)
+                return TRUE;
+
+            while (!(itemEffect[VITAMINS] << i & EV_HP)) { // ahaha
+                i++;
+                if (i >= 6) {
+                    return TRUE;
+                }
+            }
+
+            data = GetMonData(pkmn, sGetMonDataEVConstants[i], NULL);
+            if (i < 6)
+            {
+                if ((data + itemEffect[PARAMETER] > 100) && ITEM_IS_VITAMIN(item)) { // only the vitamins are limited to 100
+                    r4 = itemEffect[PARAMETER];
+                    data = 100 - r4;
+                }
+                else
+                    r4 = itemEffect[PARAMETER];
+                if (evCount + r4 > 510)
+                    r4 += 510 - (evCount + r4);
+                data += r4;
+                SetMonData(pkmn, sGetMonDataEVConstants[i], &data);
+                CalculateMonStats(pkmn);
+                retVal = FALSE;
+            }
+            else
+            {
+                retVal = TRUE;
+            }
+            break;
+        case STATUS_HEALING:
             if ((itemEffect[cmdIndex] & RAISE_LEVEL)  // raise level
              && GetMonData(pkmn, MON_DATA_LEVEL, NULL) != 100)
             {
                 data = gExperienceTables[gBaseStats[GetMonData(pkmn, MON_DATA_SPECIES, NULL)].growthRate][GetMonData(pkmn, MON_DATA_LEVEL, NULL) + 1];
                 SetMonData(pkmn, MON_DATA_EXP, &data);
                 CalculateMonStats(pkmn);
+                retVal = FALSE;
+            }
+            if ((itemEffect[cmdIndex] & CURE_INFATUATION)
+             && gMain.inBattle && sp34 != 4 && (gBattleMons[sp34].status2 & STATUS2_INFATUATION))
+            {
+                gBattleMons[sp34].status2 &= ~STATUS2_INFATUATION;
                 retVal = FALSE;
             }
             if ((itemEffect[cmdIndex] & CURE_SLEEP)
@@ -246,24 +284,6 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                     {
                     case 0:
                     case 1:
-                        evCount = GetMonEVCount(pkmn);
-                        if (evCount >= 510)
-                            return TRUE;
-                        data = GetMonData(pkmn, sGetMonDataEVConstants[sp28], NULL);
-                        if (data < 100)
-                        {
-                            if (data + itemEffect[sp24] > 100)
-                                r4 = 100 - (data + itemEffect[sp24]) + itemEffect[sp24];
-                            else
-                                r4 = itemEffect[sp24];
-                            if (evCount + r4 > 510)
-                                r4 += 510 - (evCount + r4);
-                            data += r4;
-                            SetMonData(pkmn, sGetMonDataEVConstants[sp28], &data);
-                            CalculateMonStats(pkmn);
-                            sp24++;
-                            retVal = FALSE;
-                        }
                         break;
                     // if trying to revive
                     case 2:
@@ -437,24 +457,6 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                     case 1:
                     case 2:
                     case 3:
-                        evCount = GetMonEVCount(pkmn);
-                        if (evCount >= 510)
-                            return TRUE;
-                        data = GetMonData(pkmn, sGetMonDataEVConstants[sp28 + 2], NULL);
-                        if (data < 100)
-                        {
-                            if (data + itemEffect[sp24] > 100)
-                                r4 = 100 - (data + itemEffect[sp24]) + itemEffect[sp24];
-                            else
-                                r4 = itemEffect[sp24];
-                            if (evCount + r4 > 510)
-                                r4 += 510 - (evCount + r4);
-                            data += r4;
-                            SetMonData(pkmn, sGetMonDataEVConstants[sp28 + 2], &data);
-                            CalculateMonStats(pkmn);
-                            retVal = FALSE;
-                            sp24++;
-                        }
                         break;
                     case 4:
                         data = (GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL) & gPPUpReadMasks[moveIndex]) >> (moveIndex * 2);

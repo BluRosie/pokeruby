@@ -198,6 +198,7 @@ u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit)
     return offset;
 }
 
+// TODO:  rewrite for new x items
 const u8 gUnknown_082082F8[] = {1, 1, 3, 2, 4, 6};
 
 void sub_803F324(int stat)
@@ -232,6 +233,7 @@ u8 *sub_803F378(u16 itemId)
     gStringBank = gBankInMenu;
 
     // checking all the x items
+    // TODO:  rewrite for x items
     for (i = 0; i < 3; i++)
     {
         if (itemEffect[i] & 0xF)
@@ -250,7 +252,7 @@ u8 *sub_803F378(u16 itemId)
         }
     }
 
-    if (itemEffect[3] & PREVENT_STAT_LOSS)
+    if (itemEffect[X_ITEMS] & PREVENT_STAT_LOSS)
     {
         gBankAttacker = gBankInMenu;
         StrCpyDecodeToDisplayedStringBattle(BattleText_MistShroud);

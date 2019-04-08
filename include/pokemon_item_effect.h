@@ -3,25 +3,40 @@
 
 // item_effects.h
 //[0]
-#define CURE_INFATUATION  0x80
 #define SACRED_ASH        0x40
-#define RAISE_CRITICAL    0x20
-#define RAISE_ATTACK      0x01
+
+#define X_ITEMS           1
 //[1]
-#define RAISE_DEFENSE 0x10
-#define RAISE_SPEED   0x01
+#define RAISE_ATTACK      0x80
+#define RAISE_DEFENSE     0x40
+#define RAISE_SPEED       0x20
+#define RAISE_SP_ATK      0x10
+#define RAISE_SP_DEF      0x08
+#define RAISE_CRITICAL    0x04
+#define RAISE_ACCURACY    0x02
+#define PREVENT_STAT_LOSS 0x01
+
+#define VITAMINS  2
 //[2]
-#define RAISE_ACCURACY 0x10
-#define RAISE_SP_ATK   0x01
+#define EV_HP      0x20
+#define EV_ATTACK  0x10
+#define EV_DEFENSE 0x08
+#define EV_SPEED   0x04
+#define EV_SP_ATK  0x02
+#define EV_SP_DEF  0x01
+
+#define STATUS_HEALING   3
 //[3]
-#define PREVENT_STAT_LOSS 0x80
-#define RAISE_LEVEL       0x40
+#define RAISE_LEVEL       0x80
+#define CURE_INFATUATION  0x40
 #define CURE_SLEEP        0x20
 #define CURE_POISON       0x10
 #define CURE_BURN         0x08
 #define CURE_ICE          0x04
 #define CURE_PARALYSIS    0x02
 #define CURE_CONFUSION    0x01
+
+#define MISCELLANEOUS            4
 //[4]
 #define EVO_STONE                0x80
 #define REVIVES                  0x40
@@ -29,8 +44,6 @@
 #define LIMITED_PP_RESTORE_ITEM  0x10
 #define PP_ITEM                  0x08
 #define HEALING_ITEM             0x04
-#define EV_ATTACK                0x02
-#define EV_HP                    0x01
 
 #define CAN_REVIVE_MON           (REVIVES | HEALING_ITEM)
 #define PP_LIMITED_ITEM          (LIMITED_PP_RESTORE_ITEM | PP_ITEM)
@@ -40,10 +53,8 @@
 #define MOD_OKAY_FRIENDSHIP 0x40
 #define MOD_BAD_FRIENDSHIP  0x20
 #define PP_MAX              0x10
-#define EV_SP_ATK           0x08
-#define EV_SP_DEF           0x04
-#define EV_SPEED            0x02
-#define EV_DEFENSE          0x01
+
+#define PARAMETER 6
 //[6]
 // general quantity risen:  ff is max hp, fe is half, 7f is max pp
 #define HEAL_FULL_HP 0xFF
