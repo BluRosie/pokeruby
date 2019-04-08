@@ -17,6 +17,7 @@
 #include "main.h"
 #include "move_tutor_menu.h"
 #include "pokemon.h"
+#include "pokemon_item_effect.h"
 #include "pokedex.h"
 #include "random.h"
 #include "overworld.h"

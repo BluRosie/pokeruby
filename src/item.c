@@ -2,6 +2,7 @@
 #include "constants/hold_effects.h"
 #include "item.h"
 #include "constants/items.h"
+#include "pokemon_item_effect.h"
 #include "item_menu.h"
 #include "item_use.h"
 #include "berry.h"

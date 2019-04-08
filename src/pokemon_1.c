@@ -6,6 +6,7 @@
 #include "constants/species.h"
 #include "main.h"
 #include "pokemon.h"
+#include "pokemon_item_effect.h"
 #include "random.h"
 #include "overworld.h"
 #include "sprite.h"

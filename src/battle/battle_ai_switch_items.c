@@ -6,6 +6,7 @@
 #include "ewram.h"
 #include "item.h"
 #include "pokemon.h"
+#include "pokemon_item_effect.h"
 #include "random.h"
 #include "rom_8077ABC.h"
 #include "rom3.h"
