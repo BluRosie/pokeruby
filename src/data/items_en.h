@@ -644,7 +644,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_SuperPotion,
+        .effect = gItemEffect_Restore50HP,
     },
     {
         .name = _("Full Heal"),
@@ -712,7 +712,7 @@ const struct Item gItems[] =
         .battleUsage = 1,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .secondaryId = 0,
-        .effect = gItemEffect_FreshWater,
+        .effect = gItemEffect_Restore50HP,
     },
     {
         .name = _("Soda Pop"),
