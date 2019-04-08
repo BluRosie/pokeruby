@@ -24,229 +24,6 @@ amount to raise friendship by when okay, is signed
 amount to raise friendship by when great, is signed
 */
 
-const u8 gItemEffect_Restore10PP[]  = {0, 
-                                       0, 
-                                       0, 
-                                       0, 
-                                       LIMITED_PP_RESTORE_ITEM, 
-                                       0, 
-                                       10};
-
-const u8 gItemEffect_MaxEther[]     = {0, 
-                                       0, 
-                                       0, 
-                                       0, 
-                                       LIMITED_PP_RESTORE_ITEM, 
-                                       0, 
-                                       HEAL_FULL_PP};
-
-const u8 gItemEffect_Elixir[]       = {0, 
-                                       0, 
-                                       0, 
-                                       0, 
-                                       PP_ITEM, 
-                                       0, 
-                                       10};
-
-const u8 gItemEffect_MaxElixir[]    = {0, 
-                                       0, 
-                                       0, 
-                                       0, 
-                                       PP_ITEM, 
-                                       0, 
-                                       HEAL_FULL_PP};
-
-const u8 gItemEffect_SacredAsh[]    = {SACRED_ASH, 
-                                       0, 
-                                       0, 
-                                       0, 
-                                       CAN_REVIVE_MON, 
-                                       0, 
-                                       HEAL_FULL_HP};
-
-const u8 gItemEffect_HPUp[]         = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x01, 
-                                       0xe0, 
-                                       0x0a, 
-                                       0x05, 
-                                       0x03, 
-                                       0x02};
-
-const u8 gItemEffect_Protein[]      = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x02, 
-                                       0xe0, 
-                                       0x0a, 
-                                       0x05, 
-                                       0x03, 
-                                       0x02};
-
-const u8 gItemEffect_Iron[]         = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0xe1, 
-                                       0x0a, 
-                                       0x05, 
-                                       0x03, 
-                                       0x02};
-
-const u8 gItemEffect_Carbos[]       = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0xe2, 
-                                       0x0a, 
-                                       0x05, 
-                                       0x03, 
-                                       0x02};
-
-const u8 gItemEffect_Calcium[]      = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0xe8, 
-                                       0x0a, 
-                                       0x05, 
-                                       0x03, 
-                                       0x02};
-
-const u8 gItemEffect_RareCandy[]    = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x40, 
-                                       0x44, 
-                                       0xe0, 
-                                       0xfd, 
-                                       0x05, 
-                                       0x03, 
-                                       0x02};
-
-const u8 gItemEffect_PPUp[]         = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x20, 
-                                       0xe0, 
-                                       0x05, 
-                                       0x03, 
-                                       0x02};
-
-const u8 gItemEffect_Zinc[]         = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0xe4, 
-                                       0x0a, 
-                                       0x05, 
-                                       0x03, 
-                                       0x02};
-
-const u8 gItemEffect_PPMax[]        = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0xf0, 
-                                       0x05, 
-                                       0x03, 
-                                       0x02};
-
-const u8 gItemEffect_GuardSpec[]    = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x80, 
-                                       0x00, 
-                                       0x60, 
-                                       0x01, 
-                                       0x01};
-
-const u8 gItemEffect_DireHit[]      = {0x20, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x60, 
-                                       0x01, 
-                                       0x01};
-
-const u8 gItemEffect_XAttack[]      = {0x01, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x60, 
-                                       0x01, 
-                                       0x01};
-
-const u8 gItemEffect_XDefend[]      = {0x00, 
-                                       0x10, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x60, 
-                                       0x01, 
-                                       0x01};
-
-const u8 gItemEffect_XSpeed[]       = {0x00, 
-                                       0x01, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x60, 
-                                       0x01, 
-                                       0x01};
-
-const u8 gItemEffect_XAccuracy[]    = {0x00, 
-                                       0x00, 
-                                       0x10, 
-                                       0x00, 
-                                       0x00, 
-                                       0x60, 
-                                       0x01, 
-                                       0x01};
-
-const u8 gItemEffect_XSpecial[]     = {0x00, 
-                                       0x00, 
-                                       0x01, 
-                                       0x00, 
-                                       0x00, 
-                                       0x60, 
-                                       0x01, 
-                                       0x01};
-
-const u8 gItemEffect_Stone[]        = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x80, 
-                                       0x00};
-
-const u8 gItemEffect_OranBerry[]    = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x04, 
-                                       0x00, 
-                                       10};
-
-const u8 gItemEffect_SitrusBerry[]  = {0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x00, 
-                                       0x04, 
-                                       0x00, 
-                                       0xFC};
-
 const u8 gItemEffect_Potion[]       = {0, 
                                        0, 
                                        0, 
@@ -425,5 +202,228 @@ const u8 gItemEffect_RevivalHerb[]  = {0,
                                        -15, 
                                        -15, 
                                        -20};
+
+const u8 gItemEffect_Restore10PP[]  = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       LIMITED_PP_RESTORE_ITEM, 
+                                       0, 
+                                       10};
+
+const u8 gItemEffect_MaxEther[]     = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       LIMITED_PP_RESTORE_ITEM, 
+                                       0, 
+                                       HEAL_FULL_PP};
+
+const u8 gItemEffect_Elixir[]       = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       PP_ITEM, 
+                                       0, 
+                                       10};
+
+const u8 gItemEffect_MaxElixir[]    = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       PP_ITEM, 
+                                       0, 
+                                       HEAL_FULL_PP};
+
+const u8 gItemEffect_SacredAsh[]    = {SACRED_ASH, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       CAN_REVIVE_MON, 
+                                       0, 
+                                       HEAL_FULL_HP};
+
+const u8 gItemEffect_HPUp[]         = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       EV_HP, 
+                                       MOD_GOOD_FRIENDSHIP | MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
+                                       10, 
+                                       5, 
+                                       3, 
+                                       2};
+
+const u8 gItemEffect_Protein[]      = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       EV_ATTACK, 
+                                       MOD_GOOD_FRIENDSHIP | MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
+                                       10, 
+                                       5, 
+                                       3, 
+                                       2};
+
+const u8 gItemEffect_Iron[]         = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       MOD_GOOD_FRIENDSHIP | MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP | EV_DEFENSE, 
+                                       10, 
+                                       5, 
+                                       3, 
+                                       2};
+
+const u8 gItemEffect_Carbos[]       = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       MOD_GOOD_FRIENDSHIP | MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP | EV_SPEED, 
+                                       10, 
+                                       5, 
+                                       3, 
+                                       2};
+
+const u8 gItemEffect_Calcium[]      = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       MOD_GOOD_FRIENDSHIP | MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP | EV_SP_ATK, 
+                                       10, 
+                                       5, 
+                                       3, 
+                                       2};
+
+const u8 gItemEffect_Zinc[]         = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       MOD_GOOD_FRIENDSHIP | MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP | EV_SP_DEF, 
+                                       10, 
+                                       5, 
+                                       3, 
+                                       2};
+
+const u8 gItemEffect_RareCandy[]    = {0, 
+                                       0, 
+                                       0, 
+                                       RAISE_LEVEL, 
+                                       CAN_REVIVE_MON,
+                                       MOD_GOOD_FRIENDSHIP | MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
+                                       KEEP_HP_CONSTANT, 
+                                       5, 
+                                       3, 
+                                       2};
+
+const u8 gItemEffect_PPUp[]         = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       PP_UP, 
+                                       MOD_GOOD_FRIENDSHIP | MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
+                                       5, 
+                                       3, 
+                                       2};
+
+const u8 gItemEffect_PPMax[]        = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       MOD_GOOD_FRIENDSHIP | MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP | PP_MAX, 
+                                       5, 
+                                       3, 
+                                       2};
+
+const u8 gItemEffect_GuardSpec[]    = {0, 
+                                       0, 
+                                       0, 
+                                       PREVENT_STAT_LOSS, 
+                                       0, 
+                                       MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
+                                       1, 
+                                       1};
+
+const u8 gItemEffect_DireHit[]      = {RAISE_CRITICAL, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
+                                       1, 
+                                       1};
+
+const u8 gItemEffect_XAttack[]      = {RAISE_ATTACK, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
+                                       1, 
+                                       1};
+
+const u8 gItemEffect_XDefend[]      = {0, 
+                                       RAISE_DEFENSE, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
+                                       1, 
+                                       1};
+
+const u8 gItemEffect_XSpeed[]       = {0, 
+                                       RAISE_SPEED, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
+                                       1, 
+                                       1};
+
+const u8 gItemEffect_XAccuracy[]    = {0, 
+                                       0, 
+                                       RAISE_ACCURACY, 
+                                       0, 
+                                       0, 
+                                       MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
+                                       1, 
+                                       1};
+
+const u8 gItemEffect_XSpecial[]     = {0, 
+                                       0, 
+                                       RAISE_SP_ATK, 
+                                       0, 
+                                       0, 
+                                       MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
+                                       1, 
+                                       1};
+
+const u8 gItemEffect_Stone[]        = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       EVO_STONE, 
+                                       0};
+
+const u8 gItemEffect_OranBerry[]    = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       HEALING_ITEM, 
+                                       0, 
+                                       10};
+
+const u8 gItemEffect_SitrusBerry[]  = {0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       HEALING_ITEM, 
+                                       0, 
+                                       HEAL_QUARTER_HP};
 
 #endif //GUARD_ITEM_EFFECTS_H

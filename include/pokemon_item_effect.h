@@ -39,7 +39,7 @@
 #define MOD_GOOD_FRIENDSHIP 0x80
 #define MOD_OKAY_FRIENDSHIP 0x40
 #define MOD_BAD_FRIENDSHIP  0x20
-#define PP_MAX              0X10
+#define PP_MAX              0x10
 #define EV_SP_ATK           0x08
 #define EV_SP_DEF           0x04
 #define EV_SPEED            0x02
