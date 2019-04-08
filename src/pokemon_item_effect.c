@@ -267,7 +267,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         break;
                     // if trying to revive
                     case 2:
-                        if (r10 & 0x10)
+                        if (r10 & (REVIVES >> sp28))
                         {
                             if (GetMonData(pkmn, MON_DATA_HP, NULL) != 0)
                             {
@@ -313,12 +313,12 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         case 0xFD: // keep distance from max constant
                             data = eStatHp;
                             break;
-                        }
                         case 0xFC: // quarter heal
                             data = GetMonData(pkmn, MON_DATA_MAX_HP, NULL) / 4;
                             if (data == 0)
                                 data = 1;
                             break;
+                        }
                         if (GetMonData(pkmn, MON_DATA_MAX_HP, NULL) != GetMonData(pkmn, MON_DATA_HP, NULL))
                         {
                             if (e == 0)
