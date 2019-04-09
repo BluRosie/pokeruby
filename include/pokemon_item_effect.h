@@ -113,6 +113,7 @@ extern const u8 gItemEffect_XDefend[];
 extern const u8 gItemEffect_XSpeed[];
 extern const u8 gItemEffect_XAccuracy[];
 extern const u8 gItemEffect_XSpecial[];
+extern const u8 gItemEffect_XSpDef[];
 extern const u8 gItemEffect_Stone[];
 extern const u8 gItemEffect_OranBerry[];
 extern const u8 gItemEffect_SitrusBerry[];

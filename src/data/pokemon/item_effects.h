@@ -403,7 +403,7 @@ const u8 gItemEffect_XSpecial[]     = {0,
                                        1, 
                                        1};
 
-const u8 gItemEffect_XSpecialDefense[]     = {0, 
+const u8 gItemEffect_XSpDef[]       = {0, 
                                        RAISE_SP_DEF, 
                                        0, 
                                        0, 

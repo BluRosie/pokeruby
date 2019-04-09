@@ -125,62 +125,62 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             if ((itemEffect[cmdIndex] & RAISE_ATTACK)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] += itemEffect[6];
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] += itemEffect[7];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] = 12;
-                retVal = FALSE;
+                return FALSE;
             }
             if ((itemEffect[cmdIndex] & RAISE_DEFENSE)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] += itemEffect[6];
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] += itemEffect[7];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] = 12;
-                retVal = FALSE;
+                return FALSE;
             }
             if ((itemEffect[cmdIndex] & RAISE_SPEED)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] += itemEffect[6];
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] += itemEffect[7];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] = 12;
-                retVal = FALSE;
+                return FALSE;
             }
             if ((itemEffect[cmdIndex] & RAISE_SP_ATK)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] += itemEffect[6];
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] += itemEffect[7];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] = 12;
-                retVal = FALSE;
+                return FALSE;
             }
             if ((itemEffect[cmdIndex] & RAISE_SP_DEF)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] += itemEffect[6];
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] += itemEffect[7];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] = 12;
-                retVal = FALSE;
+                return FALSE;
             }
             if ((itemEffect[cmdIndex] & RAISE_ACCURACY)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] += itemEffect[6];
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] += itemEffect[7];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] = 12;
-                retVal = FALSE;
+                return FALSE;
             }
             if ((itemEffect[cmdIndex] & RAISE_CRITICAL)
              && !(gBattleMons[gActiveBattler].status2 & STATUS2_FOCUS_ENERGY))
             {
                 gBattleMons[gActiveBattler].status2 |= STATUS2_FOCUS_ENERGY;
-                retVal = FALSE;
+                return FALSE;
             }
             if ((itemEffect[cmdIndex] & PREVENT_STAT_LOSS)
              && gSideTimers[GetBattlerSide(gActiveBattler)].mistTimer == 0)
             {
                 gSideTimers[GetBattlerSide(gActiveBattler)].mistTimer = 5;
-                retVal = FALSE;
+                return FALSE;
             }
             break;
         case VITAMINS:

@@ -1346,7 +1346,7 @@ const struct Item gItems[] =
     {
         .name = _("X Sp. Def"),
         .itemId = ITEM_X_SP_DEF,
-        .price = 0,
+        .price = 350,
         .holdEffect = HOLD_EFFECT_NONE,
         .holdEffectParam = 0,
         .description = gItemDescription_XSpDef,
@@ -1355,10 +1355,10 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .battleUsage = 0,
-        .battleUseFunc = NULL,
+        .battleUsage = 2,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
         .secondaryId = 0,
-        .effect = NULL,
+        .effect = gItemEffect_XSpDef,
     },
     {
         .name = _("Poké Doll"),

@@ -251,10 +251,10 @@ u8 *sub_803F378(u16 itemId)
     }
 
     if (itemEffect[X_ITEMS] & RAISE_CRITICAL) // dire hit
-        {
-            gBankAttacker = gBankInMenu;
-            StrCpyDecodeToDisplayedStringBattle(BattleText_GetPumped);
-        }
+    {
+        gBankAttacker = gBankInMenu;
+        StrCpyDecodeToDisplayedStringBattle(BattleText_GetPumped);
+    }
 
     if (itemEffect[X_ITEMS] & PREVENT_STAT_LOSS)
     {
