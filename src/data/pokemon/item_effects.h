@@ -309,6 +309,54 @@ const u8 gItemEffect_Zinc[]         = {0,
                                        3, 
                                        2};
 
+const u8 gItemEffect_HealthWing[]   = {0, 
+                                       0, 
+                                       EV_HP, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       1};
+
+const u8 gItemEffect_MuscleWing[]   = {0, 
+                                       0, 
+                                       EV_ATTACK, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       1};
+
+const u8 gItemEffect_ResistWing[]   = {0, 
+                                       0, 
+                                       EV_DEFENSE, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       1};
+
+const u8 gItemEffect_SwiftWing[]    = {0, 
+                                       0, 
+                                       EV_SPEED, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       1};
+
+const u8 gItemEffect_GeniusWing[]   = {0, 
+                                       0, 
+                                       EV_SP_ATK, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       1};
+
+const u8 gItemEffect_CleverWing[]   = {0, 
+                                       0, 
+                                       EV_SP_DEF, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       1};
+
 const u8 gItemEffect_RareCandy[]    = {0, 
                                        0, 
                                        0, 
@@ -347,6 +395,7 @@ const u8 gItemEffect_GuardSpec[]    = {0,
                                        0, 
                                        MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
                                        1, 
+                                       1,
                                        1};
 
 const u8 gItemEffect_DireHit[]      = {0, 
@@ -365,6 +414,7 @@ const u8 gItemEffect_XAttack[]      = {0,
                                        0, 
                                        MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
                                        1, 
+                                       1,
                                        1};
 
 const u8 gItemEffect_XDefend[]      = {0, 
@@ -374,6 +424,7 @@ const u8 gItemEffect_XDefend[]      = {0,
                                        0, 
                                        MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
                                        1, 
+                                       1,
                                        1};
 
 const u8 gItemEffect_XSpeed[]       = {0, 
@@ -383,6 +434,7 @@ const u8 gItemEffect_XSpeed[]       = {0,
                                        0, 
                                        MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
                                        1, 
+                                       1,
                                        1};
 
 const u8 gItemEffect_XAccuracy[]    = {0, 
@@ -392,6 +444,7 @@ const u8 gItemEffect_XAccuracy[]    = {0,
                                        0, 
                                        MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
                                        1, 
+                                       1,
                                        1};
 
 const u8 gItemEffect_XSpecial[]     = {0, 
@@ -401,6 +454,7 @@ const u8 gItemEffect_XSpecial[]     = {0,
                                        0, 
                                        MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
                                        1, 
+                                       1,
                                        1};
 
 const u8 gItemEffect_XSpDef[]       = {0, 
@@ -410,6 +464,7 @@ const u8 gItemEffect_XSpDef[]       = {0,
                                        0, 
                                        MOD_OKAY_FRIENDSHIP | MOD_BAD_FRIENDSHIP, 
                                        1, 
+                                       1,
                                        1};
 
 const u8 gItemEffect_Stone[]        = {0, 

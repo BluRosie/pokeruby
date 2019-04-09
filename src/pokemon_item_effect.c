@@ -125,7 +125,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             if ((itemEffect[cmdIndex] & RAISE_ATTACK)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] += itemEffect[7];
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] += itemEffect[8];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_ATK] = 12;
                 return FALSE;
@@ -133,7 +133,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             if ((itemEffect[cmdIndex] & RAISE_DEFENSE)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] += itemEffect[7];
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] += itemEffect[8];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_DEF] = 12;
                 return FALSE;
@@ -141,7 +141,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             if ((itemEffect[cmdIndex] & RAISE_SPEED)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] += itemEffect[7];
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] += itemEffect[8];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPEED] = 12;
                 return FALSE;
@@ -149,7 +149,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             if ((itemEffect[cmdIndex] & RAISE_SP_ATK)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] += itemEffect[7];
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] += itemEffect[8];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPATK] = 12;
                 return FALSE;
@@ -157,7 +157,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             if ((itemEffect[cmdIndex] & RAISE_SP_DEF)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] += itemEffect[7];
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] += itemEffect[8];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_SPDEF] = 12;
                 return FALSE;
@@ -165,7 +165,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             if ((itemEffect[cmdIndex] & RAISE_ACCURACY)
              && gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] < 12)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] += itemEffect[7];
+                gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] += itemEffect[8];
                 if (gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] > 12)
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] = 12;
                 return FALSE;
