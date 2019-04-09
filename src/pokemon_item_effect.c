@@ -119,7 +119,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
     {
         switch (cmdIndex)
         {
-        case 0: // currently just sacred ash right here, no idea where that is handled currently though
+        case 0: // currently just sacred ash right here, handled in GetItemEffectType in party_menu.c
             break;
         case X_ITEMS:
             if ((itemEffect[cmdIndex] & RAISE_ATTACK)
@@ -170,19 +170,19 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                     gBattleMons[gActiveBattler].statStages[STAT_STAGE_ACC] = 12;
                 retVal = FALSE;
             }
-            if ((itemEffect[cmdIndex] & RAISE_CRITICAL) // freeing up some bits okay
+            if ((itemEffect[cmdIndex] & RAISE_CRITICAL)
              && !(gBattleMons[gActiveBattler].status2 & STATUS2_FOCUS_ENERGY))
             {
                 gBattleMons[gActiveBattler].status2 |= STATUS2_FOCUS_ENERGY;
                 retVal = FALSE;
             }
-            break;
             if ((itemEffect[cmdIndex] & PREVENT_STAT_LOSS)
              && gSideTimers[GetBattlerSide(gActiveBattler)].mistTimer == 0)
             {
                 gSideTimers[GetBattlerSide(gActiveBattler)].mistTimer = 5;
                 retVal = FALSE;
             }
+            break;
         case VITAMINS:
             if (evCount >= 510)
                 return TRUE;
@@ -190,7 +190,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             while (!(itemEffect[VITAMINS] << i & EV_HP)) { // runs through the items 
                 i++;
                 if (i >= 6) {
-                    return TRUE;
+                    break;
                 }
             }
 
@@ -215,7 +215,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                 retVal = TRUE;
             }
             break;
-        case STATUS_HEALING:
+        case STATUS_HEALING: // these work too
             if ((itemEffect[cmdIndex] & RAISE_LEVEL)  // raise level
              && GetMonData(pkmn, MON_DATA_LEVEL, NULL) != 100)
             {
@@ -252,10 +252,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                 retVal = FALSE;
             }
             break;
-        // EV, HP, and PP raising effects
         case 4:
             r10 = itemEffect[cmdIndex];
-            if (r10 & PP_UP)
+            if (itemEffect[cmdIndex] & PP_UP)
             {
                 r10 &= ~PP_UP;
                 data = (GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL) & gPPUpReadMasks[moveIndex]) >> (moveIndex * 2);
@@ -276,7 +275,6 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             {
                 if (r10 & 1)
                 {
-                    //u16 evCount;
                     s32 r5;
      
                     switch (sp28)
@@ -372,7 +370,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         break;
                     // pp things
                     case 3:
-                        if (!(r10 & 2))
+                        if (!(r10 & (LIMITED_PP_RESTORE_ITEM >> sp28))) // if healing all moves' pp
                         {
                             for (r5 = 0; r5 < 4; r5++)
                             {
@@ -399,7 +397,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                             }
                             sp24++;
                         }
-                        else
+                        else // if not healing all the moves
                         {
                             u16 r4;
 
@@ -448,8 +446,6 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             {
                 if (r10 & 1)
                 {
-                    //u16 evCount;
-
                     switch (sp28)
                     {
                     case 0:
@@ -522,7 +518,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         }
                         sp24++;
                         break;
-                    case 7: // large friendship
+                    case 7: // great friendship
                         if (GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL) >= 200 && retVal == 0 && sp2C == 0)
                         {
                             sp2C = itemEffect[sp24];

@@ -4984,11 +4984,7 @@ u8 GetItemEffectType(u16 item)
         itemEffect = ItemId_GetEffect(item);
     }
 
-    if ((itemEffect[0] & 0x3F) || itemEffect[1] || itemEffect[2]) // if is x stat item
-    {
-        return 0;
-    }
-    if (itemEffect[3] & PREVENT_STAT_LOSS) // gotta get guard specs in there too
+    if (itemEffect[X_ITEMS] != 0) // if is x stat item
     {
         return 0;
     }
@@ -4996,37 +4992,37 @@ u8 GetItemEffectType(u16 item)
     {
         return 10;
     }
-    else if (itemEffect[3] & RAISE_LEVEL)
+    else if (itemEffect[STATUS_HEALING] & RAISE_LEVEL)
     {
         return 1;
     }
-    else if ((itemEffect[3] & 0x3F) || (itemEffect[0] >> 7)) // if it cures something
+    else if (itemEffect[STATUS_HEALING] != 0) // if it cures something
     {
-        if ((itemEffect[3] & 0x3F) == CURE_SLEEP)
+        if (itemEffect[STATUS_HEALING] & CURE_SLEEP)
         {
             return 4;
         }
-        else if ((itemEffect[3] & 0x3F) == CURE_POISON)
+        else if (itemEffect[STATUS_HEALING] & CURE_POISON)
         {
             return 3;
         }
-        else if ((itemEffect[3] & 0x3F) == CURE_BURN)
+        else if (itemEffect[STATUS_HEALING] & CURE_BURN)
         {
             return 5;
         }
-        else if ((itemEffect[3] & 0x3F) == CURE_ICE)
+        else if (itemEffect[STATUS_HEALING] & CURE_ICE)
         {
             return 6;
         }
-        else if ((itemEffect[3] & 0x3F) == CURE_PARALYSIS)
+        else if (itemEffect[STATUS_HEALING] & CURE_PARALYSIS)
         {
             return 7;
         }
-        else if ((itemEffect[3] & 0x3F) == CURE_CONFUSION)
+        else if (itemEffect[STATUS_HEALING] & CURE_CONFUSION)
         {
             return 8;
         }
-        else if (((itemEffect[0] >> 7) != 0) && (itemEffect[3] & 0x3F) == 0) // CURE_ATTRACT
+        else if (itemEffect[3] & CURE_INFATUATION)
         {
             return 9;
         }
@@ -5039,27 +5035,27 @@ u8 GetItemEffectType(u16 item)
     {
         return 2;
     }
-    else if (itemEffect[4] & EV_ATTACK) // if is protein
+    else if (itemEffect[VITAMINS] & EV_ATTACK) // if is protein
     {
         return 12;
     }
-    else if (itemEffect[4] & EV_HP) // if is hp up
+    else if (itemEffect[VITAMINS] & EV_HP) // if is hp up
     {
         return 13;
     }
-    else if (itemEffect[5] & EV_SP_ATK) // if is calcium
+    else if (itemEffect[VITAMINS] & EV_SP_ATK) // if is calcium
     {
         return 14;
     }
-    else if (itemEffect[5] & EV_SP_DEF) // if is zinc
+    else if (itemEffect[VITAMINS] & EV_SP_DEF) // if is zinc
     {
         return 15;
     }
-    else if (itemEffect[5] & EV_SPEED) // if is carbos
+    else if (itemEffect[VITAMINS] & EV_SPEED) // if is carbos
     {
         return 16;
     }
-    else if (itemEffect[5] & EV_DEFENSE) // if is iron
+    else if (itemEffect[VITAMINS] & EV_DEFENSE) // if is iron
     {
         return 17;
     }

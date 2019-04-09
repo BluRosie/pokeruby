@@ -207,7 +207,7 @@ const u8 gItemEffect_Restore10PP[]  = {0,
                                        0, 
                                        0, 
                                        0, 
-                                       LIMITED_PP_RESTORE_ITEM, 
+                                       PP_LIMITED_ITEM, 
                                        0, 
                                        10};
 
@@ -215,7 +215,7 @@ const u8 gItemEffect_MaxEther[]     = {0,
                                        0, 
                                        0, 
                                        0, 
-                                       LIMITED_PP_RESTORE_ITEM, 
+                                       PP_LIMITED_ITEM, 
                                        0, 
                                        HEAL_FULL_PP};
 
