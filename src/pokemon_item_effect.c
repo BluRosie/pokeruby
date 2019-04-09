@@ -197,7 +197,11 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             data = GetMonData(pkmn, sGetMonDataEVConstants[i], NULL);
             if (i < 6)
             {
-                if ((data + itemEffect[PARAMETER] > 100) && IS_ITEM_VITAMIN(item)) { // only the vitamins are limited to 100
+                if ((data >= 100) && IS_ITEM_VITAMIN(item)) { // only the vitamins are limited to 100
+                    retVal = TRUE;
+                    break;
+                }
+                else if ((data + itemEffect[PARAMETER] >= 100) && IS_ITEM_VITAMIN(item)) {
                     r4 = itemEffect[PARAMETER];
                     data = 100 - r4;
                 }

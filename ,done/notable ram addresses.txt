@@ -1,0 +1,5 @@
+pokemon area:
+03004360
+
+bag area:
+02025C94

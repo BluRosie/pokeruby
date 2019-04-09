@@ -71,7 +71,7 @@
 #define ITEM_CALCIUM                60
 #define ITEM_ZINC                   61
 #define ITEM_PP_UP                  62
-#define ITEM_PP_MAX                 62
+#define ITEM_PP_MAX                 63
 #define ITEM_RARE_CANDY             64
 #define ITEM_HEALTH_WING            65 // new
 #define ITEM_MUSCLE_WING            66 // new
