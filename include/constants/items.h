@@ -123,11 +123,11 @@
 #define ITEM_BOTTLE_CAP             112
 #define ITEM_BIG_MALASADA           113
 #define ITEM_GOLD_BOTTLE_CAP        114
-#define ITEM_ADRENALINE_ORB         115
-#define ITEM_RED_NECTAR             116
-#define ITEM_YELLOW_NECTAR          117
-#define ITEM_PINK_NECTAR            118
-#define ITEM_PURPLE_NECTAR          119
+#define ITEM_ADRENALINE_ORB         115 // needs an effect
+#define ITEM_RED_NECTAR             116 // needs an effect
+#define ITEM_YELLOW_NECTAR          117 // needs an effect
+#define ITEM_PINK_NECTAR            118 // needs an effect
+#define ITEM_PURPLE_NECTAR          119 // needs an effect
 
 // mail
 #define ITEM_HEART_MAIL             120 // end new - literally added to keep the indices the same

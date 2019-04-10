@@ -1591,13 +1591,17 @@ static void ModulateDmgByType(u8 multiplier)
     for (i = 0; i < NUMBER_OF_MON_TYPES - 1; i++)
     {
         if (ItemId_GetHoldEffect(gBattleMons[gBankTarget].item) == HOLD_EFFECT_HALVE_BERRIES
-            && multiplier == 20)
+            && multiplier > 10)
         {
             if (gBattleMons[gBankTarget].item == gBerryToType[i][0]
                 && gBattleMoves[gCurrentMove].type == gBerryToType[i][1])
-                multiplier = 10;
+                multiplier /= 2;
         }
     }
+
+    if (gBattleMons[gBankTarget].item == ITEM_CHILAN_BERRY
+        && gBattleMoves[gCurrentMove].type == TYPE_NORMAL)
+        multiplier /= 2;
 
     gBattleMoveDamage = gBattleMoveDamage * multiplier / 10;
     if (gBattleMoveDamage == 0 && multiplier != 0)

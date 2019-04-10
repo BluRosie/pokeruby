@@ -4533,7 +4533,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     if (gBattleMons[bank1].ability == ABILITY_SLOW_START && gDisableStructs[bank1].slowStartTimer)
         bank1AdjustedSpeed /= 2;
 
-/*    if (gBattleMons[bank1].ability == ABILITY_SURGE_SURFER && gBattleSomething & BATTLE_ELECTRIC_TERRAIN)
+/*    if (gBattleMons[bank1].ability == ABILITY_SURGE_SURFER && gNewBattleEffects.electricTerrain & BATTLE_ELECTRIC_TERRAIN)
         bank1AdjustedSpeed *= 2;*/
 
     if (heldItemEffect == HOLD_EFFECT_MACHO_BRACE)
@@ -4542,8 +4542,13 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     if (gBattleMons[bank1].status1 & STATUS_PARALYSIS)
         bank1AdjustedSpeed /= 4;
 
-    if (heldItemEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (heldItemEffectParam * 0xFFFF) / 100)
+    if ((heldItemEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (heldItemEffectParam * 0xFFFF) / 100)
+        || (heldItemEffect == HOLD_EFFECT_CUSTAP_BERRY && gRandomTurnNumber < (heldItemEffectParam * 0xFFFF) / 100
+           && ((gBattleMons[bank1].hp <= gBattleMons[bank1].maxHP / 2 && gBattleMons[bank1].ability == ABILITY_GLUTTONY)
+               || gBattleMons[bank1].hp <= gBattleMons[bank1].maxHP / 4))) {
         bank1AdjustedSpeed = UINT_MAX;
+        gNewBattleEffects.quickClaw = TRUE;
+    }
 
     // Calculate adjusted speed for second mon.
     bank2AdjustedSpeed = gBattleMons[bank2].speed * bank2SpeedMultiplier
@@ -4569,7 +4574,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     if (gBattleMons[bank2].ability == ABILITY_SLOW_START && gDisableStructs[bank2].slowStartTimer)
         bank2AdjustedSpeed /= 2;
 
-/*    if (gBattleMons[bank2].ability == ABILITY_SURGE_SURFER && gBattleSomething & BATTLE_ELECTRIC_TERRAIN)
+/*    if (gBattleMons[bank2].ability == ABILITY_SURGE_SURFER && gNewBattleEffects.electricTerrain & BATTLE_ELECTRIC_TERRAIN)
         bank2AdjustedSpeed *= 2;*/
 
     if (heldItemEffect == HOLD_EFFECT_MACHO_BRACE)
@@ -4580,6 +4585,14 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
 
     if (heldItemEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (heldItemEffectParam * 0xFFFF) / 100)
         bank2AdjustedSpeed = UINT_MAX;
+        
+    if ((heldItemEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (heldItemEffectParam * 0xFFFF) / 100*/)
+        || (heldItemEffect == HOLD_EFFECT_CUSTAP_BERRY && gRandomTurnNumber < (heldItemEffectParam * 0xFFFF) / 100
+           && ((gBattleMons[bank2].hp <= gBattleMons[bank2].maxHP / 2 && gBattleMons[bank2].ability == ABILITY_GLUTTONY)
+               || gBattleMons[bank2].hp <= gBattleMons[bank2].maxHP / 4))) {
+        bank2AdjustedSpeed = UINT_MAX;
+        gNewBattleEffects.quickClaw = TRUE;
+    }
 
     if (ignoreMovePriorities)
     {

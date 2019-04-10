@@ -352,3 +352,4 @@
 	enum BATTLE_TEXT_NoEffect
 	enum BATTLE_TEXT_NoEffectOn
 	enum BATTLE_TEXT_FogIsDeep
+	enum BATTLE_TEXT_ItemAllowedFirstMove

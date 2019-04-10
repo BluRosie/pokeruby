@@ -14,7 +14,8 @@
 
 // item_effects.h
 //[0]
-#define SACRED_ASH        0x40
+#define SACRED_ASH      0x40
+#define ORICORIO_NECTAR 0x01
 
 #define X_ITEMS           1
 //[1]

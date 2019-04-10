@@ -4438,6 +4438,14 @@ BattleScript_ItemHealHP_Ret:: @ 81D9AA7
 	datahpupdate USER
 	return
 
+BattleScript_BerryAllowedFirstMove::
+	removeitem SCRIPTING_BANK
+BattleScript_ItemAllowedFirstMove::
+	playanimation SCRIPTING_BANK, B_ANIM_ITEM_EFFECT, NULL
+	printstring BATTLE_TEXT_ItemAllowedFirstMove
+	waitmessage 64
+	return
+
 BattleScript_BerryWeakenedDamage::
 	playanimation SCRIPTING_BANK, B_ANIM_ITEM_EFFECT, NULL
 	printstring BATTLE_TEXT_BerryWeakenedDamage

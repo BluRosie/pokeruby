@@ -359,6 +359,7 @@ enum
     BATTLE_TEXT_NoEffect,
     BATTLE_TEXT_NoEffectOn,
     BATTLE_TEXT_FogIsDeep,
+    BATTLE_TEXT_ItemAllowedFirstMove,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -606,6 +607,7 @@ const u8 BattleText_PreventedFlinching[] = _("{STRING 14}'s {STRING 24}\nprevent
 const u8 BattleText_PreventedOther2[] = _("{ATTACKING_MON}'s {STRING 21}\nprevents {DEFENDING_MON}'s\l{STRING 22} from working!");
 const u8 BattleText_CuredOfProblem[] = _("{STRING 16}'s {STRING 23}\ncured its {STRING 0} problem!");
 const u8 BattleText_NoEffectOn[] = _("{STRING 16}'s {STRING 23}\nhad no effect on {STRING 14}!");
+const u8 BattleText_ItemAllowedFirstMove[] = _("{STRING 16}'s {STRING 19}\nallowed it to move first!");
 const u8 BattleText_Sharply[] = _("sharply ");
 const u8 BattleText_Rose[] = _("rose!");
 const u8 BattleText_Harshly[] = _("harshly ");
@@ -1226,6 +1228,7 @@ const u8 *const gBattleStringsTable[] =
     BattleText_NoEffect,
     BattleText_NoEffectOn,
     BattleText_FogIsDeep,
+    BattleText_ItemAllowedFirstMove,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
