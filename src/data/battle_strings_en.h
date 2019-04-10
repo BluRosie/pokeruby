@@ -296,7 +296,6 @@ enum
     BATTLE_TEXT_RestoredPP,
     BATTLE_TEXT_RestoredStatus,
     BATTLE_TEXT_RestoredHPLittle,
-    BATTLE_TEXT_BerryWeakenedDamage,
     BATTLE_TEXT_ChoiceBand,
     BATTLE_TEXT_FocusSash,
     BATTLE_TEXT_Terminator2,
@@ -359,7 +358,9 @@ enum
     BATTLE_TEXT_NoEffect,
     BATTLE_TEXT_NoEffectOn,
     BATTLE_TEXT_FogIsDeep,
+    BATTLE_TEXT_BerryWeakenedDamage,
     BATTLE_TEXT_ItemAllowedFirstMove,
+    BATTLE_TEXT_ItemCausedDamage,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -608,6 +609,7 @@ const u8 BattleText_PreventedOther2[] = _("{ATTACKING_MON}'s {STRING 21}\npreven
 const u8 BattleText_CuredOfProblem[] = _("{STRING 16}'s {STRING 23}\ncured its {STRING 0} problem!");
 const u8 BattleText_NoEffectOn[] = _("{STRING 16}'s {STRING 23}\nhad no effect on {STRING 14}!");
 const u8 BattleText_ItemAllowedFirstMove[] = _("{STRING 16}'s {STRING 19}\nallowed it to move first!");
+const u8 BattleText_ItemCausedDamage[] = _("{DEFENDING_MON}'s {STRING 19}\ndamaged {ATTACKING_MON}!");
 const u8 BattleText_Sharply[] = _("sharply ");
 const u8 BattleText_Rose[] = _("rose!");
 const u8 BattleText_Harshly[] = _("harshly ");
@@ -1165,7 +1167,6 @@ const u8 *const gBattleStringsTable[] =
     BattleText_RestoredPP,
     BattleText_RestoredStatus,
     BattleText_RestoredHPLittle,
-    BattleText_BerryWeakenedDamage,
     BattleText_ChoiceBand,
     BattleText_FocusSash,
     BattleText_Terminator2,
@@ -1228,7 +1229,9 @@ const u8 *const gBattleStringsTable[] =
     BattleText_NoEffect,
     BattleText_NoEffectOn,
     BattleText_FogIsDeep,
+    BattleText_BerryWeakenedDamage,
     BattleText_ItemAllowedFirstMove,
+    BattleText_ItemCausedDamage,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.

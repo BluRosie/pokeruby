@@ -205,6 +205,8 @@ extern u8 BattleScript_ItemHealHP_Ret[];
 extern u8 BattleScript_BerryWeakenedDamage[];
 extern u8 BattleScript_ItemAllowedFirstMove[];
 extern u8 BattleScript_BerryAllowedFirstMove[];
+extern u8 BattleScript_ItemCausedDamage[];
+extern u8 BattleScript_BerryCausedDamage[];
 
 extern u8 gUnknown_081D995F[]; //disobedient while asleep
 extern u8 BattleScript_IgnoresAndUsesRandomMove[]; //disobedient, uses a random move
@@ -3239,19 +3241,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             }
             break;
         case HOLD_EFFECT_CUSTAP_BERRY:
-            if (gBattleMons[gBankAttacker].hp 
-                && gNewBattleEffects.quickClaw
-                && gBankAttacker != gBankTarget)
-            {
-                gLastUsedItem = atkItem;
-                gStringBank = gBankAttacker;
-                gBattleStruct->scriptingActive = gBankAttacker;
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_BerryAllowedFirstMove;
-                effect++;
-                gNewBattleEffects.quickClaw = FALSE;
-            }
-            break;
+            gNewBattleEffects.berryActivates = TRUE;
         case HOLD_EFFECT_QUICK_CLAW:
             if (gBattleMons[gBankAttacker].hp && gNewBattleEffects.quickClaw)
             {
@@ -3259,10 +3249,14 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 gStringBank = gBankAttacker;
                 gBattleStruct->scriptingActive = gBankAttacker;
                 BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_ItemAllowedFirstMove;
+                if (gNewBattleEffects.berryActivates)
+                    gBattlescriptCurrInstr = BattleScript_BerryAllowedFirstMove;
+                else
+                    gBattlescriptCurrInstr = BattleScript_ItemAllowedFirstMove;
                 effect++;
                 gNewBattleEffects.quickClaw = FALSE;
             }
+            gNewBattleEffects.berryActivates = FALSE;
             break;
         }
         switch (defHoldEffect)
@@ -3283,6 +3277,33 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 effect++;
                 gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
             }
+            break;
+        case HOLD_EFFECT_HURT_BERRIES:
+            gNewBattleEffects.berryActivates = TRUE;
+        case HOLD_EFFECT_HURT_IF_DAMAGED:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && gSpecialStatuses[gBankTarget].moveturnLostHP != 0
+                && gSpecialStatuses[gBankTarget].moveturnLostHP != 0xFFFF
+                && gBattleMons[gBankAttacker].hp != 0
+                && gBattleMoveDamage
+                && ((gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL && defItem == ITEM_JABOCA_BERRY)
+                 || (gBattleMoves[gCurrentMove].split == MOVE_SPECIAL && defItem == ITEM_ROWAP_BERRY)
+                 || (gBattleMoves[gCurrentMove].flags & F_MAKES_CONTACT && defItem == ITEM_ROCKY_HELMET)))
+            {
+                gLastUsedItem = defItem;
+                gStringBank = gBankTarget;
+                gBattleStruct->scriptingActive = gBankTarget;
+                gBattleMoveDamage = gBattleMons[gBankAttacker].maxHP / 6;
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                BattleScriptPushCursor();
+                if (gNewBattleEffects.berryActivates)
+                    gBattlescriptCurrInstr = BattleScript_BerryCausedDamage;
+                else
+                    gBattlescriptCurrInstr = BattleScript_ItemCausedDamage;
+                effect++;
+            }
+            gNewBattleEffects.berryActivates = FALSE;
             break;
         }
         break;

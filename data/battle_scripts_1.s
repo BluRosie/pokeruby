@@ -4445,6 +4445,17 @@ BattleScript_ItemAllowedFirstMove::
 	printstring BATTLE_TEXT_ItemAllowedFirstMove
 	waitmessage 64
 	return
+	
+BattleScript_BerryCausedDamage::
+	removeitem SCRIPTING_BANK
+BattleScript_ItemCausedDamage::
+	playanimation TARGET, B_ANIM_ITEM_EFFECT, NULL
+	printstring BATTLE_TEXT_ItemCausedDamage
+	waitmessage 64
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate USER
+	datahpupdate USER
+	return
 
 BattleScript_BerryWeakenedDamage::
 	playanimation SCRIPTING_BANK, B_ANIM_ITEM_EFFECT, NULL

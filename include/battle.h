@@ -568,6 +568,7 @@ struct NewBattleEffects
     u32 fog:1;
     u32 wasLastMoveSuperEffective:1;
     u32 quickClaw:1;
+    u32 berryActivates:1;
     u8 fogCounter; //maybe?
     u16 reserved2;
     u32 reserved3;
