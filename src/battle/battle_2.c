@@ -4543,9 +4543,8 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
         bank1AdjustedSpeed /= 4;
 
     if ((heldItemEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (heldItemEffectParam * 0xFFFF) / 100)
-        || (heldItemEffect == HOLD_EFFECT_CUSTAP_BERRY && gRandomTurnNumber < (heldItemEffectParam * 0xFFFF) / 100
-           && ((gBattleMons[bank1].hp <= gBattleMons[bank1].maxHP / 2 && gBattleMons[bank1].ability == ABILITY_GLUTTONY)
-               || gBattleMons[bank1].hp <= gBattleMons[bank1].maxHP / 4))) {
+        || (heldItemEffect == HOLD_EFFECT_CUSTAP_BERRY && ((gBattleMons[bank1].hp <= gBattleMons[bank1].maxHP / 2 && gBattleMons[bank1].ability == ABILITY_GLUTTONY)
+                                                         || gBattleMons[bank1].hp <= gBattleMons[bank1].maxHP / 4))) {
         bank1AdjustedSpeed = UINT_MAX;
         gNewBattleEffects.quickClaw = TRUE;
     }
@@ -4586,10 +4585,9 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     if (heldItemEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (heldItemEffectParam * 0xFFFF) / 100)
         bank2AdjustedSpeed = UINT_MAX;
         
-    if ((heldItemEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (heldItemEffectParam * 0xFFFF) / 100*/)
-        || (heldItemEffect == HOLD_EFFECT_CUSTAP_BERRY && gRandomTurnNumber < (heldItemEffectParam * 0xFFFF) / 100
-           && ((gBattleMons[bank2].hp <= gBattleMons[bank2].maxHP / 2 && gBattleMons[bank2].ability == ABILITY_GLUTTONY)
-               || gBattleMons[bank2].hp <= gBattleMons[bank2].maxHP / 4))) {
+    if ((heldItemEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (heldItemEffectParam * 0xFFFF) / 100)
+        || (heldItemEffect == HOLD_EFFECT_CUSTAP_BERRY && ((gBattleMons[bank2].hp <= gBattleMons[bank2].maxHP / 2 && gBattleMons[bank2].ability == ABILITY_GLUTTONY)
+                                                         || gBattleMons[bank2].hp <= gBattleMons[bank2].maxHP / 4))) {
         bank2AdjustedSpeed = UINT_MAX;
         gNewBattleEffects.quickClaw = TRUE;
     }
