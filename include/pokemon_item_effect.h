@@ -1,6 +1,17 @@
 #ifndef GUARD_POKEMON_ITEM_EFFECT_H
 #define GUARD_POKEMON_ITEM_EFFECT_H
 
+// item importances
+#define IMPORTANCE_CAN_BE_HELD   0
+#define IMPORTANCE_CANT_BE_HELD  1
+#define IMPORTANCE_NO_PC_DEPOSIT 2
+
+// item types
+#define TYPE_USE_ON_MON      1 // goes to party screen
+#define TYPE_RETURN_TO_FIELD 2 // goes to field
+#define TYPE_POKEBLOCK       3 // goes to block screen
+#define TYPE_UNUSABLE        4 // does nothing
+
 // item_effects.h
 //[0]
 #define SACRED_ASH        0x40

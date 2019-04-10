@@ -23,6 +23,7 @@
 #include "party_menu.h"
 #include "player_pc.h"
 #include "pokemon_menu.h"
+#include "pokemon_item_effect.h"
 #include "overworld.h"
 #include "script.h"
 #include "constants/songs.h"
@@ -2476,7 +2477,7 @@ static void HandlePopupMenuAction_UseOnField(u8 taskId)
     if (ItemId_GetFieldFunc(gSpecialVar_ItemId) != NULL)
     {
         PlaySE(SE_SELECT);
-        if (CalculatePlayerPartyCount() == 0 && ItemId_GetType(gSpecialVar_ItemId) == 1)
+        if (CalculatePlayerPartyCount() == 0 && ItemId_GetType(gSpecialVar_ItemId) == TYPE_USE_ON_MON)
         {
             sub_80A5BF8(taskId);
         }

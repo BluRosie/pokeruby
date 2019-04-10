@@ -219,7 +219,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                 retVal = TRUE;
             }
             break;
-        case STATUS_HEALING: // these work too
+        case STATUS_HEALING:
             if ((itemEffect[cmdIndex] & RAISE_LEVEL)  // raise level
              && GetMonData(pkmn, MON_DATA_LEVEL, NULL) != 100)
             {

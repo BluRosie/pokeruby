@@ -111,26 +111,26 @@
 #define ITEM_THUNDER_STONE          100
 #define ITEM_WATER_STONE            101
 #define ITEM_LEAF_STONE             102
-#define ITEM_SHINY_STONE            103 // new
-#define ITEM_DUSK_STONE             104 // new
-#define ITEM_DAWN_STONE             105 // new
-#define ITEM_OVAL_STONE             106 // new
-#define ITEM_ICE_STONE              107 // new
-#define ITEM_CASTELIACONE           108 // new
-#define ITEM_ABILITY_CAPSULE        109 // new
-#define ITEM_LUMIOSE_GALETTE        110 // new
-#define ITEM_SHALOUR_SABLE          111 // new
-#define ITEM_BOTTLE_CAP             112 // new
-#define ITEM_BIG_MALASADA           113 // new
-#define ITEM_GOLD_BOTTLE_CAP        114 // new
-#define ITEM_ADRENALINE_ORB         115 // new
-#define ITEM_RED_NECTAR             116 // new
-#define ITEM_YELLOW_NECTAR          117 // new
-#define ITEM_PINK_NECTAR            118 // new
-#define ITEM_PURPLE_NECTAR          119 // new
+#define ITEM_SHINY_STONE            103 // new on down
+#define ITEM_DUSK_STONE             104
+#define ITEM_DAWN_STONE             105
+#define ITEM_OVAL_STONE             106
+#define ITEM_ICE_STONE              107
+#define ITEM_CASTELIACONE           108
+#define ITEM_ABILITY_CAPSULE        109
+#define ITEM_LUMIOSE_GALETTE        110
+#define ITEM_SHALOUR_SABLE          111
+#define ITEM_BOTTLE_CAP             112
+#define ITEM_BIG_MALASADA           113
+#define ITEM_GOLD_BOTTLE_CAP        114
+#define ITEM_ADRENALINE_ORB         115
+#define ITEM_RED_NECTAR             116
+#define ITEM_YELLOW_NECTAR          117
+#define ITEM_PINK_NECTAR            118
+#define ITEM_PURPLE_NECTAR          119
 
 // mail
-#define ITEM_HEART_MAIL             120 // new - literally added to keep the indices the same
+#define ITEM_HEART_MAIL             120 // end new - literally added to keep the indices the same
 #define ITEM_ORANGE_MAIL            121
 #define ITEM_HARBOR_MAIL            122
 #define ITEM_GLITTER_MAIL           123

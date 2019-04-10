@@ -10,6 +10,7 @@
 #include "menu.h"
 #include "menu_helpers.h"
 #include "palette.h"
+#include "pokemon_item_effect.h"
 #include "script.h"
 #include "sound.h"
 #include "string_util.h"
@@ -695,7 +696,7 @@ static void ItemStorage_DoItemToss(u8 taskId)
     s16 *data = TASK.data;
     u8 var = PAGE_INDEX + ITEMS_ABOVE_TOP;
 
-    if(ItemId_GetImportance(gSaveBlock1.pcItems[var].itemId) == FALSE)
+    if(ItemId_GetImportance(gSaveBlock1.pcItems[var].itemId) == IMPORTANCE_CAN_BE_HELD)
     {
         CopyItemName(gSaveBlock1.pcItems[var].itemId, gStringVar1);
         ConvertIntToDecimalStringN(gStringVar2, NUM_QUANTITY_ROLLER, 0, 3);
