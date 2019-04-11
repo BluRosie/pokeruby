@@ -2847,7 +2847,8 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 ConfuseBerry(bank, bankQuality, FLAVOR_SOUR, moveTurn);
                 break;
             case HOLD_EFFECT_ATTACK_UP:
-                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_ATK, moveTurn, effect, FALSE);
+                if (gLastUsedItem != ITEM_SNOWBALL)
+                    effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_ATK, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_DEFENSE_UP:
                 if (gLastUsedItem != ITEM_KEE_BERRY)
@@ -3332,14 +3333,27 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             }
             gNewBattleEffects.berryActivates = FALSE;
             break;
+        case HOLD_EFFECT_ATTACK_UP:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && gSpecialStatuses[gBankTarget].moveturnLostHP != 0
+                && gSpecialStatuses[gBankTarget].moveturnLostHP != 0xFFFF
+                && gBattleMons[gBankTarget].hp != 0
+                && gBattleMoveDamage
+                && gBattleMons[bank].statStages[STAT_STAGE_ATK] < 0xC
+                && (gBattleMoves[gCurrentMove].type == TYPE_NORMAL && defItem == ITEM_SNOWBALL))
+            {
+                StatChangeBerry(gBankTarget, defQuality, STAT_STAGE_ATK, FALSE, 0, TRUE);
+                effect++;
+            }
+            break;
         case HOLD_EFFECT_DEFENSE_UP:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && gSpecialStatuses[gBankTarget].moveturnLostHP != 0
                 && gSpecialStatuses[gBankTarget].moveturnLostHP != 0xFFFF
                 && gBattleMons[gBankTarget].hp != 0
                 && gBattleMoveDamage
-                && (gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL && defItem == ITEM_KEE_BERRY)
-                && gBattleMons[bank].statStages[STAT_STAGE_DEF] < 0xC)
+                && gBattleMons[bank].statStages[STAT_STAGE_DEF] < 0xC
+                && (gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL && defItem == ITEM_KEE_BERRY))
             {
                 StatChangeBerry(gBankTarget, defQuality, STAT_STAGE_DEF, FALSE, 0, TRUE);
                 effect++;
@@ -3351,9 +3365,9 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 && gSpecialStatuses[gBankTarget].moveturnLostHP != 0xFFFF
                 && gBattleMons[gBankTarget].hp != 0
                 && gBattleMoveDamage
-                && (gBattleMoves[gCurrentMove].split == MOVE_SPECIAL && defItem == ITEM_MARANGA_BERRY)
-                && (gBattleMoves[gCurrentMove].type == TYPE_WATER && defItem == ITEM_LUMINOUS_MOSS)
-                && gBattleMons[bank].statStages[STAT_STAGE_SPDEF] < 0xC)
+                && gBattleMons[bank].statStages[STAT_STAGE_SPDEF] < 0xC
+                && ((gBattleMoves[gCurrentMove].split == MOVE_SPECIAL && defItem == ITEM_MARANGA_BERRY)
+                 || (gBattleMoves[gCurrentMove].type == TYPE_NORMAL && defItem == ITEM_LUMINOUS_MOSS)))
             {
                 StatChangeBerry(gBankTarget, defQuality, STAT_STAGE_SPDEF, FALSE, 0, TRUE);
                 effect++;
