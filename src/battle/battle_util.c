@@ -2861,7 +2861,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPATK, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_SP_DEFENSE_UP:
-                if (gLastUsedItem != ITEM_MARANGA_BERRY)
+                if (gLastUsedItem != ITEM_MARANGA_BERRY && gLastUsedItem != ITEM_LUMINOUS_MOSS)
                     effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPDEF, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_CRITICAL_UP:
@@ -3039,7 +3039,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             }
         }
         break;
-    case 2:
+    case 2: // activated by abilities
         switch (defHoldEffect)
         {
         case HOLD_EFFECT_SPEED_UP:
@@ -3338,7 +3338,8 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 && gSpecialStatuses[gBankTarget].moveturnLostHP != 0xFFFF
                 && gBattleMons[gBankTarget].hp != 0
                 && gBattleMoveDamage
-                && (gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL && defItem == ITEM_KEE_BERRY))
+                && (gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL && defItem == ITEM_KEE_BERRY)
+                && gBattleMons[bank].statStages[STAT_STAGE_DEF] < 0xC)
             {
                 StatChangeBerry(gBankTarget, defQuality, STAT_STAGE_DEF, FALSE, 0, TRUE);
                 effect++;
@@ -3350,7 +3351,9 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 && gSpecialStatuses[gBankTarget].moveturnLostHP != 0xFFFF
                 && gBattleMons[gBankTarget].hp != 0
                 && gBattleMoveDamage
-                && (gBattleMoves[gCurrentMove].split == MOVE_SPECIAL && defItem == ITEM_MARANGA_BERRY))
+                && (gBattleMoves[gCurrentMove].split == MOVE_SPECIAL && defItem == ITEM_MARANGA_BERRY)
+                && (gBattleMoves[gCurrentMove].type == TYPE_WATER && defItem == ITEM_LUMINOUS_MOSS)
+                && gBattleMons[bank].statStages[STAT_STAGE_SPDEF] < 0xC)
             {
                 StatChangeBerry(gBankTarget, defQuality, STAT_STAGE_SPDEF, FALSE, 0, TRUE);
                 effect++;
