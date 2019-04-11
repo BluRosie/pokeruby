@@ -15,6 +15,7 @@
 // item_effects.h
 //[0]
 #define SACRED_ASH      0x40
+#define ADRENALINE_ORB  0x02
 #define ORICORIO_NECTAR 0x01
 
 #define X_ITEMS           1
@@ -135,6 +136,8 @@ extern const u8 gItemEffect_XSpDef[];
 extern const u8 gItemEffect_Stone[];
 extern const u8 gItemEffect_OranBerry[];
 extern const u8 gItemEffect_SitrusBerry[];
+extern const u8 gItemEffect_AdrenalineOrb[];
+extern const u8 gItemEffect_Nectar[];
 
 bool8 ExecuteTableBasedItemEffect_(struct Pokemon *mon, u16, u8, u8);
 

@@ -207,6 +207,7 @@ extern u8 BattleScript_ItemAllowedFirstMove[];
 extern u8 BattleScript_BerryAllowedFirstMove[];
 extern u8 BattleScript_ItemCausedDamage[];
 extern u8 BattleScript_BerryCausedDamage[];
+extern u8 BattleScript_AbilityItems[];
 
 extern u8 gUnknown_081D995F[]; //disobedient while asleep
 extern u8 BattleScript_IgnoresAndUsesRandomMove[]; //disobedient, uses a random move
@@ -1753,6 +1754,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
         u16 move;
         u8 side;
         u8 target1;
+        u8 itemEffect;
 
         if (special)
             gLastUsedAbility = special;
@@ -1876,6 +1878,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                 {
                     gStatuses3[bank] |= STATUS3_INTIMIDATE_POKES;
                     gSpecialStatuses[bank].intimidatedPoke = 1;
+                    gNewBattleEffects.intimidate = TRUE;
+                    itemEffect++;
                 }
                 break;
             case ABILITY_FORECAST:
@@ -1912,6 +1916,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                 }
                 break;
             }
+            if (itemEffect)
+                ItemBattleEffects(2, 0, FALSE);
             break;
         case ABILITYEFFECT_ENDTURN: // 1
             if (gBattleMons[bank].hp != 0)
@@ -2844,17 +2850,18 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_ATK, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_DEFENSE_UP:
-                if (defItem != ITEM_KEE_BERRY)
+                if (gLastUsedItem != ITEM_KEE_BERRY)
                     effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_DEF, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_SPEED_UP:
-                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPEED, moveTurn, effect, FALSE);
+                if (gLastUsedItem != ITEM_ADRENALINE_ORB)
+                    effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPEED, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_SP_ATTACK_UP:
                 effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPATK, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_SP_DEFENSE_UP:
-                if (defItem != ITEM_MARANGA_BERRY)
+                if (gLastUsedItem != ITEM_MARANGA_BERRY)
                     effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPDEF, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_CRITICAL_UP:
@@ -3033,6 +3040,23 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
         }
         break;
     case 2:
+        switch (defHoldEffect)
+        {
+        case HOLD_EFFECT_SPEED_UP:
+            if (gBattleMons[gBankTarget].hp != 0
+                && (gNewBattleEffects.intimidate && defItem == ITEM_ADRENALINE_ORB)
+                && (gBattleMons[gBankTarget].statStages[STAT_STAGE_SPEED] < 0xC))
+            {
+                gBattleMons[gBankTarget].statStages[STAT_STAGE_SPEED]++;
+                //gBattleStruct->animArg1 = 0x11;
+                gBattleStruct->animArg2 = 0;
+                BattleScriptPushCursorAndCallback(BattleScript_AbilityItems);
+                gBattleStruct->scriptingActive = gBankTarget;
+                effect++;
+            }
+            gNewBattleEffects.intimidate = FALSE;
+            break;
+        }
         break;
     case 3: // end turn (look at everyone's items)
         for (bank = 0; bank < gBattlersCount; bank++)
@@ -3316,7 +3340,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 && gBattleMoveDamage
                 && (gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL && defItem == ITEM_KEE_BERRY))
             {
-                StatChangeBerry(gBankTarget, defQuality, STAT_STAGE_DEF, moveTurn, 0, TRUE);
+                StatChangeBerry(gBankTarget, defQuality, STAT_STAGE_DEF, FALSE, 0, TRUE);
                 effect++;
             }
             break;
@@ -3328,7 +3352,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 && gBattleMoveDamage
                 && (gBattleMoves[gCurrentMove].split == MOVE_SPECIAL && defItem == ITEM_MARANGA_BERRY))
             {
-                StatChangeBerry(gBankTarget, defQuality, STAT_STAGE_SPDEF, moveTurn, 0, TRUE);
+                StatChangeBerry(gBankTarget, defQuality, STAT_STAGE_SPDEF, FALSE, 0, TRUE);
                 effect++;
             }
             break;

@@ -4513,6 +4513,15 @@ BattleScript_1D9B0B: @ 81D9B0B
 	removeitem USER
 	end2
 
+BattleScript_AbilityItems::
+	playanimation USER, B_ANIM_ITEM_EFFECT, NULL
+	setbyte sANIM_ARG1, 0x11
+	playanimation USER, B_ANIM_STATS_CHANGE, sANIM_ARG1
+	printstring BATTLE_TEXT_FirstBattleItem
+	waitmessage 64
+	removeitem USER
+	end3
+
 BattleScript_BerryFocusEnergyEnd2:: @ 81D9B19
 	playanimation USER, B_ANIM_ITEM_EFFECT, NULL
 	printstring BATTLE_TEXT_HustleUse

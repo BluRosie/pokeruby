@@ -354,3 +354,4 @@
 	enum BATTLE_TEXT_BerryWeakenedDamage
 	enum BATTLE_TEXT_ItemAllowedFirstMove
 	enum BATTLE_TEXT_ItemCausedDamage
+	enum BATTLE_TEXT_FirstBattleItem

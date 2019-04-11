@@ -3,7 +3,7 @@
 
 /*
 [0]
-FREE | SACRED_ASH | FREE | FREE    FREE | FREE | FREE | FREE
+FREE | SACRED_ASH | FREE | FREE    FREE | FREE | ADRENALINE_ORB | ORICORIO_NECTAR
 [1]
 RAISE_ATTACK | RAISE_DEFENSE | RAISE_SPEED | RAISE_SP_ATK    RAISE_SP_DEF | RAISE_CRITICAL | RAISE_ACCURACY | PREVENT_STAT_LOSS
 [2]
@@ -489,5 +489,19 @@ const u8 gItemEffect_SitrusBerry[]  = {0,
                                        HEALING_ITEM, 
                                        0, 
                                        HEAL_QUARTER_HP};
+
+const u8 gItemEffect_AdrenalineOrb[]= {ADRENALINE_ORB, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       0};
+
+const u8 gItemEffect_Nectar[]       = {ORICORIO_NECTAR, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       0, 
+                                       0};
 
 #endif //GUARD_ITEM_EFFECTS_H
