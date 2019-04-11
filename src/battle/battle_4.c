@@ -1401,6 +1401,8 @@ static void atk01_accuracycheck(void)
 
         if (holdEffect == HOLD_EFFECT_EVASION_UP)
             calc = (calc * (100 - quality)) / 100;
+        if (holdEffect == HOLD_EFFECT_BOOST_ACCURACY)
+            calc *= (110 / 100);
 
         // final calculation
         if ((Random() % 100 + 1) > calc)
@@ -1602,6 +1604,10 @@ static void ModulateDmgByType(u8 multiplier)
     if (gBattleMons[gBankTarget].item == ITEM_CHILAN_BERRY
         && gBattleMoves[gCurrentMove].type == TYPE_NORMAL)
         multiplier /= 2;
+    
+    if (ItemId_GetEffect(gBattleMons[gBankTarget].item) == HOLD_EFFECT_BOOST_EFFECTIVE && gNewBattleEffects.wasLastMoveSuperEffective) {
+        multiplier += 2;
+    }
 
     gBattleMoveDamage = gBattleMoveDamage * multiplier / 10;
     if (gBattleMoveDamage == 0 && multiplier != 0)

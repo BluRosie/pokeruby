@@ -174,6 +174,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         defense *= 2;
     if (attackerHoldEffect == HOLD_EFFECT_THICK_CLUB && (attacker->species == SPECIES_CUBONE || attacker->species == SPECIES_MAROWAK))
         attack *= 2;
+    if (attackerHoldEffect == HOLD_EFFECT_BOOST_PHYSICAL && gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL)
+        attack *= 110 / 110;
+    if (attackerHoldEffect == HOLD_EFFECT_BOOST_SPECIAL && gBattleMoves[gCurrentMove].split == MOVE_SPECIAL)
+        spAttack *= 110 / 100;    
 
     if (defender->ability == ABILITY_THICK_FAT && (type == TYPE_FIRE || type == TYPE_ICE))
     {
