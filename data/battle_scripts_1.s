@@ -4504,7 +4504,7 @@ BattleScript_BerryConfuseHealEnd2:: @ 81D9AD4
 	end2
 
 BattleScript_BerryStatRaiseEnd2:: @ 81D9AFE
-	playanimation USER, B_ANIM_ITEM_EFFECT, NULL
+	playanimation SCRIPTING_BANK, B_ANIM_ITEM_EFFECT, NULL
 	statbuffchange AFFECTS_USER | 0x1, BattleScript_1D9B0B
 
 BattleScript_1D9B0B: @ 81D9B0B

@@ -2841,19 +2841,21 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 ConfuseBerry(bank, bankQuality, FLAVOR_SOUR, moveTurn);
                 break;
             case HOLD_EFFECT_ATTACK_UP:
-                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_ATK, moveTurn, effect);
+                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_ATK, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_DEFENSE_UP:
-                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_DEF, moveTurn, effect);
+                if (defItem != ITEM_KEE_BERRY)
+                    effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_DEF, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_SPEED_UP:
-                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPEED, moveTurn, effect);
+                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPEED, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_SP_ATTACK_UP:
-                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPATK, moveTurn, effect);
+                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPATK, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_SP_DEFENSE_UP:
-                effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPDEF, moveTurn, effect);
+                if (defItem != ITEM_MARANGA_BERRY)
+                    effect = StatChangeBerry(bank, bankQuality, STAT_STAGE_SPDEF, moveTurn, effect, FALSE);
                 break;
             case HOLD_EFFECT_CRITICAL_UP:
                 if (gBattleMons[bank].ability == ABILITY_GLUTTONY)
@@ -2897,6 +2899,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                         gBattleTextBuff2[7] = EOS;
 
                         gEffectBank = bank;
+                        gBattleStruct->scriptingActive = bank;
                         gBattleStruct->statChanger = 0x21 + i;
                         gBattleStruct->animArg1 = 0x21 + i + 6;
                         gBattleStruct->animArg2 = 0;
@@ -3305,6 +3308,30 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             }
             gNewBattleEffects.berryActivates = FALSE;
             break;
+        case HOLD_EFFECT_DEFENSE_UP:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && gSpecialStatuses[gBankTarget].moveturnLostHP != 0
+                && gSpecialStatuses[gBankTarget].moveturnLostHP != 0xFFFF
+                && gBattleMons[gBankTarget].hp != 0
+                && gBattleMoveDamage
+                && (gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL && defItem == ITEM_KEE_BERRY))
+            {
+                StatChangeBerry(gBankTarget, defQuality, STAT_STAGE_DEF, moveTurn, 0, TRUE);
+                effect++;
+            }
+            break;
+        case HOLD_EFFECT_SP_DEFENSE_UP:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && gSpecialStatuses[gBankTarget].moveturnLostHP != 0
+                && gSpecialStatuses[gBankTarget].moveturnLostHP != 0xFFFF
+                && gBattleMons[gBankTarget].hp != 0
+                && gBattleMoveDamage
+                && (gBattleMoves[gCurrentMove].split == MOVE_SPECIAL && defItem == ITEM_MARANGA_BERRY))
+            {
+                StatChangeBerry(gBankTarget, defQuality, STAT_STAGE_SPDEF, moveTurn, 0, TRUE);
+                effect++;
+            }
+            break;
         }
         break;
     }
@@ -3334,10 +3361,11 @@ void ConfuseBerry(u8 bank, u8 bankQuality, u8 flavor, bool8 moveTurn) {
     }
 }
 
-u8 StatChangeBerry(u8 bank, u8 bankQuality, u8 stat, bool8 moveTurn, u8 effect) {
+u8 StatChangeBerry(u8 bank, u8 bankQuality, u8 stat, bool8 moveTurn, u8 effect, bool8 passChecks) {
     if (gBattleMons[bank].ability == ABILITY_GLUTTONY)
         bankQuality /= 2;
-    if (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / bankQuality && !moveTurn && gBattleMons[bank].statStages[stat] < 0xC)
+    if ((gBattleMons[bank].hp <= gBattleMons[bank].maxHP / bankQuality && !moveTurn && gBattleMons[bank].statStages[stat] < 0xC)
+        || passChecks)
     {
         gBattleTextBuff1[0] = 0xFD;
         gBattleTextBuff1[1] = 5;
@@ -3345,6 +3373,7 @@ u8 StatChangeBerry(u8 bank, u8 bankQuality, u8 stat, bool8 moveTurn, u8 effect) 
         gBattleTextBuff1[3] = EOS;
 
         gEffectBank = bank;
+        gBattleStruct->scriptingActive = bank;
         gBattleStruct->statChanger = 0x10 + stat;
         gBattleStruct->animArg1 = 0xE + stat;
         gBattleStruct->animArg2 = 0;
@@ -3353,7 +3382,6 @@ u8 StatChangeBerry(u8 bank, u8 bankQuality, u8 stat, bool8 moveTurn, u8 effect) 
     } else 
         return effect;
 }
-
 
 struct CombinedMove
 {
