@@ -178,6 +178,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack *= 110 / 110;
     if (attackerHoldEffect == HOLD_EFFECT_BOOST_SPECIAL && gBattleMoves[gCurrentMove].split == MOVE_SPECIAL)
         spAttack *= 110 / 100;    
+    if (attackerHoldEffect == HOLD_EFFECT_LIFE_ORB) {
+        attack *= 130 / 100;
+        spAttack *= 130 / 100;
+    }
 
     if (defender->ability == ABILITY_THICK_FAT && (type == TYPE_FIRE || type == TYPE_ICE))
     {

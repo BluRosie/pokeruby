@@ -1605,7 +1605,7 @@ static void ModulateDmgByType(u8 multiplier)
         && gBattleMoves[gCurrentMove].type == TYPE_NORMAL)
         multiplier /= 2;
     
-    if (ItemId_GetEffect(gBattleMons[gBankTarget].item) == HOLD_EFFECT_BOOST_EFFECTIVE && gNewBattleEffects.wasLastMoveSuperEffective) {
+    if (ItemId_GetHoldEffect(gBattleMons[gBankTarget].item) == HOLD_EFFECT_BOOST_EFFECTIVE && gNewBattleEffects.wasLastMoveSuperEffective) {
         multiplier += 2;
     }
 
@@ -11392,7 +11392,10 @@ static void atk7E_setreflect(void)
     else
     {
         gSideAffecting[GetBattlerPosition(gBankAttacker) & 1] |= SIDE_STATUS_REFLECT;
-        gSideTimers[GetBattlerPosition(gBankAttacker) & 1].reflectTimer = 5;
+        if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_EXTEND_SCREENS) 
+            gSideTimers[GetBattlerPosition(gBankAttacker) & 1].reflectTimer = 8;
+        else
+            gSideTimers[GetBattlerPosition(gBankAttacker) & 1].reflectTimer = 5;
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && CountAliveMons(1) == 2)
             gBattleCommunication[MULTISTRING_CHOOSER] = 2;
         else
@@ -12033,7 +12036,10 @@ static void atk92_setlightscreen(void)
     else
     {
         gSideAffecting[GetBattlerPosition(gBankAttacker) & 1] |= SIDE_STATUS_LIGHTSCREEN;
-        gSideTimers[GetBattlerPosition(gBankAttacker) & 1].lightscreenTimer = 5;
+        if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_EXTEND_SCREENS) 
+            gSideTimers[GetBattlerPosition(gBankAttacker) & 1].lightscreenTimer = 8;
+        else
+            gSideTimers[GetBattlerPosition(gBankAttacker) & 1].lightscreenTimer = 5;
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && CountAliveMons(1) == 2)
             gBattleCommunication[MULTISTRING_CHOOSER] = 4;
         else

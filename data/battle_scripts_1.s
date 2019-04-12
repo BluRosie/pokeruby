@@ -4438,6 +4438,14 @@ BattleScript_ItemHealHP_Ret:: @ 81D9AA7
 	datahpupdate USER
 	return
 
+BattleScript_LifeOrb::
+	printstring BATTLE_TEXT_OwnItemCausedDamage
+	waitmessage 64
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate USER
+	datahpupdate USER
+	return
+
 BattleScript_BerryAllowedFirstMove::
 	removeitem SCRIPTING_BANK
 BattleScript_ItemAllowedFirstMove::

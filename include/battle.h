@@ -372,31 +372,31 @@ struct DisableStruct
     /*0x08*/ u8 protectUses;
     /*0x09*/ u8 stockpileCounter;
     /*0x0A*/ u8 substituteHP;
-    /*0x0B*/ u8 disableTimer1 : 4;
-    /*0x0B*/ u8 disableTimer2 : 4;
+    /*0x0B*/ u8 disableTimer1:4;
+    /*0x0B*/ u8 disableTimer2:4;
     /*0x0C*/ u8 encoredMovePos;
     /*0x0D*/ u8 unkD;
-    /*0x0E*/ u8 encoreTimer1 : 4;
-    /*0x0E*/ u8 encoreTimer2 : 4;
-    /*0x0F*/ u8 perishSongTimer1 : 4;
-    /*0x0F*/ u8 perishSongTimer2 : 4;
+    /*0x0E*/ u8 encoreTimer1:4;
+    /*0x0E*/ u8 encoreTimer2:4;
+    /*0x0F*/ u8 perishSongTimer1:4;
+    /*0x0F*/ u8 perishSongTimer2:4;
     /*0x10*/ u8 furyCutterCounter;
-    /*0x11*/ u8 rolloutTimer1 : 4;
-    /*0x11*/ u8 rolloutTimer2 : 4;
-    /*0x12*/ u8 chargeTimer1 : 4;
-    /*0x12*/ u8 chargeTimer2 : 4;
+    /*0x11*/ u8 rolloutTimer1:4;
+    /*0x11*/ u8 rolloutTimer2:4;
+    /*0x12*/ u8 chargeTimer1:4;
+    /*0x12*/ u8 chargeTimer2:4;
     /*0x13*/ u8 tauntTimer1:4;
     /*0x13*/ u8 tauntTimer2:4;
     /*0x14*/ u8 bankPreventingEscape;
     /*0x15*/ u8 bankWithSureHit;
     /*0x16*/ u8 isFirstTurn;
     /*0x17*/ u8 unk17;
-    /*0x18*/ u8 truantCounter : 1;
-    /*0x18*/ u8 unk18_a : 3;
-    /*0x18*/ u8 unk18_b : 4;
+    /*0x18*/ u8 truantCounter:1;
+    /*0x18*/ u8 unk18_a:3;
+    /*0x18*/ u8 unk18_b:4;
     /*0x19*/ u8 rechargeCounter;
     /*0x1A*/ u8 unk1A[2];
-             u8 slowStartTimer : 4;
+             u8 slowStartTimer:4;
 };
 
 struct BattleResults
@@ -548,6 +548,9 @@ struct sideTimer
     u8 followmeTarget;      //0x9
     u8 fieldA;              //0xA
     u8 fieldB;              //0xB
+//  u8 slowStartTimer;
+//  u8 gravityTimer;
+//  u8 someOtherTimer;
 };
 
 struct WishFutureKnock
