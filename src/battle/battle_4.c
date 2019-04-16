@@ -1379,7 +1379,7 @@ static void atk01_accuracycheck(void)
             calc = (calc * 80) / 100; // 1.2 snow cloak loss;
         if (gBattleMons[gBankTarget].ability == ABILITY_TANGLED_FEET && gBattleMons[gBankTarget].status2 & STATUS2_CONFUSION)
             calc = (calc * 50) / 100; // halve it for tangled feet
-        for (i = 0; i < 5; i++)
+        for (i = 0; i <= 5; i++)
             if (GetAbilityBySpecies(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL), GetMonData(&gPlayerParty[i], MON_DATA_ALT_ABILITY, NULL), GetMonData(&gPlayerParty[i], MON_DATA_HIDDEN_ABILITY, NULL)) == ABILITY_VICTORY_STAR)
             {
                 calc = (calc * 110) / 100; // 1.1 victory star boost
