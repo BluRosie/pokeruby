@@ -626,6 +626,7 @@ static void atkF4_subattackerhpbydmg(void);
 static void atkF5_removeattackerstatus1(void);
 static void atkF6_finishaction(void);
 static void atkF7_finishturn(void);
+static void atkF8_jumpifholdeffect(void);
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -877,6 +878,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     atkF5_removeattackerstatus1,
     atkF6_finishaction,
     atkF7_finishturn,
+    atkF8_jumpifholdeffect,
 };
 
 struct StatFractions
@@ -16220,4 +16222,15 @@ static void atkF7_finishturn(void)
 {
     gCurrentActionFuncId = 0xC;
     gCurrentTurnActionNumber = gBattlersCount;
+}
+
+static void atkF8_jumpifholdeffect(void)
+{
+    u8 holdEffect = T2_READ_8(gBattlescriptCurrInstr + 2);
+    gActiveBattler = GetBattleBank(T2_READ_8(gBattlescriptCurrInstr + 1));
+
+    if (ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item) == holdEffect && gCurrentMove != MOVE_SKY_ATTACK)
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+    else
+        gBattlescriptCurrInstr += 7;
 }

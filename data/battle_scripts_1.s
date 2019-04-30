@@ -2,6 +2,7 @@
 #include "constants/battle_constants.h"
 #include "constants/moves.h"
 #include "constants/songs.h"
+#include "constants/hold_effects.h"
 	.include "include/macros.inc"
 	.include "include/macros/battle_script.inc"
 	.include "constants/constants.inc"
@@ -835,6 +836,12 @@ BattleScript_EffectRazorWind: @ 81D7515
 	call BattleScriptFirstChargingTurn
 	goto BattleScript_MoveEnd
 
+BattleScript_PowerHerbActivates:
+	removeitem USER
+	playanimation USER, B_ANIM_ITEM_EFFECT, NULL
+	printstring BATTLE_TEXT_PowerHerbActivates
+	waitmessage 64
+
 BattleScript_TwoTurnMovesSecondTurn: @ 81D753D
 	attackcanceler
 	setmoveeffect EFFECT_CHARGING
@@ -857,6 +864,7 @@ BattleScriptFirstChargingTurn: @ 81D756C
 	copybyte cMULTISTRING_CHOOSER, sTWOTURN_STRINGID
 	printfromtable gFirstTurnOfTwoStringIds
 	waitmessage 64
+	jumpifholdeffect USER, HOLD_EFFECT_POWER_HERB, BattleScript_PowerHerbActivates
 	return
 
 BattleScript_EffectSuperFang: @ 81D7596

@@ -356,3 +356,4 @@
 	enum BATTLE_TEXT_ItemCausedDamage
 	enum BATTLE_TEXT_FirstBattleItem
 	enum BATTLE_TEXT_OwnItemCausedDamage
+	enum BATTLE_TEXT_PowerHerbActivates

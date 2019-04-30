@@ -363,6 +363,7 @@ enum
     BATTLE_TEXT_ItemCausedDamage,
     BATTLE_TEXT_FirstBattleItem,
     BATTLE_TEXT_OwnItemCausedDamage,
+    BATTLE_TEXT_PowerHerbActivates,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -613,6 +614,7 @@ const u8 BattleText_NoEffectOn[] = _("{STRING 16}'s {STRING 23}\nhad no effect o
 const u8 BattleText_ItemAllowedFirstMove[] = _("{STRING 16}'s {STRING 19}\nallowed it to move first!");
 const u8 BattleText_ItemCausedDamage[] = _("{DEFENDING_MON}'s {STRING 19}\ndamaged {ATTACKING_MON}!");
 const u8 BattleText_OwnItemCausedDamage[] = _("{ATTACKING_MON}'s {STRING 19}\ncaused recoil!");
+const u8 BattleText_PowerHerbActivates[] = _("{ATTACKING_MON}'s {STRING 19}\ncharged its move!");
 const u8 BattleText_Sharply[] = _("sharply ");
 const u8 BattleText_Rose[] = _("rose!");
 const u8 BattleText_Harshly[] = _("harshly ");
@@ -1238,6 +1240,7 @@ const u8 *const gBattleStringsTable[] =
     BattleText_ItemCausedDamage,
     BattleText_FirstBattleItem,
     BattleText_OwnItemCausedDamage,
+    BattleText_PowerHerbActivates
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
