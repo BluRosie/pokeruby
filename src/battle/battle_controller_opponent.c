@@ -1221,7 +1221,7 @@ void OpponentHandleTrainerThrow(void)
     else
 #endif
     {
-        if (gTrainerBattleOpponent == 0x400)
+        if (gTrainerBattleOpponent == SECRET_BASE_OPPONENT)
             trainerPicIndex = GetSecretBaseTrainerPicIndex();
         else if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
             trainerPicIndex = get_trainer_class_pic_index();
@@ -1252,7 +1252,7 @@ void OpponentHandleTrainerSlide(void)
 {
     u32 trainerPicIndex;
 
-    if (gTrainerBattleOpponent == 0x400)
+    if (gTrainerBattleOpponent == SECRET_BASE_OPPONENT)
         trainerPicIndex = GetSecretBaseTrainerPicIndex();
     else if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
         trainerPicIndex = get_trainer_class_pic_index();
