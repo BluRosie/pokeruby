@@ -144,10 +144,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (attacker->ability == ABILITY_HUGE_POWER || attacker->ability == ABILITY_PURE_POWER)
         attack *= 2;
 
-    BADGE_BOOST(1, attack, bankAtk);
-    BADGE_BOOST(5, defense, bankDef);
-    BADGE_BOOST(7, spAttack, bankAtk);
-    BADGE_BOOST(7, spDefense, bankDef);
+    //BADGE_BOOST(1, attack, bankAtk);
+    //BADGE_BOOST(5, defense, bankDef);
+    //BADGE_BOOST(7, spAttack, bankAtk);
+    //BADGE_BOOST(7, spDefense, bankDef);
 
     for (i = 0; i < 17; i++)
     {
