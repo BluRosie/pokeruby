@@ -4490,7 +4490,8 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
         if ((gBattleMons[bank1].ability == ABILITY_SWIFT_SWIM && (gBattleWeather & WEATHER_RAIN_ANY))
             || (gBattleMons[bank1].ability == ABILITY_CHLOROPHYLL && (gBattleWeather & WEATHER_SUN_ANY))
             || (gBattleMons[bank1].ability == ABILITY_SAND_RUSH && (gBattleWeather & WEATHER_SANDSTORM_ANY))
-            || (gBattleMons[bank1].ability == ABILITY_SLUSH_RUSH && (gBattleWeather & WEATHER_HAIL)))
+            || (gBattleMons[bank1].ability == ABILITY_SLUSH_RUSH && (gBattleWeather & WEATHER_HAIL))
+            || (gBattleMons[bank1].species == SPECIES_DITTO && ItemId_GetHoldEffect(gBattleMons[bank1].item) == HOLD_EFFECT_QUICK_POWDER))
             bank1SpeedMultiplier = 2;
         else
             bank1SpeedMultiplier = 1;
@@ -4498,7 +4499,8 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
         if ((gBattleMons[bank2].ability == ABILITY_SWIFT_SWIM && (gBattleWeather & WEATHER_RAIN_ANY))
             || (gBattleMons[bank2].ability == ABILITY_CHLOROPHYLL && (gBattleWeather & WEATHER_SUN_ANY))
             || (gBattleMons[bank2].ability == ABILITY_SAND_RUSH && (gBattleWeather & WEATHER_SANDSTORM_ANY))
-            || (gBattleMons[bank2].ability == ABILITY_SLUSH_RUSH && (gBattleWeather & WEATHER_HAIL)))
+            || (gBattleMons[bank2].ability == ABILITY_SLUSH_RUSH && (gBattleWeather & WEATHER_HAIL))
+            || (gBattleMons[bank2].species == SPECIES_DITTO && ItemId_GetHoldEffect(gBattleMons[bank2].item) == HOLD_EFFECT_QUICK_POWDER))
             bank2SpeedMultiplier = 2;
         else
             bank2SpeedMultiplier = 1;

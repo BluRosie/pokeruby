@@ -524,7 +524,8 @@ struct SpecialStatus
     u8 focusBanded : 1;
     u8 lightningRodRedirected : 1;
     u8 stormDrainRedirected : 1;
-    u8 padding : 7;
+    u8 focusSashed : 1;
+    u8 padding : 6;
     u8 field1[3];
     s32 moveturnLostHP;
     s32 moveturnLostHP_physical;

@@ -1946,13 +1946,23 @@ static void atk07_adjustnormaldamage(void)
 
     gStringBank = gBankTarget;
 
-    if (hold_effect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < quality)
+    if ((hold_effect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < quality)
+        || (hold_effect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBankTarget].hp == gBattleMons[gBankTarget].maxHP && !gSpecialStatuses[gBankTarget].focusSashed))
     {
         RecordItemBattle(gBankTarget, hold_effect);
         gSpecialStatuses[gBankTarget].focusBanded = 1;
     }
+
+    if (gBattleMons[gBankTarget].status2 & STATUS2_SUBSTITUTE
+        || gSpecialStatuses[gBankTarget].focusSashed)
+        goto END;
+
+    if (hold_effect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBankTarget].hp == gBattleMons[gBankTarget].maxHP && !gSpecialStatuses[gBankTarget].focusSashed)
+        gSpecialStatuses[gBankTarget].focusSashed = 1;
+
     if (gBattleMons[gBankTarget].status2 & STATUS2_SUBSTITUTE)
         goto END;
+
     if (gBattleMoves[gCurrentMove].effect != EFFECT_FALSE_SWIPE && !gProtectStructs[gBankTarget].endured
      && !gSpecialStatuses[gBankTarget].focusBanded)
         goto END;
@@ -1967,6 +1977,7 @@ static void atk07_adjustnormaldamage(void)
         gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
         goto END;
     }
+
     if (gSpecialStatuses[gBankTarget].focusBanded)
     {
         gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
@@ -1993,13 +2004,23 @@ static void atk08_adjustnormaldamage2(void) //literally the same as 0x7 except i
 
     gStringBank = gBankTarget;
 
-    if (hold_effect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < quality)
+    if ((hold_effect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < quality)
+        || (hold_effect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBankTarget].hp == gBattleMons[gBankTarget].maxHP && !gSpecialStatuses[gBankTarget].focusSashed))
     {
         RecordItemBattle(gBankTarget, hold_effect);
         gSpecialStatuses[gBankTarget].focusBanded = 1;
     }
+
+    if (gBattleMons[gBankTarget].status2 & STATUS2_SUBSTITUTE
+        || gSpecialStatuses[gBankTarget].focusSashed)
+        goto END;
+
+    if (hold_effect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBankTarget].hp == gBattleMons[gBankTarget].maxHP && !gSpecialStatuses[gBankTarget].focusSashed)
+        gSpecialStatuses[gBankTarget].focusSashed = 1;
+
     if (gBattleMons[gBankTarget].status2 & STATUS2_SUBSTITUTE)
         goto END;
+
     if (!gProtectStructs[gBankTarget].endured
      && !gSpecialStatuses[gBankTarget].focusBanded)
         goto END;
@@ -2014,6 +2035,7 @@ static void atk08_adjustnormaldamage2(void) //literally the same as 0x7 except i
         gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
         goto END;
     }
+
     if (gSpecialStatuses[gBankTarget].focusBanded)
     {
         gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
@@ -10549,26 +10571,27 @@ static void atk69_adjustsetdamage(void) //literally a copy of atk07 except there
 
     gStringBank = gBankTarget;
 
-    if (hold_effect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < quality)
+    if ((hold_effect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < quality)
+        || (hold_effect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBankTarget].hp == gBattleMons[gBankTarget].maxHP && !gSpecialStatuses[gBankTarget].focusSashed))
     {
         RecordItemBattle(gBankTarget, hold_effect);
         gSpecialStatuses[gBankTarget].focusBanded = 1;
     }
-    if (gBattleMons[gBankTarget].status2 & STATUS2_SUBSTITUTE)
+
+    if (gBattleMons[gBankTarget].status2 & STATUS2_SUBSTITUTE
+        || gSpecialStatuses[gBankTarget].focusSashed)
         goto END;
+
+    if (hold_effect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBankTarget].hp == gBattleMons[gBankTarget].maxHP && !gSpecialStatuses[gBankTarget].focusSashed)
+        gSpecialStatuses[gBankTarget].focusSashed = 1;
+
     if (gBattleMoves[gCurrentMove].effect != EFFECT_FALSE_SWIPE && !gProtectStructs[gBankTarget].endured
      && !gSpecialStatuses[gBankTarget].focusBanded)
-        goto END;
-    if (gBattleMons[gBankTarget].hp > gBattleMoveDamage)
-        goto END;
-
-    gBattleMoveDamage = gBattleMons[gBankTarget].hp - 1;
-
-    if (gProtectStructs[gBankTarget].endured)
     {
         gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
         goto END;
     }
+
     if (gSpecialStatuses[gBankTarget].focusBanded)
     {
         gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
@@ -12063,7 +12086,8 @@ static void atk93_tryKO(void)
 
     gStringBank = gBankTarget;
 
-    if (hold_effect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < quality)
+    if ((hold_effect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < quality)
+        || (hold_effect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBankTarget].hp == gBattleMons[gBankTarget].maxHP && !gSpecialStatuses[gBankTarget].focusSashed))
     {
         RecordItemBattle(gBankTarget, hold_effect);
         gSpecialStatuses[gBankTarget].focusBanded = 1;
