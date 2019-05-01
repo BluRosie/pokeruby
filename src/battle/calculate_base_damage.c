@@ -166,11 +166,6 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack = (150 * attack) / 100;
 /*    if (attackerHoldEffect == HOLD_EFFECT_CHOICE_SPECS)
         spAttack = (150 * spAttack) / 100;
-    if (attackerHoldEffect == HOLD_EFFECT_LIFE_ORB)
-    {
-        attack = (1331 * attack) / 1024;
-        spAttack = (1331 * spAttack) / 1024;
-    }
     if (attackerHoldEffect == HOLD_EFFECT_ASSAULT_VEST)
         spDefense = (150 * spDefense) / 100;*/
     if (attackerHoldEffect == HOLD_EFFECT_SOUL_DEW && !(gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER) && (attacker->species == SPECIES_LATIAS || attacker->species == SPECIES_LATIOS))
@@ -190,14 +185,22 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         defense *= 2;
     if (attackerHoldEffect == HOLD_EFFECT_THICK_CLUB && (attacker->species == SPECIES_CUBONE || attacker->species == SPECIES_MAROWAK))
         attack *= 2;
-    if (attackerHoldEffect == HOLD_EFFECT_BOOST_PHYSICAL && gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL)
+    if (attackerHoldEffect == HOLD_EFFECT_BOOST_PHYSICAL && gBattleMoves[move].split == MOVE_PHYSICAL)
         attack *= 110 / 110;
-    if (attackerHoldEffect == HOLD_EFFECT_BOOST_SPECIAL && gBattleMoves[gCurrentMove].split == MOVE_SPECIAL)
+    if (attackerHoldEffect == HOLD_EFFECT_BOOST_SPECIAL && gBattleMoves[move].split == MOVE_SPECIAL)
         spAttack *= 110 / 100;    
     if (attackerHoldEffect == HOLD_EFFECT_LIFE_ORB) {
         attack *= 130 / 100;
         spAttack *= 130 / 100;
     }
+    if (attackerHoldEffect == HOLD_EFFECT_METRONOME && gDisableStructs[bankAtk].lastUsedMove == move) {
+        attack *= (100 + (100 * gDisableStructs[bankAtk].metronomeCounter)) / 100;
+        spAttack *= (100 + (100 * gDisableStructs[bankAtk].metronomeCounter)) / 100;
+        gDisableStructs[bankAtk].metronomeCounter++;
+        if (gDisableStructs[bankAtk].metronomeCounter > 6)
+            gDisableStructs[bankAtk].metronomeCounter = 6;
+    } else
+        gDisableStructs[bankAtk].metronomeCounter = 1;
 
     if (defender->ability == ABILITY_THICK_FAT && (type == TYPE_FIRE || type == TYPE_ICE))
     {
@@ -262,10 +265,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         gBattleMovePower = (150 * gBattleMovePower) / 100;
     if (type == TYPE_BUG && attacker->ability == ABILITY_SWARM && attacker->hp <= (attacker->maxHP / 3))
         gBattleMovePower = (150 * gBattleMovePower) / 100;
-    if (gBattleMoves[gCurrentMove].effect == EFFECT_EXPLOSION)
+    if (gBattleMoves[move].effect == EFFECT_EXPLOSION)
         defense /= 2;
 
-    if (gBattleMoves[gCurrentMove].split == MOVE_PHYSICAL)
+    if (gBattleMoves[move].split == MOVE_PHYSICAL)
     {
         if (gCritMultiplier == 2)
         {
@@ -312,7 +315,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             damage = 1;
     }
 
-    if (gBattleMoves[gCurrentMove].split == MOVE_SPECIAL)
+    if (gBattleMoves[move].split == MOVE_SPECIAL)
     {
         if (gCritMultiplier == 2)
         {
@@ -329,12 +332,12 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
 
         if (gCritMultiplier == 2)
         {
-            /*if (gBattleMoves[gCurrentMove].effect == EFFECT_PSYCHO_CUT && defender->statStages[STAT_STAGE_DEF] < 6)
+            /*if (gBattleMoves[move].effect == EFFECT_PSYCHO_CUT && defender->statStages[STAT_STAGE_DEF] < 6)
                 APPLY_STAT_MOD(damageHelper, defender, defense, STAT_STAGE_DEF)
             else */if (defender->statStages[STAT_STAGE_SPDEF] < 6)
                 APPLY_STAT_MOD(damageHelper, defender, spDefense, STAT_STAGE_SPDEF)
             else
-                /*if (gBattleMoves[gCurrentMove].effect == EFFECT_PSYCHO_CUT)
+                /*if (gBattleMoves[move].effect == EFFECT_PSYCHO_CUT)
                     damageHelper = defense;
                 else*/
                     damageHelper = spDefense;
@@ -396,6 +399,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         if ((eFlashFireArr.arr[bankAtk] & 1) && type == TYPE_FIRE)
             damage = (15 * damage) / 10;
     }
+
+    gDisableStructs[bankAtk].lastUsedMove = move; // log the last used move no matter what
 
     return damage + 2;
 }

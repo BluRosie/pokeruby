@@ -396,7 +396,10 @@ struct DisableStruct
     /*0x18*/ u8 unk18_b:4;
     /*0x19*/ u8 rechargeCounter;
     /*0x1A*/ u8 unk1A[2];
-             u8 slowStartTimer:4;
+    /*0x1C*/ u16 lastUsedMove;
+    /*0x1E*/ u8 slowStartTimer:4;
+             u8 metronomeCounter:4;
+    
 };
 
 struct BattleResults
@@ -566,7 +569,7 @@ struct WishFutureKnock
     u8 knockedOffPokes[2];
 };
 
-struct NewBattleEffects
+struct NewBattleEffects // currently have 0x10 of space for this
 {
     u32 hailPermanent:1;
     u32 fog:1;
@@ -574,11 +577,6 @@ struct NewBattleEffects
     u32 quickClaw:1;
     u32 berryActivates:1;
     u32 intimidate:1;
-    u8 fogCounter; //maybe?
-    u16 reserved2;
-    u32 reserved3;
-    u32 reserved4;
-    u32 reserved5;
 };
 
 extern struct BattleHistory unk_2016A00;

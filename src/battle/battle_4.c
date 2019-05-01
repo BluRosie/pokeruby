@@ -1329,7 +1329,7 @@ static void atk01_accuracycheck(void)
     else
     {
         int i;
-        u8 type, moveAcc, holdEffect, quality;
+        u8 type, moveAcc, atkHoldEffect, defHoldEffect, atkQuality, defQuality;
         s8 buff;
         u16 calc;
 
@@ -1390,21 +1390,34 @@ static void atk01_accuracycheck(void)
 
         if (gBattleMons[gBankTarget].item == ITEM_ENIGMA_BERRY)
         {
-            holdEffect = gEnigmaBerries[gBankTarget].holdEffect;
-            quality = gEnigmaBerries[gBankTarget].holdEffectParam;
+            defHoldEffect = gEnigmaBerries[gBankTarget].holdEffect;
+            defQuality = gEnigmaBerries[gBankTarget].holdEffectParam;
         }
         else
         {
-            holdEffect = ItemId_GetHoldEffect(gBattleMons[gBankTarget].item);
-            quality = ItemId_GetHoldEffectParam(gBattleMons[gBankTarget].item);
+            defHoldEffect = ItemId_GetHoldEffect(gBattleMons[gBankTarget].item);
+            defQuality = ItemId_GetHoldEffectParam(gBattleMons[gBankTarget].item);
+        }
+
+        if (gBattleMons[gBankAttacker].item == ITEM_ENIGMA_BERRY)
+        {
+            atkHoldEffect = gEnigmaBerries[gBankAttacker].holdEffect;
+            atkQuality = gEnigmaBerries[gBankAttacker].holdEffectParam;
+        }
+        else
+        {
+            atkHoldEffect = ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item);
+            atkQuality = ItemId_GetHoldEffectParam(gBattleMons[gBankAttacker].item);
         }
 
         gStringBank = gBankTarget;
 
-        if (holdEffect == HOLD_EFFECT_EVASION_UP)
-            calc = (calc * (100 - quality)) / 100;
-        if (holdEffect == HOLD_EFFECT_BOOST_ACCURACY)
+        if (defHoldEffect == HOLD_EFFECT_EVASION_UP)
+            calc = (calc * (100 - defQuality)) / 100;
+        if (atkHoldEffect == HOLD_EFFECT_BOOST_ACCURACY) // wait what?  this is saying if the enemy has a wide lens then it boosts the user's accuracy
             calc *= (110 / 100);
+        if (atkHoldEffect == HOLD_EFFECT_ZOOM_LENS && GetWhoStrikesFirst(gBankAttacker, gBankTarget, FALSE) == 1) // the opponent mon would go first (not because of random roll)
+            calc = (calc * 120) / 100; 
 
         // final calculation
         if ((Random() % 100 + 1) > calc)
@@ -12741,7 +12754,7 @@ static void atk9D_mimicattackcopy(void)
     else
     {
         int i;
-        for (i = 0; i < 4; i++)
+        for (i = 0; i < 4; i++) // already has move
         {
             if (gBattleMons[gBankAttacker].moves[i] == gLastUsedMove[gBankTarget])
                 break;

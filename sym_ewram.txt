@@ -202,8 +202,8 @@ gSideTimers = .; /* 2024C80 */
 gStatuses3 = .; /* 2024C98 */
     . += 0x10;
 
-gDisableStructs = .; /* 2024CA8 */
-    . += 0x70;
+gDisableStructs = .; /* 2024CA8 - expanded to allow 0x20 bytes per mon*/
+    . += 0x80;
 
 gPauseCounterBattle = .; /* 2024D18 */
     . += 0x2;
