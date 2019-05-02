@@ -1549,14 +1549,12 @@ static void atk05_damagecalc(void)
     if (gDisableStructs[gBankAttacker].isFirstTurn)
         gDisableStructs[gBankAttacker].lastUsedMove = MOVE_NONE;
     if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_METRONOME && gDisableStructs[gBankAttacker].lastUsedMove == gCurrentMove) {
-        int i;
         double multiplier;
+
+        multiplier = 0.2 * gDisableStructs[gBankAttacker].metronomeCounter;
 
         if (gDisableStructs[gBankAttacker].metronomeCounter != 5)
             gDisableStructs[gBankAttacker].metronomeCounter++;
-
-        for (i = 1; i <= gDisableStructs[gBankAttacker].metronomeCounter; i++)
-            multiplier += 0.2;
         
         gBattleMoveDamage *= (multiplier + 1);
     } else 
