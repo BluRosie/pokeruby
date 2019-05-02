@@ -1556,7 +1556,7 @@ static void atk05_damagecalc(void)
             gDisableStructs[gBankAttacker].metronomeCounter++;
 
         for (i = 1; i <= gDisableStructs[gBankAttacker].metronomeCounter; i++)
-            multiplier += 0.5;
+            multiplier += 0.2;
         
         gBattleMoveDamage *= (multiplier + 1);
     } else 
