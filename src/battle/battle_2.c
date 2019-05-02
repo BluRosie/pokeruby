@@ -4032,9 +4032,10 @@ u8 CanRunFromBattle(void)
             return 2;
         }
         if (r6 != GetBattlerSide(i)
-         && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE
-         && gBattleMons[gActiveBattler].type1 != 2
-         && gBattleMons[gActiveBattler].type2 != 2
+         && ((gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE
+              && gBattleMons[gActiveBattler].type1 != TYPE_FLYING
+              && gBattleMons[gActiveBattler].type2 != TYPE_FLYING) 
+            || ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item) == HOLD_EFFECT_IRON_BALL)
          && gBattleMons[i].ability == ABILITY_ARENA_TRAP)
         {
             ewram16003 = i;
@@ -4044,7 +4045,7 @@ u8 CanRunFromBattle(void)
         }
     }
     i = AbilityBattleEffects(15, gActiveBattler, ABILITY_MAGNET_PULL, 0, 0);
-    if (i != 0 && (gBattleMons[gActiveBattler].type1 == 8 || gBattleMons[gActiveBattler].type2 == 8))
+    if (i != 0 && (gBattleMons[gActiveBattler].type1 == TYPE_STEEL || gBattleMons[gActiveBattler].type2 == TYPE_STEEL))
     {
         ewram16003 = i - 1;
         gLastUsedAbility = gBattleMons[i - 1].ability;
@@ -4550,6 +4551,12 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
         bank1AdjustedSpeed = UINT_MAX;
         gNewBattleEffects.quickClaw = TRUE;
     }
+
+    if (heldItemEffect == HOLD_EFFECT_IRON_BALL)
+        bank1AdjustedSpeed /= 2;
+    
+    if (heldItemEffect == HOLD_EFFECT_LAGGING_TAIL)
+        bank1AdjustedSpeed = 0;
 
     // Calculate adjusted speed for second mon.
     bank2AdjustedSpeed = gBattleMons[bank2].speed * bank2SpeedMultiplier

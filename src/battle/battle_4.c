@@ -1666,7 +1666,7 @@ static void atk06_typecalc(void)
             gBattleMoveDamage = gBattleMoveDamage / 10;
         }
 
-        if (gBattleMons[gBankTarget].ability == ABILITY_LEVITATE && move_type == TYPE_GROUND)
+        if (gBattleMons[gBankTarget].ability == ABILITY_LEVITATE && move_type == TYPE_GROUND && ItemId_GetHoldEffect(gBattleMons[gBankTarget].item) != HOLD_EFFECT_IRON_BALL)
         {
             gLastUsedAbility = gBattleMons[gBankTarget].ability;
             gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
@@ -1877,6 +1877,13 @@ u8 TypeCalc(u16 move, u8 bank_atk, u8 bank_def)
                 continue;
             }
 
+            if (move_type == TYPE_GROUND
+                && (gBattleMons[bank_def].type1 == TYPE_FLYING || gBattleMons[bank_def].type2 == TYPE_FLYING)
+                && ItemId_GetHoldEffect(gBattleMons[bank_def].item) == HOLD_EFFECT_IRON_BALL)
+            { // if attacking with ground and the other pokemon is flying but grounded by the iron ball
+                i += 3;
+                continue;
+            }
             else if (gTypeEffectiveness[i] == move_type)
             {
                 //check type1
@@ -1884,7 +1891,7 @@ u8 TypeCalc(u16 move, u8 bank_atk, u8 bank_def)
                     ModulateDmgByType2(gTypeEffectiveness[i + 2], move, &flags);
                 //check type2
                 if (gTypeEffectiveness[i + 1] == gBattleMons[bank_def].type2 &&
-                    gBattleMons[gBankTarget /* what the christ */].type1 != gBattleMons[bank_def].type2)
+                    gBattleMons[bank_def].type1 != gBattleMons[bank_def].type2)
                     ModulateDmgByType2(gTypeEffectiveness[i + 2], move, &flags);
             }
             i += 3;
