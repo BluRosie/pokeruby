@@ -4601,6 +4601,12 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
         gNewBattleEffects.quickClaw = TRUE;
     }
 
+    if (heldItemEffect == HOLD_EFFECT_IRON_BALL)
+        bank2AdjustedSpeed /= 2;
+    
+    if (heldItemEffect == HOLD_EFFECT_LAGGING_TAIL)
+        bank2AdjustedSpeed = 0;
+
     if (ignoreMovePriorities)
     {
         bank1Move = MOVE_NONE;
