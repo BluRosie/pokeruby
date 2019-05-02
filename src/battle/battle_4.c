@@ -1546,10 +1546,29 @@ static void atk05_damagecalc(void)
                                             gBattleStruct->dynamicMoveType, gBankAttacker, gBankTarget);
     gBattleMoveDamage = gBattleMoveDamage * gCritMultiplier * gBattleStruct->dmgMultiplier;
 
+    if (gDisableStructs[gBankAttacker].isFirstTurn)
+        gDisableStructs[gBankAttacker].lastUsedMove = MOVE_NONE;
+    if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_METRONOME && gDisableStructs[gBankAttacker].lastUsedMove == gCurrentMove) {
+        int i;
+        double multiplier;
+
+        if (gDisableStructs[gBankAttacker].metronomeCounter != 5)
+            gDisableStructs[gBankAttacker].metronomeCounter++;
+
+        for (i = 1; i <= gDisableStructs[gBankAttacker].metronomeCounter; i++)
+            multiplier += 0.5;
+        
+        gBattleMoveDamage *= (multiplier + 1);
+    } else 
+        gDisableStructs[gBankAttacker].metronomeCounter = 0;
+
     if (gStatuses3[gBankAttacker] & STATUS3_CHARGED_UP && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
         gBattleMoveDamage *= 2;
     if (gProtectStructs[gBankAttacker].helpingHand)
         gBattleMoveDamage = gBattleMoveDamage * 15 / 10;
+        
+    
+    //gDisableStructs[gBankAttacker].lastUsedMove = gCurrentMove;
 
     gBattlescriptCurrInstr++;
 }
@@ -6250,6 +6269,9 @@ static void atk2E_setbyte(void)
 {
     u8* mem = T2_READ_PTR(gBattlescriptCurrInstr + 1);
     *mem = T2_READ_8(gBattlescriptCurrInstr + 5);
+    
+    gDisableStructs[gBankAttacker].lastUsedMove = gCurrentMove;
+
     gBattlescriptCurrInstr += 6;
 }
 
@@ -13893,6 +13915,7 @@ static void atkB5_furycuttercalc(void)
             gDisableStructs[gBankAttacker].furyCutterCounter++;
 
         gDynamicBasePower = gBattleMoves[gCurrentMove].power;
+
         for (i = 1; i < gDisableStructs[gBankAttacker].furyCutterCounter; i++)
             gDynamicBasePower *= 2;
 

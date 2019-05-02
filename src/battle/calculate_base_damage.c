@@ -193,14 +193,6 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack *= 130 / 100;
         spAttack *= 130 / 100;
     }
-    if (attackerHoldEffect == HOLD_EFFECT_METRONOME && gDisableStructs[bankAtk].lastUsedMove == move) {
-        attack *= (100 + (100 * gDisableStructs[bankAtk].metronomeCounter)) / 100;
-        spAttack *= (100 + (100 * gDisableStructs[bankAtk].metronomeCounter)) / 100;
-        gDisableStructs[bankAtk].metronomeCounter++;
-        if (gDisableStructs[bankAtk].metronomeCounter > 6)
-            gDisableStructs[bankAtk].metronomeCounter = 6;
-    } else
-        gDisableStructs[bankAtk].metronomeCounter = 1;
 
     if (defender->ability == ABILITY_THICK_FAT && (type == TYPE_FIRE || type == TYPE_ICE))
     {
@@ -399,8 +391,6 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         if ((eFlashFireArr.arr[bankAtk] & 1) && type == TYPE_FIRE)
             damage = (15 * damage) / 10;
     }
-
-    gDisableStructs[bankAtk].lastUsedMove = move; // log the last used move no matter what
 
     return damage + 2;
 }
