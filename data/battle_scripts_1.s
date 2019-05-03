@@ -4466,7 +4466,17 @@ BattleScript_LifeOrb::
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate USER
 	datahpupdate USER
+	tryfaintmon USER, FALSE, NULL
 	return
+
+BattleScript_BlackSludge::
+	printstring BATTLE_TEXT_ItemCausedLittleDamage
+	waitmessage 64
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate USER
+	datahpupdate USER
+	tryfaintmon USER, FALSE, NULL
+	end2
 
 BattleScript_BerryAllowedFirstMove::
 	removeitem SCRIPTING_BANK

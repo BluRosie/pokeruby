@@ -209,6 +209,7 @@ extern u8 BattleScript_ItemCausedDamage[];
 extern u8 BattleScript_BerryCausedDamage[];
 extern u8 BattleScript_AbilityItems[];
 extern u8 BattleScript_LifeOrb[];
+extern u8 BattleScript_BlackSludge[];
 
 extern u8 gUnknown_081D995F[]; //disobedient while asleep
 extern u8 BattleScript_IgnoresAndUsesRandomMove[]; //disobedient, uses a random move
@@ -3021,6 +3022,28 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     BattleScriptExecute(BattleScript_BerryCureChosenStatusEnd2);
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;
                     effect = ITEM_EFFECT_OTHER;
+                }
+                break;
+            case HOLD_EFFECT_BLACK_SLUDGE:
+                if (gBattleMons[bank].hp < gBattleMons[bank].maxHP && !moveTurn)
+                {
+                    gBattleMoveDamage = gBattleMons[bank].maxHP / 16;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+
+                    if (gBattleMons[bank].type1 == TYPE_POISON || gBattleMons[bank].type2 == TYPE_POISON) {
+                        if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
+                            gBattleMoveDamage = gBattleMons[bank].maxHP - gBattleMons[bank].hp;
+                        gBattleMoveDamage *= -1;
+                        BattleScriptExecute(BattleScript_ItemHealHP_End2);
+                    } else {
+                        gBattleMoveDamage *= 2;
+                        if (gBattleMons[bank].hp < gBattleMoveDamage)
+                            gBattleMoveDamage = gBattleMons[bank].hp;
+                        BattleScriptExecute(BattleScript_BlackSludge);
+                    }
+                    effect = ITEM_HP_CHANGE;
+                    RecordItemBattle(bank, bankHoldEffect);
                 }
                 break;
             }

@@ -359,3 +359,4 @@
 	enum BATTLE_TEXT_PowerHerbActivates
 	enum BATTLE_TEXT_InfatuatedPokeItem
 	enum BATTLE_TEXT_InfatuatedPokeItem2
+	enum BATTLE_TEXT_ItemCausedLittleDamage

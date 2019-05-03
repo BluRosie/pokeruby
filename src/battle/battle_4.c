@@ -11443,7 +11443,10 @@ static void atk7D_setrain(void)
         gNewBattleEffects.fog = 0;
         gBattleWeather = WEATHER_RAIN_TEMPORARY;
         gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-        gWishFutureKnock.weatherDuration = 5;
+        if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_EXTEND_RAIN)
+            gWishFutureKnock.weatherDuration = 8;
+        else
+            gWishFutureKnock.weatherDuration = 5;
     }
     gBattlescriptCurrInstr++;
 }
@@ -12540,7 +12543,10 @@ static void atk95_setsandstorm(void)
     {
         gBattleWeather = WEATHER_SANDSTORM_TEMPORARY;
         gBattleCommunication[MULTISTRING_CHOOSER] = 3;
-        gWishFutureKnock.weatherDuration = 5;
+        if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_EXTEND_SANDSTORM)
+            gWishFutureKnock.weatherDuration = 8;
+        else
+            gWishFutureKnock.weatherDuration = 5;
     }
     gBattlescriptCurrInstr++;
 }
@@ -14086,7 +14092,10 @@ static void atkBB_setsunny(void)
         gNewBattleEffects.fog = 0;
         gBattleWeather = WEATHER_SUN_TEMPORARY;
         gBattleCommunication[MULTISTRING_CHOOSER] = 4;
-        gWishFutureKnock.weatherDuration = 5;
+        if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_EXTEND_SUN)
+            gWishFutureKnock.weatherDuration = 8;
+        else
+            gWishFutureKnock.weatherDuration = 5;
     }
     gBattlescriptCurrInstr++;
 }
@@ -14601,7 +14610,10 @@ static void atkC8_sethail(void)
         gNewBattleEffects.fog = 0;
         gBattleWeather = WEATHER_HAIL;
         gBattleCommunication[MULTISTRING_CHOOSER] = 5;
-        gWishFutureKnock.weatherDuration = 5;
+        if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_EXTEND_HAIL)
+            gWishFutureKnock.weatherDuration = 8;
+        else
+            gWishFutureKnock.weatherDuration = 5;
     }
     gBattlescriptCurrInstr++;
 }
