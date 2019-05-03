@@ -2296,6 +2296,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
              && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != 0xFF)
             {
             gBattleMons[gBankAttacker].status2 |= (gBitTable[gBankTarget] << 0x10);
+            if (ItemId_GetHoldEffect(gBattleMons[gBankTarget].item) == HOLD_EFFECT_DESTINY_KNOT)
+                gBattleMons[gBankTarget].status2 |= (gBitTable[gBankAttacker] << 0x10);
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_CuteCharmActivates;
             effect++;

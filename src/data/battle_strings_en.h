@@ -364,6 +364,8 @@ enum
     BATTLE_TEXT_FirstBattleItem,
     BATTLE_TEXT_OwnItemCausedDamage,
     BATTLE_TEXT_PowerHerbActivates,
+    BATTLE_TEXT_InfatuatedPokeItem,
+    BATTLE_TEXT_InfatuatedPokeItem2,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -599,6 +601,8 @@ const u8 BattleText_WhipSandstorm[] = _("{STRING 16}'s {STRING 23}\nwhipped up a
 const u8 BattleText_SunIntensified[] = _("{STRING 16}'s {STRING 23}\nintensified the sun's rays!");
 const u8 BattleText_PreventedLoss[] = _("{STRING 16}'s {STRING 23}\nprevents {STRING 0} loss!");
 const u8 BattleText_InfatuatedPoke[] = _("{DEFENDING_MON}'s {STRING 22}\ninfatuated {ATTACKING_MON}!");
+const u8 BattleText_InfatuatedPokeItem[] = _("{ATTACKING_MON}'s {STRING 19}\ninfatuated {DEFENDING_MON}!");
+const u8 BattleText_InfatuatedPokeItem2[] = _("{DEFENDING_MON}'s {STRING 19}\ninfatuated {ATTACKING_MON}!");
 const u8 BattleText_MadeIneffective[] = _("{DEFENDING_MON}'s {STRING 22}\nmade {STRING 17} ineffective!");
 const u8 BattleText_CuredProblem[] = _("{STRING 16}'s {STRING 23}\ncured its {STRING 0} problem!");
 const u8 BattleText_OozeSuckup[] = _("It sucked up the\nLiquid Ooze!");
@@ -1240,7 +1244,9 @@ const u8 *const gBattleStringsTable[] =
     BattleText_ItemCausedDamage,
     BattleText_FirstBattleItem,
     BattleText_OwnItemCausedDamage,
-    BattleText_PowerHerbActivates
+    BattleText_PowerHerbActivates,
+    BattleText_InfatuatedPokeItem,
+    BattleText_InfatuatedPokeItem2
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
