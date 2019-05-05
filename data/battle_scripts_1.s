@@ -859,7 +859,7 @@ BattleScriptFirstChargingTurn: @ 81D756C
 	attackanimation
 	waitanimation
 	orword gHitMarker, HITMARKER_x8000000
-	setbyte cEFFECT_CHOOSER, 76
+	setmoveeffect 76
 	seteffectprimary
 	copybyte cMULTISTRING_CHOOSER, sTWOTURN_STRINGID
 	printfromtable gFirstTurnOfTwoStringIds
@@ -1856,15 +1856,15 @@ BattleScript_EffectSunnyDay: @ 81D800E
 	goto BattleScript_MoveWeatherChange
 
 BattleScript_EffectDefenseUpHit: @ 81D8017
-	setbyte cEFFECT_CHOOSER, 80
+	setmoveeffect 80
 	goto BattleScript_EffectHit
 
 BattleScript_EffectAttackUpHit: @ 81D8022
-	setbyte cEFFECT_CHOOSER, 79
+	setmoveeffect 79
 	goto BattleScript_EffectHit
 
 BattleScript_EffectAllStatsUpHit: @ 81D802D
-	setbyte cEFFECT_CHOOSER, 98
+	setmoveeffect 98
 	goto BattleScript_EffectHit
 
 BattleScript_EffectBellyDrum: @ 81D8038
@@ -2016,7 +2016,7 @@ BattleScript_SolarbeamDecideTurn: @ 81D81E1
 
 BattleScript_SolarbeamOnFirstTurn: @ 81D8209
 	orword gHitMarker, HITMARKER_x8000000
-	setbyte cEFFECT_CHOOSER, 76
+	setmoveeffect 76
 	seteffectprimary
 	ppreduce
 	goto BattleScript_TwoTurnMovesSecondTurn
@@ -2160,7 +2160,7 @@ BattleScript_AlreadyAtFullHp:: @ 81D83B5
 BattleScript_EffectFakeOut: @ 81D83C3
 	attackcanceler
 	jumpifnotfirstturn BattleScript_ButItFailedAtkStringPpReduce
-	setbyte cEFFECT_CHOOSER, 136
+	setmoveeffect 136
 	goto BattleScript_EffectHit
 
 BattleScript_ButItFailedAtkStringPpReduce: @ 81D83D4
@@ -2186,7 +2186,7 @@ BattleScript_NotAffected: @ 81D83E8
 BattleScript_EffectUproar: @ 81D83FA
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	setbyte cEFFECT_CHOOSER, 74
+	setmoveeffect 74
 	attackstring
 	jumpifstatus2 USER, STATUS2_MULTIPLETURNS, BattleScript_UproarHit
 	ppreduce
