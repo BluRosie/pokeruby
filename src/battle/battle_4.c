@@ -2813,7 +2813,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
     }
     else
     {
-        if (gBattleMons[gEffectBank].status2 & sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]])
+        if (gBattleMons[gEffectBank].status2 & sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]]) // if it already has the status trying to inflict
         {
             gBattlescriptCurrInstr++;
         }
@@ -2872,7 +2872,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                     gBattlescriptCurrInstr++;
                 }
                 break;
-            case MOVE_EFFECT_PAYDAY: //pay day
+            case MOVE_EFFECT_PAYDAY:
                 if (!(GetBattlerPosition(gBankAttacker) & 1))
                 {
                     u16 PayDay = gPaydayMoney;
@@ -2883,7 +2883,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = gMoveEffectBS_Ptrs[gBattleCommunication[MOVE_EFFECT_BYTE]];
                 break;
-            case MOVE_EFFECT_TRI_ATTACK: //tri attack
+            case MOVE_EFFECT_TRI_ATTACK:
                 if (gBattleMons[gEffectBank].status1)
                 {
                     gBattlescriptCurrInstr++;
@@ -2900,7 +2900,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 gProtectStructs[gEffectBank].chargingTurn = 1;
                 gBattlescriptCurrInstr++;
                 break;
-            case MOVE_EFFECT_WRAP: //wrap
+            case MOVE_EFFECT_WRAP:
                 if (gBattleMons[gEffectBank].status2 & STATUS2_WRAPPED)
                 {
                     gBattlescriptCurrInstr++;
@@ -2925,7 +2925,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                     }
                 }
                 break;
-            case MOVE_EFFECT_RECOIL_25: //25% recoil
+            case MOVE_EFFECT_RECOIL_25:
                 gBattleMoveDamage = (gHpDealt) / 4;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
@@ -3099,7 +3099,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_AtkDefDown;
                 return;
-            case MOVE_EFFECT_RECOIL_33_PARALYSIS: //33% recoil
+            case MOVE_EFFECT_RECOIL_33_PARALYSIS:
                 gBattleMoveDamage = gHpDealt / 3;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
@@ -3119,7 +3119,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                     gBattlescriptCurrInstr++;
                 }
                 break;
-            case MOVE_EFFECT_KNOCK_OFF: //knock off
+            case MOVE_EFFECT_KNOCK_OFF:
                 if (gBattleMons[gEffectBank].ability == ABILITY_STICKY_HOLD)
                 {
                     if (gBattleMons[gEffectBank].item == 0)
