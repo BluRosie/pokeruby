@@ -2907,7 +2907,10 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 }
                 else
                 {
-                    gBattleMons[gEffectBank].status2 |= ((Random() & 3) + 2) << 0xD;
+                    if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_EXTEND_MULTITURN)
+                        gBattleMons[gEffectBank].status2 |= (7 << 0xD);
+                    else
+                        gBattleMons[gEffectBank].status2 |= ((Random() & 3) + 2) << 0xD;
 
                     gBattleStruct->wrappedMove[gEffectBank*2] = (u8)gCurrentMove;
                     (1 + gBattleStruct->wrappedMove)[gEffectBank*2] = gCurrentMove >> 8; //don't ask.
@@ -13580,7 +13583,7 @@ static void atkE5_pickup(void)
 
         level = (int)(level / 10);
 
-        if (ability == ABILITY_PICKUP && species != 0 && species != SPECIES_EGG && held_item == 0 /*&& (Random() % 10) == 0*/)
+        if (ability == ABILITY_PICKUP && species != 0 && species != SPECIES_EGG && held_item == 0 && (Random() % 10) == 0)
         {
             s32 chance = Random() % 100;
             s32 j;
