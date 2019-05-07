@@ -2819,7 +2819,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
         }
         else
         {
-            switch (sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]])
+            switch (gBattleCommunication[MOVE_EFFECT_BYTE])
             {
             case MOVE_EFFECT_CONFUSION:
                 if (gBattleMons[gEffectBank].ability == ABILITY_OWN_TEMPO 
@@ -2894,7 +2894,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                     SetMoveEffect(FALSE, 0);
                 }
                 break;
-            case MOVE_EFFECT_CHARGING: //charging move
+            case MOVE_EFFECT_CHARGING:
                 gBattleMons[gEffectBank].status2 |= STATUS2_MULTIPLETURNS;
                 gLockedMoves[gEffectBank] = gCurrentMove;
                 gProtectStructs[gEffectBank].chargingTurn = 1;
