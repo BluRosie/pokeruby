@@ -4988,7 +4988,7 @@ static void atk49_moveend(void)
             gBattleStruct->cmd49StateTracker++;
             break;
         case 6: //update choice band move
-            if (gHitMarker & HITMARKER_OBEYS && hold_effect_atk == HOLD_EFFECT_CHOICE_BAND
+            if (gHitMarker & HITMARKER_OBEYS && hold_effect_atk == HOLD_EFFECT_CHOICE_ITEM
                 && gLastUsedMove != MOVE_STRUGGLE && (*choiced_move_atk == 0 || *choiced_move_atk == 0xFFF)
                 && gLastUsedMove != MOVE_BATON_PASS && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
             {

@@ -4558,6 +4558,9 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     if (heldItemEffect == HOLD_EFFECT_LAGGING_TAIL)
         bank1AdjustedSpeed = 0;
 
+    if (heldItemEffect == HOLD_EFFECT_CHOICE_ITEM && gBattleMons[bank1].item == ITEM_CHOICE_SCARF)
+        bank1AdjustedSpeed *= (15 / 10);
+
     // Calculate adjusted speed for second mon.
     bank2AdjustedSpeed = gBattleMons[bank2].speed * bank2SpeedMultiplier
         * gStatStageRatios[gBattleMons[bank2].statStages[STAT_STAGE_SPEED]][0] / gStatStageRatios[gBattleMons[bank2].statStages[STAT_STAGE_SPEED]][1];
@@ -4606,6 +4609,9 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     
     if (heldItemEffect == HOLD_EFFECT_LAGGING_TAIL)
         bank2AdjustedSpeed = 0;
+
+    if (heldItemEffect == HOLD_EFFECT_CHOICE_ITEM && gBattleMons[bank2].item == ITEM_CHOICE_SCARF)
+        bank2AdjustedSpeed *= (15 / 10);
 
     if (ignoreMovePriorities)
     {
