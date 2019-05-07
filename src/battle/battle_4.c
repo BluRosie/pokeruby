@@ -13578,56 +13578,27 @@ static void atkE5_pickup(void)
         else
             ability = gBaseStats[species].ability1;
 
-        if (ability == ABILITY_PICKUP && species != 0 && species != SPECIES_EGG && held_item == 0 && (Random() % 10) == 0)
+        level = (int)(level / 10);
+
+        if (ability == ABILITY_PICKUP && species != 0 && species != SPECIES_EGG && held_item == 0 /*&& (Random() % 10) == 0*/)
         {
             s32 chance = Random() % 100;
             s32 j;
-            s32 i;
-
-            if (level <= 10)
-				i = 1;
-            else if (level <= 20)
-				i = 2;
-            else if (level <= 30)
-				i = 3;
-            else if (level <= 40)
-				i = 4;
-            else if (level <= 50)
-				i = 5;
-            else if (level <= 60)
-				i = 6;
-            else if (level <= 70)
-				i = 7;
-            else if (level <= 80)
-				i = 8;
-            else if (level <= 90)
-				i = 9;
-            else
-                i = 10;
 
             for (j = 0; j < 22; j += 2)
             {
-                if (sPickupItems[i][j + 1] > chance)
+                if (sPickupItems[level][j + 1] > chance)
                     break;
             }
-            SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, (const void*) &sPickupItems[i][j]);
+            SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, (const void*) &sPickupItems[level][j]);
         }
 
-        if (ability == ABILITY_HONEY_GATHER && species != 0 && species != SPECIES_EGG && held_item == 0
-            && ((level <= 10 && Random() % 20 == 0)           // 1/20
-            || (level <= 20 && Random() % 10 == 0)            // 1/10
-            || (level <= 30 && ((Random() * 100) % 666) == 0) // ~3/20
-            || (level <= 40 && Random() % 5 == 0)             // 1/5
-            || (level <= 50 && Random() % 4 == 0)             // 1/4
-            || (level <= 60 && ((Random() * 100) % 333) == 0) // ~3/10
-            || (level <= 70 && ((Random() * 100) % 286) == 0) // ~7/20
-            || (level <= 80 && ((Random() * 100) % 250) == 0) // 2/5
-            || (level <= 90 && ((Random() * 100) % 222) == 0) // ~9/20
-            || (level <= 100 && Random() % 2 == 0)))          // 1/2
+        if (ability == ABILITY_HONEY_GATHER && species != 0 && species != SPECIES_EGG && held_item == 0 && ((Random() % (20 / level)) < 1.0))
         {
             held_item = ITEM_HONEY;
             SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &held_item);
         }
+
     }
     gBattlescriptCurrInstr++;
 }
