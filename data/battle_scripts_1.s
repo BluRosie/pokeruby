@@ -4015,6 +4015,12 @@ BattleScript_ItemSteal:: @ 81D96F6
 	waitmessage 64
 	return
 
+BattleScript_ItemStuck::
+	@playanimation TARGET, B_ANIM_ITEM_STEAL, NULL
+	printstring BATTLE_TEXT_ItemStuck
+	waitmessage 64
+	end2
+
 BattleScript_DrizzleActivates:: @ 81D9704
 	pause 32
 	printstring BATTLE_TEXT_RainMade

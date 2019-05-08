@@ -210,6 +210,7 @@ extern u8 BattleScript_BerryCausedDamage[];
 extern u8 BattleScript_AbilityItems[];
 extern u8 BattleScript_LifeOrb[];
 extern u8 BattleScript_BlackSludge[];
+extern u8 BattleScript_ItemStuck[];
 
 extern u8 gUnknown_081D995F[]; //disobedient while asleep
 extern u8 BattleScript_IgnoresAndUsesRandomMove[]; //disobedient, uses a random move
@@ -3024,14 +3025,16 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     effect = ITEM_EFFECT_OTHER;
                 }
                 break;
+            case HOLD_EFFECT_STICKY_BARB:
             case HOLD_EFFECT_BLACK_SLUDGE:
-                if (gBattleMons[bank].hp < gBattleMons[bank].maxHP && !moveTurn)
+                if (!moveTurn)
                 {
                     gBattleMoveDamage = gBattleMons[bank].maxHP / 16;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
 
-                    if (gBattleMons[bank].type1 == TYPE_POISON || gBattleMons[bank].type2 == TYPE_POISON) {
+                    if ((gBattleMons[bank].type1 == TYPE_POISON || gBattleMons[bank].type2 == TYPE_POISON)
+                        && bankHoldEffect == HOLD_EFFECT_BLACK_SLUDGE) {
                         if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
                             gBattleMoveDamage = gBattleMons[bank].maxHP - gBattleMons[bank].hp;
                         gBattleMoveDamage *= -1;
@@ -3411,12 +3414,40 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 && gSpecialStatuses[gBankTarget].moveturnLostHP != 0xFFFF
                 && gBattleMons[gBankTarget].hp != 0
                 && gBattleMoveDamage
-                && gBattleMons[bank].statStages[STAT_STAGE_SPDEF] < 0xC
+                && gBattleMons[gBankTarget].statStages[STAT_STAGE_SPDEF] < 0xC
                 && ((gBattleMoves[gCurrentMove].split == MOVE_SPECIAL && defItem == ITEM_MARANGA_BERRY)
-                 || (gBattleMoves[gCurrentMove].type == TYPE_NORMAL && defItem == ITEM_LUMINOUS_MOSS)))
+                 || (gBattleMoves[gCurrentMove].type == TYPE_WATER && defItem == ITEM_LUMINOUS_MOSS)))
             {
                 StatChangeBerry(gBankTarget, defQuality, STAT_STAGE_SPDEF, FALSE, 0, TRUE);
                 effect++;
+            }
+            break;
+        case HOLD_EFFECT_STICKY_BARB:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && gSpecialStatuses[gBankTarget].moveturnLostHP != 0
+                && gSpecialStatuses[gBankTarget].moveturnLostHP != 0xFFFF
+                && gBattleMons[gBankTarget].hp != 0
+                && gBattleMoveDamage
+                && (gBattleMoves[gCurrentMove].flags & F_MAKES_CONTACT))
+            {
+                if (gBattleMons[gBankAttacker].item)
+                    break;
+                else
+                {
+                    gLastUsedItem = gBattleMons[gBankTarget].item;
+                    *USED_HELD_ITEM(gBankAttacker) = gLastUsedItem;
+                    gBattleMons[gBankTarget].item = 0;
+                    gBattleMons[gBankAttacker].item = gLastUsedItem;
+                    gActiveBattler = gBankAttacker;
+                    EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gLastUsedItem);
+                    MarkBufferBankForExecution(gBankAttacker);
+                    gActiveBattler = gBankTarget;
+                    EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gBankTarget].item);
+                    MarkBufferBankForExecution(gBankTarget);
+
+                    gBattlescriptCurrInstr = BattleScript_ItemStuck;
+                    effect++;
+                }
             }
             break;
         }
