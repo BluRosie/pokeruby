@@ -4539,7 +4539,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
 /*    if (gBattleMons[bank1].ability == ABILITY_SURGE_SURFER && gNewBattleEffects.electricTerrain & BATTLE_ELECTRIC_TERRAIN)
         bank1AdjustedSpeed *= 2;*/
 
-    if (heldItemEffect == HOLD_EFFECT_MACHO_BRACE)
+    if (heldItemEffect == HOLD_EFFECT_MACHO_BRACE || heldItemEffect == HOLD_EFFECT_POWER_ITEM)
         bank1AdjustedSpeed /= 2;
 
     if (gBattleMons[bank1].status1 & STATUS_PARALYSIS)
@@ -4588,7 +4588,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
 /*    if (gBattleMons[bank2].ability == ABILITY_SURGE_SURFER && gNewBattleEffects.electricTerrain & BATTLE_ELECTRIC_TERRAIN)
         bank2AdjustedSpeed *= 2;*/
 
-    if (heldItemEffect == HOLD_EFFECT_MACHO_BRACE)
+    if (heldItemEffect == HOLD_EFFECT_MACHO_BRACE || heldItemEffect == HOLD_EFFECT_POWER_ITEM)
         bank2AdjustedSpeed /= 2;
 
     if (gBattleMons[bank2].status1 & STATUS_PARALYSIS)

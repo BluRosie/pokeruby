@@ -804,6 +804,16 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
     }
 }
 
+static const u16 gPowerItemsFromStats[NUM_STATS] =
+{
+    {ITEM_POWER_WEIGHT},
+    {ITEM_POWER_BRACER},
+    {ITEM_POWER_BELT},
+    {ITEM_POWER_ANKLET},
+    {ITEM_POWER_LENS},
+    {ITEM_POWER_BAND},
+};
+
 void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 {
     u8 evs[NUM_STATS];
@@ -869,6 +879,10 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
         {
             holdEffect = ItemId_GetHoldEffect(heldItem);
         }
+
+        
+        if (holdEffect == HOLD_EFFECT_POWER_ITEM && gPowerItemsFromStats[i] == heldItem)
+            evIncrease += 4 * multiplier;
 
         if (holdEffect == HOLD_EFFECT_MACHO_BRACE)
             evIncrease *= 2;
@@ -1281,7 +1295,7 @@ const u8 *GetMonSpritePalFromOtIdPersonality(u16 species, u32 otId, u32 personal
         return gMonPaletteTable[0].data;
 
     shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
-    if (shinyValue < 8)
+    if (shinyValue < 16)
         return gMonShinyPaletteTable[species].data;
     else
         return gMonPaletteTable[species].data;

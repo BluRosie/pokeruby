@@ -917,6 +917,12 @@
 
 #define IS_ITEM_MAIL(item) ((item) >= ITEM_HEART_MAIL && (item) <= ITEM_RETRO_MAIL)
 
+#define IS_ITEM_TM(item) ((item) >= ITEM_TM01 && (item) <= ITEM_HM08)
+
+#define IS_ITEM_MEGA_STONE(item) ((item) >= ITEM_GENGARITE && (item) <= ITEM_BEEDRILLITE)
+
+#define IS_ITEM_Z_CRYSTAL(item) ((item) >= ITEM_NORMALIUM_Z)
+
 #define IS_ITEM_VITAMIN(item) ((item) >= ITEM_HP_UP && (item) <= ITEM_ZINC)
 
 #endif  // GUARD_CONSTANTS_ITEMS_H
