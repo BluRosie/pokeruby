@@ -4225,17 +4225,19 @@ void sub_8012324(void)
                             break;
                         case B_ACTION_SWITCH:
                             ewram16064arr(gActiveBattler) = gBattlerPartyIndexes[gActiveBattler];
-                            if (gBattleMons[gActiveBattler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION)
+                            if ((gBattleMons[gActiveBattler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION) 
+                                 && ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item) != HOLD_EFFECT_CAN_ALWAYS_SWITCH)
                                 || gStatuses3[gActiveBattler] & STATUS3_ROOTED)
                             {
                                 EmitChoosePokemon(0, 2, 6, ABILITY_NONE, &ewram1606Carr(0, gActiveBattler));
                             }
-                            else if ((i = ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_SHADOW_TAG))
-                                     || ((i = ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_ARENA_TRAP))
+                            else if (((i = ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_SHADOW_TAG))
+                                      || ((i = ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_ARENA_TRAP))
                                          && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FLYING)
                                          && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE)
-                                     || ((i = AbilityBattleEffects(ABILITYEFFECT_CHECK_FIELD_EXCEPT_BATTLER, gActiveBattler, ABILITY_MAGNET_PULL, 0, 0))
+                                      || ((i = AbilityBattleEffects(ABILITYEFFECT_CHECK_FIELD_EXCEPT_BATTLER, gActiveBattler, ABILITY_MAGNET_PULL, 0, 0))
                                          && IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_STEEL)))
+                                     && (ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item) != HOLD_EFFECT_CAN_ALWAYS_SWITCH))
                             {
                                 EmitChoosePokemon(0, ((i - 1) << 4) | PARTY_ABILITY_PREVENTS, 6, gLastUsedAbility, &ewram1606Carr(0, gActiveBattler));
                             }
@@ -5437,7 +5439,7 @@ bool8 TryRunFromBattle(u8 bank)
 
     if (holdEffect == HOLD_EFFECT_CAN_ALWAYS_RUN)
     {
-        gLastUsedItem = gBattleMons[bank].item ;
+        gLastUsedItem = gBattleMons[bank].item;
         gProtectStructs[bank].fleeFlag = 1;
         effect++;
     }

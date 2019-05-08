@@ -806,12 +806,12 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
 
 static const u16 gPowerItemsFromStats[NUM_STATS] =
 {
-    {ITEM_POWER_WEIGHT},
-    {ITEM_POWER_BRACER},
-    {ITEM_POWER_BELT},
-    {ITEM_POWER_ANKLET},
-    {ITEM_POWER_LENS},
-    {ITEM_POWER_BAND},
+    ITEM_POWER_WEIGHT,
+    ITEM_POWER_BRACER,
+    ITEM_POWER_BELT,
+    ITEM_POWER_ANKLET,
+    ITEM_POWER_LENS,
+    ITEM_POWER_BAND,
 };
 
 void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)

@@ -9658,6 +9658,8 @@ static void atk88_negativedamage(void)
     gBattleMoveDamage = -(gHpDealt / 2);
     if (gBattleMoveDamage == 0)
         gBattleMoveDamage = -1;
+    if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_BOOST_DRAIN_MOVES)
+        gBattleMoveDamage *= (130 / 100);
     gBattlescriptCurrInstr++;
 }
 
