@@ -223,6 +223,24 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     }
     if (defenderHoldEffect == HOLD_EFFECT_ASSAULT_VEST)
         spAttack /= 2;
+    if (attackerHoldEffect == HOLD_EFFECT_GRISEOUS_ORB// && attacker->species == SPECIES_GIRATINA
+        && (type == TYPE_GHOST || type == TYPE_DRAGON))
+    {
+        attack *= 120 / 100;
+        spAttack *= 120 / 100;
+    }
+    if (attackerHoldEffect == HOLD_EFFECT_ADAMANT_ORB// && attacker->species == SPECIES_DIALGA
+        && (type == TYPE_STEEL || type == TYPE_DRAGON))
+    {
+        attack *= 120 / 100;
+        spAttack *= 120 / 100;
+    }
+    if (attackerHoldEffect == HOLD_EFFECT_LUSTROUS_ORB// && attacker->species == SPECIES_PALKIA
+        && (type == TYPE_WATER || type == TYPE_DRAGON))
+    {
+        attack *= 120 / 100;
+        spAttack *= 120 / 100;
+    }
 
     if (defender->ability == ABILITY_THICK_FAT && (type == TYPE_FIRE || type == TYPE_ICE))
     {
