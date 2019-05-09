@@ -68,8 +68,30 @@ const u8 gHoldEffectToType[][2] =
     {HOLD_EFFECT_PSYCHIC_POWER,  TYPE_PSYCHIC},
     {HOLD_EFFECT_FIRE_POWER,     TYPE_FIRE},
     {HOLD_EFFECT_DRAGON_POWER,   TYPE_DRAGON},
-    {HOLD_EFFECT_NORMAL_POWER,   TYPE_NORMAL}
+    {HOLD_EFFECT_NORMAL_POWER,   TYPE_NORMAL},
 //    {HOLD_EFFECT_FAIRY_POWER,    TYPE_FAIRY}
+};
+
+const u8 gHoldGemToType[][2] =
+{
+    {HOLD_EFFECT_BUG_GEM,      TYPE_BUG},
+    {HOLD_EFFECT_STEEL_GEM,    TYPE_STEEL},
+    {HOLD_EFFECT_GROUND_GEM,   TYPE_GROUND},
+    {HOLD_EFFECT_ROCK_GEM,     TYPE_ROCK},
+    {HOLD_EFFECT_GRASS_GEM,    TYPE_GRASS},
+    {HOLD_EFFECT_DARK_GEM,     TYPE_DARK},
+    {HOLD_EFFECT_FIGHTING_GEM, TYPE_FIGHTING},
+    {HOLD_EFFECT_ELECTRIC_GEM, TYPE_ELECTRIC},
+    {HOLD_EFFECT_WATER_GEM,    TYPE_WATER},
+    {HOLD_EFFECT_FLYING_GEM,   TYPE_FLYING},
+    {HOLD_EFFECT_POISON_GEM,   TYPE_POISON},
+    {HOLD_EFFECT_ICE_GEM,      TYPE_ICE},
+    {HOLD_EFFECT_GHOST_GEM,    TYPE_GHOST},
+    {HOLD_EFFECT_PSYCHIC_GEM,  TYPE_PSYCHIC},
+    {HOLD_EFFECT_FIRE_GEM,     TYPE_FIRE},
+    {HOLD_EFFECT_DRAGON_GEM,   TYPE_DRAGON},
+    {HOLD_EFFECT_NORMAL_GEM,   TYPE_NORMAL},
+//    {HOLD_EFFECT_FAIRY_GEM,    TYPE_FAIRY}
 };
 
 u8 GetBattlerSide(u8 bank);
@@ -149,7 +171,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     //BADGE_BOOST(7, spAttack, bankAtk);
     //BADGE_BOOST(7, spDefense, bankDef);
 
-    for (i = 0; i < 17; i++)
+    for (i = 0; i < NUMBER_OF_MON_TYPES; i++)
     {
         if (attackerHoldEffect == gHoldEffectToType[i][0]
             && type == gHoldEffectToType[i][1])
@@ -159,6 +181,12 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             else
                 spAttack = (spAttack * (attackerHoldEffectParam + 100)) / 100;
             break;
+        }
+        if (attackerHoldEffect == gHoldGemToType[i][0]
+            && type == gHoldEffectToType[i][1]) {
+            attack *= 2;
+            spAttack *= 2;
+
         }
     }
 
@@ -193,6 +221,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack *= 130 / 100;
         spAttack *= 130 / 100;
     }
+    if (defenderHoldEffect == HOLD_EFFECT_ASSAULT_VEST)
+        spAttack /= 2;
 
     if (defender->ability == ABILITY_THICK_FAT && (type == TYPE_FIRE || type == TYPE_ICE))
     {
@@ -212,10 +242,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (attacker->ability == ABILITY_SLOW_START && gDisableStructs[bankAtk].slowStartTimer)
         attack /= 2;
     if (attacker->ability == ABILITY_DEFEATIST && attacker->hp <= (attacker->maxHP / 2))
-        {
+    {
         spAttack /= 2;
         attack /= 2;
-        }
+    }
     if (attacker->ability == ABILITY_BERSERK && attacker->hp <= (attacker->maxHP / 2))
         spAttack *= 2;
     if (attacker->ability == ABILITY_FLARE_BOOST && attacker->status1 & STATUS_BURN)

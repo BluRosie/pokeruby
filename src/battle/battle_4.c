@@ -1515,7 +1515,7 @@ static void atk04_critcalc(void)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_SKY_ATTACK)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_BLAZE_KICK)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_POISON_TAIL)
-                + (holdEffect == HOLD_EFFECT_SCOPE_LENS)
+                + (holdEffect == HOLD_EFFECT_BOOST_CRITICAL)
                 + 2 * (holdEffect == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBankAttacker].species == SPECIES_CHANSEY)
                 + 2 * (holdEffect == HOLD_EFFECT_STICK && gBattleMons[gBankAttacker].species == SPECIES_FARFETCHD);
 
@@ -1547,9 +1547,7 @@ static void atk05_damagecalc(void)
                                             gBattleStruct->dynamicMoveType, gBankAttacker, gBankTarget);
     gBattleMoveDamage = gBattleMoveDamage * gCritMultiplier * gBattleStruct->dmgMultiplier;
 
-    if (gDisableStructs[gBankAttacker].isFirstTurn)
-        gDisableStructs[gBankAttacker].lastUsedMove = MOVE_NONE;
-    if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_METRONOME && gDisableStructs[gBankAttacker].lastUsedMove == gCurrentMove) {
+    if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_METRONOME && gLastUsedMove[gBankAttacker] == gCurrentMove) {
         double multiplier;
 
         multiplier = 0.2 * gDisableStructs[gBankAttacker].metronomeCounter;
@@ -1565,9 +1563,6 @@ static void atk05_damagecalc(void)
         gBattleMoveDamage *= 2;
     if (gProtectStructs[gBankAttacker].helpingHand)
         gBattleMoveDamage = gBattleMoveDamage * 15 / 10;
-        
-    
-    //gDisableStructs[gBankAttacker].lastUsedMove = gCurrentMove;
 
     gBattlescriptCurrInstr++;
 }
@@ -1597,7 +1592,7 @@ static void ModulateDmgByType(u8 multiplier)
         gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
         gMoveResultFlags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
         gMoveResultFlags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
-        gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
+        gDisableStructs[gBankTarget].wasLastMoveSuperEffective = FALSE;
         break;
     case 5: //not very effective
         if (gBattleMoves[gCurrentMove].power && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
@@ -1606,7 +1601,7 @@ static void ModulateDmgByType(u8 multiplier)
                 gMoveResultFlags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
             else
                 gMoveResultFlags |= MOVE_RESULT_NOT_VERY_EFFECTIVE;
-            gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
+            gDisableStructs[gBankTarget].wasLastMoveSuperEffective = FALSE;
         }
         break;
     case 20: //super effective
@@ -1614,10 +1609,10 @@ static void ModulateDmgByType(u8 multiplier)
         {
             if (gMoveResultFlags & MOVE_RESULT_NOT_VERY_EFFECTIVE) {
                 gMoveResultFlags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
-                gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
+                gDisableStructs[gBankTarget].wasLastMoveSuperEffective = FALSE;
             } else {
                 gMoveResultFlags |= MOVE_RESULT_SUPER_EFFECTIVE;
-                gNewBattleEffects.wasLastMoveSuperEffective = TRUE;
+                gDisableStructs[gBankTarget].wasLastMoveSuperEffective = TRUE;
             }
         }
         break;
@@ -1638,7 +1633,7 @@ static void ModulateDmgByType(u8 multiplier)
         && gBattleMoves[gCurrentMove].type == TYPE_NORMAL)
         multiplier /= 2;
     
-    if (ItemId_GetHoldEffect(gBattleMons[gBankTarget].item) == HOLD_EFFECT_BOOST_EFFECTIVE && gNewBattleEffects.wasLastMoveSuperEffective) {
+    if (ItemId_GetHoldEffect(gBattleMons[gBankTarget].item) == HOLD_EFFECT_BOOST_EFFECTIVE && gDisableStructs[gBankTarget].wasLastMoveSuperEffective) {
         multiplier += 2;
     }
 
@@ -1800,7 +1795,7 @@ static void ModulateDmgByType2(u8 multiplier, u16 move, u8* flags) //a literal c
         *flags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
         *flags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
         *flags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
-        gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
+        gDisableStructs[gBankTarget].wasLastMoveSuperEffective = FALSE;
         break;
     case 5: //not very effective
         if (gBattleMoves[move].power && !(*flags & MOVE_RESULT_NO_EFFECT))
@@ -1809,7 +1804,7 @@ static void ModulateDmgByType2(u8 multiplier, u16 move, u8* flags) //a literal c
                 *flags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
             else
                 *flags |= MOVE_RESULT_NOT_VERY_EFFECTIVE;
-            gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
+            gDisableStructs[gBankTarget].wasLastMoveSuperEffective = FALSE;
         }
         break;
     case 20: //super effective
@@ -1817,10 +1812,10 @@ static void ModulateDmgByType2(u8 multiplier, u16 move, u8* flags) //a literal c
         {
             if (*flags & MOVE_RESULT_NOT_VERY_EFFECTIVE) {
                 *flags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
-                gNewBattleEffects.wasLastMoveSuperEffective = FALSE;
+                gDisableStructs[gBankTarget].wasLastMoveSuperEffective = FALSE;
             } else {
                 *flags |= MOVE_RESULT_SUPER_EFFECTIVE;
-                gNewBattleEffects.wasLastMoveSuperEffective = TRUE;
+                gDisableStructs[gBankTarget].wasLastMoveSuperEffective = TRUE;
             }
         }
         break;
@@ -4261,8 +4256,6 @@ static void atk2E_setbyte(void)
 {
     u8* mem = T2_READ_PTR(gBattlescriptCurrInstr + 1);
     *mem = T2_READ_8(gBattlescriptCurrInstr + 5);
-    
-    gDisableStructs[gBankAttacker].lastUsedMove = gCurrentMove;
 
     gBattlescriptCurrInstr += 6;
 }
@@ -8633,6 +8626,8 @@ void atk6A_removeitem(void)
 {
     gActiveBattler = GetBattleBank(T2_READ_8(gBattlescriptCurrInstr + 1));
     USED_HELD_ITEMS(gActiveBattler) = gBattleMons[gActiveBattler].item;
+
+    gLastUsedItem = gBattleMons[gActiveBattler].item;
 
     gBattleMons[gActiveBattler].item = 0;
     EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);

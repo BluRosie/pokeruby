@@ -396,10 +396,12 @@ struct DisableStruct
     /*0x18*/ u8 unk18_b:4;
     /*0x19*/ u8 rechargeCounter;
     /*0x1A*/ u8 unk1A[2];
-    /*0x1C*/ u16 lastUsedMove;
-    /*0x1E*/ u8 slowStartTimer:4;
-             u8 metronomeCounter:4;
-    
+    /*0x1C*/ u8 slowStartTimer:3;
+             u8 metronomeCounter:3;
+             u8 wasLastMoveSuperEffective:1;
+             u8 quickClaw:1;
+    /*0x1D*/ u8 berryActivates:1;
+             u8 intimidate:1;
 };
 
 struct BattleResults
@@ -573,10 +575,6 @@ struct NewBattleEffects // currently have 0x10 of space for this
 {
     u32 hailPermanent:1;
     u32 fog:1;
-    u32 wasLastMoveSuperEffective:1;
-    u32 quickClaw:1;
-    u32 berryActivates:1;
-    u32 intimidate:1;
 };
 
 extern struct BattleHistory unk_2016A00;

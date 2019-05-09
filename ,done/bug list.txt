@@ -1,7 +1,6 @@
 currently known:
 
 - fog doesn't address loading a few different palettes.  it also definitely doesn't support any sort of dynamic system that may happen in the future
-- item name isn't buffered correctly on first turn when power herb activates
 - animation for sticky barb sticking doesn't work like thief's entirely, currently the animation is commented out
 
 TODO:

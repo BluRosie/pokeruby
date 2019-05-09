@@ -4514,6 +4514,10 @@ BattleScript_MoveSelectionChoiceBanded:: @ 81D9AC2
 	printselectionstring BATTLE_TEXT_ChoiceBand
 	endselectionscript
 
+BattleScript_MoveSelectionAssaultVested::
+	printselectionstring BATTLE_TEXT_AssaultVest
+	endselectionscript
+
 BattleScript_HangedOnMsg:: @ 81D9AC6
 	playanimation TARGET, B_ANIM_HANGED_ON, NULL
 	printstring BATTLE_TEXT_FocusSash

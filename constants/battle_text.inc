@@ -361,3 +361,4 @@
 	enum BATTLE_TEXT_InfatuatedPokeItem2
 	enum BATTLE_TEXT_ItemCausedLittleDamage
 	enum BATTLE_TEXT_ItemStuck
+	enum BATTLE_TEXT_AssaultVest

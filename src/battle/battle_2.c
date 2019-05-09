@@ -4551,7 +4551,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
         || (heldItemEffect == HOLD_EFFECT_CUSTAP_BERRY && ((gBattleMons[bank1].hp <= gBattleMons[bank1].maxHP / 2 && gBattleMons[bank1].ability == ABILITY_GLUTTONY)
                                                          || gBattleMons[bank1].hp <= gBattleMons[bank1].maxHP / 4))) {
         bank1AdjustedSpeed = UINT_MAX;
-        gNewBattleEffects.quickClaw = TRUE;
+        gDisableStructs[bank1].quickClaw = TRUE;
     }
 
     if (heldItemEffect == HOLD_EFFECT_IRON_BALL)
@@ -4603,7 +4603,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
         || (heldItemEffect == HOLD_EFFECT_CUSTAP_BERRY && ((gBattleMons[bank2].hp <= gBattleMons[bank2].maxHP / 2 && gBattleMons[bank2].ability == ABILITY_GLUTTONY)
                                                          || gBattleMons[bank2].hp <= gBattleMons[bank2].maxHP / 4))) {
         bank2AdjustedSpeed = UINT_MAX;
-        gNewBattleEffects.quickClaw = TRUE;
+        gDisableStructs[bank2].quickClaw = TRUE;
     }
 
     if (heldItemEffect == HOLD_EFFECT_IRON_BALL)

@@ -6,6 +6,7 @@
         "battle_strings_de.h\u0000gs_de.h": "c",
         "battle_strings_de.h\u0000ings_de.h": "c",
         "battle_strings_de.h\u0000ngs_de.h": "c",
-        "item.h": "c"
+        "item.h": "c",
+        "pokemon.h": "c"
     }
 }

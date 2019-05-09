@@ -368,6 +368,7 @@ enum
     BATTLE_TEXT_InfatuatedPokeItem2,
     BATTLE_TEXT_ItemCausedLittleDamage,
     BATTLE_TEXT_ItemStuck,
+    BATTLE_TEXT_AssaultVest,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -799,6 +800,7 @@ const u8 BattleText_RestoredHPLittle[] = _("{STRING 16}'s {STRING 19}\nrestored 
 const u8 BattleText_BerryWeakenedDamage[] = _("{STRING 16}'s {STRING 19}\nweakened the damage!");
 const u8 BattleText_ChoiceBand[] = _("{STRING 19} allows the\nuse of only {STRING 17}!\p");
 const u8 BattleText_FocusSash[] = _("{DEFENDING_MON} hung on\nusing its {STRING 19}!");
+const u8 BattleText_AssaultVest[] = _("{STRING 19} doesn't\nallow status moves!\p");
 const u8 BattleText_Terminator2[] = _("");
 const u8 BattleText_WallyBall[] = _("You throw a BALL now, right?\nI... I'll do my best!");
 const u8 BattleText_StartEvo[] = _("What?\n{STRING 2} is evolving!");
@@ -1252,7 +1254,8 @@ const u8 *const gBattleStringsTable[] =
     BattleText_InfatuatedPokeItem,
     BattleText_InfatuatedPokeItem2,
     BattleText_ItemCausedLittleDamage,
-    BattleText_ItemStuck
+    BattleText_ItemStuck,
+    BattleText_AssaultVest
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
