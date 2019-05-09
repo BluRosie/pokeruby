@@ -2102,6 +2102,8 @@ static void atk09_attackanimation(void)
         {
             gActiveBattler = gBankAttacker;
 
+            //ItemBattleEffects(5, 0, FALSE);
+
             EmitMoveAnimation(0, gCurrentMove, gBattleStruct->animTurn, gBattleMovePower, gBattleMoveDamage, gBattleMons[gBankAttacker].friendship, &gDisableStructs[gBankAttacker]);
             gBattleStruct->animTurn += 1;
             gBattleStruct->animTargetsHit += 1;
@@ -13886,10 +13888,11 @@ void atkEF_handleballthrow(void)
                 weight = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBankTarget].species), 1);
                 
                 if (weight <= 1000) //220.46 lbs
-                {    if (catch_rate >= 21)              // this could result in some sort of shitty exception where a pokemon with catch rate 22 becomes harder to catch than one with like 19 but it's fine
-                    {
+                {
+                    if (catch_rate > 20)
                         catch_rate -= 20;
-                    }
+                    else 
+                        catch_rate = 0;
                 }
                 else if (weight <= 3000 && weight > 2000) //440.92-661.38 lbs
                 {
@@ -13915,7 +13918,7 @@ void atkEF_handleballthrow(void)
                     ball_multiplier = 10;
                 break;
             case ITEM_QUICK_BALL:
-                if (gBattleResults.battleTurnCounter == 1)
+                if (gBattleResults.battleTurnCounter == 0)
                     ball_multiplier = 50;
                 else
                     ball_multiplier = 10;

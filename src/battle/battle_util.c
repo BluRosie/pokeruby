@@ -3057,6 +3057,33 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     RecordItemBattle(bank, bankHoldEffect);
                 }
                 break;
+            case HOLD_EFFECT_TOXIC_ORB:
+                if (!(gBattleMons[bank].status1 & STATUS_TOXIC_POISON) && !moveTurn)
+                {
+                    gBattleMons[bank].status1 &= STATUS_TOXIC_POISON;
+                    BattleScriptExecute(BattleScript_ToxicOrb);
+                    effect = ITEM_STATUS_CHANGE;
+                    RecordItemBattle(bank, bankHoldEffect);
+                }
+                break;
+            case HOLD_EFFECT_FLAME_ORB:
+                if (!(gBattleMons[bank].status1 & STATUS_BURN) && !moveTurn)
+                {
+                    gBattleMons[bank].status1 &= STATUS_BURN;
+                    BattleScriptExecute(BattleScript_FlameOrb);
+                    effect = ITEM_STATUS_CHANGE;
+                    RecordItemBattle(bank, bankHoldEffect);
+                }
+                break;
+            case HOLD_EFFECT_SHOCK_ORB:
+                if (!(gBattleMons[bank].status1 & STATUS_PARALYSIS) && !moveTurn)
+                {
+                    gBattleMons[bank].status1 &= STATUS_PARALYSIS;
+                    BattleScriptExecute(BattleScript_ShockOrb);
+                    effect = ITEM_STATUS_CHANGE;
+                    RecordItemBattle(bank, bankHoldEffect);
+                }
+                break;
             }
             if (effect)
             {
@@ -3229,30 +3256,6 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     gStringBank = bank;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_WhiteHerbRet;
-                }
-                break;
-            case HOLD_EFFECT_TOXIC_ORB:
-                if (!(gBattleMons[bank].status1 & STATUS_TOXIC_POISON) && !moveTurn)
-                {
-                    gBattleMons[bank].status1 &= STATUS_TOXIC_POISON;
-                    BattleScriptExecute(BattleScript_ToxicOrb);
-                    effect = ITEM_STATUS_CHANGE;
-                }
-                break;
-            case HOLD_EFFECT_FLAME_ORB:
-                if (!(gBattleMons[bank].status1 & STATUS_BURN) && !moveTurn)
-                {
-                    gBattleMons[bank].status1 &= STATUS_BURN;
-                    BattleScriptExecute(BattleScript_FlameOrb);
-                    effect = ITEM_STATUS_CHANGE;
-                }
-                break;
-            case HOLD_EFFECT_SHOCK_ORB:
-                if (!(gBattleMons[bank].status1 & STATUS_PARALYSIS) && !moveTurn)
-                {
-                    gBattleMons[bank].status1 &= STATUS_PARALYSIS;
-                    BattleScriptExecute(BattleScript_ShockOrb);
-                    effect = ITEM_STATUS_CHANGE;
                 }
                 break;
             }
@@ -3458,6 +3461,11 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 }
             }
             break;
+        }
+        break;
+    case 5: // right before the attack animation
+        switch (atkHoldEffect)
+        {
         }
         break;
     }
