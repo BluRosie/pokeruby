@@ -1415,10 +1415,10 @@ static void atk01_accuracycheck(void)
 
         if (defHoldEffect == HOLD_EFFECT_EVASION_UP)
             calc = (calc * (100 - defQuality)) / 100;
-        if (atkHoldEffect == HOLD_EFFECT_BOOST_ACCURACY) // wait what?  this is saying if the enemy has a wide lens then it boosts the user's accuracy
+        if (atkHoldEffect == HOLD_EFFECT_BOOST_ACCURACY)
             calc *= (110 / 100);
         if (atkHoldEffect == HOLD_EFFECT_ZOOM_LENS && GetWhoStrikesFirst(gBankAttacker, gBankTarget, FALSE) == 1) // the opponent mon would go first (not because of random roll)
-            calc = (calc * 120) / 100; 
+            calc *= (120 / 100); 
 
         // final calculation
         if ((Random() % 100 + 1) > calc)
@@ -8629,8 +8629,6 @@ void atk6A_removeitem(void)
     gActiveBattler = GetBattleBank(T2_READ_8(gBattlescriptCurrInstr + 1));
     USED_HELD_ITEMS(gActiveBattler) = gBattleMons[gActiveBattler].item;
 
-    gLastUsedItem = gBattleMons[gActiveBattler].item;
-
     gBattleMons[gActiveBattler].item = 0;
     EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);
     MarkBufferBankForExecution(gActiveBattler);
@@ -14266,8 +14264,10 @@ static void atkF8_jumpifholdeffect(void)
     u8 holdEffect = T2_READ_8(gBattlescriptCurrInstr + 2);
     gActiveBattler = GetBattleBank(T2_READ_8(gBattlescriptCurrInstr + 1));
 
-    if (ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item) == holdEffect && gCurrentMove != MOVE_SKY_ATTACK)
+    if (ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item) == holdEffect) {
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        gLastUsedItem = gBattleMons[gActiveBattler].item;
+    }
     else
         gBattlescriptCurrInstr += 7;
 }
