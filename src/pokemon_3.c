@@ -198,17 +198,6 @@ u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit)
     return offset;
 }
 
-// TODO:  rewrite for new x items
-const u8 gUnknown_082082F8[] = {1, 1, 3, 2, 4, 6};
-
-void sub_803F324(int stat)
-{
-    gBankTarget = gBankInMenu;
-    StringCopy(gBattleTextBuff1, gStatStrings[gUnknown_082082F8[stat]]);
-    StringCopy(gBattleTextBuff2, BattleText_Rose);
-    StrCpyDecodeToDisplayedStringBattle(BattleText_UnknownString3);
-}
-
 void statToMessage(int stat)
 {
     gBankTarget = gBankInMenu;
@@ -217,7 +206,7 @@ void statToMessage(int stat)
     StrCpyDecodeToDisplayedStringBattle(BattleText_UnknownString3);
 }
 
-u8 *sub_803F378(u16 itemId)
+u8 *displayXItemMessage(u16 itemId)
 {
     int i;
     const u8 *itemEffect;
@@ -240,8 +229,6 @@ u8 *sub_803F378(u16 itemId)
 
     gStringBank = gBankInMenu;
 
-    // checking all the x items
-    // TODO:  rewrite for x items
     for (i = 0; i <= 6; i++)
     {
         if (itemEffect[X_ITEMS] != RAISE_CRITICAL && itemEffect[X_ITEMS] << i & RAISE_ATTACK)
