@@ -2931,3 +2931,658 @@ static const u8 gItemDescription_Memories[] = _(
     "Changes the type\n"
     "of a certain\n"
     "species.");
+
+static const u8 gItemDescription_ExplorerKit[] = _(
+    "Filled with tools\n"
+    "for exploring.");
+
+static const u8 gItemDescription_LootSack[] = _(
+    "A bag used to\n"
+    "carry things from\n"
+    "the Underground.");
+
+static const u8 gItemDescription_RuleBook[] = _(
+    "Lists all the\n"
+    "different rules\n"
+    "for battles.");
+
+static const u8 gItemDescription_PokeRadar[] = _(
+    "A tool that\n"
+    "searches grass\n"
+    "for Pokémon.");
+
+static const u8 gItemDescription_PointCard[] = _(
+    "Lists the amount\n"
+    "of Battle Points\n"
+    "earned.");
+
+static const u8 gItemDescription_Journal[] = _(
+    "A journal used\n"
+    "to record your\n"
+    "adventure.");
+
+static const u8 gItemDescription_SealCase[] = _(
+    "A case that holds\n"
+    "seals.");
+
+static const u8 gItemDescription_FashionCase[] = _(
+    "A case that holds\n"
+    "props.");
+
+static const u8 gItemDescription_SealBag[] = _(
+    "A bad that holds\n"
+    "seals.");
+
+static const u8 gItemDescription_PalPad[] = _(
+    "A pad used to\n"
+    "record all your\n"
+    "friends in.");
+
+static const u8 gItemDescription_WorksKey[] = _(
+    "A key used to\n"
+    "unlock the\n"
+    "Valley Windworks.");
+
+static const u8 gItemDescription_OldCharm[] = _(
+    "A charm to be\n"
+    "given to the\n"
+    "Elder.");
+
+static const u8 gItemDescription_GalacticKey[] = _(
+    "Unarms security\n"
+    "in the Galactic\n"
+    "Headquarters.");
+
+static const u8 gItemDescription_RedChain[] = _(
+    "Links all the\n"
+    "legendary\n"
+    "Pokémon.");
+
+static const u8 gItemDescription_TownMap[] = _(
+    "A map of the\n"
+    "various regions.");
+
+static const u8 gItemDescription_VsSeeker[] = _(
+    "A rechargeable\n"
+    "unit that flags\n"
+    "nearby Trainers.");
+
+static const u8 gItemDescription_PoffinCase[] = _(
+    "A case to store\n"
+    "Poffins cooked\n"
+    "from Berries.");
+
+static const u8 gItemDescription_Bike[] = _(
+    "A folding bicycle\n"
+    "that has many\n"
+    "different gears.");
+
+static const u8 gItemDescription_SuiteKey[] = _(
+    "A key to one of\n"
+    "the suites by the\n"
+    "lake.");
+
+static const u8 gItemDescription_OaksLetter[] = _(
+    "A letter written\n"
+    "by Professor\n"
+    "Oak.");
+
+static const u8 gItemDescription_LunarWing[] = _(
+    "A feather that\n"
+    "glows like the\n"
+    "moon.");
+
+static const u8 gItemDescription_MemberCard[] = _(
+    "Allows entry to\n"
+    "an inn located\n"
+    "in Canalave city.");
+
+static const u8 gItemDescription_AzureFlute[] = _(
+    "A flute that has\n"
+    "a surreal sound.\n"
+    "Who made it?");
+
+static const u8 gItemDescription_MagmaStone[] = _(
+    "A stone that\n"
+    "holds heated\n"
+    "magma.");
+
+static const u8 gItemDescription_Coupon[] = _(
+    "A coupon to be\n"
+    "exchanged for a\n"
+    "Pokétch.");
+
+static const u8 gItemDescription_SecretPotion[] = _(
+    "It fully heals a\n"
+    "Pokémon of any\n"
+    "ailment.");
+
+static const u8 gItemDescription_VsRecorder[] = _(
+    "A device used to\n"
+    "record battles.");
+
+static const u8 gItemDescription_Gracidea[] = _(
+    "A flower used\n"
+    "to celebrate\n"
+    "special times.");
+
+static const u8 gItemDescription_SecretKey[] = _(
+    "A key to be used\n"
+    "to get into a\n"
+    "specific place.");
+
+static const u8 gItemDescription_ApricornBox[] = _(
+    "A case that\n"
+    "holds Apricorns.");
+
+static const u8 gItemDescription_UnownReport[] = _(
+    "Records Unown\n"
+    "forms that have\n"
+    "been caught.");
+
+static const u8 gItemDescription_BerryPots[] = _(
+    "Pots in which\n"
+    "Berries can be\n"
+    "grown.");
+
+static const u8 gItemDescription_BlueCard[] = _(
+    "A card that saves\n"
+    "points earned\n"
+    "via radio.");
+
+static const u8 gItemDescription_SlowpokeTail[] = _(
+    "A very tasty\n"
+    "delicacy which\n"
+    "can be sold well.");
+
+static const u8 gItemDescription_ClearBell[] = _(
+    "A very old bell\n"
+    "which gently\n"
+    "rings.");
+
+static const u8 gItemDescription_CardKey[] = _(
+    "A key that opens a\n"
+    "door in the Radio\n"
+    "Tower.");
+
+static const u8 gItemDescription_RedScale[] = _(
+    "A red scale from\n"
+    "the Red Gyarados.");
+
+static const u8 gItemDescription_LostItem[] = _(
+    "It looks like\n"
+    "someone lost\n"
+    "their doll.");
+
+static const u8 gItemDescription_Pass[] = _(
+    "A pass used for\n"
+    "boarding the\n"
+    "Magnet Train.");
+
+static const u8 gItemDescription_MachinePart[] = _(
+    "A missing part\n"
+    "of a machine from\n"
+    "the Power Plant.");
+
+static const u8 gItemDescription_SilverWing[] = _(
+    "A strange,\n"
+    "silvery feather.\n"
+    "It sparkles.");
+
+static const u8 gItemDescription_RainbowWing[] = _(
+    "A mystical,\n"
+    "rainbow feather.\n"
+    "It sparkles.");
+
+static const u8 gItemDescription_MysteryEgg[] = _(
+    "A mystery egg.\n"
+    "Could it be of\n"
+    "a Pokémon?");
+
+static const u8 gItemDescription_PhotoAlbum[] = _(
+    "A place to\n"
+    "store photos\n"
+    "taken.");
+
+static const u8 gItemDescription_GBSounds[] = _(
+    "A nostalgic\n"
+    "music piece of\n"
+    "straight fire.");
+
+static const u8 gItemDescription_RageCandyBar[] = _(
+    "Many tourists\n"
+    "like to buy these\n"
+    "for home.");
+
+static const u8 gItemDescription_JadeOrb[] = _(
+    "A green, glowing\n"
+    "orb said to contain\n"
+    "an ancient power.");
+
+static const u8 gItemDescription_LockCapsule[] = _(
+    "A sturdy capsule\n"
+    "to be opened with\n"
+    "a certain key.");
+
+static const u8 gItemDescription_EnigmaStone[] = _(
+    "A very beautiful\n"
+    "stone covered with\n"
+    "bits of earth.");
+
+static const u8 gItemDescription_LibertyPass[] = _(
+    "A special pass\n"
+    "to go to Liberty\n"
+    "Garden.");
+
+static const u8 gItemDescription_PropCase[] = _(
+    "A case that holds\n"
+    "props.");
+
+static const u8 gItemDescription_DragonSkull[] = _(
+    "A fossil of an\n"
+    "ancient Pokémon.\n"
+    "It braved waters.");
+
+static const u8 gItemDescription_LightStone[] = _(
+    "It is waiting for\n"
+    "the emergence of\n"
+    "a hero.");
+
+static const u8 gItemDescription_Xtransceiver[] = _(
+    "A camera caller\n"
+    "which allows for\n"
+    "4 people.");
+
+static const u8 gItemDescription_MedalBox[] = _(
+    "A box that holds\n"
+    "medals showing\n"
+    "progress.");
+
+static const u8 gItemDescription_DNASplicers[] = _(
+    "A device that\n"
+    "splices certain\n"
+    "Pokémon.");
+
+static const u8 gItemDescription_Permit[] = _(
+    "Allows passage\n"
+    "to the Nature\n"
+    "Preserve.");
+
+static const u8 gItemDescription_OvalCharm[] = _(
+    "Makes eggs more\n"
+    "likely to be\n"
+    "found.");
+
+static const u8 gItemDescription_ShinyCharm[] = _(
+    "Makes Shiny\n"
+    "Pokémon more\n"
+    "common.");
+
+static const u8 gItemDescription_PlasmaCard[] = _(
+    "A key that opens a\n"
+    "door in the Plasma\n"
+    "Headquarters.");
+
+static const u8 gItemDescription_GrubbyHanky[] = _(
+    "A hanky dropped by\n"
+    "a regular at the\n"
+    "Café Warehouse.");
+
+static const u8 gItemDescription_ColressMachine[] = _(
+    "A device that\n"
+    "wrings out full\n"
+    "potential.");
+
+static const u8 gItemDescription_RevealGlass[] = _(
+    "A glass that\n"
+    "reveals the truth.\n"
+    "Changes a forme.");
+
+static const u8 gItemDescription_PowerPlantPass[] = _(
+    "A key that opens\n"
+    "the door to the\n"
+    "Power Plant.");
+
+static const u8 gItemDescription_MegaItem[] = _(
+    "A device with the\n"
+    "power to unleash\n"
+    "Mega Evolution.");
+
+static const u8 gItemDescription_IntriguingStone[] = _(
+    "A rather curious\n"
+    "stone. May be\n"
+    "valuable.");
+
+static const u8 gItemDescription_CommonStone[] = _(
+    "A rather normal\n"
+    "stone. May be\n"
+    "valuable.");
+
+static const u8 gItemDescription_ElevatorKey[] = _(
+    "The door key for\n"
+    "the elevator to\n"
+    "The Under.");
+
+static const u8 gItemDescription_TMVPass[] = _(
+    "A key that allows\n"
+    "the holder to ride\n"
+    "the TMV.");
+
+static const u8 gItemDescription_HonorOfKalos[] = _(
+    "An award to a\n"
+    "person who has\n"
+    "done marvels.");
+
+static const u8 gItemDescription_AdventureRules[] = _(
+    "A book of\n"
+    "Trainer Tips.");
+
+static const u8 gItemDescription_LensCase[] = _(
+    "A case that holds\n"
+    "contact lenses.");
+
+static const u8 gItemDescription_MakeupBag[] = _(
+    "A bag that holds\n"
+    "makeup.");
+
+static const u8 gItemDescription_TravelTrunk[] = _(
+    "A case that holds\n"
+    "all the different\n"
+    "outfits collected.");
+
+static const u8 gItemDescription_LookerTicket[] = _(
+    "A ticket handmade\n"
+    "by Looker himself.\n"
+    "Really glittery.");
+
+static const u8 gItemDescription_HoloCaster[] = _(
+    "A device used to\n"
+    "send & receive\n"
+    "holograms.");
+
+static const u8 gItemDescription_DevonScubaGear[] = _(
+    "Provides air to\n"
+    "Trainers using\n"
+    "Dive.");
+
+static const u8 gItemDescription_ContestCostumeM[] = _(
+    "A very cool\n"
+    "suit to be worn\n"
+    "during Contests.");
+
+static const u8 gItemDescription_ContestCostumeF[] = _(
+    "A very cute\n"
+    "dress worn\n"
+    "during Contests.");
+
+static const u8 gItemDescription_MagmaSuit[] = _(
+    "A suit made by\n"
+    "Team Magma. It is\n"
+    "very durable.");
+
+static const u8 gItemDescription_AquaSuit[] = _(
+    "A suit made by\n"
+    "Team Aqua. It is\n"
+    "very durable.");
+
+static const u8 gItemDescription_PairOfTickets[] = _(
+    "A ticket pair\n"
+    "used to see a\n"
+    "star show.");
+
+static const u8 gItemDescription_PrisonBottle[] = _(
+    "A bottle that\n"
+    "sealed away a\n"
+    "huge power.");
+
+static const u8 gItemDescription_KeyStone[] = _(
+    "The stone used\n"
+    "to activate\n"
+    "Mega Evolution.");
+
+static const u8 gItemDescription_MeteoriteShard[] = _(
+    "One of the\n"
+    "fragments of\n"
+    "a meteorite.");
+
+static const u8 gItemDescription_EonFlute[] = _(
+    "A flute that\n"
+    "summons a\n"
+    "special Pokémon.");
+
+static const u8 gItemDescription_ZRing[] = _(
+    "Gathers power\n"
+    "for use with\n"
+    "Z-Moves.");
+
+static const u8 gItemDescription_ForageBag[] = _(
+    "A bag to carry\n"
+    "ingredients for\n"
+    "a Trial.");
+
+static const u8 gItemDescription_ProfessorsMask[] = _(
+    "The mask of the\n"
+    "famous Masked\n"
+    "Royal.");
+
+static const u8 gItemDescription_FestivalTicket[] = _(
+    "A ticket that\n"
+    "allows you to\n"
+    "host a mission.");
+
+static const u8 gItemDescription_SparklingStone[] = _(
+    "A stone given\n"
+    "to worthy people\n"
+    "by the tapu.");
+
+static const u8 gItemDescription_ZygardeCube[] = _(
+    "An item that\n"
+    "stores Zygarde\n"
+    "cells & cores.");
+
+static const u8 gItemDescription_RidePager[] = _(
+    "A device that\n"
+    "rings when your\n"
+    "ride has come.");
+
+static const u8 gItemDescription_SunFlute[] = _(
+    "Its tones please\n"
+    "the Sun\n"
+    "Pokémon.");
+
+static const u8 gItemDescription_MoonFlute[] = _(
+    "Its tones please\n"
+    "the Moon\n"
+    "Pokémon.");
+
+static const u8 gItemDescription_EnigmaticCard[] = _(
+    "A hotel key.");
+
+static const u8 gItemDescription_ZPowerRing[] = _(
+    "A device which\n"
+    "can use more\n"
+    "Z-Moves.");
+
+static const u8 gItemDescription_PinkPetal[] = _(
+    "The first of\n"
+    "seven.");
+
+static const u8 gItemDescription_OrangePetal[] = _(
+    "The second of\n"
+    "seven.");
+
+static const u8 gItemDescription_BluePetal[] = _(
+    "The third of\n"
+    "seven.");
+
+static const u8 gItemDescription_RedPetal[] = _(
+    "The fourth of\n"
+    "seven.");
+
+static const u8 gItemDescription_GreenPetal[] = _(
+    "The fifth of\n"
+    "seven.");
+
+static const u8 gItemDescription_YellowPetal[] = _(
+    "The sixth of\n"
+    "seven.");
+
+static const u8 gItemDescription_PurplePetal[] = _(
+    "The seventh of\n"
+    "seven.");
+
+static const u8 gItemDescription_RainbowFlower[] = _(
+    "Evidence that a\n"
+    "Trainer has done\n"
+    "all the Trials.");
+
+static const u8 gItemDescription_SurgeBadge[] = _(
+    "A novelty badge\n"
+    "from a fake gym.\n"
+    "A souvenir.");
+
+static const u8 gItemDescription_LeftPokeBall[] = _(
+    "A Poké Ball that\n"
+    "was left behind.");
+
+static const u8 gItemDescription_NormaliumZ[] = _(
+    "The Z-Stone for\n"
+    "Normal-types.");
+
+static const u8 gItemDescription_FiriumZ[] = _(
+    "The Z-Stone for\n"
+    "Fire-types.");
+
+static const u8 gItemDescription_WateriumZ[] = _(
+    "The Z-Stone for\n"
+    "Water-types.");
+
+static const u8 gItemDescription_ElectriumZ[] = _(
+    "The Z-Stone for\n"
+    "Electric-types.");
+
+static const u8 gItemDescription_GrassiumZ[] = _(
+    "The Z-Stone for\n"
+    "Grass-types.");
+
+static const u8 gItemDescription_IciumZ[] = _(
+    "The Z-Stone for\n"
+    "Ice-types.");
+
+static const u8 gItemDescription_FightniumZ[] = _(
+    "The Z-Stone for\n"
+    "Fighting-types.");
+
+static const u8 gItemDescription_PoisoniumZ[] = _(
+    "The Z-Stone for\n"
+    "Poison-types.");
+
+static const u8 gItemDescription_GroundiumZ[] = _(
+    "The Z-Stone for\n"
+    "Ground-types.");
+
+static const u8 gItemDescription_FlyiniumZ[] = _(
+    "The Z-Stone for\n"
+    "Flying-types.");
+
+static const u8 gItemDescription_PsychiumZ[] = _(
+    "The Z-Stone for\n"
+    "Psychic-types.");
+
+static const u8 gItemDescription_BuginiumZ[] = _(
+    "The Z-Stone for\n"
+    "Bug-types.");
+
+static const u8 gItemDescription_RockiumZ[] = _(
+    "The Z-Stone for\n"
+    "Rock-types.");
+
+static const u8 gItemDescription_GhostiumZ[] = _(
+    "The Z-Stone for\n"
+    "Ghost-types.");
+
+static const u8 gItemDescription_DragoniumZ[] = _(
+    "The Z-Stone for\n"
+    "Dragon-types.");
+
+static const u8 gItemDescription_DarkiniumZ[] = _(
+    "The Z-Stone for\n"
+    "Dark-types.");
+
+static const u8 gItemDescription_SteeliumZ[] = _(
+    "The Z-Stone for\n"
+    "Steel-types.");
+
+static const u8 gItemDescription_FairiumZ[] = _(
+    "The Z-Stone for\n"
+    "Fairy-types.");
+
+static const u8 gItemDescription_PikaniumZ[] = _(
+    "The Z-Stone for\n"
+    "Pikachu's Volt\n"
+    "Tackle.");
+
+static const u8 gItemDescription_DecidiumZ[] = _(
+    "The Z-Stone for\n"
+    "Decidueye.");
+
+static const u8 gItemDescription_InciniumZ[] = _(
+    "The Z-Stone for\n"
+    "Incineroar.");
+
+static const u8 gItemDescription_PrimariumZ[] = _(
+    "The Z-Stone for\n"
+    "Primarina.");
+
+static const u8 gItemDescription_TapuniumZ[] = _(
+    "The Z-Stone for\n"
+    "the tapu.");
+
+static const u8 gItemDescription_MarshadiumZ[] = _(
+    "The Z-Stone for\n"
+    "Marshadow.");
+
+static const u8 gItemDescription_AloraichiumZ[] = _(
+    "The Z-Stone for\n"
+    "Alolan Raichu.");
+
+static const u8 gItemDescription_SnorliumZ[] = _(
+    "The Z-Stone for\n"
+    "Snorlax.");
+
+static const u8 gItemDescription_EeviumZ[] = _(
+    "The Z-Stone for\n"
+    "Eevee.");
+
+static const u8 gItemDescription_MewniumZ[] = _(
+    "The Z-Stone for\n"
+    "Mew.");
+
+static const u8 gItemDescription_PikashuniumZ[] = _(
+    "The Z-Stone for\n"
+    "Pikachu's Thunder-\n"
+    "bolt.");
+
+static const u8 gItemDescription_SolganiumZ[] = _(
+    "The Z-Stone for\n"
+    "Solgaleo.");
+
+static const u8 gItemDescription_LunaliumZ[] = _(
+    "The Z-Stone for\n"
+    "Lunala.");
+
+static const u8 gItemDescription_UltranecroziumZ[] = _(
+    "The Z-Stone for\n"
+    "Ultra Necrozma.");
+
+static const u8 gItemDescription_MimikiumZ[] = _(
+    "The Z-Stone for\n"
+    "Mimikyu.");
+
+static const u8 gItemDescription_LycaniumZ[] = _(
+    "The Z-Stone for\n"
+    "Lycanroc.");
+
+static const u8 gItemDescription_KommoniumZ[] = _(
+    "The Z-Stone for\n"
+    "Kommo-o.");

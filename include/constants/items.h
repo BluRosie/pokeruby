@@ -736,7 +736,7 @@
 #define ITEM_OVAL_CHARM             709
 #define ITEM_SHINY_CHARM            710
 #define ITEM_PLASMA_CARD            711
-#define ITEM_GRUBBY_HANKEY          712
+#define ITEM_GRUBBY_HANKY           712
 #define ITEM_COLRESS_MACHINE        713
 #define ITEM_REVEAL_GLASS           714
 #define ITEM_POWER_PLANT_PASS       715
