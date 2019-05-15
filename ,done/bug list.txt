@@ -8,9 +8,17 @@ TODO:
 - giratina/arceus formes
 
 TENTATIVE PLAN:
-1 - give all the items their descriptions
 2 - start on new moves, at least add entries for each of them (akin to abilities right now)
 3 - pokémon expansion (!)
 4 - finish up items
 5 - finish up abilities
 6 - moves
+
+ITEM EXPANSION PROGRESS:
+10/?
+
+MOVE EXPANSION PROGRESS:
+1/?
+
+POKEMON EXPANSION PROGRESS:
+0/?
