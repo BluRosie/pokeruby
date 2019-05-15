@@ -254,31 +254,6 @@ gMonShinyPaletteTable:: @ 81EB374
 	obj_pal gMonShinyPalette_Lugia, PAL_ID_SHINY + SPECIES_LUGIA
 	obj_pal gMonShinyPalette_HoOh, PAL_ID_SHINY + SPECIES_HO_OH
 	obj_pal gMonShinyPalette_Celebi, PAL_ID_SHINY + SPECIES_CELEBI
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_B
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_C
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_D
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_E
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_F
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_G
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_H
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_I
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_J
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_K
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_L
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_M
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_N
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_O
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_P
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_Q
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_R
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_S
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_T
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_U
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_V
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_W
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_X
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_Y
-	obj_pal gMonShinyPalette_QuestionMark, PAL_ID_SHINY + SPECIES_OLD_UNOWN_Z
 	obj_pal gMonShinyPalette_Treecko, PAL_ID_SHINY + SPECIES_TREECKO
 	obj_pal gMonShinyPalette_Grovyle, PAL_ID_SHINY + SPECIES_GROVYLE
 	obj_pal gMonShinyPalette_Sceptile, PAL_ID_SHINY + SPECIES_SCEPTILE

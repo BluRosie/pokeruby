@@ -8,7 +8,6 @@ TODO:
 - giratina/arceus formes
 
 TENTATIVE PLAN:
-2 - start on new moves, at least add entries for each of them (akin to abilities right now)
 3 - pokémon expansion (!)
 4 - finish up items
 5 - finish up abilities
@@ -21,4 +20,26 @@ MOVE EXPANSION PROGRESS:
 1/?
 
 POKEMON EXPANSION PROGRESS:
-0/?
+1/?
+
+
+EVERY SINGLE FILE THAT HAS ANY RELATION TO EXPANDING POKEMON:
+
+data/graphics/pokemon/back_pic_table.inc
+data/graphics/pokemon/back_pic_table_female.inc
+data/graphics/pokemon/front_pic_table.inc
+data/graphics/pokemon/front_pic_table_female.inc
+data/graphics/pokemon/palette_table.inc
+data/graphics/pokemon/shiny_palette_table.inc
+include/pokemon.h
+src/battle/battle_1.c
+src/data/pokedex_orders.h
+src/data/pokemon/tmhm_learnsets.h
+src/pokemon_1.c
+src/pokemon_3.c
+
+done:
+include/constants/species.h
+src/data/pokemon/base_stats.h
+src/data/text/species_names_en.h
+src/hall_of_fame.c

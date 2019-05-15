@@ -38,10 +38,10 @@ extern const u16 gHallOfFame_Pal[];
 
 struct HallofFameMon
 {
+    u16 species : 10; // highest is 808 (0x328)
+    u16 lvl : 7; // highest is 100 (0x64)
     u32 tid;
     u32 personality;
-    u16 species : 9;
-    u16 lvl : 7;
     u8 nick[10];
 };
 
