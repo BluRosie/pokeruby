@@ -1,14 +1,11 @@
 #include "global.h"
+#include "constants/species.h"
+#include "data2.h"
 
 // Menu window and arrows.
 const u16 gBattleTextboxTiles[] = INCBIN_U16("graphics/interface/menu.4bpp.lz");
 const u16 gBattleTextboxPalette[] = INCBIN_U16("graphics/interface/menu.gbapal.lz");
 const u16 gBattleTextboxTilemap[] = INCBIN_U16("graphics/interface/menu_map.bin");
-
-const u8 gMonFrontPic_CircledQuestionMark[] = INCBIN_U8("graphics/pokemon/circled_question_mark/front.4bpp.lz");
-const u8 gMonBackPic_CircledQuestionMark[] = INCBIN_U8("graphics/pokemon/circled_question_mark/back.4bpp.lz");
-const u16 gMonPalette_CircledQuestionMark[] = INCBIN_U16("graphics/pokemon/circled_question_mark/normal.gbapal.lz");
-const u16 gMonShinyPalette_CircledQuestionMark[] = INCBIN_U16("graphics/pokemon/circled_question_mark/shiny.gbapal.lz");
 
 // japanese table and bunch of stuff
 const u8 gUnusedOldCharmap_Gfx_lz[] = INCBIN_U8("graphics/unused/old_charmap.4bpp.lz");
@@ -755,19 +752,25 @@ const u8 gBattleAnimSpritePalette_256[] = INCBIN_U8("graphics/battle_anims/sprit
 const u8 gBattleAnimSpriteSheet_257[] = INCBIN_U8("graphics/battle_anims/sprites/257.4bpp.lz");
 const u8 gBattleAnimSpritePalette_257[] = INCBIN_U8("graphics/battle_anims/sprites/257.gbapal.lz");
 
-#include "pokemon_gfx.h"
+#define SPECIES_SHINY_TAG 5000
 
-const u8 gMonFrontPic_UnownExclamationMark[] = INCBIN_U8("graphics/pokemon/unown/front_exclamation_mark.4bpp.lz");
-const u8 gMonBackPic_UnownExclamationMark[] = INCBIN_U8("graphics/pokemon/unown/back_exclamation_mark.4bpp.lz");
-const u8 gMonIcon_UnownExclamationMark[] = INCBIN_U8("graphics/pokemon/unown/icon_exclamation_mark.4bpp");
-const u8 gMonFrontPic_UnownQuestionMark[] = INCBIN_U8("graphics/pokemon/unown/front_question_mark.4bpp.lz");
-const u8 gMonBackPic_UnownQuestionMark[] = INCBIN_U8("graphics/pokemon/unown/back_question_mark.4bpp.lz");
-const u8 gMonIcon_UnownQuestionMark[] = INCBIN_U8("graphics/pokemon/unown/icon_question_mark.4bpp");
+#define SPECIES_SPRITE(species, sprite) [SPECIES_##species] = {sprite, 0x800, SPECIES_##species}
+#define SPECIES_PAL(species, pal)       [SPECIES_##species] = {pal, SPECIES_##species}
+#define SPECIES_SHINY_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species + SPECIES_SHINY_TAG}
+
+#include "graphics/pokemon/pokemon_gfx.h"
+
+#include "graphics/pokemon/back_pic_table.h"
+#include "graphics/pokemon/back_pic_coords.h"
+
+#include "graphics/pokemon/front_pic_table.h"
+#include "graphics/pokemon/front_pic_coords.h"
+
+#include "graphics/pokemon/palette_table.h"
+#include "graphics/pokemon/shiny_palette_table.h"
 
 #include "trainer_gfx.h"
 
-const u8 gMonIcon_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mark/icon.4bpp");
-const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mark/footprint.1bpp");
 const u8 gVersusFrameGfx[] = INCBIN_U8("graphics/battle_transitions/vs_frame.4bpp.lz");
 const u8 gVersusFrameTilemap[] = INCBIN_U8("graphics/battle_transitions/vs_frame.bin.lz");
 const u8 gVersusFramePal[] = INCBIN_U8("graphics/battle_transitions/vs_frame.gbapal.lz");
@@ -873,7 +876,6 @@ const u8 gBattleAnimSpritePalette_280[] = INCBIN_U8("graphics/battle_anims/sprit
 const u8 gBattleAnimBackgroundImageMuddyWater_Pal[] = INCBIN_U8("graphics/battle_anims/backgrounds/water_muddy.gbapal.lz");
 const u8 gEnemyMonShadow_Gfx[] = INCBIN_U8("graphics/battle_interface/enemy_mon_shadow.4bpp.lz");
 const u8 gBattleGfx_BallStatusBar[] = INCBIN_U8("graphics/battle_interface/bar.4bpp.lz");
-const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");
 const u8 gBattleAnimBackgroundImage_02[] = INCBIN_U8("graphics/battle_anims/backgrounds/02.4bpp.lz");
 const u8 gBattleAnimBackgroundPalette_02[] = INCBIN_U8("graphics/battle_anims/backgrounds/02.gbapal.lz");
 const u8 gBattleAnimBackgroundTilemap_02[] = INCBIN_U8("graphics/battle_anims/backgrounds/02.bin.lz");

@@ -5,7 +5,7 @@ currently known:
 
 TODO:
 - daycare effects for destiny knot & power items
-- giratina/arceus formes
+- giratina/arceus formes, form(e)s in general
 
 TENTATIVE PLAN:
 3 - pokémon expansion (!)
@@ -26,16 +26,11 @@ POKEMON EXPANSION PROGRESS:
 EVERY SINGLE FILE THAT HAS ANY RELATION TO EXPANDING POKEMON:
 
 already existing things that are broken:
-sprites
+icons
+gender differences (need to just get the sprites & get them back in)
 
-data/graphics/pokemon/back_pic_table.inc
-data/graphics/pokemon/back_pic_table_female.inc
-data/graphics/pokemon/front_pic_table.inc
-data/graphics/pokemon/front_pic_table_female.inc
-data/graphics/pokemon/palette_table.inc
-data/graphics/pokemon/shiny_palette_table.inc
 include/pokemon.h
-sound/voice_groups.inc - needs expansion
+sound/voice_groups.inc - cries, need expansion
 src/battle/battle_1.c
 src/data/pokedex_orders.h
 src/data/pokemon/tmhm_learnsets.h
@@ -46,4 +41,4 @@ include/constants/species.h
 src/data/pokemon/base_stats.h
 src/data/text/species_names_en.h
 src/hall_of_fame.c
-src/pokemon_1.c
+src/pokemon_1.

@@ -71,7 +71,8 @@ static void CreateEggShardSprite(u8 x, u8 y, s16 data1, s16 data2, s16 data3, u8
 
 // graphics
 
-static const u16 sEggPalette[] = INCBIN_U16("graphics/pokemon/egg/palette.gbapal");
+
+static const u16 sEggPalette[] = INCBIN_U16("graphics/pokemon/egg/normal.gbapal.lz");
 static const u8 sEggHatchTiles[] = INCBIN_U8("graphics/misc/egg_hatch.4bpp");
 static const u8 sEggShardTiles[] = INCBIN_U8("graphics/misc/egg_shard.4bpp");
 

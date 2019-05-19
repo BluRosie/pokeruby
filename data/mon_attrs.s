@@ -192,28 +192,6 @@ gSpriteAnimTable_81E7C64:: @ 81E7C64
 	.4byte gSpriteAnim_81E7C54
 	.4byte gSpriteAnim_81E7C5C
 
-@ 81E7C74
-	.include "data/graphics/pokemon/front_pic_coords.inc"
-
-@ 81E8354
-	.include "data/graphics/pokemon/front_pic_table.inc"
-
-	.include "data/graphics/pokemon/front_pic_table_female.inc"
-
-@ 81E9114
-	.include "data/graphics/pokemon/back_pic_coords.inc"
-
-@ 81E97F4
-	.include "data/graphics/pokemon/back_pic_table.inc"
-
-	.include "data/graphics/pokemon/back_pic_table_female.inc"
-
-@ 81EA5B4
-	.include "data/graphics/pokemon/palette_table.inc"
-
-@ 81EB374
-	.include "data/graphics/pokemon/shiny_palette_table.inc"
-
 	.align 2
 gSpriteAnim_81EC134:: @ 81EC134
 	obj_image_anim_frame 0, 7

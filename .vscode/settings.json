@@ -7,6 +7,9 @@
         "battle_strings_de.h\u0000ings_de.h": "c",
         "battle_strings_de.h\u0000ngs_de.h": "c",
         "item.h": "c",
-        "pokemon.h": "c"
+        "pokemon.h": "c",
+        "back_pic_table.h": "c",
+        "data2.h": "c",
+        "pokemon_gfx.h": "c"
     }
 }
