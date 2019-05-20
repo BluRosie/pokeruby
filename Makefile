@@ -41,6 +41,7 @@ BUILD_DIR := build/$(BUILD_NAME)
 
 C_SOURCES    := $(wildcard src/*.c src/*/*.c src/*/*/*.c)
 ASM_SOURCES  := $(wildcard src/*.s src/*/*.s asm/*.s data/*.s sound/*.s sound/*/*.s)
+CRY_BINS     := $(wildcard sound/direct_sound_samples/cries/*.bin)
 
 C_OBJECTS    := $(addprefix $(BUILD_DIR)/, $(C_SOURCES:%.c=%.o))
 ASM_OBJECTS  := $(addprefix $(BUILD_DIR)/, $(ASM_SOURCES:%.s=%.o))
@@ -123,9 +124,8 @@ clean: tidy
 	$(MAKE) clean -C tools/gbafix
 	$(MAKE) clean -C tools/mapjson
 
-cleansound: tidy
-	find sound/direct_sound_samples \( -iname '*.bin' \) -exec rm {} +
-	$(RM) $(ALL_OBJECTS)
+cleancries: 
+	$(RM) $(CRY_BINS)
 
 tools:
 	@$(MAKE) -C tools/gbagfx
@@ -202,7 +202,7 @@ include map_data_rules.mk
 
 #### Sound Rules ####
 
-sound/direct_sound_samples/cries/cry_not_%.bin: sound/direct_sound_samples/cry_not_%.aif
+sound/direct_sound_samples/cries/cry_not_%.bin: sound/direct_sound_samples/cries/cry_not_%.aif
 	$(AIF2PCM) $< $@
 
 sound/direct_sound_samples/cries/cry_%.bin: sound/direct_sound_samples/cries/cry_%.aif

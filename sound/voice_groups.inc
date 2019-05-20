@@ -12520,7 +12520,7 @@ gCryTable:: @ 8452590
 	cry Cry_Rayquaza
 	cry Cry_Jirachi
 	cry Cry_Deoxys
-	cry Cry_Turtwig
+	cry_not Cry_Turtwig
 	cry_not Cry_Grotle
 	cry_not Cry_Torterra
 	cry_not Cry_Chimchar
