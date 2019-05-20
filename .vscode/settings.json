@@ -10,6 +10,7 @@
         "pokemon.h": "c",
         "back_pic_table.h": "c",
         "data2.h": "c",
-        "pokemon_gfx.h": "c"
+        "pokemon_gfx.h": "c",
+        "graphics.h": "c"
     }
 }

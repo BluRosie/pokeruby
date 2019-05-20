@@ -3,9 +3,11 @@ currently known:
 - fog doesn't address loading a few different palettes.  it also definitely doesn't support any sort of dynamic system that may happen in the future
 - animation for sticky barb sticking doesn't work like thief's entirely, currently the animation is commented out
 
-TODO:
-- daycare effects for destiny knot & power items
+TODO (ordered by priority):
+- fix the broken things
+- fairy type
 - giratina/arceus formes, form(e)s in general
+- daycare effects for destiny knot & power items
 
 TENTATIVE PLAN:
 3 - pokémon expansion (!)
@@ -26,8 +28,8 @@ POKEMON EXPANSION PROGRESS:
 EVERY SINGLE FILE THAT HAS ANY RELATION TO EXPANDING POKEMON:
 
 already existing things that are broken:
-icons
 gender differences (need to just get the sprites & get them back in)
+cries
 
 include/pokemon.h
 sound/voice_groups.inc - cries, need expansion
