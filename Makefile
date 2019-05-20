@@ -198,6 +198,9 @@ include map_data_rules.mk
 
 #### Sound Rules ####
 
+sound/direct_sound_samples/cries/cry_not_%.bin: sound/direct_sound_samples/cry_not_%.aif
+	$(AIF2PCM) $< $@
+
 sound/direct_sound_samples/cries/cry_%.bin: sound/direct_sound_samples/cries/cry_%.aif
 	$(AIF2PCM) $< $@ --compress
 
