@@ -123,6 +123,10 @@ clean: tidy
 	$(MAKE) clean -C tools/gbafix
 	$(MAKE) clean -C tools/mapjson
 
+cleansound: tidy
+	find sound/direct_sound_samples \( -iname '*.bin' \) -exec rm {} +
+	$(RM) $(ALL_OBJECTS)
+
 tools:
 	@$(MAKE) -C tools/gbagfx
 	@$(MAKE) -C tools/scaninc
