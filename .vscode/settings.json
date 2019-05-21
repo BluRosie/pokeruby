@@ -14,6 +14,7 @@
         "graphics.h": "c",
         "pokedex_area_screen.h": "c",
         "pokemon_icon.h": "c",
-        "event_data.h": "c"
+        "event_data.h": "c",
+        "cry_ids.h": "c"
     }
 }

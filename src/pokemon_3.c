@@ -1107,11 +1107,11 @@ u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves)
     {
         u16 moveLevel;
 
-        if (gLevelUpLearnsets[species][i] == 0xFFFFFF)
+        if (gLevelUpLearnsets[species][i] == LEVEL_UP_END)
             break;
 
         moveLevel = gLevelUpLearnsets[species][i] & 0xFF0000;
-        if (moveLevel <= (level << 9))
+        if (moveLevel <= (level << 16))
         {
             for (j = 0; j < 4 && knownMoves[j] != (gLevelUpLearnsets[species][i] & 0x00FFFF); j++)
                 ;
@@ -1135,7 +1135,7 @@ u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves)
     u8 numMoves = 0;
     int i;
 
-    for (i = 0; i < 20 && gLevelUpLearnsets[species][i] != 0xFFFFFF; i++)
+    for (i = 0; i < MAX_MOVES_PER_LEARNSET && gLevelUpLearnsets[species][i] != LEVEL_UP_END; i++)
          moves[numMoves++] = gLevelUpLearnsets[species][i] & 0x00FFFF;
 
      return numMoves;
@@ -1156,11 +1156,11 @@ u8 sub_8040574(struct Pokemon *mon)
     for (i = 0; i < 4; i++)
         learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
 
-    for (i = 0; i < 20; i++)
+    for (i = 0; i < MAX_MOVES_PER_LEARNSET; i++)
     {
         u16 moveLevel;
 
-        if (gLevelUpLearnsets[species][i] == 0xFFFFFF)
+        if (gLevelUpLearnsets[species][i] == LEVEL_UP_END)
             break;
 
         moveLevel = gLevelUpLearnsets[species][i] & 0xFF0000;

@@ -5,7 +5,7 @@
 #ifndef POKERUBY_LEVEL_UP_LEARNSET_POINTERS_H
 #define POKERUBY_LEVEL_UP_LEARNSET_POINTERS_H
 
-const u16 *gLevelUpLearnsets[NUM_SPECIES] =
+const u32 *gLevelUpLearnsets[NUM_SPECIES] =
 {
     [SPECIES_NONE] = sBulbasaurLevelUpLearnset,
     [SPECIES_BULBASAUR] = sBulbasaurLevelUpLearnset,

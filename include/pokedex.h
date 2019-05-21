@@ -18,7 +18,8 @@ enum
     FLAG_GET_SEEN,
     FLAG_GET_CAUGHT,
     FLAG_SET_SEEN,
-    FLAG_SET_CAUGHT
+    FLAG_SET_CAUGHT,
+    FLAG_SET_ALL
 };
 
 s8 GetSetPokedexFlag(u16, u8);

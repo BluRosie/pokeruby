@@ -462,9 +462,12 @@ struct SpindaSpot
     u16 image[16];
 };
 
+#define MAX_MOVES_PER_LEARNSET 30
+#define LEVEL_UP_END 0xFFFFFFFF
+
 struct __attribute__((packed)) LevelUpMove {
-    u16 move:9;
-    u16 level:7;
+    u16 level;
+    u16 move;
 };
 
 enum {
@@ -540,7 +543,7 @@ extern u8 gEnemyPartyCount;
 extern struct Pokemon gEnemyParty[PARTY_SIZE];
 extern const struct BaseStats gBaseStats[];
 extern const u32 gExperienceTables[][101];
-extern const u16 *gLevelUpLearnsets[];
+extern const u32 *gLevelUpLearnsets[];
 extern struct Evolution gEvolutionTable[][5];
 extern struct PokemonStorage gPokemonStorage;
 
