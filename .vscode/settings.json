@@ -11,6 +11,9 @@
         "back_pic_table.h": "c",
         "data2.h": "c",
         "pokemon_gfx.h": "c",
-        "graphics.h": "c"
+        "graphics.h": "c",
+        "pokedex_area_screen.h": "c",
+        "pokemon_icon.h": "c",
+        "event_data.h": "c"
     }
 }

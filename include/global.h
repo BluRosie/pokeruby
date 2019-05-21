@@ -28,7 +28,7 @@
 
 #define ARRAY_COUNT(array) (sizeof(array) / sizeof((array)[0]))
 
-#define POKEMON_SLOTS_NUMBER 412
+#define POKEMON_SLOTS_NUMBER 808
 #define POKEMON_NAME_LENGTH 10
 #define OT_NAME_LENGTH 7
 
@@ -671,7 +671,7 @@ struct SaveBlock1 /* 0x02025734 */
     /*0x640*/ struct ItemSlot bagPocket_TMHM[BAG_TMHM_COUNT];
     /*0x740*/ struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT];
     /*0x7F8*/ struct Pokeblock pokeblocks[POKEBLOCKS_COUNT];
-    /*0x938*/ u8 dexSeen2[DEX_FLAGS_NO];
+    /*0x938*/ u8 filler[0x34];
     /*0x96C*/ u16 berryBlenderRecords[3];
     /*0x972*/ u8 filler_972[0x6];
     /*0x978*/ u16 trainerRematchStepCounter;
@@ -736,7 +736,6 @@ struct SaveBlock1 /* 0x02025734 */
     /*0x3160*/ struct EnigmaBerry enigmaBerry;
     /*0x3690*/ struct RamScript ramScript;
     /*0x3A7C*/ struct RecordMixingGift recordMixingGift;
-    /*0x3A8C*/ u8 dexSeen3[DEX_FLAGS_NO];
 };
 
 extern struct SaveBlock1 gSaveBlock1;
@@ -758,8 +757,8 @@ struct Pokedex
     /*0x04*/ u32 unownPersonality; // set when you first see Unown
     /*0x08*/ u32 spindaPersonality; // set when you first see Spinda
     /*0x0C*/ u32 unknown3;
-    /*0x10*/ u8 owned[DEX_FLAGS_NO];
-    /*0x44*/ u8 seen[DEX_FLAGS_NO];
+             u8 seen[DEX_FLAGS_NO];
+             u8 owned[DEX_FLAGS_NO];
 };
 
 struct BattleTowerTrainer
