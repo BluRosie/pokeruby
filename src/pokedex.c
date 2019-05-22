@@ -3975,10 +3975,10 @@ s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
         gSaveBlock2.pokedex.owned[index] |= mask;
         break;
     case FLAG_SET_ALL:
-        for (i = 0; i <= DEX_FLAGS_NO; i++)
+        for (i = 0; i < DEX_FLAGS_NO; i++)
         {
-            gSaveBlock2.pokedex.seen[i] |= mask;
-            gSaveBlock2.pokedex.owned[i] |= mask;
+            gSaveBlock2.pokedex.seen[i] = 0xFF;
+            gSaveBlock2.pokedex.owned[i] = 0xFF;
         }
         break;
     }
