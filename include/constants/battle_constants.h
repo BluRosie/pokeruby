@@ -201,11 +201,33 @@
 #define TARGET_ENEMY_SIDE       (1 << 6)
 
 #define F_MAKES_CONTACT           (1 << 0)
+#define FLAG_MAKES_CONTACT F_MAKES_CONTACT
 #define F_AFFECTED_BY_PROTECT     (1 << 1)
+#define FLAG_PROTECT_AFFECTED F_AFFECTED_BY_PROTECT
 #define F_AFFECTED_BY_MAGIC_COAT  (1 << 2)
+#define FLAG_MAGICCOAT_AFFECTED F_AFFECTED_BY_MAGIC_COAT
 #define F_AFFECTED_BY_SNATCH      (1 << 3)
+#define FLAG_SNATCH_AFFECTED F_AFFECTED_BY_SNATCH
 #define F_MIRROR_MOVE_COMPATIBLE  (1 << 4)
+#define FLAG_MIRROR_MOVE_AFFECTED F_MIRROR_MOVE_COMPATIBLE
 #define F_AFFECTED_BY_KINGS_ROCK  (1 << 5)
+#define FLAG_KINGSROCK_AFFECTED F_AFFECTED_BY_KINGS_ROCK
+#define FLAG_HIGH_CRIT            (1 << 6)
+#define FLAG_IRON_FIST_BOOST      (1 << 7)
+#define FLAG_SHEER_FORCE_BOOST    (1 << 8)
+#define FLAG_DANCE                (1 << 9)
+#define FLAG_DMG_MINIMIZE         (1 << 10)
+#define FLAG_RECKLESS_BOOST       (1 << 11)
+#define FLAG_STRONG_JAW_BOOST     (1 << 12)
+#define FLAG_SOUND                (1 << 13)
+#define FLAG_DMG_UNDERWATER       (1 << 14)
+#define FLAG_POWDER               (1 << 15)
+#define FLAG_DMG_UNDERGROUND      (1 << 16)
+#define FLAG_BALLISTIC            (1 << 17)
+#define FLAG_PROTECTION_MOVE      (1 << 18)
+#define FLAG_MEGA_LAUNCHER_BOOST  (1 << 19)
+#define FLAG_STAT_STAGES_IGNORED  (1 << 20)
+#define FLAG_ABILITY_IGNORED      (1 << 21)
 
 #define AI_ACTION_DONE          0x0001
 #define AI_ACTION_FLEE          0x0002
@@ -265,6 +287,7 @@
 #define MOVE_TARGET_BOTH            0x8
 #define MOVE_TARGET_FOES_AND_ALLY   0x20
 #define MOVE_TARGET_OPPONENTS_FIELD 0x40
+#define MOVE_TARGET_ALLY            0x80
 
 // array entries for battle communication
 #define MULTIUSE_STATE          0x0

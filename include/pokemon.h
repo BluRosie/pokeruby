@@ -436,7 +436,7 @@ struct BaseStats
 
 struct BattleMove
 {
-    u8 effect;
+    u16 effect;
     u8 power;
     u8 type;
     u8 accuracy;
@@ -444,8 +444,9 @@ struct BattleMove
     u8 secondaryEffectChance;
     u8 target;
     s8 priority;
-    u8 flags;
+    u32 flags;
     u8 split;
+    u32 argument;
 };
 
 struct PokemonStorage
