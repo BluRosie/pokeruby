@@ -1,9651 +1,14548 @@
-static const u8 DexDescription_Dummy_1[] = _(
-  "This is a newly discovered Pokémon.\n"
-  "It is currently under investigation.");
-static const u8 DexDescription_Dummy_2[] = _(
-  "No detailed information is available\n"
-  "at this time.");
-
-static const u8 DexDescription_Bulbasaur_1[] = _(
-  "Bulbasaur can be seen napping in\n"
-  "bright sunlight.\n"
-  "There is a seed on its back.");
-static const u8 DexDescription_Bulbasaur_2[] = _(
-  "By soaking up the sun's rays, the seed\n"
-  "grows progressively larger.");
-
-static const u8 DexDescription_Ivysaur_1[] = _(
-  "There is a bud on this Pokémon's back.\n"
-  "To support its weight, Ivysaur's legs\n"
-  "and trunk grow thick and strong.");
-static const u8 DexDescription_Ivysaur_2[] = _(
-  "If it starts spending more time lying\n"
-  "in the sunlight, it's a sign that the\n"
-  "bud will bloom into a large flower soon.");
-
-static const u8 DexDescription_Venusaur_1[] = _(
-  "There is a large flower on Venusaur's\n"
-  "back. The flower is said to take on vivid\n"
-  "colors if it gets plenty of nutrition");
-static const u8 DexDescription_Venusaur_2[] = _(
-  "and sunlight. The flower's aroma\n"
-  "soothes the emotions of people.");
-
-static const u8 DexDescription_Charmander_1[] = _(
-  "The flame that burns at the tip of its\n"
-  "tail is an indication of its emotions.\n"
-  "The flame wavers when Charmander is");
-static const u8 DexDescription_Charmander_2[] = _(
-  "enjoying itself. If the Pokémon becomes\n"
-  "enraged, the flame burns fiercely.");
-
-static const u8 DexDescription_Charmeleon_1[] = _(
-  "Charmeleon mercilessly destroys its\n"
-  "foes using its sharp claws.\n"
-  "If it encounters a strong foe, it turns");
-static const u8 DexDescription_Charmeleon_2[] = _(
-  "aggressive. In this excited state, the\n"
-  "flame at the tip of its tail flares with a\n"
-  "bluish white color.");
-
-static const u8 DexDescription_Charizard_1[] = _(
-  "Charizard flies around the sky in\n"
-  "search of powerful opponents.\n"
-  "It breathes fire of such great heat");
-static const u8 DexDescription_Charizard_2[] = _(
-  "that it melts anything. However, it\n"
-  "never turns its fiery breath on any\n"
-  "opponent weaker than itself.");
-
-static const u8 DexDescription_Squirtle_1[] = _(
-  "Squirtle's shell is not merely used\n"
-  "for protection.\n"
-  "The shell's rounded shape and the");
-static const u8 DexDescription_Squirtle_2[] = _(
-  "grooves on its surface help minimize\n"
-  "resistance in water, enabling this\n"
-  "Pokémon to swim at high speeds.");
-
-static const u8 DexDescription_Wartortle_1[] = _(
-  "Its tail is large and covered with a rich,\n"
-  "thick fur. The tail becomes increasingly\n"
-  "deeper in color as Wartortle ages.");
-static const u8 DexDescription_Wartortle_2[] = _(
-  "The scratches on its shell are evidence\n"
-  "of this Pokémon's toughness as a\n"
-  "battler.");
-
-static const u8 DexDescription_Blastoise_1[] = _(
-  "Blastoise has water spouts that\n"
-  "protrude from its shell. The water\n"
-  "spouts are very accurate.");
-static const u8 DexDescription_Blastoise_2[] = _(
-  "They can shoot bullets of water with\n"
-  "enough accuracy to strike empty cans\n"
-  "from a distance of over 160 feet.");
-
-static const u8 DexDescription_Caterpie_1[] = _(
-  "Caterpie has a voracious appetite.\n"
-  "It can devour leaves bigger than its\n"
-  "body right before your eyes.");
-static const u8 DexDescription_Caterpie_2[] = _(
-  "From its antenna, this Pokémon releases\n"
-  "a terrifically strong odor.");
-
-static const u8 DexDescription_Metapod_1[] = _(
-  "The shell covering this Pokémon's body\n"
-  "is as hard as an iron slab.\n"
-  "Metapod does not move very much.");
-static const u8 DexDescription_Metapod_2[] = _(
-  "It stays still because it is preparing\n"
-  "its soft innards for evolution inside\n"
-  "the hard shell.");
-
-static const u8 DexDescription_Butterfree_1[] = _(
-  "Butterfree has a superior ability to\n"
-  "search for delicious honey from\n"
-  "flowers.");
-static const u8 DexDescription_Butterfree_2[] = _(
-  "It can even search out, extract, and\n"
-  "carry honey from flowers that are\n"
-  "blooming over six miles from its nest.");
-
-static const u8 DexDescription_Weedle_1[] = _(
-  "Weedle has an extremely acute sense\n"
-  "of smell.\n"
-  "It is capable of distinguishing its");
-static const u8 DexDescription_Weedle_2[] = _(
-  "favorite kinds of leaves from those it\n"
-  "dislikes just by sniffing with its big\n"
-  "red proboscis (nose).");
-
-static const u8 DexDescription_Kakuna_1[] = _(
-  "Kakuna remains virtually immobile as it\n"
-  "clings to a tree. However, on the\n"
-  "inside, it is extremely busy as it");
-static const u8 DexDescription_Kakuna_2[] = _(
-  "prepares for its coming evolution.\n"
-  "This is evident from how hot the shell\n"
-  "becomes to the touch.");
-
-static const u8 DexDescription_Beedrill_1[] = _(
-  "Beedrill is extremely territorial.\n"
-  "No one should ever approach its nest -\n"
-  "this is for their own safety.");
-static const u8 DexDescription_Beedrill_2[] = _(
-  "If angered, they will attack in a furious\n"
-  "swarm.");
-
-static const u8 DexDescription_Pidgey_1[] = _(
-  "Pidgey has an extremely sharp sense\n"
-  "of direction.\n"
-  "It is capable of unerringly returning");
-static const u8 DexDescription_Pidgey_2[] = _(
-  "home to its nest, however far it may be\n"
-  "removed from its familiar surroundings.");
-
-static const u8 DexDescription_Pidgeotto_1[] = _(
-  "Pidgeotto claims a large area as its\n"
-  "own territory. This Pokémon flies\n"
-  "around, patrolling its living space.");
-static const u8 DexDescription_Pidgeotto_2[] = _(
-  "If its territory is violated, it shows\n"
-  "no mercy in thoroughly punishing the\n"
-  "foe with its sharp claws.");
-
-static const u8 DexDescription_Pidgeot_1[] = _(
-  "This Pokémon has a dazzling plumage of\n"
-  "beautifully glossy feathers.\n"
-  "Many Trainers are captivated by the");
-static const u8 DexDescription_Pidgeot_2[] = _(
-  "striking beauty of the feathers on its\n"
-  "head, compelling them to choose Pidgeot\n"
-  "as their Pokémon.");
-
-static const u8 DexDescription_Rattata_1[] = _(
-  "Rattata is cautious in the extreme.\n"
-  "Even while it is asleep, it constantly\n"
-  "listens by moving its ears around.");
-static const u8 DexDescription_Rattata_2[] = _(
-  "It is not picky about where it lives -\n"
-  "it will make its nest anywhere.");
-
-static const u8 DexDescription_Raticate_1[] = _(
-  "Raticate's sturdy fangs grow steadily.\n"
-  "To keep them ground down, it gnaws\n"
-  "on rocks and logs.");
-static const u8 DexDescription_Raticate_2[] = _(
-  "It may even chew on the walls of\n"
-  "houses.");
-
-static const u8 DexDescription_Spearow_1[] = _(
-  "Spearow has a very loud cry that can\n"
-  "be heard over half a mile away.\n"
-  "If its high, keening cry is heard");
-static const u8 DexDescription_Spearow_2[] = _(
-  "echoing all around, it is a sign that\n"
-  "they are warning each other of danger.");
-
-static const u8 DexDescription_Fearow_1[] = _(
-  "Fearow is recognized by its long neck\n"
-  "and elongated beak.\n"
-  "They are conveniently shaped for");
-static const u8 DexDescription_Fearow_2[] = _(
-  "catching prey in soil or water.\n"
-  "It deftly moves its long and skinny\n"
-  "beak to pluck prey.");
-
-static const u8 DexDescription_Ekans_1[] = _(
-  "Ekans curls itself up in a spiral while\n"
-  "it rests.\n"
-  "Assuming this position allows it to");
-static const u8 DexDescription_Ekans_2[] = _(
-  "quickly respond to a threat from any\n"
-  "direction with a glare from its upraised\n"
-  "head.");
-
-static const u8 DexDescription_Arbok_1[] = _(
-  "This Pokémon is terrifically strong in\n"
-  "order to constrict things with its body.\n"
-  "It can even flatten steel oil drums.");
-static const u8 DexDescription_Arbok_2[] = _(
-  "Once ARBOK wraps its body around its\n"
-  "foe, escaping its crunching embrace is\n"
-  "impossible.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Pikachu_1[] = _(
-  "This Pokémon has electricity-storing\n"
-  "pouches on its cheeks. These appear to\n"
-  "become electrically charged during the");
-static const u8 DexDescription_Pikachu_2[] = _(
-  "night while Pikachu sleeps.\n"
-  "It occasionally discharges electricity\n"
-  "when it is dozy after waking up.");
-#else
-static const u8 DexDescription_Pikachu_1[] = _(
-  "Whenever Pikachu comes across\n"
-  "something new, it blasts it with a jolt\n"
-  "of electricity.");
-static const u8 DexDescription_Pikachu_2[] = _(
-  "If you come across a blackened berry,\n"
-  "it's evidence that this Pokémon\n"
-  "mistook the intensity of its charge.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Raichu_1[] = _(
-  "This Pokémon exudes a weak electrical\n"
-  "charge from all over its body that makes\n"
-  "it take on a slight glow in darkness.");
-static const u8 DexDescription_Raichu_2[] = _(
-  "Raichu searches for electricity by\n"
-  "planting its tail in the ground.");
-#else
-static const u8 DexDescription_Raichu_1[] = _(
-  "If the electrical sacks become\n"
-  "excessively charged, Raichu plants its\n"
-  "tail in the ground and discharges.");
-static const u8 DexDescription_Raichu_2[] = _(
-  "Scorched patches of ground will be\n"
-  "found near this Pokémon's nest.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Sandshrew_1[] = _(
-  "Sandshrew has a very dry hide that is\n"
-  "extremely tough. The Pokémon can roll\n"
-  "into a ball that repels any attack.");
-static const u8 DexDescription_Sandshrew_2[] = _(
-  "At night, it burrows into the desert\n"
-  "sand to sleep.");
-#else
-static const u8 DexDescription_Sandshrew_1[] = _(
-  "Sandshrew's body is configured to\n"
-  "absorb water without waste, enabling it\n"
-  "to survive in an arid desert.");
-static const u8 DexDescription_Sandshrew_2[] = _(
-  "This Pokémon curls up to protect itself\n"
-  "from its enemies.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Sandslash_1[] = _(
-  "Sandslash can roll up its body as if it\n"
-  "were a ball covered with large spikes.\n"
-  "In battle, this Pokémon will try to make");
-static const u8 DexDescription_Sandslash_2[] = _(
-  "the foe flinch by jabbing it with its\n"
-  "spines. It then leaps at the stunned\n"
-  "foe to tear wildly with its sharp claws.");
-#else
-static const u8 DexDescription_Sandslash_1[] = _(
-  "Sandslash's body is covered by tough\n"
-  "spikes, which are hardened sections of\n"
-  "its hide. Once a year, the old spikes fall");
-static const u8 DexDescription_Sandslash_2[] = _(
-  "out, to be replaced with new spikes that\n"
-  "grow out from beneath the old ones.");
-#endif
-
-static const u8 DexDescription_NidoranF_1[] = _(
-  "Nidoran has barbs that secrete a\n"
-  "powerful poison. They are thought to\n"
-  "have developed as protection for this");
-static const u8 DexDescription_NidoranF_2[] = _(
-  "small-bodied Pokémon.\n"
-  "When enraged, it releases a horrible\n"
-  "toxin from its horn.");
-
-static const u8 DexDescription_Nidorina_1[] = _(
-  "When Nidorina are with their friends or\n"
-  "family, they keep their barbs tucked\n"
-  "away to prevent hurting each other.");
-static const u8 DexDescription_Nidorina_2[] = _(
-  "This Pokémon appears to become\n"
-  "nervous if separated from the others.");
-
-static const u8 DexDescription_Nidoqueen_1[] = _(
-  "Nidoqueen's body is encased in\n"
-  "extremely hard scales. It is adept at\n"
-  "sending foes flying with harsh tackles.");
-static const u8 DexDescription_Nidoqueen_2[] = _(
-  "This Pokémon is at its strongest when\n"
-  "it is defending its young.");
-
-static const u8 DexDescription_NidoranM_1[] = _(
-  "The male Nidoran has developed\n"
-  "muscles for moving its ears. Thanks to\n"
-  "them, the ears can be freely moved in");
-static const u8 DexDescription_NidoranM_2[] = _(
-  "any direction. Even the slightest sound\n"
-  "does not escape this Pokémon's notice.");
-
-static const u8 DexDescription_Nidorino_1[] = _(
-  "Nidorino has a horn that is harder than\n"
-  "a diamond. If it senses a hostile\n"
-  "presence, all the barbs on its back");
-static const u8 DexDescription_Nidorino_2[] = _(
-  "bristle up at once, and it challenges\n"
-  "the foe with all its might.");
-
-static const u8 DexDescription_Nidoking_1[] = _(
-  "Nidoking's thick tail packs enormously\n"
-  "destructive power. With one swing, it\n"
-  "can topple a metal transmission tower.");
-static const u8 DexDescription_Nidoking_2[] = _(
-  "Once this Pokémon goes on a rampage,\n"
-  "there is no stopping it.");
-
-static const u8 DexDescription_Clefairy_1[] = _(
-  "On every night of a full moon, groups of\n"
-  "this Pokémon come out to play.\n"
-  "When dawn arrives, the tired Clefairy");
-static const u8 DexDescription_Clefairy_2[] = _(
-  "return to their quiet mountain retreats\n"
-  "and go to sleep nestled up against each\n"
-  "other.");
-
-static const u8 DexDescription_Clefable_1[] = _(
-  "Clefable moves by skipping lightly as if\n"
-  "it were flying using its wings. Its\n"
-  "bouncy step lets it even walk on water.");
-static const u8 DexDescription_Clefable_2[] = _(
-  "It is known to take strolls on lakes on\n"
-  "quiet, moonlit nights.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Vulpix_1[] = _(
-  "Inside Vulpix's body burns a flame that\n"
-  "never goes out. During the daytime,\n"
-  "when the temperatures rise, this");
-static const u8 DexDescription_Vulpix_2[] = _(
-  "Pokémon releases flames from its mouth\n"
-  "to prevent its body from growing too\n"
-  "hot.");
-#else
-static const u8 DexDescription_Vulpix_1[] = _(
-  "At the time of its birth, Vulpix has one\n"
-  "white tail. The tail separates into six\n"
-  "if this Pokémon receives plenty of love");
-static const u8 DexDescription_Vulpix_2[] = _(
-  "from its Trainer.\n"
-  "The six tails become magnificently\n"
-  "curled.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Ninetales_1[] = _(
-  "Legend has it that Ninetales came into\n"
-  "being when nine wizards possessing\n"
-  "sacred powers merged into one.");
-static const u8 DexDescription_Ninetales_2[] = _(
-  "This Pokémon is highly intelligent - it\n"
-  "can understand human speech.");
-#else
-static const u8 DexDescription_Ninetales_1[] = _(
-  "Ninetales casts a sinister light from\n"
-  "its bright red eyes to gain total\n"
-  "control over its foe's mind.");
-static const u8 DexDescription_Ninetales_2[] = _(
-  "This Pokémon is said to live for a\n"
-  "thousand years.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Jigglypuff_1[] = _(
-  "When this Pokémon sings, it never\n"
-  "pauses to breathe. If it is in a battle\n"
-  "against an opponent that does not");
-static const u8 DexDescription_Jigglypuff_2[] = _(
-  "easily fall asleep, Jigglypuff cannot\n"
-  "breathe, endangering its life.");
-#else
-static const u8 DexDescription_Jigglypuff_1[] = _(
-  "Jigglypuff's vocal chords can freely\n"
-  "adjust the wavelength of its voice.\n"
-  "This Pokémon uses this ability to sing");
-static const u8 DexDescription_Jigglypuff_2[] = _(
-  "at precisely the right wavelength to\n"
-  "make its foes most drowsy.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Wigglytuff_1[] = _(
-  "Wigglytuff's body is very flexible.\n"
-  "By inhaling deeply, this Pokémon can\n"
-  "inflate itself seemingly without end.");
-static const u8 DexDescription_Wigglytuff_2[] = _(
-  "Once inflated, Wigglytuff bounces\n"
-  "along lightly like a balloon.");
-#else
-static const u8 DexDescription_Wigglytuff_1[] = _(
-  "Wigglytuff has large, saucerlike eyes.\n"
-  "The surfaces of its eyes are always\n"
-  "covered with a thin layer of tears.");
-static const u8 DexDescription_Wigglytuff_2[] = _(
-  "If any dust gets in this Pokémon's\n"
-  "eyes, it is quickly washed away.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Zubat_1[] = _(
-  "Zubat avoids sunlight because exposure\n"
-  "causes it to become unhealthy.\n"
-  "During the daytime, it stays in caves or");
-static const u8 DexDescription_Zubat_2[] = _(
-  "under the eaves of old houses, sleeping\n"
-  "while hanging upside down.");
-#else
-static const u8 DexDescription_Zubat_1[] = _(
-  "Zubat remains quietly unmoving in a\n"
-  "dark spot during the bright daylight\n"
-  "hours. It does so because prolonged");
-static const u8 DexDescription_Zubat_2[] = _(
-  "exposure to the sun causes its body to\n"
-  "become slightly burned.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Golbat_1[] = _(
-  "Golbat bites down on prey with its four\n"
-  "fangs and drinks the victim's blood.\n"
-  "It becomes active on inky dark");
-static const u8 DexDescription_Golbat_2[] = _(
-  "moonless nights, flying around to\n"
-  "attack people and Pokémon.");
-#else
-static const u8 DexDescription_Golbat_1[] = _(
-  "Golbat loves to drink the blood of\n"
-  "living things. It is particularly active\n"
-  "in the pitch black of night.");
-static const u8 DexDescription_Golbat_2[] = _(
-  "This Pokémon flits around in the night\n"
-  "skies, seeking fresh blood.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Oddish_1[] = _(
-  "Oddish searches for fertile, nutrient-\n"
-  "rich soil, then plants itself.\n"
-  "During the daytime, while it is planted,");
-static const u8 DexDescription_Oddish_2[] = _(
-  "this Pokémon's feet are thought to\n"
-  "change shape and become similar to\n"
-  "the roots of trees.");
-#else
-static const u8 DexDescription_Oddish_1[] = _(
-  "During the daytime, Oddish buries\n"
-  "itself in soil to absorb nutrients from \n"
-  "the ground using its entire body.");
-static const u8 DexDescription_Oddish_2[] = _(
-  "The more fertile the soil, the glossier\n"
-  "its leaves become.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Gloom_1[] = _(
-  "From its mouth Gloom drips honey that\n"
-  "smells absolutely horrible.\n"
-  "Apparently, it loves the horrid stench.");
-static const u8 DexDescription_Gloom_2[] = _(
-  "It sniffs the noxious fumes and then \n"
-  "drools even more of its honey.");
-#else
-static const u8 DexDescription_Gloom_1[] = _(
-  "Gloom releases a foul fragrance from\n"
-  "the pistil of its flower. When faced\n"
-  "with danger, the stench worsens.");
-static const u8 DexDescription_Gloom_2[] = _(
-  "If this Pokémon is feeling calm and\n"
-  "secure, it does not release its usual\n"
-  "stinky aroma.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Vileplume_1[] = _(
-  "Vileplume has the world's largest\n"
-  "petals. They are used to attract prey\n"
-  "that are then doused with toxic spores.");
-static const u8 DexDescription_Vileplume_2[] = _(
-  "Once the prey are immobilized, this\n"
-  "Pokémon catches and devours them.");
-#else
-static const u8 DexDescription_Vileplume_1[] = _(
-  "Vileplume's toxic pollen triggers\n"
-  "atrocious allergy attacks. That's why\n"
-  "it is advisable never to approach any");
-static const u8 DexDescription_Vileplume_2[] = _(
-  "attractive flowers in a jungle, however\n"
-  "pretty they may be.");
-#endif
-
-#ifdef SAPPHIRE
-#if REVISION >= 1
-static const u8 DexDescription_Paras_1[] = _(
-  "Paras has parasitic mushrooms growing\n"
-  "on its back called tochukaso. They grow\n"
-  "large by drawing nutrients from this");
-static const u8 DexDescription_Paras_2[] = _(
-  "Bug/Grass Pokémon host. They are\n"  // Identify Paras as Bug/GRASS type rather than just Bug
-  "highly valued as a medicine for\n"
-  "extending life.");
-#else
-static const u8 DexDescription_Paras_1[] = _(
-  "Paras has parasitic mushrooms growing\n"
-  "on its back called tochukaso. They grow\n"
-  "large by drawing nutrients from this");
-static const u8 DexDescription_Paras_2[] = _(
-  "Bug Pokémon host. They are highly\n"
-  "valued as a medicine for extending life.");
-#endif
-#else
-#if REVISION >= 1
-static const u8 DexDescription_Paras_1[] = _(
-  "Paras has parasitic mushrooms growing\n"
-  "on its back called tochukaso. They grow\n"
-  "large by drawing nutrients from this");
-static const u8 DexDescription_Paras_2[] = _(
-  "Bug/Grass Pokémon host. They are\n"
-  "highly valued as a medicine for\n"
-  "extending life.");
-#else
-static const u8 DexDescription_Paras_1[] = _(
-  "Paras has parasitic mushrooms growing\n"
-  "on its back called tochukaso. They grow\n"
-  "large by drawing nutrients from the Bug");
-static const u8 DexDescription_Paras_2[] = _(
-  "Pokémon host. They are highly valued as\n"
-  "a medicine for extending life.");
-#endif
-#endif
-
-static const u8 DexDescription_Parasect_1[] = _(
-  "Parasect is known to infest large trees\n"
-  "en masse and drain nutrients from the\n"
-  "lower trunk and roots.");
-static const u8 DexDescription_Parasect_2[] = _(
-  "When an infested tree dies, they move\n"
-  "onto another tree all at once.");
-
-static const u8 DexDescription_Venonat_1[] = _(
-  "Venonat is said to have evolved with\n"
-  "a coat of thin, stiff hair that covers\n"
-  "its entire body for protection.");
-static const u8 DexDescription_Venonat_2[] = _(
-  "It possesses large eyes that never fail\n"
-  "to spot even miniscule prey.");
-
-static const u8 DexDescription_Venomoth_1[] = _(
-  "Venomoth is nocturnal - it is a Pokémon\n"
-  "that only becomes active at night.\n"
-  "Its favorite prey are small insects");
-static const u8 DexDescription_Venomoth_2[] = _(
-  "that gather around streetlights,\n"
-  "attracted by the light in the darkness.");
-
-static const u8 DexDescription_Diglett_1[] = _(
-  "Diglett are raised in most farms.\n"
-  "The reason is simple - wherever this\n"
-  "Pokémon burrows, the soil is left");
-static const u8 DexDescription_Diglett_2[] = _(
-  "perfectly tilled for planting crops.\n"
-  "This soil is made ideal for growing\n"
-  "delicious vegetables.");
-
-static const u8 DexDescription_Dugtrio_1[] = _(
-  "Dugtrio are actually triplets that\n"
-  "emerged from one body. As a result,\n"
-  "each triplet thinks exactly like the");
-static const u8 DexDescription_Dugtrio_2[] = _(
-  "other two triplets.\n"
-  "They work cooperatively to burrow\n"
-  "endlessly.");
-
-static const u8 DexDescription_Meowth_1[] = _(
-  "Meowth withdraws its sharp claws into\n"
-  "its paws to slinkily sneak about without\n"
-  "making any incriminating footsteps.");
-static const u8 DexDescription_Meowth_2[] = _(
-  "For some reason, this Pokémon loves\n"
-  "shiny coins that glitter with light.");
-
-static const u8 DexDescription_Persian_1[] = _(
-  "Persian has six bold whiskers that give\n"
-  "it a look of toughness. The whiskers  \n"
-  "sense air movements to determine what");
-static const u8 DexDescription_Persian_2[] = _(
-  "is in the Pokémon's surrounding\n"
-  "vicinity. It becomes docile if grabbed\n"
-  "by the whiskers.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Psyduck_1[] = _(
-  "If it uses its mysterious power,\n"
-  "Psyduck can't remember having done so.\n"
-  "It apparently can't form a memory of");
-static const u8 DexDescription_Psyduck_2[] = _(
-  "such an event because it goes into\n"
-  "an altered state that is much like\n"
-  "deep sleep.");
-#else
-static const u8 DexDescription_Psyduck_1[] = _(
-  "Psyduck uses a mysterious power.\n"
-  "When it does so, this Pokémon \n"
-  "generates brain waves that are");
-static const u8 DexDescription_Psyduck_2[] = _(
-  "supposedly only seen in sleepers.\n"
-  "This discovery spurred controversy\n"
-  "among scholars.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Golduck_1[] = _(
-  "Golduck is the fastest swimmer among\n"
-  "all Pokémon. It swims effortlessly, even\n"
-  "in a rough, stormy sea.");
-static const u8 DexDescription_Golduck_2[] = _(
-  "It sometimes rescues people from\n"
-  "wrecked ships floundering in high seas.");
-#else
-static const u8 DexDescription_Golduck_1[] = _(
-  "The webbed flippers on its forelegs and\n"
-  "hind legs and the streamlined body of\n"
-  "Golduck give it frightening speed.");
-static const u8 DexDescription_Golduck_2[] = _(
-  "This Pokémon is definitely much faster\n"
-  "than even the most athletic swimmer.");
-#endif
-
-static const u8 DexDescription_Mankey_1[] = _(
-  "When Mankey starts shaking and its\n"
-  "nasal breathing turns rough, it's a sure\n"
-  "sign that it is becoming angry.");
-static const u8 DexDescription_Mankey_2[] = _(
-  "However, because it goes into a\n"
-  "towering rage almost instantly, it is\n"
-  "impossible for anyone to flee its wrath.");
-
-static const u8 DexDescription_Primeape_1[] = _(
-  "When Primeape becomes furious, its\n"
-  "blood circulation is boosted. In turn,\n"
-  "its muscles are made even stronger.");
-static const u8 DexDescription_Primeape_2[] = _(
-  "However, it also becomes much less\n"
-  "intelligent at the same time.");
-
-static const u8 DexDescription_Growlithe_1[] = _(
-  "Growlithe has a superb sense of smell.\n"
-  "Once it smells anything, this Pokémon\n"
-  "won't forget the scent, no matter what.");
-static const u8 DexDescription_Growlithe_2[] = _(
-  "It uses its advanced olfactory sense\n"
-  "to determine the emotions of other\n"
-  "living things.");
-
-static const u8 DexDescription_Arcanine_1[] = _(
-  "Arcanine is known for its high speed.\n"
-  "It is said to be capable of running over\n"
-  "6,200 miles in a single day and night.");
-static const u8 DexDescription_Arcanine_2[] = _(
-  "The fire that blazes wildly within this\n"
-  "Pokémon's body is its source of power.");
-
-static const u8 DexDescription_Poliwag_1[] = _(
-  "Poliwag has a very thin skin. It is\n"
-  "possible to see the Pokémon's spiral\n"
-  "innards right through the skin.");
-static const u8 DexDescription_Poliwag_2[] = _(
-  "Despite its thinness, however, the skin\n"
-  "is also very flexible. Even sharp fangs\n"
-  "bounce right off it.");
-
-static const u8 DexDescription_Poliwhirl_1[] = _(
-  "The surface of Poliwhirl's body is\n"
-  "always wet and slick with an oily fluid.\n"
-  "Because of this greasy covering, it can");
-static const u8 DexDescription_Poliwhirl_2[] = _(
-  "easily slip and slide out of the clutches\n"
-  "of any enemy in battle.");
-
-static const u8 DexDescription_Poliwrath_1[] = _(
-  "Poliwrath's highly developed, brawny\n"
-  "muscles never grow fatigued, however\n"
-  "much it exercises.");
-static const u8 DexDescription_Poliwrath_2[] = _(
-  "It is so tirelessly strong, this Pokémon\n"
-  "can swim back and forth across the\n"
-  "Pacific Ocean without effort.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Abra_1[] = _(
-  "Abra needs to sleep for eighteen hours\n"
-  "a day. If it doesn't, this Pokémon loses\n"
-  "its ability to use telekinetic powers.");
-static const u8 DexDescription_Abra_2[] = _(
-  "If it is attacked, Abra escapes using\n"
-  "Teleport while it is still sleeping.");
-#else
-static const u8 DexDescription_Abra_1[] = _(
-  "Abra sleeps for eighteen hours a day.\n"
-  "However, it can sense the presence of\n"
-  "foes even while it is sleeping.");
-static const u8 DexDescription_Abra_2[] = _(
-  "In such a situation, this Pokémon\n"
-  "immediately teleports to safety.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Kadabra_1[] = _(
-  "Kadabra holds a silver spoon in its\n"
-  "hand. The spoon is used to amplify the\n"
-  "alpha waves in its brain.");
-static const u8 DexDescription_Kadabra_2[] = _(
-  "Without the spoon, the Pokémon is said\n"
-  "to be limited to half the usual amount\n"
-  "of its telekinetic powers.");
-#else
-static const u8 DexDescription_Kadabra_1[] = _(
-  "Kadabra emits a peculiar alpha wave\n"
-  "if it develops a headache. Only those\n"
-  "people with a particularly strong");
-static const u8 DexDescription_Kadabra_2[] = _(
-  "psyche can hope to become a Trainer\n"
-  "of this Pokémon.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Alakazam_1[] = _(
-  "ALAKAZAM's brain continually grows,\n"
-  "infinitely multiplying brain cells.\n"
-  "This amazing brain gives this Pokémon");
-static const u8 DexDescription_Alakazam_2[] = _(
-  "an astoundingly high IQ of 5,000.\n"
-  "It has a thorough memory of everything\n"
-  "that has occurred in the world.");
-#else
-static const u8 DexDescription_Alakazam_1[] = _(
-  "ALAKAZAM's brain continually grows,\n"
-  "making its head far too heavy to\n"
-  "support with its neck.");
-static const u8 DexDescription_Alakazam_2[] = _(
-  "This Pokémon holds its head up using\n"
-  "its psychokinetic power instead.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Machop_1[] = _(
-  "Machop exercises by hefting around\n"
-  "a Graveler as if it were a barbell.\n"
-  "There are some Machop that travel");
-static const u8 DexDescription_Machop_2[] = _(
-  "the world in a quest to master all\n"
-  "kinds of martial arts.");
-#else
-static const u8 DexDescription_Machop_1[] = _(
-  "Machop's muscles are special - they\n"
-  "never get sore no matter how much they\n"
-  "are used in exercise.");
-static const u8 DexDescription_Machop_2[] = _(
-  "This Pokémon has sufficient power to\n"
-  "hurl a hundred adult humans.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Machoke_1[] = _(
-  "Machoke undertakes bodybuilding every\n"
-  "day even as it helps people with tough,\n"
-  "physically demanding labor.");
-static const u8 DexDescription_Machoke_2[] = _(
-  "On its days off, this Pokémon heads to\n"
-  "the fields and mountains to exercise\n"
-  "and train.");
-#else
-static const u8 DexDescription_Machoke_1[] = _(
-  "Machoke's thoroughly toned muscles\n"
-  "possess the hardness of steel.\n"
-  "This Pokémon has so much strength,");
-static const u8 DexDescription_Machoke_2[] = _(
-  "it can easily hold aloft a sumo wrestler\n"
-  "on just one finger.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Machamp_1[] = _(
-  "Machamp is known as the Pokémon that\n"
-  "has mastered every kind of martial arts.\n"
-  "If it grabs hold of the foe with its four");
-static const u8 DexDescription_Machamp_2[] = _(
-  "arms, the battle is all but over.\n"
-  "The hapless foe is thrown far over the\n"
-  "horizon.");
-#else
-static const u8 DexDescription_Machamp_1[] = _(
-  "Machamp has the power to hurl anything\n"
-  "aside. However, trying to do any work\n"
-  "requiring care and dexterity causes");
-static const u8 DexDescription_Machamp_2[] = _(
-  "its arms to get tangled.\n"
-  "This Pokémon tends to leap into action\n"
-  "before it thinks.");
-#endif
-
-static const u8 DexDescription_Bellsprout_1[] = _(
-  "Bellsprout's thin and flexible body\n"
-  "lets it bend and sway to avoid any\n"
-  "attack, however strong it may be.");
-static const u8 DexDescription_Bellsprout_2[] = _(
-  "From its mouth, this Pokémon spits a\n"
-  "corrosive fluid that melts even iron.");
-
-static const u8 DexDescription_Weepinbell_1[] = _(
-  "Weepinbell has a large hook on its rear\n"
-  "end. At night, the Pokémon hooks on to\n"
-  "a tree branch and goes to sleep.");
-static const u8 DexDescription_Weepinbell_2[] = _(
-  "If it moves around in its sleep, it may\n"
-  "wake up to find itself on the ground.");
-
-static const u8 DexDescription_Victreebel_1[] = _(
-  "Victreebel has a long vine that\n"
-  "extends from its head. This vine is\n"
-  "waved and flicked about as if it were");
-static const u8 DexDescription_Victreebel_2[] = _(
-  "an animal to attract prey. When an\n"
-  "unsuspecting prey draws near, this\n"
-  "Pokémon swallows it whole.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Tentacool_1[] = _(
-  "Tentacool absorbs sunlight and\n"
-  "refracts it using water inside its body\n"
-  "to convert it into beam energy.");
-static const u8 DexDescription_Tentacool_2[] = _(
-  "This Pokémon shoots beams from its\n"
-  "crystal-like eyes.");
-#else
-static const u8 DexDescription_Tentacool_1[] = _(
-  "Tentacool's body is largely composed\n"
-  "of water. If it is removed from the\n"
-  "sea, it dries up like parchment.");
-static const u8 DexDescription_Tentacool_2[] = _(
-  "If this Pokémon happens to become\n"
-  "dehydrated, put it back into the sea.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Tentacruel_1[] = _(
-  "Tentacruel has tentacles that can be\n"
-  "freely elongated and shortened at will.\n"
-  "It ensnares prey with its tentacles and");
-static const u8 DexDescription_Tentacruel_2[] = _(
-  "weakens the prey by dosing it with a\n"
-  "harsh toxin. It can catch up to 80\n"
-  "prey at the same time.");
-#else
-static const u8 DexDescription_Tentacruel_1[] = _(
-  "Tentacruel has large red orbs on its\n"
-  "head. The orbs glow before lashing the\n"
-  "vicinity with a harsh ultrasonic blast.");
-static const u8 DexDescription_Tentacruel_2[] = _(
-  "This Pokémon's outburst creates rough\n"
-  "waves around it.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Geodude_1[] = _(
-  "When Geodude sleeps deeply, it buries\n"
-  "itself halfway into the ground.\n"
-  "It will not awaken even if hikers step");
-static const u8 DexDescription_Geodude_2[] = _(
-  "on it unwittingly.\n"
-  "In the morning, this Pokémon rolls\n"
-  "downhill in search of food.");
-#else
-static const u8 DexDescription_Geodude_1[] = _(
-  "The longer a Geodude lives, the more\n"
-  "its edges are chipped and worn away,\n"
-  "making it more rounded in appearance.");
-static const u8 DexDescription_Geodude_2[] = _(
-  "However, this Pokémon's heart will\n"
-  "remain hard, craggy, and rough always.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Graveler_1[] = _(
-  "Rocks are Graveler's favorite food.\n"
-  "This Pokémon will climb a mountain from\n"
-  "the base to the summit, crunchingly");
-static const u8 DexDescription_Graveler_2[] = _(
-  "feasting on rocks all the while.\n"
-  "Upon reaching the peak, it rolls back\n"
-  "down to the bottom.");
-#else
-static const u8 DexDescription_Graveler_1[] = _(
-  "Graveler grows by feeding on rocks.\n"
-  "Apparently, it prefers to eat rocks\n"
-  "that are covered in moss.");
-static const u8 DexDescription_Graveler_2[] = _(
-  "This Pokémon eats its way through\n"
-  "a ton of rocks on a daily basis.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Golem_1[] = _(
-  "Golem is known for rolling down from\n"
-  "mountains. To prevent them from rolling\n"
-  "into the homes of people downhill,");
-static const u8 DexDescription_Golem_2[] = _(
-  "grooves have been dug into the sides of\n"
-  "mountains to serve as guideways for\n"
-  "diverting this Pokémon's course.");
-#else
-static const u8 DexDescription_Golem_1[] = _(
-  "Golem live up on mountains.\n"
-  "If there is a large earthquake, these\n"
-  "Pokémon will come rolling down off");
-static const u8 DexDescription_Golem_2[] = _(
-  "the mountains en masse to the\n"
-  "foothills below.");
-#endif
-
-static const u8 DexDescription_Ponyta_1[] = _(
-  "Ponyta is very weak at birth.\n"
-  "It can barely stand up.\n"
-  "This Pokémon becomes stronger by");
-static const u8 DexDescription_Ponyta_2[] = _(
-  "stumbling and falling to keep up with\n"
-  "its parent.");
-
-static const u8 DexDescription_Rapidash_1[] = _(
-  "Rapidash usually can be seen casually\n"
-  "cantering in the fields and plains.\n"
-  "However, when this Pokémon turns");
-static const u8 DexDescription_Rapidash_2[] = _(
-  "serious, its fiery manes flare and blaze\n"
-  "as it gallops its way up to 150 mph.");
-
-static const u8 DexDescription_Slowpoke_1[] = _(
-  "Slowpoke uses its tail to catch prey by\n"
-  "dipping it in water at the side of a\n"
-  "river.");
-static const u8 DexDescription_Slowpoke_2[] = _(
-  "However, this Pokémon often forgets\n"
-  "what it's doing and often spends entire\n"
-  "days just loafing at water's edge.");
-
-static const u8 DexDescription_Slowbro_1[] = _(
-  "Slowbro's tail has a SHELLDER firmly\n"
-  "attached with a bite. As a result, the\n"
-  "tail can't be used for fishing anymore.");
-static const u8 DexDescription_Slowbro_2[] = _(
-  "This causes Slowbro to grudgingly swim\n"
-  "and catch prey instead.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Magnemite_1[] = _(
-  "Magnemite floats in the air by emitting\n"
-  "electromagnetic waves from the units\n"
-  "at its sides. These waves block gravity.");
-static const u8 DexDescription_Magnemite_2[] = _(
-  "This Pokémon becomes incapable of\n"
-  "flight if its internal electrical supply\n"
-  "is depleted.");
-#else
-static const u8 DexDescription_Magnemite_1[] = _(
-  "Magnemite attaches itself to power\n"
-  "lines to feed on electricity.\n"
-  "If your house has a power outage,");
-static const u8 DexDescription_Magnemite_2[] = _(
-  "check your circuit breakers. You may\n"
-  "find a large number of this Pokémon\n"
-  "clinging to the breaker box.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Magneton_1[] = _(
-  "Magneton emits a powerful magnetic\n"
-  "force that is fatal to electronics and\n"
-  "precision instruments. Because of");
-static const u8 DexDescription_Magneton_2[] = _(
-  "this, it is said that some towns warn\n"
-  "people to keep this Pokémon inside\n"
-  "a Poké Ball.");
-#else
-static const u8 DexDescription_Magneton_1[] = _(
-  "Magneton emits a powerful magnetic\n"
-  "force that is fatal to mechanical\n"
-  "devices. As a result, large cities sound");
-static const u8 DexDescription_Magneton_2[] = _(
-  "sirens to warn citizens of large-scale\n"
-  "outbreaks of this Pokémon.");
-#endif
-
-static const u8 DexDescription_Farfetchd_1[] = _(
-  "Farfetch'd is always seen with a stick\n"
-  "from a plant of some sort. Apparently,\n"
-  "there are good sticks and bad sticks.");
-static const u8 DexDescription_Farfetchd_2[] = _(
-  "This Pokémon has been known to fight\n"
-  "with others over sticks.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Doduo_1[] = _(
-  "Doduo's two heads contain completely\n"
-  "identical brains.\n"
-  "A scientific study reported that on");
-static const u8 DexDescription_Doduo_2[] = _(
-  "rare occasions, there will be examples\n"
-  "of this Pokémon possessing different\n"
-  "sets of brains.");
-#else
-static const u8 DexDescription_Doduo_1[] = _(
-  "Doduo's two heads never sleep at the\n"
-  "same time.\n"
-  "Its two heads take turns sleeping,");
-static const u8 DexDescription_Doduo_2[] = _(
-  "so one head can always keep watch for\n"
-  "enemies while the other one sleeps.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Dodrio_1[] = _(
-  "Apparently, the heads aren't the only\n"
-  "parts of the body that Dodrio has\n"
-  "three of.");
-static const u8 DexDescription_Dodrio_2[] = _(
-  "It has three sets of hearts and lungs\n"
-  "as well, so it is capable of running long\n"
-  "distances without rest.");
-#else
-static const u8 DexDescription_Dodrio_1[] = _(
-  "Watch out if Dodrio's three heads are\n"
-  "looking in three separate directions.\n"
-  "It's a sure sign that it is on its guard.");
-static const u8 DexDescription_Dodrio_2[] = _(
-  "Don't go near this Pokémon if it's being\n"
-  "wary - it may decide to peck you.");
-#endif
-
-static const u8 DexDescription_Seel_1[] = _(
-  "Seel hunts for prey in the frigid sea\n"
-  "underneath sheets of ice.\n"
-  "When it needs to breathe, it punches");
-static const u8 DexDescription_Seel_2[] = _(
-  "a hole through the ice with the\n"
-  "sharply protruding section of its head.");
-
-static const u8 DexDescription_Dewgong_1[] = _(
-  "Dewgong loves to snooze on bitterly\n"
-  "cold ice.\n"
-  "The sight of this Pokémon sleeping on");
-static const u8 DexDescription_Dewgong_2[] = _(
-  "a glacier was mistakenly thought to be\n"
-  "a mermaid by a mariner long ago.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Grimer_1[] = _(
-  "Grimer emerged from the sludge that\n"
-  "settled on a polluted seabed.\n"
-  "This Pokémon loves anything filthy.");
-static const u8 DexDescription_Grimer_2[] = _(
-  "It constantly leaks a horribly germ-\n"
-  "infested fluid from all over its body.");
-#else
-static const u8 DexDescription_Grimer_1[] = _(
-  "Grimer's sludgy and rubbery body can\n"
-  "be forced through any opening, however\n"
-  "small it may be.");
-static const u8 DexDescription_Grimer_2[] = _(
-  "This Pokémon enters sewer pipes to\n"
-  "drink filthy wastewater.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Muk_1[] = _(
-  "This Pokémon's favorite food is\n"
-  "anything that is repugnantly filthy.\n"
-  "In dirty towns where people think");
-static const u8 DexDescription_Muk_2[] = _(
-  "nothing of throwing away litter on the\n"
-  "streets, Muk are certain to gather.");
-#else
-static const u8 DexDescription_Muk_1[] = _(
-  "From Muk's body seeps a foul fluid that\n"
-  "gives off a nose-bendingly horrible\n"
-  "stench.");
-static const u8 DexDescription_Muk_2[] = _(
-  "Just one drop of this Pokémon's body\n"
-  "fluid can turn a pool stagnant and\n"
-  "rancid.");
-#endif
-
-static const u8 DexDescription_Shellder_1[] = _(
-  "At night, this Pokémon uses its broad\n"
-  "tongue to burrow a hole in the seafloor\n"
-  "sand and then sleep in it.");
-static const u8 DexDescription_Shellder_2[] = _(
-  "While it is sleeping, Shellder closes its\n"
-  "shell, but leaves its tongue hanging\n"
-  "out.");
-
-static const u8 DexDescription_Cloyster_1[] = _(
-  "Cloyster is capable of swimming in the\n"
-  "sea. It does so by swallowing water,\n"
-  "then jetting it out toward the rear.");
-static const u8 DexDescription_Cloyster_2[] = _(
-  "This Pokémon shoots spikes from its\n"
-  "shell using the same system.");
-
-static const u8 DexDescription_Gastly_1[] = _(
-  "Gastly is largely composed of gaseous\n"
-  "matter. When exposed to a strong wind,\n"
-  "the gaseous body quickly dwindles away.");
-static const u8 DexDescription_Gastly_2[] = _(
-  "Groups of this Pokémon cluster under\n"
-  "the eaves of houses to escape the\n"
-  "ravages of wind.");
-
-static const u8 DexDescription_Haunter_1[] = _(
-  "Haunter is a dangerous Pokémon.\n"
-  "If one beckons you while floating in\n"
-  "darkness, you must never approach it.");
-static const u8 DexDescription_Haunter_2[] = _(
-  "This Pokémon will try to lick you with its\n"
-  "tongue and steal your life away.");
-
-static const u8 DexDescription_Gengar_1[] = _(
-  "Sometimes, on a dark night, your shadow\n"
-  "thrown by a streetlight will suddenly\n"
-  "and startlingly overtake you.");
-static const u8 DexDescription_Gengar_2[] = _(
-  "It is actually a Gengar running past\n"
-  "you, pretending to be your shadow.");
-
-static const u8 DexDescription_Onix_1[] = _(
-  "Onix has a magnet in its brain. It acts\n"
-  "as a compass so that this Pokémon does\n"
-  "not lose direction while it is tunneling.");
-static const u8 DexDescription_Onix_2[] = _(
-  "As it grows older, its body becomes\n"
-  "increasingly rounder and smoother.");
-
-static const u8 DexDescription_Drowzee_1[] = _(
-  "If your nose becomes itchy while you\n"
-  "are sleeping, it's a sure sign that one\n"
-  "of these Pokémon is standing above");
-static const u8 DexDescription_Drowzee_2[] = _(
-  "your pillow and trying to eat your dream\n"
-  "through your nostrils.");
-
-static const u8 DexDescription_Hypno_1[] = _(
-  "Hypno holds a pendulum in its hand.\n"
-  "The arcing movement and glitter of the\n"
-  "pendulum lull the foe into a deep state");
-static const u8 DexDescription_Hypno_2[] = _(
-  "of hypnosis.\n"
-  "While this Pokémon searches for prey,\n"
-  "it polishes the pendulum.");
-
-static const u8 DexDescription_Krabby_1[] = _(
-  "Krabby live on beaches, burrowed inside\n"
-  "holes dug into the sand.\n"
-  "On sandy beaches with little in the way");
-static const u8 DexDescription_Krabby_2[] = _(
-  "of food, these Pokémon can be seen\n"
-  "squabbling with each other over\n"
-  "territory.");
-
-static const u8 DexDescription_Kingler_1[] = _(
-  "Kingler has an enormous, oversized\n"
-  "claw. It waves this huge claw in the\n"
-  "air to communicate with others.");
-static const u8 DexDescription_Kingler_2[] = _(
-  "However, because the claw is so heavy,\n"
-  "the Pokémon quickly tires.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Voltorb_1[] = _(
-  "Voltorb is extremely sensitive - it\n"
-  "explodes at the slightest of shocks.\n"
-  "It is rumored that it was first created");
-static const u8 DexDescription_Voltorb_2[] = _(
-  "when a Poké Ball was exposed to a\n"
-  "powerful pulse of energy.");
-#else
-static const u8 DexDescription_Voltorb_1[] = _(
-  "Voltorb was first sighted at a company\n"
-  "that manufactures POKé BALLS.\n"
-  "The link between that sighting and");
-static const u8 DexDescription_Voltorb_2[] = _(
-  "the fact that this Pokémon looks very\n"
-  "similar to a Poké Ball remains a\n"
-  "mystery.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Electrode_1[] = _(
-  "One of Electrode's characteristics is\n"
-  "its attraction to electricity.\n"
-  "It is a problematical Pokémon that");
-static const u8 DexDescription_Electrode_2[] = _(
-  "congregates mostly at electrical\n"
-  "power plants to feed on electricity\n"
-  "that has just been generated.");
-#else
-static const u8 DexDescription_Electrode_1[] = _(
-  "Electrode eats electricity in the\n"
-  "atmosphere. On days when lightning\n"
-  "strikes, you can see this Pokémon");
-static const u8 DexDescription_Electrode_2[] = _(
-  "exploding all over the place from\n"
-  "eating too much electricity.");
-#endif
-
-static const u8 DexDescription_Exeggcute_1[] = _(
-  "This Pokémon consists of six eggs that\n"
-  "form a closely knit cluster. The six eggs\n"
-  "attract each other and spin around.");
-static const u8 DexDescription_Exeggcute_2[] = _(
-  "When cracks increasingly appear on the\n"
-  "eggs, Exeggcute is close to evolution.");
-
-static const u8 DexDescription_Exeggutor_1[] = _(
-  "Exeggutor originally came from the\n"
-  "tropics. Its heads steadily grow larger\n"
-  "from exposure to strong sunlight.");
-static const u8 DexDescription_Exeggutor_2[] = _(
-  "It is said that when the heads fall off,\n"
-  "they group together to form Exeggcute.");
-
-static const u8 DexDescription_Cubone_1[] = _(
-  "Cubone pines for the mother it will\n"
-  "never see again. Seeing a likeness of\n"
-  "its mother in the full moon, it cries.");
-static const u8 DexDescription_Cubone_2[] = _(
-  "The stains on the skull the Pokémon\n"
-  "wears are made by the tears it sheds.");
-
-static const u8 DexDescription_Marowak_1[] = _(
-  "Marowak is the evolved form of a Cubone\n"
-  "that has overcome its sadness at the\n"
-  "loss of its mother and grown tough.");
-static const u8 DexDescription_Marowak_2[] = _(
-  "This Pokémon's tempered and hardened\n"
-  "spirit is not easily broken.");
-
-static const u8 DexDescription_Hitmonlee_1[] = _(
-  "Hitmonlee's legs freely contract and\n"
-  "stretch. Using these springlike legs, it\n"
-  "bowls over foes with devastating kicks.");
-static const u8 DexDescription_Hitmonlee_2[] = _(
-  "After battle, it rubs down its legs and\n"
-  "loosens the muscles to overcome\n"
-  "fatigue.");
-
-static const u8 DexDescription_Hitmonchan_1[] = _(
-  "Hitmonchan is said to possess the\n"
-  "spirit of a boxer who had been working\n"
-  "towards a world championship.");
-static const u8 DexDescription_Hitmonchan_2[] = _(
-  "This Pokémon has an indomitable spirit\n"
-  "and will never give up in the face of\n"
-  "adversity.");
-
-static const u8 DexDescription_Lickitung_1[] = _(
-  "Whenever Lickitung comes across\n"
-  "something new, it will unfailingly give it\n"
-  "a lick. It does so because it memorizes");
-static const u8 DexDescription_Lickitung_2[] = _(
-  "things by texture and by taste.\n"
-  "It is somewhat put off by sour things.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Koffing_1[] = _(
-  "Koffing embodies toxic substances.\n"
-  "It mixes the toxins with raw garbage to\n"
-  "set off a chemical reaction that");
-static const u8 DexDescription_Koffing_2[] = _(
-  "results in a terribly powerful poison\n"
-  "gas. The higher the temperature, the\n"
-  "more gas is concocted by this Pokémon.");
-#else
-static const u8 DexDescription_Koffing_1[] = _(
-  "If Koffing becomes agitated, it raises\n"
-  "the toxicity of its internal gases and\n"
-  "jets them out from all over its body.");
-static const u8 DexDescription_Koffing_2[] = _(
-  "This Pokémon may also overinflate its\n"
-  "round body, then explode.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Weezing_1[] = _(
-  "Weezing alternately shrinks and\n"
-  "inflates its twin bodies to mix together\n"
-  "toxic gases inside.");
-static const u8 DexDescription_Weezing_2[] = _(
-  "The more the gases are mixed, the more\n"
-  "powerful the toxins become. The\n"
-  "Pokémon also becomes more putrid.");
-#else
-static const u8 DexDescription_Weezing_1[] = _(
-  "Weezing loves the gases given off by\n"
-  "rotted kitchen garbage. This Pokémon\n"
-  "will find a dirty, unkempt house and");
-static const u8 DexDescription_Weezing_2[] = _(
-  "make it its home. At night, when the\n"
-  "people in the house are asleep, it will\n"
-  "go through the trash.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Rhyhorn_1[] = _(
-  "Rhyhorn's brain is very small. It is so\n"
-  "dense, while on a run it forgets why it\n"
-  "started running in the first place.");
-static const u8 DexDescription_Rhyhorn_2[] = _(
-  "It apparently remembers sometimes if it\n"
-  "demolishes something.");
-#else
-static const u8 DexDescription_Rhyhorn_1[] = _(
-  "Rhyhorn runs in a straight line,\n"
-  "smashing everything in its path.\n"
-  "It is not bothered even if it rushes");
-static const u8 DexDescription_Rhyhorn_2[] = _(
-  "headlong into a block of steel.\n"
-  "This Pokémon may feel some pain from\n"
-  "the collision the next day, however.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Rhydon_1[] = _(
-  "Rhydon has a horn that serves as a\n"
-  "drill. It is used for destroying rocks\n"
-  "and boulders.");
-static const u8 DexDescription_Rhydon_2[] = _(
-  "This Pokémon occasionally rams into\n"
-  "streams of magma, but the armor-like\n"
-  "hide prevents it from feeling the heat.");
-#else
-static const u8 DexDescription_Rhydon_1[] = _(
-  "Rhydon's horn can crush even uncut\n"
-  "diamonds. One sweeping blow of its tail\n"
-  "can topple a building.");
-static const u8 DexDescription_Rhydon_2[] = _(
-  "This Pokémon's hide is extremely tough.\n"
-  "Even direct cannon hits don't leave\n"
-  "a scratch.");
-#endif
-
-static const u8 DexDescription_Chansey_1[] = _(
-  "Chansey lays nutritionally excellent\n"
-  "eggs on an everyday basis.\n"
-  "The eggs are so delicious, they are");
-static const u8 DexDescription_Chansey_2[] = _(
-  "easily and eagerly devoured by even\n"
-  "those people who have lost their\n"
-  "appetite.");
-
-static const u8 DexDescription_Tangela_1[] = _(
-  "Tangela's vines snap off easily if they\n"
-  "are grabbed. This happens without pain,\n"
-  "allowing it to make a quick getaway.");
-static const u8 DexDescription_Tangela_2[] = _(
-  "The lost vines are replaced by newly\n"
-  "grown vines the very next day.");
-
-static const u8 DexDescription_Kangaskhan_1[] = _(
-  "If you come across a young Kangaskhan\n"
-  "playing by itself, you must never\n"
-  "disturb it or attempt to catch it.");
-static const u8 DexDescription_Kangaskhan_2[] = _(
-  "The baby Pokémon's parent is sure to\n"
-  "be in the area, and it will become\n"
-  "violently enraged at you.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Horsea_1[] = _(
-  "If Horsea senses danger, it will\n"
-  "reflexively spray a dense black ink\n"
-  "from its mouth and try to escape.");
-static const u8 DexDescription_Horsea_2[] = _(
-  "This Pokémon swims by cleverly flapping\n"
-  "the fins on its back.");
-#else
-static const u8 DexDescription_Horsea_1[] = _(
-  "Horsea eats small insects and moss off\n"
-  "of rocks. If the ocean current turns\n"
-  "fast, this Pokémon anchors itself by");
-static const u8 DexDescription_Horsea_2[] = _(
-  "wrapping its tail around rocks or coral\n"
-  "to prevent being washed away.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Seadra_1[] = _(
-  "Seadra generates whirlpools by spinning\n"
-  "its body. The whirlpools are strong\n"
-  "enough to swallow even fishing boats.");
-static const u8 DexDescription_Seadra_2[] = _(
-  "This Pokémon weakens prey with these\n"
-  "currents, then swallows it whole.");
-#else
-static const u8 DexDescription_Seadra_1[] = _(
-  "Seadra sleeps after wriggling itself\n"
-  "between the branches of coral.\n"
-  "Those trying to harvest coral are");
-static const u8 DexDescription_Seadra_2[] = _(
-  "occasionally stung by this Pokémon's\n"
-  "poison barbs if they fail to notice it.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Goldeen_1[] = _(
-  "Goldeen loves swimming wild and free\n"
-  "in rivers and ponds.\n"
-  "If one of these Pokémon is placed in an");
-static const u8 DexDescription_Goldeen_2[] = _(
-  "aquarium, it will shatter even the\n"
-  "thickest glass with one ram of its horn\n"
-  "and make its escape.");
-#else
-static const u8 DexDescription_Goldeen_1[] = _(
-  "Goldeen is a very beautiful Pokémon\n"
-  "with fins that billow elegantly in water.\n"
-  "However, don't let your guard down");
-static const u8 DexDescription_Goldeen_2[] = _(
-  "around this Pokémon - it could ram you\n"
-  "powerfully with its horn.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Seaking_1[] = _(
-  "Seaking is very protective of its eggs.\n"
-  "The male and female will take turns\n"
-  "patrolling around their nest and eggs.");
-static const u8 DexDescription_Seaking_2[] = _(
-  "The guarding of eggs by these Pokémon\n"
-  "goes on for over a month.");
-#else
-static const u8 DexDescription_Seaking_1[] = _(
-  "In the autumn, Seaking males can be\n"
-  "seen performing courtship dances in\n"
-  "riverbeds to woo females.");
-static const u8 DexDescription_Seaking_2[] = _(
-  "During this season, this Pokémon's body\n"
-  "coloration is at its most beautiful.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Staryu_1[] = _(
-  "Staryu apparently communicates with\n"
-  "the stars in the night sky by flashing\n"
-  "the red core at the center of its body.");
-static const u8 DexDescription_Staryu_2[] = _(
-  "If parts of its body are torn, this\n"
-  "Pokémon simply regenerates the\n"
-  "missing pieces and limbs.");
-#else
-static const u8 DexDescription_Staryu_1[] = _(
-  "Staryu's center section has an organ\n"
-  "called the core that shines bright red.\n"
-  "If you go to a beach toward the");
-static const u8 DexDescription_Staryu_2[] = _(
-  "end of summer, the glowing cores of\n"
-  "these Pokémon look like the stars\n"
-  "in the sky.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Starmie_1[] = _(
-  "Starmie swims through water by\n"
-  "spinning its star-shaped body as if it\n"
-  "were a propeller on a ship.");
-static const u8 DexDescription_Starmie_2[] = _(
-  "The core at the center of this\n"
-  "Pokémon's body glows in seven colors.");
-#else
-static const u8 DexDescription_Starmie_1[] = _(
-  "Starmie's center section - the core -\n"
-  "glows brightly in seven colors.\n"
-  "Because of its luminous nature, this");
-static const u8 DexDescription_Starmie_2[] = _(
-  "Pokémon has been given the nickname\n"
-  "“the gem of the sea.”");
-#endif
-
-static const u8 DexDescription_Mrmime_1[] = _(
-  "Mr. Mime is a master of pantomime.\n"
-  "Its gestures and motions convince\n"
-  "watchers that something unseeable");
-static const u8 DexDescription_Mrmime_2[] = _(
-  "actually exists. Once it is believed,\n"
-  "it will exist as if it were a real thing.");
-
-static const u8 DexDescription_Scyther_1[] = _(
-  "Scyther is blindingly fast. Its blazing\n"
-  "speed enhances the effectiveness of\n"
-  "the twin scythes on its forearms.");
-static const u8 DexDescription_Scyther_2[] = _(
-  "This Pokémon's scythes are so\n"
-  "effective, they can slice through thick\n"
-  "logs in one wicked stroke.");
-
-static const u8 DexDescription_Jynx_1[] = _(
-  "Jynx walks rhythmically, swaying and\n"
-  "shaking its hips as if it were dancing.\n"
-  "Its motions are so bouncingly alluring,");
-static const u8 DexDescription_Jynx_2[] = _(
-  "people seeing it are compelled to shake\n"
-  "their hips without giving any thought\n"
-  "to what they are doing.");
-
-static const u8 DexDescription_Electabuzz_1[] = _(
-  "When a storm arrives, gangs of this\n"
-  "Pokémon compete with each other to\n"
-  "scale heights that are likely to be");
-static const u8 DexDescription_Electabuzz_2[] = _(
-  "stricken by lightning bolts.\n"
-  "Some towns use Electabuzz in place of\n"
-  "lightning rods.");
-
-static const u8 DexDescription_Magmar_1[] = _(
-  "In battle, Magmar blows out intensely\n"
-  "hot flames from all over its body to\n"
-  "intimidate its opponent.");
-static const u8 DexDescription_Magmar_2[] = _(
-  "This Pokémon's fiery bursts create\n"
-  "heat waves that ignite grass and trees\n"
-  "in its surroundings.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Pinsir_1[] = _(
-  "Pinsir has a pair of massive horns \n"
-  "Protruding from the surface of these\n"
-  "horns are thorns.");
-static const u8 DexDescription_Pinsir_2[] = _(
-  "These thorns are driven deeply into the\n"
-  "foe's body when the pincer closes,\n"
-  "making it tough for the foe to escape.");
-#else
-static const u8 DexDescription_Pinsir_1[] = _(
-  "Pinsir is astoundingly strong. It can\n"
-  "grip a foe weighing twice its weight\n"
-  "in its horns and easily lift it.");
-static const u8 DexDescription_Pinsir_2[] = _(
-  "This Pokémon's movements turn sluggish\n"
-  "in cold places.");
-#endif
-
-static const u8 DexDescription_Tauros_1[] = _(
-  "This Pokémon is not satisfied unless\n"
-  "it is rampaging at all times.\n"
-  "If there is no opponent for TAUROS to");
-static const u8 DexDescription_Tauros_2[] = _(
-  "battle, it will charge at thick trees and\n"
-  "knock them down to calm itself.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Magikarp_1[] = _(
-  "Magikarp is virtually useless in battle\n"
-  "as it can only splash around.\n"
-  "As a result, it is considered to be weak.");
-static const u8 DexDescription_Magikarp_2[] = _(
-  "However, it is actually a very hardy\n"
-  "Pokémon that can survive in any body of\n"
-  "water no matter how polluted it is.");
-#else
-static const u8 DexDescription_Magikarp_1[] = _(
-  "Magikarp is a pathetic excuse for a\n"
-  "Pokémon that is only capable of\n"
-  "flopping and splashing.");
-static const u8 DexDescription_Magikarp_2[] = _(
-  "This behavior prompted scientists to\n"
-  "undertake research into it.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Gyarados_1[] = _(
-  "Once Gyarados goes on a rampage, its\n"
-  "ferociously violent blood doesn't calm\n"
-  "until it has burned everything down.");
-static const u8 DexDescription_Gyarados_2[] = _(
-  "There are records of this Pokémon's\n"
-  "rampages lasting a whole month.");
-#else
-static const u8 DexDescription_Gyarados_1[] = _(
-  "When Magikarp evolves into Gyarados,\n"
-  "its brain cells undergo a structural\n"
-  "transformation. It is said that this");
-static const u8 DexDescription_Gyarados_2[] = _(
-  "transformation is to blame for this\n"
-  "Pokémon's wildly violent nature.");
-#endif
-
-static const u8 DexDescription_Lapras_1[] = _(
-  "People have driven Lapras almost to the\n"
-  "point of extinction. In the evenings,\n"
-  "this Pokémon is said to sing plaintively");
-static const u8 DexDescription_Lapras_2[] = _(
-  "as it seeks what few others of its kind\n"
-  "still remain.");
-
-static const u8 DexDescription_Ditto_1[] = _(
-  "Ditto rearranges its cell structure to\n"
-  "transform itself into other shapes.\n"
-  "However, if it tries to transform itself");
-static const u8 DexDescription_Ditto_2[] = _(
-  "into something by relying on its memory,\n"
-  "this Pokémon manages to get details\n"
-  "wrong.");
-
-static const u8 DexDescription_Eevee_1[] = _(
-  "Eevee has an unstable genetic makeup\n"
-  "that suddenly mutates due to the\n"
-  "environment in which it lives.");
-static const u8 DexDescription_Eevee_2[] = _(
-  "Radiation from various Stones causes\n"
-  "this Pokémon to evolve.");
-
-static const u8 DexDescription_Vaporeon_1[] = _(
-  "Vaporeon underwent a spontaneous\n"
-  "mutation and grew fins and gills that\n"
-  "allow it to live underwater.");
-static const u8 DexDescription_Vaporeon_2[] = _(
-  "This Pokémon has the ability to freely\n"
-  "control water.");
-
-static const u8 DexDescription_Jolteon_1[] = _(
-  "Jolteon's cells generate a low level of\n"
-  "electricity. This power is amplified by\n"
-  "the static electricity of its fur,");
-static const u8 DexDescription_Jolteon_2[] = _(
-  "enabling the Pokémon to drop\n"
-  "thunderbolts. The bristling fur is made\n"
-  "of electrically charged needles.");
-
-static const u8 DexDescription_Flareon_1[] = _(
-  "Flareon's fluffy fur has a functional\n"
-  "purpose - it releases heat into the air\n"
-  "so that its body does not get");
-static const u8 DexDescription_Flareon_2[] = _(
-  "excessively hot.\n"
-  "This Pokémon's body temperature can\n"
-  "rise to a maximum of 1,650 degrees F.");
-
-static const u8 DexDescription_Porygon_1[] = _(
-  "Porygon is capable of reverting itself\n"
-  "entirely back to program data and\n"
-  "entering cyberspace.");
-static const u8 DexDescription_Porygon_2[] = _(
-  "This Pokémon is copy-protected so it\n"
-  "cannot be duplicated by copying.");
-
-static const u8 DexDescription_Omanyte_1[] = _(
-  "Omanyte is one of the ancient and long-\n"
-  "since-extinct Pokémon that have been\n"
-  "regenerated from fossils by people.");
-static const u8 DexDescription_Omanyte_2[] = _(
-  "If attacked by an enemy, it withdraws\n"
-  "itself inside its hard shell.");
-
-static const u8 DexDescription_Omastar_1[] = _(
-  "Omastar uses its tentacles to capture\n"
-  "its prey. It is believed to have become\n"
-  "extinct because its shell grew too large");
-static const u8 DexDescription_Omastar_2[] = _(
-  "and heavy, causing its movements to\n"
-  "become too slow and ponderous.");
-
-static const u8 DexDescription_Kabuto_1[] = _(
-  "Kabuto is a Pokémon that has been\n"
-  "regenerated from a fossil. However, in\n"
-  "extremely rare cases, living examples");
-static const u8 DexDescription_Kabuto_2[] = _(
-  "have been discovered.\n"
-  "The Pokémon has not changed at all for\n"
-  "300 million years.");
-
-static const u8 DexDescription_Kabutops_1[] = _(
-  "Kabutops swam underwater to hunt for\n"
-  "its prey in ancient times.\n"
-  "The Pokémon was apparently evolving");
-static const u8 DexDescription_Kabutops_2[] = _(
-  "from being a water-dweller to living on\n"
-  "land as evident from the beginnings of\n"
-  "change in its gills and legs.");
-
-static const u8 DexDescription_Aerodactyl_1[] = _(
-  "Aerodactyl is a Pokémon from the age\n"
-  "of dinosaurs. It was regenerated from\n"
-  "genetic material extracted from amber.");
-static const u8 DexDescription_Aerodactyl_2[] = _(
-  "It is imagined to have been the king of\n"
-  "the skies in ancient times.");
-
-static const u8 DexDescription_Snorlax_1[] = _(
-  "Snorlax's typical day consists of\n"
-  "nothing more than eating and sleeping.\n"
-  "It is such a docile Pokémon that there");
-static const u8 DexDescription_Snorlax_2[] = _(
-  "are children who use its expansive belly\n"
-  "as a place to play.");
-
-static const u8 DexDescription_Articuno_1[] = _(
-  "Articuno is a legendary bird Pokémon\n"
-  "that can control ice.\n"
-  "The flapping of its wings chills the air.");
-static const u8 DexDescription_Articuno_2[] = _(
-  "As a result, it is said that when this\n"
-  "Pokémon flies, snow will fall.");
-
-static const u8 DexDescription_Zapdos_1[] = _(
-  "Zapdos is a legendary bird Pokémon that\n"
-  "has the ability to control electricity.\n"
-  "It usually lives in thunderclouds.");
-static const u8 DexDescription_Zapdos_2[] = _(
-  "The Pokémon gains power if it is\n"
-  "stricken by lightning bolts.");
-
-static const u8 DexDescription_Moltres_1[] = _(
-  "Moltres is a legendary bird Pokémon\n"
-  "that has the ability to control fire.\n"
-  "If this Pokémon is injured, it is said to");
-static const u8 DexDescription_Moltres_2[] = _(
-  "dip its body in the molten magma of a\n"
-  "volcano to burn and heal itself.");
-
-static const u8 DexDescription_Dratini_1[] = _(
-  "Dratini continually molts and sloughs\n"
-  "off its old skin.\n"
-  "It does so because the life energy");
-static const u8 DexDescription_Dratini_2[] = _(
-  "within its body steadily builds to reach\n"
-  "uncontrollable levels.");
-
-static const u8 DexDescription_Dragonair_1[] = _(
-  "Dragonair stores an enormous amount\n"
-  "of energy inside its body.\n"
-  "It is said to alter weather conditions");
-static const u8 DexDescription_Dragonair_2[] = _(
-  "in its vicinity by discharging energy\n"
-  "from the crystals on its neck and tail.");
-
-static const u8 DexDescription_Dragonite_1[] = _(
-  "Dragonite is capable of circling the\n"
-  "globe in just sixteen hours.\n"
-  "It is a kindhearted Pokémon that leads");
-static const u8 DexDescription_Dragonite_2[] = _(
-  "lost and foundering ships in a storm to\n"
-  "the safety of land.");
-
-static const u8 DexDescription_Mewtwo_1[] = _(
-  "Mewtwo is a Pokémon that was created\n"
-  "by genetic manipulation.\n"
-  "However, even though the scientific");
-static const u8 DexDescription_Mewtwo_2[] = _(
-  "power of humans created this Pokémon's\n"
-  "body, they failed to endow Mewtwo with\n"
-  "a compassionate heart.");
-
-static const u8 DexDescription_Mew_1[] = _(
-  "Mew is said to possess the genetic\n"
-  "composition of all Pokémon.\n"
-  "It is capable of making itself invisible");
-static const u8 DexDescription_Mew_2[] = _(
-  "at will, so it entirely avoids notice even\n"
-  "if it approaches people.");
-
-static const u8 DexDescription_Chikorita_1[] = _(
-  "In battle, Chikorita waves its leaf\n"
-  "around to keep the foe at bay.\n"
-  "However, a sweet fragrance also wafts");
-static const u8 DexDescription_Chikorita_2[] = _(
-  "from the leaf, becalming the battling\n"
-  "Pokémon and creating a cozy, friendly\n"
-  "atmosphere all around.");
-
-static const u8 DexDescription_Bayleef_1[] = _(
-  "Bayleef's neck is ringed by curled-up\n"
-  "leaves. Inside each tubular leaf is a\n"
-  "small shoot of a tree.");
-static const u8 DexDescription_Bayleef_2[] = _(
-  "The fragrance of this shoot makes\n"
-  "people peppy.");
-
-static const u8 DexDescription_Meganium_1[] = _(
-  "The fragrance of Meganium's flower\n"
-  "soothes and calms emotions.\n"
-  "In battle, this Pokémon gives off more");
-static const u8 DexDescription_Meganium_2[] = _(
-  "of its becalming scent to blunt the\n"
-  "foe's fighting spirit.");
-
-static const u8 DexDescription_Cyndaquil_1[] = _(
-  "Cyndaquil protects itself by flaring up\n"
-  "the flames on its back.\n"
-  "The flames are vigorous if the Pokémon");
-static const u8 DexDescription_Cyndaquil_2[] = _(
-  "is angry. However, if it is tired, the\n"
-  "flames splutter fitfully with incomplete\n"
-  "combustion.");
-
-static const u8 DexDescription_Quilava_1[] = _(
-  "Quilava keeps its foes at bay with the\n"
-  "intensity of its flames and gusts of\n"
-  "superheated air.");
-static const u8 DexDescription_Quilava_2[] = _(
-  "This Pokémon applies its outstanding\n"
-  "nimbleness to dodge attacks even while\n"
-  "scorching the foe with flames.");
-
-static const u8 DexDescription_Typhlosion_1[] = _(
-  "Typhlosion obscures itself behind a\n"
-  "shimmering heat haze that it creates\n"
-  "using its intensely hot flames.");
-static const u8 DexDescription_Typhlosion_2[] = _(
-  "This Pokémon creates blazing explosive\n"
-  "blasts that burn everything to cinders.");
-
-static const u8 DexDescription_Totodile_1[] = _(
-  "Despite the smallness of its body,\n"
-  "Totodile's jaws are very powerful.\n"
-  "While the Pokémon may think it is just");
-static const u8 DexDescription_Totodile_2[] = _(
-  "playfully nipping, its bite has enough\n"
-  "power to cause serious injury.");
-
-static const u8 DexDescription_Croconaw_1[] = _(
-  "Once Croconaw has clamped its jaws on\n"
-  "its foe, it will absolutely not let go.\n"
-  "Because the tips of its fangs are");
-static const u8 DexDescription_Croconaw_2[] = _(
-  "forked back like barbed fishhooks, they\n"
-  "become impossible to remove when \n"
-  "they have sunk in.");
-
-static const u8 DexDescription_Feraligatr_1[] = _(
-  "Feraligatr intimidates its foes by\n"
-  "opening its huge mouth.\n"
-  "In battle, it will kick the ground hard");
-static const u8 DexDescription_Feraligatr_2[] = _(
-  "with its thick and powerful hind legs to\n"
-  "charge at the foe at an incredible\n"
-  "speed.");
-
-static const u8 DexDescription_Sentret_1[] = _(
-  "When Sentret sleeps, it does so while\n"
-  "another stands guard. The sentry wakes\n"
-  "the others at the first sign of danger.");
-static const u8 DexDescription_Sentret_2[] = _(
-  "When this Pokémon becomes separated\n"
-  "from its pack, it becomes incapable of\n"
-  "sleep due to fear.");
-
-static const u8 DexDescription_Furret_1[] = _(
-  "Furret has a very slim build.\n"
-  "When under attack, it can slickly squirm\n"
-  "through narrow spaces and get away.");
-static const u8 DexDescription_Furret_2[] = _(
-  "In spite of its short limbs, this\n"
-  "Pokémon is very nimble and fleet.");
-
-static const u8 DexDescription_Hoothoot_1[] = _(
-  "Hoothoot has an internal organ that\n"
-  "senses and tracks the earth's rotation.\n"
-  "Using this special organ, this Pokémon");
-static const u8 DexDescription_Hoothoot_2[] = _(
-  "begins hooting at precisely the same\n"
-  "time every day.");
-
-static const u8 DexDescription_Noctowl_1[] = _(
-  "Noctowl never fails at catching prey in\n"
-  "darkness. This Pokémon owes its\n"
-  "success to its superior vision that");
-static const u8 DexDescription_Noctowl_2[] = _(
-  "allows it to see in minimal light, and to\n"
-  "its soft,  supple wings that make no\n"
-  "sound in flight.");
-
-static const u8 DexDescription_Ledyba_1[] = _(
-  "Ledyba secretes an aromatic fluid from\n"
-  "where its legs join its body. This fluid\n"
-  "is used for communicating with others.");
-static const u8 DexDescription_Ledyba_2[] = _(
-  "This Pokémon conveys its feelings to\n"
-  "others by altering the fluid's scent.");
-
-static const u8 DexDescription_Ledian_1[] = _(
-  "It is said that in lands with clean air,\n"
-  "where the stars fill the sky, there live\n"
-  "Ledian in countless numbers.");
-static const u8 DexDescription_Ledian_2[] = _(
-  "There is a good reason for this - the\n"
-  "Pokémon uses the light of the stars\n"
-  "as its energy.");
-
-static const u8 DexDescription_Spinarak_1[] = _(
-  "The web spun by Spinarak can be\n"
-  "considered its second nervous system.\n"
-  "It is said that this Pokémon can");
-static const u8 DexDescription_Spinarak_2[] = _(
-  "determine what kind of prey is touching\n"
-  "its web just by the tiny vibrations it\n"
-  "feels through the web's strands.");
-
-static const u8 DexDescription_Ariados_1[] = _(
-  "Ariados's feet are tipped with tiny\n"
-  "hooked claws that enable it to scuttle\n"
-  "on ceilings and vertical walls.");
-static const u8 DexDescription_Ariados_2[] = _(
-  "This Pokémon constricts the foe with\n"
-  "thin and strong silk webbing.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Crobat_1[] = _(
-  "Crobat sneaks up on its intended prey\n"
-  "using wings that barely make a sound.\n"
-  "This Pokémon rests by hanging on a");
-static const u8 DexDescription_Crobat_2[] = _(
-  "tree branch with its rear legs that\n"
-  "serve as wings.");
-#else
-static const u8 DexDescription_Crobat_1[] = _(
-  "If this Pokémon is flying by fluttering\n"
-  "only a pair of wings on either the\n"
-  "forelegs or hind legs, it's proof that");
-static const u8 DexDescription_Crobat_2[] = _(
-  "Crobat has been flying a long distance.\n"
-  "It switches the wings it uses if it is\n"
-  "tired.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Chinchou_1[] = _(
-  "Chinchou's two antennas are filled with\n"
-  "cells that generate strong electricity.\n"
-  "This Pokémon's cells create so much");
-static const u8 DexDescription_Chinchou_2[] = _(
-  "electrical power, it even makes itself\n"
-  "tingle slightly.");
-#else
-static const u8 DexDescription_Chinchou_1[] = _(
-  "Chinchou lets loose positive and\n"
-  "negative electrical charges from its\n"
-  "two antennas to make its prey faint.");
-static const u8 DexDescription_Chinchou_2[] = _(
-  "This Pokémon flashes its electric\n"
-  "lights to exchange signals with others.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Lanturn_1[] = _(
-  "Lanturn is known to emit light.\n"
-  "If you peer down into the dark sea from\n"
-  "a ship at night, you can sometimes see");
-static const u8 DexDescription_Lanturn_2[] = _(
-  "this Pokémon's light rising from the\n"
-  "depths where it swims. It gives the sea\n"
-  "an appearance of a starlit night.");
-#else
-static const u8 DexDescription_Lanturn_1[] = _(
-  "Lanturn is nicknamed “the deep-sea\n"
-  "star” for its illuminated antenna.\n"
-  "This Pokémon produces light by");
-static const u8 DexDescription_Lanturn_2[] = _(
-  "causing a chemical reaction between\n"
-  "bacteria and its bodily fluids inside\n"
-  "the antenna.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Pichu_1[] = _(
-  "When Pichu plays with others, it may\n"
-  "short out electricity with another\n"
-  "Pichu, creating a shower of sparks.");
-static const u8 DexDescription_Pichu_2[] = _(
-  "In that event, this Pokémon will begin\n"
-  "crying, startled by the flash of sparks.");
-#else
-static const u8 DexDescription_Pichu_1[] = _(
-  "Pichu charges itself with electricity\n"
-  "more easily on days with thunderclouds\n"
-  "or when the air is very dry.");
-static const u8 DexDescription_Pichu_2[] = _(
-  "You can hear the crackling of static\n"
-  "electricity coming off this Pokémon.");
-#endif
-
-static const u8 DexDescription_Cleffa_1[] = _(
-  "On nights with many shooting stars,\n"
-  "Cleffa can be seen dancing in a ring.\n"
-  "They dance through the night and stop");
-static const u8 DexDescription_Cleffa_2[] = _(
-  "only at the break of day, when these\n"
-  "Pokémon quench their thirst with the\n"
-  "morning dew.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Igglybuff_1[] = _(
-  "Igglybuff has a soft and plushy body\n"
-  "that feels very much like a marshmallow.\n"
-  "From this body wafts a gently sweet");
-static const u8 DexDescription_Igglybuff_2[] = _(
-  "fragrance that soothes and calms the\n"
-  "emotions of its foes.");
-#else
-static const u8 DexDescription_Igglybuff_1[] = _(
-  "Igglybuff's vocal chords are not\n"
-  "sufficiently developed. It would hurt\n"
-  "its throat if it were to sing too much.");
-static const u8 DexDescription_Igglybuff_2[] = _(
-  "This Pokémon gargles with freshwater\n"
-  "from a clean stream.");
-#endif
-
-static const u8 DexDescription_Togepi_1[] = _(
-  "As its energy, Togepi uses the positive\n"
-  "emotions of compassion and pleasure\n"
-  "exuded by people and Pokémon.");
-static const u8 DexDescription_Togepi_2[] = _(
-  "This Pokémon stores up feelings of\n"
-  "happiness inside its shell, then shares\n"
-  "them with others.");
-
-static const u8 DexDescription_Togetic_1[] = _(
-  "Togetic is said to be a Pokémon that\n"
-  "brings good fortune. When the Pokémon\n"
-  "spots someone who is pure of heart,");
-static const u8 DexDescription_Togetic_2[] = _(
-  "it is said to appear and share its\n"
-  "happiness with that person.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Natu_1[] = _(
-  "Natu has a highly developed jumping\n"
-  "ability. The Pokémon flaps and leaps\n"
-  "onto tree branches that are taller than");
-static const u8 DexDescription_Natu_2[] = _(
-  "grown-up people to pick at the tree's\n"
-  "new shoots.");
-#else
-static const u8 DexDescription_Natu_1[] = _(
-  "Natu cannot fly because its wings are\n"
-  "not yet fully grown. If your eyes meet\n"
-  "with this Pokémon's eyes, it will stare");
-static const u8 DexDescription_Natu_2[] = _(
-  "back intently at you. But if you move\n"
-  "even slightly, it will hop away to safety.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Xatu_1[] = _(
-  "Xatu is known to stand motionless while\n"
-  "staring at the sun all day long.\n"
-  "Some people revere it as a mystical");
-static const u8 DexDescription_Xatu_2[] = _(
-  "Pokémon out of their belief that Xatu\n"
-  "is in possession of the power to see\n"
-  "into the future.");
-#else
-static const u8 DexDescription_Xatu_1[] = _(
-  "Xatu stands rooted and still in one\n"
-  "spot all day long. People believe that\n"
-  "this Pokémon does so out of fear of");
-static const u8 DexDescription_Xatu_2[] = _(
-  "the terrible things it has foreseen in\n"
-  "the future.");
-#endif
-
-static const u8 DexDescription_Mareep_1[] = _(
-  "Mareep's fluffy coat of wool rubs\n"
-  "together and builds a static charge.\n"
-  "The more static electricity is charged,");
-static const u8 DexDescription_Mareep_2[] = _(
-  "the more brightly the lightbulb at the\n"
-  "tip of its tail grows.");
-
-static const u8 DexDescription_Flaaffy_1[] = _(
-  "Flaaffy's wool quality changes so that\n"
-  "it can generate a high amount of static\n"
-  "electricity with a small amount of wool.");
-static const u8 DexDescription_Flaaffy_2[] = _(
-  "The bare and slick parts of its hide are\n"
-  "shielded against electricity.");
-
-static const u8 DexDescription_Ampharos_1[] = _(
-  "Ampharos gives off so much light that\n"
-  "it can be seen even from space.\n"
-  "People in the old days used the light of");
-static const u8 DexDescription_Ampharos_2[] = _(
-  "this Pokémon to send signals back and\n"
-  "forth with others far away.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Bellossom_1[] = _(
-  "A Bellossom grows flowers more\n"
-  "beautifully if it has evolved from a\n"
-  "smelly Gloom - the stinkier the better.");
-static const u8 DexDescription_Bellossom_2[] = _(
-  "At night, this Pokémon closes its\n"
-  "petals and goes to sleep.");
-#else
-static const u8 DexDescription_Bellossom_1[] = _(
-  "When Bellossom gets exposed to plenty\n"
-  "of sunlight, the leaves ringing its body\n"
-  "begin to spin around.");
-static const u8 DexDescription_Bellossom_2[] = _(
-  "This Pokémon's dancing is renowned in\n"
-  "the southern lands.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Marill_1[] = _(
-  "When fishing for food at the edge of a\n"
-  "fast-running stream, Marill wraps its\n"
-  "tail around the trunk of a tree.");
-static const u8 DexDescription_Marill_2[] = _(
-  "This Pokémon's tail is flexible and\n"
-  "configured to stretch.");
-#else
-static const u8 DexDescription_Marill_1[] = _(
-  "Marill's oil-filled tail acts much like\n"
-  "a life preserver. If you see just its\n"
-  "tail bobbing on the water's surface,");
-static const u8 DexDescription_Marill_2[] = _(
-  "it's a sure indication that this Pokémon\n"
-  "is diving beneath the water to feed on\n"
-  "aquatic plants.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Azumarill_1[] = _(
-  "Azumarill can make balloons out of\n"
-  "air. It makes these air balloons if it\n"
-  "spots a drowning Pokémon.");
-static const u8 DexDescription_Azumarill_2[] = _(
-  "The air balloons enable the Pokémon in\n"
-  "trouble to breathe.");
-#else
-static const u8 DexDescription_Azumarill_1[] = _(
-  "Azumarill's long ears are indispensable\n"
-  "sensors. By focusing its hearing, this\n"
-  "Pokémon can identify what kinds of");
-static const u8 DexDescription_Azumarill_2[] = _(
-  "prey are around, even in rough and\n"
-  "fast-running rivers.");
-#endif
-
-static const u8 DexDescription_Sudowoodo_1[] = _(
-  "Sudowoodo camouflages itself as a tree\n"
-  "to avoid being attacked by enemies.\n"
-  "However, because the forelegs remain");
-static const u8 DexDescription_Sudowoodo_2[] = _(
-  "green throughout the year, the Pokémon\n"
-  "is easily identified as a fake during\n"
-  "the winter.");
-
-static const u8 DexDescription_Politoed_1[] = _(
-  "The curled hair on Politoed's head is\n"
-  "proof of its status as a king. It is said\n"
-  "that the longer and more curled the");
-static const u8 DexDescription_Politoed_2[] = _(
-  "hair, the more respect this Pokémon\n"
-  "earns from its peers.");
-
-static const u8 DexDescription_Hoppip_1[] = _(
-  "This Pokémon drifts and floats with the\n"
-  "wind. If it senses the approach of\n"
-  "strong winds, Hoppip links its leaves");
-static const u8 DexDescription_Hoppip_2[] = _(
-  "with other Hoppip to prepare against\n"
-  "being blown away.");
-
-static const u8 DexDescription_Skiploom_1[] = _(
-  "SKIPLOOM's flower blossoms when the\n"
-  "temperature rises above 64 degrees F.\n"
-  "How much the flower opens depends on");
-static const u8 DexDescription_Skiploom_2[] = _(
-  "the temperature. For that reason, this\n"
-  "Pokémon is sometimes used as a\n"
-  "thermometer.");
-
-static const u8 DexDescription_Jumpluff_1[] = _(
-  "JUMPLUFF rides warm southern winds to\n"
-  "cross the sea and fly to foreign lands.\n"
-  "The Pokémon descends to the ground");
-static const u8 DexDescription_Jumpluff_2[] = _(
-  "when it encounters cold air while it is\n"
-  "floating.");
-
-static const u8 DexDescription_Aipom_1[] = _(
-  "Aipom's tail ends in a hand-like\n"
-  "appendage that can be cleverly\n"
-  "manipulated.");
-static const u8 DexDescription_Aipom_2[] = _(
-  "However, because the Pokémon uses its\n"
-  "tail so much, its real hands have become\n"
-  "rather clumsy.");
-
-static const u8 DexDescription_Sunkern_1[] = _(
-  "Sunkern tries to move as little as it\n"
-  "possibly can. It does so because it\n"
-  "tries to conserve all the nutrients it");
-static const u8 DexDescription_Sunkern_2[] = _(
-  "has stored in its body for its\n"
-  "evolution. It will not eat a thing, \n"
-  "subsisting only on morning dew.");
-
-static const u8 DexDescription_Sunflora_1[] = _(
-  "Sunflora converts solar energy into\n"
-  "nutrition. It moves around actively in\n"
-  "the daytime when it is warm.");
-static const u8 DexDescription_Sunflora_2[] = _(
-  "It stops moving as soon as the sun goes\n"
-  "down for the night.");
-
-static const u8 DexDescription_Yanma_1[] = _(
-  "Yanma is capable of seeing 360 degrees\n"
-  "without having to move its eyes.\n"
-  "It is a great flier that is adept at");
-static const u8 DexDescription_Yanma_2[] = _(
-  "making sudden stops and turning midair.\n"
-  "This Pokémon uses its flying ability to\n"
-  "quickly chase down targeted prey.");
-
-static const u8 DexDescription_Wooper_1[] = _(
-  "Wooper usually lives in water.\n"
-  "However, it occasionally comes out onto\n"
-  "land in search of food.");
-static const u8 DexDescription_Wooper_2[] = _(
-  "On land, it coats its body with a gooey,\n"
-  "toxic film.");
-
-static const u8 DexDescription_Quagsire_1[] = _(
-  "Quagsire hunts for food by leaving\n"
-  "its mouth wide open in water and waiting\n"
-  "for its prey to blunder in unaware.");
-static const u8 DexDescription_Quagsire_2[] = _(
-  "Because the Pokémon does not move,\n"
-  "it does not get very hungry.");
-
-static const u8 DexDescription_Espeon_1[] = _(
-  "Espeon is extremely loyal to any\n"
-  "Trainer it considers to be worthy.\n"
-  "It is said that this Pokémon developed");
-static const u8 DexDescription_Espeon_2[] = _(
-  "its precognitive powers to protect its\n"
-  "Trainer from harm.");
-
-static const u8 DexDescription_Umbreon_1[] = _(
-  "Umbreon evolved as a result of exposure\n"
-  "to the moon's waves.\n"
-  "It hides silently in darkness and waits");
-static const u8 DexDescription_Umbreon_2[] = _(
-  "for its foes to make a move.\n"
-  "The rings on its body glow when it leaps\n"
-  "to attack.");
-
-static const u8 DexDescription_Murkrow_1[] = _(
-  "Murkrow was feared and loathed as the\n"
-  "alleged bearer of ill fortune.\n"
-  "This Pokémon shows strong interest in");
-static const u8 DexDescription_Murkrow_2[] = _(
-  "anything that sparkles or glitters.\n"
-  "It will even try to steal rings from\n"
-  "women.");
-
-static const u8 DexDescription_Slowking_1[] = _(
-  "Slowking undertakes research every\n"
-  "day in an effort to solve the mysteries\n"
-  "of the world.");
-static const u8 DexDescription_Slowking_2[] = _(
-  "However, this Pokémon apparently\n"
-  "forgets everything it has learned if\n"
-  "the Shellder on its head comes off.");
-
-static const u8 DexDescription_Misdreavus_1[] = _(
-  "Misdreavus frightens people with a\n"
-  "creepy, sobbing cry. The Pokémon\n"
-  "apparently uses its red spheres to");
-static const u8 DexDescription_Misdreavus_2[] = _(
-  "absorb the fearful feelings of foes and\n"
-  "turn them into nutrition.");
-
-static const u8 DexDescription_Unown_1[] = _(
-  "This Pokémon is shaped like ancient\n"
-  "writing. It is a mystery as to which\n"
-  "came first, the ancient writings or the");
-static const u8 DexDescription_Unown_2[] = _(
-  "various Unown. Research into this\n"
-  "topic is ongoing but nothing is known.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Wobbuffet_1[] = _(
-  "Wobbuffet does nothing but endure\n"
-  "attacks - it won't attack on its own.\n"
-  "However, it won't endure an attack on");
-static const u8 DexDescription_Wobbuffet_2[] = _(
-  "its tail. When that happens, the\n"
-  "Pokémon will try to take the foe with it\n"
-  "using Destiny Bond.");
-#else
-static const u8 DexDescription_Wobbuffet_1[] = _(
-  "If two or more Wobbuffet meet, they will\n"
-  "turn competitive and try to outdo each\n"
-  "other's endurance.");
-static const u8 DexDescription_Wobbuffet_2[] = _(
-  "However, they may try to see which one\n"
-  "can endure the longest without food.\n"
-  "TrainerS need to beware of this habit.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Girafarig_1[] = _(
-  "Girafarig's rear head contains a tiny\n"
-  "brain that is too small for thinking.\n"
-  "However, the rear head doesn't need to");
-static const u8 DexDescription_Girafarig_2[] = _(
-  "sleep, so it can keep watch over its\n"
-  "surroundings 24 hours a day.");
-#else
-static const u8 DexDescription_Girafarig_1[] = _(
-  "Girafarig's rear head also has a brain,\n"
-  "but it is small. The rear head attacks in\n"
-  "response to smells and sounds.");
-static const u8 DexDescription_Girafarig_2[] = _(
-  "Approaching this Pokémon from behind\n"
-  "can cause the rear head to suddenly\n"
-  "lash out and bite.");
-#endif
-
-static const u8 DexDescription_Pineco_1[] = _(
-  "Pineco hangs from a tree branch and\n"
-  "patiently waits for prey to come along.\n"
-  "If the Pokémon is disturbed while");
-static const u8 DexDescription_Pineco_2[] = _(
-  "eating by someone shaking its tree, it\n"
-  "drops down to the ground and explodes\n"
-  "with no warning.");
-
-static const u8 DexDescription_Forretress_1[] = _(
-  "Forretress conceals itself inside its\n"
-  "hardened steel shell. The shell is opened\n"
-  "when the Pokémon is catching prey,");
-static const u8 DexDescription_Forretress_2[] = _(
-  "but it does so at such a quick pace\n"
-  "that the shell's inside cannot be seen.");
-
-static const u8 DexDescription_Dunsparce_1[] = _(
-  "Dunsparce has a drill for its tail.\n"
-  "It uses this tail to burrow into the\n"
-  "ground backwards.");
-static const u8 DexDescription_Dunsparce_2[] = _(
-  "This Pokémon is known to make its nest\n"
-  "in complex shapes deep under the\n"
-  "ground.");
-
-static const u8 DexDescription_Gligar_1[] = _(
-  "Gligar glides through the air without\n"
-  "a sound as if it were sliding.\n"
-  "This Pokémon hangs on to the face of");
-static const u8 DexDescription_Gligar_2[] = _(
-  "its foe using its clawed hind legs and\n"
-  "the large pincers on its forelegs, then\n"
-  "injects the prey with its poison barb.");
-
-static const u8 DexDescription_Steelix_1[] = _(
-  "Steelic lives even further underground\n"
-  "than Onix. This Pokémon is known to dig\n"
-  "towards the earth's core.");
-static const u8 DexDescription_Steelix_2[] = _(
-  "There are records of this Pokémon\n"
-  "reaching a depth of over six-tenths\n"
-  "of a mile underground.");
-
-static const u8 DexDescription_Snubbull_1[] = _(
-  "By baring its fangs and making a scary\n"
-  "face, Snubbull sends smaller Pokémon\n"
-  "scurrying away in terror.");
-static const u8 DexDescription_Snubbull_2[] = _(
-  "However, this Pokémon seems a little\n"
-  "sad at making its foes flee.");
-
-static const u8 DexDescription_Granbull_1[] = _(
-  "Granbull has a particularly well-\n"
-  "developed lower jaw. The enormous fangs\n"
-  "are heavy, causing the Pokémon to tip");
-static const u8 DexDescription_Granbull_2[] = _(
-  "its head back for balance.\n"
-  "Unless it is startled, it will not try to\n"
-  "bite indiscriminately.");
-
-static const u8 DexDescription_Qwilfish_1[] = _(
-  "Qwilfish sucks in water, inflating\n"
-  "itself. This Pokémon uses the pressure\n"
-  "of the water it swallowed to shoot");
-static const u8 DexDescription_Qwilfish_2[] = _(
-  "toxic quills all at once from all over\n"
-  "its body. It finds swimming somewhat\n"
-  "challenging.");
-
-static const u8 DexDescription_Scizor_1[] = _(
-  "Scizor has a body with the hardness of\n"
-  "steel. It is not easily fazed by ordinary\n"
-  "sorts of attacks.");
-static const u8 DexDescription_Scizor_2[] = _(
-  "This Pokémon flaps its wings to\n"
-  "regulate its body temperature.");
-
-static const u8 DexDescription_Shuckle_1[] = _(
-  "Shuckle quietly hides itself under\n"
-  "rocks, keeping its body concealed\n"
-  "inside its hard shell while eating");
-static const u8 DexDescription_Shuckle_2[] = _(
-  "berries it has stored away.\n"
-  "The berries mix with its body fluids to\n"
-  "become a juice.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Heracross_1[] = _(
-  "Heracross has sharp claws on its feet.\n"
-  "These are planted firmly into the\n"
-  "ground or the bark of a tree, giving the");
-static const u8 DexDescription_Heracross_2[] = _(
-  "Pokémon a secure and solid footing\n"
-  "to forcefully fling away foes with\n"
-  "its proud horn.");
-#else
-static const u8 DexDescription_Heracross_1[] = _(
-  "Heracross charges in a straight line at\n"
-  "its foe, slips beneath the foe's grasp,\n"
-  "and then scoops up and hurls the");
-static const u8 DexDescription_Heracross_2[] = _(
-  "opponent with its mighty horn.\n"
-  "This Pokémon even has enough power\n"
-  "to topple a massive tree.");
-#endif
-
-static const u8 DexDescription_Sneasel_1[] = _(
-  "Sneasel scales trees by punching its\n"
-  "hooked claws into the bark.\n"
-  "This Pokémon seeks out unguarded");
-static const u8 DexDescription_Sneasel_2[] = _(
-  "nests and steals eggs for food while\n"
-  "the parents are away.");
-
-static const u8 DexDescription_Teddiursa_1[] = _(
-  "This Pokémon likes to lick its palms that\n"
-  "are sweetened by being soaked in honey.\n"
-  "Teddiursa concocts its own honey by");
-static const u8 DexDescription_Teddiursa_2[] = _(
-  "blending fruits and pollen collected by\n"
-  "Beedrill.");
-
-static const u8 DexDescription_Ursaring_1[] = _(
-  "In the forests inhabited by Ursaring,\n"
-  "it is said that there are many streams\n"
-  "and towering trees where they");
-static const u8 DexDescription_Ursaring_2[] = _(
-  "gather food. This Pokémon walks\n"
-  "through its forest gathering food\n"
-  "every day.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Slugma_1[] = _(
-  "Slugma does not have any blood in its\n"
-  "body. Instead, intensely hot magma\n"
-  "circulates throughout this Pokémon's");
-static const u8 DexDescription_Slugma_2[] = _(
-  "body, carrying essential nutrients and\n"
-  "oxygen to its organs.");
-#else
-static const u8 DexDescription_Slugma_1[] = _(
-  "Molten magma courses throughout\n"
-  "Slugma's circulatory system.\n"
-  "If this Pokémon is chilled, the magma");
-static const u8 DexDescription_Slugma_2[] = _(
-  "cools and hardens. Its body turns\n"
-  "brittle and chunks fall off, reducing\n"
-  "its size.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Magcargo_1[] = _(
-  "Magcargo's body temperature is\n"
-  "approximately 18,000 degrees F.\n"
-  "Water is vaporized on contact.");
-static const u8 DexDescription_Magcargo_2[] = _(
-  "If this Pokémon is caught in the rain,\n"
-  "the raindrops instantly turn into\n"
-  "steam, cloaking the area in a thick fog.");
-#else
-static const u8 DexDescription_Magcargo_1[] = _(
-  "Magcargo's shell is actually its skin\n"
-  "that hardened as a result of cooling.\n"
-  "Its shell is very brittle and fragile -");
-static const u8 DexDescription_Magcargo_2[] = _(
-  "just touching it causes it to crumble\n"
-  "apart. This Pokémon returns to its\n"
-  "original size by dipping itself in magma.");
-#endif
-
-static const u8 DexDescription_Swinub_1[] = _(
-  "Swinub roots for food by rubbing its\n"
-  "snout against the ground. Its favorite\n"
-  "food is a mushroom that grows under");
-static const u8 DexDescription_Swinub_2[] = _(
-  "the cover of dead grass.\n"
-  "This Pokémon occasionally roots out\n"
-  "hot springs.");
-
-static const u8 DexDescription_Piloswine_1[] = _(
-  "Piloswine is covered by a thick coat\n"
-  "of long hair that enables it to endure\n"
-  "the freezing cold.");
-static const u8 DexDescription_Piloswine_2[] = _(
-  "This Pokémon uses its tusks to dig up\n"
-  "food that has been buried under ice.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Corsola_1[] = _(
-  "Clusters of Corsola congregate in warm\n"
-  "seas where they serve as ideal hiding\n"
-  "places for smaller Pokémon.");
-static const u8 DexDescription_Corsola_2[] = _(
-  "When the water temperature falls, this\n"
-  "Pokémon migrates to the southern seas.");
-#else
-static const u8 DexDescription_Corsola_1[] = _(
-  "Corsola's branches glitter very\n"
-  "beautifully in seven colors when they\n"
-  "catch sunlight.");
-static const u8 DexDescription_Corsola_2[] = _(
-  "If any branch breaks off, this Pokémon\n"
-  "grows it back in just one night.");
-#endif
-
-static const u8 DexDescription_Remoraid_1[] = _(
-  "Remoraid sucks in water, then expels it\n"
-  "at high velocity using its abdominal\n"
-  "muscles to shoot down flying prey.");
-static const u8 DexDescription_Remoraid_2[] = _(
-  "When evolution draws near, this Pokémon\n"
-  "travels downstream from rivers.");
-
-static const u8 DexDescription_Octillery_1[] = _(
-  "Octillery grabs onto its foe using\n"
-  "its tentacles. This Pokémon tries to\n"
-  "immobilize it before delivering the");
-static const u8 DexDescription_Octillery_2[] = _(
-  "finishing blow.\n"
-  "If the foe turns out to be too strong,\n"
-  "Octillery spews ink to escape.");
-
-static const u8 DexDescription_Delibird_1[] = _(
-  "Delibird carries its food bundled up\n"
-  "in its tail. There once was a famous\n"
-  "explorer who managed to reach the peak");
-static const u8 DexDescription_Delibird_2[] = _(
-  "of Mt. Everest thanks to one of these\n"
-  "Pokémon sharing its food.");
-
-static const u8 DexDescription_Mantine_1[] = _(
-  "On sunny days, schools of Mantine can\n"
-  "be seen elegantly leaping over the\n"
-  "sea's waves.");
-static const u8 DexDescription_Mantine_2[] = _(
-  "This Pokémon is not bothered by the\n"
-  "Remoraid that hitches rides.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Skarmory_1[] = _(
-  "Skarmory's steel wings become tattered\n"
-  "and bashed in from repeated battles.\n"
-  "Once a year, the battered wings grow");
-static const u8 DexDescription_Skarmory_2[] = _(
-  "back completely, restoring the cutting\n"
-  "edges to their pristine state.");
-#else
-static const u8 DexDescription_Skarmory_1[] = _(
-  "Skarmory is entirely encased in hard,\n"
-  "protective armor. This Pokémon flies at\n"
-  "close to 190 mph.");
-static const u8 DexDescription_Skarmory_2[] = _(
-  "It slashes foes with its wings that\n"
-  "possess swordlike cutting edges.");
-#endif
-
-static const u8 DexDescription_Houndour_1[] = _(
-  "Houndour hunt as a coordinated pack.\n"
-  "They communicate with each other using\n"
-  "a variety of cries to corner their prey.");
-static const u8 DexDescription_Houndour_2[] = _(
-  "This Pokémon's remarkable teamwork is\n"
-  "unparalleled.");
-
-static const u8 DexDescription_Houndoom_1[] = _(
-  "In a Houndoom pack, the one with its\n"
-  "horns raked sharply towards the back\n"
-  "serves a leadership role.");
-static const u8 DexDescription_Houndoom_2[] = _(
-  "These Pokémon choose their leader by\n"
-  "fighting amongst themselves.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Kingdra_1[] = _(
-  "Kingdra sleeps on the seafloor where\n"
-  "it is otherwise devoid of life.\n"
-  "When a storm arrives, the Pokémon is");
-static const u8 DexDescription_Kingdra_2[] = _(
-  "said to awaken and wander about in\n"
-  "search of prey.");
-#else
-static const u8 DexDescription_Kingdra_1[] = _(
-  "Kingdra lives at extreme ocean depths\n"
-  "that are otherwise uninhabited.\n"
-  "It has long been believed that the");
-static const u8 DexDescription_Kingdra_2[] = _(
-  "yawning of this Pokémon creates\n"
-  "spiraling ocean currents.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Phanpy_1[] = _(
-  "Phanpy uses its long nose to shower\n"
-  "itself. When others gather around, they\n"
-  "thoroughly douse each other with water.");
-static const u8 DexDescription_Phanpy_2[] = _(
-  "These Pokémon can be seen drying their\n"
-  "soaking-wet bodies at the edge of\n"
-  "water.");
-#else
-static const u8 DexDescription_Phanpy_1[] = _(
-  "For its nest, Phanpy digs a vertical pit \n"
-  "in the ground at the edge of a river.\n"
-  "It marks the area around its nest with");
-static const u8 DexDescription_Phanpy_2[] = _(
-  "its trunk to let the others know that\n"
-  "the area has been claimed.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Donphan_1[] = _(
-  "If Donphan were to tackle with its hard\n"
-  "body, even a house could be destroyed.\n"
-  "Using its massive strength, the");
-static const u8 DexDescription_Donphan_2[] = _(
-  "Pokémon helps clear rock and mud slides\n"
-  "that block mountain trails.");
-#else
-static const u8 DexDescription_Donphan_1[] = _(
-  "Donphan's favorite attack is curling\n"
-  "its body into a ball, then charging at\n"
-  "its foe while rolling at high speed.");
-static const u8 DexDescription_Donphan_2[] = _(
-  "Once it starts rolling, this Pokémon\n"
-  "can't stop very easily.");
-#endif
-
-static const u8 DexDescription_Porygon2_1[] = _(
-  "Porygon2 was created by humans using\n"
-  "the power of science. The man-made\n"
-  "Pokémon has been endowed with");
-static const u8 DexDescription_Porygon2_2[] = _(
-  "artificial intelligence that enables it\n"
-  "to learn new gestures and emotions\n"
-  "on its own.");
-
-static const u8 DexDescription_Stantler_1[] = _(
-  "Stantler's magnificent antlers were\n"
-  "traded at high prices as works of art.\n"
-  "As a result, this Pokémon was hunted");
-static const u8 DexDescription_Stantler_2[] = _(
-  "close to extinction by those who were\n"
-  "after the priceless antlers.");
-
-static const u8 DexDescription_Smeargle_1[] = _(
-  "Smeargle marks the boundaries of its\n"
-  "territory using a body fluid that leaks\n"
-  "out from the tip of its tail.");
-static const u8 DexDescription_Smeargle_2[] = _(
-  "Over 5,000 different marks left by this\n"
-  "Pokémon have been found.");
-
-static const u8 DexDescription_Tyrogue_1[] = _(
-  "Tyrogue becomes stressed out if it\n"
-  "does not get to train every day.\n"
-  "When raising this Pokémon, the Trainer");
-static const u8 DexDescription_Tyrogue_2[] = _(
-  "must establish and uphold various\n"
-  "training methods.");
-
-static const u8 DexDescription_Hitmontop_1[] = _(
-  "Hitmontop spins on its head at high\n"
-  "speed, all the while delivering kicks.\n"
-  "This technique is a remarkable mix of");
-static const u8 DexDescription_Hitmontop_2[] = _(
-  "both offense and defense at the same\n"
-  "time. The Pokémon travels faster\n"
-  "spinning than it does walking.");
-
-static const u8 DexDescription_Smoochum_1[] = _(
-  "Smoochum actively runs about, but\n"
-  "also falls quite often.\n"
-  "Whenever the chance arrives, it will");
-static const u8 DexDescription_Smoochum_2[] = _(
-  "look for its reflection to make sure its\n"
-  "face hasn't become dirty.");
-
-static const u8 DexDescription_Elekid_1[] = _(
-  "Elekid stores electricity in its body.\n"
-  "If it touches metal and accidentally\n"
-  "discharges all its built-up electricity,");
-static const u8 DexDescription_Elekid_2[] = _(
-  "this Pokémon begins swinging its arms\n"
-  "in circles to recharge itself.");
-
-static const u8 DexDescription_Magby_1[] = _(
-  "Magby's state of health is determined\n"
-  "by observing the fire it breathes.\n"
-  "If the Pokémon is spouting yellow");
-static const u8 DexDescription_Magby_2[] = _(
-  "flames from its mouth, it is in good\n"
-  "health. When it is fatigued, black smoke\n"
-  "will be mixed in with the flames.");
-
-static const u8 DexDescription_Miltank_1[] = _(
-  "Miltank gives over five gallons of milk\n"
-  "on a daily basis. Its sweet milk is\n"
-  "enjoyed by children and grown-ups alike.");
-static const u8 DexDescription_Miltank_2[] = _(
-  "People who can't drink milk turn it into\n"
-  "yogurt and eat it instead.");
-
-static const u8 DexDescription_Blissey_1[] = _(
-  "Blissey senses sadness with its fluffy\n"
-  "coat of fur. If it does so, this Pokémon\n"
-  "will rush over to the sad person,");
-static const u8 DexDescription_Blissey_2[] = _(
-  "however far they may be, to share an\n"
-  "egg of happiness that brings a smile\n"
-  "to any face.");
-
-static const u8 DexDescription_Raikou_1[] = _(
-  "Raikou embodies the speed of lightning.\n"
-  "The roars of this Pokémon send shock\n"
-  "waves shuddering through the air and");
-static const u8 DexDescription_Raikou_2[] = _(
-  "shake the ground as if lightning bolts\n"
-  "had come crashing down.");
-
-static const u8 DexDescription_Entei_1[] = _(
-  "Entei embodies the passion of magma.\n"
-  "This Pokémon is thought to have been\n"
-  "born in the eruption of a volcano.");
-static const u8 DexDescription_Entei_2[] = _(
-  "It sends up massive bursts of fire that\n"
-  "utterly consume all that they touch.");
-
-static const u8 DexDescription_Suicune_1[] = _(
-  "Suicune embodies the compassion of\n"
-  "a pure spring of water. It runs across\n"
-  "the land with gracefulness.");
-static const u8 DexDescription_Suicune_2[] = _(
-  "This Pokémon has the power to purify\n"
-  "dirty water.");
-
-static const u8 DexDescription_Larvitar_1[] = _(
-  "Larvitar is born deep under the ground.\n"
-  "To come up to the surface, this Pokémon\n"
-  "must eat its way through the soil above.");
-static const u8 DexDescription_Larvitar_2[] = _(
-  "Until it does so, Larvitar cannot see\n"
-  "its parent's face.");
-
-static const u8 DexDescription_Pupitar_1[] = _(
-  "Pupitar creates a gas inside its body\n"
-  "that it compresses and forcefully\n"
-  "ejects to propel itself like a jet.");
-static const u8 DexDescription_Pupitar_2[] = _(
-  "The body is very durable - it avoids\n"
-  "damage even if it hits solid steel.");
-
-static const u8 DexDescription_Tyranitar_1[] = _(
-  "Tyranitar is so overwhelmingly\n"
-  "powerful, it can bring down a whole\n"
-  "mountain to make its nest.");
-static const u8 DexDescription_Tyranitar_2[] = _(
-  "This Pokémon wanders about in\n"
-  "mountains seeking new opponents to\n"
-  "fight.");
-
-static const u8 DexDescription_Lugia_1[] = _(
-  "Lugia's wings pack devastating power -\n"
-  "a light fluttering of its wings can blow\n"
-  "apart regular houses.");
-static const u8 DexDescription_Lugia_2[] = _(
-  "As a result, this Pokémon chooses to\n"
-  "live out of sight deep under the sea.");
-
-static const u8 DexDescription_HoOh_1[] = _(
-  "Ho-oh's feathers glow in seven colors\n"
-  "depending on the angle at which they\n"
-  "are struck by light.");
-static const u8 DexDescription_HoOh_2[] = _(
-  "These feathers are said to bring\n"
-  "happiness to the bearers. This Pokémon\n"
-  "is said to live at the foot of a rainbow.");
-
-static const u8 DexDescription_Celebi_1[] = _(
-  "This Pokémon came from the future by\n"
-  "crossing over time.\n"
-  "It is thought that so long as Celebi");
-static const u8 DexDescription_Celebi_2[] = _(
-  "appears, a bright and shining future\n"
-  "awaits us.");
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Treecko_1[] = _(
-  "Treecko is cool, calm, and collected -\n"
-  "it never panics under any situation.\n"
-  "If a bigger foe were to glare at this");
-static const u8 DexDescription_Treecko_2[] = _(
-  "Pokémon, it would glare right back\n"
-  "without conceding an inch of ground.");
-#else
-static const u8 DexDescription_Treecko_1[] = _(
-  "Treecko has small hooks on the bottom\n"
-  "of its feet that enable it to scale\n"
-  "vertical walls.");
-static const u8 DexDescription_Treecko_2[] = _(
-  "This Pokémon attacks by slamming foes\n"
-  "with its thick tail.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Grovyle_1[] = _(
-  "This Pokémon adeptly flies from branch\n"
-  "to branch in trees.\n"
-  "In a forest, no Pokémon can ever hope");
-static const u8 DexDescription_Grovyle_2[] = _(
-  "to catch a fleeing Grovyle however\n"
-  "fast they may be.");
-#else
-static const u8 DexDescription_Grovyle_1[] = _(
-  "The leaves growing out of Grovyle's\n"
-  "body are convenient for camouflaging\n"
-  "it from enemies in the forest.");
-static const u8 DexDescription_Grovyle_2[] = _(
-  "This Pokémon is a master at climbing\n"
-  "trees in jungles.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Sceptile_1[] = _(
-  "Sceptile has seeds growing on its back.\n"
-  "They are said to be bursting with\n"
-  "nutrients that revitalize trees.");
-static const u8 DexDescription_Sceptile_2[] = _(
-  "This Pokémon raises the trees in a\n"
-  "forest with loving care.");
-#else
-static const u8 DexDescription_Sceptile_1[] = _(
-  "The leaves growing on Sceptile's body\n"
-  "are very sharp edged. This Pokémon is\n"
-  "very agile - it leaps all over the");
-static const u8 DexDescription_Sceptile_2[] = _(
-  "branches of trees and jumps on its foe\n"
-  "from above or behind.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Torchic_1[] = _(
-  "Torchic has a place inside its body\n"
-  "where it keeps its flame. Give it a hug -\n"
-  "it will be glowing with warmth.");
-static const u8 DexDescription_Torchic_2[] = _(
-  "This Pokémon is covered all over by a\n"
-  "fluffy coat of down.");
-#else
-static const u8 DexDescription_Torchic_1[] = _(
-  "Torchic sticks with its Trainer,\n"
-  "following behind with unsteady\n"
-  "steps.");
-static const u8 DexDescription_Torchic_2[] = _(
-  "This Pokémon breathes fire of over\n"
-  "1,800 degrees F, including fireballs\n"
-  "that leave the foe scorched black.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Combusken_1[] = _(
-  "Combusken battles with the intensely\n"
-  "hot flames it spews from its beak and\n"
-  "with outstandingly destructive kicks.");
-static const u8 DexDescription_Combusken_2[] = _(
-  "This Pokémon's cry is very loud and\n"
-  "distracting.");
-#else
-static const u8 DexDescription_Combusken_1[] = _(
-  "Combusken toughens up its legs and\n"
-  "thighs by running through fields and\n"
-  "mountains.");
-static const u8 DexDescription_Combusken_2[] = _(
-  "This Pokémon's legs possess both speed\n"
-  "and power, enabling it to dole out ten\n"
-  "kicks in one second.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Blaziken_1[] = _(
-  "Blaziken has incredibly strong legs -\n"
-  "it can easily clear a 30-story building\n"
-  "in one leap.");
-static const u8 DexDescription_Blaziken_2[] = _(
-  "This Pokémon's blazing punches leave\n"
-  "its foes scorched and blackened.");
-#else
-static const u8 DexDescription_Blaziken_1[] = _(
-  "In battle, Blaziken blows out intense\n"
-  "flames from its wrists and attacks foes\n"
-  "courageously.");
-static const u8 DexDescription_Blaziken_2[] = _(
-  "The stronger the foe, the more\n"
-  "intensely this Pokémon's wrists burn.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Mudkip_1[] = _(
-  "In water, Mudkip breathes using the\n"
-  "gills on its cheeks.\n"
-  "If it is faced with a tight situation in");
-static const u8 DexDescription_Mudkip_2[] = _(
-  "battle, this Pokémon will unleash its\n"
-  "amazing power - it can crush rocks\n"
-  "bigger than itself.");
-#else
-static const u8 DexDescription_Mudkip_1[] = _(
-  "The fin on Mudkip's head acts as highly\n"
-  "sensitive radar. Using this fin to sense\n"
-  "movements of water and air, this");
-static const u8 DexDescription_Mudkip_2[] = _(
-  "Pokémon can determine what is taking\n"
-  "place around it without using its eyes.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Marshtomp_1[] = _(
-  "Marshtomp is much faster at traveling\n"
-  "through mud than it is at swimming.\n"
-  "This Pokémon's hindquarters exhibit");
-static const u8 DexDescription_Marshtomp_2[] = _(
-  "obvious development, giving it the\n"
-  "ability to walk on just its hind legs.");
-#else
-static const u8 DexDescription_Marshtomp_1[] = _(
-  "The surface of Marshtomp's body is\n"
-  "enveloped by a thin, sticky film that\n"
-  "enables it to live on land.");
-static const u8 DexDescription_Marshtomp_2[] = _(
-  "This Pokémon plays in mud on beaches\n"
-  "when the ocean tide is low.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Swampert_1[] = _(
-  "Swampert predicts storms by sensing\n"
-  "subtle differences in the sounds of\n"
-  "waves and tidal winds with its fins.");
-static const u8 DexDescription_Swampert_2[] = _(
-  "If a storm is approaching, it piles up\n"
-  "boulders to protect itself.");
-#else
-static const u8 DexDescription_Swampert_1[] = _(
-  "Swampert is very strong. It has enough\n"
-  "power to easily drag a boulder weighing\n"
-  "more than a ton.");
-static const u8 DexDescription_Swampert_2[] = _(
-  "This Pokémon also has powerful vision\n"
-  "that lets it see even in murky water.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Poochyena_1[] = _(
-  "Poochyena is an omnivore - it will eat\n"
-  "anything. A distinguishing feature is\n"
-  "how large its fangs are compared to");
-static const u8 DexDescription_Poochyena_2[] = _(
-  "its body. This Pokémon tries to\n"
-  "intimidate its foes by making the hair\n"
-  "on its tail bristle out.");
-#else
-static const u8 DexDescription_Poochyena_1[] = _(
-  "At first sight, Poochyena takes a bite\n"
-  "at anything that moves.\n"
-  "This Pokémon chases after prey until");
-static const u8 DexDescription_Poochyena_2[] = _(
-  "the victim becomes exhausted.\n"
-  "However, it may turn tail if the prey\n"
-  "strikes back.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Mightyena_1[] = _(
-  "Mightyena travel and act as a pack\n"
-  "in the wild. The memory of its life in the\n"
-  "wild compels the Pokémon to obey only");
-static const u8 DexDescription_Mightyena_2[] = _(
-  "those Trainers that it recognizes to\n"
-  "possess superior skill.");
-#else
-static const u8 DexDescription_Mightyena_1[] = _(
-  "Mightyena gives obvious signals when\n"
-  "it is preparing to attack. It starts to\n"
-  "growl deeply and then flattens its body.");
-static const u8 DexDescription_Mightyena_2[] = _(
-  "This Pokémon will bite savagely with its\n"
-  "sharply pointed fangs.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Zigzagoon_1[] = _(
-  "The hair on Zigzagoon's back is \n"
-  "bristly. It rubs the hard back hair\n"
-  "against trees to leave its territorial");
-static const u8 DexDescription_Zigzagoon_2[] = _(
-  "markings.\n"
-  "This Pokémon may play dead to fool foes\n"
-  "in battle.");
-#else
-static const u8 DexDescription_Zigzagoon_1[] = _(
-  "Zigzagoon restlessly wanders\n"
-  "everywhere at all times. This Pokémon\n"
-  "does so because it is very curious.");
-static const u8 DexDescription_Zigzagoon_2[] = _(
-  "It becomes interested in anything\n"
-  "that it happens to see.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Linoone_1[] = _(
-  "When hunting, Linoone will make a\n"
-  "beeline straight for the prey at a full\n"
-  "run. While this Pokémon is capable of");
-static const u8 DexDescription_Linoone_2[] = _(
-  "topping 60 mph, it has to come to a\n"
-  "screeching halt before it can turn.");
-#else
-static const u8 DexDescription_Linoone_1[] = _(
-  "Linoone always runs full speed and only\n"
-  "in straight lines. If facing an obstacle,\n"
-  "it makes a right-angle turn to evade it.");
-static const u8 DexDescription_Linoone_2[] = _(
-  "This Pokémon is very challenged by\n"
-  "gently curving roads.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Wurmple_1[] = _(
-  "Wurmple is targeted by Swellow as\n"
-  "prey. This Pokémon will try to resist by\n"
-  "pointing the spikes on its rear at the");
-static const u8 DexDescription_Wurmple_2[] = _(
-  "attacking predator.\n"
-  "It will weaken the foe by leaking poison\n"
-  "from the spikes.");
-#else
-static const u8 DexDescription_Wurmple_1[] = _(
-  "Using the spikes on its rear end,  \n"
-  "Wurmple peels the bark off trees and\n"
-  "feeds on the sap that oozes out.");
-static const u8 DexDescription_Wurmple_2[] = _(
-  "This Pokémon's feet are tipped with\n"
-  "suction pads that allow it to cling to\n"
-  "glass without slipping.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Silcoon_1[] = _(
-  "Silcoon was thought to endure hunger\n"
-  "and not consume anything before its\n"
-  "evolution. However, it is now thought");
-static const u8 DexDescription_Silcoon_2[] = _(
-  "that this Pokémon slakes its thirst by\n"
-  "drinking rainwater that collects on its\n"
-  "silk.");
-#else
-static const u8 DexDescription_Silcoon_1[] = _(
-  "Silcoon tethers itself to a tree branch\n"
-  "using silk to keep from falling. There, \n"
-  "this Pokémon hangs quietly while it");
-static const u8 DexDescription_Silcoon_2[] = _(
-  "awaits evolution.\n"
-  "It peers out of the silk cocoon through\n"
-  "a small hole.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Beautifly_1[] = _(
-  "Beautifly has a long mouth like a coiled\n"
-  "needle, which is very convenient for\n"
-  "collecting pollen from flowers.");
-static const u8 DexDescription_Beautifly_2[] = _(
-  "This Pokémon rides the spring winds as\n"
-  "it flits around gathering pollen.");
-#else
-static const u8 DexDescription_Beautifly_1[] = _(
-  "Beautifly's favorite food is the sweet\n"
-  "pollen of flowers. If you want to see\n"
-  "this Pokémon, just leave a potted");
-static const u8 DexDescription_Beautifly_2[] = _(
-  "flower by an open window. BEAUTIFLY\n"
-  "is sure to come looking for pollen.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Cascoon_1[] = _(
-  "If it is attacked, Cascoon remains\n"
-  "motionless however badly it may be\n"
-  "hurt. It does so because if it were to");
-static const u8 DexDescription_Cascoon_2[] = _(
-  "move, its body would be weak upon\n"
-  "evolution. This Pokémon will also not\n"
-  "forget the pain it endured.");
-#else
-static const u8 DexDescription_Cascoon_1[] = _(
-  "Cascoon makes its protective cocoon\n"
-  "by wrapping its body entirely with a\n"
-  "fine silk from its mouth. Once the silk");
-static const u8 DexDescription_Cascoon_2[] = _(
-  "goes around its body, it hardens.\n"
-  "This Pokémon prepares for its evolution\n"
-  "inside the cocoon.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Dustox_1[] = _(
-  "When Dustox flaps its wings, a fine\n"
-  "dust is scattered all over. This dust is\n"
-  "actually a powerful poison that will");
-static const u8 DexDescription_Dustox_2[] = _(
-  "even make a pro wrestler sick.\n"
-  "This Pokémon searches for food using\n"
-  "its antennae like radar.");
-#else
-static const u8 DexDescription_Dustox_1[] = _(
-  "Dustox is instinctively drawn to light.\n"
-  "Swarms of this Pokémon are attracted\n"
-  "by the bright lights of cities, where");
-static const u8 DexDescription_Dustox_2[] = _(
-  "they wreak havoc by stripping the\n"
-  "leaves off roadside trees for food.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Lotad_1[] = _(
-  "Lotad is said to have dwelled on land\n"
-  "before. However, this Pokémon is\n"
-  "thought to have returned to water");
-static const u8 DexDescription_Lotad_2[] = _(
-  "because the leaf on its head grew large\n"
-  "and heavy. It now lives by floating\n"
-  "atop the water.");
-#else
-static const u8 DexDescription_Lotad_1[] = _(
-  "Lotad live in ponds and lakes, where\n"
-  "they float on the surface.\n"
-  "It grows weak if its broad leaf dies.");
-static const u8 DexDescription_Lotad_2[] = _(
-  "On rare occasions, this Pokémon travels\n"
-  "on land in search of clean water.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Lombre_1[] = _(
-  "Lombre's entire body is covered by a\n"
-  "slippery, slimy film. It feels horribly\n"
-  "unpleasant to be touched by this");
-static const u8 DexDescription_Lombre_2[] = _(
-  "Pokémon's hands.\n"
-  "Lombre is often mistaken for a human\n"
-  "child.");
-#else
-static const u8 DexDescription_Lombre_1[] = _(
-  "Lombre is nocturnal - it will get active\n"
-  "after dusk. It is also a mischief-maker.\n"
-  "When this Pokémon spots anglers,");
-static const u8 DexDescription_Lombre_2[] = _(
-  "it tugs on their fishing lines from\n"
-  "beneath the surface and enjoys their\n"
-  "consternation.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Ludicolo_1[] = _(
-  "Upon hearing an upbeat and cheerful\n"
-  "rhythm, the cells in Ludicolo's body\n"
-  "become very energetic and active.");
-static const u8 DexDescription_Ludicolo_2[] = _(
-  "Even in battle, this Pokémon will\n"
-  "exhibit an amazing amount of power.");
-#else
-static const u8 DexDescription_Ludicolo_1[] = _(
-  "Ludicolo begins dancing as soon as\n"
-  "it hears cheerful, festive music.\n"
-  "This Pokémon is said to appear when it");
-static const u8 DexDescription_Ludicolo_2[] = _(
-  "hears the singing of children on hiking\n"
-  "outings.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Seedot_1[] = _(
-  "Seedot looks exactly like an acorn\n"
-  "when it is dangling from a tree branch.\n"
-  "It startles other Pokémon by suddenly");
-static const u8 DexDescription_Seedot_2[] = _(
-  "moving.\n"
-  "This Pokémon polishes its body once a\n"
-  "day using leaves.");
-#else
-static const u8 DexDescription_Seedot_1[] = _(
-  "Seedot attaches itself to a tree\n"
-  "branch using the top of its head.\n"
-  "It sucks moisture from the tree while");
-static const u8 DexDescription_Seedot_2[] = _(
-  "hanging off the branch.\n"
-  "The more water it drinks, the glossier\n"
-  "this Pokémon's body becomes.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Nuzleaf_1[] = _(
-  "This Pokémon pulls out the leaf on its\n"
-  "head and makes a flute with it.\n"
-  "The sound of Nuzleaf's flute strikes");
-static const u8 DexDescription_Nuzleaf_2[] = _(
-  "fear and uncertainty in the hearts of\n"
-  "people lost in a forest.");
-#else
-static const u8 DexDescription_Nuzleaf_1[] = _(
-  "Nuzleaf live in densely overgrown\n"
-  "forests. They occasionally venture out\n"
-  "of the forest to startle people.");
-static const u8 DexDescription_Nuzleaf_2[] = _(
-  "This Pokémon dislikes having its long\n"
-  "nose pinched.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Shiftry_1[] = _(
-  "Shiftry's large fans generate awesome\n"
-  "gusts of wind at a speed close to 100\n"
-  "feet per second. The whipped-up wind");
-static const u8 DexDescription_Shiftry_2[] = _(
-  "blows anything away.\n"
-  "This Pokémon chooses to live quietly\n"
-  "deep in forests.");
-#else
-static const u8 DexDescription_Shiftry_1[] = _(
-  "Shiftry is a mysterious Pokémon that\n"
-  "is said to live atop towering trees \n"
-  "dating back over a thousand years.");
-static const u8 DexDescription_Shiftry_2[] = _(
-  "It creates terrific windstorms with\n"
-  "the fans it holds.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Taillow_1[] = _(
-  "Taillow is young - it has only just\n"
-  "left its nest. As a result, it sometimes\n"
-  "becomes lonesome and cries at night.");
-static const u8 DexDescription_Taillow_2[] = _(
-  "This Pokémon feeds on Wurmple that\n"
-  "live in forests.");
-#else
-static const u8 DexDescription_Taillow_1[] = _(
-  "Taillow courageously stands its\n"
-  "ground against foes, however strong\n"
-  "they may be.");
-static const u8 DexDescription_Taillow_2[] = _(
-  "This gutsy Pokémon will remain defiant\n"
-  "even after a loss. On the other hand,\n"
-  "it cries loudly if it becomes hungry.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Swellow_1[] = _(
-  "Swellow is very conscientious about\n"
-  "the upkeep of its glossy wings.\n"
-  "Once two Swellow are gathered, they");
-static const u8 DexDescription_Swellow_2[] = _(
-  "diligently take care of cleaning each\n"
-  "other's wings.");
-#else
-static const u8 DexDescription_Swellow_1[] = _(
-  "Swellow flies high above our heads,\n"
-  "making graceful arcs in the sky.\n"
-  "This Pokémon dives at a steep angle as");
-static const u8 DexDescription_Swellow_2[] = _(
-  "soon as it spots its prey. The hapless\n"
-  "prey is tightly grasped by Swellow's\n"
-  "clawed feet, preventing escape.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Wingull_1[] = _(
-  "Wingull rides updrafts rising from the\n"
-  "sea by extending its long and narrow\n"
-  "wings to glide.");
-static const u8 DexDescription_Wingull_2[] = _(
-  "This Pokémon's long beak is useful for\n"
-  "catching prey.");
-#else
-static const u8 DexDescription_Wingull_1[] = _(
-  "Wingull has the habit of carrying prey\n"
-  "and valuables in its beak and hiding\n"
-  "them in all sorts of locations.");
-static const u8 DexDescription_Wingull_2[] = _(
-  "This Pokémon rides the winds and flies\n"
-  "as if it were skating across the sky.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Pelipper_1[] = _(
-  "Pelipper searches for food while in\n"
-  "flight by skimming the wave tops.\n"
-  "This Pokémon dips its large bill in the");
-static const u8 DexDescription_Pelipper_2[] = _(
-  "sea to scoop up food, then swallows\n"
-  "everything in one big gulp.");
-#else
-static const u8 DexDescription_Pelipper_1[] = _(
-  "Pelipper is a flying transporter that\n"
-  "carries small Pokémon and eggs inside\n"
-  "its massive bill.");
-static const u8 DexDescription_Pelipper_2[] = _(
-  "This Pokémon builds its nest on steep\n"
-  "cliffs facing the sea.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Ralts_1[] = _(
-  "Ralts has the ability to sense the\n"
-  "emotions of people.\n"
-  "If its Trainer is in a cheerful mood,");
-static const u8 DexDescription_Ralts_2[] = _(
-  "this Pokémon grows cheerful and joyous\n"
-  "in the same way.");
-#else
-static const u8 DexDescription_Ralts_1[] = _(
-  "Ralts senses the emotions of\n"
-  "people using the horns on its head.\n"
-  "This Pokémon rarely appears before");
-static const u8 DexDescription_Ralts_2[] = _(
-  "people. But when it does, it draws\n"
-  "closer if it senses that the person has\n"
-  "a positive disposition.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Kirlia_1[] = _(
-  "Kirlia uses the horns on its head\n"
-  "to amplify its psychokinetic power.\n"
-  "When the Pokémon uses its power,");
-static const u8 DexDescription_Kirlia_2[] = _(
-  "the air around it becomes distorted,\n"
-  "creating mirages of nonexistent\n"
-  "scenery.");
-#else
-static const u8 DexDescription_Kirlia_1[] = _(
-  "It is said that a Kirlia that is\n"
-  "exposed to the positive emotions of\n"
-  "its Trainer grows beautiful.");
-static const u8 DexDescription_Kirlia_2[] = _(
-  "This Pokémon controls psychokinetic\n"
-  "powers with its highly developed brain.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Gardevoir_1[] = _(
-  "Gardevoir has the psychokinetic\n"
-  "power to distort the dimensions and\n"
-  "create a small black hole.");
-static const u8 DexDescription_Gardevoir_2[] = _(
-  "This Pokémon will try to protect its\n"
-  "Trainer even at the risk of its own\n"
-  "life.");
-#else
-static const u8 DexDescription_Gardevoir_1[] = _(
-  "Gardevoir has the ability to read the\n"
-  "future. If it senses impending danger\n"
-  "to its Trainer, this Pokémon is said to");
-static const u8 DexDescription_Gardevoir_2[] = _(
-  "unleash its psychokinetic energy at\n"
-  "full power.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Surskit_1[] = _(
-  "If Surskit senses danger, it secretes\n"
-  "a thick, sugary syrup from the tip of\n"
-  "its head.");
-static const u8 DexDescription_Surskit_2[] = _(
-  "There are some Pokémon that love\n"
-  "eating this syrup.");
-#else
-static const u8 DexDescription_Surskit_1[] = _(
-  "From the tips of its feet, Surskit\n"
-  "secretes an oil that enables it to walk\n"
-  "on water as if it were skating.");
-static const u8 DexDescription_Surskit_2[] = _(
-  "This Pokémon feeds on microscopic\n"
-  "organisms in ponds and lakes.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Masquerain_1[] = _(
-  "Masquerain's antennas have eyelike\n"
-  "patterns that usually give it an angry\n"
-  "look. If the “eyes” are droopy and");
-static const u8 DexDescription_Masquerain_2[] = _(
-  "appear sad, it is said to be a sign\n"
-  "that a heavy rainfall is on its way.");
-#else
-static const u8 DexDescription_Masquerain_1[] = _(
-  "Masquerain intimidates enemies with\n"
-  "the eyelike patterns on its antennas.\n"
-  "This Pokémon flaps its four wings to");
-static const u8 DexDescription_Masquerain_2[] = _(
-  "freely fly in any direction - even\n"
-  "sideways and backwards - as if it were\n"
-  "a helicopter.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Shroomish_1[] = _(
-  "If Shroomish senses danger, it shakes\n"
-  "its body and scatters spores from the\n"
-  "top of its head.");
-static const u8 DexDescription_Shroomish_2[] = _(
-  "This Pokémon's spores are so toxic,\n"
-  "they make trees and weeds wilt.");
-#else
-static const u8 DexDescription_Shroomish_1[] = _(
-  "Shroomish live in damp soil in the dark\n"
-  "depths of forests. They are often\n"
-  "found keeping still under fallen leaves.");
-static const u8 DexDescription_Shroomish_2[] = _(
-  "This Pokémon feeds on compost that\n"
-  "is made up of fallen, rotted leaves.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Breloom_1[] = _(
-  "The seeds ringing Breloom's tail are\n"
-  "made of hardened toxic spores. It is\n"
-  "horrible to eat the seeds.");
-static const u8 DexDescription_Breloom_2[] = _(
-  "Just taking a bite of this Pokémon's\n"
-  "seed will cause your stomach to rumble.");
-#else
-static const u8 DexDescription_Breloom_1[] = _(
-  "Breloom closes in on its foe with light\n"
-  "and sprightly footwork, then throws\n"
-  "punches with its stretchy arms.");
-static const u8 DexDescription_Breloom_2[] = _(
-  "This Pokémon's fighting technique puts\n"
-  "boxers to shame.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Slakoth_1[] = _(
-  "Slakoth's heart beats just once a\n"
-  "minute. Whatever happens, it is\n"
-  "content to loaf around motionless.");
-static const u8 DexDescription_Slakoth_2[] = _(
-  "It is rare to see this Pokémon in\n"
-  "motion.");
-#else
-static const u8 DexDescription_Slakoth_1[] = _(
-  "Slakoth lolls around for over twenty\n"
-  "hours every day. Because it moves so\n"
-  "little, it does not need much food.");
-static const u8 DexDescription_Slakoth_2[] = _(
-  "This Pokémon's sole daily meal consists\n"
-  "of just three leaves.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Vigoroth_1[] = _(
-  "Vigoroth is simply incapable of\n"
-  "remaining still. Even when it tries to\n"
-  "sleep, the blood in its veins grows");
-static const u8 DexDescription_Vigoroth_2[] = _(
-  "agitated, compelling this Pokémon to\n"
-  "run wild throughout the jungle before\n"
-  "it can settle down.");
-#else
-static const u8 DexDescription_Vigoroth_1[] = _(
-  "Vigoroth is always itching and agitated\n"
-  "to go on a wild rampage. It simply can't\n"
-  "tolerate sitting still for even a minute.");
-static const u8 DexDescription_Vigoroth_2[] = _(
-  "This Pokémon's stress level rises if it\n"
-  "can't be moving constantly.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Slaking_1[] = _(
-  "Wherever Slaking live, rings of over\n"
-  "a yard in diameter appear in grassy\n"
-  "fields. They are made by the Pokémon");
-static const u8 DexDescription_Slaking_2[] = _(
-  "as it eats all the grass within reach\n"
-  "while lying prone on the ground.");
-#else
-static const u8 DexDescription_Slaking_1[] = _(
-  "Slaking spends all day lying down and\n"
-  "lolling about.\n"
-  "It eats grass growing within its reach.");
-static const u8 DexDescription_Slaking_2[] = _(
-  "If it eats all the grass it can reach,\n"
-  "this Pokémon reluctantly moves to\n"
-  "another spot.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Nincada_1[] = _(
-  "Nincada lives underground. It uses its\n"
-  "sharp claws to carve the roots of trees\n"
-  "and absorb moisture and nutrients.");
-static const u8 DexDescription_Nincada_2[] = _(
-  "This Pokémon can't withstand bright\n"
-  "sunlight so avoids it.");
-#else
-static const u8 DexDescription_Nincada_1[] = _(
-  "Nincada lives underground for many\n"
-  "years in complete darkness.\n"
-  "This Pokémon absorbs nutrients from");
-static const u8 DexDescription_Nincada_2[] = _(
-  "the roots of trees. It stays motionless\n"
-  "as it waits for evolution.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Ninjask_1[] = _(
-  "If Ninjask is not trained properly,\n"
-  "it will refuse to obey the Trainer and\n"
-  "cry loudly continuously.");
-static const u8 DexDescription_Ninjask_2[] = _(
-  "Because of this quality, this Pokémon\n"
-  "is said to be one that puts the\n"
-  "Trainer's abilities to the test.");
-#else
-static const u8 DexDescription_Ninjask_1[] = _(
-  "Ninjask moves around at such a high\n"
-  "speed that it cannot be seen, even\n"
-  "while its crying can be clearly heard.");
-static const u8 DexDescription_Ninjask_2[] = _(
-  "For that reason, this Pokémon was long\n"
-  "believed to be invisible.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Shedinja_1[] = _(
-  "Shedinja is a peculiar Pokémon.\n"
-  "It seems to appear unsought in a Poké\n"
-  "Ball after a Nincada evolves.");
-static const u8 DexDescription_Shedinja_2[] = _(
-  "This bizarre Pokémon is entirely\n"
-  "immobile - it doesn't even breathe.");
-#else
-static const u8 DexDescription_Shedinja_1[] = _(
-  "Shedinja's hard body doesn't move -\n"
-  "not even a twitch. In fact, its body\n"
-  "appears to be merely a hollow shell.");
-static const u8 DexDescription_Shedinja_2[] = _(
-  "It is believed that this Pokémon will\n"
-  "steal the spirit of anyone peering into\n"
-  "its hollow body from its back.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Whismur_1[] = _(
-  "Whismur is very timid. If it starts to\n"
-  "cry loudly, it becomes startled by its\n"
-  "own crying and cries even harder.");
-static const u8 DexDescription_Whismur_2[] = _(
-  "When it finally stops crying, the\n"
-  "Pokémon goes to sleep, all tired out.");
-#else
-static const u8 DexDescription_Whismur_1[] = _(
-  "Normally, Whismur's voice is very quiet -\n"
-  "it is barely audible even if one is\n"
-  "paying close attention.");
-static const u8 DexDescription_Whismur_2[] = _(
-  "However, if this Pokémon senses danger,\n"
-  "it starts crying at an earsplitting\n"
-  "volume.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Loudred_1[] = _(
-  "Loudred shouts while stamping its feet.\n"
-  "After it finishes shouting, this\n"
-  "Pokémon becomes incapable of hearing");
-static const u8 DexDescription_Loudred_2[] = _(
-  "anything for a while. This is considered\n"
-  "to be a weak point.");
-#else
-static const u8 DexDescription_Loudred_1[] = _(
-  "Loudred's bellowing can completely\n"
-  "decimate a wood-frame house. It uses\n"
-  "its voice to punish its foes.");
-static const u8 DexDescription_Loudred_2[] = _(
-  "This Pokémon's round ears serve as\n"
-  "loudspeakers.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Exploud_1[] = _(
-  "Exploud communicates its feelings to\n"
-  "the others by emitting whistle-like\n"
-  "sounds from the tubes on its body.");
-static const u8 DexDescription_Exploud_2[] = _(
-  "This Pokémon only raises its voice when\n"
-  "it is in battle.");
-#else
-static const u8 DexDescription_Exploud_1[] = _(
-  "Exploud triggers earthquakes with the\n"
-  "tremors it creates by bellowing. If this\n"
-  "Pokémon violently inhales from the");
-static const u8 DexDescription_Exploud_2[] = _(
-  "ports on its body, it's a sign that it is\n"
-  "preparing to let loose a huge bellow.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Makuhita_1[] = _(
-  "Makuhita has a tireless spirit -\n"
-  "it will never give up hope. It eats a lot\n"
-  "of food, gets plenty of sleep, and it");
-static const u8 DexDescription_Makuhita_2[] = _(
-  "trains very rigorously. By living that\n"
-  "way, this Pokémon packs its body with\n"
-  "energy.");
-#else
-static const u8 DexDescription_Makuhita_1[] = _(
-  "Makuhita is tenacious - it will keep\n"
-  "getting up and attacking its foe\n"
-  "however many times it is knocked down.");
-static const u8 DexDescription_Makuhita_2[] = _(
-  "Every time it gets back up, this\n"
-  "Pokémon stores more energy in its body\n"
-  "for evolving.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Hariyama_1[] = _(
-  "Hariyama's thick body may appear fat,\n"
-  "but it is actually a hunk of solid muscle.\n"
-  "If this Pokémon bears down and");
-static const u8 DexDescription_Hariyama_2[] = _(
-  "tightens all its muscles, its body\n"
-  "becomes as hard as a rock.");
-#else
-static const u8 DexDescription_Hariyama_1[] = _(
-  "Hariyama practices its straight-arm\n"
-  "slaps in any number of locations.\n"
-  "One hit of this Pokémon's powerful,");
-static const u8 DexDescription_Hariyama_2[] = _(
-  "openhanded, straight-arm punches\n"
-  "could snap a telephone pole in two.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Azurill_1[] = _(
-  "Azurill's tail is large and bouncy.\n"
-  "It is packed full of the nutrients this\n"
-  "Pokémon needs to grow.");
-static const u8 DexDescription_Azurill_2[] = _(
-  "Azurill can be seen bouncing and\n"
-  "playing on its big, rubbery tail.");
-#else
-static const u8 DexDescription_Azurill_1[] = _(
-  "Azurill spins its tail as if it were a\n"
-  "lasso, then hurls it far. The momentum\n"
-  "of the throw sends its body flying, too.");
-static const u8 DexDescription_Azurill_2[] = _(
-  "Using this unique action, one of these\n"
-  "Pokémon managed to hurl itself a record\n"
-  "33 feet.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Nosepass_1[] = _(
-  "Nosepass had been said to be completely\n"
-  "unmoving, with its magnetic nose\n"
-  "pointed due north.");
-static const u8 DexDescription_Nosepass_2[] = _(
-  "However, close observation has revealed\n"
-  "that the Pokémon actually moves by a\n"
-  "little over 3/8 of an inch every year.");
-#else
-static const u8 DexDescription_Nosepass_1[] = _(
-  "Nosepass's magnetic nose is always\n"
-  "pointed to the north. If two of these\n"
-  "Pokémon meet, they cannot turn");
-static const u8 DexDescription_Nosepass_2[] = _(
-  "their faces to each other when they\n"
-  "are close because their magnetic noses\n"
-  "repel one another.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Skitty_1[] = _(
-  "Skitty is known to chase around\n"
-  "playfully after its own tail. In the wild,\n"
-  "this Pokémon lives in holes in the trees");
-static const u8 DexDescription_Skitty_2[] = _(
-  "of forests. It is very popular as a pet\n"
-  "because of its adorable looks.");
-#else
-static const u8 DexDescription_Skitty_1[] = _(
-  "Skitty has the habit of becoming\n"
-  "fascinated by moving objects and\n"
-  "chasing them around.");
-static const u8 DexDescription_Skitty_2[] = _(
-  "This Pokémon is known to chase after\n"
-  "its own tail and become dizzy.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Delcatty_1[] = _(
-  "Delcatty sleeps anywhere it wants\n"
-  "without keeping a permanent nest.\n"
-  "If other Pokémon approach it as it");
-static const u8 DexDescription_Delcatty_2[] = _(
-  "sleeps, this Pokémon will never fight -\n"
-  "it will just move away somewhere else.");
-#else
-static const u8 DexDescription_Delcatty_1[] = _(
-  "Delcatty prefers to live an unfettered\n"
-  "existence in which it can do as it\n"
-  "pleases at its own pace.");
-static const u8 DexDescription_Delcatty_2[] = _(
-  "Because this Pokémon eats and sleeps\n"
-  "whenever it decides, its daily routines\n"
-  "are completely random.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Sableye_1[] = _(
-  "Sableye digs the ground with sharpened\n"
-  "claws to find rocks that it eats.\n"
-  "Substances in the eaten rocks");
-static const u8 DexDescription_Sableye_2[] = _(
-  "crystallize and rise up to the Pokémon's\n"
-  "body surface.");
-#else
-static const u8 DexDescription_Sableye_1[] = _(
-  "Sableye lead quiet lives deep inside\n"
-  "caverns. They are feared, however,\n"
-  "because these Pokémon are thought to");
-static const u8 DexDescription_Sableye_2[] = _(
-  "steal the spirits of people when their\n"
-  "eyes burn with a sinister glow in the\n"
-  "darkness.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Mawile_1[] = _(
-  "Don't be taken in by this Pokémon's\n"
-  "cute face - it's very dangerous. Mawile\n"
-  "fools the foe into letting down its");
-static const u8 DexDescription_Mawile_2[] = _(
-  "guard, then chomps down with its\n"
-  "massive jaws. The steel jaws are really\n"
-  "horns that have been transformed.");
-#else
-#if REVISION >= 1
-static const u8 DexDescription_Mawile_1[] = _(
-  "Mawile's huge jaws are actually steel\n"
-  "horns that have been transformed.\n"
-  "Its docile-looking face serves to lull");
-static const u8 DexDescription_Mawile_2[] = _(
-  "its foe into letting down its guard.\n"
-  "When the foe least expects it, Mawile\n"  // Correct spelling of MAWILE
-  "chomps it with its gaping jaws.");
-#else
-static const u8 DexDescription_Mawile_1[] = _(
-  "Mawile's huge jaws are actually steel\n"
-  "horns that have been transformed.\n"
-  "Its docile-looking face serves to lull");
-static const u8 DexDescription_Mawile_2[] = _(
-  "its foe into letting down its guard.\n"
-  "When the foe least expects it, Mawile\n"
-  "chomps it with its gaping jaws.");
-#endif
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Aron_1[] = _(
-  "Aron has a body of steel.\n"
-  "With one all-out charge, this Pokémon\n"
-  "can demolish even a heavy dump truck.");
-static const u8 DexDescription_Aron_2[] = _(
-  "The destroyed dump truck then becomes\n"
-  "a handy meal for the Pokémon.");
-#else
-static const u8 DexDescription_Aron_1[] = _(
-  "This Pokémon has a body of steel.\n"
-  "To make its body, Aron feeds on\n"
-  "iron ore that it digs from mountains.");
-static const u8 DexDescription_Aron_2[] = _(
-  "Occasionally, it causes major trouble by\n"
-  "eating bridges and rails.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Lairon_1[] = _(
-  "Lairon feeds on iron contained in\n"
-  "rocks and water. It makes its nest on\n"
-  "mountains where iron ore is buried.");
-static const u8 DexDescription_Lairon_2[] = _(
-  "As a result, the Pokémon often clashes\n"
-  "with humans mining the iron ore.");
-#else
-static const u8 DexDescription_Lairon_1[] = _(
-  "Lairon tempers its steel body by\n"
-  "drinking highly nutritious mineral\n"
-  "springwater until it is bloated.");
-static const u8 DexDescription_Lairon_2[] = _(
-  "This Pokémon makes its nest close to\n"
-  "springs of delicious water.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Aggron_1[] = _(
-  "Aggron is surprisingly protective\n"
-  "of its environment. If its mountain\n"
-  "is ravaged by a landslide or a fire, this");
-static const u8 DexDescription_Aggron_2[] = _(
-  "Pokémon will haul topsoil to the area,\n"
-  "plant trees, and beautifully restore its\n"
-  "own territory.");
-#else
-static const u8 DexDescription_Aggron_1[] = _(
-  "Aggron claims an entire mountain as its\n"
-  "own territory. It mercilessly beats up\n"
-  "anything that violates its environment.");
-static const u8 DexDescription_Aggron_2[] = _(
-  "This Pokémon vigilantly patrols its\n"
-  "territory at all times.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Meditite_1[] = _(
-  "Meditite heightens its inner energy\n"
-  "through meditation. It survives on\n"
-  "just one berry a day.");
-static const u8 DexDescription_Meditite_2[] = _(
-  "Minimal eating is another aspect of\n"
-  "this Pokémon's training.");
-#else
-static const u8 DexDescription_Meditite_1[] = _(
-  "Meditite undertakes rigorous mental\n"
-  "training deep in the mountains.\n"
-  "However, whenever it meditates, this");
-static const u8 DexDescription_Meditite_2[] = _(
-  "Pokémon always loses its concentration\n"
-  "and focus. As a result, its training\n"
-  "never ends.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Medicham_1[] = _(
-  "Through the power of meditation,\n"
-  "Medicham developed its sixth sense.\n"
-  "It gained the ability to use");
-static const u8 DexDescription_Medicham_2[] = _(
-  "psychokinetic powers. This Pokémon is\n"
-  "known to meditate for a whole month\n"
-  "without eating.");
-#else
-static const u8 DexDescription_Medicham_1[] = _(
-  "It is said that through meditation,\n"
-  "Medicham heightens energy inside\n"
-  "its body and sharpens its sixth sense.");
-static const u8 DexDescription_Medicham_2[] = _(
-  "This Pokémon hides its presence by\n"
-  "merging itself with fields and\n"
-  "mountains.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Electrike_1[] = _(
-  "Electrike runs faster than the human\n"
-  "eye can follow. The friction from\n"
-  "running is converted into electricity,");
-static const u8 DexDescription_Electrike_2[] = _(
-  "which is then stored in this Pokémon's\n"
-  "fur.");
-#else
-static const u8 DexDescription_Electrike_1[] = _(
-  "Electrike stores electricity in its\n"
-  "long body hair. This Pokémon stimulates\n"
-  "its leg muscles with electric charges.");
-static const u8 DexDescription_Electrike_2[] = _(
-  "These jolts of power give its legs\n"
-  "explosive acceleration performance.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Manectric_1[] = _(
-  "Manectric discharges strong\n"
-  "electricity from its mane. The mane is\n"
-  "used for collecting electricity in the");
-static const u8 DexDescription_Manectric_2[] = _(
-  "atmosphere. This Pokémon creates\n"
-  "thunderclouds above its head.");
-#else
-static const u8 DexDescription_Manectric_1[] = _(
-  "Manectric is constantly discharging\n"
-  "electricity from its mane. The sparks\n"
-  "sometimes ignite forest fires.");
-static const u8 DexDescription_Manectric_2[] = _(
-  "When it enters a battle, this Pokémon\n"
-  "creates thunderclouds.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Plusle_1[] = _(
-  "When Plusle is cheering on its partner,\n"
-  "it flashes with electric sparks from all\n"
-  "over its body.");
-static const u8 DexDescription_Plusle_2[] = _(
-  "If its partner loses, this Pokémon cries\n"
-  "loudly.");
-#else
-static const u8 DexDescription_Plusle_1[] = _(
-  "Plusle always acts as a cheerleader\n"
-  "for its partners. Whenever a teammate\n"
-  "puts out a good effort in battle, this");
-static const u8 DexDescription_Plusle_2[] = _(
-  "Pokémon shorts out its body to create\n"
-  "the crackling noises of sparks to show\n"
-  "its joy.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Minun_1[] = _(
-  "Minun loves to cheer on its partner in\n"
-  "battle. It gives off sparks from its\n"
-  "body while it is doing so.");
-static const u8 DexDescription_Minun_2[] = _(
-  "If its partner is in trouble, this\n"
-  "Pokémon gives off increasing amounts\n"
-  "of sparks.");
-#else
-static const u8 DexDescription_Minun_1[] = _(
-  "Minun is more concerned about cheering\n"
-  "on its partners than its own safety.\n"
-  "It shorts out the electricity in its");
-static const u8 DexDescription_Minun_2[] = _(
-  "body to create brilliant showers of\n"
-  "sparks to cheer on its teammates.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Volbeat_1[] = _(
-  "Volbeat's tail glows like a lightbulb.\n"
-  "With other Volbeat, it uses its tail to\n"
-  "draw geometric shapes in the night sky.");
-static const u8 DexDescription_Volbeat_2[] = _(
-  "This Pokémon loves the sweet aroma\n"
-  "given off by Illumise.");
-#else
-static const u8 DexDescription_Volbeat_1[] = _(
-  "With the arrival of night, Volbeat emits\n"
-  "light from its tail. It communicates with\n"
-  "others by adjusting the intensity and");
-static const u8 DexDescription_Volbeat_2[] = _(
-  "flashing of its light.\n"
-  "This Pokémon is attracted by the sweet\n"
-  "aroma of Illumise.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Illumise_1[] = _(
-  "Illumise leads a flight of illuminated\n"
-  "Volbeat to draw signs in the night sky.\n"
-  "This Pokémon is said to earn greater");
-static const u8 DexDescription_Illumise_2[] = _(
-  "respect from its peers by composing\n"
-  "more complex designs in the sky.");
-#else
-static const u8 DexDescription_Illumise_1[] = _(
-  "Illumise attracts a swarm of Volbeat\n"
-  "using a sweet fragrance. Once the\n"
-  "Volbeat have gathered, this Pokémon");
-static const u8 DexDescription_Illumise_2[] = _(
-  "leads the lit-up swarm in drawing\n"
-  "geometric designs on the canvas of\n"
-  "the night sky.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Roselia_1[] = _(
-  "On extremely rare occasions, a Roselia\n"
-  "is said to appear with its flowers in\n"
-  "unusual colors.");
-static const u8 DexDescription_Roselia_2[] = _(
-  "The thorns on this Pokémon's head\n"
-  "contain a vicious poison.");
-#else
-static const u8 DexDescription_Roselia_1[] = _(
-  "Roselia shoots sharp thorns as\n"
-  "projectiles at any opponent that tries\n"
-  "to steal the flowers on its arms.");
-static const u8 DexDescription_Roselia_2[] = _(
-  "The aroma of this Pokémon brings\n"
-  "serenity to living things.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Gulpin_1[] = _(
-  "Most of Gulpin's body is made up of its\n"
-  "stomach - its heart and brain are very\n"
-  "small in comparison.");
-static const u8 DexDescription_Gulpin_2[] = _(
-  "This Pokémon's stomach contains\n"
-  "special enzymes that dissolve anything.");
-#else
-static const u8 DexDescription_Gulpin_1[] = _(
-  "Virtually all of Gulpin's body is its\n"
-  "stomach. As a result, it can swallow\n"
-  "something its own size.");
-static const u8 DexDescription_Gulpin_2[] = _(
-  "This Pokémon's stomach contains a\n"
-  "special fluid that digests anything.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Swalot_1[] = _(
-  "Swalot has no teeth, so what it\n"
-  "eats, it swallows whole, no matter what.\n"
-  "Its cavernous mouth yawns widely.");
-static const u8 DexDescription_Swalot_2[] = _(
-  "An automobile tire could easily fit\n"
-  "inside this Pokémon's mouth.");
-#else
-static const u8 DexDescription_Swalot_1[] = _(
-  "When Swalot spots prey, it spurts out\n"
-  "a hideously toxic fluid from its pores\n"
-  "and sprays the target.");
-static const u8 DexDescription_Swalot_2[] = _(
-  "Once the prey has weakened, this\n"
-  "Pokémon gulps it down whole with its\n"
-  "cavernous mouth.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Carvanha_1[] = _(
-  "If anything invades Carvanha's\n"
-  "territory, it will swarm and tear at the\n"
-  "intruder with its pointed fangs.");
-static const u8 DexDescription_Carvanha_2[] = _(
-  "On its own, however, this Pokémon turns\n"
-  "suddenly timid.");
-#else
-static const u8 DexDescription_Carvanha_1[] = _(
-  "Carvanha's strongly developed jaws\n"
-  "and its sharply pointed fangs pack the\n"
-  "destructive power to rip out boat hulls.");
-static const u8 DexDescription_Carvanha_2[] = _(
-  "Many boats have been attacked and\n"
-  "sunk by this Pokémon.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Sharpedo_1[] = _(
-  "Sharpedo can swim at speeds of up to\n"
-  "75 mph by jetting seawater out of its\n"
-  "backside.");
-static const u8 DexDescription_Sharpedo_2[] = _(
-  "This Pokémon's drawback is its inability\n"
-  "to swim long distances.");
-#else
-static const u8 DexDescription_Sharpedo_1[] = _(
-  "Nicknamed “the bully of the sea,”\n"
-  "Sharpedo is widely feared.\n"
-  "Its cruel fangs grow back immediately");
-static const u8 DexDescription_Sharpedo_2[] = _(
-  "if they snap off.\n"
-  "Just one of these Pokémon can\n"
-  "thoroughly tear apart a supertanker.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Wailmer_1[] = _(
-  "Wailmer can store water inside its body\n"
-  "to transform itself into a ball for\n"
-  "bouncing around on the ground.");
-static const u8 DexDescription_Wailmer_2[] = _(
-  "By filling itself up with more water, this\n"
-  "Pokémon can elevate the height of its\n"
-  "bounces.");
-#else
-static const u8 DexDescription_Wailmer_1[] = _(
-  "Wailmer's nostrils are located above\n"
-  "its eyes. This playful Pokémon loves\n"
-  "to startle people by forcefully snorting");
-static const u8 DexDescription_Wailmer_2[] = _(
-  "out seawater it stores inside its body\n"
-  "out of its nostrils.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Wailord_1[] = _(
-  "When chasing prey, Wailord herds them\n"
-  "by leaping out of the water and making\n"
-  "a humongous splash.");
-static const u8 DexDescription_Wailord_2[] = _(
-  "It is breathtaking to see this Pokémon\n"
-  "leaping out of the sea with others in\n"
-  "its pod.");
-#else
-static const u8 DexDescription_Wailord_1[] = _(
-  "Wailord is the largest of all identified\n"
-  "Pokémon up to now.\n"
-  "This giant Pokémon swims languorously");
-static const u8 DexDescription_Wailord_2[] = _(
-  "in the vast open sea, eating massive\n"
-  "amounts of food at once with its\n"
-  "enormous mouth.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Numel_1[] = _(
-  "Numel stores magma of almost 2,200\n"
-  "degrees F within its body. If it gets\n"
-  "wet, the magma cools and hardens.");
-static const u8 DexDescription_Numel_2[] = _(
-  "In that event, the Pokémon's body\n"
-  "grows heavy and its movements become\n"
-  "sluggish.");
-#else
-static const u8 DexDescription_Numel_1[] = _(
-  "Numel is extremely dull witted - it\n"
-  "doesn't notice being hit. However, it\n"
-  "can't stand hunger for even a second.");
-static const u8 DexDescription_Numel_2[] = _(
-  "This Pokémon's body is a seething\n"
-  "cauldron of boiling magma.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Camerupt_1[] = _(
-  "The humps on Camerupt's back are\n"
-  "formed by a transformation of its\n"
-  "bones. They sometimes blast out molten");
-static const u8 DexDescription_Camerupt_2[] = _(
-  "magma. This Pokémon apparently erupts\n"
-  "often when it is enraged.");
-#else
-static const u8 DexDescription_Camerupt_1[] = _(
-  "Camerupt has a volcano inside its body.\n"
-  "Magma of 18,000 degrees F courses\n"
-  "through its body.");
-static const u8 DexDescription_Camerupt_2[] = _(
-  "Occasionally, the humps on this\n"
-  "Pokémon's back erupt, spewing the\n"
-  "superheated magma.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Torkoal_1[] = _(
-  "Torkoal generates energy by burning\n"
-  "coal. It grows weaker as the fire\n"
-  "dies down.");
-static const u8 DexDescription_Torkoal_2[] = _(
-  "When it is preparing for battle, this\n"
-  "Pokémon burns more coal.");
-#else
-static const u8 DexDescription_Torkoal_1[] = _(
-  "Torkoal digs through mountains in\n"
-  "search of coal. If it finds some, it fills\n"
-  "hollow spaces on its shell with the coal");
-static const u8 DexDescription_Torkoal_2[] = _(
-  "and burns it.\n"
-  "If it is attacked, this Pokémon spouts\n"
-  "thick black smoke to beat a retreat.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Spoink_1[] = _(
-  "Spoink keeps a pearl on top of its head.\n"
-  "The pearl functions to amplify this\n"
-  "Pokémon's psychokinetic powers.");
-static const u8 DexDescription_Spoink_2[] = _(
-  "It is therefore on a constant search\n"
-  "for a bigger pearl.");
-#else
-static const u8 DexDescription_Spoink_1[] = _(
-  "Spoink bounces around on its tail.\n"
-  "The shock of its bouncing makes its\n"
-  "heart pump. As a result, this Pokémon");
-static const u8 DexDescription_Spoink_2[] = _(
-  "cannot afford to stop bouncing - if it\n"
-  "stops, its heart will stop.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Grumpig_1[] = _(
-  "Grumpig uses the black pearls on its\n"
-  "body to wield its fantastic powers.\n"
-  "When it is doing so, it dances bizarrely.");
-static const u8 DexDescription_Grumpig_2[] = _(
-  "This Pokémon's black pearls are valuable\n"
-  "as works of art.");
-#else
-static const u8 DexDescription_Grumpig_1[] = _(
-  "Grumpig uses the black pearls on its\n"
-  "body to amplify its psychic power waves\n"
-  "for gaining total control over its foe.");
-static const u8 DexDescription_Grumpig_2[] = _(
-  "When this Pokémon uses its special\n"
-  "power, its snorting breath grows\n"
-  "labored.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Spinda_1[] = _(
-  "No two Spinda are said to have\n"
-  "identical spot patterns on their hides.\n"
-  "This Pokémon moves in a curious manner");
-static const u8 DexDescription_Spinda_2[] = _(
-  "as if it is stumbling in dizziness.\n"
-  "Its lurching movements can cause the\n"
-  "opponent to become confused.");
-#else
-static const u8 DexDescription_Spinda_1[] = _(
-  "All the Spinda that exist in the\n"
-  "world are said to have utterly unique\n"
-  "spot patterns.");
-static const u8 DexDescription_Spinda_2[] = _(
-  "The shaky, tottering steps of this\n"
-  "Pokémon give it the appearance of\n"
-  "dancing.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Trapinch_1[] = _(
-  "Trapinch is a patient hunter. It digs\n"
-  "an inescapable pit in a desert and waits\n"
-  "for its prey to come tumbling down.");
-static const u8 DexDescription_Trapinch_2[] = _(
-  "This Pokémon can go a whole week\n"
-  "without access to any water.");
-#else
-static const u8 DexDescription_Trapinch_1[] = _(
-  "Trapinch's nest is a sloped, bowl-like\n"
-  "pit dug in sand. This Pokémon patiently\n"
-  "waits for prey to tumble down the pit.");
-static const u8 DexDescription_Trapinch_2[] = _(
-  "Its giant jaws have enough strength\n"
-  "to crush even boulders.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Vibrava_1[] = _(
-  "Vibrava's wings have not yet\n"
-  "completed the process of growing.\n"
-  "Rather than flying long distances,");
-static const u8 DexDescription_Vibrava_2[] = _(
-  "they are more useful for generating\n"
-  "ultrasonic waves by vibrating.");
-#else
-static const u8 DexDescription_Vibrava_1[] = _(
-  "To make prey faint, Vibrava generates\n"
-  "ultrasonic waves by vigorously making\n"
-  "its two wings vibrate.");
-static const u8 DexDescription_Vibrava_2[] = _(
-  "This Pokémon's ultrasonic waves are so\n"
-  "powerful, they can bring on headaches\n"
-  "in people.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Flygon_1[] = _(
-  "Flygon whips up a sandstorm by\n"
-  "flapping its wings. The wings create a\n"
-  "series of notes that sound like singing.");
-static const u8 DexDescription_Flygon_2[] = _(
-  "Because the “singing” is the only thing\n"
-  "that can be heard in a sandstorm, this\n"
-  "Pokémon is said to be the desert spirit.");
-#else
-static const u8 DexDescription_Flygon_1[] = _(
-  "Flygon is nicknamed “the elemental \n"
-  "spirit of the desert.” Because its\n"
-  "flapping wings whip up a cloud of sand,");
-static const u8 DexDescription_Flygon_2[] = _(
-  "this Pokémon is always enveloped in a\n"
-  "sandstorm while flying.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Cacnea_1[] = _(
-  "The more arid and harsh the\n"
-  "environment, the more pretty and\n"
-  "fragrant a flower Cacnea grows.");
-static const u8 DexDescription_Cacnea_2[] = _(
-  "This Pokémon battles by wildly swinging\n"
-  "its thorny arms.");
-#else
-static const u8 DexDescription_Cacnea_1[] = _(
-  "Cacnea lives in arid locations such\n"
-  "as deserts. It releases a strong aroma\n"
-  "from its flower to attract prey.");
-static const u8 DexDescription_Cacnea_2[] = _(
-  "When prey comes near, this Pokémon\n"
-  "shoots sharp thorns from its body to\n"
-  "bring the victim down.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Cacturne_1[] = _(
-  "If a traveler is going through a desert\n"
-  "in the thick of night, Cacturne\n"
-  "will follow in a ragtag group.");
-static const u8 DexDescription_Cacturne_2[] = _(
-  "The Pokémon are biding their time,\n"
-  "waiting for the traveler to tire and\n"
-  "become incapable of moving.");
-#else
-static const u8 DexDescription_Cacturne_1[] = _(
-  "During the daytime, Cacturne remains\n"
-  "unmoving so that it does not lose any\n"
-  "moisture to the harsh desert sun.");
-static const u8 DexDescription_Cacturne_2[] = _(
-  "This Pokémon becomes active at night\n"
-  "when the temperature drops.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Swablu_1[] = _(
-  "Swablu loves to make things clean.\n"
-  "If it spots something dirty, it will wipe\n"
-  "and polish it with its cottony wings.");
-static const u8 DexDescription_Swablu_2[] = _(
-  "If its wings become dirty, this Pokémon\n"
-  "finds a stream and showers itself.");
-#else
-static const u8 DexDescription_Swablu_1[] = _(
-  "Swablu has light and fluffy wings that\n"
-  "are like cottony clouds. This Pokémon\n"
-  "is not frightened of people.");
-static const u8 DexDescription_Swablu_2[] = _(
-  "It lands on the heads of people and\n"
-  "sits there like a cotton-fluff hat.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Altaria_1[] = _(
-  "Altaria sings in a gorgeous soprano.\n"
-  "Its wings are like cotton clouds.\n"
-  "This Pokémon catches updrafts with its");
-static const u8 DexDescription_Altaria_2[] = _(
-  "buoyant wings and soars way up into\n"
-  "the wild blue yonder.");
-#else
-static const u8 DexDescription_Altaria_1[] = _(
-  "Altaria dances and wheels through the\n"
-  "sky among billowing, cotton-like clouds.\n"
-  "By singing melodies in its crystal-clear");
-static const u8 DexDescription_Altaria_2[] = _(
-  "voice, this Pokémon makes its listeners\n"
-  "experience dreamy wonderment.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Zangoose_1[] = _(
-  "Zangoose usually stays on all fours,\n"
-  "but when angered, it gets up on its\n"
-  "hind legs and extends its claws.");
-static const u8 DexDescription_Zangoose_2[] = _(
-  "This Pokémon shares a bitter rivalry\n"
-  "with Seviper that dates back over\n"
-  "generations.");
-#else
-static const u8 DexDescription_Zangoose_1[] = _(
-  "Memories of battling its arch-rival\n"
-  "Seviper are etched into every cell of\n"
-  "Zangoose's body.");
-static const u8 DexDescription_Zangoose_2[] = _(
-  "This Pokémon adroitly dodges attacks\n"
-  "with incredible agility.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Seviper_1[] = _(
-  "Seviper's swordlike tail serves two\n"
-  "purposes - it slashes foes and douses\n"
-  "them with secreted poison.");
-static const u8 DexDescription_Seviper_2[] = _(
-  "This Pokémon will not give up its long-\n"
-  "running blood feud with Zangoose.");
-#else
-static const u8 DexDescription_Seviper_1[] = _(
-  "Seviper shares a generations-long\n"
-  "feud with Zangoose. The scars on its\n"
-  "body are evidence of vicious battles.");
-static const u8 DexDescription_Seviper_2[] = _(
-  "This Pokémon attacks using its sword-\n"
-  "edged tail.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Lunatone_1[] = _(
-  "Lunatone becomes active around the\n"
-  "time of the full moon. Instead of\n"
-  "walking, it moves by floating in midair.");
-static const u8 DexDescription_Lunatone_2[] = _(
-  "The Pokémon's intimidating red eyes\n"
-  "cause all those who see it to become\n"
-  "transfixed with fear.");
-#else
-static const u8 DexDescription_Lunatone_1[] = _(
-  "Lunatone was discovered at a location\n"
-  "where a meteorite fell. As a result, some\n"
-  "people theorize that this Pokémon");
-static const u8 DexDescription_Lunatone_2[] = _(
-  "came from space. However, no one has\n"
-  "been able to prove this theory so far.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Solrock_1[] = _(
-  "Sunlight is the source of Solrock's\n"
-  "power. It is said to possess the ability\n"
-  "to read the emotions of others.");
-static const u8 DexDescription_Solrock_2[] = _(
-  "This Pokémon gives off intense heat\n"
-  "while rotating its body.");
-#else
-static const u8 DexDescription_Solrock_1[] = _(
-  "Solrock is a new species of Pokémon\n"
-  "that is said to have fallen from space.\n"
-  "It floats in air and moves silently.");
-static const u8 DexDescription_Solrock_2[] = _(
-  "In battle, this Pokémon releases\n"
-  "intensely bright light.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Barboach_1[] = _(
-  "Barboach's body is covered with a\n"
-  "slimy film. If a foe grabs it, this\n"
-  "Pokémon just slips out of the enemy's");
-static const u8 DexDescription_Barboach_2[] = _(
-  "grip.\n"
-  "This Pokémon grows weak if the slimy\n"
-  "coating dries up.");
-#else
-static const u8 DexDescription_Barboach_1[] = _(
-  "Barboach's sensitive whiskers serve\n"
-  "as a superb radar system.\n"
-  "This Pokémon hides in mud, leaving only");
-static const u8 DexDescription_Barboach_2[] = _(
-  "its two whiskers exposed while it waits\n"
-  "for prey to come along.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Whiscash_1[] = _(
-  "If Whiscash goes on a wild rampage,\n"
-  "it sets off a quake-like tremor with a\n"
-  "radius of over three miles.");
-static const u8 DexDescription_Whiscash_2[] = _(
-  "This Pokémon has the ability to predict\n"
-  "real earthquakes.");
-#else
-static const u8 DexDescription_Whiscash_1[] = _(
-  "Whiscash is extremely territorial.\n"
-  "Just one of these Pokémon will claim a\n"
-  "large pond as its exclusive territory.");
-static const u8 DexDescription_Whiscash_2[] = _(
-  "If a foe approaches it, it thrashes\n"
-  "about and triggers a massive\n"
-  "earthquake.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Corphish_1[] = _(
-  "Corphish catches prey with its sharp\n"
-  "claws. It has no likes or dislikes when it\n"
-  "comes to food - it will eat anything.");
-static const u8 DexDescription_Corphish_2[] = _(
-  "This Pokémon has no trouble living in\n"
-  "filthy water.");
-#else
-static const u8 DexDescription_Corphish_1[] = _(
-  "Corphish were originally foreign\n"
-  "Pokémon that were imported as pets.\n"
-  "They eventually turned up in the wild.");
-static const u8 DexDescription_Corphish_2[] = _(
-  "This Pokémon is very hardy and has\n"
-  "greatly increased its population.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Crawdaunt_1[] = _(
-  "Crawdaunt molts (sheds) its shell\n"
-  "regularly. Immediately after molting,\n"
-  "its shell is soft and tender.");
-static const u8 DexDescription_Crawdaunt_2[] = _(
-  "Until the shell hardens, this Pokémon\n"
-  "hides in its streambed burrow to avoid\n"
-  "attack from its foes.");
-#else
-static const u8 DexDescription_Crawdaunt_1[] = _(
-  "Crawdaunt has an extremely violent\n"
-  "nature that compels it to challenge\n"
-  "other living things to battle.");
-static const u8 DexDescription_Crawdaunt_2[] = _(
-  "Other life-forms refuse to live in\n"
-  "ponds inhabited by this Pokémon,\n"
-  "making them desolate places.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Baltoy_1[] = _(
-  "As soon as it spots others of its kind,\n"
-  "Baltoy congregates with them and\n"
-  "then begins crying noisily in unison.");
-static const u8 DexDescription_Baltoy_2[] = _(
-  "This Pokémon sleeps while cleverly\n"
-  "balancing itself on its one foot.");
-#else
-static const u8 DexDescription_Baltoy_1[] = _(
-  "Baltoy moves while spinning around on\n"
-  "its one foot. Primitive wall paintings\n"
-  "depicting this Pokémon living among");
-static const u8 DexDescription_Baltoy_2[] = _(
-  "people were discovered in some ancient\n"
-  "ruins.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Claydol_1[] = _(
-  "Claydol is an enigma that appeared\n"
-  "from a clay statue made by an ancient\n"
-  "civilization dating back 20,000 years.");
-static const u8 DexDescription_Claydol_2[] = _(
-  "This Pokémon shoots beams from both\n"
-  "its hands.");
-#else
-static const u8 DexDescription_Claydol_1[] = _(
-  "Claydol are said to be dolls of mud made\n"
-  "by primitive humans and brought to life\n"
-  "by exposure to a mysterious ray.");
-static const u8 DexDescription_Claydol_2[] = _(
-  "This Pokémon moves about while\n"
-  "levitating.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Lileep_1[] = _(
-  "Lileep is an ancient Pokémon that was\n"
-  "regenerated from a fossil. It remains\n"
-  "permanently anchored to a rock.");
-static const u8 DexDescription_Lileep_2[] = _(
-  "From its immobile perch, this Pokémon\n"
-  "intently scans for prey with its two\n"
-  "eyes.");
-#else
-static const u8 DexDescription_Lileep_1[] = _(
-  "Lileep became extinct approximately\n"
-  "a hundred million years ago.\n"
-  "This ancient Pokémon attaches itself");
-static const u8 DexDescription_Lileep_2[] = _(
-  "to a rock on the seafloor and catches\n"
-  "approaching prey using tentacles \n"
-  "shaped like flower petals.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Cradily_1[] = _(
-  "Cradily's body serves as an anchor,\n"
-  "preventing it from being washed away in\n"
-  "rough seas.");
-static const u8 DexDescription_Cradily_2[] = _(
-  "This Pokémon secretes a strong\n"
-  "digestive fluid from its tentacles.");
-#else
-static const u8 DexDescription_Cradily_1[] = _(
-  "Cradily roams around the ocean floor\n"
-  "in search of food. This Pokémon freely\n"
-  "extends its tree trunk-like neck and");
-static const u8 DexDescription_Cradily_2[] = _(
-  "captures unwary prey using its eight\n"
-  "tentacles.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Anorith_1[] = _(
-  "Anorith is said to be a type of \n"
-  "Pokémon predecessor, with eight wings\n"
-  "at the sides of its body.");
-static const u8 DexDescription_Anorith_2[] = _(
-  "This Pokémon swam in the primordial sea\n"
-  "by undulating these eight wings.");
-#else
-static const u8 DexDescription_Anorith_1[] = _(
-  "Anorith was regenerated from a\n"
-  "prehistoric fossil. This primitive\n"
-  "Pokémon once lived in warm seas.");
-static const u8 DexDescription_Anorith_2[] = _(
-  "It grips its prey firmly between its\n"
-  "two large claws.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Armaldo_1[] = _(
-  "Armaldo is a Pokémon species that\n"
-  "became extinct in prehistoric times.\n"
-  "This Pokémon is said to have walked on");
-static const u8 DexDescription_Armaldo_2[] = _(
-  "its hind legs, which would have been\n"
-  "more convenient for life on land.");
-#else
-static const u8 DexDescription_Armaldo_1[] = _(
-  "Armaldo's tough armor makes all attacks\n"
-  "bounce off. This Pokémon's two\n"
-  "enormous claws can be freely extended");
-static const u8 DexDescription_Armaldo_2[] = _(
-  "or contracted. They have the power to\n"
-  "punch right through a steel slab.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Feebas_1[] = _(
-  "While Feebas's body is in tatters,\n"
-  "it has a hardy and tenacious life force\n"
-  "that enables it to live anywhere.");
-static const u8 DexDescription_Feebas_2[] = _(
-  "However, this Pokémon is also slow and\n"
-  "dimwitted, making it an easy catch.");
-#else
-static const u8 DexDescription_Feebas_1[] = _(
-  "Feebas's fins are ragged and\n"
-  "tattered from the start of its life.\n"
-  "Because of its shoddy appearance, this");
-static const u8 DexDescription_Feebas_2[] = _(
-  "Pokémon is largely ignored.\n"
-  "It is capable of living in both the sea\n"
-  "and in rivers.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Milotic_1[] = _(
-  "Milotic live at the bottom of large\n"
-  "lakes. When this Pokémon's body glows a\n"
-  "vivid pink, it releases a pulsing wave of");
-static const u8 DexDescription_Milotic_2[] = _(
-  "energy that brings soothing calm to\n"
-  "restless spirits.");
-#else
-static const u8 DexDescription_Milotic_1[] = _(
-  "Milotic is said to be the most\n"
-  "beautiful of all the Pokémon.\n"
-  "It has the power to becalm such");
-static const u8 DexDescription_Milotic_2[] = _(
-  "emotions as anger and hostility to quell\n"
-  "bitter feuding.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Castform_1[] = _(
-  "Castform borrows the power of nature\n"
-  "to transform itself into the guises of\n"
-  "the sun, rain clouds, and snow clouds.");
-static const u8 DexDescription_Castform_2[] = _(
-  "This Pokémon's feelings change with the\n"
-  "weather.");
-#else
-static const u8 DexDescription_Castform_1[] = _(
-  "Castform's appearance changes with\n"
-  "the weather.\n"
-  "This Pokémon gained the ability to use");
-static const u8 DexDescription_Castform_2[] = _(
-  "the vast power of nature to protect\n"
-  "its tiny body.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Kecleon_1[] = _(
-  "Kecleon alters its body coloration to\n"
-  "blend in with its surroundings, allowing\n"
-  "it to sneak up on its prey unnoticed.");
-static const u8 DexDescription_Kecleon_2[] = _(
-  "Then it lashes out with its long,\n"
-  "stretchy tongue to instantly ensnare\n"
-  "the unsuspecting target.");
-#else
-static const u8 DexDescription_Kecleon_1[] = _(
-  "Kecleon is capable of changing its body\n"
-  "colors at will to blend in with its\n"
-  "surroundings.");
-static const u8 DexDescription_Kecleon_2[] = _(
-  "There is one exception - this Pokémon\n"
-  "can't change the zigzag pattern on its\n"
-  "belly.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Shuppet_1[] = _(
-  "Shuppet grows by feeding on dark\n"
-  "emotions, such as vengefulness and \n"
-  "envy, in the hearts of people.");
-static const u8 DexDescription_Shuppet_2[] = _(
-  "It roams through cities in search of\n"
-  "grudges that taint people.");
-#else
-static const u8 DexDescription_Shuppet_1[] = _(
-  "Shuppet is attracted by feelings\n"
-  "of jealousy and vindictiveness.\n"
-  "If someone develops strong feelings of");
-static const u8 DexDescription_Shuppet_2[] = _(
-  "vengeance, this Pokémon will appear\n"
-  "in a swarm and line up beneath the eaves\n"
-  "of that person's home.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Banette_1[] = _(
-  "A cursed energy permeated the stuffing\n"
-  "of a discarded and forgotten plush doll,\n"
-  "giving it new life as Banette.");
-static const u8 DexDescription_Banette_2[] = _(
-  "The Pokémon's energy would escape if it\n"
-  "were to ever open its mouth.");
-#else
-static const u8 DexDescription_Banette_1[] = _(
-  "Banette generates energy for laying\n"
-  "strong curses by sticking pins into its\n"
-  "own body.");
-static const u8 DexDescription_Banette_2[] = _(
-  "This Pokémon was originally a pitiful\n"
-  "plush doll that was thrown away.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Duskull_1[] = _(
-  "Duskull wanders lost among the deep\n"
-  "darkness of midnight. There is an oft-\n"
-  "told admonishment given to misbehaving");
-static const u8 DexDescription_Duskull_2[] = _(
-  "children that this Pokémon will spirit\n"
-  "away bad children who earn scoldings\n"
-  "from their mothers.");
-#else
-static const u8 DexDescription_Duskull_1[] = _(
-  "Duskull can pass through any wall no\n"
-  "matter how thick it may be.\n"
-  "Once this Pokémon chooses a target,");
-static const u8 DexDescription_Duskull_2[] = _(
-  "it will doggedly pursue the intended\n"
-  "victim until the break of dawn.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Dusclops_1[] = _(
-  "Dusclops absorbs anything, however\n"
-  "large the object may be. This Pokémon\n"
-  "hypnotizes its foe by waving its hands");
-static const u8 DexDescription_Dusclops_2[] = _(
-  "in a macabre manner and by bringing its\n"
-  "single eye to bear. The hypnotized foe\n"
-  "is made to do Dusclops's bidding.");
-#else
-static const u8 DexDescription_Dusclops_1[] = _(
-  "Dusclops's body is completely hollow -\n"
-  "there is nothing at all inside.\n"
-  "It is said that its body is like a black");
-static const u8 DexDescription_Dusclops_2[] = _(
-  "hole. This Pokémon will absorb anything\n"
-  "into its body, but nothing will ever come\n"
-  "back out.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Tropius_1[] = _(
-  "Children of the southern tropics eat\n"
-  "as snacks the fruit that grows in\n"
-  "bunches around the neck of Tropius.");
-static const u8 DexDescription_Tropius_2[] = _(
-  "This Pokémon flies by flapping the\n"
-  "leaves on its back as if they were\n"
-  "wings.");
-#else
-static const u8 DexDescription_Tropius_1[] = _(
-  "The bunches of fruit around Tropius's\n"
-  "neck are very popular with children.\n"
-  "This Pokémon loves fruit, and eats it");
-static const u8 DexDescription_Tropius_2[] = _(
-  "continuously. Apparently, its love for\n"
-  "fruit resulted in its own outgrowth\n"
-  "of fruit.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Chimecho_1[] = _(
-  "In high winds, Chimecho cries as it\n"
-  "hangs from a tree branch or the eaves\n"
-  "of a building using a suction cup on its");
-static const u8 DexDescription_Chimecho_2[] = _(
-  "head.\n"
-  "This Pokémon plucks berries with its\n"
-  "long tail and eats them.");
-#else
-static const u8 DexDescription_Chimecho_1[] = _(
-  "Chimecho makes its cries echo\n"
-  "inside its hollow body. When this\n"
-  "Pokémon becomes enraged, its cries");
-static const u8 DexDescription_Chimecho_2[] = _(
-  "result in ultrasonic waves that have\n"
-  "the power to knock foes flying.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Absol_1[] = _(
-  "Absol has the ability to foretell the\n"
-  "coming of natural disasters.\n"
-  "It lives in a harsh, rugged mountain");
-static const u8 DexDescription_Absol_2[] = _(
-  "environment. This Pokémon very rarely\n"
-  "ventures down from the mountains.");
-#else
-static const u8 DexDescription_Absol_1[] = _(
-  "Every time Absol appears before people,\n"
-  "it is followed by a disaster such as an\n"
-  "earthquake or a tidal wave.");
-static const u8 DexDescription_Absol_2[] = _(
-  "As a result, it came to be known as the\n"
-  "disaster Pokémon.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Wynaut_1[] = _(
-  "Wynaut gather on moonlit nights to play\n"
-  "by squeezing up against each other.\n"
-  "By being squeezed, this Pokémon gains");
-static const u8 DexDescription_Wynaut_2[] = _(
-  "endurance and is trained to dole out\n"
-  "powerful counterattacks.");
-#else
-static const u8 DexDescription_Wynaut_1[] = _(
-  "Wynaut can always be seen with a big,\n"
-  "happy smile on its face. Look at its tail\n"
-  "to determine if it is angry.");
-static const u8 DexDescription_Wynaut_2[] = _(
-  "When angered, this Pokémon will be\n"
-  "slapping the ground with its tail.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Snorunt_1[] = _(
-  "Snorunt survives by eating only snow\n"
-  "and ice.\n"
-  "Old folklore claims that a house visited");
-static const u8 DexDescription_Snorunt_2[] = _(
-  "by this Pokémon is sure to prosper for\n"
-  "many generations to come.");
-#else
-static const u8 DexDescription_Snorunt_1[] = _(
-  "Snorunt live in regions with heavy\n"
-  "snowfall. In seasons without snow, such\n"
-  "as spring and summer, this Pokémon");
-static const u8 DexDescription_Snorunt_2[] = _(
-  "steals away to live quietly among\n"
-  "stalactites and stalagmites deep in\n"
-  "caverns.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Glalie_1[] = _(
-  "Glalie has the ability to freely\n"
-  "control ice. For example, it can\n"
-  "instantly freeze its foe solid.");
-static const u8 DexDescription_Glalie_2[] = _(
-  "After immobilizing its foe in ice, this\n"
-  "Pokémon enjoys eating it in leisurely\n"
-  "fashion.");
-#else
-static const u8 DexDescription_Glalie_1[] = _(
-  "Glalie has a body made of rock, which it\n"
-  "hardens with an armor of ice.\n"
-  "This Pokémon has the ability to freeze");
-static const u8 DexDescription_Glalie_2[] = _(
-  "moisture in the atmosphere into any\n"
-  "shape it desires.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Spheal_1[] = _(
-  "Spheal always travels by rolling\n"
-  "around on its ball-like body. When the\n"
-  "season for ice floes arrives, this");
-static const u8 DexDescription_Spheal_2[] = _(
-  "Pokémon can be seen rolling about on\n"
-  "ice and crossing the sea.");
-#else
-static const u8 DexDescription_Spheal_1[] = _(
-  "Spheal is much faster rolling than \n"
-  "walking to get around. When groups of\n"
-  "this Pokémon eat, they all clap at once");
-static const u8 DexDescription_Spheal_2[] = _(
-  "to show their pleasure. Because of this,\n"
-  "their mealtimes are noisy.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Sealeo_1[] = _(
-  "Sealeo often balances and rolls\n"
-  "things on the tip of its nose. While the\n"
-  "Pokémon is rolling something, it checks");
-static const u8 DexDescription_Sealeo_2[] = _(
-  "the object's aroma and texture to\n"
-  "determine whether it likes the object\n"
-  "or not.");
-#else
-static const u8 DexDescription_Sealeo_1[] = _(
-  "Sealeo has the habit of always juggling\n"
-  "on the tip of its nose anything it sees\n"
-  "for the first time.");
-static const u8 DexDescription_Sealeo_2[] = _(
-  "This Pokémon occasionally entertains\n"
-  "itself by balancing and rolling a SPHEAL\n"
-  "on its nose.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Walrein_1[] = _(
-  "Walrein swims all over in frigid\n"
-  "seawater while crushing icebergs with\n"
-  "its grand, imposing tusks.");
-static const u8 DexDescription_Walrein_2[] = _(
-  "Its thick layer of blubber makes enemy\n"
-  "attacks bounce off harmlessly.");
-#else
-static const u8 DexDescription_Walrein_1[] = _(
-  "Walrein's two massively developed\n"
-  "tusks can totally shatter blocks of\n"
-  "ice weighing ten tons with one blow.");
-static const u8 DexDescription_Walrein_2[] = _(
-  "This Pokémon's thick coat of blubber\n"
-  "insulates it from subzero temperatures.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Clamperl_1[] = _(
-  "Clamperl grows while being protected\n"
-  "by its rock-hard shell. When its body\n"
-  "becomes too large to fit inside the");
-static const u8 DexDescription_Clamperl_2[] = _(
-  "shell, it is sure evidence that this\n"
-  "Pokémon is getting close to evolution.");
-#else
-static const u8 DexDescription_Clamperl_1[] = _(
-  "Clamperl's sturdy shell is not only good\n"
-  "for protection - it is also used for\n"
-  "clamping and catching prey.");
-static const u8 DexDescription_Clamperl_2[] = _(
-  "A fully grown Clamperl's shell will be\n"
-  "scored with nicks and scratches all\n"
-  "over.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Huntail_1[] = _(
-  "Huntail's tail is shaped like a fish.\n"
-  "It uses the tail to attract prey, then\n"
-  "swallows the prey whole with its large,");
-static const u8 DexDescription_Huntail_2[] = _(
-  "gaping mouth.\n"
-  "This Pokémon swims by wiggling its\n"
-  "slender body like a snake.");
-#else
-static const u8 DexDescription_Huntail_1[] = _(
-  "Huntail's presence went unnoticed by\n"
-  "people for a long time because it lives\n"
-  "at extreme depths in the sea.");
-static const u8 DexDescription_Huntail_2[] = _(
-  "This Pokémon's eyes can see clearly\n"
-  "even in the murky dark depths of the\n"
-  "ocean.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Gorebyss_1[] = _(
-  "Although Gorebyss is the very picture\n"
-  "of elegance and beauty while swimming,\n"
-  "it is also cruel. When it spots prey, this");
-static const u8 DexDescription_Gorebyss_2[] = _(
-  "Pokémon inserts its thin mouth into the\n"
-  "prey's body and drains the prey of its\n"
-  "body fluids.");
-#else
-static const u8 DexDescription_Gorebyss_1[] = _(
-  "Gorebyss lives in the southern seas\n"
-  "at extreme depths. Its body is built to\n"
-  "withstand the enormous pressure of");
-static const u8 DexDescription_Gorebyss_2[] = _(
-  "water at incredible depths. Because of\n"
-  "this, this Pokémon's body is unharmed\n"
-  "by ordinary attacks.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Relicanth_1[] = _(
-  "Relicanth is a rare species that was\n"
-  "discovered in deep-sea explorations.\n"
-  "This Pokémon's body withstands the");
-static const u8 DexDescription_Relicanth_2[] = _(
-  "enormous water pressure of the ocean\n"
-  "depths. Its body is covered in tough\n"
-  "scales that are like craggy rocks.");
-#else
-static const u8 DexDescription_Relicanth_1[] = _(
-  "Relicanth is a Pokémon species that\n"
-  "existed for a hundred million years\n"
-  "without ever changing its form.");
-static const u8 DexDescription_Relicanth_2[] = _(
-  "This ancient Pokémon feeds on\n"
-  "microscopic organisms with its\n"
-  "toothless mouth.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Luvdisc_1[] = _(
-  "Luvdisc's heart-shaped body is a\n"
-  "symbol of love and romance.\n"
-  "It is said that any couple meeting this");
-static const u8 DexDescription_Luvdisc_2[] = _(
-  "Pokémon is promised a loving\n"
-  "relationship that never ends.");
-#else
-static const u8 DexDescription_Luvdisc_1[] = _(
-  "Luvdisc live in shallow seas in the\n"
-  "tropics. This heart-shaped Pokémon\n"
-  "earned its name by swimming after");
-static const u8 DexDescription_Luvdisc_2[] = _(
-  "loving couples it spotted in the\n"
-  "ocean's waves.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Bagon_1[] = _(
-  "Bagon harbors a never-ending dream of\n"
-  "one day soaring high among the clouds.\n"
-  "As if trying to dispel its frustration");
-static const u8 DexDescription_Bagon_2[] = _(
-  "over its inability to fly, this Pokémon\n"
-  "slams its hard head against huge rocks\n"
-  "and shatters them into pebbles.");
-#else
-static const u8 DexDescription_Bagon_1[] = _(
-  "Bagon has a dream of one day soaring\n"
-  "in the sky. In doomed efforts to fly,\n"
-  "this Pokémon hurls itself off cliffs.");
-static const u8 DexDescription_Bagon_2[] = _(
-  "As a result of its dives, its head has \n"
-  "grown tough and as hard as tempered\n"
-  "steel.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Shelgon_1[] = _(
-  "Covering Shelgon's body are outgrowths\n"
-  "much like bones. The shell is very hard\n"
-  "and bounces off enemy attacks.");
-static const u8 DexDescription_Shelgon_2[] = _(
-  "When awaiting evolution, this Pokémon\n"
-  "hides away in a cavern.");
-#else
-static const u8 DexDescription_Shelgon_1[] = _(
-  "Inside Shelgon's armor-like shell, cells\n"
-  "are in the midst of transformation\n"
-  "to create an entirely new body.");
-static const u8 DexDescription_Shelgon_2[] = _(
-  "This Pokémon's shell is extremely heavy,\n"
-  "making its movements sluggish.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Salamence_1[] = _(
-  "By evolving into Salamence, this\n"
-  "Pokémon finally realizes its long-held\n"
-  "dream of growing wings.");
-static const u8 DexDescription_Salamence_2[] = _(
-  "To express its joy, it flies and wheels\n"
-  "all over the sky while spouting flames\n"
-  "from its mouth.");
-#else
-static const u8 DexDescription_Salamence_1[] = _(
-  "Salamence came about as a result of a\n"
-  "strong, long-held dream of growing\n"
-  "wings. It is said that this powerful");
-static const u8 DexDescription_Salamence_2[] = _(
-  "desire triggered a sudden mutation in\n"
-  "this Pokémon's cells, causing it to\n"
-  "sprout its magnificent wings.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Beldum_1[] = _(
-  "Beldum keeps itself floating by\n"
-  "generating a magnetic force that\n"
-  "repels earth's natural magnetism.");
-static const u8 DexDescription_Beldum_2[] = _(
-  "When it sleeps, this Pokémon anchors\n"
-  "itself to a cliff using the hooks on\n"
-  "its rear.");
-#else
-static const u8 DexDescription_Beldum_1[] = _(
-  "Instead of blood, a powerful magnetic\n"
-  "force courses throughout Beldum's\n"
-  "body. This Pokémon communicates with");
-static const u8 DexDescription_Beldum_2[] = _(
-  "others by sending controlled pulses of\n"
-  "magnetism.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Metang_1[] = _(
-  "When two Beldum fuse together, Metang\n"
-  "is formed. The brains of the Beldum are\n"
-  "joined by a magnetic nervous system.");
-static const u8 DexDescription_Metang_2[] = _(
-  "This Pokémon turns its arms to the rear\n"
-  "for traveling at high speed.");
-#else
-static const u8 DexDescription_Metang_1[] = _(
-  "When two Bedlum fuse together, Metang\n"
-  "is formed. The brains of the Beldum are\n"
-  "joined by a magnetic nervous system.");
-static const u8 DexDescription_Metang_2[] = _(
-  "By linking its brains magnetically,\n"
-  "this Pokémon generates strong\n"
-  "psychokinetic power.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Metagross_1[] = _(
-  "Metagross is the result of two Metang\n"
-  "achieving fusion. When hunting, this\n"
-  "Pokémon pins the prey to the ground");
-static const u8 DexDescription_Metagross_2[] = _(
-  "under its massive body. It then eats\n"
-  "the helpless victim using the large \n"
-  "mouth on its stomach.");
-#else
-static const u8 DexDescription_Metagross_1[] = _(
-  "Metagross has four brains in total.\n"
-  "Combined, the four brains can breeze\n"
-  "through difficult calculations faster");
-static const u8 DexDescription_Metagross_2[] = _(
-  "than a supercomputer.\n"
-  "This Pokémon can float in the air by\n"
-  "tucking in its four legs.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Regirock_1[] = _(
-  "Regirock's body is composed entirely of\n"
-  "rocks. Recently, a study made the\n"
-  "startling discovery that the rocks");
-static const u8 DexDescription_Regirock_2[] = _(
-  "were all unearthed from different\n"
-  "locations.");
-#else
-static const u8 DexDescription_Regirock_1[] = _(
-  "Regirock was sealed away by people\n"
-  "long ago. If this Pokémon's body is\n"
-  "damaged in battle, it is said to seek");
-static const u8 DexDescription_Regirock_2[] = _(
-  "out suitable rocks on its own to repair\n"
-  "itself.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Regice_1[] = _(
-  "Regice cloaks itself with frigid air of\n"
-  "negative 328 degrees F.\n"
-  "Things will freeze solid just by going");
-static const u8 DexDescription_Regice_2[] = _(
-  "near this Pokémon.\n"
-  "Its icy body is so cold, it will not melt\n"
-  "even if it is immersed in magma.");
-#else
-static const u8 DexDescription_Regice_1[] = _(
-  "Regice's body was made during an ice\n"
-  "age. The deep-frozen body can't be\n"
-  "melted, even by fire.");
-static const u8 DexDescription_Regice_2[] = _(
-  "This Pokémon controls frigid air of\n"
-  "minus 328 degrees F.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Registeel_1[] = _(
-  "Registeel was imprisoned by people\n"
-  "in ancient times.\n"
-  "The metal composing its body is thought");
-static const u8 DexDescription_Registeel_2[] = _(
-  "to be a curious substance that is not\n"
-  "of this earth.");
-#else
-static const u8 DexDescription_Registeel_1[] = _(
-  "Registeel has a body that is harder\n"
-  "than any kind of metal.\n"
-  "Its body is apparently hollow.");
-static const u8 DexDescription_Registeel_2[] = _(
-  "No one has any idea what this Pokémon\n"
-  "eats.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Latias_1[] = _(
-  "Latias is highly intelligent and capable\n"
-  "of understanding human speech.\n"
-  "It is covered with a glass-like down.");
-static const u8 DexDescription_Latias_2[] = _(
-  "The Pokémon enfolds its body with its\n"
-  "down and refracts light to alter its\n"
-  "appearance.");
-#else
-static const u8 DexDescription_Latias_1[] = _(
-  "Latias is highly sensitive to the\n"
-  "emotions of people. If it senses any\n"
-  "hostility, this Pokémon ruffles the");
-static const u8 DexDescription_Latias_2[] = _(
-  "feathers all over its body and cries\n"
-  "shrilly to intimidate the foe.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Latios_1[] = _(
-  "Latios will only open its heart to a\n"
-  "Trainer with a compassionate spirit.\n"
-  "This Pokémon can fly faster than a jet");
-static const u8 DexDescription_Latios_2[] = _(
-  "plane by folding its forelegs to minimize\n"
-  "air resistance.");
-#else
-static const u8 DexDescription_Latios_1[] = _(
-  "Latios has the ability to make its foe\n"
-  "see an image of what it has seen or\n"
-  "imagines in its head.");
-static const u8 DexDescription_Latios_2[] = _(
-  "This Pokémon is intelligent and\n"
-  "understands human speech.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Kyogre_1[] = _(
-  "Kyogre is named in mythology as the\n"
-  "Pokémon that expanded the sea by\n"
-  "covering the land with torrential rains");
-static const u8 DexDescription_Kyogre_2[] = _(
-  "and towering tidal waves.\n"
-  "It took to sleep after a cataclysmic\n"
-  "battle with Groudon.");
-#else
-static const u8 DexDescription_Kyogre_1[] = _(
-  "Kyogre has the power to create massive\n"
-  "rain clouds that cover the entire sky\n"
-  "and bring about torrential downpours.");
-static const u8 DexDescription_Kyogre_2[] = _(
-  "This Pokémon saved people who were\n"
-  "suffering from droughts.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Groudon_1[] = _(
-  "Groudon has the power to scatter rain\n"
-  "clouds and make water evaporate with\n"
-  "light and heat.");
-static const u8 DexDescription_Groudon_2[] = _(
-  "It came as a savior to people who had\n"
-  "been suffering from terrible floods.");
-#else
-static const u8 DexDescription_Groudon_1[] = _(
-  "Groudon has long been described in \n"
-  "mythology as the Pokémon that raised\n"
-  "lands and expanded continents.");
-static const u8 DexDescription_Groudon_2[] = _(
-  "This Pokémon took to sleep after a\n"
-  "cataclysmic battle with Kyogre.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Rayquaza_1[] = _(
-  "Rayquaza is said to have lived for\n"
-  "hundreds of millions of years in the\n"
-  "earth's ozone layer, above the clouds.");
-static const u8 DexDescription_Rayquaza_2[] = _(
-  "Its existence had been completely\n"
-  "unknown because it lived so high in\n"
-  "the sky.");
-#else
-static const u8 DexDescription_Rayquaza_1[] = _(
-  "Rayquaza lived for hundreds of millions\n"
-  "of years in the earth's ozone layer, \n"
-  "never descending to the ground.");
-static const u8 DexDescription_Rayquaza_2[] = _(
-  "This Pokémon appears to feed on water\n"
-  "and particles in the atmosphere.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Jirachi_1[] = _(
-  "Jirachi will awaken from its sleep of\n"
-  "a thousand years if you sing to it in a\n"
-  "voice of purity.");
-static const u8 DexDescription_Jirachi_2[] = _(
-  "It is said to make true any wish that\n"
-  "people desire.");
-#else
-static const u8 DexDescription_Jirachi_1[] = _(
-  "A legend states that Jirachi will make\n"
-  "true any wish that is written on notes\n"
-  "attached to its head when it awakens.");
-static const u8 DexDescription_Jirachi_2[] = _(
-  "If this Pokémon senses danger, it will\n"
-  "fight without awakening.");
-#endif
-
-#ifdef SAPPHIRE
-static const u8 DexDescription_Deoxys_1[] = _(
-  "Deoxys emerged from a virus that came\n"
-  "from space. It is highly intelligent and\n"
-  "wields psychokinetic powers.");
-static const u8 DexDescription_Deoxys_2[] = _(
-  "This Pokémon shoots lasers from the\n"
-  "crystalline organ on its chest.");
-#else
-static const u8 DexDescription_Deoxys_1[] = _(
-  "The DNA of a space virus underwent a\n"
-  "sudden mutation upon exposure to a\n"
-  "laser beam and resulted in Deoxys.");
-static const u8 DexDescription_Deoxys_2[] = _(
-  "The crystalline organ on this Pokémon's\n"
-  "chest appears to be its brain.");
-#endif
+const u8 gDummyPokedexText[] = _(
+    "This is a newly discovered POKéMON.\n"
+    "It is currently under investigation.\n"
+    "No detailed information is available\n"
+    "at this time.");
+
+const u8 gBulbasaurPokedexText[] = _(
+    "Bulbasaur can be seen napping in bright\n"
+    "sunlight. There is a seed on its back.\n"
+    "By soaking up the sun's rays, the seed\n"
+    "grows progressively larger.");
+
+const u8 gIvysaurPokedexText[] = _(
+    "To support its bulb, Ivysaur's legs\n"
+    "grow sturdy. If it spends more time lying in\n"
+    "the sunlight, the bud will soon bloom into\n"
+    "a large flower.");
+
+const u8 gVenusaurPokedexText[] = _(
+    "Venusaur's flower is said to take on vivid\n"
+    "colors if it gets plenty of nutrition and\n"
+    "sunlight. The flower's aroma soothes the\n"
+    "emotions of people.");
+
+const u8 gCharmanderPokedexText[] = _(
+    "The flame that burns at the tip of its\n"
+    "tail is an indication of its emotions.\n"
+    "The flame wavers when Charmander is\n"
+    "happy, and blazes when it is enraged.");
+
+const u8 gCharmeleonPokedexText[] = _(
+    "Without pity, its sharp claws destroy foes.\n"
+    "If it encounters a strong enemy, it\n"
+    "becomes agitated, and the flame on its\n"
+    "tail flares with a bluish white color.");
+
+const u8 gCharizardPokedexText[] = _(
+    "A Charizard flies about in search of\n"
+    "strong opponents. It breathes intense\n"
+    "flames that can melt any material. However,\n"
+    "it will never torch a weaker foe.");
+
+const u8 gSquirtlePokedexText[] = _(
+    "Its shell is not just for protection.\n"
+    "Its rounded shape and the grooves on its\n"
+    "surface minimize resistance in water,\n"
+    "enabling Squirtle to swim at high speeds.");
+
+const u8 gWartortlePokedexText[] = _(
+    "Its large tail is covered with rich, thick\n"
+    "fur that deepens in color with age.\n"
+    "The scratches on its shell are evidence\n"
+    "of this Pokémon's toughness in battle.");
+
+const u8 gBlastoisePokedexText[] = _(
+    "The waterspouts that protrude from its\n"
+    "shell are highly accurate. Their bullets of\n"
+    "water can precisely nail tin cans from\n"
+    "a distance of over 160 feet.");
+
+const u8 gCaterpiePokedexText[] = _(
+    "Its voracious appetite compels it to\n"
+    "devour leaves bigger than itself without\n"
+    "hesitation. It releases a terribly strong\n"
+    "odor from its antennae.");
+
+const u8 gMetapodPokedexText[] = _(
+    "Its shell is as hard as an iron slab.\n"
+    "A Metapod does not move very much\n"
+    "because it is preparing its soft innards\n"
+    "for evolution inside the shell.");
+
+const u8 gButterfreePokedexText[] = _(
+    "It has a superior ability to search for\n"
+    "delicious honey from flowers. It can seek,\n"
+    "extract, and carry honey from flowers\n"
+    "blooming over six miles away.");
+
+const u8 gWeedlePokedexText[] = _(
+    "A Weedle has an extremely acute sense\n"
+    "of smell. It distinguishes its favorite\n"
+    "kinds of leaves from those it dislikes by\n"
+    "sniffing with its big red nose.");
+
+const u8 gKakunaPokedexText[] = _(
+    "It remains virtually immobile while it\n"
+    "clings to a tree. However, on the inside,\n"
+    "it busily prepares for evolution. This is\n"
+    "evident from how hot its shell becomes.");
+
+const u8 gBeedrillPokedexText[] = _(
+    "A Beedrill is extremely territorial.\n"
+    "For safety reasons, no one should ever\n"
+    "approach its nest. If angered, they will\n"
+    "attack in a swarm.");
+
+const u8 gPidgeyPokedexText[] = _(
+    "It has an extremely sharp sense of\n"
+    "direction. It can unerringly return home to\n"
+    "its nest, however far it may be removed\n"
+    "from its familiar surroundings.");
+
+const u8 gPidgeottoPokedexText[] = _(
+    "This Pokémon flies around, patrolling its\n"
+    "large territory. If its living space is\n"
+    "violated, it shows no mercy in thoroughly\n"
+    "punishing the foe with its sharp claws.");
+
+const u8 gPidgeotPokedexText[] = _(
+    "This Pokémon has gorgeous, glossy\n"
+    "feathers. Many Trainers are so captivated\n"
+    "by the beautiful feathers on its head that\n"
+    "they choose Pidgeot as their Pokémon.");
+
+const u8 gRattataPokedexText[] = _(
+    "A Rattata is cautious in the extreme.\n"
+    "Even while it is asleep, it constantly\n"
+    "moves its ears and listens for danger.\n"
+    "It will make its nest anywhere.");
+
+const u8 gRaticatePokedexText[] = _(
+    "A Raticate's sturdy fangs grow steadily.\n"
+    "To keep them ground down, it gnaws on\n"
+    "rocks and logs. It may even chew on the\n"
+    "walls of houses.");
+
+const u8 gSpearowPokedexText[] = _(
+    "Its loud cry can be heard over half a mile\n"
+    "away. If its high, keening cry is heard\n"
+    "echoing all around, it is a sign that they\n"
+    "are warning each other of danger.");
+
+const u8 gFearowPokedexText[] = _(
+    "Its long neck and elongated beak are\n"
+    "ideal for catching prey in soil or water.\n"
+    "It deftly moves this extended and skinny\n"
+    "beak to pluck prey.");
+
+const u8 gEkansPokedexText[] = _(
+    "An Ekans curls itself up in a spiral while\n"
+    "it rests. This position allows it to quickly\n"
+    "respond to an enemy from any direction\n"
+    "with a threat from its upraised head.");
+
+const u8 gArbokPokedexText[] = _(
+    "This Pokémon has a terrifically strong\n"
+    "constricting power. It can even flatten\n"
+    "steel oil drums. Once it wraps its body\n"
+    "around its foe, escaping is impossible.");
+
+const u8 gPikachuPokedexText[] = _(
+    "It stores electricity in the electric sacs\n"
+    "on its cheeks. When it releases pent-up\n"
+    "energy in a burst, the electric power is\n"
+    "equal to a lightning bolt.");
+
+const u8 gRaichuPokedexText[] = _(
+    "If it stores too much electricity, its\n"
+    "behavior turns aggressive. To avoid this,\n"
+    "it occasionally discharges excess energy\n"
+    "and calms itself down.");
+
+const u8 gSandshrewPokedexText[] = _(
+    "When it curls up in a ball, it can make any\n"
+    "attack bounce off harmlessly. Its hide has\n"
+    "turned tough and solid as a result of\n"
+    "living in the desert.");
+
+const u8 gSandslashPokedexText[] = _(
+    "It curls up in a ball to protect itself from\n"
+    "enemy attacks. It also curls up to prevent\n"
+    "heatstroke during the daytime when\n"
+    "temperatures rise sharply.");
+
+const u8 gNidoranFPokedexText[] = _(
+    "Its highly toxic barbs are thought to have\n"
+    "developed as protection for this small-\n"
+    "bodied Pokémon. When enraged, it releases\n"
+    "a horrible toxin from its horn.");
+
+const u8 gNidorinaPokedexText[] = _(
+    "When it is with its friends or\n"
+    "family, its barbs are tucked away to\n"
+    "prevent injury. It appears to become\n"
+    "nervous if separated from the others.");
+
+const u8 gNidoqueenPokedexText[] = _(
+    "It is adept at sending foes flying with\n"
+    "harsh tackles using its tough, scaly body.\n"
+    "This Pokémon is at its strongest when\n"
+    "it is defending its young.");
+
+const u8 gNidoranMPokedexText[] = _(
+    "The male Nidoran has developed muscles\n"
+    "that freely move its ears in any direction.\n"
+    "Even the slightest sound does not escape\n"
+    "this Pokémon's notice.");
+
+const u8 gNidorinoPokedexText[] = _(
+    "Its horn is harder than a diamond.\n"
+    "If it senses a hostile presence, all the\n"
+    "barbs on its back bristle up at once, and it\n"
+    "challenges the foe with all its might.");
+
+const u8 gNidokingPokedexText[] = _(
+    "A Nidoking's thick tail packs enormously\n"
+    "destructive power capable of toppling\n"
+    "a metal transmission tower. Once it goes\n"
+    "on a rampage, there is no stopping it.");
+
+const u8 gClefairyPokedexText[] = _(
+    "On every night of a full moon, they come\n"
+    "out to play. When dawn arrives, the tired\n"
+    "Clefairy go to sleep nestled up against\n"
+    "each other in deep and quiet mountains.");
+
+const u8 gClefablePokedexText[] = _(
+    "A Clefable uses its wings to skip lightly \n"
+    "as if it were flying. Its bouncy step\n"
+    "lets it even walk on water. On quiet,\n"
+    "moonlit nights, it strolls on lakes.");
+
+const u8 gVulpixPokedexText[] = _(
+    "It can freely control fire, making fiery\n"
+    "orbs fly like will-o'-the-wisps. Just\n"
+    "before evolution, its six tails grow hot \n"
+    "as if on fire.");
+
+const u8 gNinetalesPokedexText[] = _(
+    "It has long been said that each of the\n"
+    "nine tails embody an enchanted power.\n"
+    "A long-lived Ninetales will have fur that\n"
+    "shines like gold.");
+
+const u8 gJigglypuffPokedexText[] = _(
+    "Nothing can avoid falling asleep hearing a\n"
+    "Jigglypuff's song. The sound waves of its\n"
+    "singing voice match the brain waves of\n"
+    "someone in a deep sleep.");
+
+const u8 gWigglytuffPokedexText[] = _(
+    "Its fur is the ultimate in luxuriousness.\n"
+    "Sleeping alongside a Wigglytuff is simply\n"
+    "divine. Its body expands seemingly without\n"
+    "end when it inhales.");
+
+const u8 gZubatPokedexText[] = _(
+    "While living in pitch-black caverns, their\n"
+    "eyes gradually grew shut and deprived\n"
+    "them of vision. They use ultrasonic waves\n"
+    "to detect obstacles.");
+
+const u8 gGolbatPokedexText[] = _(
+    "Its fangs easily puncture even thick\n"
+    "animal hide. It loves to feast on the blood\n"
+    "of people and Pokémon. It flits about in\n"
+    "darkness and strikes from behind.");
+
+const u8 gOddishPokedexText[] = _(
+    "This Pokémon grows by absorbing moonlight.\n"
+    "During the daytime, it buries itself in the\n"
+    "ground, leaving only its leaves exposed to\n"
+    "avoid detection by its enemies.");
+
+const u8 gGloomPokedexText[] = _(
+    "A horribly noxious honey drools from its\n"
+    "mouth. One whiff of the honey can result\n"
+    "in memory loss. Some fans are said to\n"
+    "enjoy this overwhelming stink, however.");
+
+const u8 gVileplumePokedexText[] = _(
+    "In seasons when it produces more pollen,\n"
+    "the air around a Vileplume turns yellow\n"
+    "with the powder as it walks. The pollen is\n"
+    "highly toxic and causes paralysis.");
+
+const u8 gParasPokedexText[] = _(
+    "A Paras has parasitic tochukaso\n"
+    "mushrooms growing on its back. They grow\n"
+    "by drawing nutrients from the host. They\n"
+    "are valued as a medicine for long life.");
+
+const u8 gParasectPokedexText[] = _(
+    "Parasect are known to infest the roots of\n"
+    "large trees en masse and drain nutrients.\n"
+    "When an infested tree dies, they move\n"
+    "onto another tree all at once.");
+
+const u8 gVenonatPokedexText[] = _(
+    "Its coat of thin, stiff hair that covers\n"
+    "its entire body is said to have evolved\n"
+    "for protection. Its large eyes never fail\n"
+    "to spot even miniscule prey.");
+
+const u8 gVenomothPokedexText[] = _(
+    "Venomoth are nocturnal--they are only\n"
+    "active at night. Their favorite prey are\n"
+    "insects that gather around streetlights,\n"
+    "attracted by the light in the darkness.");
+
+const u8 gDiglettPokedexText[] = _(
+    "Diglett are raised in most farms.\n"
+    "The reason is simple--wherever they\n"
+    "burrow, the soil is left perfectly tilled\n"
+    "for growing delicious crops.");
+
+const u8 gDugtrioPokedexText[] = _(
+    "Because the triplets originally split from\n"
+    "one body, they think exactly alike.\n"
+    "They work cooperatively to burrow\n"
+    "endlessly through the ground.");
+
+const u8 gMeowthPokedexText[] = _(
+    "Meowth withdraw their sharp claws into\n"
+    "their paws to silently sneak about.\n"
+    "For some reason, this Pokémon loves\n"
+    "shiny coins that glitter with light.");
+
+const u8 gPersianPokedexText[] = _(
+    "A Persian's six bold whiskers sense air\n"
+    "movements to determine what is in its\n"
+    "vicinity. It becomes docile if grabbed\n"
+    "by the whiskers.");
+
+const u8 gPsyduckPokedexText[] = _(
+    "When its headache intensifies, it starts\n"
+    "using strange powers. However, it has no\n"
+    "recollection of its powers, so it always\n"
+    "looks befuddled and bewildered.");
+
+const u8 gGolduckPokedexText[] = _(
+    "A Golduck is an adept swimmer.\n"
+    "It sometimes joins competitive swimmers\n"
+    "in training. It uses psychic powers when\n"
+    "its forehead shimmers with light.");
+
+const u8 gMankeyPokedexText[] = _(
+    "When it starts shaking and its nasal\n"
+    "breathing turns rough, it's a sure sign\n"
+    "of anger. However, since this happens\n"
+    "instantly, there is no time to flee.");
+
+const u8 gPrimeapePokedexText[] = _(
+    "When it becomes furious, its blood\n"
+    "circulation becomes more robust, and\n"
+    "its muscles are made stronger. But it\n"
+    "also becomes much less intelligent.");
+
+const u8 gGrowlithePokedexText[] = _(
+    "Its superb sense of smell ensures that\n"
+    "this Pokémon won't forget any scent,\n"
+    "no matter what. It uses its sense of smell\n"
+    "to detect the emotions of others.");
+
+const u8 gArcaninePokedexText[] = _(
+    "This fleet-footed Pokémon is said to run\n"
+    "over 6,200 miles in a single day and night.\n"
+    "The fire that blazes wildly within its body\n"
+    "is its source of power.");
+
+const u8 gPoliwagPokedexText[] = _(
+    "It is possible to see this Pokémon's spiral\n"
+    "innards right through its thin skin.\n"
+    "However, the skin is also very flexible.\n"
+    "Even sharp fangs bounce right off it.");
+
+const u8 gPoliwhirlPokedexText[] = _(
+    "Its body surface is always wet and slick\n"
+    "with an oily fluid. Because of this greasy\n"
+    "covering, it can easily slip and slide out\n"
+    "of the clutches of any enemy in battle.");
+
+const u8 gPoliwrathPokedexText[] = _(
+    "Its highly developed muscles never grow\n"
+    "fatigued, however much it exercises.\n"
+    "This Pokémon can swim back and forth\n"
+    "across the Pacific Ocean without effort.");
+
+const u8 gAbraPokedexText[] = _(
+    "A Pokémon that sleeps 18 hours a day.\n"
+    "Observation revealed that it uses\n"
+    "TELEPORT to change its location once\n"
+    "every hour.");
+
+const u8 gKadabraPokedexText[] = _(
+    "It is rumored that a boy with psychic\n"
+    "abilities suddenly transformed into\n"
+    "Kadabra while he was assisting research\n"
+    "into extrasensory powers.");
+
+const u8 gAlakazamPokedexText[] = _(
+    "While it has strong psychic abilities and\n"
+    "high intelligence, an Alakazam's muscles\n"
+    "are very weak. It uses psychic power to\n"
+    "move its body.");
+
+const u8 gMachopPokedexText[] = _(
+    "It continually undertakes strenuous\n"
+    "training to master all forms of martial\n"
+    "arts. Its strength lets it easily hoist\n"
+    "a sumo wrestler onto its shoulders.");
+
+const u8 gMachokePokedexText[] = _(
+    "A belt is worn by a Machoke to keep its\n"
+    "overwhelming power under control.\n"
+    "Because it is so dangerous, no one has\n"
+    "ever removed the belt.");
+
+const u8 gMachampPokedexText[] = _(
+    "It is impossible to defend against punches\n"
+    "and chops doled out by its four arms.\n"
+    "Its fighting spirit flares up when it faces\n"
+    "a tough opponent.");
+
+const u8 gBellsproutPokedexText[] = _(
+    "A Bellsprout's thin and flexible body lets\n"
+    "it bend and sway to avoid any attack,\n"
+    "however strong it may be. From its mouth,\n"
+    "it leaks a fluid that melts even iron.");
+
+const u8 gWeepinbellPokedexText[] = _(
+    "At night, a Weepinbell hangs on to a tree\n"
+    "branch with its hooked rear and sleeps.\n"
+    "If it moves around in its sleep, it may\n"
+    "wake up to find itself on the ground.");
+
+const u8 gVictreebelPokedexText[] = _(
+    "The long vine extending from its head is\n"
+    "waved about as if it were a living thing to\n"
+    "attract prey. When an unsuspecting victim\n"
+    "approaches, it is swallowed whole.");
+
+const u8 gTentacoolPokedexText[] = _(
+    "Its body is almost entirely composed of\n"
+    "water. It ensnares its foe with its two\n"
+    "long tentacles, then stabs with the poison\n"
+    "stingers at their tips.");
+
+const u8 gTentacruelPokedexText[] = _(
+    "It lives in complex rock formations on\n"
+    "the ocean floor and traps prey using its\n"
+    "80 tentacles. Its red orbs glow when it\n"
+    "grows excited or agitated.");
+
+const u8 gGeodudePokedexText[] = _(
+    "It climbs mountain paths using only the\n"
+    "power of its arms. Because they look just\n"
+    "like boulders lining paths, hikers may step\n"
+    "on them without noticing.");
+
+const u8 gGravelerPokedexText[] = _(
+    "They descend from mountains by tumbling\n"
+    "down steep slopes. They are so brutal,\n"
+    "they smash aside obstructing trees and\n"
+    "massive boulders with thunderous tackles.");
+
+const u8 gGolemPokedexText[] = _(
+    "It is said to live in volcanic craters\n"
+    "on mountain peaks. Once a year, it sheds\n"
+    "its hide and grows larger. The shed hide\n"
+    "crumbles and returns to the soil.");
+
+const u8 gPonytaPokedexText[] = _(
+    "A Ponyta is very weak at birth. It can\n"
+    "barely stand up. Its legs become stronger\n"
+    "as it stumbles and falls while trying to\n"
+    "keep up with its parent.");
+
+const u8 gRapidashPokedexText[] = _(
+    "It usually canters casually in the fields\n"
+    "and plains. But once a Rapidash turns\n"
+    "serious, its fiery manes flare and blaze\n"
+    "as it gallops its way up to 150 mph.");
+
+const u8 gSlowpokePokedexText[] = _(
+    "It catches prey by dipping its tail in\n"
+    "water at the side of a river. But it often\n"
+    "forgets what it is doing and spends entire\n"
+    "days just loafing at water's edge.");
+
+const u8 gSlowbroPokedexText[] = _(
+    "Its tail has a Shellder firmly attached\n"
+    "with a bite. As a result, the tail can't be\n"
+    "used for fishing anymore. This forces it\n"
+    "to reluctantly swim and catch prey.");
+
+const u8 gMagnemitePokedexText[] = _(
+    "The units at its sides are extremely\n"
+    "powerful magnets. They generate enough\n"
+    "magnetism to draw in iron objects from\n"
+    "over 300 feet away.");
+
+const u8 gMagnetonPokedexText[] = _(
+    "It is actually three MAGNEMITE linked\n"
+    "by magnetism. It generates powerful radio\n"
+    "waves that raise temperatures by 3.6\n"
+    "degrees F within a 3,300-foot radius.");
+
+const u8 gFarfetchdPokedexText[] = _(
+    "It is always seen with a stick from a plant.\n"
+    "Apparently, there are good sticks and bad\n"
+    "sticks. This POKéMON occasionally fights\n"
+    "with others over choice sticks.");
+
+const u8 gDoduoPokedexText[] = _(
+    "Even while eating or sleeping, one of the\n"
+    "heads remains always vigilant for any sign\n"
+    "of danger. When threatened, it flees at\n"
+    "over 60 miles per hour.");
+
+const u8 gDodrioPokedexText[] = _(
+    "A peculiar POKéMON species with three\n"
+    "heads. It vigorously races across grassy\n"
+    "plains even in arid seasons with little\n"
+    "rainfall.");
+
+const u8 gSeelPokedexText[] = _(
+    "SEEL hunt for prey in frigid, ice-covered\n"
+    "seas. When it needs to breathe, it punches\n"
+    "a hole through the ice with the sharply\n"
+    "protruding section of its head.");
+
+const u8 gDewgongPokedexText[] = _(
+    "It loves to snooze on bitterly cold ice.\n"
+    "The sight of this POKéMON sleeping on\n"
+    "a glacier was mistakenly thought to be\n"
+    "a mermaid by a mariner long ago.");
+
+const u8 gGrimerPokedexText[] = _(
+    "Born from polluted sludge in the sea,\n"
+    "GRIMER's favorite food is anything filthy.\n"
+    "They feed on wastewater pumped out from\n"
+    "factories.");
+
+const u8 gMukPokedexText[] = _(
+    "It prefers warm and humid habitats.\n"
+    "In the summertime, the toxic substances\n"
+    "in its body intensify, making MUK reek like\n"
+    "putrid kitchen garbage.");
+
+const u8 gShellderPokedexText[] = _(
+    "At night, it burrows a hole in the seafloor\n"
+    "with its broad tongue to make a place to\n"
+    "sleep. While asleep, it closes its shell,\n"
+    "but leaves its tongue hanging out.");
+
+const u8 gCloysterPokedexText[] = _(
+    "It swims in the sea by swallowing water,\n"
+    "then jetting it out toward the rear.\n"
+    "The CLOYSTER shoots spikes from its\n"
+    "shell using the same system.");
+
+const u8 gGastlyPokedexText[] = _(
+    "When exposed to a strong wind, a GASTLY's\n"
+    "gaseous body quickly dwindles away.\n"
+    "They cluster under the eaves of houses\n"
+    "to escape the ravages of wind.");
+
+const u8 gHaunterPokedexText[] = _(
+    "If a HAUNTER beckons you while it is\n"
+    "floating in darkness, don't approach it.\n"
+    "This POKéMON will try to lick you with its\n"
+    "tongue and steal your life away.");
+
+const u8 gGengarPokedexText[] = _(
+    "Deep in the night, your shadow cast by\n"
+    "a streetlight may suddenly overtake you.\n"
+    "It is actually a GENGAR running past\n"
+    "you, pretending to be your shadow.");
+
+const u8 gOnixPokedexText[] = _(
+    "There is a magnet in its brain that\n"
+    "prevents an ONIX from losing direction\n"
+    "while tunneling. As it grows older, its body\n"
+    "becomes steadily rounder and smoother.");
+
+const u8 gDrowzeePokedexText[] = _(
+    "If your nose becomes itchy while you are\n"
+    "sleeping, it's a sure sign that a DROWZEE is\n"
+    "standing above your pillow and trying to\n"
+    "eat your dream through your nostrils.");
+
+const u8 gHypnoPokedexText[] = _(
+    "The arcing movement and glitter of the\n"
+    "pendulum in a HYPNO's hand lull the foe\n"
+    "into deep hypnosis. While searching for\n"
+    "prey, it polishes the pendulum.");
+
+const u8 gKrabbyPokedexText[] = _(
+    "KRABBY live in holes dug into beaches.\n"
+    "On sandy shores with little in the way\n"
+    "of food, they can be seen squabbling with\n"
+    "each other over territory.");
+
+const u8 gKinglerPokedexText[] = _(
+    "It waves its huge, oversized claw in the\n"
+    "air to communicate with others.\n"
+    "But since the claw is so heavy, this\n"
+    "POKéMON quickly tires.");
+
+const u8 gVoltorbPokedexText[] = _(
+    "It bears an uncanny and unexplained\n"
+    "resemblance to a Poké Ball. Because it\n"
+    "explodes at the slightest shock, even\n"
+    "veteran Trainers treat it with caution.");
+
+const u8 gElectrodePokedexText[] = _(
+    "They appear in great numbers at electric\n"
+    "power plants. Because they feed on\n"
+    "electricity, they cause massive and\n"
+    "chaotic blackouts in nearby cities.");
+
+const u8 gExeggcutePokedexText[] = _(
+    "It consists of six eggs that care for each\n"
+    "other. The eggs attract each other and\n"
+    "spin around. When cracks increasingly\n"
+    "appear, it is close to evolution.");
+
+const u8 gExeggutorPokedexText[] = _(
+    "Originally from the tropics, Exeggutor's\n"
+    "heads grow larger from exposure to strong\n"
+    "sunlight. It is said that when the heads\n"
+    "fall, they group to form an Exeggcute.");
+
+const u8 gCubonePokedexText[] = _(
+    "It pines for the mother it will never see\n"
+    "again. Seeing a likeness of its mother in\n"
+    "the full moon, it cries. The stains on the\n"
+    "skull it wears are from its tears.");
+
+const u8 gMarowakPokedexText[] = _(
+    "A Marowak is the evolved form of a Cubone\n"
+    "that has grown tough by overcoming the\n"
+    "grief of losing its mother. Its tempered\n"
+    "and hardened spirit is not easily broken.");
+
+const u8 gHitmonleePokedexText[] = _(
+    "Its legs freely stretch and contract.\n"
+    "Using these springlike limbs, it bowls over\n"
+    "foes with devastating kicks. After battle,\n"
+    "it rubs down its tired legs.");
+
+const u8 gHitmonchanPokedexText[] = _(
+    "A Hitmonchan is said to possess the\n"
+    "spirit of a boxer who aimed to become the\n"
+    "world champion. Having an indomitable\n"
+    "spirit means that it will never give up.");
+
+const u8 gLickitungPokedexText[] = _(
+    "Whenever it sees something unfamiliar,\n"
+    "it always licks the object because it\n"
+    "memorizes things by texture and taste.\n"
+    "It is somewhat put off by sour things.");
+
+const u8 gKoffingPokedexText[] = _(
+    "Getting up close to a Koffing will give\n"
+    "you a chance to observe, through its thin\n"
+    "skin, the toxic gases swirling inside. It\n"
+    "blows up at the slightest stimulation.");
+
+const u8 gWeezingPokedexText[] = _(
+    "By diluting its toxic gases with a special\n"
+    "process, the highest grade of perfume can\n"
+    "be extracted. To Weezing, gases emanating\n"
+    "from garbage are the ultimate feast.");
+
+const u8 gRhyhornPokedexText[] = _(
+    "Once it starts running, it doesn't stop.\n"
+    "Its tiny brain makes it so stupid that it\n"
+    "can't remember why it started running in\n"
+    "the first place.");
+
+const u8 gRhydonPokedexText[] = _(
+    "Its horn, which rotates like a drill,\n"
+    "destroys tall buildings with one strike.\n"
+    "It stands on its hind legs, and its brain\n"
+    "is well developed.");
+
+const u8 gChanseyPokedexText[] = _(
+    "Chansey lay nutritionally excellent eggs\n"
+    "every day. The eggs are so delicious, they\n"
+    "are eagerly devoured by even those people\n"
+    "who have lost their appetite.");
+
+const u8 gTangelaPokedexText[] = _(
+    "Its vines snap off easily and painlessly\n"
+    "if they are grabbed, allowing it to make a\n"
+    "quick getaway. The lost vines are replaced\n"
+    "by new growth the very next day.");
+
+const u8 gKangaskhanPokedexText[] = _(
+    "If you come across a young Kangaskhan\n"
+    "playing by itself, never try to catch it.\n"
+    "The baby's parent is sure to be in the area,\n"
+    "and it will become violently enraged.");
+
+const u8 gHorseaPokedexText[] = _(
+    "By cleverly flicking the fins on its back\n"
+    "side to side, it moves in any direction\n"
+    "while facing forward. It spits ink to\n"
+    "escape if it senses danger.");
+
+const u8 gSeadraPokedexText[] = _(
+    "The poisonous barbs all over its body are\n"
+    "highly valued as ingredients for making\n"
+    "traditional herbal medicine. It shows no\n"
+    "mercy to anything approaching its nest.");
+
+const u8 gGoldeenPokedexText[] = _(
+    "In the springtime, schools of Goldeen\n"
+    "can be seen swimming up falls and rivers.\n"
+    "It metes out staggering damage with its\n"
+    "single horn.");
+
+const u8 gSeakingPokedexText[] = _(
+    "It punches holes in boulders on stream-\n"
+    "beds. This is a clever innovation that\n"
+    "prevents its eggs from being attacked or\n"
+    "washed away by the current.");
+
+const u8 gStaryuPokedexText[] = _(
+    "It gathers with others in the night and\n"
+    "makes its red core glow on and off with\n"
+    "the twinkling stars. It can regenerate\n"
+    "limbs if they are severed from its body.");
+
+const u8 gStarmiePokedexText[] = _(
+    "People in ancient times imagined that\n"
+    "Starmie were transformed from the\n"
+    "reflections of stars that twinkled on\n"
+    "gentle waves at night.");
+
+const u8 gMrmimePokedexText[] = _(
+    "A Mr. Mime is a master of pantomime. It can\n"
+    "convince others that something unseeable\n"
+    "actually exists. Once believed, the\n"
+    "imaginary object does become real.");
+
+const u8 gScytherPokedexText[] = _(
+    "Its blindingly fast speed adds to the\n"
+    "sharpness of its twin forearm scythes.\n"
+    "The scythes can slice through thick logs\n"
+    "in one wicked stroke.");
+
+const u8 gJynxPokedexText[] = _(
+    "A JYNX sashays rhythmically as if it were\n"
+    "dancing. Its motions are so bouncingly\n"
+    "alluring, people seeing it are compelled to\n"
+    "shake their hips without noticing.");
+
+const u8 gElectabuzzPokedexText[] = _(
+    "When a storm approaches, it competes with\n"
+    "others to scale heights that are likely to\n"
+    "be stricken by lightning. Some towns use\n"
+    "Electabuzz in place of lightning rods.");
+
+const u8 gMagmarPokedexText[] = _(
+    "In battle, it blows out intense flames from\n"
+    "all over its body to intimidate its foe.\n"
+    "These fiery bursts create heat waves that\n"
+    "ignite grass and trees in the area.");
+
+const u8 gPinsirPokedexText[] = _(
+    "Their pincers are strong enough to\n"
+    "shatter thick logs. Because they dislike\n"
+    "cold, Pinsir burrow and sleep under\n"
+    "the ground on chilly nights.");
+
+const u8 gTaurosPokedexText[] = _(
+    "It is not satisfied unless it is rampaging\n"
+    "at all times. If there is no opponent for\n"
+    "Tauros to battle, it will charge at thick\n"
+    "trees and knock them down to calm itself.");
+
+const u8 gMagikarpPokedexText[] = _(
+    "Its swimming muscles are weak, so it is\n"
+    "easily washed away by currents. In places\n"
+    "where water pools, you can see many\n"
+    "Magikarp deposited there by the flow.");
+
+const u8 gGyaradosPokedexText[] = _(
+    "It is an extremely vicious and violent\n"
+    "Pokémon. When humans begin to fight,\n"
+    "it will appear and burn everything to the\n"
+    "ground with intensely hot flames.");
+
+const u8 gLaprasPokedexText[] = _(
+    "People have driven Lapras almost to the\n"
+    "point of extinction. In the evenings,\n"
+    "it is said to sing plaintively as it seeks\n"
+    "what few others of its kind still remain.");
+
+const u8 gDittoPokedexText[] = _(
+    "A Ditto rearranges its cell structure to\n"
+    "transform itself. However, if it tries to\n"
+    "change based on its memory, it will get\n"
+    "details wrong.");
+
+const u8 gEeveePokedexText[] = _(
+    "An Eevee has an unstable genetic makeup\n"
+    "that suddenly mutates due to its\n"
+    "environment. Radiation from various\n"
+    "StoneS causes this Pokémon to evolve.");
+
+const u8 gVaporeonPokedexText[] = _(
+    "Vaporeon underwent a spontaneous\n"
+    "mutation and grew fins and gills that\n"
+    "allow them to live underwater. They have\n"
+    "the ability to freely control water.");
+
+const u8 gJolteonPokedexText[] = _(
+    "Its cells generate weak power that is\n"
+    "amplified by its fur's static electricity\n"
+    "to drop thunderbolts. The bristling fur is\n"
+    "made of electrically charged needles.");
+
+const u8 gFlareonPokedexText[] = _(
+    "Flareon's fluffy fur releases heat into\n"
+    "the air so that its body does not get\n"
+    "excessively hot. Its body temperature can\n"
+    "rise to a maximum of 1,650 degrees F.");
+
+const u8 gPorygonPokedexText[] = _(
+    "It is capable of reverting itself entirely\n"
+    "back to program data in order to enter\n"
+    "cyberspace. A Porygon is copy-\n"
+    "protected so it cannot be duplicated.");
+
+const u8 gOmanytePokedexText[] = _(
+    "One of the ancient and long-since-extinct\n"
+    "Pokémon that have been regenerated\n"
+    "from fossils by humans. If attacked,\n"
+    "it withdraws into its hard shell.");
+
+const u8 gOmastarPokedexText[] = _(
+    "An Omastar uses its tentacles to capture\n"
+    "its prey. It is believed to have become\n"
+    "extinct because its shell grew too large,\n"
+    "making its movements slow and ponderous.");
+
+const u8 gKabutoPokedexText[] = _(
+    "It is a Pokémon that has been regenerated\n"
+    "from a fossil. However, in rare cases, living\n"
+    "examples have been discovered. Kabuto\n"
+    "have not changed for 300 million years.");
+
+const u8 gKabutopsPokedexText[] = _(
+    "Kabutops once swam underwater to hunt \n"
+    "for prey. It was apparently evolving from\n"
+    "being a water dweller to living on land as\n"
+    "evident from changes in its gills and legs.");
+
+const u8 gAerodactylPokedexText[] = _(
+    "Aerodactyl is a Pokémon from the age\n"
+    "of dinosaurs. It was regenerated from DNA\n"
+    "extracted from amber. It is imagined to\n"
+    "have been the king of the skies.");
+
+const u8 gSnorlaxPokedexText[] = _(
+    "Snorlax's typical day consists of nothing\n"
+    "more than eating and sleeping. It is such\n"
+    "a docile Pokémon that there are children\n"
+    "who use its big belly as a place to play.");
+
+const u8 gArticunoPokedexText[] = _(
+    "Articuno is a legendary bird Pokémon that\n"
+    "can control ice. The flapping of its wings\n"
+    "chills the air. As a result, it is said that\n"
+    "when this Pokémon flies, snow will fall.");
+
+const u8 gZapdosPokedexText[] = _(
+    "Zapdos is a legendary bird Pokémon that\n"
+    "has the ability to control electricity.\n"
+    "It usually lives in thunderclouds. It gains\n"
+    "power if it is stricken by lightning bolts.");
+
+const u8 gMoltresPokedexText[] = _(
+    "Moltres is a legendary bird Pokémon\n"
+    "that can control fire. If injured, it is said\n"
+    "to dip its body in the molten magma of\n"
+    "a volcano to burn and heal itself.");
+
+const u8 gDratiniPokedexText[] = _(
+    "A Dratini continually molts and sloughs\n"
+    "off its old skin. It does so because the\n"
+    "life energy within its body steadily builds\n"
+    "to reach uncontrollable levels.");
+
+const u8 gDragonairPokedexText[] = _(
+    "A Dragonair stores an enormous amount of\n"
+    "energy inside its body. It is said to alter\n"
+    "the weather around it by loosing energy\n"
+    "from the crystals on its neck and tail.");
+
+const u8 gDragonitePokedexText[] = _(
+    "It can circle the globe in just 16 hours.\n"
+    "It is a kindhearted Pokémon that leads\n"
+    "lost and foundering ships in a storm\n"
+    "to the safety of land.");
+
+const u8 gMewtwoPokedexText[] = _(
+    "A Pokémon that was created by genetic\n"
+    "manipulation. However, even though the\n"
+    "scientific power of humans made its body,\n"
+    "they failed to give it a warm heart.");
+
+const u8 gMewPokedexText[] = _(
+    "A MEW is said to possess the genes of all\n"
+    "Pokémon. It is capable of making itself\n"
+    "invisible at will, so it entirely avoids\n"
+    "notice even if it approaches people.");
+
+const u8 gChikoritaPokedexText[] = _(
+    "It waves its leaf around to keep foes\n"
+    "at bay. However, a sweet fragrance also\n"
+    "wafts from the leaf, creating a friendly\n"
+    "atmosphere that becalms the battlers.");
+
+const u8 gBayleefPokedexText[] = _(
+    "A Bayleef's neck is ringed by curled-up\n"
+    "leaves. Inside each leaf is a small tree\n"
+    "shoot. The fragrance of this shoot\n"
+    "makes people peppy.");
+
+const u8 gMeganiumPokedexText[] = _(
+    "The fragrance of a Meganium's flower\n"
+    "soothes and calms emotions. In battle,\n"
+    "it gives off more of its becalming scent\n"
+    "to blunt the foe's fighting spirit.");
+
+const u8 gCyndaquilPokedexText[] = _(
+    "It flares flames from its back to protect\n"
+    "itself. The fire burns vigorously if the\n"
+    "Pokémon is angry. When it is tired,\n"
+    "it sputters with incomplete combustion.");
+
+const u8 gQuilavaPokedexText[] = _(
+    "It intimidates foes with intense gusts of\n"
+    "flames and superheated air. Its quick\n"
+    "nimbleness lets it dodge attacks even\n"
+    "while scorching an enemy.");
+
+const u8 gTyphlosionPokedexText[] = _(
+    "It can hide behind a shimmering heat haze\n"
+    "that it creates using its intense flames.\n"
+    "Typhlosion create blazing explosive\n"
+    "blasts that burn everything to cinders.");
+
+const u8 gTotodilePokedexText[] = _(
+    "Despite its small body, Totodile's jaws\n"
+    "are very powerful. While it may think it is\n"
+    "just playfully nipping, its bite has enough\n"
+    "strength to cause serious injury.");
+
+const u8 gCroconawPokedexText[] = _(
+    "Once its jaws clamp down on its foe, it will\n"
+    "absolutely not let go. Because the tips of\n"
+    "its fangs are forked back like fishhooks,\n"
+    "they become irremovably embedded.");
+
+const u8 gFeraligatrPokedexText[] = _(
+    "It opens its huge mouth to intimidate\n"
+    "enemies. In battle, it runs using its thick\n"
+    "and powerful hind legs to charge the\n"
+    "foe with incredible speed.");
+
+const u8 gSentretPokedexText[] = _(
+    "They take turns standing guard when it\n"
+    "is time to sleep. The sentry awakens the\n"
+    "others if it senses danger. If one becomes\n"
+    "separated, it turns sleepless with fear.");
+
+const u8 gFurretPokedexText[] = _(
+    "A Furret has a very slim build. When under\n"
+    "attack, it can squirm through narrow\n"
+    "spaces and get away. In spite of its short\n"
+    "limbs, it is very nimble and fleet.");
+
+const u8 gHoothootPokedexText[] = _(
+    "It has an internal organ that senses\n"
+    "the earth's rotation. Using this special\n"
+    "organ, a Hoothoot begins hooting at\n"
+    "precisely the same time every day.");
+
+const u8 gNoctowlPokedexText[] = _(
+    "It unfailingly catches prey in darkness.\n"
+    "Noctowl owe their success to superior\n"
+    "vision that allows them to see in minimal\n"
+    "light, and to their supple and silent wings.");
+
+const u8 gLedybaPokedexText[] = _(
+    "Ledyba communicate using a fluid that\n"
+    "they secrete from where the legs join the\n"
+    "body. They are said to convey feelings to\n"
+    "others by altering the fluid's scent.");
+
+const u8 gLedianPokedexText[] = _(
+    "It is said that in lands with clean air,\n"
+    "where the stars fill the sky, there live\n"
+    "many Ledian. For good reason, they use\n"
+    "the light of the stars as energy.");
+
+const u8 gSpinarakPokedexText[] = _(
+    "The web it spins can be considered its\n"
+    "second nervous system. It is said that a\n"
+    "Spinarak determines its prey by the tiny\n"
+    "vibrations it feels through the web.");
+
+const u8 gAriadosPokedexText[] = _(
+    "Its feet are tipped with tiny hooked claws\n"
+    "that enable it to scuttle on ceilings and\n"
+    "vertical walls. It constricts its foe with\n"
+    "thin and strong silk webbing.");
+
+const u8 gCrobatPokedexText[] = _(
+    "Over the course of evolution, its hind legs\n"
+    "turned into wings. By alternately resting\n"
+    "its front and rear wings, it can fly all day\n"
+    "without having to stop.");
+
+const u8 gChinchouPokedexText[] = _(
+    "When it senses danger, it discharges\n"
+    "positive and negative electricity from its\n"
+    "two antennae. It lives in depths beyond\n"
+    "sunlight's reach.");
+
+const u8 gLanturnPokedexText[] = _(
+    "The light-emitting orbs on its back are\n"
+    "very bright. They are formed from a part of\n"
+    "its dorsal fin. This Pokémon illuminates\n"
+    "the inky darkness of deep seas.");
+
+const u8 gPichuPokedexText[] = _(
+    "It is still inept at retaining electricity.\n"
+    "When it is startled, it discharges power\n"
+    "accidentally. It gets better at holding\n"
+    "power as it grows older.");
+
+const u8 gCleffaPokedexText[] = _(
+    "On nights with many shooting stars,\n"
+    "Cleffa can be seen dancing in a ring.\n"
+    "They dance until daybreak, when they\n"
+    "quench their thirst with the morning dew.");
+
+const u8 gIgglybuffPokedexText[] = _(
+    "Its soft and pliable body is very bouncy.\n"
+    "When it sings continuously with all its\n"
+    "might, its body steadily turns a deepening\n"
+    "pink color.");
+
+const u8 gTogepiPokedexText[] = _(
+    "As its energy, it uses the feelings of\n"
+    "compassion and pleasure exuded by\n"
+    "people and Pokémon. It stores up happy\n"
+    "feelings in its shell, then shares them out.");
+
+const u8 gTogeticPokedexText[] = _(
+    "It is said to be a Pokémon that brings good\n"
+    "fortune. When it spots someone who is pure\n"
+    "of heart, a Togetic appears and shares its\n"
+    "happiness with that person.");
+
+const u8 gNatuPokedexText[] = _(
+    "It runs up short trees that grow on the\n"
+    "savanna to peck at new shoots.\n"
+    "A Natu's eyes look as if they are\n"
+    "always observing something.");
+
+const u8 gXatuPokedexText[] = _(
+    "It has the enigmatic power of foreseeing\n"
+    "the future. Some people in different lands\n"
+    "have long believed that XATU are\n"
+    "emissaries from another world.");
+
+const u8 gMareepPokedexText[] = _(
+    "Its fluffy wool rubs together and builds\n"
+    "a static charge. The more energy is\n"
+    "charged, the more brightly the lightbulb\n"
+    "at the tip of its tail glows.");
+
+const u8 gFlaaffyPokedexText[] = _(
+    "Its fleece quality changes to generate\n"
+    "strong static electricity with a small\n"
+    "amount of wool. The bare, slick parts of its\n"
+    "hide are shielded against electricity.");
+
+const u8 gAmpharosPokedexText[] = _(
+    "It gives off so much light that it can be\n"
+    "seen even from space. People in the old\n"
+    "days used its light to send signals back\n"
+    "and forth with others far away.");
+
+const u8 gBellossomPokedexText[] = _(
+    "Its flower petals deepen in color through\n"
+    "exposure to sunlight. When cloudy weather\n"
+    "persists, it does a dance that is thought\n"
+    "to be a ritual for summoning the sun.");
+
+const u8 gMarillPokedexText[] = _(
+    "Its body is covered with water-repellent\n"
+    "fur. Because of the fur, it can swim\n"
+    "through water at high speed without being\n"
+    "slowed by the water's resistance.");
+
+const u8 gAzumarillPokedexText[] = _(
+    "It lives in water virtually all day long.\n"
+    "Its body color and pattern act as\n"
+    "camouflage that makes it tough for\n"
+    "enemies to spot in water.");
+
+const u8 gSudowoodoPokedexText[] = _(
+    "It mimics a tree to avoid being attacked\n"
+    "by enemies. But since its forelegs\n"
+    "remain green throughout the year, it is\n"
+    "easily identified as a fake in the winter.");
+
+const u8 gPolitoedPokedexText[] = _(
+    "The curled hair on its head proves its\n"
+    "status as a king. It is said that the\n"
+    "longer and curlier the hair, the more\n"
+    "respect it earns from its peers.");
+
+const u8 gHoppipPokedexText[] = _(
+    "This Pokémon drifts and floats with the\n"
+    "wind. If it senses the approach of strong\n"
+    "winds, a Hoppip links leaves with others\n"
+    "to prepare against being blown away.");
+
+const u8 gSkiploomPokedexText[] = _(
+    "It blossoms when the temperature rises\n"
+    "above 64 degrees F. Because its flower's\n"
+    "blooming changes with the temperature,\n"
+    "it is sometimes used as a thermometer.");
+
+const u8 gJumpluffPokedexText[] = _(
+    "Jumpluff ride warm southern winds to\n"
+    "cross the sea and fly to foreign lands.\n"
+    "This Pokémon lands when it encounters\n"
+    "cold air while it is floating.");
+
+const u8 gAipomPokedexText[] = _(
+    "Its tail ends with a dexterous, handlike\n"
+    "appendage. However, because it uses the\n"
+    "tail so much, Aipom's real hands have\n"
+    "become rather clumsy.");
+
+const u8 gSunkernPokedexText[] = _(
+    "Sunkern try to minimize movement to\n"
+    "conserve the nutrients they have stored\n"
+    "in their bodies for evolution. They will\n"
+    "not eat, subsisting only on morning dew.");
+
+const u8 gSunfloraPokedexText[] = _(
+    "Sunflora convert solar energy into\n"
+    "nutrition. They are highly active in the\n"
+    "warm daytime but suddenly stop moving as\n"
+    "soon as the sun sets.");
+
+const u8 gYanmaPokedexText[] = _(
+    "It can see 360 degrees without moving\n"
+    "its eyes. It is a great flier capable of\n"
+    "making sudden stops and turning midair to\n"
+    "quickly chase down targeted prey.");
+
+const u8 gWooperPokedexText[] = _(
+    "Wooper usually live in water but come\n"
+    "out onto land seeking food occasionally.\n"
+    "On land, they coat their bodies with a\n"
+    "gooey, toxic film.");
+
+const u8 gQuagsirePokedexText[] = _(
+    "A Quagsire hunts by leaving its mouth wide\n"
+    "open in water and waiting for its prey to\n"
+    "blunder in. Because it doesn't move, it\n"
+    "does not get very hungry.");
+
+const u8 gEspeonPokedexText[] = _(
+    "An Espeon is extremely loyal to any\n"
+    "Trainer it considers to be worthy. It is\n"
+    "said to have developed precognitive\n"
+    "powers to protect its Trainer from harm.");
+
+const u8 gUmbreonPokedexText[] = _(
+    "Umbreon evolved from exposure to the\n"
+    "moon's energy pulses. It lurks in darkness\n"
+    "and waits for its foes to move. The rings\n"
+    "on its body glow when it leaps to attack.");
+
+const u8 gMurkrowPokedexText[] = _(
+    "Murkrow were feared as the alleged\n"
+    "bearers of ill fortune. It shows strong\n"
+    "interest in anything that sparkles. It will\n"
+    "even try to steal rings from women.");
+
+const u8 gSlowkingPokedexText[] = _(
+    "It undertakes research every day to\n"
+    "solve the mysteries of the world.\n"
+    "However, it apparently forgets everything\n"
+    "if the Shellder on its head comes off.");
+
+const u8 gMisdreavusPokedexText[] = _(
+    "A Misdreavus frightens people with a\n"
+    "creepy, sobbing cry. It apparently uses\n"
+    "its red spheres to absorb the fear of foes\n"
+    "as its nutrition.");
+
+const u8 gUnownPokedexText[] = _(
+    "This Pokémon is shaped like ancient text\n"
+    "characters. Although research is ongoing,\n"
+    "it is a mystery as to which came first,\n"
+    "the ancient writings or the various Unown.");
+
+const u8 gWobbuffetPokedexText[] = _(
+    "Usually docile, a Wobbuffet strikes back\n"
+    "ferociously if its black tail is attacked.\n"
+    "It makes its lair in caves where it waits\n"
+    "for nightfall.");
+
+const u8 gGirafarigPokedexText[] = _(
+    "A Girafarig is an herbivore--it eats\n"
+    "grass and tree shoots. While it is eating,\n"
+    "its tail makes chewing and swallowing\n"
+    "motions as if it were also eating.");
+
+const u8 gPinecoPokedexText[] = _(
+    "A Pineco hangs from a tree branch and\n"
+    "waits for prey. While eating, if it is\n"
+    "disturbed by someone shaking its tree, it\n"
+    "falls on the ground and suddenly explodes.");
+
+const u8 gForretressPokedexText[] = _(
+    "It keeps itself inside its steel shell.\n"
+    "The shell is opened when it is catching\n"
+    "prey, but it is so quick that the shell's\n"
+    "inside cannot be seen.");
+
+const u8 gDunsparcePokedexText[] = _(
+    "Its drill-tipped tail is used to burrow into\n"
+    "the ground backwards. This Pokémon is\n"
+    "known to make its nest in complex shapes\n"
+    "deep under the ground.");
+
+const u8 gGligarPokedexText[] = _(
+    "It glides without making a single sound.\n"
+    "It grasps the face of its foe using its\n"
+    "hind and large front claws, then stabs\n"
+    "with its poison barb.");
+
+const u8 gSteelixPokedexText[] = _(
+    "Steelix live even further underground\n"
+    "than Onix. This Pokémon is known to dig\n"
+    "toward the earth's core, reaching a depth\n"
+    "of over six-tenths of a mile underground.");
+
+const u8 gSnubbullPokedexText[] = _(
+    "By baring its fangs and making a scary\n"
+    "face, it sends smaller Pokémon scurrying\n"
+    "in terror. The Snubbull does seem a\n"
+    "little sad at making its foes flee.");
+
+const u8 gGranbullPokedexText[] = _(
+    "It has a particularly well-developed lower\n"
+    "jaw. The huge fangs are heavy, causing\n"
+    "it to tilt its head. Unless it is startled,\n"
+    "it will not try to bite.");
+
+const u8 gQwilfishPokedexText[] = _(
+    "A Qwilfish uses the pressure of water\n"
+    "it swallows to shoot toxic quills all at\n"
+    "once from all over its body. It finds\n"
+    "swimming to be somewhat challenging.");
+
+const u8 gScizorPokedexText[] = _(
+    "A Scizor has a body with the hardness of\n"
+    "steel. It is not easily fazed by ordinary\n"
+    "sorts of attacks. It flaps its wings to\n"
+    "regulate its body temperature.");
+
+const u8 gShucklePokedexText[] = _(
+    "A Shuckle hides under rocks, keeping its\n"
+    "body concealed inside its shell while\n"
+    "eating stored berries. The berries mix with\n"
+    "its body fluids to become a juice.");
+
+const u8 gHeracrossPokedexText[] = _(
+    "They gather in forests seeking the sweet\n"
+    "sap of trees. It is completely clad in a\n"
+    "steel-hard shell. It is proud of its horn,\n"
+    "which it uses to fling foes.");
+
+const u8 gSneaselPokedexText[] = _(
+    "A Sneasel scales trees by punching its\n"
+    "hooked claws into the bark. It seeks out\n"
+    "unguarded nests and steals eggs for food\n"
+    "while the parents are away.");
+
+const u8 gTeddiursaPokedexText[] = _(
+    "It licks its palms that are sweetened by\n"
+    "being soaked in honey. A Teddiursa makes\n"
+    "its own honey by blending fruits and pollen\n"
+    "collected by Beedrill.");
+
+const u8 gUrsaringPokedexText[] = _(
+    "In forests, it is said that there are many\n"
+    "streams and towering trees where an\n"
+    "Ursaring gathers food. It walks through\n"
+    "its forest collecting food every day.");
+
+const u8 gSlugmaPokedexText[] = _(
+    "It is a species of Pokémon that lives in\n"
+    "volcanic areas. If its body cools, its skin\n"
+    "hardens and immobilizes it. To avoid that,\n"
+    "it sleeps near magma.");
+
+const u8 gMagcargoPokedexText[] = _(
+    "The shell on its back is made of hardened\n"
+    "magma. Tens of thousands of years spent\n"
+    "living in volcanic craters have turned\n"
+    "Magcargo's bodies into magma.");
+
+const u8 gSwinubPokedexText[] = _(
+    "It roots for food by rubbing its snout\n"
+    "against the ground. Its favorite food is a\n"
+    "mushroom that grows under dried grass.\n"
+    "It occasionally roots out hot springs.");
+
+const u8 gPiloswinePokedexText[] = _(
+    "A Piloswine is covered by a thick coat\n"
+    "of long hair for enduring freezing cold.\n"
+    "It uses its tusks to dig up food that has\n"
+    "been buried under ice.");
+
+const u8 gCorsolaPokedexText[] = _(
+    "Corsola live in warm southern seas.\n"
+    "If the sea becomes polluted, the beautiful\n"
+    "coral stalks become discolored and crumble\n"
+    "away in tatters.");
+
+const u8 gRemoraidPokedexText[] = _(
+    "A Remoraid uses its abdominal muscles\n"
+    "to forcefully expel swallowed water, then\n"
+    "shoot down flying prey. When evolution\n"
+    "approaches, it travels down rivers.");
+
+const u8 gOctilleryPokedexText[] = _(
+    "It ensnares its foe with its suction-\n"
+    "cupped tentacles before delivering the\n"
+    "finishing blow. If the foe turns out to be\n"
+    "too strong, it spews ink to escape.");
+
+const u8 gDelibirdPokedexText[] = _(
+    "It carries food bundled up in its tail.\n"
+    "There was a famous explorer who\n"
+    "managed to scale Mt. Everest thanks\n"
+    "to a Delibird sharing its food.");
+
+const u8 gMantinePokedexText[] = _(
+    "On sunny days, schools of Mantine can be\n"
+    "seen elegantly leaping over the waves.\n"
+    "It is not bothered by the Remoraid that\n"
+    "hitches rides.");
+
+const u8 gSkarmoryPokedexText[] = _(
+    "A Pokémon that has a body and wings of\n"
+    "steel. People in the past used feathers\n"
+    "fallen from Skarmory to make swords and\n"
+    "knives.");
+
+const u8 gHoundourPokedexText[] = _(
+    "Houndour communicate with each other\n"
+    "using a variety of cries to corner their\n"
+    "prey. This Pokémon's remarkable teamwork\n"
+    "is simply unparalleled.");
+
+const u8 gHoundoomPokedexText[] = _(
+    "In a Houndoom pack, the one with its horns\n"
+    "raked sharply back serves a leadership\n"
+    "role. They choose their leader by fighting\n"
+    "among themselves.");
+
+const u8 gKingdraPokedexText[] = _(
+    "It sleeps quietly, deep on the seafloor.\n"
+    "When it comes up to the surface, it\n"
+    "creates a huge whirlpool that can swallow\n"
+    "even ships.");
+
+const u8 gPhanpyPokedexText[] = _(
+    "Phanpy's big ears serve as broad fans.\n"
+    "When it becomes hot, it flaps the ears\n"
+    "busily to cool down. Even the young are\n"
+    "very strong.");
+
+const u8 gDonphanPokedexText[] = _(
+    "A Donphan is so strong it can easily haul\n"
+    "a dump truck. Its hide has toughened to a\n"
+    "rock-hard state. An ordinary sort of\n"
+    "attack won't even leave a scratch.");
+
+const u8 gPorygon2PokedexText[] = _(
+    "It was created by humans using the power\n"
+    "of science. It has been given artificial\n"
+    "intelligence that enables it to learn new\n"
+    "gestures and emotions on its own.");
+
+const u8 gStantlerPokedexText[] = _(
+    "Stantler's magnificent antlers were\n"
+    "once traded at high prices as works of art.\n"
+    "As a result, this Pokémon was hunted\n"
+    "close to extinction.");
+
+const u8 gSmearglePokedexText[] = _(
+    "A Smeargle marks its territory using a\n"
+    "fluid that leaks out from the tip of its\n"
+    "tail. About 5,000 different marks left by\n"
+    "this Pokémon have been found.");
+
+const u8 gTyroguePokedexText[] = _(
+    "Tyrogue become stressed out if they do\n"
+    "not get to train every day. When raising\n"
+    "this Pokémon, the Trainer must establish\n"
+    "a regular training schedule.");
+
+const u8 gHitmontopPokedexText[] = _(
+    "Its technique of kicking while spinning is\n"
+    "a remarkable mix of both offense and\n"
+    "defense. Hitmontop travel faster\n"
+    "spinning than they do walking.");
+
+const u8 gSmoochumPokedexText[] = _(
+    "It actively runs about, but also falls\n"
+    "often. Whenever it falls, it will check its\n"
+    "reflection on a lake's surface to make\n"
+    "sure its face hasn't become dirty.");
+
+const u8 gElekidPokedexText[] = _(
+    "If it touches metal and discharges the\n"
+    "electricity it has stored in its body, an\n"
+    "Elekid begins swinging its arms in circles\n"
+    "to recharge itself.");
+
+const u8 gMagbyPokedexText[] = _(
+    "If a Magby is spouting yellow flames from\n"
+    "its mouth, it is in good health. When it is\n"
+    "fatigued, black smoke will be mixed in with\n"
+    "the flames.");
+
+const u8 gMiltankPokedexText[] = _(
+    "It gives over five gallons of milk daily.\n"
+    "Its sweet milk is enjoyed by children and\n"
+    "grown-ups alike. People who can't drink\n"
+    "milk turn it into yogurt and eat it instead.");
+
+const u8 gBlisseyPokedexText[] = _(
+    "If it senses sadness with its fluffy fur,\n"
+    "a Blissey will rush over to the sad person,\n"
+    "however far away, to share an egg of\n"
+    "happiness that brings a smile to any face.");
+
+const u8 gRaikouPokedexText[] = _(
+    "Raikou embodies the speed of lightning.\n"
+    "Its roars send shock waves shuddering\n"
+    "through the air and ground as if\n"
+    "lightning bolts were crashing down.");
+
+const u8 gEnteiPokedexText[] = _(
+    "Entei embodies the passion of magma.\n"
+    "It is thought to have been born in the\n"
+    "eruption of a volcano. It blasts fire that\n"
+    "consumes all that it touches.");
+
+const u8 gSuicunePokedexText[] = _(
+    "Suicune embodies the compassion of\n"
+    "a pure spring of water. It runs across\n"
+    "the land with gliding elegance. It has the\n"
+    "power to purify dirty water.");
+
+const u8 gLarvitarPokedexText[] = _(
+    "A Larvitar is born deep under the ground.\n"
+    "It must eat its way through the soil above\n"
+    "and reach the surface for it to see its\n"
+    "parents' faces.");
+
+const u8 gPupitarPokedexText[] = _(
+    "A Pupitar creates a gas inside its body\n"
+    "that it ejects under compression to propel\n"
+    "itself like a jet. Its body can withstand\n"
+    "a collision with solid steel.");
+
+const u8 gTyranitarPokedexText[] = _(
+    "A Tyranitar is so overwhelmingly powerful,\n"
+    "it can bring down a whole mountain to make\n"
+    "its nest. It roams in mountains seeking\n"
+    "new opponents to fight.");
+
+const u8 gLugiaPokedexText[] = _(
+    "Lugia is so powerful even a light\n"
+    "fluttering of its wings can blow apart\n"
+    "houses. As a result, it chooses to live out\n"
+    "of sight deep under the sea.");
+
+const u8 gHoOhPokedexText[] = _(
+    "Its feathers--which glow in seven colors\n"
+    "depending on the angle at which they are\n"
+    "struck by light--are thought to bring joy.\n"
+    "It is said to live at the foot of a rainbow.");
+
+const u8 gCelebiPokedexText[] = _(
+    "This Pokémon came from the future by\n"
+    "crossing over time. It is thought that so\n"
+    "long as Celebi appears, a bright and\n"
+    "shining future awaits us.");
+
+const u8 gTreeckoPokedexText[] = _(
+    "It makes its nest in a giant tree in the\n"
+    "forest. It ferociously guards against\n"
+    "anything nearing its territory. It is said\n"
+    "to be the protector of the forest's trees.");
+
+const u8 gGrovylePokedexText[] = _(
+    "Leaves grow out of this Pokémon's body.\n"
+    "They help obscure a Grovyle from the eyes\n"
+    "of its enemies while it is in a thickly\n"
+    "overgrown forest.");
+
+const u8 gSceptilePokedexText[] = _(
+    "In the jungle, its power is without equal.\n"
+    "This Pokémon carefully grows trees and\n"
+    "plants. It regulates its body temperature\n"
+    "by basking in sunlight.");
+
+const u8 gTorchicPokedexText[] = _(
+    "If attacked, it strikes back by spitting\n"
+    "balls of fire it forms in its stomach.\n"
+    "A Torchic dislikes darkness because it\n"
+    "can't see its surroundings.");
+
+const u8 gCombuskenPokedexText[] = _(
+    "It lashes out with 10 kicks per second.\n"
+    "Its strong fighting instinct compels it\n"
+    "to keep up its offensive until the\n"
+    "opponent gives up.");
+
+const u8 gBlazikenPokedexText[] = _(
+    "It learns martial arts that use punches\n"
+    "and kicks. Every several years, its old\n"
+    "feathers burn off, and new, supple\n"
+    "feathers grow back in their place.");
+
+const u8 gMudkipPokedexText[] = _(
+    "On land, it can powerfully lift large\n"
+    "boulders by planting its four feet and\n"
+    "heaving. It sleeps by burying itself in soil\n"
+    "at the water's edge.");
+
+const u8 gMarshtompPokedexText[] = _(
+    "Its toughened hind legs enable it to stand\n"
+    "upright. Because it weakens if its skin\n"
+    "dries out, it replenishes fluids by playing\n"
+    "in mud.");
+
+const u8 gSwampertPokedexText[] = _(
+    "If it senses the approach of a storm and\n"
+    "a tidal wave, it protects its seaside nest\n"
+    "by piling up boulders. It swims as fast as\n"
+    "a jet ski.");
+
+const u8 gPoochyenaPokedexText[] = _(
+    "It savagely threatens foes with bared\n"
+    "fangs. It chases after fleeing targets\n"
+    "tenaciously. It turns tail and runs,\n"
+    "however, if the foe strikes back.");
+
+const u8 gMightyenaPokedexText[] = _(
+    "In the wild, Mightyena live in a pack.\n"
+    "They never defy their leader's orders.\n"
+    "They defeat foes with perfectly\n"
+    "coordinated teamwork.");
+
+const u8 gZigzagoonPokedexText[] = _(
+    "Rubbing its nose against the ground, it\n"
+    "always wanders about back and forth in\n"
+    "search of something. It is distinguished\n"
+    "by the zigzag footprints it leaves.");
+
+const u8 gLinoonePokedexText[] = _(
+    "It is exceedingly fast if it only has to run\n"
+    "in a straight line. When it spots pond-\n"
+    "dwelling prey underwater, it quickly leaps\n"
+    "in and catches it with its sharp claws.");
+
+const u8 gWurmplePokedexText[] = _(
+    "It sticks to tree branches and eats\n"
+    "leaves. The thread it spits from its mouth,\n"
+    "which becomes gooey when it touches\n"
+    "air, slows the movement of its foes.");
+
+const u8 gSilcoonPokedexText[] = _(
+    "It prepares for evolution using the\n"
+    "energy it stored while it was a Wurmple.\n"
+    "It keeps watch over the surroundings with\n"
+    "its two eyes.");
+
+const u8 gBeautiflyPokedexText[] = _(
+    "Its colorfully patterned wings are its\n"
+    "most prominent feature. It flies through\n"
+    "flower-covered fields collecting pollen.\n"
+    "It attacks ferociously when angered.");
+
+const u8 gCascoonPokedexText[] = _(
+    "To avoid detection by its enemies, it hides\n"
+    "motionlessly beneath large leaves and in\n"
+    "the gaps of branches. It also attaches\n"
+    "dead leaves to its body for camouflage.");
+
+const u8 gDustoxPokedexText[] = _(
+    "It is a nocturnal Pokémon that flies from\n"
+    "fields and mountains to the attraction of\n"
+    "streetlights at night. It looses highly\n"
+    "toxic powder from its wings.");
+
+const u8 gLotadPokedexText[] = _(
+    "This Pokémon lives in ponds with clean\n"
+    "water. It is known to ferry small Pokémon\n"
+    "across ponds by carrying them on the\n"
+    "broad leaf on its head.");
+
+const u8 gLombrePokedexText[] = _(
+    "In the evening, it takes great delight in\n"
+    "popping out of rivers and startling people.\n"
+    "It feeds on aquatic moss that grows on\n"
+    "rocks in the riverbed.");
+
+const u8 gLudicoloPokedexText[] = _(
+    "When it hears festive music, all the cells\n"
+    "in its body become stimulated, and it\n"
+    "begins moving in rhythm. It does not\n"
+    "quail even when it faces a tough opponent.");
+
+const u8 gSeedotPokedexText[] = _(
+    "It hangs off branches and absorbs\n"
+    "nutrients. When it finishes eating, its\n"
+    "body becomes so heavy that it drops to\n"
+    "the ground with a thump.");
+
+const u8 gNuzleafPokedexText[] = _(
+    "A forest-dwelling Pokémon that is skilled\n"
+    "at climbing trees. Its long and pointed\n"
+    "nose is its weak point. It loses power if\n"
+    "the nose is gripped.");
+
+const u8 gShiftryPokedexText[] = _(
+    "It is said to arrive on chilly, wintry winds.\n"
+    "Feared from long ago as the guardian of\n"
+    "forests, this Pokémon lives in a deep\n"
+    "forest where people do not venture.");
+
+const u8 gNincadaPokedexText[] = _(
+    "It makes its nest at the roots of a mighty\n"
+    "tree. Using its whiskerlike antennae, it\n"
+    "probes its surroundings in the\n"
+    "pitch-black darkness of soil.");
+
+const u8 gNinjaskPokedexText[] = _(
+    "Because it darts about vigorously at high\n"
+    "speed, it is very difficult to see. Hearing\n"
+    "its distinctive cries for too long induces\n"
+    "a headache.");
+
+const u8 gShedinjaPokedexText[] = _(
+    "A peculiar Pokémon that floats in air even\n"
+    "though its wings remain completely still.\n"
+    "The inside of its body is hollow and\n"
+    "utterly dark.");
+
+const u8 gTaillowPokedexText[] = _(
+    "Although it is small, it is very courageous.\n"
+    "It will take on a larger Skarmory on an\n"
+    "equal footing. However, its will weakens if\n"
+    "it becomes hungry.");
+
+const u8 gSwellowPokedexText[] = _(
+    "A Swellow dives upon prey from far above.\n"
+    "It never misses its targets. It takes to\n"
+    "the skies in search of lands with a warm\n"
+    "climate.");
+
+const u8 gShroomishPokedexText[] = _(
+    "It loves to eat damp, composted soil in\n"
+    "forests. If you enter a forest after a\n"
+    "long rain, you can see many Shroomish\n"
+    "feasting on composted soil.");
+
+const u8 gBreloomPokedexText[] = _(
+    "It scatters spores from holes in the cap\n"
+    "on its head. It loves warm and humid\n"
+    "climates. It feeds on trees and plants in\n"
+    "fields and forests.");
+
+const u8 gSpindaPokedexText[] = _(
+    "It is distinguished by a pattern of\n"
+    "spots that is always different. Its\n"
+    "unsteady, tottering walk has the\n"
+    "effect of fouling its foe's aim.");
+
+const u8 gWingullPokedexText[] = _(
+    "It makes its nest on a sheer cliff at the\n"
+    "edge of the sea. It has trouble keeping\n"
+    "its wings flapping in flight. Instead, it\n"
+    "soars on updrafts.");
+
+const u8 gPelipperPokedexText[] = _(
+    "It skims the tops of waves as it flies.\n"
+    "When it spots prey, it uses its large beak\n"
+    "to scoop up the victim with water.\n"
+    "It protects its eggs in its beak.");
+
+const u8 gSurskitPokedexText[] = _(
+    "They gather on puddles after evening\n"
+    "downpours, gliding across the surface\n"
+    "of water as if sliding. It secretes honey\n"
+    "with a sweet aroma from its head.");
+
+const u8 gMasquerainPokedexText[] = _(
+    "It intimidates foes with the large eyelike\n"
+    "patterns on its antennae. Because it can't\n"
+    "fly if its wings get wet, it shelters itself\n"
+    "from rain under large trees and eaves.");
+
+const u8 gWailmerPokedexText[] = _(
+    "While this Pokémon usually lives in the sea,\n"
+    "it can survive on land, although not too\n"
+    "long. It loses vitality if its body becomes\n"
+    "dried out.");
+
+const u8 gWailordPokedexText[] = _(
+    "It breathes through nostrils that it\n"
+    "raises above the sea. By inhaling to its\n"
+    "maximum capacity, a Wailord can dive close\n"
+    "to 10,000 feet beneath the waves.");
+
+const u8 gSkittyPokedexText[] = _(
+    "A Skitty's adorably cute behavior makes it\n"
+    "highly popular. In battle, it makes its tail\n"
+    "puff out. It threatens foes with a sharp\n"
+    "growl.");
+
+const u8 gDelcattyPokedexText[] = _(
+    "Rather than keeping a permanent lair,\n"
+    "it habitually seeks comfortable spots and\n"
+    "sleeps there. It is nocturnal and becomes\n"
+    "active at dusk.");
+
+const u8 gKecleonPokedexText[] = _(
+    "A Pokémon that has the ability to alter its\n"
+    "body colors to match its surroundings.\n"
+    "A Kecleon reverts to its original colors if\n"
+    "it is startled.");
+
+const u8 gBaltoyPokedexText[] = _(
+    "A Baltoy moves by spinning on its single\n"
+    "foot. It has been depicted in murals \n"
+    "adorning the walls of a once-bustling city\n"
+    "in an ancient age.");
+
+const u8 gClaydolPokedexText[] = _(
+    "A Claydol sleeps while hovering in midair.\n"
+    "Its arms are separate from its body.\n"
+    "They are kept floating by the Pokémon's\n"
+    "manipulation of psychic power.");
+
+const u8 gNosepassPokedexText[] = _(
+    "Its body emits a powerful magnetism.\n"
+    "It feeds on prey that is pulled in by the\n"
+    "force. Its magnetism is stronger in cold\n"
+    "seasons.");
+
+const u8 gTorkoalPokedexText[] = _(
+    "It battles using energy it gets from\n"
+    "burning coal. When loosing smoke from its\n"
+    "nostrils, it lets off a sound that is\n"
+    "similar to a locomotive's horn.");
+
+const u8 gSableyePokedexText[] = _(
+    "It digs branching holes in caves using its\n"
+    "sharp claws in search of food--raw gems.\n"
+    "A Sableye lurks in darkness and is seen\n"
+    "only rarely.");
+
+const u8 gBarboachPokedexText[] = _(
+    "Its body is covered with a slimy film.\n"
+    "The film acts as a barrier to prevent germs\n"
+    "in muddy water from entering the\n"
+    "Barboach's body.");
+
+const u8 gWhiscashPokedexText[] = _(
+    "Mysteriously, it can foretell earthquakes.\n"
+    "In the daytime, it sleeps in mud at the\n"
+    "bottom of a pond. When it awakens, it\n"
+    "continually feeds throughout the night.");
+
+const u8 gLuvdiscPokedexText[] = _(
+    "Luvdisc make the branches of Corsola\n"
+    "their nests. There is a custom from long\n"
+    "ago of giving a Luvdisc as a gift to\n"
+    "express one's feelings of love.");
+
+const u8 gCorphishPokedexText[] = _(
+    "Once it grips prey with its large pincers,\n"
+    "it will never let go, no matter what.\n"
+    "It is a hardy Pokémon that can thrive\n"
+    "in any environment.");
+
+const u8 gCrawdauntPokedexText[] = _(
+    "A brutish Pokémon that loves to battle.\n"
+    "A veteran Crawdaunt that has prevailed in\n"
+    "hundreds of battles has giant pincers\n"
+    "marked with countless scars.");
+
+const u8 gFeebasPokedexText[] = _(
+    "Feebas live in ponds that are heavily\n"
+    "infested with weeds. Because of its\n"
+    "hopelessly shabby appearance, it\n"
+    "seems as if few Trainers raise it.");
+
+const u8 gMiloticPokedexText[] = _(
+    "It is said to live at the bottom of\n"
+    "large lakes. Considered to be the most\n"
+    "beautiful of all Pokémon, it has been\n"
+    "depicted in paintings and statues.");
+
+const u8 gCarvanhaPokedexText[] = _(
+    "Carvanha attack ships in swarms, making\n"
+    "them sink. Although it is said to be a very\n"
+    "vicious Pokémon, it timidly flees as soon\n"
+    "as it finds itself alone.");
+
+const u8 gSharpedoPokedexText[] = _(
+    "The vicious and sly gangster of the sea.\n"
+    "Its skin is specially textured to minimize\n"
+    "drag in water. Its speed tops out at over\n"
+    "75 miles per hour.");
+
+const u8 gTrapinchPokedexText[] = _(
+    "Its big jaws crunch through boulders.\n"
+    "Because its head is so big, it has a hard\n"
+    "time getting back upright if it tips over\n"
+    "onto its back.");
+
+const u8 gVibravaPokedexText[] = _(
+    "It looses ultrasonic waves by rubbing its\n"
+    "wings together. Since a Vibrava's wings\n"
+    "are still in the process of growing, it can\n"
+    "only fly short distances.");
+
+const u8 gFlygonPokedexText[] = _(
+    "The flapping of its wings sounds like\n"
+    "singing. To prevent detection by enemies,\n"
+    "it hides itself by flapping up a cloud of\n"
+    "desert sand.");
+
+const u8 gMakuhitaPokedexText[] = _(
+    "It loves to toughen up its body above all\n"
+    "else. If you hear quaking rumbles in a cave,\n"
+    "it is the sound of Makuhita undertaking\n"
+    "strenuous training.");
+
+const u8 gHariyamaPokedexText[] = _(
+    "It has the habit of challenging others\n"
+    "without hesitation to tests of strength.\n"
+    "It's been known to stand on train tracks\n"
+    "and stop trains using forearm thrusts.");
+
+const u8 gElectrikePokedexText[] = _(
+    "It generates electricity using friction\n"
+    "from the atmosphere. In seasons with\n"
+    "especially arid air, its entire body blazes\n"
+    "with violent showers of sparks.");
+
+const u8 gManectricPokedexText[] = _(
+    "Because lightning falls in their vicinities,\n"
+    "Manectric were thought to have been born\n"
+    "from lightning. In battle, they create\n"
+    "thunderclouds.");
+
+const u8 gNumelPokedexText[] = _(
+    "A Numel stores boiling magma in the hump\n"
+    "on its back. It is a hardy Pokémon that can\n"
+    "transport a 220-pound load. It has served\n"
+    "humans at work since long ago.");
+
+const u8 gCameruptPokedexText[] = _(
+    "A Pokémon that lives in the crater of\n"
+    "a volcano. Every 10 years, the volcanoes\n"
+    "on its back erupt violently. Research is\n"
+    "under way on the cause of eruption.");
+
+const u8 gSphealPokedexText[] = _(
+    "It is completely covered with plushy fur.\n"
+    "As a result, it never feels the cold even\n"
+    "when it is rolling about on ice floes or\n"
+    "diving in the sea.");
+
+const u8 gSealeoPokedexText[] = _(
+    "Sealeo live in herds on ice floes. Using its\n"
+    "powerful flippers, it shatters ice.\n"
+    "It dives into the sea to hunt prey five\n"
+    "times a day.");
+
+const u8 gWalreinPokedexText[] = _(
+    "To protect its herd, the leader battles\n"
+    "anything that invades its territory, even\n"
+    "at the cost of its life. Its tusks may snap\n"
+    "off in battle.");
+
+const u8 gCacneaPokedexText[] = _(
+    "Cacnea live in deserts with virtually no\n"
+    "rainfall. It battles by swinging its thick,\n"
+    "spiked arms. Once a year, a yellow flower\n"
+    "blooms.");
+
+const u8 gCacturnePokedexText[] = _(
+    "After spending thousands of years in\n"
+    "harsh deserts, its blood transformed into\n"
+    "the same substances as sand. It is\n"
+    "nocturnal, so it hunts at night.");
+
+const u8 gSnoruntPokedexText[] = _(
+    "They tend to move about in groups of\n"
+    "around five Snorunt. In snowy regions,\n"
+    "it is said that when they are seen late at\n"
+    "night, snowfall will arrive by morning.");
+
+const u8 gGlaliePokedexText[] = _(
+    "A Glalie has the power to instantaneously\n"
+    "freeze moisture in the atmosphere.\n"
+    "A dazzling cloud of diamondlike ice\n"
+    "crystals forms around its body.");
+
+const u8 gLunatonePokedexText[] = _(
+    "It becomes very active on the night of\n"
+    "a full moon. This Pokémon was first\n"
+    "discovered 40 years ago at the site of\n"
+    "a meteor strike.");
+
+const u8 gSolrockPokedexText[] = _(
+    "Solar energy is the source of this \n"
+    "Pokémon's power. On sunny days, groups of\n"
+    "Solrock line up facing the sun and absorb\n"
+    "its light.");
+
+const u8 gAzurillPokedexText[] = _(
+    "Its tail, which is packed with nutrition,\n"
+    "is very bouncy like a rubber ball. On sunny\n"
+    "days they gather at the edge of water and\n"
+    "splash about for fun.");
+
+const u8 gSpoinkPokedexText[] = _(
+    "A Pokémon that manipulates psychic power\n"
+    "at will. It doesn't stop bouncing even when\n"
+    "it is asleep. It loves eating mushrooms\n"
+    "that grow underground.");
+
+const u8 gGrumpigPokedexText[] = _(
+    "It stores power in the black pearls on its\n"
+    "forehead. When it uses psychic power, it\n"
+    "performs an odd dance step. Its style of\n"
+    "dancing became hugely popular overseas.");
+
+const u8 gPluslePokedexText[] = _(
+    "It has the trait of cheering on its fellow\n"
+    "Pokémon. By shorting out the electricity\n"
+    "it releases from its paws, it creates\n"
+    "pom-poms for cheering.");
+
+const u8 gMinunPokedexText[] = _(
+    "At a meeting of Pokémon academics, it was\n"
+    "announced that simultaneous exposure to\n"
+    "electricity from a Plusle and Minun will\n"
+    "promote circulation and boost vitality.");
+
+const u8 gMawilePokedexText[] = _(
+    "Its giant jaws are actually steel horns\n"
+    "that transformed. It fools foes into\n"
+    "complacency with its adorable gestures,\n"
+    "then chomps them with its huge jaws.");
+
+const u8 gMedititePokedexText[] = _(
+    "It continually meditates for hours every\n"
+    "day. As a result of rigorous and dedicated\n"
+    "yoga training, it has tempered its\n"
+    "spiritual power so much it can fly.");
+
+const u8 gMedichamPokedexText[] = _(
+    "Through crushingly harsh yoga training, it\n"
+    "gained the power to foretell its foe's\n"
+    "actions. It battles with elegant, dance-\n"
+    "like movement.");
+
+const u8 gSwabluPokedexText[] = _(
+    "A Pokémon that has wings like cottony\n"
+    "clouds. After enduring winter, in which\n"
+    "little food is available, Swablu flocks\n"
+    "move closer to towns in the spring.");
+
+const u8 gAltariaPokedexText[] = _(
+    "It hums in a beautiful soprano voice.\n"
+    "It flies among white clouds in the blue\n"
+    "sky. It launches intensely hot fireballs\n"
+    "from its mouth.");
+
+const u8 gWynautPokedexText[] = _(
+    "A Wynaut loves to eat sweet fruits.\n"
+    "It cleverly picks fruits using its earlike\n"
+    "arms. They gather in fruit gardens, drawn\n"
+    "by the fragrance.");
+
+const u8 gDuskullPokedexText[] = _(
+    "A glare from its single scarlet eye makes\n"
+    "even burly grown-ups freeze in utter fear.\n"
+    "It is a nocturnal Pokémon that roams\n"
+    "about under the cloak of darkness.");
+
+const u8 gDusclopsPokedexText[] = _(
+    "It is thought that its body is hollow with\n"
+    "only a spectral ball of fire burning inside.\n"
+    "However, no one has been able to\n"
+    "confirm this theory as fact.");
+
+const u8 gRoseliaPokedexText[] = _(
+    "A Roselia that drinks nutritionally rich\n"
+    "springwater blooms with lovely flowers.\n"
+    "The fragrance of its flowers has the\n"
+    "effect of making its foes careless.");
+
+const u8 gSlakothPokedexText[] = _(
+    "It sleeps virtually all day and night long.\n"
+    "It doesn't change its nest its entire life,\n"
+    "but it sometimes travels great distances\n"
+    "by swimming in rivers.");
+
+const u8 gVigorothPokedexText[] = _(
+    "It can't keep still because its blood boils\n"
+    "with energy. It runs through the fields\n"
+    "and mountains all day to calm itself. If it\n"
+    "doesn't, it can't sleep at night.");
+
+const u8 gSlakingPokedexText[] = _(
+    "Hordes of Slaking gather around trees\n"
+    "when fruits come into season. They wait\n"
+    "around patiently for ripened fruits to fall\n"
+    "out of the trees.");
+
+const u8 gGulpinPokedexText[] = _(
+    "This Pokémon's stomach fluid can even\n"
+    "digest scrap iron. In one gulp, it can\n"
+    "swallow something that is as large as\n"
+    "itself.");
+
+const u8 gSwalotPokedexText[] = _(
+    "Its powerful stomach acid is capable of\n"
+    "digesting almost anything. The one thing\n"
+    "in the whole world a Swalot can't digest is\n"
+    "its own stomach.");
+
+const u8 gTropiusPokedexText[] = _(
+    "It flies by flapping its broad leaves.\n"
+    "The bunch of fruit that grows around its\n"
+    "neck is deliciously sweet. In the spring,\n"
+    "it scatters pollen from its neck.");
+
+const u8 gWhismurPokedexText[] = _(
+    "Its cries equal a jet plane in volume.\n"
+    "It inhales through its ear canals. Because\n"
+    "of this system, it can cry continually\n"
+    "without having to catch its breath.");
+
+const u8 gLoudredPokedexText[] = _(
+    "It positions the round speakers on its\n"
+    "head to assail foes with ultrasonic waves\n"
+    "at massive volume. It builds power by\n"
+    "stomping the ground.");
+
+const u8 gExploudPokedexText[] = _(
+    "It has sound-generating organs all over\n"
+    "its body. It communicates with others by\n"
+    "adjusting the tone and volume of the cries\n"
+    "it emits.");
+
+const u8 gClamperlPokedexText[] = _(
+    "A Clamperl slams its shell closed on prey\n"
+    "to prevent escape. The pearl it creates\n"
+    "upon evolution is said to be infused with\n"
+    "a mysterious energy.");
+
+const u8 gHuntailPokedexText[] = _(
+    "To withstand the crushing pressure of\n"
+    "water deep under the sea, its spine is very\n"
+    "thick and sturdy. Its tail, which is shaped\n"
+    "like a small fish, has eyes that light up.");
+
+const u8 gGorebyssPokedexText[] = _(
+    "A Gorebyss siphons the body fluids of prey\n"
+    "through its thin, tubular mouth. Its light\n"
+    "pink body color turns vivid when it\n"
+    "finishes feeding.");
+
+const u8 gAbsolPokedexText[] = _(
+    "It sharply senses even subtle changes in\n"
+    "the sky and the land to predict natural\n"
+    "disasters. It is a long-lived Pokémon that\n"
+    "has a life-span of 100 years.");
+
+const u8 gShuppetPokedexText[] = _(
+    "This Pokémon roams about deep in the\n"
+    "night seeking such negative emotions as\n"
+    "grudges and envy. It retreats to its nest\n"
+    "when the sun begins to rise.");
+
+const u8 gBanettePokedexText[] = _(
+    "An abandoned plush doll became this\n"
+    "Pokémon. They are said to live in garbage\n"
+    "dumps and wander about in search of the\n"
+    "children that threw them away.");
+
+const u8 gSeviperPokedexText[] = _(
+    "Seviper and Zangoose are eternal rivals.\n"
+    "It counters a Zangoose's dazzling agility\n"
+    "with its swordlike tail, which also oozes\n"
+    "a horrible poison.");
+
+const u8 gZangoosePokedexText[] = _(
+    "When it battles, it stands on its hind legs\n"
+    "and attacks with its sharply clawed\n"
+    "forelegs. Its fur bristles if it encounters\n"
+    "any Seviper.");
+
+const u8 gRelicanthPokedexText[] = _(
+    "A Pokémon that was once believed to have\n"
+    "been extinct. The species has not changed\n"
+    "its form for 100 million years. It walks on\n"
+    "the seafloor using its pectoral fins.");
+
+const u8 gAronPokedexText[] = _(
+    "A Pokémon that is clad in steel armor.\n"
+    "A new suit of armor is made when it evolves.\n"
+    "The old, discarded armor is salvaged as\n"
+    "metal for making iron products.");
+
+const u8 gLaironPokedexText[] = _(
+    "When two Lairon meet in the wild, they\n"
+    "fight for territory by bashing into each\n"
+    "other with their steel bodies. The sound\n"
+    "of their collision carries for miles.");
+
+const u8 gAggronPokedexText[] = _(
+    "Its iron horns grow longer a little at\n"
+    "a time. They are used to determine the\n"
+    "Aggron's age. The gouges in its armor are\n"
+    "worn with pride as mementos from battles.");
+
+const u8 gCastformPokedexText[] = _(
+    "It alters its form depending on the\n"
+    "weather. Changes in the climate such as\n"
+    "the temperature and humidity appear to\n"
+    "affect its cellular structure.");
+
+const u8 gVolbeatPokedexText[] = _(
+    "With their taillights lit, Volbeat fly in\n"
+    "a swarm, drawing geometric designs in the\n"
+    "night sky. They move their nests if their\n"
+    "pond water becomes dirty.");
+
+const u8 gIllumisePokedexText[] = _(
+    "A nocturnal Pokémon that becomes active\n"
+    "upon nightfall. It leads a Volbeat swarm\n"
+    "to draw patterns in the night sky. Over 200\n"
+    "different patterns have been confirmed.");
+
+const u8 gLileepPokedexText[] = _(
+    "It disguises itself as seaweed by making\n"
+    "its tentacles sway. Unsuspecting prey\n"
+    "that come too close are swallowed whole.\n"
+    "It became extinct 100 million years ago.");
+
+const u8 gCradilyPokedexText[] = _(
+    "It drags its heavy body along the\n"
+    "seafloor. It makes its nest in the shallows\n"
+    "of warm seas. Cradily can be seen on\n"
+    "beaches when the tide goes out.");
+
+const u8 gAnorithPokedexText[] = _(
+    "It was resurrected from a fossil using the\n"
+    "power of science. It swims by undulating\n"
+    "the eight wings at its sides. They were\n"
+    "feet that adapted to life in the sea.");
+
+const u8 gArmaldoPokedexText[] = _(
+    "Armaldo usually lives on land. However,\n"
+    "when it hunts for prey, it dives beneath\n"
+    "the ocean. It swims around using its two\n"
+    "large wings.");
+
+const u8 gRaltsPokedexText[] = _(
+    "A Ralts has the power to sense the\n"
+    "emotions of people and Pokémon with the\n"
+    "horns on its head. It takes cover if it\n"
+    "senses any hostility.");
+
+const u8 gKirliaPokedexText[] = _(
+    "A Kirlia has the psychic power to create \n"
+    "a rip in the dimensions and see into the\n"
+    "future. It is said to dance with pleasure\n"
+    "on sunny mornings.");
+
+const u8 gGardevoirPokedexText[] = _(
+    "It apparently does not feel the pull of\n"
+    "gravity because it supports itself with\n"
+    "psychic power. It will give its life to\n"
+    "protect its Trainer.");
+
+const u8 gBagonPokedexText[] = _(
+    "Although it is small, this Pokémon is very\n"
+    "powerful because its body is a bundle of\n"
+    "muscles. It launches head-butts with its\n"
+    "ironlike skull.");
+
+const u8 gShelgonPokedexText[] = _(
+    "It hardly eats while it awaits evolution.\n"
+    "It becomes hardier by enduring hunger.\n"
+    "Its shell peels off the instant it begins\n"
+    "to evolve.");
+
+const u8 gSalamencePokedexText[] = _(
+    "After many long years, its cellular\n"
+    "structure underwent a sudden mutation to\n"
+    "grow wings. When angered, it loses all\n"
+    "thought and rampages out of control.");
+
+const u8 gBeldumPokedexText[] = _(
+    "When Beldum gather in a swarm, they move\n"
+    "in perfect unison as if they were but one\n"
+    "Pokémon. They communicate with each other\n"
+    "using brain waves.");
+
+const u8 gMetangPokedexText[] = _(
+    "The claws tipping its arms pack the\n"
+    "destructive power to tear through thick\n"
+    "iron sheets as if they were silk. It flies\n"
+    "at over 60 miles per hour.");
+
+const u8 gMetagrossPokedexText[] = _(
+    "Metagross has four brains that are joined\n"
+    "by a complex neural network. As a result of\n"
+    "integration, this Pokémon is smarter than\n"
+    "a supercomputer.");
+
+const u8 gRegirockPokedexText[] = _(
+    "A Pokémon that is made entirely of rocks\n"
+    "and boulders. If parts of its body chip off\n"
+    "in battle, Regirock repairs itself by\n"
+    "adding new rocks.");
+
+const u8 gRegicePokedexText[] = _(
+    "Its entire body is made of Antarctic ice.\n"
+    "After extensive studies, researchers\n"
+    "believe the ice was formed during an\n"
+    "ice age.");
+
+const u8 gRegisteelPokedexText[] = _(
+    "Its body is harder than any other kind of\n"
+    "metal. The body metal is composed of a\n"
+    "mysterious substance. Not only is it hard,\n"
+    "it shrinks and stretches flexibly.");
+
+const u8 gKyogrePokedexText[] = _(
+    "Kyogre has appeared in mythology as the\n"
+    "creator of the sea. After long years of\n"
+    "feuding with Groudon, it took to sleep at\n"
+    "the bottom of the sea.");
+
+const u8 gGroudonPokedexText[] = _(
+    "Groudon has appeared in mythology as the\n"
+    "creator of the land. It sleeps in magma\n"
+    "underground and is said to make volcanoes\n"
+    "erupt on awakening.");
+
+const u8 gRayquazaPokedexText[] = _(
+    "A Pokémon that flies endlessly in the\n"
+    "ozone layer. It is said it would descend\n"
+    "to the ground if Kyogre and Groudon\n"
+    "were to fight.");
+
+const u8 gLatiasPokedexText[] = _(
+    "They make a small herd of only several\n"
+    "members. They rarely make contact with\n"
+    "people or other Pokémon. They disappear\n"
+    "if they sense enemies.");
+
+const u8 gLatiosPokedexText[] = _(
+    "Even in hiding, it can detect the locations\n"
+    "of others and sense their emotions since\n"
+    "it has telepathy. Its intelligence allows\n"
+    "it to understand human languages.");
+
+const u8 gJirachiPokedexText[] = _(
+    "Jirachi is said to make wishes come true.\n"
+    "While it sleeps, a tough crystalline shell\n"
+    "envelops the body to protect it from\n"
+    "enemies.");
+
+const u8 gDeoxysPokedexText[] = _(
+    "Deoxys emerged from a virus that came\n"
+    "from space. It is highly intelligent and\n"
+    "can shoot lasers from the crystalline\n"
+    "organ on its chest.");
+
+const u8 gChimechoPokedexText[] = _(
+    "They fly about very actively when the hot\n"
+    "season arrives. They communicate among\n"
+    "themselves using seven different and\n"
+    "distinguishing cries.");
+
+const u8 gTurtwigPokedexText[] = _(
+    "The shell on its back is made of soil. \n"
+    "On a very healthy Turtwig, the shell \n"
+    "should feel moist. The leaf on its head\n"
+    "wilts if it is thirsty.");
+
+const u8 gGrotlePokedexText[] = _(
+    "A Grotle that lives in the forest is said\n"
+    "to have its own secret springwater well. \n"
+    "It carries fellow Pokémon there on \n"
+    "its back.");
+
+const u8 gTorterraPokedexText[] = _(
+    "Some Pokémon are born on a Torterra's\n"
+    "back and spend their entire life there.\n"
+    "Ancient people imagined that beneath \n"
+    "the ground, a gigantic Torterra dwelled.");
+
+const u8 gChimcharPokedexText[] = _(
+    "Its fiery rear end is fueled by gas made\n"
+    "in its belly. Before going to sleep,\n"
+    "Chimchar extinguish the flame on their\n"
+    "tails to prevent fires.");
+
+const u8 gMonfernoPokedexText[] = _(
+    "It carefully controls the intensity of\n"
+    "the flame on its tail, so as to keep its\n"
+    "foes at an adequate distance.\n"
+    "Its fiery tail is but one weapon.");
+
+const u8 gInfernapePokedexText[] = _(
+    "Its crown of fire is indicative of its\n"
+    "fiery nature. It uses a special kind of\n"
+    "martial arts involving all of its limbs to\n"
+    "take on any opponent.");
+
+const u8 gPiplupPokedexText[] = _(
+    "A poor walker, it often falls down. However,\n"
+    "its strong pride makes it puff up its chest\n"
+    "without a care. It's difficult to bond with\n"
+    "since it won't listen to its Trainer.");
+
+const u8 gPrinplupPokedexText[] = _(
+    "Because every Prinplup considers itself\n"
+    "to be the most important, they can never\n"
+    "form a group. It searches for prey in\n"
+    "icy seas.");
+
+const u8 gEmpoleonPokedexText[] = _(
+    "The three horns that extend from its beak\n"
+    "attest to its power. It avoids unnecessary\n"
+    "disputes, but it will decimate anything\n"
+    "that threatens its pride.");
+
+const u8 gStarlyPokedexText[] = _(
+    "They flock around mountains and fields,\n"
+    "chasing after bug Pokémon. However,\n"
+    "they bicker if the group grows too big.\n"
+    "Their singing is noisy and annoying.");
+
+const u8 gStaraviaPokedexText[] = _(
+    "Recognizing their own weakness, they\n"
+    "maintain huge flocks. Fierce scuffles\n"
+    "break out between various flocks.\n"
+    "When alone, a Staravia cries noisily.");
+
+const u8 gStaraptorPokedexText[] = _(
+    "When Staravia evolve into Staraptor,\n"
+    "they leave the flock to live alone. It has\n"
+    "a savage nature. It will courageously\n"
+    "challenge foes that are much larger.");
+
+const u8 gBidoofPokedexText[] = _(
+    "A comparison revealed that Bidoof's front\n"
+    "teeth grow at the same rate as Rattata's.\n"
+    "It constantly gnaws on logs and rocks to\n"
+    "whittle down its front teeth.");
+
+const u8 gBibarelPokedexText[] = _(
+    "It makes its nest by damming streams\n"
+    "with bark and mud. A river dammed by\n"
+    "Bibarel will never overflow its banks,\n"
+    "which is appreciated by people nearby.");
+
+const u8 gKricketotPokedexText[] = _(
+    "It shakes its head back to front,\n"
+    "causing its antennae to hit each other\n"
+    "and sound like a xylophone.\n"
+    "These sounds are fall hallmarks.");
+
+const u8 gKricketunePokedexText[] = _(
+    "It signals its emotions with its melodies.\n"
+    "There is a village that hosts a contest\n"
+    "based on the amazingly variable cries\n"
+    "of this Pokémon.");
+
+const u8 gShinxPokedexText[] = _(
+    "It rapidly contracts and relaxes its\n"
+    "muscles to generate electricity. Its\n"
+    "body shines if endangered. It flees\n"
+    "while the foe is momentarily blinded.");
+
+const u8 gLuxioPokedexText[] = _(
+    "Strong electricity courses through the\n"
+    "tips of its sharp claws. A light scratch\n"
+    "has enough amperage to cause fainting\n"
+    "in foes.");
+
+const u8 gLuxrayPokedexText[] = _(
+    "It has eyes which can see through\n"
+    "anything. Luxray's ability to see\n"
+    "through objects comes in handy when\n"
+    "it's scouting for danger.");
+
+const u8 gBudewPokedexText[] = _(
+    "Over the winter, it closes its bud and\n"
+    "endures the cold. Sensitive to changing\n"
+    "temperature, the bud is said to bloom\n"
+    "when it feels the sun's warm touch.");
+
+const u8 gRoseradePokedexText[] = _(
+    "Its sweet aroma attracts prey.\n"
+    "With the movements of a dancer,\n"
+    "it strikes with whips that are densely\n"
+    "lined with poison thorns.");
+
+const u8 gCranidosPokedexText[] = _(
+    "A lifelong jungle dweller from 100 million\n"
+    "years ago, its skull is as hard as iron. \n"
+    "It would snap obstructing trees with\n"
+    "headbutts.");
+
+const u8 gRampardosPokedexText[] = _(
+    "The result of repeated headbutts\n"
+    "is a skull grown thick and hard.\n"
+    "However, its brain has shrunk in size\n"
+    "compared with Cranidos's.");
+
+const u8 gShieldonPokedexText[] = _(
+    "This Pokémon lived in primeval jungles.\n"
+    "Few enemies would have been willing to\n"
+    "square off against its heavily armored\n"
+    "face, so it's thought.");
+
+const u8 gBastiodonPokedexText[] = _(
+    "Their rock-hard faces serve to protect\n"
+    "them from any frontral attacks.\n"
+    "When attacked, they form a wall.\n"
+    "They shielded their young in that way.");
+
+const u8 gBurmyPokedexText[] = _(
+    "It is covered with a cloak that shelters\n"
+    "it from the cold. If its cloak is broken\n"
+    "in battle, it quickly remakes the cloak\n"
+    "with materials nearby.");
+
+const u8 gWormadamPokedexText[] = _(
+    "Its appearance changes depending\n"
+    "on where Burmy evolved. The materials\n"
+    "on hand become a part of its body.\n"
+    "The cloak is never shed.");
+
+const u8 gMothimPokedexText[] = _(
+    "It does not keep a nest. While it\n"
+    "loves floral honey, it won't gather\n"
+    "any itself. Instead, it plots to steal\n"
+    "honey collected by Combee.");
+
+const u8 gCombeePokedexText[] = _(
+    "A Pokémon formed by three others.\n"
+    "It constantly gathers honey from flowers\n"
+    "to please Vespiquen. At night, they\n"
+    "cluster to form a beehive and sleep.");
+
+const u8 gVespiquenPokedexText[] = _(
+    "It houses its colony in cells in its body\n"
+    "and releases various pheromones to\n"
+    "make those grubs do its bidding.\n"
+    "There is only one in a colony.");
+
+const u8 gPachirisuPokedexText[] = _(
+    "A pair may be seen rubbing their cheek\n"
+    "pouches together in an effort to share\n"
+    "stored electricity. It stores them with\n"
+    "berries in tree holes.");
+
+const u8 gBuizelPokedexText[] = _(
+    "It inflates its flotation sac, keeping its\n"
+    "face above water in order to watch for\n"
+    "prey movement. It swims by rotating its\n"
+    "two tails like a screw.");
+
+const u8 gFloatzelPokedexText[] = _(
+    "Its flotation sac developed as a result\n"
+    "of pursuing aquatic prey. It can double\n"
+    "as a rubber raft. It assists in the rescues\n"
+    "of drowning people.");
+
+const u8 gCherubiPokedexText[] = _(
+    "The small ball holds the nutrients needed\n"
+    "for evolution. Apparently, it is also very\n"
+    "sweet and tasty. Pokémon like Starly and\n"
+    "Taillow try to peck it off.");
+
+const u8 gCherrimPokedexText[] = _(
+    "During times of strong sunlight, its bud\n"
+    "blooms, its petals open fully, and it\n"
+    "becomes very active. It folds back into\n"
+    "a bud if sunlight wanes.");
+
+const u8 gShellosPokedexText[] = _(
+    "Its shape and coloration vary, depending\n"
+    "on its habitat. Beware of pushing strongly\n"
+    "on its squishy body, as it makes a\n"
+    "mysterious purple fluid ooze out.");
+
+const u8 gGastrodonPokedexText[] = _(
+    "It lives in shallow tidal pools.\n"
+    "Gastrodon once had a huge shell for\n"
+    "protection in ancient times. There are\n"
+    "traces of it left in its cells.");
+
+const u8 gAmbipomPokedexText[] = _(
+    "They live on large trees. Split into two,\n"
+    "the tails are so adept at handling and\n"
+    "doing things, Ambipom rarely uses\n"
+    "its hands now.\n"
+    "");
+
+const u8 gDrifloonPokedexText[] = _(
+    "Because of the way it floats aimlessly,\n"
+    "an old folktale calls it a “Signpost for\n"
+    "Wandering Spirits.” Children holding\n"
+    "them sometimes vanish.");
+
+const u8 gDrifblimPokedexText[] = _(
+    "Even while under careful observation,\n"
+    "large flocks of Drifblim flying at dusk\n"
+    "will inexplicably disappear from view.\n"
+    "No one knows where they go.");
+
+const u8 gBunearyPokedexText[] = _(
+    "You can tell how it feels by the way\n"
+    "it rolls its ears. When it's scared,\n"
+    "both ears are rolled up. When it senses\n"
+    "danger, it perks them up.");
+
+const u8 gLopunnyPokedexText[] = _(
+    "An extremely cautious Pokémon.\n"
+    "It is very conscious of its looks and\n"
+    "never fails to groom its ears.\n"
+    "It runs with sprightly jumps.");
+
+const u8 gMismagiusPokedexText[] = _(
+    "Its cries sound like incantations.\n"
+    "Those hearing it are tormented by\n"
+    "headaches and hallucinations.\n"
+    "It appears where you least expect it.");
+
+const u8 gHonchkrowPokedexText[] = _(
+    "Becoming active at night, it is known\n"
+    "to swarm with numerous Murkrow in tow.\n"
+    "It is said that it never forgives the\n"
+    "mistakes of its cronies.");
+
+const u8 gGlameowPokedexText[] = _(
+    "It is a very fickle Pokémon, which is \n"
+    "very popular among some. It claws its\n"
+    "Trainer's nose if it isn't fed and\n"
+    "purrs when affectionate.");
+
+const u8 gPuruglyPokedexText[] = _(
+    "It is a brazen brute that barges its way\n"
+    "into another Pokémon's nest and claims\n"
+    "it as its own. It binds its body with its\n"
+    "tails to make itself look bigger.");
+
+const u8 gChinglingPokedexText[] = _(
+    "There is an orb inside its mouth.\n"
+    "When it hops, the orb bounces all\n"
+    "over and makes a ringing sound.\n"
+    "It can cry for an awfully long time.");
+
+const u8 gStunkyPokedexText[] = _(
+    "It protects itself by spraying a\n"
+    "nose-curling, stinky fluid from its rear\n"
+    "to repel attackers. The stench lingers\n"
+    "for 24 hours.");
+
+const u8 gSkuntankPokedexText[] = _(
+    "It attacks by spraying a horribly smelly\n"
+    "fluid from the tip of its tail. The fluid\n"
+    "smells worse the longer it is allowed\n"
+    "to fester.");
+
+const u8 gBronzorPokedexText[] = _(
+    "Implements shaped like it were discovered\n"
+    "in ancient tombs. There are researchers\n"
+    "who believe this Pokémon reflected like a\n"
+    "mirror in the distant past.");
+
+const u8 gBronzongPokedexText[] = _(
+    "In ages past, this Pokémon was revered as\n"
+    "a bringer of rain. One caused a news stir\n"
+    "when it was dug up at a construction site\n"
+    "after a 2000-year sleep.");
+
+const u8 gBonslyPokedexText[] = _(
+    "Bonsly prefers an arid atmosphere.\n"
+    "In order to adjust the level of fluids\n"
+    "in its body, it exudes water from its eyes.\n"
+    "This makes it appear to be crying.");
+
+const u8 gMimeJrPokedexText[] = _(
+    "In an attempt to confuse its enemy,\n"
+    "it mimics the enemy's movements.\n"
+    "Once mimicked, the foe cannot take\n"
+    "its eyes off this Pokémon.");
+
+const u8 gHappinyPokedexText[] = _(
+    "It carries a round white rock in its\n"
+    "belly pouch. If it gets along well with\n"
+    "someone, it will sometimes give that\n"
+    "person the rock.");
+
+const u8 gChatotPokedexText[] = _(
+    "It mimics the cries of other Pokémon to\n"
+    "trick them into thinking it's one of them.\n"
+    "This way they won't attack it. It can\n"
+    "also learn and speak human words.");
+
+const u8 gSpiritombPokedexText[] = _(
+    "A Pokémon that was formed by 108 spirits.\n"
+    "Its constant mischief and misdeeds\n"
+    "resulted in it being bound to an\n"
+    "Odd Keystone by a mysterious spell.");
+
+const u8 gGiblePokedexText[] = _(
+    "It nests in horizontal holes warmed by\n"
+    "geothermal heat. Foes who stray too\n"
+    "close can expect to be pounced on\n"
+    "and bitten.");
+
+const u8 gGabitePokedexText[] = _(
+    "Shiny objects are its passion. It can be\n"
+    "found in its cave, scarcely moving,\n"
+    "its gaze fixed on the jewels it's amassed\n"
+    "or Carbink it has caught.");
+
+const u8 gGarchompPokedexText[] = _(
+    "When it folds up its body and extends its\n"
+    "wings, it looks like a jet plane. It is\n"
+    "covered in fine scales that reduce drag,\n"
+    "enabling it to fly at high speeds.");
+
+const u8 gMunchlaxPokedexText[] = _(
+    "When it finds something that looks like\n"
+    "it might be edible, it goes right ahead\n"
+    "and swallows it whole. That's why it gets\n"
+    "fatter day by day.");
+
+const u8 gRioluPokedexText[] = _(
+    "It can discern the physical and emotional\n"
+    "states of people, Pokémon, and other\n"
+    "natural things from the shape of their\n"
+    "aura waves.");
+
+const u8 gLucarioPokedexText[] = _(
+    "It understands human speech.\n"
+    "It is said that no foe can remain invisible\n"
+    "to Lucario, since it can detect Auras.\n"
+    "Even foes it could not otherwise see.");
+
+const u8 gHippopotasPokedexText[] = _(
+    "Hippopotas shuts its nostrils tight when\n"
+    "travelling through sand. Instead of\n"
+    "perspiration, it expels grains of sand\n"
+    "from its body.");
+
+const u8 gHippowdonPokedexText[] = _(
+    "It is surprisingly quick to anger.\n"
+    "It brandishes its gaping mouth in a\n"
+    "display of fearsome strength and raises\n"
+    "vast quantities of sand while attacking.");
+
+const u8 gSkorupiPokedexText[] = _(
+    "It grips prey with its tail claws and\n"
+    "injects poison. It tenaciously hangs\n"
+    "on until the poison takes.\n"
+    "It can survive a year without food.");
+
+const u8 gDrapionPokedexText[] = _(
+    "Possessing a sturdy build, it takes\n"
+    "pride in its strength. It has the power\n"
+    "in its clawed arms to make scrap\n"
+    "out of a car.");
+
+const u8 gCroagunkPokedexText[] = _(
+    "Croagunk rarely fights fairly. Inflating\n"
+    "its poison sacs, it fills the area with\n"
+    "an odd sound and hits flinching\n"
+    "opponents with a poison jab.");
+
+const u8 gToxicroakPokedexText[] = _(
+    "Swaying and dodging the attacks\n"
+    "of its foes, it weaves its flexible body\n"
+    "in close, then lunges out with its\n"
+    "poisonous claws.");
+
+const u8 gCarnivinePokedexText[] = _(
+    "Hanging from branches using its\n"
+    "tentacles, it looks like a plant.\n"
+    "It attracts prey with its sweet-smelling\n"
+    "saliva, then chomps down.");
+
+const u8 gFinneonPokedexText[] = _(
+    "Its double tail fins propel its energetic\n"
+    "jumps. When it breaks the surface of the\n"
+    "sea, Wingull swoop down to grab it on\n"
+    "the fly.");
+
+const u8 gLumineonPokedexText[] = _(
+    "Lumineon swimming in the darkness\n"
+    "of the deep sea look like stars shining\n"
+    "in the night sky. It competes for food\n"
+    "with Lanturn.");
+
+const u8 gMantykePokedexText[] = _(
+    "When it swims close to the surface\n"
+    "of the ocean, people aboard ships are\n"
+    "able to observe the pattern on its back.\n"
+    "It often swims in a school of Remoraid.");
+
+const u8 gSnoverPokedexText[] = _(
+    "During cold seasons, it migrates to the\n"
+    "mountain's lower reaches. Seemingly\n"
+    "curious about people, they gather around\n"
+    "footsteps they find on snowy mountains.");
+
+const u8 gAbomasnowPokedexText[] = _(
+    "It lives a quiet life on mountains that\n"
+    "are perpetually covered in snow. It hides\n"
+    "itself by whipping up blizzards.\n"
+    "It is also known as “The Ice Monster.”");
+
+const u8 gWeavilePokedexText[] = _(
+    "They travel in groups of four or five,\n"
+    "leaving signs for one another on trees\n"
+    "and rocks. They bring down their prey\n"
+    "with coordinated attacks.");
+
+const u8 gMagnezonePokedexText[] = _(
+    "As it zooms through the sky, this\n"
+    "Pokémon seems to be receiving signals\n"
+    "of unknown origin, while transmitting its\n"
+    "own signals of unknown purpose.");
+
+const u8 gLickilickyPokedexText[] = _(
+    "The long tongue is always soggy with\n"
+    "slobber. The saliva contains a solvent\n"
+    "that causes numbness. Getting too close\n"
+    "to it will leave you soaked with drool.");
+
+const u8 gRhyperiorPokedexText[] = _(
+    "It can launch a rock held in its hand\n"
+    "like a missile by tightening and then\n"
+    "expanding its muscles instantaneously.\n"
+    "Geodude are shot at rare times.");
+
+const u8 gTangrowthPokedexText[] = _(
+    "It ensnares prey by extending arms made\n"
+    "of vines. Even if one of its arms is eaten,\n"
+    "it's fine. The Pokémon regenerates quickly\n"
+    "and will go right back to normal.");
+
+const u8 gElectivirePokedexText[] = _(
+    "When it gets excited, it thumps its chest.\n"
+    "With every thud, thunder roars, electric\n"
+    "sparks shower all around and blue sparks\n"
+    "begin to crackle between its horns.");
+
+const u8 gMagmortarPokedexText[] = _(
+    "According to what is known, a single pair\n"
+    "of male and female Magmortar lives in\n"
+    "one volcano. From its arm, it launches\n"
+    "fireballs hotter than 3,600ºF.");
+
+const u8 gTogekissPokedexText[] = _(
+    "As everyone knows, it visits peaceful\n"
+    "regions, bringing them gifts of kindness\n"
+    "and sweet blessings. It will never appear\n"
+    "where there is strife.");
+
+const u8 gYanmegaPokedexText[] = _(
+    "This six-legged Pokémon is easily capable\n"
+    "of transporting an adult in flight. It is\n"
+    "adept at biting apart foes while flying\n"
+    "by at high speed.");
+
+const u8 gLeafeonPokedexText[] = _(
+    "Its cellular composition is closer to\n"
+    "that of a plant than an animal. It uses\n"
+    "photosynthesis to produce its energy\n"
+    "supply without eating food.");
+
+const u8 gGlaceonPokedexText[] = _(
+    "It can control its body temperature\n"
+    "at will. This enables it to freeze the\n"
+    "moisture in the atmosphere, creating\n"
+    "flurries of diamond dust.");
+
+const u8 gGliscorPokedexText[] = _(
+    "Gliscor observes prey while hanging\n"
+    "upside down from branches. Its flight is\n"
+    "soundless. When the chance presents\n"
+    "itself, it swoops!");
+
+const u8 gMamoswinePokedexText[] = _(
+    "A frozen Mamoswine was dug from ice\n"
+    "dating back 10,000 years. It woke up to\n"
+    "much amazement. This Pokémon has been\n"
+    "around for a long, long, long time.");
+
+const u8 gPorygonZPokedexText[] = _(
+    "In order to create a more advanced\n"
+    "Pokémon, an additional program was\n"
+    "installed, but apparently it contained a\n"
+    "defect that made it move oddly.");
+
+const u8 gGalladePokedexText[] = _(
+    "A master of courtesy and swordsmanship,\n"
+    "it fights using extending swords on its\n"
+    "elbows when trying to protect someone.\n"
+    "It can sense what its foe is thinking.");
+
+const u8 gProbopassPokedexText[] = _(
+    "It freely controls three units called\n"
+    "Mini-Noses using magnetic force.\n"
+    "With them, it can attack its foes from\n"
+    "three directions.");
+
+const u8 gDusknoirPokedexText[] = _(
+    "This feared Pokémon is said to travel to\n"
+    "worlds unknown. Some even believe that\n"
+    "it takes lost spirits into its pliant body\n"
+    "and guides them home.");
+
+const u8 gFroslassPokedexText[] = _(
+    "When it finds people or Pokémon it likes,\n"
+    "it freezes them and takes them to its\n"
+    "chilly den, where they become its\n"
+    "decorations.");
+
+const u8 gRotomPokedexText[] = _(
+    "Research continues on this Pokémon.\n"
+    "Its electric-like body can enter some\n"
+    "kinds of machines and take control,\n"
+    "in order to make mischief.");
+
+const u8 gUxiePokedexText[] = _(
+    "Known as ”The Being of Knowledge,”\n"
+    "according to some sources, this Pokémon\n"
+    "provided people with the intelligence\n"
+    "necessary to solve various problems.");
+
+const u8 gMespritPokedexText[] = _(
+    "Although it slumbers at the bottom of a\n"
+    "lake, its spirit is said to leave its body\n"
+    "and flitter on the water surface. It\n"
+    "taught humans of sorrow, pain, and joy.");
+
+const u8 gAzelfPokedexText[] = _(
+    "This Pokémon is said to have endowed\n"
+    "humans with the determination needed to\n"
+    "do things. It is thought that Uxie, Mesprit\n"
+    "and Azelf all came from the same egg.");
+
+const u8 gDialgaPokedexText[] = _(
+    "A Pokémon spoken of in legend.\n"
+    "It completely controls the flow of time.\n"
+    "It uses its power to travel at will\n"
+    "through the past and future.");
+
+const u8 gPalkiaPokedexText[] = _(
+    "Palkia has the ability to distort space.\n"
+    "Its total control over the boundaries of\n"
+    "space enable it to transport itself to\n"
+    "faraway places and other dimensions.");
+
+const u8 gHeatranPokedexText[] = _(
+    "Boiling blood, like magma, circulates\n"
+    "through its body. It dwells in volcanic\n"
+    "caves, using its cross-shaped feet\n"
+    "to crawl on ceilings and walls.");
+
+const u8 gRegigigasPokedexText[] = _(
+    "There is an enduring legend that\n"
+    "states this Pokémon shaped Regirock,\n"
+    "Regice, and Registeel out of clay, ice,\n"
+    "and magma.");
+
+const u8 gGiratinaPokedexText[] = _(
+    "This Pokémon is said to live in a world\n"
+    "on the reverse side of ours, where common\n"
+    "knowledge is distorted and strange.\n"
+    "It was banished for its violence.");
+
+const u8 gCresseliaPokedexText[] = _(
+    "Those who sleep holding one of\n"
+    "Cresselia's feathers are assured of\n"
+    "joyful dreams. It is said to represent\n"
+    "the crescent moon.");
+
+const u8 gPhionePokedexText[] = _(
+    "When the water warms, they inflate the\n"
+    "flotation sac on their heads and drift\n"
+    "languidly on the sea in packs.\n"
+    "It always returns to where it was born.");
+
+const u8 gManaphyPokedexText[] = _(
+    "Water makes up 80% of its body.\n"
+    "It starts its life with a wondrous power\n"
+    "that permits it to bond with any kind\n"
+    "of Pokémon.");
+
+const u8 gDarkraiPokedexText[] = _(
+    "It chases people and Pokémon from its\n"
+    "territory by causing them to experience\n"
+    "deep, nightmarish slumbers. However,\n"
+    "it means no harm.");
+
+const u8 gShayminPokedexText[] = _(
+    "The flowers all over its body burst into\n"
+    "bloom if it is lovingly hugged and senses\n"
+    "gratitude. The blooming of Gracideas\n"
+    "confers the power of flight upon it.");
+
+const u8 gArceusPokedexText[] = _(
+    "It is told in mythology that this Pokémon\n"
+    "emerged from an egg and shaped all there\n"
+    "is in this world, before the universe\n"
+    "even existed.");
+
+const u8 gVictiniPokedexText[] = _(
+    "This Pokémon brings victory.\n"
+    "It is said that Trainers with Victini\n"
+    "always win, regardless of the type\n"
+    "of encounter.");
+
+const u8 gSnivyPokedexText[] = _(
+    "It is very intelligent and calm.\n"
+    "Being exposed to lots of sunlight makes\n"
+    "its movements swifter. When they are\n"
+    "not feeling well, their tails droop.");
+
+const u8 gServinePokedexText[] = _(
+    "When it gets dirty, its leaves can't be\n"
+    "used in photosynthesis, so it always keeps\n"
+    "clean. They avoid attacks by sinking into\n"
+    "the shadows of thick foliage.");
+
+const u8 gSerperiorPokedexText[] = _(
+    "They raise their heads to intimidate foes,\n"
+    "but only give it their all when fighting\n"
+    "powerful opponents who are not fazed\n"
+    "by the glare from its noble eyes.");
+
+const u8 gTepigPokedexText[] = _(
+    "It loves to eat roasted berries, but\n"
+    "sometimes it gets too excited and burns\n"
+    "them to a crisp. It blows fire through\n"
+    "its nose.");
+
+const u8 gPignitePokedexText[] = _(
+    "The more it eats, the more fuel it has\n"
+    "to make the fire in its stomach stronger.\n"
+    "When it is angered, the intensity of the\n"
+    "flame increases.");
+
+const u8 gEmboarPokedexText[] = _(
+    "It is adept at using many different moves.\n"
+    "It can throw a fire punch by setting its\n"
+    "fists on fire with its fiery chin.\n"
+    "It cares deeply about its friends.");
+
+const u8 gOshawottPokedexText[] = _(
+    "The scalchop on its stomach isn't just\n"
+    "used for battle, it can be used to break\n"
+    "open hard berries as well. It is made\n"
+    "from the same element as its claws.");
+
+const u8 gDewottPokedexText[] = _(
+    "Strict training and disclipine leads it\n"
+    "to master its flowing double-scalchop\n"
+    "technique. Scalchop techniques differ\n"
+    "from one Dewott to another.");
+
+const u8 gSamurottPokedexText[] = _(
+    "One swing of the seamitars attached\n"
+    "to its armor can fell an opponent.\n"
+    "A simple glare from one of them is\n"
+    "enough to intimidate most enemies.");
+
+const u8 gPatratPokedexText[] = _(
+    "Extremely cautious, they take shifts to\n"
+    "maintain a constant watch of their nest.\n"
+    "Using food stored in cheek pouches,\n"
+    "they can keep watch for days.");
+
+const u8 gWatchogPokedexText[] = _(
+    "Using luminescent matter, it makes its\n"
+    "eyes and body glow and stuns attacking\n"
+    "opponents. Keen eyesight lets them see\n"
+    "in the dark.");
+
+const u8 gLillipupPokedexText[] = _(
+    "It faces strong opponents with great\n"
+    "courage. Because it doesn't yelp, it's\n"
+    "extremely popular with Trainers who live\n"
+    "in apartment buildings.");
+
+const u8 gHerdierPokedexText[] = _(
+    "Its dense black fur grows continuously.\n"
+    "The high cost of keeping its hard fur\n"
+    "properly groomed makes this a\n"
+    "troublesome Pokémon to train.\n"
+    "");
+
+const u8 gStoutlandPokedexText[] = _(
+    "Intelligent, good-natured, and valiant,\n"
+    "there could be no concern that it would\n"
+    "ever attack people. Some parents even\n"
+    "trust it to babysit.");
+
+const u8 gPurrloinPokedexText[] = _(
+    "Their deceptively cute act is the\n"
+    "perfect ruse. They steal from people for\n"
+    "fun, but their victims can't help but\n"
+    "forgive them.");
+
+const u8 gLiepardPokedexText[] = _(
+    "Many Trainers are drawn to their\n"
+    "beautiful form and fur. These Pokémon\n"
+    "vanish and appear unexpectedly.\n"
+    "They run silently in the night.");
+
+const u8 gPansagePokedexText[] = _(
+    "This Pokémon dwells deep in the forest.\n"
+    "It's good at finding berries and gathers\n"
+    "them from all over. It's kind enough to\n"
+    "share them with friends.");
+
+const u8 gSimisagePokedexText[] = _(
+    "Ill tempered, it attacks enemies by\n"
+    "swinging its barbed tail around wildly.\n"
+    "The leaf growing on its head is\n"
+    "very bitter.");
+
+const u8 gPansearPokedexText[] = _(
+    "The fire within the tuft on its head can\n"
+    "reach up to 600ºF. Very intelligent,\n"
+    "it roasts berries before eating them.\n"
+    "It likes to help people.");
+
+const u8 gSimisearPokedexText[] = _(
+    "It loves sweets because they become\n"
+    "energy for the fire burning inside its\n"
+    "body. It scatters embers from its head\n"
+    "and tail to sear its opponents.");
+
+const u8 gPanpourPokedexText[] = _(
+    "The water stored inside the tuft of its\n"
+    "head is rich in nutrients. It waters\n"
+    "plants using its tail, plants that\n"
+    "receive its water grow large.");
+
+const u8 gSimipourPokedexText[] = _(
+    "It can shoot highly-pressurised water\n"
+    "from its tail with enough power to\n"
+    "break through a solid concrete wall.\n"
+    "It prefers places with clean water.");
+
+const u8 gMunnaPokedexText[] = _(
+    "This Pokémon appears before people\n"
+    "and Pokémon who are having nightmares\n"
+    "and eats those dreams. Munna always\n"
+    "float in the air. ");
+
+const u8 gMusharnaPokedexText[] = _(
+    "The mist emanating from their foreheads\n"
+    "is packed with the dreams of people and\n"
+    "Pokémon. It changes into different colors\n"
+    "depending on the dream that was eaten.");
+
+const u8 gPidovePokedexText[] = _(
+    "This very forgetful Pokémon will wait for\n"
+    "a new order from its Trainer even though\n"
+    "it already has one. Flocks often gather\n"
+    "in parks and plazas.");
+
+const u8 gTranquillPokedexText[] = _(
+    "No matter where in the world it goes,\n"
+    "it knows where its nest is, so it can\n"
+    "always return to its Trainer's location\n"
+    "regardless of the distance.");
+
+const u8 gUnfezantPokedexText[] = _(
+    "Males have plumage on their heads.\n"
+    "The females' flying abilities surpass\n"
+    "those of the males. They will only let\n"
+    "themselves feel close to their Trainers.");
+
+const u8 gBlitzlePokedexText[] = _(
+    "Its mane shines when it discharges\n"
+    "electricity. They use the frequency and\n"
+    "rhythm of these flashes to communicate\n"
+    "with one another.");
+
+const u8 gZebstrikaPokedexText[] = _(
+    "When Zebstrika run at full speed, the\n"
+    "sound of thunder reverberates. It is\n"
+    "dangerous when it's angry as it shoots\n"
+    "lightning from its mane in all directions.");
+
+const u8 gRoggenrolaPokedexText[] = _(
+    "The hexagonal cavity is its ear.\n"
+    "It walks in the direction of sounds it\n"
+    "hears, but if the sounds cease, it panics\n"
+    "and topples over.");
+
+const u8 gBoldorePokedexText[] = _(
+    "Its orange crystal is a mass of energy.\n"
+    "Just one crystal fragment would provide\n"
+    "enough fuel for a hundred dump trucks.\n"
+    "When it is healthy, its core sticks out.");
+
+const u8 gGigalithPokedexText[] = _(
+    "The blasts of energy it makes from\n"
+    "sunbeams have terrifying power.\n"
+    "However, it's not able to fire its blasts\n"
+    "at night or on rainy days.");
+
+const u8 gWoobatPokedexText[] = _(
+    "Its habitat is dark forests and caves.\n"
+    "Suction from its nostrils enables it\n"
+    "to stick to cave walls during sleep.\n"
+    "It leaves a heart-shaped mark behind.");
+
+const u8 gSwoobatPokedexText[] = _(
+    "Anyone who comes into contact with\n"
+    "the ultrasonic waves emitted by a\n"
+    "courting male experiences a positive\n"
+    "mood shift.");
+
+const u8 gDrilburPokedexText[] = _(
+    "It can dig through the ground at a\n"
+    "speed of 30 mph by spinning its body.\n"
+    "It could give a car running aboveground\n"
+    "a good race.");
+
+const u8 gExcadrillPokedexText[] = _(
+    "More than 300 feet below the surface,\n"
+    "they build mazelike nests. Their activity\n"
+    "can be destructive to subway tunnels,\n"
+    "but it can also help with construction.");
+
+const u8 gAudinoPokedexText[] = _(
+    "Its auditory sense is astounding.\n"
+    "Using the feelers on its ears, it can tell\n"
+    "how someone is feeling or when an egg\n"
+    "might hatch.\n"
+    "");
+
+const u8 gTimburrPokedexText[] = _(
+    "These Pokémon appear at building\n"
+    "sites and help out with construction.\n"
+    "They always carry squared logs.\n"
+    "As they grow, they carry bigger logs.");
+
+const u8 gGurdurrPokedexText[] = _(
+    "They strengthen their bodies by carrying\n"
+    "steel beams. This Pokémon is so muscular\n"
+    "and strongly built that even a group of\n"
+    "wrestlers could not make it budge an inch.");
+
+const u8 gConkeldurrPokedexText[] = _(
+    "They use concrete pillars as walking\n"
+    "canes. Rather than rely solely on force,\n"
+    "they master moves that utilize the\n"
+    "centrifugal force of spinning concrete.");
+
+const u8 gTympolePokedexText[] = _(
+    "By vibrating its cheeks, it emits sound\n"
+    "waves imperceptible to humans. It uses\n"
+    "the rhythm of these sounds to talk and\n"
+    "warns others of danger.");
+
+const u8 gPalpitoadPokedexText[] = _(
+    "It lives in the water and on land.\n"
+    "When they vibrate the bumps on their\n"
+    "heads, they can make waves in water\n"
+    "or earthquake-like vibrations on land.");
+
+const u8 gSeismitoadPokedexText[] = _(
+    "It increases the power of its punches\n"
+    "by vibrating the bumps on its fists.\n"
+    "They can also shoot paralyzing liquid\n"
+    "from their head bumps.");
+
+const u8 gThrohPokedexText[] = _(
+    "When it tightens its belt, it becomes\n"
+    "stronger. Wild Throh use vines to weave\n"
+    "their own belts. It changes belts as it\n"
+    "gets more powerful.");
+
+const u8 gSawkPokedexText[] = _(
+    "The sound of Sawk punching boulders\n"
+    "and trees can be heard all the way from\n"
+    "the mountains where they train.\n"
+    "Disturbing their training angers them.");
+
+const u8 gSewaddlePokedexText[] = _(
+    "It chews up leaves and sews them with\n"
+    "sticky thread extruded from its mouth.\n"
+    "Since this Pokémon makes its own clothes,\n"
+    "it is a mascot for fashion designers.");
+
+const u8 gSwadloonPokedexText[] = _(
+    "Forests where Swadloon live have\n"
+    "superb foliage because the nutrients\n"
+    "they make from fallen leaves nourish\n"
+    "the plant life.");
+
+const u8 gLeavannyPokedexText[] = _(
+    "It keeps its eggs warm with heat from\n"
+    "fermenting leaves. It also uses leaves to\n"
+    "weave warm wrappings for Sewaddle by\n"
+    "using the silk secreted from its mouth.");
+
+const u8 gVenipedePokedexText[] = _(
+    "Using the feelers on its head and tail,\n"
+    "it picks up vibrations in the air to\n"
+    "determine its prey's location and state.\n"
+    "It is brutally aggressive.");
+
+const u8 gWhirlipedePokedexText[] = _(
+    "Storing energy for evolution, it sits.\n"
+    "But when attacked, it spins its body at\n"
+    "high speed like a wheel and then\n"
+    "crashes furiously into its opponent.");
+
+const u8 gScolipedePokedexText[] = _(
+    "With quick movements, it chases down\n"
+    "its foes, attacking relentlessly with its\n"
+    "horns until it prevails. Then it finishes\n"
+    "them off with deadly poison.");
+
+const u8 gCottoneePokedexText[] = _(
+    "When it finds others of its kind, they all\n"
+    "stick together. When enough of them\n"
+    "have collected, the mass resembles a\n"
+    "cumulonimbus cloud.");
+
+const u8 gWhimsicottPokedexText[] = _(
+    "It rides on the wind and slips into\n"
+    "people's homes. After it has turned a\n"
+    "room into a cotton-filled mess, it giggles\n"
+    "to itself and takes off.");
+
+const u8 gPetililPokedexText[] = _(
+    "By pruning the leaves on its head with\n"
+    "regularity, this Pokémon can be grown\n"
+    "into a fine plump shape. These bitter\n"
+    "leaves refresh those who eat them.");
+
+const u8 gLilligantPokedexText[] = _(
+    "Even veteran Trainers face a challenge\n"
+    "in getting its beautiful flower to bloom.\n"
+    "It withers away if a trainer does not\n"
+    "take good care of it.");
+
+const u8 gBasculinPokedexText[] = _(
+    "Red and blue Basculin usually do not\n"
+    "get along, but sometimes members of\n"
+    "one school mingle with the other's school.\n"
+    "These Pokémon are very hostile.");
+
+const u8 gSandilePokedexText[] = _(
+    "It conceals itself in the sand and\n"
+    "chomps down on the legs of any prey\n"
+    "that unwarily walk over it. Its favorite\n"
+    "food is Trapinch.");
+
+const u8 gKrokorokPokedexText[] = _(
+    "They move in groups of a few individuals.\n"
+    "Thanks to the special membrane covering\n"
+    "its eyes, it can see its surroundings\n"
+    "clearly, even in the dead of night.");
+
+const u8 gKrookodilePokedexText[] = _(
+    "Very violent Pokémon, they never allow\n"
+    "their prey to escape. Their jaws are so\n"
+    "powerful, they can crush the body of\n"
+    "an automobile.");
+
+const u8 gDarumakaPokedexText[] = _(
+    "When its internal fire is burning, it\n"
+    "cannot calm down and it runs around.\n"
+    "When the fire diminishes, it pulls its\n"
+    "limbs into its body and falls asleep.");
+
+const u8 gDarmanitanPokedexText[] = _(
+    "When one is injured in a fierce battle,\n"
+    "it transforms into a stone statue.\n"
+    "Then it meditates and sharpens its\n"
+    "mind and fights on mentally.");
+
+const u8 gMaractusPokedexText[] = _(
+    "Arid regions are their habitat.\n"
+    "When it moves rhythmically, it makes a\n"
+    "sound similar to maracas, making the\n"
+    "surprised Pokémon flee.");
+
+const u8 gDwebblePokedexText[] = _(
+    "It makes a hole in a stone of a suitable\n"
+    "size. If that rock breaks, the Pokémon\n"
+    "remains agitated until it locates\n"
+    "a replacement.");
+
+const u8 gCrustlePokedexText[] = _(
+    "Competing for territory, Crustle fight\n"
+    "viciously. The one whose boulder is\n"
+    "broken is the loser of the battle and\n"
+    "begins to weaken.");
+
+const u8 gScraggyPokedexText[] = _(
+    "Its skin has a rubbery elasticity, so it\n"
+    "can reduce damage by defensively\n"
+    "pulling its skin up to its neck.\n"
+    "Its skull is massively thick.");
+
+const u8 gScraftyPokedexText[] = _(
+    "Groups of them beat up anything that\n"
+    "enters their territory. The one with the\n"
+    "biggest crest is the group leader, and\n"
+    "is the most respected.");
+
+const u8 gSigilyphPokedexText[] = _(
+    "The guardians of an ancient city, they\n"
+    "always fly the same route while keeping\n"
+    "watch for invaders. They use their\n"
+    "psychic power to attack enemies.");
+
+const u8 gYamaskPokedexText[] = _(
+    "These Pokémon arose from the spirits\n"
+    "of people interred in graves in past ages.\n"
+    "Each of them carries a mask that used\n"
+    "to be its face when it was human.");
+
+const u8 gCofagrigusPokedexText[] = _(
+    "Grave robbers who mistake them for\n"
+    "real coffins and get too close end up\n"
+    "trapped inside their bodies. Their bodies\n"
+    "are covered in pure gold.\n"
+    "");
+
+const u8 gTirtougaPokedexText[] = _(
+    "Reputed to be the ancestor of most\n"
+    "turtle Pokémon, it lived in warm seas\n"
+    "about a hundred million years ago.\n"
+    "It was restored from a fossil.");
+
+const u8 gCarracostaPokedexText[] = _(
+    "They can live both in the ocean and\n"
+    "on land. Incredible jaw strength enables\n"
+    "them to chew up steel beams and rocks\n"
+    "along with their prey.");
+
+const u8 gArchenPokedexText[] = _(
+    "Said to be the ancestor of all bird\n"
+    "Pokémon, Archen itself could not actually\n"
+    "fly but moved by hopping from treetop\n"
+    "to treetop.");
+
+const u8 gArcheopsPokedexText[] = _(
+    "They are intelligent and will cooperate\n"
+    "to catch prey. When one Archeops\n"
+    "had the prey cornered, another would\n"
+    "swoop on it.");
+
+const u8 gTrubbishPokedexText[] = _(
+    "It gorges on trash until its stomach\n"
+    "is full. Then it belches toxic gas.\n"
+    "An unlucky whiff of this gas will put\n"
+    "a person in the hospital.");
+
+const u8 gGarbodorPokedexText[] = _(
+    "Beware the poisonous liquid it shoots\n"
+    "from its right arm. If even a little of it\n"
+    "gets on you, you'll experience the full\n"
+    "effects of this unidentified toxin.");
+
+const u8 gZoruaPokedexText[] = _(
+    "To protect themselves from danger, they\n"
+    "hide their true identities by transforming\n"
+    "into people and Pokémon. Apparently, it\n"
+    "often transforms into a silent child.");
+
+const u8 gZoroarkPokedexText[] = _(
+    "Bonds between these Pokémon are very\n"
+    "strong. It protects the safety of its\n"
+    "pack by tricking its opponents. They\n"
+    "defend their lair with illusory scenery.");
+
+const u8 gMinccinoPokedexText[] = _(
+    "These Pokémon prefer a tidy habitat.\n"
+    "They greet one another by rubbing each\n"
+    "other with their tails, which are always\n"
+    "kept well groomed and clean.");
+
+const u8 gCinccinoPokedexText[] = _(
+    "Their white fur feels amazing to touch.\n"
+    "Cinccino's body is coated in a special\n"
+    "oil that repels dust and helps it deflect\n"
+    "attacks, such as punches.");
+
+const u8 gGothitaPokedexText[] = _(
+    "They intently observe both Trainers and\n"
+    "Pokémon. Apparently, Gothita are looking\n"
+    "at something that only they can see. Their\n"
+    "ribbonlike feelers increase their power.");
+
+const u8 gGothoritaPokedexText[] = _(
+    "Starlight is the source of their power.\n"
+    "They use hypnosis to control people and\n"
+    "Pokémon. Tales of Gothorita leading them\n"
+    "astray are told in every corner.");
+
+const u8 gGothitellePokedexText[] = _(
+    "Starry skies thousands of light-years\n"
+    "away are visible in the space distorted by\n"
+    "their intense psychic power. When it learns\n"
+    "its Trainer's life span, it cries in sadness.");
+
+const u8 gSolosisPokedexText[] = _(
+    "Because their bodies are enveloped\n"
+    "in a special liquid, they are fine in any\n"
+    "environment, no matter how severe. They\n"
+    "can use telepathy to talk with others.");
+
+const u8 gDuosionPokedexText[] = _(
+    "When their brains, now divided in two,\n"
+    "are thinking the same thoughts,\n"
+    "these Pokémon exhibit their maximized\n"
+    "psychic power.");
+
+const u8 gReuniclusPokedexText[] = _(
+    "They use psychic power to control their\n"
+    "arms, which are made of a special liquid.\n"
+    "When Reuniclus shake hands, a network\n"
+    "forms between their brains.");
+
+const u8 gDucklettPokedexText[] = _(
+    "These bird Pokémon are excellent divers.\n"
+    "They are better at swimming than flying,\n"
+    "and they happily eat their favorite food,\n"
+    "peat moss, as they dive underwater.");
+
+const u8 gSwannaPokedexText[] = _(
+    "Despite their elegant appearance, they\n"
+    "can flap their wings strongly and fly for\n"
+    "thousands of miles. The one in the middle\n"
+    "is the leader of the flock.");
+
+const u8 gVanillitePokedexText[] = _(
+    "The temperature of their breath is -58ºF.\n"
+    "They create snow crystals and make snow\n"
+    "fall in the areas around them. Vanillite is\n"
+    "treasured by households in warm regions.");
+
+const u8 gVanillishPokedexText[] = _(
+    "Vanillish has existed since the Ice Age.\n"
+    "It controls particles of ice, freezes its\n"
+    "opponents, and then shatters them with\n"
+    "a headbutt.");
+
+const u8 gVanilluxePokedexText[] = _(
+    "Each of its two heads has a brain, and\n"
+    "when they are in agreement, it attacks\n"
+    "its enemies by exhaling a violent blizzard.\n"
+    "It makes snow clouds inside its body.");
+
+const u8 gDeerlingPokedexText[] = _(
+    "Their coloring changes according to the\n"
+    "seasons and can be slightly affected by\n"
+    "the temperature and humidity as well.\n"
+    "People use it to mark the seasons.");
+
+const u8 gSawsbuckPokedexText[] = _(
+    "Some people call Sawsbuck the harbingers\n"
+    "of spring because the plants growing on\n"
+    "its horns change according to the season.\n"
+    "The leader possesses magnificent horns.");
+
+const u8 gEmolgaPokedexText[] = _(
+    "It glides using its cape-like membrane.\n"
+    "It grills berries and bug Pokémon with\n"
+    "electric shocks from the pouches on its\n"
+    "cheeks and makes a meal of them.");
+
+const u8 gKarrablastPokedexText[] = _(
+    "When they feel threatened, they spit an\n"
+    "acidic liquid to drive attackers away.\n"
+    "For some reason they evolve while they\n"
+    "are in the same place as Shelmet.");
+
+const u8 gEscavalierPokedexText[] = _(
+    "Wearing the shell covering they stole\n"
+    "from Shelmet, they defend themselves and\n"
+    "attack with two lances. The steel armor\n"
+    "protects their whole body.");
+
+const u8 gFoongusPokedexText[] = _(
+    "It lures Pokémon in with its pattern that\n"
+    "looks just like a Poké Ball, then releases\n"
+    "its poison spores. Why it resembles a\n"
+    "Poké Ball is unknown.");
+
+const u8 gAmoongussPokedexText[] = _(
+    "It lures prey close by dancing and waving\n"
+    "its arm caps, which resemble Poké Balls,\n"
+    "in a swaying motion, but very few Pokémon\n"
+    "are fooled by this.");
+
+const u8 gFrillishPokedexText[] = _(
+    "If its veil-like arms stun and wrap an\n"
+    "opponent, that foe will be dragged\n"
+    "five miles below the surface to its lair,\n"
+    "never to return.");
+
+const u8 gJellicentPokedexText[] = _(
+    "They propel themselves by expelling\n"
+    "absorbed seawater from their bodies.\n"
+    "It's said there's a castle of ships\n"
+    "Jellicent have sunk on the seafloor.");
+
+const u8 gAlomomolaPokedexText[] = _(
+    "When they find a wounded Pokémon,\n"
+    "they embrace it and bring it to shore.\n"
+    "The special membrane enveloping\n"
+    "Alomomola has the ability to heal wounds.");
+
+const u8 gJoltikPokedexText[] = _(
+    "Since they can't generate their own\n"
+    "electricity, they attach themselves to\n"
+    "large-bodied Pokémon and absorb static\n"
+    "electricity, which they store in a pouch.");
+
+const u8 gGalvantulaPokedexText[] = _(
+    "It creates barriers from electrified silk\n"
+    "that stun foes. This works as a weapon as\n"
+    "well as a defense. While it is immobilized\n"
+    "by shock, they leisurely consume it.");
+
+const u8 gFerroseedPokedexText[] = _(
+    "It absorbs the iron it finds in the rock\n"
+    "while clinging to the ceiling of caves.\n"
+    "When threatened, it attacks by shooting\n"
+    "a barrage of spikes.");
+
+const u8 gFerrothornPokedexText[] = _(
+    "It fights by swinging around its three\n"
+    "spiky feelers and shooting spikes.\n"
+    "A hit from these steel spikes can reduce\n"
+    "a boulder to rubble.");
+
+const u8 gKlinkPokedexText[] = _(
+    "Two bodies comprise a fixed pair.\n"
+    "The two minigears that mesh together\n"
+    "are predetermined. Each will rebound from\n"
+    "other minigears without meshing.");
+
+const u8 gKlangPokedexText[] = _(
+    "A minigear and big gear comprise its\n"
+    "body. Spinning minigears are rotated\n"
+    "at high speed and repeatedly fired away.\n"
+    "It is dangerous if the gears don't return.");
+
+const u8 gKlinklangPokedexText[] = _(
+    "Its red core functions as an energy tank.\n"
+    "It is rotated at high speed for a rapid\n"
+    "energy charge. It fires the charged energy\n"
+    "through its spikes into an area.");
+
+const u8 gTynamoPokedexText[] = _(
+    "These Pokémon move in schools.\n"
+    "One alone can emit only a trickle of\n"
+    "electricity, so a group of them gathers\n"
+    "to unleash a powerful electric shock.");
+
+const u8 gEelektrikPokedexText[] = _(
+    "These Pokémon have a big appetite.\n"
+    "It wraps itself around its prey and\n"
+    "paralyzes it with electricity from the\n"
+    "round spots on its sides. Then it chomps.");
+
+const u8 gEelektrossPokedexText[] = _(
+    "They crawl out of the ocean using their\n"
+    "arms. They will attack prey on shore and\n"
+    "immediately drag it into the ocean, with\n"
+    "their sucker mouths.");
+
+const u8 gElgyemPokedexText[] = _(
+    "It psychically squeezes the brain of\n"
+    "its foe, causing unendurable headaches.\n"
+    "Rumors of its origin are linked to a UFO\n"
+    "crash site in the desert 50 years ago.");
+
+const u8 gBeheeyemPokedexText[] = _(
+    "It can manipulate an opponent's memory.\n"
+    "Apparently, it communicates by flashing\n"
+    "its three fingers, but those patterns\n"
+    "haven't been decoded. ");
+
+const u8 gLitwickPokedexText[] = _(
+    "While Litwick shines a light and pretends\n"
+    "to be a guide, it absorbs the life force of\n"
+    "any who follow it, which becomes the fuel\n"
+    "that it burns.");
+
+const u8 gLampentPokedexText[] = _(
+    "This ominous Pokémon is feared.\n"
+    "Through cities it wanders, searching\n"
+    "for the spirits of the fallen. The spirits\n"
+    "it absorbs fuel its baleful fire.");
+
+const u8 gChandelurePokedexText[] = _(
+    "Being consumed in Chandelure's flame burns\n"
+    "up the spirit, leaving the body behind.\n"
+    "By waving the flames on its arms, it puts\n"
+    "its foes into a hypnotic trance.");
+
+const u8 gAxewPokedexText[] = _(
+    "They mark their territory by leaving\n"
+    "gashes in trees with their tusks. If a\n"
+    "tusk breaks, a new one grows in quickly,\n"
+    "harder and sturdier than the last.");
+
+const u8 gFraxurePokedexText[] = _(
+    "Their tusks can shatter rocks.\n"
+    "A broken tusk will not grow back,\n"
+    "so it diligently sharpens its tusks on\n"
+    "river rocks after the end of a battle.");
+
+const u8 gHaxorusPokedexText[] = _(
+    "They are kind but can be relentless\n"
+    "when defending territory. Their sturdy\n"
+    "tusks will stay sharp even if used to cut\n"
+    "steel beams.");
+
+const u8 gCubchooPokedexText[] = _(
+    "Its nose is always running.\n"
+    "Their snot is a barometer of health.\n"
+    "When healthy, their snot is sticky and\n"
+    "the power of their ice moves increases.");
+
+const u8 gBearticPokedexText[] = _(
+    "It freezes its breath to create fangs\n"
+    "and claws of ice to fight with.\n"
+    "Very able in the water, it swims around\n"
+    "in northern seas and catches prey.");
+
+const u8 gCryogonalPokedexText[] = _(
+    "They are born in snow clouds. When\n"
+    "its body temperature goes up, it turns\n"
+    "into steam and vanishes. When its\n"
+    "temperature lowers, it returns to ice.");
+
+const u8 gShelmetPokedexText[] = _(
+    "When attacked, it defends itself by\n"
+    "closing the lid of its shell. It evolves\n"
+    "when bathed in an electric-like energy\n"
+    "along with Karrablast.");
+
+const u8 gAccelgorPokedexText[] = _(
+    "When its body dries out, it weakens. So, to\n"
+    "prevent dehydration, it wraps itself in\n"
+    "layers of thin membrane. It is very light\n"
+    "and fights with ninja-like movements.");
+
+const u8 gStunfiskPokedexText[] = _(
+    "It conceals itself in the mud of the\n"
+    "seashore. Then it waits. When prey touch\n"
+    "it, it delivers a jolt of electricity.\n"
+    "It smiles when transmitting electricity.");
+
+const u8 gMienfooPokedexText[] = _(
+    "They have mastered elegant combos.\n"
+    "As they concentrate, their battle moves\n"
+    "become swifter and more precise. What it\n"
+    "lacks in power, it makes up for in quantity.");
+
+const u8 gMienshaoPokedexText[] = _(
+    "They use the long fur on their arms as\n"
+    "a whip to strike their opponents. Its arm\n"
+    "attacks come with such rapidity that they\n"
+    "cannot even be seen.");
+
+const u8 gDruddigonPokedexText[] = _(
+    "It warms its body by absorbing sunlight\n"
+    "with its wings. When its body temperature\n"
+    "falls, it can no longer move. It uses its\n"
+    "sharp claws to catch prey.");
+
+const u8 gGolettPokedexText[] = _(
+    "These Pokémon are thought to have\n"
+    "been created by the science of an\n"
+    "ancient and mysterious civilization.\n"
+    "It's been active for thousands of years.");
+
+const u8 gGolurkPokedexText[] = _(
+    "Golurk were created to protect people\n"
+    "and Pokémon by an ancient civilisation.\n"
+    "Removing the seal on its chest makes its\n"
+    "internal energy go out of control.");
+
+const u8 gPawniardPokedexText[] = _(
+    "Ignoring their injuries, groups attack by\n"
+    "sinking the blades that cover their bodies\n"
+    "into their prey. If battling dulls them, it\n"
+    "sharpens them on stones by the river.");
+
+const u8 gBisharpPokedexText[] = _(
+    "This pitiless Pokémon commands a group\n"
+    "of Pawniard to hound prey into immobility.\n"
+    "It battles to become the boss, but will be\n"
+    "driven from the group if it loses.");
+
+const u8 gBouffalantPokedexText[] = _(
+    "Their fluffy fur absorbs damage, even\n"
+    "if they strike foes with a fierce headbutt.\n"
+    "Their headbutts have enough destructive\n"
+    "force to derail a train.");
+
+const u8 gRuffletPokedexText[] = _(
+    "With its sharp claws, this Pokémon pierces\n"
+    "its prey, and then it pecks at them.\n"
+    "Although it also consumes berries, it's a\n"
+    "carnivore at heart.");
+
+const u8 gBraviaryPokedexText[] = _(
+    "For the sake of its friends, this brave\n"
+    "warrior of the sky will not stop battling,\n"
+    "even if it is injured. One can carry a car\n"
+    "while flying.");
+
+const u8 gVullabyPokedexText[] = _(
+    "It can't fly yet and must wait until its\n"
+    "wings have developed more. They guard\n"
+    "their posteriors with bones that were\n"
+    "gathered by Mandibuzz.");
+
+const u8 gMandibuzzPokedexText[] = _(
+    "They adorn themselves beautifully with\n"
+    "bones. This is supposedly an effort to\n"
+    "attract males, but no male Mandibuzz\n"
+    "have ever been found.");
+
+const u8 gHeatmorPokedexText[] = _(
+    "It draws in air through its tail, transforms\n"
+    "it into fire, and uses it like a tongue.\n"
+    "They burn through Durant's steel bodies\n"
+    "and consume their insides.");
+
+const u8 gDurantPokedexText[] = _(
+    "Durant dig nests in mountains.\n"
+    "Individuals each play different roles in\n"
+    "driving Heatmor, their natural predator,\n"
+    "away from their colony.");
+
+const u8 gDeinoPokedexText[] = _(
+    "Lacking sight, it's unaware of its\n"
+    "surroundings, so it bumps into things and\n"
+    "eats anything that moves. Approaching\n"
+    "it carelessly is dangerous.");
+
+const u8 gZweilousPokedexText[] = _(
+    "After it has eaten up all the food in its\n"
+    "territory, it moves on to another area.\n"
+    "Whichever head eats more than the other\n"
+    "gets to be the leader.");
+
+const u8 gHydreigonPokedexText[] = _(
+    "This brutal Pokémon travels the skies on\n"
+    "its six wings. The heads on their arms do\n"
+    "not have brains. They use all three heads\n"
+    "to consume and destroy everything.");
+
+const u8 gLarvestaPokedexText[] = _(
+    "This Pokémon was believed to have\n"
+    "been born from the sun. It spews fire from\n"
+    "its horns and encases itself in a cocoon\n"
+    "of fire when it evolves.");
+
+const u8 gVolcaronaPokedexText[] = _(
+    "When volcanic ash darkened the\n"
+    "atmosphere, it appeared and saved Pokémon\n"
+    "from freezing, Volcarona's fire provided a\n"
+    "replacement for the sun.");
+
+const u8 gCobalionPokedexText[] = _(
+    "It has a body and heart of steel. This\n"
+    "legendary Pokémon battled against humans\n"
+    "to protect Pokémon. Its personality\n"
+    "is calm and composed.");
+
+const u8 gTerrakionPokedexText[] = _(
+    "Spoken of in legend, this Pokémon used\n"
+    "its phenomenal power to destroy a castle\n"
+    "in its effort to protect Pokémon that had\n"
+    "lost their homes in a war among humans.");
+
+const u8 gVirizionPokedexText[] = _(
+    "Its head sprouts horns as sharp as blades.\n"
+    "Legends say this Pokémon used\n"
+    "whirlwind-like movements to confound\n"
+    "and swiftly cut its opponents.");
+
+const u8 gTornadusPokedexText[] = _(
+    "Tornadus expels massive energy from\n"
+    "its tail, causing severe storms.\n"
+    "Its power can blow entire houses away.\n"
+    "It zooms through the sky at 200 mph.");
+
+const u8 gThundurusPokedexText[] = _(
+    "The spikes on its tail discharge immense\n"
+    "bolts of lightning. Countless charred\n"
+    "remains mar the landscape of places\n"
+    "through which Thundurus has passed.");
+
+const u8 gReshiramPokedexText[] = _(
+    "This Pokémon appears in legends. It\n"
+    "sends flames into the air from its tail,\n"
+    "burning up everything around it. It helps\n"
+    "those who want to build a world of truth.");
+
+const u8 gZekromPokedexText[] = _(
+    "This legendary Pokémon can scorch the\n"
+    "world with lightning. It has a generator\n"
+    "that creates electricity in its tail. It\n"
+    "assists those with strong ideals.");
+
+const u8 gLandorusPokedexText[] = _(
+    "The energy that comes pouring from its tail\n"
+    "increases the nutrition in the soil, making\n"
+    "crops grow to great size. It has been\n"
+    "hailed as “The Guardian of the Fields.”");
+
+const u8 gKyuremPokedexText[] = _(
+    "This legendary ice Pokémon waits for a\n"
+    "hero to fill in the missing parts of its\n"
+    "body with truth or ideals. Its body became\n"
+    "frozen when its energy leaked out.");
+
+const u8 gKeldeoPokedexText[] = _(
+    "When it is resolute, its body fills with\n"
+    "power and it becomes swifter. It crosses\n"
+    "the world, running over the surfaces of\n"
+    "oceans and rivers.");
+
+const u8 gMeloettaPokedexText[] = _(
+    "The melodies sung by Meloetta have the\n"
+    "power to make Pokémon that hear them\n"
+    "happy or sad. Many famous songs have been\n"
+    "inspired by the tunes that Meloetta plays.");
+
+const u8 gGenesectPokedexText[] = _(
+    "Over 300 million years ago, it was\n"
+    "feared as the strongest of hunters.\n"
+    "Team Plasma altered it and attached\n"
+    "a cannon to its back.");
+
+const u8 gChespinPokedexText[] = _(
+    "The quills on its head are usually soft.\n"
+    "When it flexes them, the points become\n"
+    "so hard and sharp that they can pierce\n"
+    "rock without any effort.");
+
+const u8 gQuilladinPokedexText[] = _(
+    "They strengthen the sturdy shell covering\n"
+    "their bodies by running into one another.\n"
+    "They are very kind and won't start fights,\n"
+    "but will counterattack with sharp quills.");
+
+const u8 gChesnaughtPokedexText[] = _(
+    "It shields its allies from danger with\n"
+    "its own body. When it takes a defensive\n"
+    "posture with its fists guarding its face,\n"
+    "it can withstand a bomb blast.");
+
+const u8 gFennekinPokedexText[] = _(
+    "As it walks, it munches on a twig to fill\n"
+    "itself with energy in place of a snack.\n"
+    "It intimidates opponents by puffing hot\n"
+    "air out of its roomy ears.");
+
+const u8 gBraixenPokedexText[] = _(
+    "Braixen has a twig stuck in its tail.\n"
+    "When the twig is plucked from its tail,\n"
+    "friction sets the twig alight. The flame\n"
+    "is used to send signals to its allies.");
+
+const u8 gDelphoxPokedexText[] = _(
+    "It gazes into the flame at the tip of its\n"
+    "branch to achieve a focused state, which\n"
+    "allows it to see into the future. It uses\n"
+    "psychic power to incinerate its foes.");
+
+const u8 gFroakiePokedexText[] = _(
+    "It protects its skin by covering its body\n"
+    "in bubbles it secretes from its chest and\n"
+    "back. Beneath its happy-go-lucky air, it\n"
+    "keeps a watchful eye on its surroundings.");
+
+const u8 gFrogadierPokedexText[] = _(
+    "It can throw bubble-covered pebbles with\n"
+    "precise control, hitting empty cans up to\n"
+    "a hundred feet away. Frogadier's swiftness\n"
+    "is unparalleled.");
+
+const u8 gGreninjaPokedexText[] = _(
+    "It appears and vanishes with a ninja's\n"
+    "grace. It toys with its enemies using swift\n"
+    "movements, while slicing them with throwing\n"
+    "stars made of compressed water.");
+
+const u8 gBunnelbyPokedexText[] = _(
+    "It has ears like shovels. Digging holes\n"
+    "strengthens its ears so much that they\n"
+    "can sever thick roots effortlessly.\n"
+    "Bunnelby dig the whole night through.");
+
+const u8 gDiggersbyPokedexText[] = _(
+    "With its powerful ears it reduces dense\n"
+    "bedrock to rubble. It can be a big help\n"
+    "at construction sites. When it's finished\n"
+    "digging, it lounges about lazily.");
+
+const u8 gFletchlingPokedexText[] = _(
+    "This amiable Pokémon is easy to train.\n"
+    "But when battle is joined, it shows its\n"
+    "ferocious side. It's merciless to\n"
+    "intruders that enter its territory.");
+
+const u8 gFletchinderPokedexText[] = _(
+    "From its beak, it expels embers that set\n"
+    "the tall grass on fire. Then it pounces on\n"
+    "any bewildered Pokémon that pop out of\n"
+    "the grass.");
+
+const u8 gTalonflamePokedexText[] = _(
+    "In the fever of an exciting battle, it\n"
+    "showers embers from the gaps between its\n"
+    "feathers and takes to the air. It finishes\n"
+    "its prey off with a colossal kick.");
+
+const u8 gScatterbugPokedexText[] = _(
+    "When under attack from bird Pokémon,\n"
+    "it spews a poisonous black powder that\n"
+    "causes paralysis on contact. Scatterbug\n"
+    "can live in any region or climate.");
+
+const u8 gSpewpaPokedexText[] = _(
+    "It lives hidden within thicket shadows.\n"
+    "When predators attack, it quickly bristles\n"
+    "the fur covering its body in an effort to\n"
+    "threaten them.");
+
+const u8 gVivillonPokedexText[] = _(
+    "Vivillon with many different patterns are\n"
+    "found all over the world. These patterns\n"
+    "are affected by the climate of their\n"
+    "habitat. It scatters colorful scales.");
+
+const u8 gLitleoPokedexText[] = _(
+    "They set off on their own from their pride\n"
+    "and live by themselves to become stronger.\n"
+    "These hot-blooded Pokémon are quick\n"
+    "to start a fight.");
+
+const u8 gPyroarPokedexText[] = _(
+    "The male with the largest mane of fire\n"
+    "is the leader of the pride. The females\n"
+    "protect the pride's cubs. They viciously\n"
+    "threaten any challenger.");
+
+const u8 gFlabebePokedexText[] = _(
+    "When it finds a flower it likes, it dwells\n"
+    "on that flower its whole life long.\n"
+    "It floats on the wind's embrace with\n"
+    "an untroubled heart.");
+
+const u8 gFloettePokedexText[] = _(
+    "When the flowers of a well-tended flower\n"
+    "bed bloom, it appears and celebrates\n"
+    "with an elegant dance. It draws out the\n"
+    "power of flowers to battle.");
+
+const u8 gFlorgesPokedexText[] = _(
+    "It claims exquisite flower gardens as its\n"
+    "territory. In times long past, governors of\n"
+    "castles would invite Florges to create\n"
+    "gardens to embellish the castle domains.");
+
+const u8 gSkiddoPokedexText[] = _(
+    "If it has sunshine and water, it doesn't\n"
+    "need to eat, because it can generate\n"
+    "energy from the leaves on its back.\n"
+    "It has a placid disposition.");
+
+const u8 gGogoatPokedexText[] = _(
+    "It can tell how its trainer is feeling by\n"
+    "subtle shifts in the grip on its horns. This\n"
+    "empathetic sense lets them run as if one\n"
+    "being. They inhabit mountainous regions.");
+
+const u8 gPanchamPokedexText[] = _(
+    "There's no point to the leaf in its mouth,\n"
+    "aside from an effort to look cool. It's\n"
+    "mischievous, so it's not well suited to\n"
+    "inexperienced Trainers.");
+
+const u8 gPangoroPokedexText[] = _(
+    "It boasts superb physical strength.\n"
+    "Those who wish to become Pangoro's\n"
+    "Trainer have no choice but to converse\n"
+    "with their fists.");
+
+const u8 gFurfrouPokedexText[] = _(
+    "Trimming its fluffy fur not only makes\n"
+    "it more elegant but also increases the\n"
+    "swiftness of its movements. These\n"
+    "Pokémon were the guardians of kings.");
+
+const u8 gEspurrPokedexText[] = _(
+    "It has enough psychic energy to blast\n"
+    "everything within 300 feet of itself.\n"
+    "The organ that emits its intense psychic\n"
+    "power is sheltered by its ears.");
+
+const u8 gMeowsticPokedexText[] = _(
+    "The eyeball patterns on the interior of\n"
+    "its ears emit psychic energy. It keeps the\n"
+    "patterns tightly covered because that\n"
+    "power is too immense.");
+
+const u8 gHonedgePokedexText[] = _(
+    "If anyone dares to grab its hilt, it\n"
+    "wraps a blue cloth around that person's\n"
+    "arm and drains that person's life\n"
+    "energy completely.");
+
+const u8 gDoubladePokedexText[] = _(
+    "When Honedge evolves, it divides into\n"
+    "two swords. The complex attack patterns\n"
+    "of its two swords are unstoppable, even\n"
+    "against those skilled at swordplay.");
+
+const u8 gAegislashPokedexText[] = _(
+    "Generations of kings were attended to\n"
+    "by these Pokémon, which used their\n"
+    "spectral power to manipulate and control\n"
+    "people and Pokémon.");
+
+const u8 gSpritzeePokedexText[] = _(
+    "In the past, rather than using perfume,\n"
+    "royal ladies carried a Spritzee that would\n"
+    "waft a fragrance they liked. Its fragrance\n"
+    "changes depending on what it has eaten.");
+
+const u8 gAromatissePokedexText[] = _(
+    "Its scent is so overpowering that,\n"
+    "unless a Trainer happens to really enjoy\n"
+    "the smell, he or she will have a hard time\n"
+    "walking alongside it.");
+
+const u8 gSwirlixPokedexText[] = _(
+    "Because it eats nothing but sweets, its\n"
+    "fur is as sticky sweet as cotton candy.\n"
+    "To entangle its opponents in battle, it\n"
+    "extrudes sticky white threads.");
+
+const u8 gSlurpuffPokedexText[] = _(
+    "Slurpuff can distinguish even the\n"
+    "faintest of scents. It puts its sensitive\n"
+    "sense of smell to use by helping pastry\n"
+    "chefs in their work.");
+
+const u8 gInkayPokedexText[] = _(
+    "It flashes the light-emitting spots on its\n"
+    "body, which drains its opponent's will\n"
+    "to fight. It takes the opportunity to\n"
+    "scuttle away and hide.");
+
+const u8 gMalamarPokedexText[] = _(
+    "It lures prey close with hypnotic motions,\n"
+    "then wraps its tentacles around it before\n"
+    "finishing it off with digestive fluids. It\n"
+    "forces others to do whatever it wants.");
+
+const u8 gBinaclePokedexText[] = _(
+    "They stretch and then contract, yanking\n"
+    "their rocks along with them in bold hops.\n"
+    "They eat seaweed that washes up on\n"
+    "the shoreline.");
+
+const u8 gBarbaraclePokedexText[] = _(
+    "Barbaracle's legs and hands have minds\n"
+    "of their own, and they will move\n"
+    "independently. But they usually follow\n"
+    "the head's orders.");
+
+const u8 gSkrelpPokedexText[] = _(
+    "Camouflaged as rotten kelp, it hides\n"
+    "from foes while storing up power for its\n"
+    "evolution. They spray liquid poison on\n"
+    "prey that approach unawares.");
+
+const u8 gDragalgePokedexText[] = _(
+    "Their poison is strong enough to eat\n"
+    "through the hull of a tanker. Tales are\n"
+    "told of ships that wander into seas where\n"
+    "Dragalge live, never to return.");
+
+const u8 gClauncherPokedexText[] = _(
+    "Through controlled expulsions of internal\n"
+    "gas, it can expel water like a pistol shot.\n"
+    "At close distances, it can even shatter\n"
+    "large rocks.");
+
+const u8 gClawitzerPokedexText[] = _(
+    "By expelling water from the nozzle in the\n"
+    "back of its enormous claw, it can move\n"
+    "at a speed of 60 knots. They launch\n"
+    "cannonballs made of water.");
+
+const u8 gHelioptilePokedexText[] = _(
+    "They make their home in deserts.\n"
+    "They can generate their own energy from\n"
+    "basking in the sun, so eating food is not\n"
+    "a requirement.");
+
+const u8 gHelioliskPokedexText[] = _(
+    "A single Heliolisk can generate sufficient\n"
+    "electricity to power a skyscraper. It can\n"
+    "stimulate its muscles with electricity,\n"
+    "boosting the strength in its legs.");
+
+const u8 gTyruntPokedexText[] = _(
+    "Its immense jaws have enough destructive\n"
+    "force that it can chew up a car. If\n"
+    "something happens that it doesn't like,\n"
+    "it throws a tantrum and runs wild.");
+
+const u8 gTyrantrumPokedexText[] = _(
+    "Thanks to its gargantuan jaws, which could\n"
+    "shred thick metal plates as if they were\n"
+    "paper, it was invincible in the ancient\n"
+    "world it once inhabited.");
+
+const u8 gAmauraPokedexText[] = _(
+    "This ancient Pokémon was restored from\n"
+    "part of its body that had been frozen in\n"
+    "ice for over 100 million years. It lived in a\n"
+    "cold land where there were no predators.");
+
+const u8 gAurorusPokedexText[] = _(
+    "Using the diamond-shaped crystals on its\n"
+    "body it can instantly create a wall of ice\n"
+    "to block an opponent's attack, or encase\n"
+    "them in ice.");
+
+const u8 gSylveonPokedexText[] = _(
+    "Its ribbonlike feelers give off an aura\n"
+    "that weakens hostility in its prey, causing\n"
+    "them to let down their guard. A moment\n"
+    "later, it pounces.");
+
+const u8 gHawluchaPokedexText[] = _(
+    "With its wings, it controls its position in\n"
+    "the air. Its proficient fighting skills\n"
+    "enable it to keep up with big bruisers\n"
+    "like Machamp and Hariyama.");
+
+const u8 gDedennePokedexText[] = _(
+    "Its whiskers serve as antennas.\n"
+    "By sending and receiving electrical\n"
+    "waves, it can communicate with others\n"
+    "over vast distances.");
+
+const u8 gCarbinkPokedexText[] = _(
+    "Born from the high temperatures and\n"
+    "pressures deep underground, it defends\n"
+    "itself by firing beams from the jewel part\n"
+    "of its body.");
+
+const u8 gGoomyPokedexText[] = _(
+    "Its source of protection is its slimy,\n"
+    "germ-laden mucous membrane. Anyone\n"
+    "who touches it will need some thorough\n"
+    "hand-washing.");
+
+const u8 gSliggooPokedexText[] = _(
+    "This Pokémon's mucous can dissolve\n"
+    "anything. Toothless, it sprays mucous\n"
+    "on its prey. Once they're nicely dissolved,\n"
+    "it slurps them up.");
+
+const u8 gGoodraPokedexText[] = _(
+    "It gets picked on because it's meek.\n"
+    "But then, whoever teased it gets to feel\n"
+    "the full force of its horns and a good\n"
+    "swatting from its thick tail.");
+
+const u8 gKlefkiPokedexText[] = _(
+    "These key collectors threaten any\n"
+    "attackers by fiercely jingling their keys\n"
+    "at them. It will sneak into people's homes\n"
+    "to steal their keys.");
+
+const u8 gPhantumpPokedexText[] = _(
+    "According to legend, medicine to cure\n"
+    "any illness can be made by plucking the\n"
+    "green leaves on its head, brewing them,\n"
+    "and boiling down the liquid.");
+
+const u8 gTrevenantPokedexText[] = _(
+    "Through its roots, it exerts control over\n"
+    "other trees. A deadly curse falls upon\n"
+    "anyone cutting down trees in forests\n"
+    "where Trevenant dwell.\n"
+    "");
+
+const u8 gPumpkabooPokedexText[] = _(
+    "It is said to carry wandering spirits to\n"
+    "the place where they belong so they can\n"
+    "move on. As the sun sets, it becomes\n"
+    "restless and active.\n"
+    "");
+
+const u8 gGourgeistPokedexText[] = _(
+    "Singing in eerie voices, they wander town\n"
+    "streets on the night of the new moon.\n"
+    "Anyone who hears their song will become\n"
+    "inflicted with a curse.");
+
+const u8 gBergmitePokedexText[] = _(
+    "It blocks opponents' attacks with the ice\n"
+    "that shields its body. It uses cold air to\n"
+    "repair any cracks with new ice. They live\n"
+    "in herds on snowy mountains.");
+
+const u8 gAvaluggPokedexText[] = _(
+    "The way several Bergmite huddle on its\n"
+    "back make it look like an aircraft carrier\n"
+    "made of ice. Its cumbersome frame crushes\n"
+    "anything that stands in its way.");
+
+const u8 gNoibatPokedexText[] = _(
+    "They live in pitch-black caves. Even a\n"
+    "robust wrestler will become dizzy and\n"
+    "unable to stand when exposed to its\n"
+    "200,000-hertz ultrasonic waves.");
+
+const u8 gNoivernPokedexText[] = _(
+    "They fly around on moonless nights and\n"
+    "attack careless prey. The ultrasonic waves\n"
+    "it emits from its ears can reduce a large\n"
+    "boulder to pebbles.");
+
+const u8 gXerneasPokedexText[] = _(
+    "Legends say that when the horns on\n"
+    "its head shine in seven colors, it is\n"
+    "sharing everlasting life. It slept for a\n"
+    "thousand years in the form of a tree");
+
+const u8 gYveltalPokedexText[] = _(
+    "When its life comes to an end, its wings\n"
+    "and tail spread wide and glow red, and\n"
+    "it absorbs the life energy of every living\n"
+    "thing and turns into a cocoon.");
+
+const u8 gZygardePokedexText[] = _(
+    "It's said to be monitoring the ecosystem\n"
+    "from deep in the caves where it lives.\n"
+    "There are rumors that even greater power\n"
+    "lies hidden within its cells.");
+
+const u8 gDianciePokedexText[] = _(
+    "A sudden transformation of Carbink,\n"
+    "its pink, glimmering body is said to be\n"
+    "the loveliest sight in the whole world.\n"
+    "It creates diamonds between its hands.");
+
+const u8 gHoopaPokedexText[] = _(
+    "In its true form, it possess a huge amount\n"
+    "of power. When its powers are sealed away,\n"
+    "it is transformed into a much smaller form.\n"
+    "It teleports things to a secret place.");
+
+const u8 gVolcanionPokedexText[] = _(
+    "It lets out billows of steam from the arms\n"
+    "on its back and disappears into the dense\n"
+    "fog. It's said to live in mountains where\n"
+    "humans do not tread.");
+
+const u8 gRowletPokedexText[] = _(
+    "This wary Pokémon uses photosynthesis\n"
+    "to store up energy during the day, while\n"
+    "becoming active at night. Silently it\n"
+    "glides, drawing near to its target.");
+
+const u8 gDartrixPokedexText[] = _(
+    "A bit of a dandy, it spends its free time\n"
+    "preening its wings. Its preoccupation\n"
+    "with any dirt on its plumage can leave\n"
+    "it unable to battle.");
+
+const u8 gDecidueyePokedexText[] = _(
+    "Decidueye is cool and cautious.\n"
+    "It fires arrow quills from its wings with\n"
+    "such precision, they can pierce a pebble\n"
+    "at distances of over a hundred yards.");
+
+const u8 gLittenPokedexText[] = _(
+    "While grooming itself, it builds up fur\n"
+    "inside its stomach. It sets the fur alight\n"
+    "and spews fiery attacks, which change\n"
+    "based on how it coughs.");
+
+const u8 gTorracatPokedexText[] = _(
+    "At its throat, it bears a bell of fire. The\n"
+    "bell rings brightly whenever this Pokémon\n"
+    "spits fire. With a single punch, it can bend\n"
+    "an iron bar right over.");
+
+const u8 gIncineroarPokedexText[] = _(
+    "This Pokémon has a violent, selfish\n"
+    "disposition. If it's not in the mood to\n"
+    "listen, it will ignore its Trainer's orders\n"
+    "with complete nonchalance.");
+
+const u8 gPopplioPokedexText[] = _(
+    "This Pokémon snorts body fluids from\n"
+    "its nose, blowing balloons to smash into\n"
+    "its foes. It practices diligently so it can\n"
+    "learn to make big bubbles.");
+
+const u8 gBrionnePokedexText[] = _(
+    "It cares deeply for its companions.\n"
+    "When its Trainer is feeling down, it\n"
+    "performs a cheery dance with a sequence\n"
+    "of water balloons  to try and help.");
+
+const u8 gPrimarinaPokedexText[] = _(
+    "It controls its water balloons with song.\n"
+    "The melody is learned from others of\n"
+    "its kind and is passed down from one\n"
+    "generation to the next.");
+
+const u8 gPikipekPokedexText[] = _(
+    "This Pokémon feeds on berries, whose\n"
+    "leftover seeds become the ammunition for\n"
+    "the attacks it fires off from its mouth.\n"
+    "It uses holes in trees for nesting.");
+
+const u8 gTrumbeakPokedexText[] = _(
+    "By bending its beak, it can produce a\n"
+    "variety of calls and brand itself a noisy\n"
+    "nuisance for its neighbors. It eats\n"
+    "berries and stores their seeds in its beak.");
+
+const u8 gToucannonPokedexText[] = _(
+    "When it battles, within its beak, its\n"
+    "internal gases ignite, explosively\n"
+    "launching seeds with enough power to\n"
+    "pulverize boulders.");
+
+const u8 gYungoosPokedexText[] = _(
+    "With its sharp fangs, it will bite anything.\n"
+    "It wanders around in a never-ending\n"
+    "search for food. At dusk, it collapses\n"
+    "and falls asleep on the spot.");
+
+const u8 gGumshoosPokedexText[] = _(
+    "When it finds a trace of its prey, it\n"
+    "patiently stakes out the location...\n"
+    "but as it's diurnal, it's always snoozing\n"
+    "by nightfall.");
+
+const u8 gGrubbinPokedexText[] = _(
+    "They often gather near places frequented\n"
+    "by electric Pokémon in order to avoid being\n"
+    "attacked by bird Pokémon, though it\n"
+    "normally lives underground.");
+
+const u8 gCharjabugPokedexText[] = _(
+    "From the food it digests, it generates\n"
+    "electricity, and it stores this energy in\n"
+    "its electric sac. On camping trips, people\n"
+    "are grateful to have one around.");
+
+const u8 gVikavoltPokedexText[] = _(
+    "It concentrates electrical energy within\n"
+    "its large jaws and uses it to zap its foes.\n"
+    "It overwhelms bird Pokémon with shocking\n"
+    "beams of electrical energy.");
+
+const u8 gCrabrawlerPokedexText[] = _(
+    "While guarding its weak points with its\n"
+    "pincers, it looks for an opening and\n"
+    "unleashes punches. When it loses, it\n"
+    "foams at the mouth and faints.");
+
+const u8 gCrabominablePokedexText[] = _(
+    "It aimed for the top but got lost and\n"
+    "ended up on a snowy mountain. Being forced\n"
+    "to endure the cold, this Pokémon evolved\n"
+    "and grew thick fur.");
+
+const u8 gOricorioPokedexText[] = _(
+    "Oricorio can change its body by sipping\n"
+    "different coloured nectar. It's enemies'\n"
+    "hearts melt at the sight of its varying,\n"
+    "beautiful dances.");
+
+const u8 gCutieflyPokedexText[] = _(
+    "Myriads of Cutiefly flutter above the\n"
+    "heads of people who have auras resembling\n"
+    "those of flowers. It can identify which\n"
+    "flowers are about to bloom.");
+
+const u8 gRibombeePokedexText[] = _(
+    "Ribombee rolls up pollen into puffs.\n"
+    "It makes many different varieties, some\n"
+    "used as food and others used in battle.\n"
+    "They are sometimes sold as supplements.");
+
+const u8 gRockruffPokedexText[] = _(
+    "This Pokémon has lived with people since\n"
+    "times long ago. It can sense when its\n"
+    "Trainer is in the dumps and will stick\n"
+    "close by its Trainer's side.");
+
+const u8 gLycanrocPokedexText[] = _(
+    "Well equipped with claws and fangs, it\n"
+    "also uses the sharp rocks in its mane\n"
+    "as weapons. It will attack with no regard\n"
+    "for its own safety.");
+
+const u8 gWishiwashiPokedexText[] = _(
+    "When it's in trouble, its eyes moisten and\n"
+    "begin to shine. The shining light attracts\n"
+    "its comrades, and they stand together\n"
+    "against their enemies.");
+
+const u8 gMareaniePokedexText[] = _(
+    "It's found crawling on beaches and\n"
+    "seafloors. The coral that grows on\n"
+    "Corsola's head is as good as a five-star\n"
+    "banquet to this Pokémon.");
+
+const u8 gToxapexPokedexText[] = _(
+    "Those attacked by Toxapex's poison will\n"
+    "suffer intense pain for three days and\n"
+    "three nights. Post-recovery, there will be\n"
+    "some aftereffects.");
+
+const u8 gMudbrayPokedexText[] = _(
+    "The mud stuck to Mudbray's hooves\n"
+    "enhances its grip and its powerful running\n"
+    "gait. Eating dirt, making mud, and playing\n"
+    "in the mire form its daily routine.");
+
+const u8 gMudsdalePokedexText[] = _(
+    "Its heavy, mud-covered kicks are its\n"
+    "best means of attack, and it can reduce\n"
+    "large trucks to scrap without breaking\n"
+    "a sweat.");
+
+const u8 gDewpiderPokedexText[] = _(
+    "It crawls onto the land in search of food.\n"
+    "When it comes across enemies or potential\n"
+    "prey, this Pokémon smashes its\n"
+    "water-bubble-covered head into them.\n"
+    "");
+
+const u8 gAraquanidPokedexText[] = _(
+    "Despite what its appearance suggests,\n"
+    "it cares for others. If it finds vulnerable,\n"
+    "weak Pokémon, it protectively brings\n"
+    "them into its water bubble.");
+
+const u8 gFomantisPokedexText[] = _(
+    "During the day, it sleeps and soaks up\n"
+    "light. They give off a sweet and refreshing\n"
+    "scent. Cutiefly often gather near the tall\n"
+    "grass where Fomantis are hiding.");
+
+const u8 gLurantisPokedexText[] = _(
+    "It requires a lot of effort to maintain\n"
+    "Lurantis's vivid coloring, but some\n"
+    "collectors enjoy this work and treat it\n"
+    "as their hobby.");
+
+const u8 gMorelullPokedexText[] = _(
+    "As it drowses the day away, it nourishes\n"
+    "itself by sucking from tree roots.\n"
+    "It wakens at the fall of night, wandering\n"
+    "off in search of a new tree.");
+
+const u8 gShiinoticPokedexText[] = _(
+    "Forests where Shiinotic live are\n"
+    "treacherous to enter at night.\n"
+    "People confused by its strange lights\n"
+    "can never find their way home again.");
+
+const u8 gSalanditPokedexText[] = _(
+    "It burns its bodily fluids to create a\n"
+    "sweet-smelling poisonous gas. When its\n"
+    "enemies become disoriented from inhaling\n"
+    "the gas, it attacks them.");
+
+const u8 gSalazzlePokedexText[] = _(
+    "For some reason, only females have\n"
+    "been found. It creates a reverse harem of\n"
+    "male Salandit to live with. Its poisonous\n"
+    "gas is filled with pheromones.");
+
+const u8 gStuffulPokedexText[] = _(
+    "Despite its adorable appearance, when it\n"
+    "gets angry and flails about, its arms and\n"
+    "legs could knock a pro wrestler sprawling.\n"
+    "It's an incredibly dangerous Pokémon.");
+
+const u8 gBewearPokedexText[] = _(
+    "This Pokémon has the habit of hugging its\n"
+    "companions. Many Trainers have left this\n"
+    "world after their spines were squashed\n"
+    "by its hug.");
+
+const u8 gBounsweetPokedexText[] = _(
+    "A delectable aroma pours from its body. \n"
+    "Bounsweet's sweat can be watered down\n"
+    "into a juice with just the right amount\n"
+    "of sweetness.");
+
+const u8 gSteeneePokedexText[] = _(
+    "The sepals on its head developed to\n"
+    "protect its body. These are quite hard, so\n"
+    "even if pecked by bird Pokémon, this\n"
+    "Pokémon is totally fine.");
+
+const u8 gTsareenaPokedexText[] = _(
+    "Its long, striking legs aren't just for\n"
+    "show but to be used to kick with skill.\n"
+    "In victory, it shows off by kicking the\n"
+    "defeated, laughing boisterously.");
+
+const u8 gComfeyPokedexText[] = _(
+    "It attaches flowers to its nutritious\n"
+    "vine. Baths prepared with the flowers\n"
+    "from its vine have a relaxing effect, so\n"
+    "this Pokémon is a hit with many people.");
+
+const u8 gOranguruPokedexText[] = _(
+    "Deep in the jungle, high in the lofty\n"
+    "canopy, this Pokémon abides. On rare\n"
+    "occasions, it shows up at the beach to\n"
+    "match wits with Slowking.");
+
+const u8 gPassimianPokedexText[] = _(
+    "They battle with hard berries for weapons.\n"
+    "They form groups of about 20 individuals.\n"
+    "Their techniques are passed from the boss\n"
+    "to the group, generation upon generation.");
+
+const u8 gWimpodPokedexText[] = _(
+    "This Pokémon is a coward. As it desperately\n"
+    "dashes off, the flailing of its many legs\n"
+    "leaves a sparkling clean path in its wake.\n"
+    "It lives on beaches and seabeds.");
+
+const u8 gGolisopodPokedexText[] = _(
+    "It battles skillfully with its six arms,\n"
+    "with a flashing slash of its giant sharp\n"
+    "claws, it cleaves seawater--or even\n"
+    "air--right in two.");
+
+const u8 gSandygastPokedexText[] = _(
+    "It takes control of anyone who puts a hand\n"
+    "in its mouth, to add to the accumulation\n"
+    "of its sand-mound body. This Pokémon\n"
+    "embodies the grudges of the departed.");
+
+const u8 gPalossandPokedexText[] = _(
+    "Possessed people controlled by this\n"
+    "Pokémon transformed its sand mound into\n"
+    "a castle. As it evolved, its power to curse\n"
+    "grew ever stronger.");
+
+const u8 gPyukumukuPokedexText[] = _(
+    "It lives in shallow seas, such as areas\n"
+    "near a beach. The sticky mucous that\n"
+    "covers their bodies can be used to soothe\n"
+    "sunburned skin. How convenient!");
+
+const u8 gTypeNullPokedexText[] = _(
+    "Due to the danger that this synthetic\n"
+    "Pokémon may go on a rampage, it wears a\n"
+    "control mask to restrain its capabilities.\n"
+    "It has some hidden special power.");
+
+const u8 gSilvallyPokedexText[] = _(
+    "Its trust in its partner awakens it.\n"
+    "This Pokémon is capable of changing its\n"
+    "type by equipping special memories, a\n"
+    "trait that is well displayed in battle.");
+
+const u8 gMiniorPokedexText[] = _(
+    "Originally making its home in the ozone\n"
+    "layer, it hurtles to the ground when the\n"
+    "shell encasing its body grows too heavy.\n"
+    "It was born from mutated nanoparticles.");
+
+const u8 gKomalaPokedexText[] = _(
+    "It is born asleep, and it dies asleep.\n"
+    "All its movements are apparently no more\n"
+    "than the results of it tossing and turning\n"
+    "in its dreams.");
+
+const u8 gTurtonatorPokedexText[] = _(
+    "The shell on its back is chemically\n"
+    "unstable and explodes violently if struck.\n"
+    "The hole in its stomach is its weak point.\n"
+    "It gushes fire from its nostrils.");
+
+const u8 gTogedemaruPokedexText[] = _(
+    "The spiny fur on its back is normally\n"
+    "at rest. When this Pokémon becomes\n"
+    "agitated, its fur stands on end and stabs\n"
+    "into its attackers.");
+
+const u8 gMimikyuPokedexText[] = _(
+    "A lonely Pokémon, it hides its terrifying\n"
+    "appearance beneath an old rag so it can\n"
+    "get closer to people and other Pokémon.\n"
+    "Its actual appearance is unknown.");
+
+const u8 gBruxishPokedexText[] = _(
+    "It stuns its prey with its psychic powers\n"
+    "and then grinds them to mush with its\n"
+    "strong teeth. Even Shellder's shell is no\n"
+    "match for it.");
+
+const u8 gDrampaPokedexText[] = _(
+    "This Pokémon is friendly to people and\n"
+    "loves children most of all. It comes from\n"
+    "deep in the mountains to play with\n"
+    "children it likes in town.");
+
+const u8 gDhelmisePokedexText[] = _(
+    "The soul of seaweed adrift in the waves\n"
+    "became reborn as this Pokémon.\n"
+    "It maintains itself with new infusions of\n"
+    "seabed detritus and seaweed.");
+
+const u8 gJangmooPokedexText[] = _(
+    "It expresses its feelings by smacking its\n"
+    "scales. Metallic sounds echo through the\n"
+    "tall mountains where Jangmo-o live. They\n"
+    "grow little by little battling one another.");
+
+const u8 gHakamooPokedexText[] = _(
+    "It sheds and regrows its scales on a\n"
+    "continuous basis. The scales become\n"
+    "harder each time they're regrown. Its\n"
+    "scaly punches tear its foes to shreds.");
+
+const u8 gKommooPokedexText[] = _(
+    "Its rigid scales function as offense and\n"
+    "defense. In the past, its scales were\n"
+    "processed and used to make weapons\n"
+    "and other valuable commodities.");
+
+const u8 gTapuKokoPokedexText[] = _(
+    "It confuses its enemies by flying too\n"
+    "quickly for the eye to follow. It has a\n"
+    "hair-trigger temper but forgets what\n"
+    "made it angry an instant later.");
+
+const u8 gTapuLelePokedexText[] = _(
+    "A fragrant aroma of flowers follows it.\n"
+    "As it flutters about, it scatters its\n"
+    "strangely glowing scales. Touching them\n"
+    "is said to restore good health.");
+
+const u8 gTapuBuluPokedexText[] = _(
+    "It causes vegetation to grow, and then\n"
+    "it absorbs energy from the growth.\n"
+    "It pulls large trees up by the roots and\n"
+    "swings them around at its enemies.");
+
+const u8 gTapuFiniPokedexText[] = _(
+    "People say it can create pure water that\n"
+    "will wash away any corruption. The dense\n"
+    "fog it creates brings the downfall and\n"
+    "destruction of its confused enemies.");
+
+const u8 gCosmogPokedexText[] = _(
+    "In ages past, it was called the child of\n"
+    "the stars. It's said to be a Pokémon from\n"
+    "another world, but no specific details\n"
+    "are known.");
+
+const u8 gCosmoemPokedexText[] = _(
+    "Motionless as if dead, its body is faintly\n"
+    "warm to the touch. There's something\n"
+    "accumulating around the black core\n"
+    "within its hard shell.");
+
+const u8 gSolgaleoPokedexText[] = _(
+    "It is said to live in another world.\n"
+    "The intense light it radiates from the\n"
+    "surface of its body can make the darkest\n"
+    "of nights light up like midday.");
+
+const u8 gLunalaPokedexText[] = _(
+    "When its third eye activates, away it flies\n"
+    "to another world. This Pokémon devours\n"
+    "light, drawing the moonless dark veil of\n"
+    "night over the brightness of day.");
+
+const u8 gNihilegoPokedexText[] = _(
+    "One of several mysterious Ultra Beasts.\n"
+    "It's unclear whether or not this Pokémon\n"
+    "is sentient, but sometimes it can be\n"
+    "observed behaving like a young girl.");
+
+const u8 gBuzzwolePokedexText[] = _(
+    "This life-form called an Ultra Beast\n"
+    "appeared from another world. It shows\n"
+    "off its body, but whether that display\n"
+    "is a boast or a threat remains unclear.");
+
+const u8 gPheromosaPokedexText[] = _(
+    "One of the dangerous Ultra Beasts,\n"
+    "it refuses to touch anything, perhaps\n"
+    "because it senses some uncleanness\n"
+    "in this world.");
+
+const u8 gXurkitreePokedexText[] = _(
+    "One of the mysterious life-forms known\n"
+    "as Ultra Beasts. Astonishing electric\n"
+    "shocks emanate from its entire body,\n"
+    "according to witnesses.");
+
+const u8 gCelesteelaPokedexText[] = _(
+    "It appeared from the Ultra Wormhole.\n"
+    "One kind of Ultra Beast, witnesses saw\n"
+    "it flying across the sky by expelling gas\n"
+    "from its two arms.");
+
+const u8 gKartanaPokedexText[] = _(
+    "This Ultra Beast came from the\n"
+    "Ultra Wormhole. It seems not to attack\n"
+    "enemies on its own, but its sharp body is\n"
+    "a dangerous weapon in itself.");
+
+const u8 gGuzzlordPokedexText[] = _(
+    "A dangerous Ultra Beast, it has gobbled\n"
+    "mountains and swallowed whole buildings,\n"
+    "according to reports. But for some reason\n"
+    "its droppings have never been found.");
+
+const u8 gNecrozmaPokedexText[] = _(
+    "Reminiscent of the Ultra Beasts, this\n"
+    "life-form, apparently asleep underground,\n"
+    "is thought to have come from another\n"
+    "world in ancient times.");
+
+const u8 gMagearnaPokedexText[] = _(
+    "This artificial Pokémon, constructed more\n"
+    "than 500 years ago, can understand human\n"
+    "speech but cannot itself speak. Its true\n"
+    "self is its Soul-Heart, an artificial soul.");
+
+const u8 gMarshadowPokedexText[] = _(
+    "Able to conceal itself in the shadows of\n"
+    "others, it never appears before humans,\n"
+    "so its very existence is the stuff of myth.\n"
+    "This Pokémon is craven and cowering.");
+
+const u8 gPoipolePokedexText[] = _(
+	"This Ultra Beast is well enough\n"
+	"liked to be chosen as a\n"
+	"first partner in its own world.");
+
+const u8 gNaganadelPokedexText[] = _(
+	"It stores hundreds of liters of poisonous\n"
+	"liquid inside its body. It is one of the\n"
+	"organisms known as UBs.");
+
+const u8 gStakatakaPokedexText[] = _(
+	"It appeared from an Ultra Wormhole. Each\n"
+	"one appears to be made up of many life-\n"
+	"forms stacked one on top of each other.");
+
+const u8 gBlacephalonPokedexText[] = _(
+	"It slithers toward people and explode\n"
+	"its head without warning. It is\n"
+	"one kind of Ultra Beast.");
+
+const u8 gZeraoraPokedexText[] = _(
+	"It approaches its enemies at the speed\n"
+	"of lightning, then tears them limb from\n"
+	"limb with its sharp claws.");
 
 const struct PokedexEntry gPokedexEntries[] =
 {
-    {  //Dummy
-        .categoryName = _("Unknown"),
+    [NATIONAL_DEX_NONE] =
+    {
+        .categoryName = _("UNKNOWN"),
         .height = 0,
         .weight = 0,
-        .descriptionPage1 = DexDescription_Dummy_1,
-        .descriptionPage2 = DexDescription_Dummy_2,
+        .description = gDummyPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Bulbasaur
-        .categoryName = _("Seed"),
+
+    [NATIONAL_DEX_BULBASAUR] =
+    {
+        .categoryName = _("SEED"),
         .height = 7,
         .weight = 69,
-        .descriptionPage1 = DexDescription_Bulbasaur_1,
-        .descriptionPage2 = DexDescription_Bulbasaur_2,
+        .description = gBulbasaurPokedexText,
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Ivysaur
-        .categoryName = _("Seed"),
+
+    [NATIONAL_DEX_IVYSAUR] =
+    {
+        .categoryName = _("SEED"),
         .height = 10,
         .weight = 130,
-        .descriptionPage1 = DexDescription_Ivysaur_1,
-        .descriptionPage2 = DexDescription_Ivysaur_2,
+        .description = gIvysaurPokedexText,
         .pokemonScale = 335,
         .pokemonOffset = 13,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Venusaur
-        .categoryName = _("Seed"),
+
+    [NATIONAL_DEX_VENUSAUR] =
+    {
+        .categoryName = _("SEED"),
         .height = 20,
         .weight = 1000,
-        .descriptionPage1 = DexDescription_Venusaur_1,
-        .descriptionPage2 = DexDescription_Venusaur_2,
+        .description = gVenusaurPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 388,
         .trainerOffset = 6,
     },
-    {  //Charmander
-        .categoryName = _("Lizard"),
+
+    [NATIONAL_DEX_CHARMANDER] =
+    {
+        .categoryName = _("LIZARD"),
         .height = 6,
         .weight = 85,
-        .descriptionPage1 = DexDescription_Charmander_1,
-        .descriptionPage2 = DexDescription_Charmander_2,
+        .description = gCharmanderPokedexText,
         .pokemonScale = 444,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Charmeleon
-        .categoryName = _("Flame"),
+
+    [NATIONAL_DEX_CHARMELEON] =
+    {
+        .categoryName = _("FLAME"),
         .height = 11,
         .weight = 190,
-        .descriptionPage1 = DexDescription_Charmeleon_1,
-        .descriptionPage2 = DexDescription_Charmeleon_2,
+        .description = gCharmeleonPokedexText,
         .pokemonScale = 302,
         .pokemonOffset = 9,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Charizard
-        .categoryName = _("Flame"),
+
+    [NATIONAL_DEX_CHARIZARD] =
+    {
+        .categoryName = _("FLAME"),
         .height = 17,
         .weight = 905,
-        .descriptionPage1 = DexDescription_Charizard_1,
-        .descriptionPage2 = DexDescription_Charizard_2,
+        .description = gCharizardPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 302,
         .trainerOffset = 3,
     },
-    {  //Squirtle
-        .categoryName = _("Tiny Turtle"),
+
+    [NATIONAL_DEX_SQUIRTLE] =
+    {
+        .categoryName = _("TINY TURTLE"),
         .height = 5,
         .weight = 90,
-        .descriptionPage1 = DexDescription_Squirtle_1,
-        .descriptionPage2 = DexDescription_Squirtle_2,
+        .description = gSquirtlePokedexText,
         .pokemonScale = 412,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Wartortle
-        .categoryName = _("Turtle"),
+
+    [NATIONAL_DEX_WARTORTLE] =
+    {
+        .categoryName = _("TURTLE"),
         .height = 10,
         .weight = 225,
-        .descriptionPage1 = DexDescription_Wartortle_1,
-        .descriptionPage2 = DexDescription_Wartortle_2,
+        .description = gWartortlePokedexText,
         .pokemonScale = 332,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Blastoise
-        .categoryName = _("Shellfish"),
+
+    [NATIONAL_DEX_BLASTOISE] =
+    {
+        .categoryName = _("SHELLFISH"),
         .height = 16,
         .weight = 855,
-        .descriptionPage1 = DexDescription_Blastoise_1,
-        .descriptionPage2 = DexDescription_Blastoise_2,
+        .description = gBlastoisePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = -1,
         .trainerScale = 293,
         .trainerOffset = 2,
     },
-    {  //Caterpie
-        .categoryName = _("Worm"),
+
+    [NATIONAL_DEX_CATERPIE] =
+    {
+        .categoryName = _("WORM"),
         .height = 3,
         .weight = 29,
-        .descriptionPage1 = DexDescription_Caterpie_1,
-        .descriptionPage2 = DexDescription_Caterpie_2,
+        .description = gCaterpiePokedexText,
         .pokemonScale = 549,
         .pokemonOffset = 22,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Metapod
-        .categoryName = _("Cocoon"),
+
+    [NATIONAL_DEX_METAPOD] =
+    {
+        .categoryName = _("COCOON"),
         .height = 7,
         .weight = 99,
-        .descriptionPage1 = DexDescription_Metapod_1,
-        .descriptionPage2 = DexDescription_Metapod_2,
+        .description = gMetapodPokedexText,
         .pokemonScale = 350,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Butterfree
-        .categoryName = _("Butterfly"),
+
+    [NATIONAL_DEX_BUTTERFREE] =
+    {
+        .categoryName = _("BUTTERFLY"),
         .height = 11,
         .weight = 320,
-        .descriptionPage1 = DexDescription_Butterfree_1,
-        .descriptionPage2 = DexDescription_Butterfree_2,
+        .description = gButterfreePokedexText,
         .pokemonScale = 312,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Weedle
-        .categoryName = _("Hairy Bug"),
+
+    [NATIONAL_DEX_WEEDLE] =
+    {
+        .categoryName = _("HAIRY BUG"),
         .height = 3,
         .weight = 32,
-        .descriptionPage1 = DexDescription_Weedle_1,
-        .descriptionPage2 = DexDescription_Weedle_2,
+        .description = gWeedlePokedexText,
         .pokemonScale = 455,
         .pokemonOffset = 22,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Kakuna
-        .categoryName = _("Cocoon"),
+
+    [NATIONAL_DEX_KAKUNA] =
+    {
+        .categoryName = _("COCOON"),
         .height = 6,
         .weight = 100,
-        .descriptionPage1 = DexDescription_Kakuna_1,
-        .descriptionPage2 = DexDescription_Kakuna_2,
+        .description = gKakunaPokedexText,
         .pokemonScale = 424,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Beedrill
-        .categoryName = _("Poison Bee"),
+
+    [NATIONAL_DEX_BEEDRILL] =
+    {
+        .categoryName = _("POISON BEE"),
         .height = 10,
         .weight = 295,
-        .descriptionPage1 = DexDescription_Beedrill_1,
-        .descriptionPage2 = DexDescription_Beedrill_2,
+        .description = gBeedrillPokedexText,
         .pokemonScale = 366,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Pidgey
-        .categoryName = _("Tiny Bird"),
+
+    [NATIONAL_DEX_PIDGEY] =
+    {
+        .categoryName = _("TINY BIRD"),
         .height = 3,
         .weight = 18,
-        .descriptionPage1 = DexDescription_Pidgey_1,
-        .descriptionPage2 = DexDescription_Pidgey_2,
+        .description = gPidgeyPokedexText,
         .pokemonScale = 508,
         .pokemonOffset = -3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Pidgeotto
-        .categoryName = _("Bird"),
+
+    [NATIONAL_DEX_PIDGEOTTO] =
+    {
+        .categoryName = _("BIRD"),
         .height = 11,
         .weight = 300,
-        .descriptionPage1 = DexDescription_Pidgeotto_1,
-        .descriptionPage2 = DexDescription_Pidgeotto_2,
+        .description = gPidgeottoPokedexText,
         .pokemonScale = 331,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Pidgeot
-        .categoryName = _("Bird"),
+
+    [NATIONAL_DEX_PIDGEOT] =
+    {
+        .categoryName = _("BIRD"),
         .height = 15,
         .weight = 395,
-        .descriptionPage1 = DexDescription_Pidgeot_1,
-        .descriptionPage2 = DexDescription_Pidgeot_2,
+        .description = gPidgeotPokedexText,
         .pokemonScale = 269,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Rattata
-        .categoryName = _("Mouse"),
+
+    [NATIONAL_DEX_RATTATA] =
+    {
+        .categoryName = _("MOUSE"),
         .height = 3,
         .weight = 35,
-        .descriptionPage1 = DexDescription_Rattata_1,
-        .descriptionPage2 = DexDescription_Rattata_2,
+        .description = gRattataPokedexText,
         .pokemonScale = 481,
         .pokemonOffset = 21,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Raticate
-        .categoryName = _("Mouse"),
+
+    [NATIONAL_DEX_RATICATE] =
+    {
+        .categoryName = _("MOUSE"),
         .height = 7,
         .weight = 185,
-        .descriptionPage1 = DexDescription_Raticate_1,
-        .descriptionPage2 = DexDescription_Raticate_2,
+        .description = gRaticatePokedexText,
         .pokemonScale = 459,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Spearow
-        .categoryName = _("Tiny Bird"),
+
+    [NATIONAL_DEX_SPEAROW] =
+    {
+        .categoryName = _("TINY BIRD"),
         .height = 3,
         .weight = 20,
-        .descriptionPage1 = DexDescription_Spearow_1,
-        .descriptionPage2 = DexDescription_Spearow_2,
+        .description = gSpearowPokedexText,
         .pokemonScale = 571,
         .pokemonOffset = 22,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Fearow
-        .categoryName = _("Beak"),
+
+    [NATIONAL_DEX_FEAROW] =
+    {
+        .categoryName = _("BEAK"),
         .height = 12,
         .weight = 380,
-        .descriptionPage1 = DexDescription_Fearow_1,
-        .descriptionPage2 = DexDescription_Fearow_2,
+        .description = gFearowPokedexText,
         .pokemonScale = 278,
         .pokemonOffset = 1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Ekans
-        .categoryName = _("Snake"),
+
+    [NATIONAL_DEX_EKANS] =
+    {
+        .categoryName = _("SNAKE"),
         .height = 20,
         .weight = 69,
-        .descriptionPage1 = DexDescription_Ekans_1,
-        .descriptionPage2 = DexDescription_Ekans_2,
+        .description = gEkansPokedexText,
         .pokemonScale = 298,
         .pokemonOffset = 12,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Arbok
-        .categoryName = _("Cobra"),
+
+    [NATIONAL_DEX_ARBOK] =
+    {
+        .categoryName = _("COBRA"),
         .height = 35,
         .weight = 650,
-        .descriptionPage1 = DexDescription_Arbok_1,
-        .descriptionPage2 = DexDescription_Arbok_2,
+        .description = gArbokPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 296,
         .trainerOffset = 2,
     },
-    {  //Pikachu
-        .categoryName = _("Mouse"),
+
+    [NATIONAL_DEX_PIKACHU] =
+    {
+        .categoryName = _("MOUSE"),
         .height = 4,
         .weight = 60,
-        .descriptionPage1 = DexDescription_Pikachu_1,
-        .descriptionPage2 = DexDescription_Pikachu_2,
+        .description = gPikachuPokedexText,
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Raichu
-        .categoryName = _("Mouse"),
+
+    [NATIONAL_DEX_RAICHU] =
+    {
+        .categoryName = _("MOUSE"),
         .height = 8,
         .weight = 300,
-        .descriptionPage1 = DexDescription_Raichu_1,
-        .descriptionPage2 = DexDescription_Raichu_2,
+        .description = gRaichuPokedexText,
         .pokemonScale = 426,
         .pokemonOffset = 13,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Sandshrew
-        .categoryName = _("Mouse"),
+
+    [NATIONAL_DEX_SANDSHREW] =
+    {
+        .categoryName = _("MOUSE"),
         .height = 6,
         .weight = 120,
-        .descriptionPage1 = DexDescription_Sandshrew_1,
-        .descriptionPage2 = DexDescription_Sandshrew_2,
+        .description = gSandshrewPokedexText,
         .pokemonScale = 365,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Sandslash
-        .categoryName = _("Mouse"),
+
+    [NATIONAL_DEX_SANDSLASH] =
+    {
+        .categoryName = _("MOUSE"),
         .height = 10,
         .weight = 295,
-        .descriptionPage1 = DexDescription_Sandslash_1,
-        .descriptionPage2 = DexDescription_Sandslash_2,
+        .description = gSandslashPokedexText,
         .pokemonScale = 341,
         .pokemonOffset = 11,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //NidoranF
-        .categoryName = _("Poison Pin"),
+
+    [NATIONAL_DEX_NIDORAN_F] =
+    {
+        .categoryName = _("POISON PIN"),
         .height = 4,
         .weight = 70,
-        .descriptionPage1 = DexDescription_NidoranF_1,
-        .descriptionPage2 = DexDescription_NidoranF_2,
+        .description = gNidoranFPokedexText,
         .pokemonScale = 488,
         .pokemonOffset = 21,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Nidorina
-        .categoryName = _("Poison Pin"),
+
+    [NATIONAL_DEX_NIDORINA] =
+    {
+        .categoryName = _("POISON PIN"),
         .height = 8,
         .weight = 200,
-        .descriptionPage1 = DexDescription_Nidorina_1,
-        .descriptionPage2 = DexDescription_Nidorina_2,
+        .description = gNidorinaPokedexText,
         .pokemonScale = 381,
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Nidoqueen
-        .categoryName = _("Drill"),
+
+    [NATIONAL_DEX_NIDOQUEEN] =
+    {
+        .categoryName = _("DRILL"),
         .height = 13,
         .weight = 600,
-        .descriptionPage1 = DexDescription_Nidoqueen_1,
-        .descriptionPage2 = DexDescription_Nidoqueen_2,
+        .description = gNidoqueenPokedexText,
         .pokemonScale = 293,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //NidoranM
-        .categoryName = _("Poison Pin"),
+
+    [NATIONAL_DEX_NIDORAN_M] =
+    {
+        .categoryName = _("POISON PIN"),
         .height = 5,
         .weight = 90,
-        .descriptionPage1 = DexDescription_NidoranM_1,
-        .descriptionPage2 = DexDescription_NidoranM_2,
+        .description = gNidoranMPokedexText,
         .pokemonScale = 511,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Nidorino
-        .categoryName = _("Poison Pin"),
+
+    [NATIONAL_DEX_NIDORINO] =
+    {
+        .categoryName = _("POISON PIN"),
         .height = 9,
         .weight = 195,
-        .descriptionPage1 = DexDescription_Nidorino_1,
-        .descriptionPage2 = DexDescription_Nidorino_2,
+        .description = gNidorinoPokedexText,
         .pokemonScale = 408,
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Nidoking
-        .categoryName = _("Drill"),
+
+    [NATIONAL_DEX_NIDOKING] =
+    {
+        .categoryName = _("DRILL"),
         .height = 14,
         .weight = 620,
-        .descriptionPage1 = DexDescription_Nidoking_1,
-        .descriptionPage2 = DexDescription_Nidoking_2,
+        .description = gNidokingPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Clefairy
-        .categoryName = _("Fairy"),
+
+    [NATIONAL_DEX_CLEFAIRY] =
+    {
+        .categoryName = _("FAIRY"),
         .height = 6,
         .weight = 75,
-        .descriptionPage1 = DexDescription_Clefairy_1,
-        .descriptionPage2 = DexDescription_Clefairy_2,
+        .description = gClefairyPokedexText,
         .pokemonScale = 441,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Clefable
-        .categoryName = _("Fairy"),
+
+    [NATIONAL_DEX_CLEFABLE] =
+    {
+        .categoryName = _("FAIRY"),
         .height = 13,
         .weight = 400,
-        .descriptionPage1 = DexDescription_Clefable_1,
-        .descriptionPage2 = DexDescription_Clefable_2,
+        .description = gClefablePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 5,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Vulpix
-        .categoryName = _("Fox"),
+
+    [NATIONAL_DEX_VULPIX] =
+    {
+        .categoryName = _("FOX"),
         .height = 6,
         .weight = 99,
-        .descriptionPage1 = DexDescription_Vulpix_1,
-        .descriptionPage2 = DexDescription_Vulpix_2,
+        .description = gVulpixPokedexText,
         .pokemonScale = 542,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Ninetales
-        .categoryName = _("Fox"),
+
+    [NATIONAL_DEX_NINETALES] =
+    {
+        .categoryName = _("FOX"),
         .height = 11,
         .weight = 199,
-        .descriptionPage1 = DexDescription_Ninetales_1,
-        .descriptionPage2 = DexDescription_Ninetales_2,
+        .description = gNinetalesPokedexText,
         .pokemonScale = 339,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Jigglypuff
-        .categoryName = _("Balloon"),
+
+    [NATIONAL_DEX_JIGGLYPUFF] =
+    {
+        .categoryName = _("BALLOON"),
         .height = 5,
         .weight = 55,
-        .descriptionPage1 = DexDescription_Jigglypuff_1,
-        .descriptionPage2 = DexDescription_Jigglypuff_2,
+        .description = gJigglypuffPokedexText,
         .pokemonScale = 433,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Wigglytuff
-        .categoryName = _("Balloon"),
+
+    [NATIONAL_DEX_WIGGLYTUFF] =
+    {
+        .categoryName = _("BALLOON"),
         .height = 10,
         .weight = 120,
-        .descriptionPage1 = DexDescription_Wigglytuff_1,
-        .descriptionPage2 = DexDescription_Wigglytuff_2,
+        .description = gWigglytuffPokedexText,
         .pokemonScale = 328,
         .pokemonOffset = 11,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Zubat
-        .categoryName = _("Bat"),
+
+    [NATIONAL_DEX_ZUBAT] =
+    {
+        .categoryName = _("BAT"),
         .height = 8,
         .weight = 75,
-        .descriptionPage1 = DexDescription_Zubat_1,
-        .descriptionPage2 = DexDescription_Zubat_2,
+        .description = gZubatPokedexText,
         .pokemonScale = 362,
         .pokemonOffset = -5,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Golbat
-        .categoryName = _("Bat"),
+
+    [NATIONAL_DEX_GOLBAT] =
+    {
+        .categoryName = _("BAT"),
         .height = 16,
         .weight = 550,
-        .descriptionPage1 = DexDescription_Golbat_1,
-        .descriptionPage2 = DexDescription_Golbat_2,
+        .description = gGolbatPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Oddish
-        .categoryName = _("Weed"),
+
+    [NATIONAL_DEX_ODDISH] =
+    {
+        .categoryName = _("WEED"),
         .height = 5,
         .weight = 54,
-        .descriptionPage1 = DexDescription_Oddish_1,
-        .descriptionPage2 = DexDescription_Oddish_2,
+        .description = gOddishPokedexText,
         .pokemonScale = 423,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Gloom
-        .categoryName = _("Weed"),
+
+    [NATIONAL_DEX_GLOOM] =
+    {
+        .categoryName = _("WEED"),
         .height = 8,
         .weight = 86,
-        .descriptionPage1 = DexDescription_Gloom_1,
-        .descriptionPage2 = DexDescription_Gloom_2,
+        .description = gGloomPokedexText,
         .pokemonScale = 329,
         .pokemonOffset = 13,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Vileplume
-        .categoryName = _("Flower"),
+
+    [NATIONAL_DEX_VILEPLUME] =
+    {
+        .categoryName = _("FLOWER"),
         .height = 12,
         .weight = 186,
-        .descriptionPage1 = DexDescription_Vileplume_1,
-        .descriptionPage2 = DexDescription_Vileplume_2,
+        .description = gVileplumePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Paras
-        .categoryName = _("Mushroom"),
+
+    [NATIONAL_DEX_PARAS] =
+    {
+        .categoryName = _("MUSHROOM"),
         .height = 3,
         .weight = 54,
-        .descriptionPage1 = DexDescription_Paras_1,
-        .descriptionPage2 = DexDescription_Paras_2,
+        .description = gParasPokedexText,
         .pokemonScale = 593,
         .pokemonOffset = 22,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Parasect
-        .categoryName = _("Mushroom"),
+
+    [NATIONAL_DEX_PARASECT] =
+    {
+        .categoryName = _("MUSHROOM"),
         .height = 10,
         .weight = 295,
-        .descriptionPage1 = DexDescription_Parasect_1,
-        .descriptionPage2 = DexDescription_Parasect_2,
+        .description = gParasectPokedexText,
         .pokemonScale = 307,
         .pokemonOffset = 8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Venonat
-        .categoryName = _("Insect"),
+
+    [NATIONAL_DEX_VENONAT] =
+    {
+        .categoryName = _("INSECT"),
         .height = 10,
         .weight = 300,
-        .descriptionPage1 = DexDescription_Venonat_1,
-        .descriptionPage2 = DexDescription_Venonat_2,
+        .description = gVenonatPokedexText,
         .pokemonScale = 360,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = -1,
     },
-    {  //Venomoth
-        .categoryName = _("Poison Moth"),
+
+    [NATIONAL_DEX_VENOMOTH] =
+    {
+        .categoryName = _("POISON MOTH"),
         .height = 15,
         .weight = 125,
-        .descriptionPage1 = DexDescription_Venomoth_1,
-        .descriptionPage2 = DexDescription_Venomoth_2,
+        .description = gVenomothPokedexText,
         .pokemonScale = 285,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 1,
     },
-    {  //Diglett
-        .categoryName = _("Mole"),
+
+    [NATIONAL_DEX_DIGLETT] =
+    {
+        .categoryName = _("MOLE"),
         .height = 2,
         .weight = 8,
-        .descriptionPage1 = DexDescription_Diglett_1,
-        .descriptionPage2 = DexDescription_Diglett_2,
+        .description = gDiglettPokedexText,
         .pokemonScale = 833,
         .pokemonOffset = 25,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Dugtrio
-        .categoryName = _("Mole"),
+
+    [NATIONAL_DEX_DUGTRIO] =
+    {
+        .categoryName = _("MOLE"),
         .height = 7,
         .weight = 333,
-        .descriptionPage1 = DexDescription_Dugtrio_1,
-        .descriptionPage2 = DexDescription_Dugtrio_2,
+        .description = gDugtrioPokedexText,
         .pokemonScale = 406,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Meowth
-        .categoryName = _("Scratch Cat"),
+
+    [NATIONAL_DEX_MEOWTH] =
+    {
+        .categoryName = _("SCRATCH CAT"),
         .height = 4,
         .weight = 42,
-        .descriptionPage1 = DexDescription_Meowth_1,
-        .descriptionPage2 = DexDescription_Meowth_2,
+        .description = gMeowthPokedexText,
         .pokemonScale = 480,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Persian
-        .categoryName = _("Classy Cat"),
+
+    [NATIONAL_DEX_PERSIAN] =
+    {
+        .categoryName = _("CLASSY CAT"),
         .height = 10,
         .weight = 320,
-        .descriptionPage1 = DexDescription_Persian_1,
-        .descriptionPage2 = DexDescription_Persian_2,
+        .description = gPersianPokedexText,
         .pokemonScale = 320,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Psyduck
-        .categoryName = _("Duck"),
+
+    [NATIONAL_DEX_PSYDUCK] =
+    {
+        .categoryName = _("DUCK"),
         .height = 8,
         .weight = 196,
-        .descriptionPage1 = DexDescription_Psyduck_1,
-        .descriptionPage2 = DexDescription_Psyduck_2,
+        .description = gPsyduckPokedexText,
         .pokemonScale = 369,
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Golduck
-        .categoryName = _("Duck"),
+
+    [NATIONAL_DEX_GOLDUCK] =
+    {
+        .categoryName = _("DUCK"),
         .height = 17,
         .weight = 766,
-        .descriptionPage1 = DexDescription_Golduck_1,
-        .descriptionPage2 = DexDescription_Golduck_2,
+        .description = gGolduckPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 273,
         .trainerOffset = 1,
     },
-    {  //Mankey
-        .categoryName = _("Pig Monkey"),
+
+    [NATIONAL_DEX_MANKEY] =
+    {
+        .categoryName = _("PIG MONKEY"),
         .height = 5,
         .weight = 280,
-        .descriptionPage1 = DexDescription_Mankey_1,
-        .descriptionPage2 = DexDescription_Mankey_2,
+        .description = gMankeyPokedexText,
         .pokemonScale = 404,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Primeape
-        .categoryName = _("Pig Monkey"),
+
+    [NATIONAL_DEX_PRIMEAPE] =
+    {
+        .categoryName = _("PIG MONKEY"),
         .height = 10,
         .weight = 320,
-        .descriptionPage1 = DexDescription_Primeape_1,
-        .descriptionPage2 = DexDescription_Primeape_2,
+        .description = gPrimeapePokedexText,
         .pokemonScale = 326,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Growlithe
-        .categoryName = _("Puppy"),
+
+    [NATIONAL_DEX_GROWLITHE] =
+    {
+        .categoryName = _("PUPPY"),
         .height = 7,
         .weight = 190,
-        .descriptionPage1 = DexDescription_Growlithe_1,
-        .descriptionPage2 = DexDescription_Growlithe_2,
+        .description = gGrowlithePokedexText,
         .pokemonScale = 346,
         .pokemonOffset = 14,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Arcanine
-        .categoryName = _("Legendary"),
+
+    [NATIONAL_DEX_ARCANINE] =
+    {
+        .categoryName = _("LEGENDARY"),
         .height = 19,
         .weight = 1550,
-        .descriptionPage1 = DexDescription_Arcanine_1,
-        .descriptionPage2 = DexDescription_Arcanine_2,
+        .description = gArcaninePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 312,
         .trainerOffset = 4,
     },
-    {  //Poliwag
-        .categoryName = _("Tadpole"),
+
+    [NATIONAL_DEX_POLIWAG] =
+    {
+        .categoryName = _("TADPOLE"),
         .height = 6,
         .weight = 124,
-        .descriptionPage1 = DexDescription_Poliwag_1,
-        .descriptionPage2 = DexDescription_Poliwag_2,
+        .description = gPoliwagPokedexText,
         .pokemonScale = 369,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Poliwhirl
-        .categoryName = _("Tadpole"),
+
+    [NATIONAL_DEX_POLIWHIRL] =
+    {
+        .categoryName = _("TADPOLE"),
         .height = 10,
         .weight = 200,
-        .descriptionPage1 = DexDescription_Poliwhirl_1,
-        .descriptionPage2 = DexDescription_Poliwhirl_2,
+        .description = gPoliwhirlPokedexText,
         .pokemonScale = 288,
         .pokemonOffset = 11,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Poliwrath
-        .categoryName = _("Tadpole"),
+
+    [NATIONAL_DEX_POLIWRATH] =
+    {
+        .categoryName = _("TADPOLE"),
         .height = 13,
         .weight = 540,
-        .descriptionPage1 = DexDescription_Poliwrath_1,
-        .descriptionPage2 = DexDescription_Poliwrath_2,
+        .description = gPoliwrathPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 6,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Abra
+
+    [NATIONAL_DEX_ABRA] =
+    {
         .categoryName = _("PSI"),
         .height = 9,
         .weight = 195,
-        .descriptionPage1 = DexDescription_Abra_1,
-        .descriptionPage2 = DexDescription_Abra_2,
+        .description = gAbraPokedexText,
         .pokemonScale = 363,
         .pokemonOffset = 14,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Kadabra
+
+    [NATIONAL_DEX_KADABRA] =
+    {
         .categoryName = _("PSI"),
         .height = 13,
         .weight = 565,
-        .descriptionPage1 = DexDescription_Kadabra_1,
-        .descriptionPage2 = DexDescription_Kadabra_2,
+        .description = gKadabraPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Alakazam
+
+    [NATIONAL_DEX_ALAKAZAM] =
+    {
         .categoryName = _("PSI"),
         .height = 15,
         .weight = 480,
-        .descriptionPage1 = DexDescription_Alakazam_1,
-        .descriptionPage2 = DexDescription_Alakazam_2,
+        .description = gAlakazamPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Machop
-        .categoryName = _("Superpower"),
+
+    [NATIONAL_DEX_MACHOP] =
+    {
+        .categoryName = _("SUPERPOWER"),
         .height = 8,
         .weight = 195,
-        .descriptionPage1 = DexDescription_Machop_1,
-        .descriptionPage2 = DexDescription_Machop_2,
+        .description = gMachopPokedexText,
         .pokemonScale = 342,
         .pokemonOffset = 14,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Machoke
-        .categoryName = _("Superpower"),
+
+    [NATIONAL_DEX_MACHOKE] =
+    {
+        .categoryName = _("SUPERPOWER"),
         .height = 15,
         .weight = 705,
-        .descriptionPage1 = DexDescription_Machoke_1,
-        .descriptionPage2 = DexDescription_Machoke_2,
+        .description = gMachokePokedexText,
         .pokemonScale = 323,
         .pokemonOffset = 9,
         .trainerScale = 257,
         .trainerOffset = 0,
     },
-    {  //Machamp
-        .categoryName = _("Superpower"),
+
+    [NATIONAL_DEX_MACHAMP] =
+    {
+        .categoryName = _("SUPERPOWER"),
         .height = 16,
         .weight = 1300,
-        .descriptionPage1 = DexDescription_Machamp_1,
-        .descriptionPage2 = DexDescription_Machamp_2,
+        .description = gMachampPokedexText,
         .pokemonScale = 280,
         .pokemonOffset = 1,
         .trainerScale = 269,
         .trainerOffset = -1,
     },
-    {  //Bellsprout
-        .categoryName = _("Flower"),
+
+    [NATIONAL_DEX_BELLSPROUT] =
+    {
+        .categoryName = _("FLOWER"),
         .height = 7,
         .weight = 40,
-        .descriptionPage1 = DexDescription_Bellsprout_1,
-        .descriptionPage2 = DexDescription_Bellsprout_2,
+        .description = gBellsproutPokedexText,
         .pokemonScale = 354,
         .pokemonOffset = 16,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Weepinbell
-        .categoryName = _("Fly Catcher"),
+
+    [NATIONAL_DEX_WEEPINBELL] =
+    {
+        .categoryName = _("FLYCATCHER"),
         .height = 10,
         .weight = 64,
-        .descriptionPage1 = DexDescription_Weepinbell_1,
-        .descriptionPage2 = DexDescription_Weepinbell_2,
+        .description = gWeepinbellPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Victreebel
-        .categoryName = _("Fly Catcher"),
+
+    [NATIONAL_DEX_VICTREEBEL] =
+    {
+        .categoryName = _("FLYCATCHER"),
         .height = 17,
         .weight = 155,
-        .descriptionPage1 = DexDescription_Victreebel_1,
-        .descriptionPage2 = DexDescription_Victreebel_2,
+        .description = gVictreebelPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 312,
         .trainerOffset = 3,
     },
-    {  //Tentacool
-        .categoryName = _("Jellyfish"),
+
+    [NATIONAL_DEX_TENTACOOL] =
+    {
+        .categoryName = _("JELLYFISH"),
         .height = 9,
         .weight = 455,
-        .descriptionPage1 = DexDescription_Tentacool_1,
-        .descriptionPage2 = DexDescription_Tentacool_2,
+        .description = gTentacoolPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Tentacruel
-        .categoryName = _("Jellyfish"),
+
+    [NATIONAL_DEX_TENTACRUEL] =
+    {
+        .categoryName = _("JELLYFISH"),
         .height = 16,
         .weight = 550,
-        .descriptionPage1 = DexDescription_Tentacruel_1,
-        .descriptionPage2 = DexDescription_Tentacruel_2,
+        .description = gTentacruelPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 312,
         .trainerOffset = 1,
     },
-    {  //Geodude
-        .categoryName = _("Rock"),
+
+    [NATIONAL_DEX_GEODUDE] =
+    {
+        .categoryName = _("ROCK"),
         .height = 4,
         .weight = 200,
-        .descriptionPage1 = DexDescription_Geodude_1,
-        .descriptionPage2 = DexDescription_Geodude_2,
+        .description = gGeodudePokedexText,
         .pokemonScale = 347,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Graveler
-        .categoryName = _("Rock"),
+
+    [NATIONAL_DEX_GRAVELER] =
+    {
+        .categoryName = _("ROCK"),
         .height = 10,
         .weight = 1050,
-        .descriptionPage1 = DexDescription_Graveler_1,
-        .descriptionPage2 = DexDescription_Graveler_2,
+        .description = gGravelerPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Golem
-        .categoryName = _("Megaton"),
+
+    [NATIONAL_DEX_GOLEM] =
+    {
+        .categoryName = _("MEGATON"),
         .height = 14,
         .weight = 3000,
-        .descriptionPage1 = DexDescription_Golem_1,
-        .descriptionPage2 = DexDescription_Golem_2,
+        .description = gGolemPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 296,
         .trainerOffset = 2,
     },
-    {  //Ponyta
-        .categoryName = _("Fire Horse"),
+
+    [NATIONAL_DEX_PONYTA] =
+    {
+        .categoryName = _("FIRE HORSE"),
         .height = 10,
         .weight = 300,
-        .descriptionPage1 = DexDescription_Ponyta_1,
-        .descriptionPage2 = DexDescription_Ponyta_2,
+        .description = gPonytaPokedexText,
         .pokemonScale = 283,
         .pokemonOffset = 8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Rapidash
-        .categoryName = _("Fire Horse"),
+
+    [NATIONAL_DEX_RAPIDASH] =
+    {
+        .categoryName = _("FIRE HORSE"),
         .height = 17,
         .weight = 950,
-        .descriptionPage1 = DexDescription_Rapidash_1,
-        .descriptionPage2 = DexDescription_Rapidash_2,
+        .description = gRapidashPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 289,
         .trainerOffset = 1,
     },
-    {  //Slowpoke
-        .categoryName = _("Dopey"),
+
+    [NATIONAL_DEX_SLOWPOKE] =
+    {
+        .categoryName = _("DOPEY"),
         .height = 12,
         .weight = 360,
-        .descriptionPage1 = DexDescription_Slowpoke_1,
-        .descriptionPage2 = DexDescription_Slowpoke_2,
+        .description = gSlowpokePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Slowbro
-        .categoryName = _("Hermit Crab"),
+
+    [NATIONAL_DEX_SLOWBRO] =
+    {
+        .categoryName = _("HERMIT CRAB"),
         .height = 16,
         .weight = 785,
-        .descriptionPage1 = DexDescription_Slowbro_1,
-        .descriptionPage2 = DexDescription_Slowbro_2,
+        .description = gSlowbroPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 6,
         .trainerScale = 296,
         .trainerOffset = 2,
     },
-    {  //Magnemite
-        .categoryName = _("Magnet"),
+
+    [NATIONAL_DEX_MAGNEMITE] =
+    {
+        .categoryName = _("MAGNET"),
         .height = 3,
         .weight = 60,
-        .descriptionPage1 = DexDescription_Magnemite_1,
-        .descriptionPage2 = DexDescription_Magnemite_2,
+        .description = gMagnemitePokedexText,
         .pokemonScale = 288,
         .pokemonOffset = -9,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Magneton
-        .categoryName = _("Magnet"),
+
+    [NATIONAL_DEX_MAGNETON] =
+    {
+        .categoryName = _("MAGNET"),
         .height = 10,
         .weight = 600,
-        .descriptionPage1 = DexDescription_Magneton_1,
-        .descriptionPage2 = DexDescription_Magneton_2,
+        .description = gMagnetonPokedexText,
         .pokemonScale = 292,
         .pokemonOffset = 1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Farfetchd
-        .categoryName = _("Wild Duck"),
+
+    [NATIONAL_DEX_FARFETCHD] =
+    {
+        .categoryName = _("WILD DUCK"),
         .height = 8,
         .weight = 150,
-        .descriptionPage1 = DexDescription_Farfetchd_1,
-        .descriptionPage2 = DexDescription_Farfetchd_2,
+        .description = gFarfetchdPokedexText,
         .pokemonScale = 330,
         .pokemonOffset = 2,
         .trainerScale = 293,
         .trainerOffset = 2,
     },
-    {  //Doduo
-        .categoryName = _("Twin Bird"),
+
+    [NATIONAL_DEX_DODUO] =
+    {
+        .categoryName = _("TWIN BIRD"),
         .height = 14,
         .weight = 392,
-        .descriptionPage1 = DexDescription_Doduo_1,
-        .descriptionPage2 = DexDescription_Doduo_2,
+        .description = gDoduoPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 257,
         .trainerOffset = -1,
     },
-    {  //Dodrio
-        .categoryName = _("Triple Bird"),
+
+    [NATIONAL_DEX_DODRIO] =
+    {
+        .categoryName = _("TRIPLE BIRD"),
         .height = 18,
         .weight = 852,
-        .descriptionPage1 = DexDescription_Dodrio_1,
-        .descriptionPage2 = DexDescription_Dodrio_2,
+        .description = gDodrioPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 268,
         .trainerOffset = 0,
     },
-    {  //Seel
-        .categoryName = _("Sea Lion"),
+
+    [NATIONAL_DEX_SEEL] =
+    {
+        .categoryName = _("SEA LION"),
         .height = 11,
         .weight = 900,
-        .descriptionPage1 = DexDescription_Seel_1,
-        .descriptionPage2 = DexDescription_Seel_2,
+        .description = gSeelPokedexText,
         .pokemonScale = 297,
         .pokemonOffset = 8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Dewgong
-        .categoryName = _("Sea Lion"),
+
+    [NATIONAL_DEX_DEWGONG] =
+    {
+        .categoryName = _("SEA LION"),
         .height = 17,
         .weight = 1200,
-        .descriptionPage1 = DexDescription_Dewgong_1,
-        .descriptionPage2 = DexDescription_Dewgong_2,
+        .description = gDewgongPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 275,
         .trainerOffset = 0,
     },
-    {  //Grimer
-        .categoryName = _("Sludge"),
+
+    [NATIONAL_DEX_GRIMER] =
+    {
+        .categoryName = _("SLUDGE"),
         .height = 9,
         .weight = 300,
-        .descriptionPage1 = DexDescription_Grimer_1,
-        .descriptionPage2 = DexDescription_Grimer_2,
+        .description = gGrimerPokedexText,
         .pokemonScale = 258,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Muk
-        .categoryName = _("Sludge"),
+
+    [NATIONAL_DEX_MUK] =
+    {
+        .categoryName = _("SLUDGE"),
         .height = 12,
         .weight = 300,
-        .descriptionPage1 = DexDescription_Muk_1,
-        .descriptionPage2 = DexDescription_Muk_2,
+        .description = gMukPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Shellder
-        .categoryName = _("Bivalve"),
+
+    [NATIONAL_DEX_SHELLDER] =
+    {
+        .categoryName = _("BIVALVE"),
         .height = 3,
         .weight = 40,
-        .descriptionPage1 = DexDescription_Shellder_1,
-        .descriptionPage2 = DexDescription_Shellder_2,
+        .description = gShellderPokedexText,
         .pokemonScale = 675,
         .pokemonOffset = 24,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Cloyster
-        .categoryName = _("Bivalve"),
+
+    [NATIONAL_DEX_CLOYSTER] =
+    {
+        .categoryName = _("BIVALVE"),
         .height = 15,
         .weight = 1325,
-        .descriptionPage1 = DexDescription_Cloyster_1,
-        .descriptionPage2 = DexDescription_Cloyster_2,
+        .description = gCloysterPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 269,
         .trainerOffset = 1,
     },
-    {  //Gastly
-        .categoryName = _("Gas"),
+
+    [NATIONAL_DEX_GASTLY] =
+    {
+        .categoryName = _("GAS"),
         .height = 13,
         .weight = 1,
-        .descriptionPage1 = DexDescription_Gastly_1,
-        .descriptionPage2 = DexDescription_Gastly_2,
+        .description = gGastlyPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Haunter
-        .categoryName = _("Gas"),
+
+    [NATIONAL_DEX_HAUNTER] =
+    {
+        .categoryName = _("GAS"),
         .height = 16,
         .weight = 1,
-        .descriptionPage1 = DexDescription_Haunter_1,
-        .descriptionPage2 = DexDescription_Haunter_2,
+        .description = gHaunterPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 293,
         .trainerOffset = 2,
     },
-    {  //Gengar
-        .categoryName = _("Shadow"),
+
+    [NATIONAL_DEX_GENGAR] =
+    {
+        .categoryName = _("SHADOW"),
         .height = 15,
         .weight = 405,
-        .descriptionPage1 = DexDescription_Gengar_1,
-        .descriptionPage2 = DexDescription_Gengar_2,
+        .description = gGengarPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 302,
         .trainerOffset = 2,
     },
-    {  //Onix
-        .categoryName = _("Rock Snake"),
+
+    [NATIONAL_DEX_ONIX] =
+    {
+        .categoryName = _("ROCK SNAKE"),
         .height = 88,
         .weight = 2100,
-        .descriptionPage1 = DexDescription_Onix_1,
-        .descriptionPage2 = DexDescription_Onix_2,
+        .description = gOnixPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 515,
         .trainerOffset = 14,
     },
-    {  //Drowzee
-        .categoryName = _("Hypnosis"),
+
+    [NATIONAL_DEX_DROWZEE] =
+    {
+        .categoryName = _("HYPNOSIS"),
         .height = 10,
         .weight = 324,
-        .descriptionPage1 = DexDescription_Drowzee_1,
-        .descriptionPage2 = DexDescription_Drowzee_2,
+        .description = gDrowzeePokedexText,
         .pokemonScale = 274,
         .pokemonOffset = 6,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Hypno
-        .categoryName = _("Hypnosis"),
+
+    [NATIONAL_DEX_HYPNO] =
+    {
+        .categoryName = _("HYPNOSIS"),
         .height = 16,
         .weight = 756,
-        .descriptionPage1 = DexDescription_Hypno_1,
-        .descriptionPage2 = DexDescription_Hypno_2,
+        .description = gHypnoPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 257,
         .trainerOffset = 0,
     },
-    {  //Krabby
-        .categoryName = _("River Crab"),
+
+    [NATIONAL_DEX_KRABBY] =
+    {
+        .categoryName = _("RIVER CRAB"),
         .height = 4,
         .weight = 65,
-        .descriptionPage1 = DexDescription_Krabby_1,
-        .descriptionPage2 = DexDescription_Krabby_2,
+        .description = gKrabbyPokedexText,
         .pokemonScale = 469,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Kingler
-        .categoryName = _("Pincer"),
+
+    [NATIONAL_DEX_KINGLER] =
+    {
+        .categoryName = _("PINCER"),
         .height = 13,
         .weight = 600,
-        .descriptionPage1 = DexDescription_Kingler_1,
-        .descriptionPage2 = DexDescription_Kingler_2,
+        .description = gKinglerPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Voltorb
-        .categoryName = _("Ball"),
+
+    [NATIONAL_DEX_VOLTORB] =
+    {
+        .categoryName = _("BALL"),
         .height = 5,
         .weight = 104,
-        .descriptionPage1 = DexDescription_Voltorb_1,
-        .descriptionPage2 = DexDescription_Voltorb_2,
+        .description = gVoltorbPokedexText,
         .pokemonScale = 364,
         .pokemonOffset = -8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Electrode
-        .categoryName = _("Ball"),
+
+    [NATIONAL_DEX_ELECTRODE] =
+    {
+        .categoryName = _("BALL"),
         .height = 12,
         .weight = 666,
-        .descriptionPage1 = DexDescription_Electrode_1,
-        .descriptionPage2 = DexDescription_Electrode_2,
+        .description = gElectrodePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Exeggcute
-        .categoryName = _("Egg"),
+
+    [NATIONAL_DEX_EXEGGCUTE] =
+    {
+        .categoryName = _("EGG"),
         .height = 4,
         .weight = 25,
-        .descriptionPage1 = DexDescription_Exeggcute_1,
-        .descriptionPage2 = DexDescription_Exeggcute_2,
+        .description = gExeggcutePokedexText,
         .pokemonScale = 489,
         .pokemonOffset = -4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Exeggutor
-        .categoryName = _("Coconut"),
+
+    [NATIONAL_DEX_EXEGGUTOR] =
+    {
+        .categoryName = _("COCONUT"),
         .height = 20,
         .weight = 1200,
-        .descriptionPage1 = DexDescription_Exeggutor_1,
-        .descriptionPage2 = DexDescription_Exeggutor_2,
+        .description = gExeggutorPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 309,
         .trainerOffset = 5,
     },
-    {  //Cubone
-        .categoryName = _("Lonely"),
+
+    [NATIONAL_DEX_CUBONE] =
+    {
+        .categoryName = _("LONELY"),
         .height = 4,
         .weight = 65,
-        .descriptionPage1 = DexDescription_Cubone_1,
-        .descriptionPage2 = DexDescription_Cubone_2,
+        .description = gCubonePokedexText,
         .pokemonScale = 545,
         .pokemonOffset = 21,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Marowak
-        .categoryName = _("Bone Keeper"),
+
+    [NATIONAL_DEX_MAROWAK] =
+    {
+        .categoryName = _("BONE KEEPER"),
         .height = 10,
         .weight = 450,
-        .descriptionPage1 = DexDescription_Marowak_1,
-        .descriptionPage2 = DexDescription_Marowak_2,
+        .description = gMarowakPokedexText,
         .pokemonScale = 293,
         .pokemonOffset = 12,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Hitmonlee
-        .categoryName = _("Kicking"),
+
+    [NATIONAL_DEX_HITMONLEE] =
+    {
+        .categoryName = _("KICKING"),
         .height = 15,
         .weight = 498,
-        .descriptionPage1 = DexDescription_Hitmonlee_1,
-        .descriptionPage2 = DexDescription_Hitmonlee_2,
+        .description = gHitmonleePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 259,
         .trainerOffset = 1,
     },
-    {  //Hitmonchan
-        .categoryName = _("Punching"),
+
+    [NATIONAL_DEX_HITMONCHAN] =
+    {
+        .categoryName = _("PUNCHING"),
         .height = 14,
         .weight = 502,
-        .descriptionPage1 = DexDescription_Hitmonchan_1,
-        .descriptionPage2 = DexDescription_Hitmonchan_2,
+        .description = gHitmonchanPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 277,
         .trainerOffset = 2,
     },
-    {  //Lickitung
-        .categoryName = _("Licking"),
+
+    [NATIONAL_DEX_LICKITUNG] =
+    {
+        .categoryName = _("LICKING"),
         .height = 12,
         .weight = 655,
-        .descriptionPage1 = DexDescription_Lickitung_1,
-        .descriptionPage2 = DexDescription_Lickitung_2,
+        .description = gLickitungPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Koffing
-        .categoryName = _("Poison Gas"),
+
+    [NATIONAL_DEX_KOFFING] =
+    {
+        .categoryName = _("POISON GAS"),
         .height = 6,
         .weight = 10,
-        .descriptionPage1 = DexDescription_Koffing_1,
-        .descriptionPage2 = DexDescription_Koffing_2,
+        .description = gKoffingPokedexText,
         .pokemonScale = 369,
         .pokemonOffset = -1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Weezing
-        .categoryName = _("Poison Gas"),
+
+    [NATIONAL_DEX_WEEZING] =
+    {
+        .categoryName = _("POISON GAS"),
         .height = 12,
         .weight = 95,
-        .descriptionPage1 = DexDescription_Weezing_1,
-        .descriptionPage2 = DexDescription_Weezing_2,
+        .description = gWeezingPokedexText,
         .pokemonScale = 305,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Rhyhorn
-        .categoryName = _("Spikes"),
+
+    [NATIONAL_DEX_RHYHORN] =
+    {
+        .categoryName = _("SPIKES"),
         .height = 10,
         .weight = 1150,
-        .descriptionPage1 = DexDescription_Rhyhorn_1,
-        .descriptionPage2 = DexDescription_Rhyhorn_2,
+        .description = gRhyhornPokedexText,
         .pokemonScale = 267,
         .pokemonOffset = 6,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Rhydon
-        .categoryName = _("Drill"),
+
+    [NATIONAL_DEX_RHYDON] =
+    {
+        .categoryName = _("DRILL"),
         .height = 19,
         .weight = 1200,
-        .descriptionPage1 = DexDescription_Rhydon_1,
-        .descriptionPage2 = DexDescription_Rhydon_2,
+        .description = gRhydonPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 299,
         .trainerOffset = 2,
     },
-    {  //Chansey
-        .categoryName = _("Egg"),
+
+    [NATIONAL_DEX_CHANSEY] =
+    {
+        .categoryName = _("EGG"),
         .height = 11,
         .weight = 346,
-        .descriptionPage1 = DexDescription_Chansey_1,
-        .descriptionPage2 = DexDescription_Chansey_2,
+        .description = gChanseyPokedexText,
         .pokemonScale = 257,
         .pokemonOffset = 7,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Tangela
-        .categoryName = _("Vine"),
+
+    [NATIONAL_DEX_TANGELA] =
+    {
+        .categoryName = _("VINE"),
         .height = 10,
         .weight = 350,
-        .descriptionPage1 = DexDescription_Tangela_1,
-        .descriptionPage2 = DexDescription_Tangela_2,
+        .description = gTangelaPokedexText,
         .pokemonScale = 304,
         .pokemonOffset = 1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Kangaskhan
-        .categoryName = _("Parent"),
+
+    [NATIONAL_DEX_KANGASKHAN] =
+    {
+        .categoryName = _("PARENT"),
         .height = 22,
         .weight = 800,
-        .descriptionPage1 = DexDescription_Kangaskhan_1,
-        .descriptionPage2 = DexDescription_Kangaskhan_2,
+        .description = gKangaskhanPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 387,
         .trainerOffset = 8,
     },
-    {  //Horsea
-        .categoryName = _("Dragon"),
+
+    [NATIONAL_DEX_HORSEA] =
+    {
+        .categoryName = _("DRAGON"),
         .height = 4,
         .weight = 80,
-        .descriptionPage1 = DexDescription_Horsea_1,
-        .descriptionPage2 = DexDescription_Horsea_2,
+        .description = gHorseaPokedexText,
         .pokemonScale = 399,
         .pokemonOffset = -1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Seadra
-        .categoryName = _("Dragon"),
+
+    [NATIONAL_DEX_SEADRA] =
+    {
+        .categoryName = _("DRAGON"),
         .height = 12,
         .weight = 250,
-        .descriptionPage1 = DexDescription_Seadra_1,
-        .descriptionPage2 = DexDescription_Seadra_2,
+        .description = gSeadraPokedexText,
         .pokemonScale = 299,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Goldeen
-        .categoryName = _("Goldfish"),
+
+    [NATIONAL_DEX_GOLDEEN] =
+    {
+        .categoryName = _("GOLDFISH"),
         .height = 6,
         .weight = 150,
-        .descriptionPage1 = DexDescription_Goldeen_1,
-        .descriptionPage2 = DexDescription_Goldeen_2,
+        .description = gGoldeenPokedexText,
         .pokemonScale = 379,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Seaking
-        .categoryName = _("Goldfish"),
+
+    [NATIONAL_DEX_SEAKING] =
+    {
+        .categoryName = _("GOLDFISH"),
         .height = 13,
         .weight = 390,
-        .descriptionPage1 = DexDescription_Seaking_1,
-        .descriptionPage2 = DexDescription_Seaking_2,
+        .description = gSeakingPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Staryu
-        .categoryName = _("Star Shape"),
+
+    [NATIONAL_DEX_STARYU] =
+    {
+        .categoryName = _("STAR SHAPE"),
         .height = 8,
         .weight = 345,
-        .descriptionPage1 = DexDescription_Staryu_1,
-        .descriptionPage2 = DexDescription_Staryu_2,
+        .description = gStaryuPokedexText,
         .pokemonScale = 326,
         .pokemonOffset = 1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Starmie
-        .categoryName = _("Mysterious"),
+
+    [NATIONAL_DEX_STARMIE] =
+    {
+        .categoryName = _("MYSTERIOUS"),
         .height = 11,
         .weight = 800,
-        .descriptionPage1 = DexDescription_Starmie_1,
-        .descriptionPage2 = DexDescription_Starmie_2,
+        .description = gStarmiePokedexText,
         .pokemonScale = 301,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Mrmime
-        .categoryName = _("Barrier"),
+
+    [NATIONAL_DEX_MR_MIME] =
+    {
+        .categoryName = _("BARRIER"),
         .height = 13,
         .weight = 545,
-        .descriptionPage1 = DexDescription_Mrmime_1,
-        .descriptionPage2 = DexDescription_Mrmime_2,
+        .description = gMrmimePokedexText,
         .pokemonScale = 258,
         .pokemonOffset = 6,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Scyther
-        .categoryName = _("Mantis"),
+
+    [NATIONAL_DEX_SCYTHER] =
+    {
+        .categoryName = _("MANTIS"),
         .height = 15,
         .weight = 560,
-        .descriptionPage1 = DexDescription_Scyther_1,
-        .descriptionPage2 = DexDescription_Scyther_2,
+        .description = gScytherPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 293,
         .trainerOffset = 2,
     },
-    {  //Jynx
-        .categoryName = _("Human Shape"),
+
+    [NATIONAL_DEX_JYNX] =
+    {
+        .categoryName = _("HUMAN SHAPE"),
         .height = 14,
         .weight = 406,
-        .descriptionPage1 = DexDescription_Jynx_1,
-        .descriptionPage2 = DexDescription_Jynx_2,
+        .description = gJynxPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 300,
         .trainerOffset = 1,
     },
-    {  //Electabuzz
-        .categoryName = _("Electric"),
+
+    [NATIONAL_DEX_ELECTABUZZ] =
+    {
+        .categoryName = _("ELECTRIC"),
         .height = 11,
         .weight = 300,
-        .descriptionPage1 = DexDescription_Electabuzz_1,
-        .descriptionPage2 = DexDescription_Electabuzz_2,
+        .description = gElectabuzzPokedexText,
         .pokemonScale = 351,
         .pokemonOffset = 8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Magmar
-        .categoryName = _("Spitfire"),
+
+    [NATIONAL_DEX_MAGMAR] =
+    {
+        .categoryName = _("SPITFIRE"),
         .height = 13,
         .weight = 445,
-        .descriptionPage1 = DexDescription_Magmar_1,
-        .descriptionPage2 = DexDescription_Magmar_2,
+        .description = gMagmarPokedexText,
         .pokemonScale = 277,
         .pokemonOffset = 5,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Pinsir
-        .categoryName = _("Stag Beetle"),
+
+    [NATIONAL_DEX_PINSIR] =
+    {
+        .categoryName = _("STAG BEETLE"),
         .height = 15,
         .weight = 550,
-        .descriptionPage1 = DexDescription_Pinsir_1,
-        .descriptionPage2 = DexDescription_Pinsir_2,
+        .description = gPinsirPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 257,
         .trainerOffset = 0,
     },
-    {  //Tauros
-        .categoryName = _("Wild Bull"),
+
+    [NATIONAL_DEX_TAUROS] =
+    {
+        .categoryName = _("WILD BULL"),
         .height = 14,
         .weight = 884,
-        .descriptionPage1 = DexDescription_Tauros_1,
-        .descriptionPage2 = DexDescription_Tauros_2,
+        .description = gTaurosPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Magikarp
-        .categoryName = _("Fish"),
+
+    [NATIONAL_DEX_MAGIKARP] =
+    {
+        .categoryName = _("FISH"),
         .height = 9,
         .weight = 100,
-        .descriptionPage1 = DexDescription_Magikarp_1,
-        .descriptionPage2 = DexDescription_Magikarp_2,
+        .description = gMagikarpPokedexText,
         .pokemonScale = 310,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Gyarados
-        .categoryName = _("Atrocious"),
+
+    [NATIONAL_DEX_GYARADOS] =
+    {
+        .categoryName = _("ATROCIOUS"),
         .height = 65,
         .weight = 2350,
-        .descriptionPage1 = DexDescription_Gyarados_1,
-        .descriptionPage2 = DexDescription_Gyarados_2,
+        .description = gGyaradosPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 6,
         .trainerScale = 481,
         .trainerOffset = 13,
     },
-    {  //Lapras
-        .categoryName = _("Transport"),
+
+    [NATIONAL_DEX_LAPRAS] =
+    {
+        .categoryName = _("TRANSPORT"),
         .height = 25,
         .weight = 2200,
-        .descriptionPage1 = DexDescription_Lapras_1,
-        .descriptionPage2 = DexDescription_Lapras_2,
+        .description = gLaprasPokedexText,
         .pokemonScale = 257,
         .pokemonOffset = 10,
         .trainerScale = 423,
         .trainerOffset = 8,
     },
-    {  //Ditto
-        .categoryName = _("Transform"),
+
+    [NATIONAL_DEX_DITTO] =
+    {
+        .categoryName = _("TRANSFORM"),
         .height = 3,
         .weight = 40,
-        .descriptionPage1 = DexDescription_Ditto_1,
-        .descriptionPage2 = DexDescription_Ditto_2,
+        .description = gDittoPokedexText,
         .pokemonScale = 633,
         .pokemonOffset = 23,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Eevee
-        .categoryName = _("Evolution"),
+
+    [NATIONAL_DEX_EEVEE] =
+    {
+        .categoryName = _("EVOLUTION"),
         .height = 3,
         .weight = 65,
-        .descriptionPage1 = DexDescription_Eevee_1,
-        .descriptionPage2 = DexDescription_Eevee_2,
+        .description = gEeveePokedexText,
         .pokemonScale = 476,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Vaporeon
-        .categoryName = _("Bubble Jet"),
+
+    [NATIONAL_DEX_VAPOREON] =
+    {
+        .categoryName = _("BUBBLE JET"),
         .height = 10,
         .weight = 290,
-        .descriptionPage1 = DexDescription_Vaporeon_1,
-        .descriptionPage2 = DexDescription_Vaporeon_2,
+        .description = gVaporeonPokedexText,
         .pokemonScale = 316,
         .pokemonOffset = 8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Jolteon
-        .categoryName = _("Lightning"),
+
+    [NATIONAL_DEX_JOLTEON] =
+    {
+        .categoryName = _("LIGHTNING"),
         .height = 8,
         .weight = 245,
-        .descriptionPage1 = DexDescription_Jolteon_1,
-        .descriptionPage2 = DexDescription_Jolteon_2,
+        .description = gJolteonPokedexText,
         .pokemonScale = 283,
         .pokemonOffset = 8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Flareon
-        .categoryName = _("Flame"),
+
+    [NATIONAL_DEX_FLAREON] =
+    {
+        .categoryName = _("FLAME"),
         .height = 9,
         .weight = 250,
-        .descriptionPage1 = DexDescription_Flareon_1,
-        .descriptionPage2 = DexDescription_Flareon_2,
+        .description = gFlareonPokedexText,
         .pokemonScale = 306,
         .pokemonOffset = 12,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Porygon
-        .categoryName = _("Virtual"),
+
+    [NATIONAL_DEX_PORYGON] =
+    {
+        .categoryName = _("VIRTUAL"),
         .height = 8,
         .weight = 365,
-        .descriptionPage1 = DexDescription_Porygon_1,
-        .descriptionPage2 = DexDescription_Porygon_2,
+        .description = gPorygonPokedexText,
         .pokemonScale = 328,
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Omanyte
-        .categoryName = _("Spiral"),
+
+    [NATIONAL_DEX_OMANYTE] =
+    {
+        .categoryName = _("SPIRAL"),
         .height = 4,
         .weight = 75,
-        .descriptionPage1 = DexDescription_Omanyte_1,
-        .descriptionPage2 = DexDescription_Omanyte_2,
+        .description = gOmanytePokedexText,
         .pokemonScale = 521,
         .pokemonOffset = 22,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Omastar
-        .categoryName = _("Spiral"),
+
+    [NATIONAL_DEX_OMASTAR] =
+    {
+        .categoryName = _("SPIRAL"),
         .height = 10,
         .weight = 350,
-        .descriptionPage1 = DexDescription_Omastar_1,
-        .descriptionPage2 = DexDescription_Omastar_2,
+        .description = gOmastarPokedexText,
         .pokemonScale = 307,
         .pokemonOffset = 7,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Kabuto
-        .categoryName = _("Shellfish"),
+
+    [NATIONAL_DEX_KABUTO] =
+    {
+        .categoryName = _("SHELLFISH"),
         .height = 5,
         .weight = 115,
-        .descriptionPage1 = DexDescription_Kabuto_1,
-        .descriptionPage2 = DexDescription_Kabuto_2,
+        .description = gKabutoPokedexText,
         .pokemonScale = 454,
         .pokemonOffset = 21,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Kabutops
-        .categoryName = _("Shellfish"),
+
+    [NATIONAL_DEX_KABUTOPS] =
+    {
+        .categoryName = _("SHELLFISH"),
         .height = 13,
         .weight = 405,
-        .descriptionPage1 = DexDescription_Kabutops_1,
-        .descriptionPage2 = DexDescription_Kabutops_2,
+        .description = gKabutopsPokedexText,
         .pokemonScale = 271,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Aerodactyl
-        .categoryName = _("Fossil"),
+
+    [NATIONAL_DEX_AERODACTYL] =
+    {
+        .categoryName = _("FOSSIL"),
         .height = 18,
         .weight = 590,
-        .descriptionPage1 = DexDescription_Aerodactyl_1,
-        .descriptionPage2 = DexDescription_Aerodactyl_2,
+        .description = gAerodactylPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 302,
         .trainerOffset = 4,
     },
-    {  //Snorlax
-        .categoryName = _("Sleeping"),
+
+    [NATIONAL_DEX_SNORLAX] =
+    {
+        .categoryName = _("SLEEPING"),
         .height = 21,
         .weight = 4600,
-        .descriptionPage1 = DexDescription_Snorlax_1,
-        .descriptionPage2 = DexDescription_Snorlax_2,
+        .description = gSnorlaxPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 423,
         .trainerOffset = 11,
     },
-    {  //Articuno
-        .categoryName = _("Freeze"),
+
+    [NATIONAL_DEX_ARTICUNO] =
+    {
+        .categoryName = _("FREEZE"),
         .height = 17,
         .weight = 554,
-        .descriptionPage1 = DexDescription_Articuno_1,
-        .descriptionPage2 = DexDescription_Articuno_2,
+        .description = gArticunoPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 309,
         .trainerOffset = 2,
     },
-    {  //Zapdos
-        .categoryName = _("Electric"),
+
+    [NATIONAL_DEX_ZAPDOS] =
+    {
+        .categoryName = _("ELECTRIC"),
         .height = 16,
         .weight = 526,
-        .descriptionPage1 = DexDescription_Zapdos_1,
-        .descriptionPage2 = DexDescription_Zapdos_2,
+        .description = gZapdosPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 318,
         .trainerOffset = 3,
     },
-    {  //Moltres
-        .categoryName = _("Flame"),
+
+    [NATIONAL_DEX_MOLTRES] =
+    {
+        .categoryName = _("FLAME"),
         .height = 20,
         .weight = 600,
-        .descriptionPage1 = DexDescription_Moltres_1,
-        .descriptionPage2 = DexDescription_Moltres_2,
+        .description = gMoltresPokedexText,
         .pokemonScale = 270,
         .pokemonOffset = 0,
         .trainerScale = 387,
         .trainerOffset = 8,
     },
-    {  //Dratini
-        .categoryName = _("Dragon"),
+
+    [NATIONAL_DEX_DRATINI] =
+    {
+        .categoryName = _("DRAGON"),
         .height = 18,
         .weight = 33,
-        .descriptionPage1 = DexDescription_Dratini_1,
-        .descriptionPage2 = DexDescription_Dratini_2,
+        .description = gDratiniPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 8,
         .trainerScale = 386,
         .trainerOffset = 6,
     },
-    {  //Dragonair
-        .categoryName = _("Dragon"),
+
+    [NATIONAL_DEX_DRAGONAIR] =
+    {
+        .categoryName = _("DRAGON"),
         .height = 40,
         .weight = 165,
-        .descriptionPage1 = DexDescription_Dragonair_1,
-        .descriptionPage2 = DexDescription_Dragonair_2,
+        .description = gDragonairPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 411,
         .trainerOffset = 5,
     },
-    {  //Dragonite
-        .categoryName = _("Dragon"),
+
+    [NATIONAL_DEX_DRAGONITE] =
+    {
+        .categoryName = _("DRAGON"),
         .height = 22,
         .weight = 2100,
-        .descriptionPage1 = DexDescription_Dragonite_1,
-        .descriptionPage2 = DexDescription_Dragonite_2,
+        .description = gDragonitePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 309,
         .trainerOffset = 4,
     },
-    {  //Mewtwo
-        .categoryName = _("Genetic"),
+
+    [NATIONAL_DEX_MEWTWO] =
+    {
+        .categoryName = _("GENETIC"),
         .height = 20,
         .weight = 1220,
-        .descriptionPage1 = DexDescription_Mewtwo_1,
-        .descriptionPage2 = DexDescription_Mewtwo_2,
+        .description = gMewtwoPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 309,
         .trainerOffset = 4,
     },
-    {  //Mew
-        .categoryName = _("New Species"),
+
+    [NATIONAL_DEX_MEW] =
+    {
+        .categoryName = _("NEW SPECIES"),
         .height = 4,
         .weight = 40,
-        .descriptionPage1 = DexDescription_Mew_1,
-        .descriptionPage2 = DexDescription_Mew_2,
+        .description = gMewPokedexText,
         .pokemonScale = 457,
         .pokemonOffset = -2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Chikorita
-        .categoryName = _("Leaf"),
+
+    [NATIONAL_DEX_CHIKORITA] =
+    {
+        .categoryName = _("LEAF"),
         .height = 9,
         .weight = 64,
-        .descriptionPage1 = DexDescription_Chikorita_1,
-        .descriptionPage2 = DexDescription_Chikorita_2,
+        .description = gChikoritaPokedexText,
         .pokemonScale = 512,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Bayleef
-        .categoryName = _("Leaf"),
+
+    [NATIONAL_DEX_BAYLEEF] =
+    {
+        .categoryName = _("LEAF"),
         .height = 12,
         .weight = 158,
-        .descriptionPage1 = DexDescription_Bayleef_1,
-        .descriptionPage2 = DexDescription_Bayleef_2,
+        .description = gBayleefPokedexText,
         .pokemonScale = 296,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Meganium
-        .categoryName = _("Herb"),
+
+    [NATIONAL_DEX_MEGANIUM] =
+    {
+        .categoryName = _("HERB"),
         .height = 18,
         .weight = 1005,
-        .descriptionPage1 = DexDescription_Meganium_1,
-        .descriptionPage2 = DexDescription_Meganium_2,
+        .description = gMeganiumPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 277,
         .trainerOffset = 1,
     },
-    {  //Cyndaquil
-        .categoryName = _("Fire Mouse"),
+
+    [NATIONAL_DEX_CYNDAQUIL] =
+    {
+        .categoryName = _("FIRE MOUSE"),
         .height = 5,
         .weight = 79,
-        .descriptionPage1 = DexDescription_Cyndaquil_1,
-        .descriptionPage2 = DexDescription_Cyndaquil_2,
+        .description = gCyndaquilPokedexText,
         .pokemonScale = 539,
         .pokemonOffset = 21,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Quilava
-        .categoryName = _("Volcano"),
+
+    [NATIONAL_DEX_QUILAVA] =
+    {
+        .categoryName = _("VOLCANO"),
         .height = 9,
         .weight = 190,
-        .descriptionPage1 = DexDescription_Quilava_1,
-        .descriptionPage2 = DexDescription_Quilava_2,
+        .description = gQuilavaPokedexText,
         .pokemonScale = 329,
         .pokemonOffset = 11,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Typhlosion
-        .categoryName = _("Volcano"),
+
+    [NATIONAL_DEX_TYPHLOSION] =
+    {
+        .categoryName = _("VOLCANO"),
         .height = 17,
         .weight = 795,
-        .descriptionPage1 = DexDescription_Typhlosion_1,
-        .descriptionPage2 = DexDescription_Typhlosion_2,
+        .description = gTyphlosionPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 268,
         .trainerOffset = 1,
     },
-    {  //Totodile
-        .categoryName = _("Big Jaw"),
+
+    [NATIONAL_DEX_TOTODILE] =
+    {
+        .categoryName = _("BIG JAW"),
         .height = 6,
         .weight = 95,
-        .descriptionPage1 = DexDescription_Totodile_1,
-        .descriptionPage2 = DexDescription_Totodile_2,
+        .description = gTotodilePokedexText,
         .pokemonScale = 487,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Croconaw
-        .categoryName = _("Big Jaw"),
+
+    [NATIONAL_DEX_CROCONAW] =
+    {
+        .categoryName = _("BIG JAW"),
         .height = 11,
         .weight = 250,
-        .descriptionPage1 = DexDescription_Croconaw_1,
-        .descriptionPage2 = DexDescription_Croconaw_2,
+        .description = gCroconawPokedexText,
         .pokemonScale = 378,
         .pokemonOffset = 13,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Feraligatr
-        .categoryName = _("Big Jaw"),
+
+    [NATIONAL_DEX_FERALIGATR] =
+    {
+        .categoryName = _("BIG JAW"),
         .height = 23,
         .weight = 888,
-        .descriptionPage1 = DexDescription_Feraligatr_1,
-        .descriptionPage2 = DexDescription_Feraligatr_2,
+        .description = gFeraligatrPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 342,
         .trainerOffset = 7,
     },
-    {  //Sentret
-        .categoryName = _("Scout"),
+
+    [NATIONAL_DEX_SENTRET] =
+    {
+        .categoryName = _("SCOUT"),
         .height = 8,
         .weight = 60,
-        .descriptionPage1 = DexDescription_Sentret_1,
-        .descriptionPage2 = DexDescription_Sentret_2,
+        .description = gSentretPokedexText,
         .pokemonScale = 439,
         .pokemonOffset = 12,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Furret
-        .categoryName = _("Long Body"),
+
+    [NATIONAL_DEX_FURRET] =
+    {
+        .categoryName = _("LONG BODY"),
         .height = 18,
         .weight = 325,
-        .descriptionPage1 = DexDescription_Furret_1,
-        .descriptionPage2 = DexDescription_Furret_2,
+        .description = gFurretPokedexText,
         .pokemonScale = 346,
         .pokemonOffset = 11,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Hoothoot
-        .categoryName = _("Owl"),
+
+    [NATIONAL_DEX_HOOTHOOT] =
+    {
+        .categoryName = _("OWL"),
         .height = 7,
         .weight = 212,
-        .descriptionPage1 = DexDescription_Hoothoot_1,
-        .descriptionPage2 = DexDescription_Hoothoot_2,
+        .description = gHoothootPokedexText,
         .pokemonScale = 380,
         .pokemonOffset = -2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Noctowl
-        .categoryName = _("Owl"),
+
+    [NATIONAL_DEX_NOCTOWL] =
+    {
+        .categoryName = _("OWL"),
         .height = 16,
         .weight = 408,
-        .descriptionPage1 = DexDescription_Noctowl_1,
-        .descriptionPage2 = DexDescription_Noctowl_2,
+        .description = gNoctowlPokedexText,
         .pokemonScale = 278,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Ledyba
-        .categoryName = _("Five Star"),
+
+    [NATIONAL_DEX_LEDYBA] =
+    {
+        .categoryName = _("FIVE STAR"),
         .height = 10,
         .weight = 108,
-        .descriptionPage1 = DexDescription_Ledyba_1,
-        .descriptionPage2 = DexDescription_Ledyba_2,
+        .description = gLedybaPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Ledian
-        .categoryName = _("Five Star"),
+
+    [NATIONAL_DEX_LEDIAN] =
+    {
+        .categoryName = _("FIVE STAR"),
         .height = 14,
         .weight = 356,
-        .descriptionPage1 = DexDescription_Ledian_1,
-        .descriptionPage2 = DexDescription_Ledian_2,
+        .description = gLedianPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Spinarak
-        .categoryName = _("String Spit"),
+
+    [NATIONAL_DEX_SPINARAK] =
+    {
+        .categoryName = _("STRING SPIT"),
         .height = 5,
         .weight = 85,
-        .descriptionPage1 = DexDescription_Spinarak_1,
-        .descriptionPage2 = DexDescription_Spinarak_2,
+        .description = gSpinarakPokedexText,
         .pokemonScale = 414,
         .pokemonOffset = 21,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Ariados
-        .categoryName = _("Long Leg"),
+
+    [NATIONAL_DEX_ARIADOS] =
+    {
+        .categoryName = _("LONG LEG"),
         .height = 11,
         .weight = 335,
-        .descriptionPage1 = DexDescription_Ariados_1,
-        .descriptionPage2 = DexDescription_Ariados_2,
+        .description = gAriadosPokedexText,
         .pokemonScale = 316,
         .pokemonOffset = 8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Crobat
-        .categoryName = _("Bat"),
+
+    [NATIONAL_DEX_CROBAT] =
+    {
+        .categoryName = _("BAT"),
         .height = 18,
         .weight = 750,
-        .descriptionPage1 = DexDescription_Crobat_1,
-        .descriptionPage2 = DexDescription_Crobat_2,
+        .description = gCrobatPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 281,
         .trainerOffset = 1,
     },
-    {  //Chinchou
-        .categoryName = _("Angler"),
+
+    [NATIONAL_DEX_CHINCHOU] =
+    {
+        .categoryName = _("ANGLER"),
         .height = 5,
         .weight = 120,
-        .descriptionPage1 = DexDescription_Chinchou_1,
-        .descriptionPage2 = DexDescription_Chinchou_2,
+        .description = gChinchouPokedexText,
         .pokemonScale = 424,
         .pokemonOffset = -2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Lanturn
-        .categoryName = _("Light"),
+
+    [NATIONAL_DEX_LANTURN] =
+    {
+        .categoryName = _("LIGHT"),
         .height = 12,
         .weight = 225,
-        .descriptionPage1 = DexDescription_Lanturn_1,
-        .descriptionPage2 = DexDescription_Lanturn_2,
+        .description = gLanturnPokedexText,
         .pokemonScale = 269,
         .pokemonOffset = 6,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Pichu
-        .categoryName = _("Tiny Mouse"),
+
+    [NATIONAL_DEX_PICHU] =
+    {
+        .categoryName = _("TINY MOUSE"),
         .height = 3,
         .weight = 20,
-        .descriptionPage1 = DexDescription_Pichu_1,
-        .descriptionPage2 = DexDescription_Pichu_2,
+        .description = gPichuPokedexText,
         .pokemonScale = 508,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Cleffa
-        .categoryName = _("Star Shape"),
+
+    [NATIONAL_DEX_CLEFFA] =
+    {
+        .categoryName = _("STAR SHAPE"),
         .height = 3,
         .weight = 30,
-        .descriptionPage1 = DexDescription_Cleffa_1,
-        .descriptionPage2 = DexDescription_Cleffa_2,
+        .description = gCleffaPokedexText,
         .pokemonScale = 462,
         .pokemonOffset = 23,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Igglybuff
-        .categoryName = _("Balloon"),
+
+    [NATIONAL_DEX_IGGLYBUFF] =
+    {
+        .categoryName = _("BALLOON"),
         .height = 3,
         .weight = 10,
-        .descriptionPage1 = DexDescription_Igglybuff_1,
-        .descriptionPage2 = DexDescription_Igglybuff_2,
+        .description = gIgglybuffPokedexText,
         .pokemonScale = 457,
         .pokemonOffset = -1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Togepi
-        .categoryName = _("Spike Ball"),
+
+    [NATIONAL_DEX_TOGEPI] =
+    {
+        .categoryName = _("SPIKE BALL"),
         .height = 3,
         .weight = 15,
-        .descriptionPage1 = DexDescription_Togepi_1,
-        .descriptionPage2 = DexDescription_Togepi_2,
+        .description = gTogepiPokedexText,
         .pokemonScale = 507,
         .pokemonOffset = 23,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Togetic
-        .categoryName = _("Happiness"),
+
+    [NATIONAL_DEX_TOGETIC] =
+    {
+        .categoryName = _("HAPPINESS"),
         .height = 6,
         .weight = 32,
-        .descriptionPage1 = DexDescription_Togetic_1,
-        .descriptionPage2 = DexDescription_Togetic_2,
+        .description = gTogeticPokedexText,
         .pokemonScale = 424,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Natu
-        .categoryName = _("Tiny Bird"),
+
+    [NATIONAL_DEX_NATU] =
+    {
+        .categoryName = _("TINY BIRD"),
         .height = 2,
         .weight = 20,
-        .descriptionPage1 = DexDescription_Natu_1,
-        .descriptionPage2 = DexDescription_Natu_2,
+        .description = gNatuPokedexText,
         .pokemonScale = 610,
         .pokemonOffset = 25,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Xatu
-        .categoryName = _("Mystic"),
+
+    [NATIONAL_DEX_XATU] =
+    {
+        .categoryName = _("MYSTIC"),
         .height = 15,
         .weight = 150,
-        .descriptionPage1 = DexDescription_Xatu_1,
-        .descriptionPage2 = DexDescription_Xatu_2,
+        .description = gXatuPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 6,
         .trainerScale = 318,
         .trainerOffset = 4,
     },
-    {  //Mareep
-        .categoryName = _("Wool"),
+
+    [NATIONAL_DEX_MAREEP] =
+    {
+        .categoryName = _("WOOL"),
         .height = 6,
         .weight = 78,
-        .descriptionPage1 = DexDescription_Mareep_1,
-        .descriptionPage2 = DexDescription_Mareep_2,
+        .description = gMareepPokedexText,
         .pokemonScale = 379,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Flaaffy
-        .categoryName = _("Wool"),
+
+    [NATIONAL_DEX_FLAAFFY] =
+    {
+        .categoryName = _("WOOL"),
         .height = 8,
         .weight = 133,
-        .descriptionPage1 = DexDescription_Flaaffy_1,
-        .descriptionPage2 = DexDescription_Flaaffy_2,
+        .description = gFlaaffyPokedexText,
         .pokemonScale = 372,
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Ampharos
-        .categoryName = _("Light"),
+
+    [NATIONAL_DEX_AMPHAROS] =
+    {
+        .categoryName = _("LIGHT"),
         .height = 14,
         .weight = 615,
-        .descriptionPage1 = DexDescription_Ampharos_1,
-        .descriptionPage2 = DexDescription_Ampharos_2,
+        .description = gAmpharosPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Bellossom
-        .categoryName = _("Flower"),
+
+    [NATIONAL_DEX_BELLOSSOM] =
+    {
+        .categoryName = _("FLOWER"),
         .height = 4,
         .weight = 58,
-        .descriptionPage1 = DexDescription_Bellossom_1,
-        .descriptionPage2 = DexDescription_Bellossom_2,
+        .description = gBellossomPokedexText,
         .pokemonScale = 472,
         .pokemonOffset = 21,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Marill
-        .categoryName = _("Aqua Mouse"),
+
+    [NATIONAL_DEX_MARILL] =
+    {
+        .categoryName = _("AQUA MOUSE"),
         .height = 4,
         .weight = 85,
-        .descriptionPage1 = DexDescription_Marill_1,
-        .descriptionPage2 = DexDescription_Marill_2,
+        .description = gMarillPokedexText,
         .pokemonScale = 476,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Azumarill
-        .categoryName = _("Aqua Rabbit"),
+
+    [NATIONAL_DEX_AZUMARILL] =
+    {
+        .categoryName = _("AQUA RABBIT"),
         .height = 8,
         .weight = 285,
-        .descriptionPage1 = DexDescription_Azumarill_1,
-        .descriptionPage2 = DexDescription_Azumarill_2,
+        .description = gAzumarillPokedexText,
         .pokemonScale = 448,
         .pokemonOffset = 16,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Sudowoodo
-        .categoryName = _("Imitation"),
+
+    [NATIONAL_DEX_SUDOWOODO] =
+    {
+        .categoryName = _("IMITATION"),
         .height = 12,
         .weight = 380,
-        .descriptionPage1 = DexDescription_Sudowoodo_1,
-        .descriptionPage2 = DexDescription_Sudowoodo_2,
+        .description = gSudowoodoPokedexText,
         .pokemonScale = 305,
         .pokemonOffset = 8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Politoed
-        .categoryName = _("Frog"),
+
+    [NATIONAL_DEX_POLITOED] =
+    {
+        .categoryName = _("FROG"),
         .height = 11,
         .weight = 339,
-        .descriptionPage1 = DexDescription_Politoed_1,
-        .descriptionPage2 = DexDescription_Politoed_2,
+        .description = gPolitoedPokedexText,
         .pokemonScale = 289,
         .pokemonOffset = 6,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Hoppip
-        .categoryName = _("Cottonweed"),
+
+    [NATIONAL_DEX_HOPPIP] =
+    {
+        .categoryName = _("COTTONWEED"),
         .height = 4,
         .weight = 5,
-        .descriptionPage1 = DexDescription_Hoppip_1,
-        .descriptionPage2 = DexDescription_Hoppip_2,
+        .description = gHoppipPokedexText,
         .pokemonScale = 562,
         .pokemonOffset = -7,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Skiploom
-        .categoryName = _("Cottonweed"),
+
+    [NATIONAL_DEX_SKIPLOOM] =
+    {
+        .categoryName = _("COTTONWEED"),
         .height = 6,
         .weight = 10,
-        .descriptionPage1 = DexDescription_Skiploom_1,
-        .descriptionPage2 = DexDescription_Skiploom_2,
+        .description = gSkiploomPokedexText,
         .pokemonScale = 387,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Jumpluff
-        .categoryName = _("Cottonweed"),
+
+    [NATIONAL_DEX_JUMPLUFF] =
+    {
+        .categoryName = _("COTTONWEED"),
         .height = 8,
         .weight = 30,
-        .descriptionPage1 = DexDescription_Jumpluff_1,
-        .descriptionPage2 = DexDescription_Jumpluff_2,
+        .description = gJumpluffPokedexText,
         .pokemonScale = 418,
         .pokemonOffset = -4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Aipom
-        .categoryName = _("Long Tail"),
+
+    [NATIONAL_DEX_AIPOM] =
+    {
+        .categoryName = _("LONG TAIL"),
         .height = 8,
         .weight = 115,
-        .descriptionPage1 = DexDescription_Aipom_1,
-        .descriptionPage2 = DexDescription_Aipom_2,
+        .description = gAipomPokedexText,
         .pokemonScale = 363,
         .pokemonOffset = 6,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Sunkern
-        .categoryName = _("Seed"),
+
+    [NATIONAL_DEX_SUNKERN] =
+    {
+        .categoryName = _("SEED"),
         .height = 3,
         .weight = 18,
-        .descriptionPage1 = DexDescription_Sunkern_1,
-        .descriptionPage2 = DexDescription_Sunkern_2,
+        .description = gSunkernPokedexText,
         .pokemonScale = 541,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Sunflora
-        .categoryName = _("Sun"),
+
+    [NATIONAL_DEX_SUNFLORA] =
+    {
+        .categoryName = _("SUN"),
         .height = 8,
         .weight = 85,
-        .descriptionPage1 = DexDescription_Sunflora_1,
-        .descriptionPage2 = DexDescription_Sunflora_2,
+        .description = gSunfloraPokedexText,
         .pokemonScale = 444,
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Yanma
-        .categoryName = _("Clear Wing"),
+
+    [NATIONAL_DEX_YANMA] =
+    {
+        .categoryName = _("CLEAR WING"),
         .height = 12,
         .weight = 380,
-        .descriptionPage1 = DexDescription_Yanma_1,
-        .descriptionPage2 = DexDescription_Yanma_2,
+        .description = gYanmaPokedexText,
         .pokemonScale = 274,
         .pokemonOffset = -1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Wooper
-        .categoryName = _("Water Fish"),
+
+    [NATIONAL_DEX_WOOPER] =
+    {
+        .categoryName = _("WATER FISH"),
         .height = 4,
         .weight = 85,
-        .descriptionPage1 = DexDescription_Wooper_1,
-        .descriptionPage2 = DexDescription_Wooper_2,
+        .description = gWooperPokedexText,
         .pokemonScale = 479,
         .pokemonOffset = 21,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Quagsire
-        .categoryName = _("Water Fish"),
+
+    [NATIONAL_DEX_QUAGSIRE] =
+    {
+        .categoryName = _("WATER FISH"),
         .height = 14,
         .weight = 750,
-        .descriptionPage1 = DexDescription_Quagsire_1,
-        .descriptionPage2 = DexDescription_Quagsire_2,
+        .description = gQuagsirePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Espeon
-        .categoryName = _("Sun"),
+
+    [NATIONAL_DEX_ESPEON] =
+    {
+        .categoryName = _("SUN"),
         .height = 9,
         .weight = 265,
-        .descriptionPage1 = DexDescription_Espeon_1,
-        .descriptionPage2 = DexDescription_Espeon_2,
+        .description = gEspeonPokedexText,
         .pokemonScale = 363,
         .pokemonOffset = 14,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Umbreon
-        .categoryName = _("Moonlight"),
+
+    [NATIONAL_DEX_UMBREON] =
+    {
+        .categoryName = _("MOONLIGHT"),
         .height = 10,
         .weight = 270,
-        .descriptionPage1 = DexDescription_Umbreon_1,
-        .descriptionPage2 = DexDescription_Umbreon_2,
+        .description = gUmbreonPokedexText,
         .pokemonScale = 317,
         .pokemonOffset = 11,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Murkrow
-        .categoryName = _("Darkness"),
+
+    [NATIONAL_DEX_MURKROW] =
+    {
+        .categoryName = _("DARKNESS"),
         .height = 5,
         .weight = 21,
-        .descriptionPage1 = DexDescription_Murkrow_1,
-        .descriptionPage2 = DexDescription_Murkrow_2,
+        .description = gMurkrowPokedexText,
         .pokemonScale = 401,
         .pokemonOffset = -8,
         .trainerScale = 256,
         .trainerOffset = 1,
     },
-    {  //Slowking
-        .categoryName = _("Royal"),
+
+    [NATIONAL_DEX_SLOWKING] =
+    {
+        .categoryName = _("ROYAL"),
         .height = 20,
         .weight = 795,
-        .descriptionPage1 = DexDescription_Slowking_1,
-        .descriptionPage2 = DexDescription_Slowking_2,
+        .description = gSlowkingPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 309,
         .trainerOffset = 5,
     },
-    {  //Misdreavus
-        .categoryName = _("Screech"),
+
+    [NATIONAL_DEX_MISDREAVUS] =
+    {
+        .categoryName = _("SCREECH"),
         .height = 7,
         .weight = 10,
-        .descriptionPage1 = DexDescription_Misdreavus_1,
-        .descriptionPage2 = DexDescription_Misdreavus_2,
+        .description = gMisdreavusPokedexText,
         .pokemonScale = 407,
         .pokemonOffset = -8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Unown
-        .categoryName = _("Symbol"),
+
+    [NATIONAL_DEX_UNOWN] =
+    {
+        .categoryName = _("SYMBOL"),
         .height = 5,
         .weight = 50,
-        .descriptionPage1 = DexDescription_Unown_1,
-        .descriptionPage2 = DexDescription_Unown_2,
+        .description = gUnownPokedexText,
         .pokemonScale = 411,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Wobbuffet
-        .categoryName = _("Patient"),
+
+    [NATIONAL_DEX_WOBBUFFET] =
+    {
+        .categoryName = _("PATIENT"),
         .height = 13,
         .weight = 285,
-        .descriptionPage1 = DexDescription_Wobbuffet_1,
-        .descriptionPage2 = DexDescription_Wobbuffet_2,
+        .description = gWobbuffetPokedexText,
         .pokemonScale = 274,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Girafarig
-        .categoryName = _("Long Neck"),
+
+    [NATIONAL_DEX_GIRAFARIG] =
+    {
+        .categoryName = _("LONG NECK"),
         .height = 15,
         .weight = 415,
-        .descriptionPage1 = DexDescription_Girafarig_1,
-        .descriptionPage2 = DexDescription_Girafarig_2,
+        .description = gGirafarigPokedexText,
         .pokemonScale = 281,
         .pokemonOffset = 1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Pineco
-        .categoryName = _("Bagworm"),
+
+    [NATIONAL_DEX_PINECO] =
+    {
+        .categoryName = _("BAGWORM"),
         .height = 6,
         .weight = 72,
-        .descriptionPage1 = DexDescription_Pineco_1,
-        .descriptionPage2 = DexDescription_Pineco_2,
+        .description = gPinecoPokedexText,
         .pokemonScale = 445,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Forretress
-        .categoryName = _("Bagworm"),
+
+    [NATIONAL_DEX_FORRETRESS] =
+    {
+        .categoryName = _("BAGWORM"),
         .height = 12,
         .weight = 1258,
-        .descriptionPage1 = DexDescription_Forretress_1,
-        .descriptionPage2 = DexDescription_Forretress_2,
+        .description = gForretressPokedexText,
         .pokemonScale = 293,
         .pokemonOffset = 5,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Dunsparce
-        .categoryName = _("Land Snake"),
+
+    [NATIONAL_DEX_DUNSPARCE] =
+    {
+        .categoryName = _("LAND SNAKE"),
         .height = 15,
         .weight = 140,
-        .descriptionPage1 = DexDescription_Dunsparce_1,
-        .descriptionPage2 = DexDescription_Dunsparce_2,
+        .description = gDunsparcePokedexText,
         .pokemonScale = 316,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Gligar
-        .categoryName = _("FlyScorpion"),
+
+    [NATIONAL_DEX_GLIGAR] =
+    {
+        .categoryName = _("FLYSCORPION"),
         .height = 11,
         .weight = 648,
-        .descriptionPage1 = DexDescription_Gligar_1,
-        .descriptionPage2 = DexDescription_Gligar_2,
+        .description = gGligarPokedexText,
         .pokemonScale = 350,
         .pokemonOffset = -1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Steelix
-        .categoryName = _("Iron Snake"),
+
+    [NATIONAL_DEX_STEELIX] =
+    {
+        .categoryName = _("IRON SNAKE"),
         .height = 92,
         .weight = 4000,
-        .descriptionPage1 = DexDescription_Steelix_1,
-        .descriptionPage2 = DexDescription_Steelix_2,
+        .description = gSteelixPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 516,
         .trainerOffset = 13,
     },
-    {  //Snubbull
-        .categoryName = _("Fairy"),
+
+    [NATIONAL_DEX_SNUBBULL] =
+    {
+        .categoryName = _("FAIRY"),
         .height = 6,
         .weight = 78,
-        .descriptionPage1 = DexDescription_Snubbull_1,
-        .descriptionPage2 = DexDescription_Snubbull_2,
+        .description = gSnubbullPokedexText,
         .pokemonScale = 465,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Granbull
-        .categoryName = _("Fairy"),
+
+    [NATIONAL_DEX_GRANBULL] =
+    {
+        .categoryName = _("FAIRY"),
         .height = 14,
         .weight = 487,
-        .descriptionPage1 = DexDescription_Granbull_1,
-        .descriptionPage2 = DexDescription_Granbull_2,
+        .description = gGranbullPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Qwilfish
-        .categoryName = _("Balloon"),
+
+    [NATIONAL_DEX_QWILFISH] =
+    {
+        .categoryName = _("BALLOON"),
         .height = 5,
         .weight = 39,
-        .descriptionPage1 = DexDescription_Qwilfish_1,
-        .descriptionPage2 = DexDescription_Qwilfish_2,
+        .description = gQwilfishPokedexText,
         .pokemonScale = 430,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Scizor
-        .categoryName = _("Pincer"),
+
+    [NATIONAL_DEX_SCIZOR] =
+    {
+        .categoryName = _("PINCER"),
         .height = 18,
         .weight = 1180,
-        .descriptionPage1 = DexDescription_Scizor_1,
-        .descriptionPage2 = DexDescription_Scizor_2,
+        .description = gScizorPokedexText,
         .pokemonScale = 278,
         .pokemonOffset = 1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Shuckle
-        .categoryName = _("Mold"),
+
+    [NATIONAL_DEX_SHUCKLE] =
+    {
+        .categoryName = _("MOLD"),
         .height = 6,
         .weight = 205,
-        .descriptionPage1 = DexDescription_Shuckle_1,
-        .descriptionPage2 = DexDescription_Shuckle_2,
+        .description = gShucklePokedexText,
         .pokemonScale = 485,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Heracross
-        .categoryName = _("Single Horn"),
+
+    [NATIONAL_DEX_HERACROSS] =
+    {
+        .categoryName = _("SINGLE HORN"),
         .height = 15,
         .weight = 540,
-        .descriptionPage1 = DexDescription_Heracross_1,
-        .descriptionPage2 = DexDescription_Heracross_2,
+        .description = gHeracrossPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Sneasel
-        .categoryName = _("Sharp Claw"),
+
+    [NATIONAL_DEX_SNEASEL] =
+    {
+        .categoryName = _("SHARP CLAW"),
         .height = 9,
         .weight = 280,
-        .descriptionPage1 = DexDescription_Sneasel_1,
-        .descriptionPage2 = DexDescription_Sneasel_2,
+        .description = gSneaselPokedexText,
         .pokemonScale = 413,
         .pokemonOffset = -3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Teddiursa
-        .categoryName = _("Little Bear"),
+
+    [NATIONAL_DEX_TEDDIURSA] =
+    {
+        .categoryName = _("LITTLE BEAR"),
         .height = 6,
         .weight = 88,
-        .descriptionPage1 = DexDescription_Teddiursa_1,
-        .descriptionPage2 = DexDescription_Teddiursa_2,
+        .description = gTeddiursaPokedexText,
         .pokemonScale = 455,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Ursaring
-        .categoryName = _("Hibernator"),
+
+    [NATIONAL_DEX_URSARING] =
+    {
+        .categoryName = _("HIBERNATOR"),
         .height = 18,
         .weight = 1258,
-        .descriptionPage1 = DexDescription_Ursaring_1,
-        .descriptionPage2 = DexDescription_Ursaring_2,
+        .description = gUrsaringPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Slugma
-        .categoryName = _("Lava"),
+
+    [NATIONAL_DEX_SLUGMA] =
+    {
+        .categoryName = _("LAVA"),
         .height = 7,
         .weight = 350,
-        .descriptionPage1 = DexDescription_Slugma_1,
-        .descriptionPage2 = DexDescription_Slugma_2,
+        .description = gSlugmaPokedexText,
         .pokemonScale = 329,
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Magcargo
-        .categoryName = _("Lava"),
+
+    [NATIONAL_DEX_MAGCARGO] =
+    {
+        .categoryName = _("LAVA"),
         .height = 8,
         .weight = 550,
-        .descriptionPage1 = DexDescription_Magcargo_1,
-        .descriptionPage2 = DexDescription_Magcargo_2,
+        .description = gMagcargoPokedexText,
         .pokemonScale = 332,
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Swinub
-        .categoryName = _("Pig"),
+
+    [NATIONAL_DEX_SWINUB] =
+    {
+        .categoryName = _("PIG"),
         .height = 4,
         .weight = 65,
-        .descriptionPage1 = DexDescription_Swinub_1,
-        .descriptionPage2 = DexDescription_Swinub_2,
+        .description = gSwinubPokedexText,
         .pokemonScale = 324,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Piloswine
-        .categoryName = _("Swine"),
+
+    [NATIONAL_DEX_PILOSWINE] =
+    {
+        .categoryName = _("SWINE"),
         .height = 11,
         .weight = 558,
-        .descriptionPage1 = DexDescription_Piloswine_1,
-        .descriptionPage2 = DexDescription_Piloswine_2,
+        .description = gPiloswinePokedexText,
         .pokemonScale = 306,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Corsola
-        .categoryName = _("Coral"),
+
+    [NATIONAL_DEX_CORSOLA] =
+    {
+        .categoryName = _("CORAL"),
         .height = 6,
         .weight = 50,
-        .descriptionPage1 = DexDescription_Corsola_1,
-        .descriptionPage2 = DexDescription_Corsola_2,
+        .description = gCorsolaPokedexText,
         .pokemonScale = 410,
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Remoraid
-        .categoryName = _("Jet"),
+
+    [NATIONAL_DEX_REMORAID] =
+    {
+        .categoryName = _("JET"),
         .height = 6,
         .weight = 120,
-        .descriptionPage1 = DexDescription_Remoraid_1,
-        .descriptionPage2 = DexDescription_Remoraid_2,
+        .description = gRemoraidPokedexText,
         .pokemonScale = 316,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Octillery
-        .categoryName = _("Jet"),
+
+    [NATIONAL_DEX_OCTILLERY] =
+    {
+        .categoryName = _("JET"),
         .height = 9,
         .weight = 285,
-        .descriptionPage1 = DexDescription_Octillery_1,
-        .descriptionPage2 = DexDescription_Octillery_2,
+        .description = gOctilleryPokedexText,
         .pokemonScale = 296,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Delibird
-        .categoryName = _("Delivery"),
+
+    [NATIONAL_DEX_DELIBIRD] =
+    {
+        .categoryName = _("DELIVERY"),
         .height = 9,
         .weight = 160,
-        .descriptionPage1 = DexDescription_Delibird_1,
-        .descriptionPage2 = DexDescription_Delibird_2,
+        .description = gDelibirdPokedexText,
         .pokemonScale = 293,
         .pokemonOffset = 11,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Mantine
-        .categoryName = _("Kite"),
+
+    [NATIONAL_DEX_MANTINE] =
+    {
+        .categoryName = _("KITE"),
         .height = 21,
         .weight = 2200,
-        .descriptionPage1 = DexDescription_Mantine_1,
-        .descriptionPage2 = DexDescription_Mantine_2,
+        .description = gMantinePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 342,
         .trainerOffset = 7,
     },
-    {  //Skarmory
-        .categoryName = _("Armor Bird"),
+
+    [NATIONAL_DEX_SKARMORY] =
+    {
+        .categoryName = _("ARMOR BIRD"),
         .height = 17,
         .weight = 505,
-        .descriptionPage1 = DexDescription_Skarmory_1,
-        .descriptionPage2 = DexDescription_Skarmory_2,
+        .description = gSkarmoryPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 271,
         .trainerOffset = 1,
     },
-    {  //Houndour
-        .categoryName = _("Dark"),
+
+    [NATIONAL_DEX_HOUNDOUR] =
+    {
+        .categoryName = _("DARK"),
         .height = 6,
         .weight = 108,
-        .descriptionPage1 = DexDescription_Houndour_1,
-        .descriptionPage2 = DexDescription_Houndour_2,
+        .description = gHoundourPokedexText,
         .pokemonScale = 393,
         .pokemonOffset = 16,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Houndoom
-        .categoryName = _("Dark"),
+
+    [NATIONAL_DEX_HOUNDOOM] =
+    {
+        .categoryName = _("DARK"),
         .height = 14,
         .weight = 350,
-        .descriptionPage1 = DexDescription_Houndoom_1,
-        .descriptionPage2 = DexDescription_Houndoom_2,
+        .description = gHoundoomPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Kingdra
-        .categoryName = _("Dragon"),
+
+    [NATIONAL_DEX_KINGDRA] =
+    {
+        .categoryName = _("DRAGON"),
         .height = 18,
         .weight = 1520,
-        .descriptionPage1 = DexDescription_Kingdra_1,
-        .descriptionPage2 = DexDescription_Kingdra_2,
+        .description = gKingdraPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 287,
         .trainerOffset = 0,
     },
-    {  //Phanpy
-        .categoryName = _("Long Nose"),
+
+    [NATIONAL_DEX_PHANPY] =
+    {
+        .categoryName = _("LONG NOSE"),
         .height = 5,
         .weight = 335,
-        .descriptionPage1 = DexDescription_Phanpy_1,
-        .descriptionPage2 = DexDescription_Phanpy_2,
+        .description = gPhanpyPokedexText,
         .pokemonScale = 465,
         .pokemonOffset = 21,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Donphan
-        .categoryName = _("Armor"),
+
+    [NATIONAL_DEX_DONPHAN] =
+    {
+        .categoryName = _("ARMOR"),
         .height = 11,
         .weight = 1200,
-        .descriptionPage1 = DexDescription_Donphan_1,
-        .descriptionPage2 = DexDescription_Donphan_2,
+        .description = gDonphanPokedexText,
         .pokemonScale = 313,
         .pokemonOffset = 9,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Porygon2
-        .categoryName = _("Virtual"),
+
+    [NATIONAL_DEX_PORYGON2] =
+    {
+        .categoryName = _("VIRTUAL"),
         .height = 6,
         .weight = 325,
-        .descriptionPage1 = DexDescription_Porygon2_1,
-        .descriptionPage2 = DexDescription_Porygon2_2,
+        .description = gPorygon2PokedexText,
         .pokemonScale = 320,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Stantler
-        .categoryName = _("Big Horn"),
+
+    [NATIONAL_DEX_STANTLER] =
+    {
+        .categoryName = _("BIG HORN"),
         .height = 14,
         .weight = 712,
-        .descriptionPage1 = DexDescription_Stantler_1,
-        .descriptionPage2 = DexDescription_Stantler_2,
+        .description = gStantlerPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Smeargle
-        .categoryName = _("Painter"),
+
+    [NATIONAL_DEX_SMEARGLE] =
+    {
+        .categoryName = _("PAINTER"),
         .height = 12,
         .weight = 580,
-        .descriptionPage1 = DexDescription_Smeargle_1,
-        .descriptionPage2 = DexDescription_Smeargle_2,
+        .description = gSmearglePokedexText,
         .pokemonScale = 287,
         .pokemonOffset = 5,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Tyrogue
-        .categoryName = _("Scuffle"),
+
+    [NATIONAL_DEX_TYROGUE] =
+    {
+        .categoryName = _("SCUFFLE"),
         .height = 7,
         .weight = 210,
-        .descriptionPage1 = DexDescription_Tyrogue_1,
-        .descriptionPage2 = DexDescription_Tyrogue_2,
+        .description = gTyroguePokedexText,
         .pokemonScale = 292,
         .pokemonOffset = 9,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Hitmontop
-        .categoryName = _("Handstand"),
+
+    [NATIONAL_DEX_HITMONTOP] =
+    {
+        .categoryName = _("HANDSTAND"),
         .height = 14,
         .weight = 480,
-        .descriptionPage1 = DexDescription_Hitmontop_1,
-        .descriptionPage2 = DexDescription_Hitmontop_2,
+        .description = gHitmontopPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 257,
         .trainerOffset = 0,
     },
-    {  //Smoochum
-        .categoryName = _("Kiss"),
+
+    [NATIONAL_DEX_SMOOCHUM] =
+    {
+        .categoryName = _("KISS"),
         .height = 4,
         .weight = 60,
-        .descriptionPage1 = DexDescription_Smoochum_1,
-        .descriptionPage2 = DexDescription_Smoochum_2,
+        .description = gSmoochumPokedexText,
         .pokemonScale = 440,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Elekid
-        .categoryName = _("Electric"),
+
+    [NATIONAL_DEX_ELEKID] =
+    {
+        .categoryName = _("ELECTRIC"),
         .height = 6,
         .weight = 235,
-        .descriptionPage1 = DexDescription_Elekid_1,
-        .descriptionPage2 = DexDescription_Elekid_2,
+        .description = gElekidPokedexText,
         .pokemonScale = 363,
         .pokemonOffset = 14,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Magby
-        .categoryName = _("Live Coal"),
+
+    [NATIONAL_DEX_MAGBY] =
+    {
+        .categoryName = _("LIVE COAL"),
         .height = 7,
         .weight = 214,
-        .descriptionPage1 = DexDescription_Magby_1,
-        .descriptionPage2 = DexDescription_Magby_2,
+        .description = gMagbyPokedexText,
         .pokemonScale = 284,
         .pokemonOffset = 13,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Miltank
-        .categoryName = _("Milk Cow"),
+
+    [NATIONAL_DEX_MILTANK] =
+    {
+        .categoryName = _("MILK COW"),
         .height = 12,
         .weight = 755,
-        .descriptionPage1 = DexDescription_Miltank_1,
-        .descriptionPage2 = DexDescription_Miltank_2,
+        .description = gMiltankPokedexText,
         .pokemonScale = 280,
         .pokemonOffset = 5,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Blissey
-        .categoryName = _("Happiness"),
+
+    [NATIONAL_DEX_BLISSEY] =
+    {
+        .categoryName = _("HAPPINESS"),
         .height = 15,
         .weight = 468,
-        .descriptionPage1 = DexDescription_Blissey_1,
-        .descriptionPage2 = DexDescription_Blissey_2,
+        .description = gBlisseyPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 310,
         .trainerOffset = 3,
     },
-    {  //Raikou
-        .categoryName = _("Thunder"),
+
+    [NATIONAL_DEX_RAIKOU] =
+    {
+        .categoryName = _("THUNDER"),
         .height = 19,
         .weight = 1780,
-        .descriptionPage1 = DexDescription_Raikou_1,
-        .descriptionPage2 = DexDescription_Raikou_2,
+        .description = gRaikouPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 345,
         .trainerOffset = 7,
     },
-    {  //Entei
-        .categoryName = _("Volcano"),
+
+    [NATIONAL_DEX_ENTEI] =
+    {
+        .categoryName = _("VOLCANO"),
         .height = 21,
         .weight = 1980,
-        .descriptionPage1 = DexDescription_Entei_1,
-        .descriptionPage2 = DexDescription_Entei_2,
+        .description = gEnteiPokedexText,
         .pokemonScale = 259,
         .pokemonOffset = 0,
         .trainerScale = 345,
         .trainerOffset = 7,
     },
-    {  //Suicune
-        .categoryName = _("Aurora"),
+
+    [NATIONAL_DEX_SUICUNE] =
+    {
+        .categoryName = _("AURORA"),
         .height = 20,
         .weight = 1870,
-        .descriptionPage1 = DexDescription_Suicune_1,
-        .descriptionPage2 = DexDescription_Suicune_2,
+        .description = gSuicunePokedexText,
         .pokemonScale = 269,
         .pokemonOffset = 0,
         .trainerScale = 345,
         .trainerOffset = 7,
     },
-    {  //Larvitar
-        .categoryName = _("Rock Skin"),
+
+    [NATIONAL_DEX_LARVITAR] =
+    {
+        .categoryName = _("ROCK SKIN"),
         .height = 6,
         .weight = 720,
-        .descriptionPage1 = DexDescription_Larvitar_1,
-        .descriptionPage2 = DexDescription_Larvitar_2,
+        .description = gLarvitarPokedexText,
         .pokemonScale = 472,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Pupitar
-        .categoryName = _("Hard Shell"),
+
+    [NATIONAL_DEX_PUPITAR] =
+    {
+        .categoryName = _("HARD SHELL"),
         .height = 12,
         .weight = 1520,
-        .descriptionPage1 = DexDescription_Pupitar_1,
-        .descriptionPage2 = DexDescription_Pupitar_2,
+        .description = gPupitarPokedexText,
         .pokemonScale = 292,
         .pokemonOffset = 8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Tyranitar
-        .categoryName = _("Armor"),
+
+    [NATIONAL_DEX_TYRANITAR] =
+    {
+        .categoryName = _("ARMOR"),
         .height = 20,
         .weight = 2020,
-        .descriptionPage1 = DexDescription_Tyranitar_1,
-        .descriptionPage2 = DexDescription_Tyranitar_2,
+        .description = gTyranitarPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 345,
         .trainerOffset = 7,
     },
-    {  //Lugia
-        .categoryName = _("Diving"),
+
+    [NATIONAL_DEX_LUGIA] =
+    {
+        .categoryName = _("DIVING"),
         .height = 52,
         .weight = 2160,
-        .descriptionPage1 = DexDescription_Lugia_1,
-        .descriptionPage2 = DexDescription_Lugia_2,
+        .description = gLugiaPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 721,
         .trainerOffset = 19,
     },
-    {  //HoOh
-        .categoryName = _("Rainbow"),
+
+    [NATIONAL_DEX_HO_OH] =
+    {
+        .categoryName = _("RAINBOW"),
         .height = 38,
         .weight = 1990,
-        .descriptionPage1 = DexDescription_HoOh_1,
-        .descriptionPage2 = DexDescription_HoOh_2,
+        .description = gHoOhPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 610,
         .trainerOffset = 17,
     },
-    {  //Celebi
-        .categoryName = _("Time Travel"),
+
+    [NATIONAL_DEX_CELEBI] =
+    {
+        .categoryName = _("TIME TRAVEL"),
         .height = 6,
         .weight = 50,
-        .descriptionPage1 = DexDescription_Celebi_1,
-        .descriptionPage2 = DexDescription_Celebi_2,
+        .description = gCelebiPokedexText,
         .pokemonScale = 393,
         .pokemonOffset = -10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Treecko
-        .categoryName = _("Wood Gecko"),
+
+    [NATIONAL_DEX_TREECKO] =
+    {
+        .categoryName = _("WOOD GECKO"),
         .height = 5,
         .weight = 50,
-        .descriptionPage1 = DexDescription_Treecko_1,
-        .descriptionPage2 = DexDescription_Treecko_2,
+        .description = gTreeckoPokedexText,
         .pokemonScale = 541,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Grovyle
-        .categoryName = _("Wood Gecko"),
+
+    [NATIONAL_DEX_GROVYLE] =
+    {
+        .categoryName = _("WOOD GECKO"),
         .height = 9,
         .weight = 216,
-        .descriptionPage1 = DexDescription_Grovyle_1,
-        .descriptionPage2 = DexDescription_Grovyle_2,
+        .description = gGrovylePokedexText,
         .pokemonScale = 360,
         .pokemonOffset = 5,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Sceptile
-        .categoryName = _("Forest"),
+
+    [NATIONAL_DEX_SCEPTILE] =
+    {
+        .categoryName = _("FOREST"),
         .height = 17,
         .weight = 522,
-        .descriptionPage1 = DexDescription_Sceptile_1,
-        .descriptionPage2 = DexDescription_Sceptile_2,
+        .description = gSceptilePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = -1,
         .trainerScale = 275,
         .trainerOffset = 2,
     },
-    {  //Torchic
-        .categoryName = _("Chick"),
+
+    [NATIONAL_DEX_TORCHIC] =
+    {
+        .categoryName = _("CHICK"),
         .height = 4,
         .weight = 25,
-        .descriptionPage1 = DexDescription_Torchic_1,
-        .descriptionPage2 = DexDescription_Torchic_2,
+        .description = gTorchicPokedexText,
         .pokemonScale = 566,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Combusken
-        .categoryName = _("Young Fowl"),
+
+    [NATIONAL_DEX_COMBUSKEN] =
+    {
+        .categoryName = _("YOUNG FOWL"),
         .height = 9,
         .weight = 195,
-        .descriptionPage1 = DexDescription_Combusken_1,
-        .descriptionPage2 = DexDescription_Combusken_2,
+        .description = gCombuskenPokedexText,
         .pokemonScale = 343,
         .pokemonOffset = 5,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Blaziken
-        .categoryName = _("Blaze"),
+
+    [NATIONAL_DEX_BLAZIKEN] =
+    {
+        .categoryName = _("BLAZE"),
         .height = 19,
         .weight = 520,
-        .descriptionPage1 = DexDescription_Blaziken_1,
-        .descriptionPage2 = DexDescription_Blaziken_2,
+        .description = gBlazikenPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 301,
         .trainerOffset = 4,
     },
-    {  //Mudkip
-        .categoryName = _("Mud Fish"),
+
+    [NATIONAL_DEX_MUDKIP] =
+    {
+        .categoryName = _("MUD FISH"),
         .height = 4,
         .weight = 76,
-        .descriptionPage1 = DexDescription_Mudkip_1,
-        .descriptionPage2 = DexDescription_Mudkip_2,
+        .description = gMudkipPokedexText,
         .pokemonScale = 535,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Marshtomp
-        .categoryName = _("Mud Fish"),
+
+    [NATIONAL_DEX_MARSHTOMP] =
+    {
+        .categoryName = _("MUD FISH"),
         .height = 7,
         .weight = 280,
-        .descriptionPage1 = DexDescription_Marshtomp_1,
-        .descriptionPage2 = DexDescription_Marshtomp_2,
+        .description = gMarshtompPokedexText,
         .pokemonScale = 340,
         .pokemonOffset = 7,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Swampert
-        .categoryName = _("Mud Fish"),
+
+    [NATIONAL_DEX_SWAMPERT] =
+    {
+        .categoryName = _("MUD FISH"),
         .height = 15,
         .weight = 819,
-        .descriptionPage1 = DexDescription_Swampert_1,
-        .descriptionPage2 = DexDescription_Swampert_2,
+        .description = gSwampertPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Poochyena
-        .categoryName = _("Bite"),
+
+    [NATIONAL_DEX_POOCHYENA] =
+    {
+        .categoryName = _("BITE"),
         .height = 5,
         .weight = 136,
-        .descriptionPage1 = DexDescription_Poochyena_1,
-        .descriptionPage2 = DexDescription_Poochyena_2,
+        .description = gPoochyenaPokedexText,
         .pokemonScale = 481,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Mightyena
-        .categoryName = _("Bite"),
+
+    [NATIONAL_DEX_MIGHTYENA] =
+    {
+        .categoryName = _("BITE"),
         .height = 10,
         .weight = 370,
-        .descriptionPage1 = DexDescription_Mightyena_1,
-        .descriptionPage2 = DexDescription_Mightyena_2,
+        .description = gMightyenaPokedexText,
         .pokemonScale = 362,
         .pokemonOffset = 9,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Zigzagoon
-        .categoryName = _("TinyRaccoon"),
+
+    [NATIONAL_DEX_ZIGZAGOON] =
+    {
+        .categoryName = _("TINYRACCOON"),
         .height = 4,
         .weight = 175,
-        .descriptionPage1 = DexDescription_Zigzagoon_1,
-        .descriptionPage2 = DexDescription_Zigzagoon_2,
+        .description = gZigzagoonPokedexText,
         .pokemonScale = 560,
         .pokemonOffset = 22,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Linoone
-        .categoryName = _("Rushing"),
+
+    [NATIONAL_DEX_LINOONE] =
+    {
+        .categoryName = _("RUSHING"),
         .height = 5,
         .weight = 325,
-        .descriptionPage1 = DexDescription_Linoone_1,
-        .descriptionPage2 = DexDescription_Linoone_2,
+        .description = gLinoonePokedexText,
         .pokemonScale = 321,
         .pokemonOffset = 7,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Wurmple
-        .categoryName = _("Worm"),
+
+    [NATIONAL_DEX_WURMPLE] =
+    {
+        .categoryName = _("WORM"),
         .height = 3,
         .weight = 36,
-        .descriptionPage1 = DexDescription_Wurmple_1,
-        .descriptionPage2 = DexDescription_Wurmple_2,
+        .description = gWurmplePokedexText,
         .pokemonScale = 711,
         .pokemonOffset = 24,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Silcoon
-        .categoryName = _("Cocoon"),
+
+    [NATIONAL_DEX_SILCOON] =
+    {
+        .categoryName = _("COCOON"),
         .height = 6,
         .weight = 100,
-        .descriptionPage1 = DexDescription_Silcoon_1,
-        .descriptionPage2 = DexDescription_Silcoon_2,
+        .description = gSilcoonPokedexText,
         .pokemonScale = 431,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Beautifly
-        .categoryName = _("Butterfly"),
+
+    [NATIONAL_DEX_BEAUTIFLY] =
+    {
+        .categoryName = _("BUTTERFLY"),
         .height = 10,
         .weight = 284,
-        .descriptionPage1 = DexDescription_Beautifly_1,
-        .descriptionPage2 = DexDescription_Beautifly_2,
+        .description = gBeautiflyPokedexText,
         .pokemonScale = 298,
         .pokemonOffset = -1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Cascoon
-        .categoryName = _("Cocoon"),
+
+    [NATIONAL_DEX_CASCOON] =
+    {
+        .categoryName = _("COCOON"),
         .height = 7,
         .weight = 115,
-        .descriptionPage1 = DexDescription_Cascoon_1,
-        .descriptionPage2 = DexDescription_Cascoon_2,
+        .description = gCascoonPokedexText,
         .pokemonScale = 391,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Dustox
-        .categoryName = _("Poison Moth"),
+
+    [NATIONAL_DEX_DUSTOX] =
+    {
+        .categoryName = _("POISON MOTH"),
         .height = 12,
         .weight = 316,
-        .descriptionPage1 = DexDescription_Dustox_1,
-        .descriptionPage2 = DexDescription_Dustox_2,
+        .description = gDustoxPokedexText,
         .pokemonScale = 269,
         .pokemonOffset = 1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Lotad
-        .categoryName = _("Water Weed"),
+
+    [NATIONAL_DEX_LOTAD] =
+    {
+        .categoryName = _("WATER WEED"),
         .height = 5,
         .weight = 26,
-        .descriptionPage1 = DexDescription_Lotad_1,
-        .descriptionPage2 = DexDescription_Lotad_2,
+        .description = gLotadPokedexText,
         .pokemonScale = 406,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Lombre
-        .categoryName = _("Jolly"),
+
+    [NATIONAL_DEX_LOMBRE] =
+    {
+        .categoryName = _("JOLLY"),
         .height = 12,
         .weight = 325,
-        .descriptionPage1 = DexDescription_Lombre_1,
-        .descriptionPage2 = DexDescription_Lombre_2,
+        .description = gLombrePokedexText,
         .pokemonScale = 277,
         .pokemonOffset = 9,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Ludicolo
-        .categoryName = _("Carefree"),
+
+    [NATIONAL_DEX_LUDICOLO] =
+    {
+        .categoryName = _("CAREFREE"),
         .height = 15,
         .weight = 550,
-        .descriptionPage1 = DexDescription_Ludicolo_1,
-        .descriptionPage2 = DexDescription_Ludicolo_2,
+        .description = gLudicoloPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 268,
         .trainerOffset = -1,
     },
-    {  //Seedot
-        .categoryName = _("Acorn"),
+
+    [NATIONAL_DEX_SEEDOT] =
+    {
+        .categoryName = _("ACORN"),
         .height = 5,
         .weight = 40,
-        .descriptionPage1 = DexDescription_Seedot_1,
-        .descriptionPage2 = DexDescription_Seedot_2,
+        .description = gSeedotPokedexText,
         .pokemonScale = 472,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Nuzleaf
-        .categoryName = _("Wily"),
+
+    [NATIONAL_DEX_NUZLEAF] =
+    {
+        .categoryName = _("WILY"),
         .height = 10,
         .weight = 280,
-        .descriptionPage1 = DexDescription_Nuzleaf_1,
-        .descriptionPage2 = DexDescription_Nuzleaf_2,
+        .description = gNuzleafPokedexText,
         .pokemonScale = 299,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Shiftry
-        .categoryName = _("Wicked"),
+
+    [NATIONAL_DEX_SHIFTRY] =
+    {
+        .categoryName = _("WICKED"),
         .height = 13,
         .weight = 596,
-        .descriptionPage1 = DexDescription_Shiftry_1,
-        .descriptionPage2 = DexDescription_Shiftry_2,
+        .description = gShiftryPokedexText,
         .pokemonScale = 290,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Taillow
-        .categoryName = _("TinySwallow"),
+
+    [NATIONAL_DEX_TAILLOW] =
+    {
+        .categoryName = _("TINYSWALLOW"),
         .height = 3,
         .weight = 23,
-        .descriptionPage1 = DexDescription_Taillow_1,
-        .descriptionPage2 = DexDescription_Taillow_2,
+        .description = gTaillowPokedexText,
         .pokemonScale = 465,
         .pokemonOffset = 21,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Swellow
-        .categoryName = _("Swallow"),
+
+    [NATIONAL_DEX_SWELLOW] =
+    {
+        .categoryName = _("SWALLOW"),
         .height = 7,
         .weight = 198,
-        .descriptionPage1 = DexDescription_Swellow_1,
-        .descriptionPage2 = DexDescription_Swellow_2,
+        .description = gSwellowPokedexText,
         .pokemonScale = 428,
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Wingull
-        .categoryName = _("Seagull"),
+
+    [NATIONAL_DEX_WINGULL] =
+    {
+        .categoryName = _("SEAGULL"),
         .height = 6,
         .weight = 95,
-        .descriptionPage1 = DexDescription_Wingull_1,
-        .descriptionPage2 = DexDescription_Wingull_2,
+        .description = gWingullPokedexText,
         .pokemonScale = 295,
         .pokemonOffset = -2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Pelipper
-        .categoryName = _("Water Bird"),
+
+    [NATIONAL_DEX_PELIPPER] =
+    {
+        .categoryName = _("WATER BIRD"),
         .height = 12,
         .weight = 280,
-        .descriptionPage1 = DexDescription_Pelipper_1,
-        .descriptionPage2 = DexDescription_Pelipper_2,
+        .description = gPelipperPokedexText,
         .pokemonScale = 288,
         .pokemonOffset = 1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Ralts
-        .categoryName = _("Feeling"),
+
+    [NATIONAL_DEX_RALTS] =
+    {
+        .categoryName = _("FEELING"),
         .height = 4,
         .weight = 66,
-        .descriptionPage1 = DexDescription_Ralts_1,
-        .descriptionPage2 = DexDescription_Ralts_2,
+        .description = gRaltsPokedexText,
         .pokemonScale = 457,
         .pokemonOffset = -3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Kirlia
-        .categoryName = _("Emotion"),
+
+    [NATIONAL_DEX_KIRLIA] =
+    {
+        .categoryName = _("EMOTION"),
         .height = 8,
         .weight = 202,
-        .descriptionPage1 = DexDescription_Kirlia_1,
-        .descriptionPage2 = DexDescription_Kirlia_2,
+        .description = gKirliaPokedexText,
         .pokemonScale = 354,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Gardevoir
-        .categoryName = _("Embrace"),
+
+    [NATIONAL_DEX_GARDEVOIR] =
+    {
+        .categoryName = _("EMBRACE"),
         .height = 16,
         .weight = 484,
-        .descriptionPage1 = DexDescription_Gardevoir_1,
-        .descriptionPage2 = DexDescription_Gardevoir_2,
+        .description = gGardevoirPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Surskit
-        .categoryName = _("Pond Skater"),
+
+    [NATIONAL_DEX_SURSKIT] =
+    {
+        .categoryName = _("POND SKATER"),
         .height = 5,
         .weight = 17,
-        .descriptionPage1 = DexDescription_Surskit_1,
-        .descriptionPage2 = DexDescription_Surskit_2,
+        .description = gSurskitPokedexText,
         .pokemonScale = 375,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Masquerain
-        .categoryName = _("Eyeball"),
+
+    [NATIONAL_DEX_MASQUERAIN] =
+    {
+        .categoryName = _("EYEBALL"),
         .height = 8,
         .weight = 36,
-        .descriptionPage1 = DexDescription_Masquerain_1,
-        .descriptionPage2 = DexDescription_Masquerain_2,
+        .description = gMasquerainPokedexText,
         .pokemonScale = 378,
         .pokemonOffset = 8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Shroomish
-        .categoryName = _("Mushroom"),
+
+    [NATIONAL_DEX_SHROOMISH] =
+    {
+        .categoryName = _("MUSHROOM"),
         .height = 4,
         .weight = 45,
-        .descriptionPage1 = DexDescription_Shroomish_1,
-        .descriptionPage2 = DexDescription_Shroomish_2,
+        .description = gShroomishPokedexText,
         .pokemonScale = 513,
         .pokemonOffset = 22,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Breloom
-        .categoryName = _("Mushroom"),
+
+    [NATIONAL_DEX_BRELOOM] =
+    {
+        .categoryName = _("MUSHROOM"),
         .height = 12,
         .weight = 392,
-        .descriptionPage1 = DexDescription_Breloom_1,
-        .descriptionPage2 = DexDescription_Breloom_2,
+        .description = gBreloomPokedexText,
         .pokemonScale = 324,
         .pokemonOffset = 6,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Slakoth
-        .categoryName = _("Slacker"),
+
+    [NATIONAL_DEX_SLAKOTH] =
+    {
+        .categoryName = _("SLACKER"),
         .height = 8,
         .weight = 240,
-        .descriptionPage1 = DexDescription_Slakoth_1,
-        .descriptionPage2 = DexDescription_Slakoth_2,
+        .description = gSlakothPokedexText,
         .pokemonScale = 291,
         .pokemonOffset = 16,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Vigoroth
-        .categoryName = _("Wild Monkey"),
+
+    [NATIONAL_DEX_VIGOROTH] =
+    {
+        .categoryName = _("WILD MONKEY"),
         .height = 14,
         .weight = 465,
-        .descriptionPage1 = DexDescription_Vigoroth_1,
-        .descriptionPage2 = DexDescription_Vigoroth_2,
+        .description = gVigorothPokedexText,
         .pokemonScale = 301,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Slaking
-        .categoryName = _("Lazy"),
+
+    [NATIONAL_DEX_SLAKING] =
+    {
+        .categoryName = _("LAZY"),
         .height = 20,
         .weight = 1305,
-        .descriptionPage1 = DexDescription_Slaking_1,
-        .descriptionPage2 = DexDescription_Slaking_2,
+        .description = gSlakingPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 300,
         .trainerOffset = 1,
     },
-    {  //Nincada
-        .categoryName = _("Trainee"),
+
+    [NATIONAL_DEX_NINCADA] =
+    {
+        .categoryName = _("TRAINEE"),
         .height = 5,
         .weight = 55,
-        .descriptionPage1 = DexDescription_Nincada_1,
-        .descriptionPage2 = DexDescription_Nincada_2,
+        .description = gNincadaPokedexText,
         .pokemonScale = 405,
         .pokemonOffset = 21,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Ninjask
-        .categoryName = _("Ninja"),
+
+    [NATIONAL_DEX_NINJASK] =
+    {
+        .categoryName = _("NINJA"),
         .height = 8,
         .weight = 120,
-        .descriptionPage1 = DexDescription_Ninjask_1,
-        .descriptionPage2 = DexDescription_Ninjask_2,
+        .description = gNinjaskPokedexText,
         .pokemonScale = 383,
         .pokemonOffset = -9,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Shedinja
-        .categoryName = _("Shed"),
+
+    [NATIONAL_DEX_SHEDINJA] =
+    {
+        .categoryName = _("SHED"),
         .height = 8,
         .weight = 12,
-        .descriptionPage1 = DexDescription_Shedinja_1,
-        .descriptionPage2 = DexDescription_Shedinja_2,
+        .description = gShedinjaPokedexText,
         .pokemonScale = 372,
         .pokemonOffset = -8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Whismur
-        .categoryName = _("Whisper"),
+
+    [NATIONAL_DEX_WHISMUR] =
+    {
+        .categoryName = _("WHISPER"),
         .height = 6,
         .weight = 163,
-        .descriptionPage1 = DexDescription_Whismur_1,
-        .descriptionPage2 = DexDescription_Whismur_2,
+        .description = gWhismurPokedexText,
         .pokemonScale = 373,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Loudred
-        .categoryName = _("Big Voice"),
+
+    [NATIONAL_DEX_LOUDRED] =
+    {
+        .categoryName = _("BIG VOICE"),
         .height = 10,
         .weight = 405,
-        .descriptionPage1 = DexDescription_Loudred_1,
-        .descriptionPage2 = DexDescription_Loudred_2,
+        .description = gLoudredPokedexText,
         .pokemonScale = 356,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Exploud
-        .categoryName = _("Loud Noise"),
+
+    [NATIONAL_DEX_EXPLOUD] =
+    {
+        .categoryName = _("LOUD NOISE"),
         .height = 15,
         .weight = 840,
-        .descriptionPage1 = DexDescription_Exploud_1,
-        .descriptionPage2 = DexDescription_Exploud_2,
+        .description = gExploudPokedexText,
         .pokemonScale = 284,
         .pokemonOffset = 1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Makuhita
-        .categoryName = _("Guts"),
+
+    [NATIONAL_DEX_MAKUHITA] =
+    {
+        .categoryName = _("GUTS"),
         .height = 10,
         .weight = 864,
-        .descriptionPage1 = DexDescription_Makuhita_1,
-        .descriptionPage2 = DexDescription_Makuhita_2,
+        .description = gMakuhitaPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Hariyama
-        .categoryName = _("Arm Thrust"),
+
+    [NATIONAL_DEX_HARIYAMA] =
+    {
+        .categoryName = _("ARM THRUST"),
         .height = 23,
         .weight = 2538,
-        .descriptionPage1 = DexDescription_Hariyama_1,
-        .descriptionPage2 = DexDescription_Hariyama_2,
+        .description = gHariyamaPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 343,
         .trainerOffset = 7,
     },
-    {  //Azurill
-        .categoryName = _("Polka Dot"),
+
+    [NATIONAL_DEX_AZURILL] =
+    {
+        .categoryName = _("POLKA DOT"),
         .height = 2,
         .weight = 20,
-        .descriptionPage1 = DexDescription_Azurill_1,
-        .descriptionPage2 = DexDescription_Azurill_2,
+        .description = gAzurillPokedexText,
         .pokemonScale = 603,
         .pokemonOffset = 23,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Nosepass
-        .categoryName = _("Compass"),
+
+    [NATIONAL_DEX_NOSEPASS] =
+    {
+        .categoryName = _("COMPASS"),
         .height = 10,
         .weight = 970,
-        .descriptionPage1 = DexDescription_Nosepass_1,
-        .descriptionPage2 = DexDescription_Nosepass_2,
+        .description = gNosepassPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 9,
         .trainerScale = 289,
         .trainerOffset = 3,
     },
-    {  //Skitty
-        .categoryName = _("Kitten"),
+
+    [NATIONAL_DEX_SKITTY] =
+    {
+        .categoryName = _("KITTEN"),
         .height = 6,
         .weight = 110,
-        .descriptionPage1 = DexDescription_Skitty_1,
-        .descriptionPage2 = DexDescription_Skitty_2,
+        .description = gSkittyPokedexText,
         .pokemonScale = 492,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Delcatty
-        .categoryName = _("Prim"),
+
+    [NATIONAL_DEX_DELCATTY] =
+    {
+        .categoryName = _("PRIM"),
         .height = 11,
         .weight = 326,
-        .descriptionPage1 = DexDescription_Delcatty_1,
-        .descriptionPage2 = DexDescription_Delcatty_2,
+        .description = gDelcattyPokedexText,
         .pokemonScale = 322,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Sableye
-        .categoryName = _("Darkness"),
+
+    [NATIONAL_DEX_SABLEYE] =
+    {
+        .categoryName = _("DARKNESS"),
         .height = 5,
         .weight = 110,
-        .descriptionPage1 = DexDescription_Sableye_1,
-        .descriptionPage2 = DexDescription_Sableye_2,
+        .description = gSableyePokedexText,
         .pokemonScale = 451,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Mawile
-        .categoryName = _("Deceiver"),
+
+    [NATIONAL_DEX_MAWILE] =
+    {
+        .categoryName = _("DECEIVER"),
         .height = 6,
         .weight = 115,
-        .descriptionPage1 = DexDescription_Mawile_1,
-        .descriptionPage2 = DexDescription_Mawile_2,
+        .description = gMawilePokedexText,
         .pokemonScale = 466,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Aron
-        .categoryName = _("Iron Armor"),
+
+    [NATIONAL_DEX_ARON] =
+    {
+        .categoryName = _("IRON ARMOR"),
         .height = 4,
         .weight = 600,
-        .descriptionPage1 = DexDescription_Aron_1,
-        .descriptionPage2 = DexDescription_Aron_2,
+        .description = gAronPokedexText,
         .pokemonScale = 419,
         .pokemonOffset = 23,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Lairon
-        .categoryName = _("Iron Armor"),
+
+    [NATIONAL_DEX_LAIRON] =
+    {
+        .categoryName = _("IRON ARMOR"),
         .height = 9,
         .weight = 1200,
-        .descriptionPage1 = DexDescription_Lairon_1,
-        .descriptionPage2 = DexDescription_Lairon_2,
+        .description = gLaironPokedexText,
         .pokemonScale = 275,
         .pokemonOffset = 12,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Aggron
-        .categoryName = _("Iron Armor"),
+
+    [NATIONAL_DEX_AGGRON] =
+    {
+        .categoryName = _("IRON ARMOR"),
         .height = 21,
         .weight = 3600,
-        .descriptionPage1 = DexDescription_Aggron_1,
-        .descriptionPage2 = DexDescription_Aggron_2,
+        .description = gAggronPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = -1,
         .trainerScale = 350,
         .trainerOffset = 6,
     },
-    {  //Meditite
-        .categoryName = _("Meditate"),
+
+    [NATIONAL_DEX_MEDITITE] =
+    {
+        .categoryName = _("MEDITATE"),
         .height = 6,
         .weight = 112,
-        .descriptionPage1 = DexDescription_Meditite_1,
-        .descriptionPage2 = DexDescription_Meditite_2,
+        .description = gMedititePokedexText,
         .pokemonScale = 465,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Medicham
-        .categoryName = _("Meditate"),
+
+    [NATIONAL_DEX_MEDICHAM] =
+    {
+        .categoryName = _("MEDITATE"),
         .height = 13,
         .weight = 315,
-        .descriptionPage1 = DexDescription_Medicham_1,
-        .descriptionPage2 = DexDescription_Medicham_2,
+        .description = gMedichamPokedexText,
         .pokemonScale = 298,
         .pokemonOffset = 5,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Electrike
-        .categoryName = _("Lightning"),
+
+    [NATIONAL_DEX_ELECTRIKE] =
+    {
+        .categoryName = _("LIGHTNING"),
         .height = 6,
         .weight = 152,
-        .descriptionPage1 = DexDescription_Electrike_1,
-        .descriptionPage2 = DexDescription_Electrike_2,
+        .description = gElectrikePokedexText,
         .pokemonScale = 290,
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Manectric
-        .categoryName = _("Discharge"),
+
+    [NATIONAL_DEX_MANECTRIC] =
+    {
+        .categoryName = _("DISCHARGE"),
         .height = 15,
         .weight = 402,
-        .descriptionPage1 = DexDescription_Manectric_1,
-        .descriptionPage2 = DexDescription_Manectric_2,
+        .description = gManectricPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 257,
         .trainerOffset = 0,
     },
-    {  //Plusle
-        .categoryName = _("Cheering"),
+
+    [NATIONAL_DEX_PLUSLE] =
+    {
+        .categoryName = _("CHEERING"),
         .height = 4,
         .weight = 42,
-        .descriptionPage1 = DexDescription_Plusle_1,
-        .descriptionPage2 = DexDescription_Plusle_2,
+        .description = gPluslePokedexText,
         .pokemonScale = 515,
         .pokemonOffset = -9,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Minun
-        .categoryName = _("Cheering"),
+
+    [NATIONAL_DEX_MINUN] =
+    {
+        .categoryName = _("CHEERING"),
         .height = 4,
         .weight = 42,
-        .descriptionPage1 = DexDescription_Minun_1,
-        .descriptionPage2 = DexDescription_Minun_2,
+        .description = gMinunPokedexText,
         .pokemonScale = 512,
         .pokemonOffset = -7,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Volbeat
-        .categoryName = _("Firefly"),
+
+    [NATIONAL_DEX_VOLBEAT] =
+    {
+        .categoryName = _("FIREFLY"),
         .height = 7,
         .weight = 177,
-        .descriptionPage1 = DexDescription_Volbeat_1,
-        .descriptionPage2 = DexDescription_Volbeat_2,
+        .description = gVolbeatPokedexText,
         .pokemonScale = 442,
         .pokemonOffset = 16,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Illumise
-        .categoryName = _("Firefly"),
+
+    [NATIONAL_DEX_ILLUMISE] =
+    {
+        .categoryName = _("FIREFLY"),
         .height = 6,
         .weight = 177,
-        .descriptionPage1 = DexDescription_Illumise_1,
-        .descriptionPage2 = DexDescription_Illumise_2,
+        .description = gIllumisePokedexText,
         .pokemonScale = 572,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Roselia
-        .categoryName = _("Thorn"),
+
+    [NATIONAL_DEX_ROSELIA] =
+    {
+        .categoryName = _("THORN"),
         .height = 3,
         .weight = 20,
-        .descriptionPage1 = DexDescription_Roselia_1,
-        .descriptionPage2 = DexDescription_Roselia_2,
+        .description = gRoseliaPokedexText,
         .pokemonScale = 677,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Gulpin
-        .categoryName = _("Stomach"),
+
+    [NATIONAL_DEX_GULPIN] =
+    {
+        .categoryName = _("STOMACH"),
         .height = 4,
         .weight = 103,
-        .descriptionPage1 = DexDescription_Gulpin_1,
-        .descriptionPage2 = DexDescription_Gulpin_2,
+        .description = gGulpinPokedexText,
         .pokemonScale = 593,
         .pokemonOffset = 23,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Swalot
-        .categoryName = _("Poison Bag"),
+
+    [NATIONAL_DEX_SWALOT] =
+    {
+        .categoryName = _("POISON BAG"),
         .height = 17,
         .weight = 800,
-        .descriptionPage1 = DexDescription_Swalot_1,
-        .descriptionPage2 = DexDescription_Swalot_2,
+        .description = gSwalotPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 6,
         .trainerScale = 345,
         .trainerOffset = 3,
     },
-    {  //Carvanha
-        .categoryName = _("Savage"),
+
+    [NATIONAL_DEX_CARVANHA] =
+    {
+        .categoryName = _("SAVAGE"),
         .height = 8,
         .weight = 208,
-        .descriptionPage1 = DexDescription_Carvanha_1,
-        .descriptionPage2 = DexDescription_Carvanha_2,
+        .description = gCarvanhaPokedexText,
         .pokemonScale = 362,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Sharpedo
-        .categoryName = _("Brutal"),
+
+    [NATIONAL_DEX_SHARPEDO] =
+    {
+        .categoryName = _("BRUTAL"),
         .height = 18,
         .weight = 888,
-        .descriptionPage1 = DexDescription_Sharpedo_1,
-        .descriptionPage2 = DexDescription_Sharpedo_2,
+        .description = gSharpedoPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 317,
         .trainerOffset = 3,
     },
-    {  //Wailmer
-        .categoryName = _("Ball Whale"),
+
+    [NATIONAL_DEX_WAILMER] =
+    {
+        .categoryName = _("BALL WHALE"),
         .height = 20,
         .weight = 1300,
-        .descriptionPage1 = DexDescription_Wailmer_1,
-        .descriptionPage2 = DexDescription_Wailmer_2,
+        .description = gWailmerPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 493,
         .trainerOffset = 0,
     },
-    {  //Wailord
-        .categoryName = _("Float Whale"),
+
+    [NATIONAL_DEX_WAILORD] =
+    {
+        .categoryName = _("FLOAT WHALE"),
         .height = 145,
         .weight = 3980,
-        .descriptionPage1 = DexDescription_Wailord_1,
-        .descriptionPage2 = DexDescription_Wailord_2,
+        .description = gWailordPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 1352,
         .trainerOffset = 18,
     },
-    {  //Numel
-        .categoryName = _("Numb"),
+
+    [NATIONAL_DEX_NUMEL] =
+    {
+        .categoryName = _("NUMB"),
         .height = 7,
         .weight = 240,
-        .descriptionPage1 = DexDescription_Numel_1,
-        .descriptionPage2 = DexDescription_Numel_2,
+        .description = gNumelPokedexText,
         .pokemonScale = 342,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Camerupt
-        .categoryName = _("Eruption"),
+
+    [NATIONAL_DEX_CAMERUPT] =
+    {
+        .categoryName = _("ERUPTION"),
         .height = 19,
         .weight = 2200,
-        .descriptionPage1 = DexDescription_Camerupt_1,
-        .descriptionPage2 = DexDescription_Camerupt_2,
+        .description = gCameruptPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 7,
         .trainerScale = 345,
         .trainerOffset = 6,
     },
-    {  //Torkoal
-        .categoryName = _("Coal"),
+
+    [NATIONAL_DEX_TORKOAL] =
+    {
+        .categoryName = _("COAL"),
         .height = 5,
         .weight = 804,
-        .descriptionPage1 = DexDescription_Torkoal_1,
-        .descriptionPage2 = DexDescription_Torkoal_2,
+        .description = gTorkoalPokedexText,
         .pokemonScale = 390,
         .pokemonOffset = 9,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Spoink
-        .categoryName = _("Bounce"),
+
+    [NATIONAL_DEX_SPOINK] =
+    {
+        .categoryName = _("BOUNCE"),
         .height = 7,
         .weight = 306,
-        .descriptionPage1 = DexDescription_Spoink_1,
-        .descriptionPage2 = DexDescription_Spoink_2,
+        .description = gSpoinkPokedexText,
         .pokemonScale = 423,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Grumpig
-        .categoryName = _("Manipulate"),
+
+    [NATIONAL_DEX_GRUMPIG] =
+    {
+        .categoryName = _("MANIPULATE"),
         .height = 9,
         .weight = 715,
-        .descriptionPage1 = DexDescription_Grumpig_1,
-        .descriptionPage2 = DexDescription_Grumpig_2,
+        .description = gGrumpigPokedexText,
         .pokemonScale = 358,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Spinda
-        .categoryName = _("Spot Panda"),
+
+    [NATIONAL_DEX_SPINDA] =
+    {
+        .categoryName = _("SPOT PANDA"),
         .height = 11,
         .weight = 50,
-        .descriptionPage1 = DexDescription_Spinda_1,
-        .descriptionPage2 = DexDescription_Spinda_2,
+        .description = gSpindaPokedexText,
         .pokemonScale = 321,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Trapinch
-        .categoryName = _("Ant Pit"),
+
+    [NATIONAL_DEX_TRAPINCH] =
+    {
+        .categoryName = _("ANT PIT"),
         .height = 7,
         .weight = 150,
-        .descriptionPage1 = DexDescription_Trapinch_1,
-        .descriptionPage2 = DexDescription_Trapinch_2,
+        .description = gTrapinchPokedexText,
         .pokemonScale = 298,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Vibrava
-        .categoryName = _("Vibration"),
+
+    [NATIONAL_DEX_VIBRAVA] =
+    {
+        .categoryName = _("VIBRATION"),
         .height = 11,
         .weight = 153,
-        .descriptionPage1 = DexDescription_Vibrava_1,
-        .descriptionPage2 = DexDescription_Vibrava_2,
+        .description = gVibravaPokedexText,
         .pokemonScale = 370,
         .pokemonOffset = 11,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Flygon
-        .categoryName = _("Mystic"),
+
+    [NATIONAL_DEX_FLYGON] =
+    {
+        .categoryName = _("MYSTIC"),
         .height = 20,
         .weight = 820,
-        .descriptionPage1 = DexDescription_Flygon_1,
-        .descriptionPage2 = DexDescription_Flygon_2,
+        .description = gFlygonPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 268,
         .trainerOffset = 1,
     },
-    {  //Cacnea
-        .categoryName = _("Cactus"),
+
+    [NATIONAL_DEX_CACNEA] =
+    {
+        .categoryName = _("CACTUS"),
         .height = 4,
         .weight = 513,
-        .descriptionPage1 = DexDescription_Cacnea_1,
-        .descriptionPage2 = DexDescription_Cacnea_2,
+        .description = gCacneaPokedexText,
         .pokemonScale = 455,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Cacturne
-        .categoryName = _("Scarecrow"),
+
+    [NATIONAL_DEX_CACTURNE] =
+    {
+        .categoryName = _("SCARECROW"),
         .height = 13,
         .weight = 774,
-        .descriptionPage1 = DexDescription_Cacturne_1,
-        .descriptionPage2 = DexDescription_Cacturne_2,
+        .description = gCacturnePokedexText,
         .pokemonScale = 327,
         .pokemonOffset = 5,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Swablu
-        .categoryName = _("Cotton Bird"),
+
+    [NATIONAL_DEX_SWABLU] =
+    {
+        .categoryName = _("COTTON BIRD"),
         .height = 4,
         .weight = 12,
-        .descriptionPage1 = DexDescription_Swablu_1,
-        .descriptionPage2 = DexDescription_Swablu_2,
+        .description = gSwabluPokedexText,
         .pokemonScale = 422,
         .pokemonOffset = -8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Altaria
-        .categoryName = _("Humming"),
+
+    [NATIONAL_DEX_ALTARIA] =
+    {
+        .categoryName = _("HUMMING"),
         .height = 11,
         .weight = 206,
-        .descriptionPage1 = DexDescription_Altaria_1,
-        .descriptionPage2 = DexDescription_Altaria_2,
+        .description = gAltariaPokedexText,
         .pokemonScale = 327,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Zangoose
-        .categoryName = _("Cat Ferret"),
+
+    [NATIONAL_DEX_ZANGOOSE] =
+    {
+        .categoryName = _("CAT FERRET"),
         .height = 13,
         .weight = 403,
-        .descriptionPage1 = DexDescription_Zangoose_1,
-        .descriptionPage2 = DexDescription_Zangoose_2,
+        .description = gZangoosePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Seviper
-        .categoryName = _("Fang Snake"),
+
+    [NATIONAL_DEX_SEVIPER] =
+    {
+        .categoryName = _("FANG SNAKE"),
         .height = 27,
         .weight = 525,
-        .descriptionPage1 = DexDescription_Seviper_1,
-        .descriptionPage2 = DexDescription_Seviper_2,
+        .description = gSeviperPokedexText,
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Lunatone
-        .categoryName = _("Meteorite"),
+
+    [NATIONAL_DEX_LUNATONE] =
+    {
+        .categoryName = _("METEORITE"),
         .height = 10,
         .weight = 1680,
-        .descriptionPage1 = DexDescription_Lunatone_1,
-        .descriptionPage2 = DexDescription_Lunatone_2,
+        .description = gLunatonePokedexText,
         .pokemonScale = 300,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Solrock
-        .categoryName = _("Meteorite"),
+
+    [NATIONAL_DEX_SOLROCK] =
+    {
+        .categoryName = _("METEORITE"),
         .height = 12,
         .weight = 1540,
-        .descriptionPage1 = DexDescription_Solrock_1,
-        .descriptionPage2 = DexDescription_Solrock_2,
+        .description = gSolrockPokedexText,
         .pokemonScale = 328,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Barboach
-        .categoryName = _("Whiskers"),
+
+    [NATIONAL_DEX_BARBOACH] =
+    {
+        .categoryName = _("WHISKERS"),
         .height = 4,
         .weight = 19,
-        .descriptionPage1 = DexDescription_Barboach_1,
-        .descriptionPage2 = DexDescription_Barboach_2,
+        .description = gBarboachPokedexText,
         .pokemonScale = 581,
         .pokemonOffset = -3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Whiscash
-        .categoryName = _("Whiskers"),
+
+    [NATIONAL_DEX_WHISCASH] =
+    {
+        .categoryName = _("WHISKERS"),
         .height = 9,
         .weight = 236,
-        .descriptionPage1 = DexDescription_Whiscash_1,
-        .descriptionPage2 = DexDescription_Whiscash_2,
+        .description = gWhiscashPokedexText,
         .pokemonScale = 317,
         .pokemonOffset = 1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Corphish
-        .categoryName = _("Ruffian"),
+
+    [NATIONAL_DEX_CORPHISH] =
+    {
+        .categoryName = _("RUFFIAN"),
         .height = 6,
         .weight = 115,
-        .descriptionPage1 = DexDescription_Corphish_1,
-        .descriptionPage2 = DexDescription_Corphish_2,
+        .description = gCorphishPokedexText,
         .pokemonScale = 484,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Crawdaunt
-        .categoryName = _("Rogue"),
+
+    [NATIONAL_DEX_CRAWDAUNT] =
+    {
+        .categoryName = _("ROGUE"),
         .height = 11,
         .weight = 328,
-        .descriptionPage1 = DexDescription_Crawdaunt_1,
-        .descriptionPage2 = DexDescription_Crawdaunt_2,
+        .description = gCrawdauntPokedexText,
         .pokemonScale = 365,
         .pokemonOffset = 9,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Baltoy
-        .categoryName = _("Clay Doll"),
+
+    [NATIONAL_DEX_BALTOY] =
+    {
+        .categoryName = _("CLAY DOLL"),
         .height = 5,
         .weight = 215,
-        .descriptionPage1 = DexDescription_Baltoy_1,
-        .descriptionPage2 = DexDescription_Baltoy_2,
+        .description = gBaltoyPokedexText,
         .pokemonScale = 457,
         .pokemonOffset = 21,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Claydol
-        .categoryName = _("Clay Doll"),
+
+    [NATIONAL_DEX_CLAYDOL] =
+    {
+        .categoryName = _("CLAY DOLL"),
         .height = 15,
         .weight = 1080,
-        .descriptionPage1 = DexDescription_Claydol_1,
-        .descriptionPage2 = DexDescription_Claydol_2,
+        .description = gClaydolPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 280,
         .trainerOffset = 1,
     },
-    {  //Lileep
-        .categoryName = _("Sea Lily"),
+
+    [NATIONAL_DEX_LILEEP] =
+    {
+        .categoryName = _("SEA LILY"),
         .height = 10,
         .weight = 238,
-        .descriptionPage1 = DexDescription_Lileep_1,
-        .descriptionPage2 = DexDescription_Lileep_2,
+        .description = gLileepPokedexText,
         .pokemonScale = 305,
         .pokemonOffset = 8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Cradily
-        .categoryName = _("Barnacle"),
+
+    [NATIONAL_DEX_CRADILY] =
+    {
+        .categoryName = _("BARNACLE"),
         .height = 15,
         .weight = 604,
-        .descriptionPage1 = DexDescription_Cradily_1,
-        .descriptionPage2 = DexDescription_Cradily_2,
+        .description = gCradilyPokedexText,
         .pokemonScale = 267,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Anorith
-        .categoryName = _("Old Shrimp"),
+
+    [NATIONAL_DEX_ANORITH] =
+    {
+        .categoryName = _("OLD SHRIMP"),
         .height = 7,
         .weight = 125,
-        .descriptionPage1 = DexDescription_Anorith_1,
-        .descriptionPage2 = DexDescription_Anorith_2,
+        .description = gAnorithPokedexText,
         .pokemonScale = 296,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Armaldo
-        .categoryName = _("Plate"),
+
+    [NATIONAL_DEX_ARMALDO] =
+    {
+        .categoryName = _("PLATE"),
         .height = 15,
         .weight = 682,
-        .descriptionPage1 = DexDescription_Armaldo_1,
-        .descriptionPage2 = DexDescription_Armaldo_2,
+        .description = gArmaldoPokedexText,
         .pokemonScale = 312,
         .pokemonOffset = 3,
         .trainerScale = 271,
         .trainerOffset = 0,
     },
-    {  //Feebas
-        .categoryName = _("Fish"),
+
+    [NATIONAL_DEX_FEEBAS] =
+    {
+        .categoryName = _("FISH"),
         .height = 6,
         .weight = 74,
-        .descriptionPage1 = DexDescription_Feebas_1,
-        .descriptionPage2 = DexDescription_Feebas_2,
+        .description = gFeebasPokedexText,
         .pokemonScale = 423,
         .pokemonOffset = -4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Milotic
-        .categoryName = _("Tender"),
+
+    [NATIONAL_DEX_MILOTIC] =
+    {
+        .categoryName = _("TENDER"),
         .height = 62,
         .weight = 1620,
-        .descriptionPage1 = DexDescription_Milotic_1,
-        .descriptionPage2 = DexDescription_Milotic_2,
+        .description = gMiloticPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 360,
         .trainerOffset = 7,
     },
-    {  //Castform
-        .categoryName = _("Weather"),
+
+    [NATIONAL_DEX_CASTFORM] =
+    {
+        .categoryName = _("WEATHER"),
         .height = 3,
         .weight = 8,
-        .descriptionPage1 = DexDescription_Castform_1,
-        .descriptionPage2 = DexDescription_Castform_2,
+        .description = gCastformPokedexText,
         .pokemonScale = 435,
         .pokemonOffset = -5,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Kecleon
-        .categoryName = _("Color Swap"),
+
+    [NATIONAL_DEX_KECLEON] =
+    {
+        .categoryName = _("COLOR SWAP"),
         .height = 10,
         .weight = 220,
-        .descriptionPage1 = DexDescription_Kecleon_1,
-        .descriptionPage2 = DexDescription_Kecleon_2,
+        .description = gKecleonPokedexText,
         .pokemonScale = 316,
         .pokemonOffset = 10,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Shuppet
-        .categoryName = _("Puppet"),
+
+    [NATIONAL_DEX_SHUPPET] =
+    {
+        .categoryName = _("PUPPET"),
         .height = 6,
         .weight = 23,
-        .descriptionPage1 = DexDescription_Shuppet_1,
-        .descriptionPage2 = DexDescription_Shuppet_2,
+        .description = gShuppetPokedexText,
         .pokemonScale = 440,
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Banette
-        .categoryName = _("Marionette"),
+
+    [NATIONAL_DEX_BANETTE] =
+    {
+        .categoryName = _("MARIONETTE"),
         .height = 11,
         .weight = 125,
-        .descriptionPage1 = DexDescription_Banette_1,
-        .descriptionPage2 = DexDescription_Banette_2,
+        .description = gBanettePokedexText,
         .pokemonScale = 262,
         .pokemonOffset = 9,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Duskull
-        .categoryName = _("Reqiuem"),
+
+    [NATIONAL_DEX_DUSKULL] =
+    {
+        .categoryName = _("REQUIEM"),
         .height = 8,
         .weight = 150,
-        .descriptionPage1 = DexDescription_Duskull_1,
-        .descriptionPage2 = DexDescription_Duskull_2,
+        .description = gDuskullPokedexText,
         .pokemonScale = 406,
         .pokemonOffset = -4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Dusclops
-        .categoryName = _("Beckon"),
+
+    [NATIONAL_DEX_DUSCLOPS] =
+    {
+        .categoryName = _("BECKON"),
         .height = 16,
         .weight = 306,
-        .descriptionPage1 = DexDescription_Dusclops_1,
-        .descriptionPage2 = DexDescription_Dusclops_2,
+        .description = gDusclopsPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 299,
         .trainerOffset = 1,
     },
-    {  //Tropius
-        .categoryName = _("Fruit"),
+
+    [NATIONAL_DEX_TROPIUS] =
+    {
+        .categoryName = _("FRUIT"),
         .height = 20,
         .weight = 1000,
-        .descriptionPage1 = DexDescription_Tropius_1,
-        .descriptionPage2 = DexDescription_Tropius_2,
+        .description = gTropiusPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 344,
         .trainerOffset = 7,
     },
-    {  //Chimecho
-        .categoryName = _("Wind Chime"),
+
+    [NATIONAL_DEX_CHIMECHO] =
+    {
+        .categoryName = _("WIND CHIME"),
         .height = 6,
         .weight = 10,
-        .descriptionPage1 = DexDescription_Chimecho_1,
-        .descriptionPage2 = DexDescription_Chimecho_2,
+        .description = gChimechoPokedexText,
         .pokemonScale = 505,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Absol
-        .categoryName = _("Disaster"),
+
+    [NATIONAL_DEX_ABSOL] =
+    {
+        .categoryName = _("DISASTER"),
         .height = 12,
         .weight = 470,
-        .descriptionPage1 = DexDescription_Absol_1,
-        .descriptionPage2 = DexDescription_Absol_2,
+        .description = gAbsolPokedexText,
         .pokemonScale = 301,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Wynaut
-        .categoryName = _("Bright"),
+
+    [NATIONAL_DEX_WYNAUT] =
+    {
+        .categoryName = _("BRIGHT"),
         .height = 6,
         .weight = 140,
-        .descriptionPage1 = DexDescription_Wynaut_1,
-        .descriptionPage2 = DexDescription_Wynaut_2,
+        .description = gWynautPokedexText,
         .pokemonScale = 484,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Snorunt
-        .categoryName = _("Snow Hat"),
+
+    [NATIONAL_DEX_SNORUNT] =
+    {
+        .categoryName = _("SNOW HAT"),
         .height = 7,
         .weight = 168,
-        .descriptionPage1 = DexDescription_Snorunt_1,
-        .descriptionPage2 = DexDescription_Snorunt_2,
+        .description = gSnoruntPokedexText,
         .pokemonScale = 380,
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Glalie
-        .categoryName = _("Face"),
+
+    [NATIONAL_DEX_GLALIE] =
+    {
+        .categoryName = _("FACE"),
         .height = 15,
         .weight = 2565,
-        .descriptionPage1 = DexDescription_Glalie_1,
-        .descriptionPage2 = DexDescription_Glalie_2,
+        .description = gGlaliePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 344,
         .trainerOffset = 0,
     },
-    {  //Spheal
-        .categoryName = _("Clap"),
+
+    [NATIONAL_DEX_SPHEAL] =
+    {
+        .categoryName = _("CLAP"),
         .height = 8,
         .weight = 395,
-        .descriptionPage1 = DexDescription_Spheal_1,
-        .descriptionPage2 = DexDescription_Spheal_2,
+        .description = gSphealPokedexText,
         .pokemonScale = 315,
         .pokemonOffset = 16,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Sealeo
-        .categoryName = _("Ball Roll"),
+
+    [NATIONAL_DEX_SEALEO] =
+    {
+        .categoryName = _("BALL ROLL"),
         .height = 11,
         .weight = 876,
-        .descriptionPage1 = DexDescription_Sealeo_1,
-        .descriptionPage2 = DexDescription_Sealeo_2,
+        .description = gSealeoPokedexText,
         .pokemonScale = 338,
         .pokemonOffset = 13,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Walrein
-        .categoryName = _("Ice Break"),
+
+    [NATIONAL_DEX_WALREIN] =
+    {
+        .categoryName = _("ICE BREAK"),
         .height = 14,
         .weight = 1506,
-        .descriptionPage1 = DexDescription_Walrein_1,
-        .descriptionPage2 = DexDescription_Walrein_2,
+        .description = gWalreinPokedexText,
         .pokemonScale = 316,
         .pokemonOffset = 4,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Clamperl
-        .categoryName = _("Bivalve"),
+
+    [NATIONAL_DEX_CLAMPERL] =
+    {
+        .categoryName = _("BIVALVE"),
         .height = 4,
         .weight = 525,
-        .descriptionPage1 = DexDescription_Clamperl_1,
-        .descriptionPage2 = DexDescription_Clamperl_2,
+        .description = gClamperlPokedexText,
         .pokemonScale = 691,
         .pokemonOffset = 22,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Huntail
-        .categoryName = _("Deep Sea"),
+
+    [NATIONAL_DEX_HUNTAIL] =
+    {
+        .categoryName = _("DEEP SEA"),
         .height = 17,
         .weight = 270,
-        .descriptionPage1 = DexDescription_Huntail_1,
-        .descriptionPage2 = DexDescription_Huntail_2,
+        .description = gHuntailPokedexText,
         .pokemonScale = 307,
         .pokemonOffset = 1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Gorebyss
-        .categoryName = _("South Sea"),
+
+    [NATIONAL_DEX_GOREBYSS] =
+    {
+        .categoryName = _("SOUTH SEA"),
         .height = 18,
         .weight = 226,
-        .descriptionPage1 = DexDescription_Gorebyss_1,
-        .descriptionPage2 = DexDescription_Gorebyss_2,
+        .description = gGorebyssPokedexText,
         .pokemonScale = 278,
         .pokemonOffset = 5,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Relicanth
-        .categoryName = _("Longevity"),
+
+    [NATIONAL_DEX_RELICANTH] =
+    {
+        .categoryName = _("LONGEVITY"),
         .height = 10,
         .weight = 234,
-        .descriptionPage1 = DexDescription_Relicanth_1,
-        .descriptionPage2 = DexDescription_Relicanth_2,
+        .description = gRelicanthPokedexText,
         .pokemonScale = 316,
         .pokemonOffset = 7,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Luvdisc
-        .categoryName = _("Rendezvous"),
+
+    [NATIONAL_DEX_LUVDISC] =
+    {
+        .categoryName = _("RENDEZVOUS"),
         .height = 6,
         .weight = 87,
-        .descriptionPage1 = DexDescription_Luvdisc_1,
-        .descriptionPage2 = DexDescription_Luvdisc_2,
+        .description = gLuvdiscPokedexText,
         .pokemonScale = 371,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Bagon
-        .categoryName = _("Rock Head"),
+
+    [NATIONAL_DEX_BAGON] =
+    {
+        .categoryName = _("ROCK HEAD"),
         .height = 6,
         .weight = 421,
-        .descriptionPage1 = DexDescription_Bagon_1,
-        .descriptionPage2 = DexDescription_Bagon_2,
+        .description = gBagonPokedexText,
         .pokemonScale = 448,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Shelgon
-        .categoryName = _("Endurance"),
+
+    [NATIONAL_DEX_SHELGON] =
+    {
+        .categoryName = _("ENDURANCE"),
         .height = 11,
         .weight = 1105,
-        .descriptionPage1 = DexDescription_Shelgon_1,
-        .descriptionPage2 = DexDescription_Shelgon_2,
+        .description = gShelgonPokedexText,
         .pokemonScale = 311,
         .pokemonOffset = 12,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Salamence
-        .categoryName = _("Dragon"),
+
+    [NATIONAL_DEX_SALAMENCE] =
+    {
+        .categoryName = _("DRAGON"),
         .height = 15,
         .weight = 1026,
-        .descriptionPage1 = DexDescription_Salamence_1,
-        .descriptionPage2 = DexDescription_Salamence_2,
+        .description = gSalamencePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Beldum
-        .categoryName = _("Iron Ball"),
+
+    [NATIONAL_DEX_BELDUM] =
+    {
+        .categoryName = _("IRON BALL"),
         .height = 6,
         .weight = 952,
-        .descriptionPage1 = DexDescription_Beldum_1,
-        .descriptionPage2 = DexDescription_Beldum_2,
+        .description = gBeldumPokedexText,
         .pokemonScale = 414,
         .pokemonOffset = -1,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Metang
-        .categoryName = _("Iron Claw"),
+
+    [NATIONAL_DEX_METANG] =
+    {
+        .categoryName = _("IRON CLAW"),
         .height = 12,
         .weight = 2025,
-        .descriptionPage1 = DexDescription_Metang_1,
-        .descriptionPage2 = DexDescription_Metang_2,
+        .description = gMetangPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 6,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Metagross
-        .categoryName = _("Iron Leg"),
+
+    [NATIONAL_DEX_METAGROSS] =
+    {
+        .categoryName = _("IRON LEG"),
         .height = 16,
         .weight = 5500,
-        .descriptionPage1 = DexDescription_Metagross_1,
-        .descriptionPage2 = DexDescription_Metagross_2,
+        .description = gMetagrossPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 447,
         .trainerOffset = 9,
     },
-    {  //Regirock
-        .categoryName = _("Rock Peak"),
+
+    [NATIONAL_DEX_REGIROCK] =
+    {
+        .categoryName = _("ROCK PEAK"),
         .height = 17,
         .weight = 2300,
-        .descriptionPage1 = DexDescription_Regirock_1,
-        .descriptionPage2 = DexDescription_Regirock_2,
+        .description = gRegirockPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 309,
         .trainerOffset = 1,
     },
-    {  //Regice
-        .categoryName = _("Iceberg"),
+
+    [NATIONAL_DEX_REGICE] =
+    {
+        .categoryName = _("ICEBERG"),
         .height = 18,
         .weight = 1750,
-        .descriptionPage1 = DexDescription_Regice_1,
-        .descriptionPage2 = DexDescription_Regice_2,
+        .description = gRegicePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 301,
         .trainerOffset = 2,
     },
-    {  //Registeel
-        .categoryName = _("Iron"),
+
+    [NATIONAL_DEX_REGISTEEL] =
+    {
+        .categoryName = _("IRON"),
         .height = 19,
         .weight = 2050,
-        .descriptionPage1 = DexDescription_Registeel_1,
-        .descriptionPage2 = DexDescription_Registeel_2,
+        .description = gRegisteelPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 359,
         .trainerOffset = 6,
     },
-    {  //Latias
-        .categoryName = _("Eon"),
+
+    [NATIONAL_DEX_LATIAS] =
+    {
+        .categoryName = _("EON"),
         .height = 14,
         .weight = 400,
-        .descriptionPage1 = DexDescription_Latias_1,
-        .descriptionPage2 = DexDescription_Latias_2,
+        .description = gLatiasPokedexText,
         .pokemonScale = 304,
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Latios
-        .categoryName = _("Eon"),
+
+    [NATIONAL_DEX_LATIOS] =
+    {
+        .categoryName = _("EON"),
         .height = 20,
         .weight = 600,
-        .descriptionPage1 = DexDescription_Latios_1,
-        .descriptionPage2 = DexDescription_Latios_2,
+        .description = gLatiosPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 294,
         .trainerOffset = 3,
     },
-    {  //Kyogre
-        .categoryName = _("Sea Basin"),
+
+    [NATIONAL_DEX_KYOGRE] =
+    {
+        .categoryName = _("SEA BASIN"),
         .height = 45,
         .weight = 3520,
-        .descriptionPage1 = DexDescription_Kyogre_1,
-        .descriptionPage2 = DexDescription_Kyogre_2,
+        .description = gKyogrePokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 614,
         .trainerOffset = 13,
     },
-    {  //Groudon
-        .categoryName = _("Continent"),
+
+    [NATIONAL_DEX_GROUDON] =
+    {
+        .categoryName = _("CONTINENT"),
         .height = 35,
         .weight = 9500,
-        .descriptionPage1 = DexDescription_Groudon_1,
-        .descriptionPage2 = DexDescription_Groudon_2,
+        .description = gGroudonPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 515,
         .trainerOffset = 14,
     },
-    {  //Rayquaza
-        .categoryName = _("Sky High"),
+
+    [NATIONAL_DEX_RAYQUAZA] =
+    {
+        .categoryName = _("SKY HIGH"),
         .height = 70,
         .weight = 2065,
-        .descriptionPage1 = DexDescription_Rayquaza_1,
-        .descriptionPage2 = DexDescription_Rayquaza_2,
+        .description = gRayquazaPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 448,
         .trainerOffset = 12,
     },
-    {  //Jirachi
-        .categoryName = _("Wish"),
+
+    [NATIONAL_DEX_JIRACHI] =
+    {
+        .categoryName = _("WISH"),
         .height = 3,
         .weight = 11,
-        .descriptionPage1 = DexDescription_Jirachi_1,
-        .descriptionPage2 = DexDescription_Jirachi_2,
+        .description = gJirachiPokedexText,
         .pokemonScale = 608,
         .pokemonOffset = -8,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-    {  //Deoxys
+
+    [NATIONAL_DEX_DEOXYS] =
+    {
         .categoryName = _("DNA"),
         .height = 17,
         .weight = 608,
-        .descriptionPage1 = DexDescription_Deoxys_1,
-        .descriptionPage2 = DexDescription_Deoxys_2,
+        .description = gDeoxysPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 290,
         .trainerOffset = 2,
     },
+
+	[NATIONAL_DEX_TURTWIG] =
+	{
+		.categoryName = _("TinyLeaf"),
+		.height = 4,
+		.weight = 102,
+		.description = gTurtwigPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GROTLE] =
+	{
+		.categoryName = _("Grove"),
+		.height = 11,
+		.weight = 970,
+		.description = gGrotlePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TORTERRA] =
+	{
+		.categoryName = _("Continent"),
+		.height = 22,
+		.weight = 3100,
+		.description = gTorterraPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CHIMCHAR] =
+	{
+		.categoryName = _("Chimp"),
+		.height = 5,
+		.weight = 62,
+		.description = gChimcharPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MONFERNO] =
+	{
+		.categoryName = _("Playful"),
+		.height = 9,
+		.weight = 220,
+		.description = gMonfernoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_INFERNAPE] =
+	{
+		.categoryName = _("Flame"),
+		.height = 12,
+		.weight = 550,
+		.description = gInfernapePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PIPLUP] =
+	{
+		.categoryName = _("Penguin"),
+		.height = 4,
+		.weight = 52,
+		.description = gPiplupPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PRINPLUP] =
+	{
+		.categoryName = _("Penguin"),
+		.height = 8,
+		.weight = 230,
+		.description = gPrinplupPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_EMPOLEON] =
+	{
+		.categoryName = _("Emperor"),
+		.height = 17,
+		.weight = 845,
+		.description = gEmpoleonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_STARLY] =
+	{
+		.categoryName = _("Starling"),
+		.height = 3,
+		.weight = 20,
+		.description = gStarlyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_STARAVIA] =
+	{
+		.categoryName = _("Starling"),
+		.height = 6,
+		.weight = 155,
+		.description = gStaraviaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_STARAPTOR] =
+	{
+		.categoryName = _("Predator"),
+		.height = 12,
+		.weight = 249,
+		.description = gStaraptorPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BIDOOF] =
+	{
+		.categoryName = _("PlumpMouse"),
+		.height = 5,
+		.weight = 200,
+		.description = gBidoofPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BIBAREL] =
+	{
+		.categoryName = _("Beaver"),
+		.height = 10,
+		.weight = 315,
+		.description = gBibarelPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KRICKETOT] =
+	{
+		.categoryName = _("Cricket"),
+		.height = 3,
+		.weight = 22,
+		.description = gKricketotPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KRICKETUNE] =
+	{
+		.categoryName = _("Cricket"),
+		.height = 10,
+		.weight = 255,
+		.description = gKricketunePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SHINX] =
+	{
+		.categoryName = _("Flash"),
+		.height = 5,
+		.weight = 95,
+		.description = gShinxPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LUXIO] =
+	{
+		.categoryName = _("Spark"),
+		.height = 9,
+		.weight = 305,
+		.description = gLuxioPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LUXRAY] =
+	{
+		.categoryName = _("Gleam Eyes"),
+		.height = 14,
+		.weight = 420,
+		.description = gLuxrayPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BUDEW] =
+	{
+		.categoryName = _("Bud"),
+		.height = 2,
+		.weight = 12,
+		.description = gBudewPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ROSERADE] =
+	{
+		.categoryName = _("Bouquet"),
+		.height = 9,
+		.weight = 145,
+		.description = gRoseradePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CRANIDOS] =
+	{
+		.categoryName = _("Headbutt"),
+		.height = 9,
+		.weight = 315,
+		.description = gCranidosPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_RAMPARDOS] =
+	{
+		.categoryName = _("Headbutt"),
+		.height = 16,
+		.weight = 1025,
+		.description = gRampardosPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SHIELDON] =
+	{
+		.categoryName = _("Shield"),
+		.height = 5,
+		.weight = 570,
+		.description = gShieldonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BASTIODON] =
+	{
+		.categoryName = _("Shield"),
+		.height = 13,
+		.weight = 1495,
+		.description = gBastiodonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BURMY] =
+	{
+		.categoryName = _("Bagworm"),
+		.height = 2,
+		.weight = 34,
+		.description = gBurmyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_WORMADAM] =
+	{
+		.categoryName = _("Bagworm"),
+		.height = 5,
+		.weight = 65,
+		.description = gWormadamPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MOTHIM] =
+	{
+		.categoryName = _("Moth"),
+		.height = 9,
+		.weight = 233,
+		.description = gMothimPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_COMBEE] =
+	{
+		.categoryName = _("Tiny Bee"),
+		.height = 3,
+		.weight = 55,
+		.description = gCombeePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_VESPIQUEN] =
+	{
+		.categoryName = _("Beehive"),
+		.height = 12,
+		.weight = 385,
+		.description = gVespiquenPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PACHIRISU] =
+	{
+		.categoryName = _("EleSquirrel"),
+		.height = 4,
+		.weight = 39,
+		.description = gPachirisuPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BUIZEL] =
+	{
+		.categoryName = _("Sea Weasel"),
+		.height = 7,
+		.weight = 295,
+		.description = gBuizelPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FLOATZEL] =
+	{
+		.categoryName = _("Sea Weasel"),
+		.height = 11,
+		.weight = 335,
+		.description = gFloatzelPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CHERUBI] =
+	{
+		.categoryName = _("Cherry"),
+		.height = 4,
+		.weight = 33,
+		.description = gCherubiPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CHERRIM] =
+	{
+		.categoryName = _("Blossom"),
+		.height = 5,
+		.weight = 93,
+		.description = gCherrimPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SHELLOS] =
+	{
+		.categoryName = _("SeaSlug"),
+		.height = 3,
+		.weight = 63,
+		.description = gShellosPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GASTRODON] =
+	{
+		.categoryName = _("SeaSlug"),
+		.height = 9,
+		.weight = 299,
+		.description = gGastrodonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_AMBIPOM] =
+	{
+		.categoryName = _("Long Tail"),
+		.height = 12,
+		.weight = 203,
+		.description = gAmbipomPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DRIFLOON] =
+	{
+		.categoryName = _("Balloon"),
+		.height = 4,
+		.weight = 12,
+		.description = gDrifloonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DRIFBLIM] =
+	{
+		.categoryName = _("Blimp"),
+		.height = 12,
+		.weight = 150,
+		.description = gDrifblimPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BUNEARY] =
+	{
+		.categoryName = _("Rabbit"),
+		.height = 4,
+		.weight = 55,
+		.description = gBunearyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LOPUNNY] =
+	{
+		.categoryName = _("Rabbit"),
+		.height = 12,
+		.weight = 333,
+		.description = gLopunnyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MISMAGIUS] =
+	{
+		.categoryName = _("Magical"),
+		.height = 9,
+		.weight = 44,
+		.description = gMismagiusPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HONCHKROW] =
+	{
+		.categoryName = _("Big Boss"),
+		.height = 9,
+		.weight = 273,
+		.description = gHonchkrowPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GLAMEOW] =
+	{
+		.categoryName = _("Catty"),
+		.height = 5,
+		.weight = 39,
+		.description = gGlameowPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PURUGLY] =
+	{
+		.categoryName = _("Tiger Cat"),
+		.height = 10,
+		.weight = 438,
+		.description = gPuruglyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CHINGLING] =
+	{
+		.categoryName = _("Bell"),
+		.height = 2,
+		.weight = 6,
+		.description = gChinglingPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_STUNKY] =
+	{
+		.categoryName = _("Skunk"),
+		.height = 4,
+		.weight = 192,
+		.description = gStunkyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SKUNTANK] =
+	{
+		.categoryName = _("Skunk"),
+		.height = 10,
+		.weight = 380,
+		.description = gSkuntankPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BRONZOR] =
+	{
+		.categoryName = _("Bronze"),
+		.height = 5,
+		.weight = 605,
+		.description = gBronzorPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BRONZONG] =
+	{
+		.categoryName = _("Bronze Bell"),
+		.height = 13,
+		.weight = 1870,
+		.description = gBronzongPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BONSLY] =
+	{
+		.categoryName = _("Bonsai"),
+		.height = 5,
+		.weight = 150,
+		.description = gBonslyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MIMEJR] =
+	{
+		.categoryName = _("Mime"),
+		.height = 6,
+		.weight = 130,
+		.description = gMimeJrPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HAPPINY] =
+	{
+		.categoryName = _("Playhouse"),
+		.height = 6,
+		.weight = 244,
+		.description = gHappinyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CHATOT] =
+	{
+		.categoryName = _("Music Note"),
+		.height = 5,
+		.weight = 19,
+		.description = gChatotPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SPIRITOMB] =
+	{
+		.categoryName = _("Forbidden"),
+		.height = 10,
+		.weight = 1080,
+		.description = gSpiritombPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GIBLE] =
+	{
+		.categoryName = _("Land Shark"),
+		.height = 7,
+		.weight = 205,
+		.description = gGiblePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GABITE] =
+	{
+		.categoryName = _("Cave"),
+		.height = 14,
+		.weight = 560,
+		.description = gGabitePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GARCHOMP] =
+	{
+		.categoryName = _("Mach"),
+		.height = 19,
+		.weight = 950,
+		.description = gGarchompPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MUNCHLAX] =
+	{
+		.categoryName = _("Big Eater"),
+		.height = 6,
+		.weight = 1050,
+		.description = gMunchlaxPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_RIOLU] =
+	{
+		.categoryName = _("Emanation"),
+		.height = 7,
+		.weight = 202,
+		.description = gRioluPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LUCARIO] =
+	{
+		.categoryName = _("Aura"),
+		.height = 12,
+		.weight = 540,
+		.description = gLucarioPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HIPPOPOTAS] =
+	{
+		.categoryName = _("Hippo"),
+		.height = 8,
+		.weight = 495,
+		.description = gHippopotasPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HIPPOWDON] =
+	{
+		.categoryName = _("Heavyweight"),
+		.height = 20,
+		.weight = 3000,
+		.description = gHippowdonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SKORUPI] =
+	{
+		.categoryName = _("Scorpion"),
+		.height = 8,
+		.weight = 120,
+		.description = gSkorupiPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DRAPION] =
+	{
+		.categoryName = _("Scorpion"),
+		.height = 13,
+		.weight = 615,
+		.description = gDrapionPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CROAGUNK] =
+	{
+		.categoryName = _("Toxic Mouth"),
+		.height = 7,
+		.weight = 230,
+		.description = gCroagunkPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TOXICROAK] =
+	{
+		.categoryName = _("Toxic Mouth"),
+		.height = 13,
+		.weight = 444,
+		.description = gToxicroakPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CARNIVINE] =
+	{
+		.categoryName = _("Bug Catcher"),
+		.height = 14,
+		.weight = 270,
+		.description = gCarnivinePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FINNEON] =
+	{
+		.categoryName = _("Wing Fish"),
+		.height = 4,
+		.weight = 70,
+		.description = gFinneonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LUMINEON] =
+	{
+		.categoryName = _("Neon"),
+		.height = 12,
+		.weight = 240,
+		.description = gLumineonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MANTYKE] =
+	{
+		.categoryName = _("Kite"),
+		.height = 10,
+		.weight = 650,
+		.description = gMantykePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SNOVER] =
+	{
+		.categoryName = _("Frost Tree"),
+		.height = 10,
+		.weight = 505,
+		.description = gSnoverPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ABOMASNOW] =
+	{
+		.categoryName = _("Frost Tree"),
+		.height = 22,
+		.weight = 1355,
+		.description = gAbomasnowPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_WEAVILE] =
+	{
+		.categoryName = _("Sharp Claw"),
+		.height = 11,
+		.weight = 340,
+		.description = gWeavilePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MAGNEZONE] =
+	{
+		.categoryName = _("Magnet Area"),
+		.height = 12,
+		.weight = 1800,
+		.description = gMagnezonePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LICKILICKY] =
+	{
+		.categoryName = _("Licking"),
+		.height = 17,
+		.weight = 1400,
+		.description = gLickilickyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_RHYPERIOR] =
+	{
+		.categoryName = _("Drill"),
+		.height = 24,
+		.weight = 2828,
+		.description = gRhyperiorPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TANGROWTH] =
+	{
+		.categoryName = _("Vine"),
+		.height = 20,
+		.weight = 1286,
+		.description = gTangrowthPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ELECTIVIRE] =
+	{
+		.categoryName = _("Thunderbolt"),
+		.height = 18,
+		.weight = 1386,
+		.description = gElectivirePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MAGMORTAR] =
+	{
+		.categoryName = _("Blast"),
+		.height = 16,
+		.weight = 680,
+		.description = gMagmortarPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TOGEKISS] =
+	{
+		.categoryName = _("Jubilee"),
+		.height = 15,
+		.weight = 380,
+		.description = gTogekissPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_YANMEGA] =
+	{
+		.categoryName = _("Ogre Darner"),
+		.height = 19,
+		.weight = 515,
+		.description = gYanmegaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LEAFEON] =
+	{
+		.categoryName = _("Verdant"),
+		.height = 10,
+		.weight = 255,
+		.description = gLeafeonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GLACEON] =
+	{
+		.categoryName = _("Fresh Snow"),
+		.height = 8,
+		.weight = 259,
+		.description = gGlaceonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GLISCOR] =
+	{
+		.categoryName = _("Scorpion"),
+		.height = 20,
+		.weight = 425,
+		.description = gGliscorPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MAMOSWINE] =
+	{
+		.categoryName = _("Twin Tusk"),
+		.height = 25,
+		.weight = 2910,
+		.description = gMamoswinePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PORYGON_Z] =
+	{
+		.categoryName = _("Virtual"),
+		.height = 9,
+		.weight = 340,
+		.description = gPorygonZPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GALLADE] =
+	{
+		.categoryName = _("Blade"),
+		.height = 16,
+		.weight = 520,
+		.description = gGalladePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PROBOPASS] =
+	{
+		.categoryName = _("Compass"),
+		.height = 14,
+		.weight = 3400,
+		.description = gProbopassPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DUSKNOIR] =
+	{
+		.categoryName = _("Gripper"),
+		.height = 22,
+		.weight = 1066,
+		.description = gDusknoirPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FROSLASS] =
+	{
+		.categoryName = _("Snow Land"),
+		.height = 13,
+		.weight = 266,
+		.description = gFroslassPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ROTOM] =
+	{
+		.categoryName = _("Plasma"),
+		.height = 3,
+		.weight = 3,
+		.description = gRotomPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_UXIE] =
+	{
+		.categoryName = _("Knowledge"),
+		.height = 3,
+		.weight = 3,
+		.description = gUxiePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MESPRIT] =
+	{
+		.categoryName = _("Emotion"),
+		.height = 3,
+		.weight = 3,
+		.description = gMespritPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_AZELF] =
+	{
+		.categoryName = _("Willpower"),
+		.height = 3,
+		.weight = 3,
+		.description = gAzelfPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DIALGA] =
+	{
+		.categoryName = _("Temporal"),
+		.height = 54,
+		.weight = 6830,
+		.description = gDialgaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PALKIA] =
+	{
+		.categoryName = _("Spatial"),
+		.height = 42,
+		.weight = 3360,
+		.description = gPalkiaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HEATRAN] =
+	{
+		.categoryName = _("Lava Dome"),
+		.height = 17,
+		.weight = 4300,
+		.description = gHeatranPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_REGIGIGAS] =
+	{
+		.categoryName = _("Colossal"),
+		.height = 37,
+		.weight = 4200,
+		.description = gRegigigasPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GIRATINA] =
+	{
+		.categoryName = _("Renegade"),
+		.height = 45,
+		.weight = 7500,
+		.description = gGiratinaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CRESSELIA] =
+	{
+		.categoryName = _("Lunar"),
+		.height = 15,
+		.weight = 856,
+		.description = gCresseliaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PHIONE] =
+	{
+		.categoryName = _("Sea Drifter"),
+		.height = 4,
+		.weight = 31,
+		.description = gPhionePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MANAPHY] =
+	{
+		.categoryName = _("Seafaring"),
+		.height = 3,
+		.weight = 14,
+		.description = gManaphyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DARKRAI] =
+	{
+		.categoryName = _("Pitch-Black"),
+		.height = 15,
+		.weight = 505,
+		.description = gDarkraiPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SHAYMIN] =
+	{
+		.categoryName = _("Gratitude"),
+		.height = 2,
+		.weight = 21,
+		.description = gShayminPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ARCEUS] =
+	{
+		.categoryName = _("Alpha"),
+		.height = 32,
+		.weight = 3200,
+		.description = gArceusPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_VICTINI] =
+	{
+		.categoryName = _("Victory"),
+		.height = 4,
+		.weight = 40,
+		.description = gVictiniPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SNIVY] =
+	{
+		.categoryName = _("Grass Snake"),
+		.height = 6,
+		.weight = 81,
+		.description = gSnivyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SERVINE] =
+	{
+		.categoryName = _("Grass Snake"),
+		.height = 8,
+		.weight = 160,
+		.description = gServinePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SERPERIOR] =
+	{
+		.categoryName = _("Regal"),
+		.height = 33,
+		.weight = 630,
+		.description = gSerperiorPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TEPIG] =
+	{
+		.categoryName = _("Fire Pig"),
+		.height = 5,
+		.weight = 99,
+		.description = gTepigPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PIGNITE] =
+	{
+		.categoryName = _("Fire Pig"),
+		.height = 10,
+		.weight = 555,
+		.description = gPignitePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_EMBOAR] =
+	{
+		.categoryName = _("Fire Pig"),
+		.height = 16,
+		.weight = 1500,
+		.description = gEmboarPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_OSHAWOTT] =
+	{
+		.categoryName = _("Sea Otter"),
+		.height = 5,
+		.weight = 59,
+		.description = gOshawottPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DEWOTT] =
+	{
+		.categoryName = _("Discipline"),
+		.height = 8,
+		.weight = 245,
+		.description = gDewottPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SAMUROTT] =
+	{
+		.categoryName = _("Formidable"),
+		.height = 15,
+		.weight = 946,
+		.description = gSamurottPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PATRAT] =
+	{
+		.categoryName = _("Scout"),
+		.height = 5,
+		.weight = 116,
+		.description = gPatratPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_WATCHOG] =
+	{
+		.categoryName = _("Lookout"),
+		.height = 11,
+		.weight = 270,
+		.description = gWatchogPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LILLIPUP] =
+	{
+		.categoryName = _("Puppy"),
+		.height = 4,
+		.weight = 41,
+		.description = gLillipupPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HERDIER] =
+	{
+		.categoryName = _("Loyal Dog"),
+		.height = 9,
+		.weight = 147,
+		.description = gHerdierPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_STOUTLAND] =
+	{
+		.categoryName = _("Big-Hearted"),
+		.height = 12,
+		.weight = 610,
+		.description = gStoutlandPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PURRLOIN] =
+	{
+		.categoryName = _("Devious"),
+		.height = 4,
+		.weight = 101,
+		.description = gPurrloinPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LIEPARD] =
+	{
+		.categoryName = _("Cruel"),
+		.height = 11,
+		.weight = 375,
+		.description = gLiepardPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PANSAGE] =
+	{
+		.categoryName = _("Grass Monkey"),
+		.height = 6,
+		.weight = 105,
+		.description = gPansagePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SIMISAGE] =
+	{
+		.categoryName = _("Thorn Monkey"),
+		.height = 11,
+		.weight = 305,
+		.description = gSimisagePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PANSEAR] =
+	{
+		.categoryName = _("High Temp"),
+		.height = 6,
+		.weight = 110,
+		.description = gPansearPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SIMISEAR] =
+	{
+		.categoryName = _("Ember"),
+		.height = 10,
+		.weight = 280,
+		.description = gSimisearPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PANPOUR] =
+	{
+		.categoryName = _("Spray"),
+		.height = 6,
+		.weight = 135,
+		.description = gPanpourPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SIMIPOUR] =
+	{
+		.categoryName = _("Geyser"),
+		.height = 10,
+		.weight = 290,
+		.description = gSimipourPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MUNNA] =
+	{
+		.categoryName = _("Dream Eater"),
+		.height = 6,
+		.weight = 233,
+		.description = gMunnaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MUSHARNA] =
+	{
+		.categoryName = _("Drowsing"),
+		.height = 11,
+		.weight = 605,
+		.description = gMusharnaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PIDOVE] =
+	{
+		.categoryName = _("Tiny Pigeon"),
+		.height = 3,
+		.weight = 21,
+		.description = gPidovePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TRANQUILL] =
+	{
+		.categoryName = _("Wild Pigeon"),
+		.height = 6,
+		.weight = 150,
+		.description = gTranquillPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_UNFEZANT] =
+	{
+		.categoryName = _("Proud"),
+		.height = 12,
+		.weight = 290,
+		.description = gUnfezantPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BLITZLE] =
+	{
+		.categoryName = _("Electrified"),
+		.height = 8,
+		.weight = 298,
+		.description = gBlitzlePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ZEBSTRIKA] =
+	{
+		.categoryName = _("Thunderbolt"),
+		.height = 16,
+		.weight = 795,
+		.description = gZebstrikaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ROGGENROLA] =
+	{
+		.categoryName = _("Mantle"),
+		.height = 4,
+		.weight = 180,
+		.description = gRoggenrolaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BOLDORE] =
+	{
+		.categoryName = _("Ore"),
+		.height = 9,
+		.weight = 1020,
+		.description = gBoldorePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GIGALITH] =
+	{
+		.categoryName = _("Compressed"),
+		.height = 17,
+		.weight = 2600,
+		.description = gGigalithPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_WOOBAT] =
+	{
+		.categoryName = _("Bat"),
+		.height = 4,
+		.weight = 21,
+		.description = gWoobatPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SWOOBAT] =
+	{
+		.categoryName = _("Courting"),
+		.height = 9,
+		.weight = 105,
+		.description = gSwoobatPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DRILBUR] =
+	{
+		.categoryName = _("Mole"),
+		.height = 3,
+		.weight = 85,
+		.description = gDrilburPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_EXCADRILL] =
+	{
+		.categoryName = _("Subterrene"),
+		.height = 7,
+		.weight = 404,
+		.description = gExcadrillPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_AUDINO] =
+	{
+		.categoryName = _("Hearing"),
+		.height = 11,
+		.weight = 310,
+		.description = gAudinoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TIMBURR] =
+	{
+		.categoryName = _("Muscular"),
+		.height = 6,
+		.weight = 125,
+		.description = gTimburrPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GURDURR] =
+	{
+		.categoryName = _("Muscular"),
+		.height = 12,
+		.weight = 400,
+		.description = gGurdurrPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CONKELDURR] =
+	{
+		.categoryName = _("Muscular"),
+		.height = 14,
+		.weight = 870,
+		.description = gConkeldurrPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TYMPOLE] =
+	{
+		.categoryName = _("Tadpole"),
+		.height = 5,
+		.weight = 45,
+		.description = gTympolePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PALPITOAD] =
+	{
+		.categoryName = _("Vibration"),
+		.height = 8,
+		.weight = 170,
+		.description = gPalpitoadPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SEISMITOAD] =
+	{
+		.categoryName = _("Vibration"),
+		.height = 15,
+		.weight = 620,
+		.description = gSeismitoadPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_THROH] =
+	{
+		.categoryName = _("Judo"),
+		.height = 13,
+		.weight = 555,
+		.description = gThrohPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SAWK] =
+	{
+		.categoryName = _("Karate"),
+		.height = 14,
+		.weight = 510,
+		.description = gSawkPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SEWADDLE] =
+	{
+		.categoryName = _("Sewing"),
+		.height = 3,
+		.weight = 25,
+		.description = gSewaddlePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SWADLOON] =
+	{
+		.categoryName = _("Leaf Wrapped"),
+		.height = 5,
+		.weight = 73,
+		.description = gSwadloonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LEAVANNY] =
+	{
+		.categoryName = _("Nurturing"),
+		.height = 12,
+		.weight = 205,
+		.description = gLeavannyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_VENIPEDE] =
+	{
+		.categoryName = _("Centipede"),
+		.height = 4,
+		.weight = 53,
+		.description = gVenipedePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_WHIRLIPEDE] =
+	{
+		.categoryName = _("Curlipede"),
+		.height = 12,
+		.weight = 585,
+		.description = gWhirlipedePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SCOLIPEDE] =
+	{
+		.categoryName = _("Megapede"),
+		.height = 25,
+		.weight = 2005,
+		.description = gScolipedePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_COTTONEE] =
+	{
+		.categoryName = _("CottonPuff"),
+		.height = 3,
+		.weight = 6,
+		.description = gCottoneePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_WHIMSICOTT] =
+	{
+		.categoryName = _("Windveiled"),
+		.height = 7,
+		.weight = 66,
+		.description = gWhimsicottPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PETILIL] =
+	{
+		.categoryName = _("Bulb"),
+		.height = 5,
+		.weight = 66,
+		.description = gPetililPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LILLIGANT] =
+	{
+		.categoryName = _("Flowering"),
+		.height = 11,
+		.weight = 163,
+		.description = gLilligantPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BASCULIN] =
+	{
+		.categoryName = _("Hostile"),
+		.height = 10,
+		.weight = 180,
+		.description = gBasculinPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SANDILE] =
+	{
+		.categoryName = _("Desert Croc"),
+		.height = 7,
+		.weight = 152,
+		.description = gSandilePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KROKOROK] =
+	{
+		.categoryName = _("Desert Croc"),
+		.height = 10,
+		.weight = 334,
+		.description = gKrokorokPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KROOKODILE] =
+	{
+		.categoryName = _("Intimidate"),
+		.height = 15,
+		.weight = 963,
+		.description = gKrookodilePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DARUMAKA] =
+	{
+		.categoryName = _("Zen Charm"),
+		.height = 6,
+		.weight = 375,
+		.description = gDarumakaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DARMANITAN] =
+	{
+		.categoryName = _("Blazing"),
+		.height = 13,
+		.weight = 929,
+		.description = gDarmanitanPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MARACTUS] =
+	{
+		.categoryName = _("Cactus"),
+		.height = 10,
+		.weight = 280,
+		.description = gMaractusPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DWEBBLE] =
+	{
+		.categoryName = _("Rock Inn"),
+		.height = 3,
+		.weight = 145,
+		.description = gDwebblePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CRUSTLE] =
+	{
+		.categoryName = _("Stone Home"),
+		.height = 14,
+		.weight = 2000,
+		.description = gCrustlePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SCRAGGY] =
+	{
+		.categoryName = _("Shedding"),
+		.height = 6,
+		.weight = 118,
+		.description = gScraggyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SCRAFTY] =
+	{
+		.categoryName = _("Hoodlum"),
+		.height = 11,
+		.weight = 300,
+		.description = gScraftyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SIGILYPH] =
+	{
+		.categoryName = _("Avianoid"),
+		.height = 14,
+		.weight = 140,
+		.description = gSigilyphPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_YAMASK] =
+	{
+		.categoryName = _("Spirit"),
+		.height = 5,
+		.weight = 15,
+		.description = gYamaskPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_COFAGRIGUS] =
+	{
+		.categoryName = _("Coffin"),
+		.height = 17,
+		.weight = 765,
+		.description = gCofagrigusPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TIRTOUGA] =
+	{
+		.categoryName = _("Prototurtle"),
+		.height = 7,
+		.weight = 165,
+		.description = gTirtougaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CARRACOSTA] =
+	{
+		.categoryName = _("Prototurtle"),
+		.height = 12,
+		.weight = 810,
+		.description = gCarracostaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ARCHEN] =
+	{
+		.categoryName = _("First Bird"),
+		.height = 5,
+		.weight = 95,
+		.description = gArchenPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ARCHEOPS] =
+	{
+		.categoryName = _("First Bird"),
+		.height = 14,
+		.weight = 320,
+		.description = gArcheopsPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TRUBBISH] =
+	{
+		.categoryName = _("Trash Bag"),
+		.height = 6,
+		.weight = 310,
+		.description = gTrubbishPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GARBODOR] =
+	{
+		.categoryName = _("Trash Heap"),
+		.height = 19,
+		.weight = 1073,
+		.description = gGarbodorPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ZORUA] =
+	{
+		.categoryName = _("Tricky Fox"),
+		.height = 7,
+		.weight = 125,
+		.description = gZoruaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ZOROARK] =
+	{
+		.categoryName = _("Illusion Fox"),
+		.height = 16,
+		.weight = 811,
+		.description = gZoroarkPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MINCCINO] =
+	{
+		.categoryName = _("Chinchilla"),
+		.height = 4,
+		.weight = 58,
+		.description = gMinccinoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CINCCINO] =
+	{
+		.categoryName = _("Scarf"),
+		.height = 5,
+		.weight = 75,
+		.description = gCinccinoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GOTHITA] =
+	{
+		.categoryName = _("Fixation"),
+		.height = 4,
+		.weight = 58,
+		.description = gGothitaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GOTHORITA] =
+	{
+		.categoryName = _("Manipulate"),
+		.height = 7,
+		.weight = 180,
+		.description = gGothoritaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GOTHITELLE] =
+	{
+		.categoryName = _("Astral Body"),
+		.height = 15,
+		.weight = 440,
+		.description = gGothitellePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SOLOSIS] =
+	{
+		.categoryName = _("Cell"),
+		.height = 3,
+		.weight = 10,
+		.description = gSolosisPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DUOSION] =
+	{
+		.categoryName = _("Mitosis"),
+		.height = 6,
+		.weight = 80,
+		.description = gDuosionPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_REUNICLUS] =
+	{
+		.categoryName = _("Multiplying"),
+		.height = 10,
+		.weight = 201,
+		.description = gReuniclusPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DUCKLETT] =
+	{
+		.categoryName = _("Water Bird"),
+		.height = 5,
+		.weight = 55,
+		.description = gDucklettPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SWANNA] =
+	{
+		.categoryName = _("White Bird"),
+		.height = 13,
+		.weight = 242,
+		.description = gSwannaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_VANILLITE] =
+	{
+		.categoryName = _("Fresh Snow"),
+		.height = 4,
+		.weight = 57,
+		.description = gVanillitePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_VANILLISH] =
+	{
+		.categoryName = _("Icy Snow"),
+		.height = 11,
+		.weight = 410,
+		.description = gVanillishPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_VANILLUXE] =
+	{
+		.categoryName = _("Snowstorm"),
+		.height = 13,
+		.weight = 575,
+		.description = gVanilluxePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DEERLING] =
+	{
+		.categoryName = _("Season"),
+		.height = 6,
+		.weight = 195,
+		.description = gDeerlingPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SAWSBUCK] =
+	{
+		.categoryName = _("Season"),
+		.height = 19,
+		.weight = 925,
+		.description = gSawsbuckPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_EMOLGA] =
+	{
+		.categoryName = _("Sky Squirrel"),
+		.height = 4,
+		.weight = 50,
+		.description = gEmolgaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KARRABLAST] =
+	{
+		.categoryName = _("Clamping"),
+		.height = 5,
+		.weight = 59,
+		.description = gKarrablastPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ESCAVALIER] =
+	{
+		.categoryName = _("Cavalry"),
+		.height = 10,
+		.weight = 330,
+		.description = gEscavalierPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FOONGUS] =
+	{
+		.categoryName = _("Mushroom"),
+		.height = 2,
+		.weight = 10,
+		.description = gFoongusPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_AMOONGUSS] =
+	{
+		.categoryName = _("Mushroom"),
+		.height = 6,
+		.weight = 105,
+		.description = gAmoongussPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FRILLISH] =
+	{
+		.categoryName = _("Floating"),
+		.height = 12,
+		.weight = 330,
+		.description = gFrillishPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_JELLICENT] =
+	{
+		.categoryName = _("Floating"),
+		.height = 22,
+		.weight = 1350,
+		.description = gJellicentPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ALOMOMOLA] =
+	{
+		.categoryName = _("Caring"),
+		.height = 12,
+		.weight = 316,
+		.description = gAlomomolaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_JOLTIK] =
+	{
+		.categoryName = _("Attaching"),
+		.height = 1,
+		.weight = 6,
+		.description = gJoltikPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GALVANTULA] =
+	{
+		.categoryName = _("EleSpider"),
+		.height = 8,
+		.weight = 143,
+		.description = gGalvantulaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FERROSEED] =
+	{
+		.categoryName = _("Thorn Seed"),
+		.height = 6,
+		.weight = 188,
+		.description = gFerroseedPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FERROTHORN] =
+	{
+		.categoryName = _("Thorn Pod"),
+		.height = 10,
+		.weight = 1100,
+		.description = gFerrothornPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KLINK] =
+	{
+		.categoryName = _("Gear"),
+		.height = 3,
+		.weight = 210,
+		.description = gKlinkPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KLANG] =
+	{
+		.categoryName = _("Gear"),
+		.height = 6,
+		.weight = 510,
+		.description = gKlangPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KLINKLANG] =
+	{
+		.categoryName = _("Gear"),
+		.height = 6,
+		.weight = 810,
+		.description = gKlinklangPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TYNAMO] =
+	{
+		.categoryName = _("EleFish"),
+		.height = 2,
+		.weight = 3,
+		.description = gTynamoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_EELEKTRIK] =
+	{
+		.categoryName = _("EleFish"),
+		.height = 12,
+		.weight = 220,
+		.description = gEelektrikPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_EELEKTROSS] =
+	{
+		.categoryName = _("EleFish"),
+		.height = 21,
+		.weight = 805,
+		.description = gEelektrossPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ELGYEM] =
+	{
+		.categoryName = _("Cerebral"),
+		.height = 5,
+		.weight = 90,
+		.description = gElgyemPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BEHEEYEM] =
+	{
+		.categoryName = _("Cerebral"),
+		.height = 10,
+		.weight = 345,
+		.description = gBeheeyemPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LITWICK] =
+	{
+		.categoryName = _("Candle"),
+		.height = 3,
+		.weight = 31,
+		.description = gLitwickPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LAMPENT] =
+	{
+		.categoryName = _("Lamp"),
+		.height = 6,
+		.weight = 130,
+		.description = gLampentPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CHANDELURE] =
+	{
+		.categoryName = _("Luring"),
+		.height = 10,
+		.weight = 343,
+		.description = gChandelurePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_AXEW] =
+	{
+		.categoryName = _("Tusk"),
+		.height = 6,
+		.weight = 180,
+		.description = gAxewPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FRAXURE] =
+	{
+		.categoryName = _("Axe Jaw"),
+		.height = 10,
+		.weight = 360,
+		.description = gFraxurePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HAXORUS] =
+	{
+		.categoryName = _("Axe Jaw"),
+		.height = 18,
+		.weight = 1055,
+		.description = gHaxorusPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CUBCHOO] =
+	{
+		.categoryName = _("Chill"),
+		.height = 5,
+		.weight = 85,
+		.description = gCubchooPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BEARTIC] =
+	{
+		.categoryName = _("Freezing"),
+		.height = 26,
+		.weight = 2600,
+		.description = gBearticPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CRYOGONAL] =
+	{
+		.categoryName = _("Crystallize"),
+		.height = 11,
+		.weight = 1480,
+		.description = gCryogonalPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SHELMET] =
+	{
+		.categoryName = _("Snail"),
+		.height = 4,
+		.weight = 77,
+		.description = gShelmetPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ACCELGOR] =
+	{
+		.categoryName = _("ShellOut"),
+		.height = 8,
+		.weight = 253,
+		.description = gAccelgorPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_STUNFISK] =
+	{
+		.categoryName = _("Trap"),
+		.height = 7,
+		.weight = 110,
+		.description = gStunfiskPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MIENFOO] =
+	{
+		.categoryName = _("Martial Arts"),
+		.height = 9,
+		.weight = 200,
+		.description = gMienfooPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MIENSHAO] =
+	{
+		.categoryName = _("Martial Arts"),
+		.height = 14,
+		.weight = 355,
+		.description = gMienshaoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DRUDDIGON] =
+	{
+		.categoryName = _("Cave"),
+		.height = 16,
+		.weight = 1390,
+		.description = gDruddigonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GOLETT] =
+	{
+		.categoryName = _("Automaton"),
+		.height = 10,
+		.weight = 920,
+		.description = gGolettPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GOLURK] =
+	{
+		.categoryName = _("Automaton"),
+		.height = 28,
+		.weight = 3300,
+		.description = gGolurkPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PAWNIARD] =
+	{
+		.categoryName = _("Sharp Blade"),
+		.height = 5,
+		.weight = 102,
+		.description = gPawniardPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BISHARP] =
+	{
+		.categoryName = _("Sword Blade"),
+		.height = 16,
+		.weight = 700,
+		.description = gBisharpPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BOUFFALANT] =
+	{
+		.categoryName = _("Bash Buffalo"),
+		.height = 16,
+		.weight = 946,
+		.description = gBouffalantPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_RUFFLET] =
+	{
+		.categoryName = _("Eaglet"),
+		.height = 5,
+		.weight = 105,
+		.description = gRuffletPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BRAVIARY] =
+	{
+		.categoryName = _("Valiant"),
+		.height = 15,
+		.weight = 410,
+		.description = gBraviaryPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_VULLABY] =
+	{
+		.categoryName = _("Diapered"),
+		.height = 5,
+		.weight = 90,
+		.description = gVullabyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MANDIBUZZ] =
+	{
+		.categoryName = _("Bone Vulture"),
+		.height = 12,
+		.weight = 395,
+		.description = gMandibuzzPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HEATMOR] =
+	{
+		.categoryName = _("Anteater"),
+		.height = 14,
+		.weight = 580,
+		.description = gHeatmorPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DURANT] =
+	{
+		.categoryName = _("Iron Ant"),
+		.height = 3,
+		.weight = 330,
+		.description = gDurantPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DEINO] =
+	{
+		.categoryName = _("Irate"),
+		.height = 8,
+		.weight = 173,
+		.description = gDeinoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ZWEILOUS] =
+	{
+		.categoryName = _("Hostile"),
+		.height = 14,
+		.weight = 500,
+		.description = gZweilousPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HYDREIGON] =
+	{
+		.categoryName = _("Brutal"),
+		.height = 18,
+		.weight = 1600,
+		.description = gHydreigonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LARVESTA] =
+	{
+		.categoryName = _("Torch"),
+		.height = 11,
+		.weight = 288,
+		.description = gLarvestaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_VOLCARONA] =
+	{
+		.categoryName = _("Sun"),
+		.height = 16,
+		.weight = 460,
+		.description = gVolcaronaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_COBALION] =
+	{
+		.categoryName = _("Iron Will"),
+		.height = 21,
+		.weight = 2500,
+		.description = gCobalionPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TERRAKION] =
+	{
+		.categoryName = _("Cavern"),
+		.height = 19,
+		.weight = 2600,
+		.description = gTerrakionPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_VIRIZION] =
+	{
+		.categoryName = _("Grassland"),
+		.height = 20,
+		.weight = 2000,
+		.description = gVirizionPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TORNADUS] =
+	{
+		.categoryName = _("Cyclone"),
+		.height = 15,
+		.weight = 630,
+		.description = gTornadusPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_THUNDURUS] =
+	{
+		.categoryName = _("Bolt Strike"),
+		.height = 15,
+		.weight = 610,
+		.description = gThundurusPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_RESHIRAM] =
+	{
+		.categoryName = _("Vast White"),
+		.height = 32,
+		.weight = 3300,
+		.description = gReshiramPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ZEKROM] =
+	{
+		.categoryName = _("Deep Black"),
+		.height = 29,
+		.weight = 3450,
+		.description = gZekromPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LANDORUS] =
+	{
+		.categoryName = _("Abundance"),
+		.height = 15,
+		.weight = 680,
+		.description = gLandorusPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KYUREM] =
+	{
+		.categoryName = _("Boundary"),
+		.height = 30,
+		.weight = 3250,
+		.description = gKyuremPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KELDEO] =
+	{
+		.categoryName = _("Colt"),
+		.height = 14,
+		.weight = 485,
+		.description = gKeldeoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MELOETTA] =
+	{
+		.categoryName = _("Melody"),
+		.height = 6,
+		.weight = 65,
+		.description = gMeloettaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GENESECT] =
+	{
+		.categoryName = _("Paleozoic"),
+		.height = 15,
+		.weight = 825,
+		.description = gGenesectPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CHESPIN] =
+	{
+		.categoryName = _("Spiny Nut"),
+		.height = 4,
+		.weight = 90,
+		.description = gChespinPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_QUILLADIN] =
+	{
+		.categoryName = _("Spiny Armor"),
+		.height = 7,
+		.weight = 290,
+		.description = gQuilladinPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CHESNAUGHT] =
+	{
+		.categoryName = _("Spiny Armor"),
+		.height = 16,
+		.weight = 900,
+		.description = gChesnaughtPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FENNEKIN] =
+	{
+		.categoryName = _("Fox"),
+		.height = 4,
+		.weight = 94,
+		.description = gFennekinPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BRAIXEN] =
+	{
+		.categoryName = _("Fox"),
+		.height = 10,
+		.weight = 145,
+		.description = gBraixenPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DELPHOX] =
+	{
+		.categoryName = _("Fox"),
+		.height = 15,
+		.weight = 390,
+		.description = gDelphoxPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FROAKIE] =
+	{
+		.categoryName = _("Bubble Frog"),
+		.height = 3,
+		.weight = 70,
+		.description = gFroakiePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FROGADIER] =
+	{
+		.categoryName = _("Bubble Frog"),
+		.height = 6,
+		.weight = 109,
+		.description = gFrogadierPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GRENINJA] =
+	{
+		.categoryName = _("Ninja"),
+		.height = 15,
+		.weight = 400,
+		.description = gGreninjaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BUNNELBY] =
+	{
+		.categoryName = _("Digging"),
+		.height = 4,
+		.weight = 50,
+		.description = gBunnelbyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DIGGERSBY] =
+	{
+		.categoryName = _("Digging"),
+		.height = 10,
+		.weight = 424,
+		.description = gDiggersbyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FLETCHLING] =
+	{
+		.categoryName = _("Tiny Robin"),
+		.height = 3,
+		.weight = 17,
+		.description = gFletchlingPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FLETCHINDER] =
+	{
+		.categoryName = _("Ember"),
+		.height = 7,
+		.weight = 160,
+		.description = gFletchinderPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TALONFLAME] =
+	{
+		.categoryName = _("Scorching"),
+		.height = 12,
+		.weight = 245,
+		.description = gTalonflamePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SCATTERBUG] =
+	{
+		.categoryName = _("Scatterdust"),
+		.height = 3,
+		.weight = 25,
+		.description = gScatterbugPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SPEWPA] =
+	{
+		.categoryName = _("Scatterdust"),
+		.height = 3,
+		.weight = 84,
+		.description = gSpewpaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_VIVILLON] =
+	{
+		.categoryName = _("Scale"),
+		.height = 12,
+		.weight = 170,
+		.description = gVivillonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LITLEO] =
+	{
+		.categoryName = _("Lion Cub"),
+		.height = 6,
+		.weight = 135,
+		.description = gLitleoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PYROAR] =
+	{
+		.categoryName = _("Royal"),
+		.height = 15,
+		.weight = 815,
+		.description = gPyroarPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FLABEBE] =
+	{
+		.categoryName = _("Single Bloom"),
+		.height = 1,
+		.weight = 1,
+		.description = gFlabebePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FLOETTE] =
+	{
+		.categoryName = _("Single Bloom"),
+		.height = 2,
+		.weight = 9,
+		.description = gFloettePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FLORGES] =
+	{
+		.categoryName = _("Garden"),
+		.height = 11,
+		.weight = 100,
+		.description = gFlorgesPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SKIDDO] =
+	{
+		.categoryName = _("Mount"),
+		.height = 9,
+		.weight = 310,
+		.description = gSkiddoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GOGOAT] =
+	{
+		.categoryName = _("Mount"),
+		.height = 17,
+		.weight = 910,
+		.description = gGogoatPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PANCHAM] =
+	{
+		.categoryName = _("Playful"),
+		.height = 6,
+		.weight = 80,
+		.description = gPanchamPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PANGORO] =
+	{
+		.categoryName = _("Daunting"),
+		.height = 21,
+		.weight = 1360,
+		.description = gPangoroPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FURFROU] =
+	{
+		.categoryName = _("Poodle"),
+		.height = 12,
+		.weight = 280,
+		.description = gFurfrouPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ESPURR] =
+	{
+		.categoryName = _("Restraint"),
+		.height = 3,
+		.weight = 35,
+		.description = gEspurrPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MEOWSTIC] =
+	{
+		.categoryName = _("Constraint"),
+		.height = 6,
+		.weight = 85,
+		.description = gMeowsticPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HONEDGE] =
+	{
+		.categoryName = _("Sword"),
+		.height = 8,
+		.weight = 20,
+		.description = gHonedgePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DOUBLADE] =
+	{
+		.categoryName = _("Sword"),
+		.height = 8,
+		.weight = 45,
+		.description = gDoubladePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_AEGISLASH] =
+	{
+		.categoryName = _("Royal Sword"),
+		.height = 17,
+		.weight = 530,
+		.description = gAegislashPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SPRITZEE] =
+	{
+		.categoryName = _("Perfume"),
+		.height = 2,
+		.weight = 5,
+		.description = gSpritzeePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_AROMATISSE] =
+	{
+		.categoryName = _("Fragrance"),
+		.height = 8,
+		.weight = 155,
+		.description = gAromatissePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SWIRLIX] =
+	{
+		.categoryName = _("Cotton Candy"),
+		.height = 4,
+		.weight = 35,
+		.description = gSwirlixPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SLURPUFF] =
+	{
+		.categoryName = _("Meringue"),
+		.height = 8,
+		.weight = 50,
+		.description = gSlurpuffPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_INKAY] =
+	{
+		.categoryName = _("Revolving"),
+		.height = 4,
+		.weight = 35,
+		.description = gInkayPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MALAMAR] =
+	{
+		.categoryName = _("Overturning"),
+		.height = 15,
+		.weight = 470,
+		.description = gMalamarPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BINACLE] =
+	{
+		.categoryName = _("Two-Handed"),
+		.height = 5,
+		.weight = 310,
+		.description = gBinaclePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BARBARACLE] =
+	{
+		.categoryName = _("Collective"),
+		.height = 13,
+		.weight = 960,
+		.description = gBarbaraclePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SKRELP] =
+	{
+		.categoryName = _("Mock Kelp"),
+		.height = 5,
+		.weight = 73,
+		.description = gSkrelpPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DRAGALGE] =
+	{
+		.categoryName = _("Mock Kelp"),
+		.height = 18,
+		.weight = 815,
+		.description = gDragalgePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CLAUNCHER] =
+	{
+		.categoryName = _("Water Gun"),
+		.height = 5,
+		.weight = 83,
+		.description = gClauncherPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CLAWITZER] =
+	{
+		.categoryName = _("Howitzer"),
+		.height = 13,
+		.weight = 353,
+		.description = gClawitzerPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HELIOPTILE] =
+	{
+		.categoryName = _("Generator"),
+		.height = 5,
+		.weight = 60,
+		.description = gHelioptilePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HELIOLISK] =
+	{
+		.categoryName = _("Generator"),
+		.height = 10,
+		.weight = 210,
+		.description = gHelioliskPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TYRUNT] =
+	{
+		.categoryName = _("Royal Heir"),
+		.height = 8,
+		.weight = 260,
+		.description = gTyruntPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TYRANTRUM] =
+	{
+		.categoryName = _("Despot"),
+		.height = 25,
+		.weight = 2700,
+		.description = gTyrantrumPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_AMAURA] =
+	{
+		.categoryName = _("Tundra"),
+		.height = 13,
+		.weight = 252,
+		.description = gAmauraPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_AURORUS] =
+	{
+		.categoryName = _("Tundra"),
+		.height = 27,
+		.weight = 2250,
+		.description = gAurorusPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SYLVEON] =
+	{
+		.categoryName = _("Intertwine"),
+		.height = 10,
+		.weight = 235,
+		.description = gSylveonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HAWLUCHA] =
+	{
+		.categoryName = _("Wrestling"),
+		.height = 8,
+		.weight = 215,
+		.description = gHawluchaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DEDENNE] =
+	{
+		.categoryName = _("Antenna"),
+		.height = 2,
+		.weight = 22,
+		.description = gDedennePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CARBINK] =
+	{
+		.categoryName = _("Jewel"),
+		.height = 3,
+		.weight = 57,
+		.description = gCarbinkPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GOOMY] =
+	{
+		.categoryName = _("Soft Tissue"),
+		.height = 3,
+		.weight = 28,
+		.description = gGoomyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SLIGGOO] =
+	{
+		.categoryName = _("Soft Tissue"),
+		.height = 8,
+		.weight = 175,
+		.description = gSliggooPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GOODRA] =
+	{
+		.categoryName = _("Dragon"),
+		.height = 20,
+		.weight = 1505,
+		.description = gGoodraPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KLEFKI] =
+	{
+		.categoryName = _("Key Ring"),
+		.height = 2,
+		.weight = 30,
+		.description = gKlefkiPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PHANTUMP] =
+	{
+		.categoryName = _("Stump"),
+		.height = 4,
+		.weight = 70,
+		.description = gPhantumpPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TREVENANT] =
+	{
+		.categoryName = _("Elder Tree"),
+		.height = 15,
+		.weight = 710,
+		.description = gTrevenantPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PUMPKABOO] =
+	{
+		.categoryName = _("Pumpkin"),
+		.height = 4,
+		.weight = 50,
+		.description = gPumpkabooPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GOURGEIST] =
+	{
+		.categoryName = _("Pumpkin"),
+		.height = 9,
+		.weight = 125,
+		.description = gGourgeistPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BERGMITE] =
+	{
+		.categoryName = _("Ice Chunk"),
+		.height = 10,
+		.weight = 995,
+		.description = gBergmitePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_AVALUGG] =
+	{
+		.categoryName = _("Iceberg"),
+		.height = 20,
+		.weight = 5050,
+		.description = gAvaluggPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_NOIBAT] =
+	{
+		.categoryName = _("Sound Wave"),
+		.height = 5,
+		.weight = 80,
+		.description = gNoibatPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_NOIVERN] =
+	{
+		.categoryName = _("Sound Wave"),
+		.height = 15,
+		.weight = 850,
+		.description = gNoivernPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_XERNEAS] =
+	{
+		.categoryName = _("Life"),
+		.height = 30,
+		.weight = 2150,
+		.description = gXerneasPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_YVELTAL] =
+	{
+		.categoryName = _("Destruction"),
+		.height = 58,
+		.weight = 2030,
+		.description = gYveltalPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ZYGARDE] =
+	{
+		.categoryName = _("Order"),
+		.height = 50,
+		.weight = 3050,
+		.description = gZygardePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DIANCIE] =
+	{
+		.categoryName = _("Jewel"),
+		.height = 7,
+		.weight = 88,
+		.description = gDianciePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HOOPA] =
+	{
+		.categoryName = _("Mischief"),
+		.height = 5,
+		.weight = 90,
+		.description = gHoopaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_VOLCANION] =
+	{
+		.categoryName = _("Steam"),
+		.height = 17,
+		.weight = 1950,
+		.description = gVolcanionPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ROWLET] =
+	{
+		.categoryName = _("Grass Quill"),
+		.height = 3,
+		.weight = 15,
+		.description = gRowletPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DARTRIX] =
+	{
+		.categoryName = _("Blade Quill"),
+		.height = 7,
+		.weight = 160,
+		.description = gDartrixPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DECIDUEYE] =
+	{
+		.categoryName = _("Arrow Quill"),
+		.height = 16,
+		.weight = 366,
+		.description = gDecidueyePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LITTEN] =
+	{
+		.categoryName = _("Fire Cat"),
+		.height = 4,
+		.weight = 43,
+		.description = gLittenPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TORRACAT] =
+	{
+		.categoryName = _("Fire Cat"),
+		.height = 7,
+		.weight = 250,
+		.description = gTorracatPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_INCINEROAR] =
+	{
+		.categoryName = _("Heel"),
+		.height = 18,
+		.weight = 830,
+		.description = gIncineroarPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_POPPLIO] =
+	{
+		.categoryName = _("Sea Lion"),
+		.height = 4,
+		.weight = 75,
+		.description = gPopplioPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BRIONNE] =
+	{
+		.categoryName = _("Pop Star"),
+		.height = 6,
+		.weight = 175,
+		.description = gBrionnePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PRIMARINA] =
+	{
+		.categoryName = _("Soloist"),
+		.height = 18,
+		.weight = 440,
+		.description = gPrimarinaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PIKIPEK] =
+	{
+		.categoryName = _("Woodpecker"),
+		.height = 3,
+		.weight = 12,
+		.description = gPikipekPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TRUMBEAK] =
+	{
+		.categoryName = _("Bugle Beak"),
+		.height = 6,
+		.weight = 148,
+		.description = gTrumbeakPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TOUCANNON] =
+	{
+		.categoryName = _("Cannon"),
+		.height = 11,
+		.weight = 260,
+		.description = gToucannonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_YUNGOOS] =
+	{
+		.categoryName = _("Loitering"),
+		.height = 4,
+		.weight = 60,
+		.description = gYungoosPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GUMSHOOS] =
+	{
+		.categoryName = _("Stakeout"),
+		.height = 7,
+		.weight = 142,
+		.description = gGumshoosPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GRUBBIN] =
+	{
+		.categoryName = _("Larva"),
+		.height = 4,
+		.weight = 44,
+		.description = gGrubbinPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CHARJABUG] =
+	{
+		.categoryName = _("Battery"),
+		.height = 5,
+		.weight = 105,
+		.description = gCharjabugPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_VIKAVOLT] =
+	{
+		.categoryName = _("Stag Beetle"),
+		.height = 15,
+		.weight = 450,
+		.description = gVikavoltPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CRABRAWLER] =
+	{
+		.categoryName = _("Boxing"),
+		.height = 6,
+		.weight = 70,
+		.description = gCrabrawlerPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CRABOMINABLE] =
+	{
+		.categoryName = _("Woolly Crab"),
+		.height = 17,
+		.weight = 1800,
+		.description = gCrabominablePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ORICORIO] =
+	{
+		.categoryName = _("Dancing"),
+		.height = 6,
+		.weight = 34,
+		.description = gOricorioPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CUTIEFLY] =
+	{
+		.categoryName = _("Bee Fly"),
+		.height = 1,
+		.weight = 2,
+		.description = gCutieflyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_RIBOMBEE] =
+	{
+		.categoryName = _("Bee Fly"),
+		.height = 2,
+		.weight = 5,
+		.description = gRibombeePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ROCKRUFF] =
+	{
+		.categoryName = _("Puppy"),
+		.height = 5,
+		.weight = 92,
+		.description = gRockruffPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LYCANROC] =
+	{
+		.categoryName = _("Wolf"),
+		.height = 8,
+		.weight = 250,
+		.description = gLycanrocPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_WISHIWASHI] =
+	{
+		.categoryName = _("Small Fry"),
+		.height = 2,
+		.weight = 3,
+		.description = gWishiwashiPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MAREANIE] =
+	{
+		.categoryName = _("Brutal Star"),
+		.height = 4,
+		.weight = 80,
+		.description = gMareaniePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TOXAPEX] =
+	{
+		.categoryName = _("Brutal Star"),
+		.height = 7,
+		.weight = 145,
+		.description = gToxapexPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MUDBRAY] =
+	{
+		.categoryName = _("Donkey"),
+		.height = 10,
+		.weight = 1100,
+		.description = gMudbrayPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MUDSDALE] =
+	{
+		.categoryName = _("Draft Horse"),
+		.height = 25,
+		.weight = 9200,
+		.description = gMudsdalePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DEWPIDER] =
+	{
+		.categoryName = _("Water Bubble"),
+		.height = 3,
+		.weight = 40,
+		.description = gDewpiderPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ARAQUANID] =
+	{
+		.categoryName = _("Water Bubble"),
+		.height = 18,
+		.weight = 820,
+		.description = gAraquanidPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_FOMANTIS] =
+	{
+		.categoryName = _("Sickle Grass"),
+		.height = 3,
+		.weight = 15,
+		.description = gFomantisPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LURANTIS] =
+	{
+		.categoryName = _("Bloom Sickle"),
+		.height = 9,
+		.weight = 185,
+		.description = gLurantisPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MORELULL] =
+	{
+		.categoryName = _("Illuminate"),
+		.height = 2,
+		.weight = 15,
+		.description = gMorelullPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SHIINOTIC] =
+	{
+		.categoryName = _("Illuminate"),
+		.height = 10,
+		.weight = 115,
+		.description = gShiinoticPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SALANDIT] =
+	{
+		.categoryName = _("Toxic Lizard"),
+		.height = 6,
+		.weight = 48,
+		.description = gSalanditPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SALAZZLE] =
+	{
+		.categoryName = _("Toxic Lizard"),
+		.height = 12,
+		.weight = 222,
+		.description = gSalazzlePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_STUFFUL] =
+	{
+		.categoryName = _("Flailing"),
+		.height = 5,
+		.weight = 68,
+		.description = gStuffulPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BEWEAR] =
+	{
+		.categoryName = _("Strong Arm"),
+		.height = 21,
+		.weight = 1350,
+		.description = gBewearPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BOUNSWEET] =
+	{
+		.categoryName = _("Fruit"),
+		.height = 3,
+		.weight = 32,
+		.description = gBounsweetPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_STEENEE] =
+	{
+		.categoryName = _("Fruit"),
+		.height = 7,
+		.weight = 82,
+		.description = gSteeneePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TSAREENA] =
+	{
+		.categoryName = _("Fruit"),
+		.height = 12,
+		.weight = 214,
+		.description = gTsareenaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_COMFEY] =
+	{
+		.categoryName = _("Posy Picker"),
+		.height = 1,
+		.weight = 3,
+		.description = gComfeyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ORANGURU] =
+	{
+		.categoryName = _("Sage"),
+		.height = 15,
+		.weight = 760,
+		.description = gOranguruPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PASSIMIAN] =
+	{
+		.categoryName = _("Teamwork"),
+		.height = 20,
+		.weight = 828,
+		.description = gPassimianPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_WIMPOD] =
+	{
+		.categoryName = _("Turn Tail"),
+		.height = 5,
+		.weight = 120,
+		.description = gWimpodPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GOLISOPOD] =
+	{
+		.categoryName = _("Hard Scale"),
+		.height = 20,
+		.weight = 1080,
+		.description = gGolisopodPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SANDYGAST] =
+	{
+		.categoryName = _("Sand Heap"),
+		.height = 5,
+		.weight = 700,
+		.description = gSandygastPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PALOSSAND] =
+	{
+		.categoryName = _("Sand Castle"),
+		.height = 13,
+		.weight = 2500,
+		.description = gPalossandPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PYUKUMUKU] =
+	{
+		.categoryName = _("Sea Cucumber"),
+		.height = 3,
+		.weight = 12,
+		.description = gPyukumukuPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TYPE_NULL] =
+	{
+		.categoryName = _("Synthetic"),
+		.height = 19,
+		.weight = 1205,
+		.description = gTypeNullPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SILVALLY] =
+	{
+		.categoryName = _("Synthetic"),
+		.height = 23,
+		.weight = 1005,
+		.description = gSilvallyPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MINIOR] =
+	{
+		.categoryName = _("Meteor"),
+		.height = 3,
+		.weight = 400,
+		.description = gMiniorPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KOMALA] =
+	{
+		.categoryName = _("Drowsing"),
+		.height = 4,
+		.weight = 199,
+		.description = gKomalaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TURTONATOR] =
+	{
+		.categoryName = _("Blast Turtle"),
+		.height = 20,
+		.weight = 2120,
+		.description = gTurtonatorPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TOGEDEMARU] =
+	{
+		.categoryName = _("Roly-Poly"),
+		.height = 3,
+		.weight = 33,
+		.description = gTogedemaruPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MIMIKYU] =
+	{
+		.categoryName = _("Disguise"),
+		.height = 2,
+		.weight = 7,
+		.description = gMimikyuPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BRUXISH] =
+	{
+		.categoryName = _("Gnash Teeth"),
+		.height = 9,
+		.weight = 190,
+		.description = gBruxishPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DRAMPA] =
+	{
+		.categoryName = _("Placid"),
+		.height = 30,
+		.weight = 1850,
+		.description = gDrampaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_DHELMISE] =
+	{
+		.categoryName = _("Sea Creeper"),
+		.height = 39,
+		.weight = 2100,
+		.description = gDhelmisePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_JANGMO_O] =
+	{
+		.categoryName = _("Scaly"),
+		.height = 6,
+		.weight = 297,
+		.description = gJangmooPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_HAKAMO_O] =
+	{
+		.categoryName = _("Scaly"),
+		.height = 12,
+		.weight = 470,
+		.description = gHakamooPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KOMMO_O] =
+	{
+		.categoryName = _("Scaly"),
+		.height = 16,
+		.weight = 782,
+		.description = gKommooPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TAPU_KOKO] =
+	{
+		.categoryName = _("Land Spirit"),
+		.height = 18,
+		.weight = 205,
+		.description = gTapuKokoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TAPU_LELE] =
+	{
+		.categoryName = _("Land Spirit"),
+		.height = 12,
+		.weight = 186,
+		.description = gTapuLelePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TAPU_BULU] =
+	{
+		.categoryName = _("Land Spirit"),
+		.height = 19,
+		.weight = 455,
+		.description = gTapuBuluPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_TAPU_FINI] =
+	{
+		.categoryName = _("Land Spirit"),
+		.height = 13,
+		.weight = 212,
+		.description = gTapuFiniPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_COSMOG] =
+	{
+		.categoryName = _("Nebula"),
+		.height = 2,
+		.weight = 1,
+		.description = gCosmogPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_COSMOEM] =
+	{
+		.categoryName = _("Protostar"),
+		.height = 1,
+		.weight = 9999,
+		.description = gCosmoemPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_SOLGALEO] =
+	{
+		.categoryName = _("Sunne"),
+		.height = 34,
+		.weight = 2300,
+		.description = gSolgaleoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_LUNALA] =
+	{
+		.categoryName = _("Moone"),
+		.height = 40,
+		.weight = 1200,
+		.description = gLunalaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_NIHILEGO] =
+	{
+		.categoryName = _("Parasite"),
+		.height = 12,
+		.weight = 555,
+		.description = gNihilegoPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BUZZWOLE] =
+	{
+		.categoryName = _("Swollen"),
+		.height = 24,
+		.weight = 3336,
+		.description = gBuzzwolePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_PHEROMOSA] =
+	{
+		.categoryName = _("Lissome"),
+		.height = 18,
+		.weight = 250,
+		.description = gPheromosaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_XURKITREE] =
+	{
+		.categoryName = _("Glowing"),
+		.height = 38,
+		.weight = 1000,
+		.description = gXurkitreePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_CELESTEELA] =
+	{
+		.categoryName = _("Launch"),
+		.height = 92,
+		.weight = 9999,
+		.description = gCelesteelaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_KARTANA] =
+	{
+		.categoryName = _("Drawn Sword"),
+		.height = 3,
+		.weight = 1,
+		.description = gKartanaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_GUZZLORD] =
+	{
+		.categoryName = _("Junkivore"),
+		.height = 55,
+		.weight = 8880,
+		.description = gGuzzlordPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_NECROZMA] =
+	{
+		.categoryName = _("Prism"),
+		.height = 24,
+		.weight = 2300,
+		.description = gNecrozmaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MAGEARNA] =
+	{
+		.categoryName = _("Artificial"),
+		.height = 10,
+		.weight = 805,
+		.description = gMagearnaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_MARSHADOW] =
+	{
+		.categoryName = _("Gloomdwelle"),
+		.height = 7,
+		.weight = 222,
+		.description = gMarshadowPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_POIPOLE] =
+	{
+		.categoryName = _("Poison Pin"),
+		.height = 6,
+		.weight = 18,
+		.description = gPoipolePokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_NAGANADEL] =
+	{
+		.categoryName = _("Poison Pin"),
+		.height = 36,
+		.weight = 1500,
+		.description = gNaganadelPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_STAKATAKA] =
+	{
+		.categoryName = _("Rampart"),
+		.height = 55,
+		.weight = 8200,
+		.description = gStakatakaPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_BLACEPHALON] =
+	{
+		.categoryName = _("Fireworks"),
+		.height = 18,
+		.weight = 130,
+		.description = gBlacephalonPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
+
+	[NATIONAL_DEX_ZERAORA] =
+	{
+		.categoryName = _("Thunderclap"),
+		.height = 15,
+		.weight = 445,
+		.description = gZeraoraPokedexText,
+		.pokemonScale = 356,
+		.pokemonOffset = 17,
+		.trainerScale = 256,
+		.trainerOffset = 0,
+	},
 };

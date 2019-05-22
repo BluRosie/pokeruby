@@ -1225,7 +1225,6 @@ static void sub_8090750(u8);
 static void sub_8090A3C(u8);
 static void sub_8090B8C(u8);
 static void sub_8090C28(struct Sprite *);
-static void sub_8090C68(void);
 static void sub_8091060(u16);
 static void sub_8091154(u16 order, u8, u8);
 static u8 sub_80911C8(u16 num, u8, u8);
@@ -2909,7 +2908,7 @@ static void Task_InitPageScreenMultistep(u8 taskId)
             sub_8091304(gPokedexEntries[gUnknown_0202FFBC->dexNum].categoryName, CATEGORY_LEFT, 5);
             sub_8091458(gPokedexEntries[gUnknown_0202FFBC->dexNum].height, 16, 7);
             sub_8091564(gPokedexEntries[gUnknown_0202FFBC->dexNum].weight, 16, 9);
-            Menu_PrintText(gPokedexEntries[gUnknown_0202FFBC->dexNum].descriptionPage1, 2, 13);
+            Menu_PrintText(gPokedexEntries[gUnknown_0202FFBC->dexNum].description, 2, 13);
             sub_80917CC(14, 0x3FC);
         }
         else
@@ -3000,7 +2999,6 @@ static void Task_PageScreenProcessInput(u8 taskId)
         switch (gPokedexView->selectedScreen)
         {
         case PAGE_SCREEN:
-            sub_8090C68();
             break;
         case AREA_SCREEN:
             BeginNormalPaletteFade(0xFFFFFFEB, 0, 0, 16, RGB(0, 0, 0));
@@ -3799,7 +3797,7 @@ static void sub_8090750(u8 taskId)
         sub_8091304(gPokedexEntries[dexNum].categoryName, CATEGORY_LEFT, 5);
         sub_8091458(gPokedexEntries[dexNum].height, 16, 7);
         sub_8091564(gPokedexEntries[dexNum].weight, 16, 9);
-        Menu_PrintText(gPokedexEntries[dexNum].descriptionPage1, 2, 13);
+        Menu_PrintText(gPokedexEntries[dexNum].description, 2, 13);
         sub_80917CC(14, 0x3FC);
         gTasks[taskId].data[0]++;
         break;
@@ -3839,27 +3837,6 @@ static void sub_8090A3C(u8 taskId)
         gSprites[gTasks[taskId].data[3]].callback = sub_8090C28;
         gTasks[taskId].func = sub_8090B8C;
         return;
-    }
-    else if (gMain.newKeys & A_BUTTON)
-    {
-        if (gTasks[taskId].data[4] == 0)
-        {
-            u16 r4 = gTasks[taskId].data[1];
-
-            Menu_EraseWindowRect(2, 13, 27, 19);
-            Menu_PrintText(gPokedexEntries[r4].descriptionPage2, 2, 13);
-            (*(u16 *)(VRAM + 0x7ACA))++;
-            (*(u16 *)(VRAM + 0x7B0A))++;
-            gTasks[taskId].data[4] = 1;
-            PlaySE(SE_PIN);
-        }
-        else
-        {
-            BeginNormalPaletteFade(0xFFFC, 0, 0, 16, RGB(0, 0, 0));
-            gSprites[gTasks[taskId].data[3]].callback = sub_8090C28;
-            gTasks[taskId].func = sub_8090B8C;
-            return;
-        }
     }
     gTasks[taskId].data[2]++;
     if (gTasks[taskId].data[2] & 0x10)
@@ -3902,31 +3879,6 @@ static void sub_8090C28(struct Sprite *sprite)
         sprite->pos1.y += 1;
     if (sprite->pos1.y > 0x50)
         sprite->pos1.y -= 1;
-}
-
-static void sub_8090C68(void)
-{
-    if (gUnknown_0202FFBC->owned)
-    {
-        if (gPokedexView->descriptionPageNum == 0)
-        {
-            Menu_EraseWindowRect(2, 13, 27, 19);
-            Menu_PrintText(gPokedexEntries[gUnknown_0202FFBC->dexNum].descriptionPage2, 2, 13);
-            gPokedexView->descriptionPageNum = 1;
-            (*(u16 *)(VRAM + 0x7ACA))++;
-            (*(u16 *)(VRAM + 0x7B0A))++;
-            PlaySE(SE_PIN);
-        }
-        else
-        {
-            Menu_EraseWindowRect(2, 13, 27, 19);
-            Menu_PrintText(gPokedexEntries[gUnknown_0202FFBC->dexNum].descriptionPage1, 2, 13);
-            gPokedexView->descriptionPageNum = 0;
-            (*(u16 *)(VRAM + 0x7ACA))--;
-            (*(u16 *)(VRAM + 0x7B0A))--;
-            PlaySE(SE_PIN);
-        }
-    }
 }
 
 const u8 *GetPokemonCategory(u16 dexNum)
