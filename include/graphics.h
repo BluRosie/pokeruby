@@ -5744,6 +5744,24 @@ extern const u8 gBattleAnimSpritePalette_286[];
 extern const u8 gBattleAnimSpritePalette_287[];
 extern const u8 gBattleAnimSpritePalette_288[];
 
+extern const u8 gMenuIcons_Dex[];
+extern const u8 gMenuIcons_DexBW[];
+extern const u8 gMenuIcons_Pokemon[];
+extern const u8 gMenuIcons_PokemonBW[];
+extern const u8 gMenuIcons_Bag[];
+extern const u8 gMenuIcons_BagBW[];
+extern const u8 gMenuIcons_TCard[];
+extern const u8 gMenuIcons_TCardBW[];
+extern const u8 gMenuIcons_Save[];
+extern const u8 gMenuIcons_SaveBW[];
+extern const u8 gMenuIcons_Options[];
+extern const u8 gMenuIcons_OptionsBW[];
+extern const u8 gMenuIcons_Return[];
+extern const u8 gMenuIcons_ReturnBW[];
+extern const u8 gMenuIcons_Circle[];
+extern const u8 gMenuIcons_Arrow[];
+extern const u16 gMenuIcons_Palette[];
+
 extern struct BattleAnimBackground gBattleAnimBackgroundImage_00[];
 extern struct BattleAnimBackground gBattleAnimBackgroundImage_02[];
 extern struct BattleAnimBackground gBattleAnimBackgroundImage_03[];

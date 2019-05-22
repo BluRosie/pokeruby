@@ -1389,6 +1389,25 @@ const u8 gUnknown_08EA25EC[] = INCBIN_U8("graphics/unknown/unknown_EA25EC.bin");
 const u8 gCreditsCopyrightEnd_Gfx[] = INCBIN_U8("graphics/misc/end_copyright.4bpp.lz");
 const u8 gDecoration10000_Gfx[] = INCBIN_U8("graphics/misc/decoration_10000.4bpp");
 
+// start menu
+const u8 gMenuIcons_Dex[] = INCBIN_U8("graphics/menu_icons/dex.4bpp");
+const u8 gMenuIcons_DexBW[] = INCBIN_U8("graphics/menu_icons/dexbw.4bpp");
+const u8 gMenuIcons_Pokemon[] = INCBIN_U8("graphics/menu_icons/pokeball.4bpp");
+const u8 gMenuIcons_PokemonBW[] = INCBIN_U8("graphics/menu_icons/pokeballbw.4bpp");
+const u8 gMenuIcons_Bag[] = INCBIN_U8("graphics/menu_icons/bag.4bpp");
+const u8 gMenuIcons_BagBW[] = INCBIN_U8("graphics/menu_icons/bagbw.4bpp");
+const u8 gMenuIcons_TCard[] = INCBIN_U8("graphics/menu_icons/tcard.4bpp");
+const u8 gMenuIcons_TCardBW[] = INCBIN_U8("graphics/menu_icons/tcardbw.4bpp");
+const u8 gMenuIcons_Save[] = INCBIN_U8("graphics/menu_icons/save.4bpp");
+const u8 gMenuIcons_SaveBW[] = INCBIN_U8("graphics/menu_icons/savebw.4bpp");
+const u8 gMenuIcons_Options[] = INCBIN_U8("graphics/menu_icons/options.4bpp");
+const u8 gMenuIcons_OptionsBW[] = INCBIN_U8("graphics/menu_icons/optionsbw.4bpp");
+const u8 gMenuIcons_Return[] = INCBIN_U8("graphics/menu_icons/return.4bpp");
+const u8 gMenuIcons_ReturnBW[] = INCBIN_U8("graphics/menu_icons/returnbw.4bpp");
+const u8 gMenuIcons_Circle[] = INCBIN_U8("graphics/menu_icons/circle.4bpp");
+const u8 gMenuIcons_Arrow[] = INCBIN_U8("graphics/menu_icons/arrowanim.4bpp");
+const u8 gMenuIcons_Palette[] = INCBIN_U8("graphics/menu_icons/dex.gbapal");
+
 #ifdef ENGLISH
     #if REVISION >= 1
         const u8 gFont3LatinGlyphs[] = INCBIN_U8("graphics/fonts/font3_lat_rev1.4bpp");

@@ -351,8 +351,6 @@ static void PlayCryInternal(u16 species, s8 pan, s8 volume, u8 priority, u8 mode
     u32 length;
     u32 pitch;
     u32 chorus;
-    u32 index;
-    u8 table;
 
     species--;
     v0 = FALSE;
@@ -402,7 +400,7 @@ static void PlayCryInternal(u16 species, s8 pan, s8 volume, u8 priority, u8 mode
     SetPokemonCryPriority(priority);
 
     gMPlay_PokemonCry = SetPokemonCryTone(
-      v0 ? &gCryTable2[species] : &gCryTable[species);
+      v0 ? &gCryTable2[species] : &gCryTable[species]);
 }
 
 bool8 IsCryFinished(void)

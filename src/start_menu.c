@@ -31,13 +31,13 @@
 #include "task.h"
 #include "trainer_card.h"
 #include "scanline_effect.h"
+#include "graphics.h"
 
 //Menu actions
 enum {
     MENU_ACTION_POKEDEX,
     MENU_ACTION_POKEMON,
     MENU_ACTION_BAG,
-    MENU_ACTION_POKENAV,
     MENU_ACTION_PLAYER,
     MENU_ACTION_SAVE,
     MENU_ACTION_OPTION,
@@ -74,10 +74,11 @@ extern u8 gSaveText_ThereIsAlreadyAFile[];
 extern u8 gSaveText_ThereIsADifferentFile[];
 extern u8 gSaveText_WouldYouLikeToSave[];
 
+//Callbacks
+
 static u8 StartMenu_PokedexCallback(void);
 static u8 StartMenu_PokemonCallback(void);
 static u8 StartMenu_BagCallback(void);
-static u8 StartMenu_PokenavCallback(void);
 static u8 StartMenu_PlayerCallback(void);
 static u8 StartMenu_SaveCallback(void);
 static u8 StartMenu_OptionCallback(void);
@@ -90,7 +91,6 @@ static const struct MenuAction sStartMenuItems[] =
     { SystemText_Pokedex, StartMenu_PokedexCallback },
     { SystemText_Pokemon, StartMenu_PokemonCallback },
     { SystemText_BAG, StartMenu_BagCallback },
-    { SystemText_Pokenav, StartMenu_PokenavCallback },
     { SystemText_Player, StartMenu_PlayerCallback },
     { SystemText_Save, StartMenu_SaveCallback },
     { SystemText_Option, StartMenu_OptionCallback },
@@ -138,6 +138,75 @@ static void sub_80719F0(void);
 static bool32 sub_80719FC(u8 *ptr);
 static void sub_8071B54(void);
 static void Task_8071B64(u8 taskId);
+
+static void ArrowCallback(struct Sprite *sprite);
+
+static EWRAM_DATA u8 iconDex = 0;
+static EWRAM_DATA u8 iconPoke = 0;
+static EWRAM_DATA u8 iconBag = 0;
+static EWRAM_DATA u8 iconTCard = 0;
+static EWRAM_DATA u8 iconSave = 0;
+static EWRAM_DATA u8 iconOptions = 0;
+static EWRAM_DATA u8 iconReturn = 0;
+static EWRAM_DATA u8 iconArrow = 0;
+static EWRAM_DATA u8 iconCircle = 0;
+static EWRAM_DATA u8 iconDexBW = 0;
+static EWRAM_DATA u8 iconPokeBW = 0;
+static EWRAM_DATA u8 iconBagBW = 0;
+static EWRAM_DATA u8 iconTCardBW = 0;
+static EWRAM_DATA u8 iconSaveBW = 0;
+static EWRAM_DATA u8 iconOptionsBW = 0;
+static EWRAM_DATA u8 iconReturnBW = 0;
+
+extern const struct SpriteSheet spriteSheetDex;
+extern const struct SpritePalette spritePaletteDex;
+extern const struct SpriteTemplate spriteTemplateDex;
+extern const struct SpriteSheet spriteSheetDexBW;
+extern const struct SpritePalette spritePaletteDexBW;
+extern const struct SpriteTemplate spriteTemplateDexBW;
+extern const struct SpriteSheet spriteSheetPoke;
+extern const struct SpritePalette spritePalettePoke;
+extern const struct SpriteTemplate spriteTemplatePoke;
+extern const struct SpriteSheet spriteSheetPokeBW;
+extern const struct SpritePalette spritePalettePokeBW;
+extern const struct SpriteTemplate spriteTemplatePokeBW;
+extern const struct SpriteSheet spriteSheetBag;
+extern const struct SpritePalette spritePaletteBag;
+extern const struct SpriteTemplate spriteTemplateBag;
+extern const struct SpriteSheet spriteSheetBagBW;
+extern const struct SpritePalette spritePaletteBagBW;
+extern const struct SpriteTemplate spriteTemplateBagBW;
+extern const struct SpriteSheet spriteSheetTCard;
+extern const struct SpritePalette spritePaletteTCard;
+extern const struct SpriteTemplate spriteTemplateTCard;
+extern const struct SpriteSheet spriteSheetTCardBW;
+extern const struct SpritePalette spritePaletteTCardBW;
+extern const struct SpriteTemplate spriteTemplateTCardBW;
+extern const struct SpriteSheet spriteSheetSave;
+extern const struct SpritePalette spritePaletteSave;
+extern const struct SpriteTemplate spriteTemplateSave;
+extern const struct SpriteSheet spriteSheetSaveBW;
+extern const struct SpritePalette spritePaletteSaveBW;
+extern const struct SpriteTemplate spriteTemplateSaveBW;
+extern const struct SpriteSheet spriteSheetOptions;
+extern const struct SpritePalette spritePaletteOptions;
+extern const struct SpriteTemplate spriteTemplateOptions;
+extern const struct SpriteSheet spriteSheetOptionsBW;
+extern const struct SpritePalette spritePaletteOptionsBW;
+extern const struct SpriteTemplate spriteTemplateOptionsBW;
+extern const struct SpriteSheet spriteSheetReturn;
+extern const struct SpritePalette spritePaletteReturn;
+extern const struct SpriteTemplate spriteTemplateReturn;
+extern const struct SpriteSheet spriteSheetReturnBW;
+extern const struct SpritePalette spritePaletteReturnBW;
+extern const struct SpriteTemplate spriteTemplateReturnBW;
+extern const struct SpriteSheet spriteSheetCircle;
+extern const struct SpritePalette spritePaletteCircle;
+extern const struct SpriteTemplate spriteTemplateCircle;
+extern const struct SpriteSheet spriteSheetArrow;
+extern const struct SpritePalette spritePaletteArrow;
+extern const struct SpriteTemplate spriteTemplateArrow;
+
 
 #if DEBUG
 
@@ -241,6 +310,709 @@ void unref_sub_8070F90(void)
 
 #endif
 
+static const struct OamData gIconOamData =
+{
+    .y = 0,
+    .affineMode = 0,
+    .objMode = 0, 
+    .mosaic = 0,
+    .bpp = 0,
+    .shape = 0,
+    .x = 0,
+    .matrixNum = 0,
+    .size = 2,
+    .tileNum = 0,
+    .priority = 0,
+    .paletteNum = 0,
+    .affineParam = 0, 
+};
+
+static const struct OamData gIconOamData16 =
+{
+    .y = 0,
+    .affineMode = 0,
+    .objMode = 0, 
+    .mosaic = 0,
+    .bpp = 0,
+    .shape = 0,
+    .x = 0,
+    .matrixNum = 0,
+    .size = 1,
+    .tileNum = 0,
+    .priority = 0,
+    .paletteNum = 0,
+    .affineParam = 0, 
+};
+
+static const struct OamData gIconRotateOamData =
+{
+    .y = 0,
+    .affineMode = 1,
+    .objMode = 0, 
+    .mosaic = 0, 
+    .bpp = 0,
+    .shape = 0, 
+    .x = 0, 
+    .matrixNum = 0,
+    .size = 2,
+    .tileNum = 0,
+    .priority = 0, 
+    .paletteNum = 0, 
+    .affineParam = 0, 
+};
+
+static const struct OamData gCircleOamData =
+{
+    .y = 0,
+    .affineMode = 0,
+    .objMode = 0, 
+    .mosaic = 0,
+    .bpp = 0,
+    .shape = 0,
+    .x = 0,
+    .matrixNum = 0,
+    .size = 2,
+    .tileNum = 0,
+    .priority = 1,
+    .paletteNum = 0,
+    .affineParam = 0, 
+};
+
+static const union AnimCmd gIconAnimSeq0[] =
+{
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const gIconAnimTable[] =
+{
+    gIconAnimSeq0,
+};
+
+static const union AffineAnimCmd gRotateAnim[] =
+{
+    AFFINEANIMCMD_FRAME(0, 0, 4, 5),
+    AFFINEANIMCMD_FRAME(0, 0, -4, 5),
+    AFFINEANIMCMD_FRAME(0, 0, 4, 5),
+    AFFINEANIMCMD_FRAME(0, 0, -4, 5),
+    AFFINEANIMCMD_FRAME(0, 0, 4, 5),
+    AFFINEANIMCMD_FRAME(0, 0, -4, 5),
+    AFFINEANIMCMD_END,
+};
+
+static const union AffineAnimCmd *const gRotateTable[] =
+{
+    gRotateAnim,
+};
+
+static const union AnimCmd gArrowAnimSeq0[] =
+{
+    ANIMCMD_FRAME(0, 6),
+    ANIMCMD_FRAME(4, 6),
+    ANIMCMD_FRAME(8, 6),
+    ANIMCMD_FRAME(4, 6),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd gArrowAnimSeq1[] =
+{
+    ANIMCMD_FRAME(0, 6),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const gArrowAnimTable[] =
+{
+    gArrowAnimSeq0,
+    gArrowAnimSeq1,
+};
+
+/*const struct SpriteSheet gIcons_SpriteSheet[] = {
+    { gMenuIcons_Dex, 0x200, 0 },
+    { gMenuIcons_DexBW, 0x200, 1 },
+    { gMenuIcons_Pokemon, 0x200, 2 },
+    { gMenuIcons_PokemonBW, 0x200, 3 },
+    { gMenuIcons_Bag, 0x200, 4 },
+    { gMenuIcons_BagBW, 0x200, 5 },
+    { gMenuIcons_TCard, 0x200, 6 },
+    { gMenuIcons_TCardBW, 0x200, 7 },
+    { gMenuIcons_Save, 0x200, 8 },
+    { gMenuIcons_SaveBW, 0x200, 9 },
+    { gMenuIcons_Options, 0x200, 10 },
+    { gMenuIcons_OptionsBW, 0x200, 11 },
+    { gMenuIcons_Return, 0x200, 12 },
+    { gMenuIcons_ReturnBW, 0x200, 13 },
+    { gMenuIcons_Circle, 0x200, 14 },
+    { gMenuIcons_Arrow, 0x180, 15 },
+    {}
+};*/
+
+
+//INDIVIDUAL ICONS SHEETS
+
+//DEX
+
+    struct SpriteSheet spriteSheetDex =
+    {
+                .data = gMenuIcons_Dex, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 70, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteDex =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 70, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateDex =
+    {
+                .tileTag = 70, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 70, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconRotateOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gRotateTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//DEXBW
+
+    struct SpriteSheet spriteSheetDexBW =
+    {
+                .data = gMenuIcons_DexBW, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 71, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteDexBW =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 71, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateDexBW =
+    {
+                .tileTag = 71, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 71, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gDummySpriteAffineAnimTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//POKE
+
+    struct SpriteSheet spriteSheetPoke =
+    {
+                .data = gMenuIcons_Pokemon, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 72, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePalettePoke =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 72, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplatePoke =
+    {
+                .tileTag = 72, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 72, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconRotateOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gRotateTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//POKEBW
+
+    struct SpriteSheet spriteSheetPokeBW =
+    {
+                .data = gMenuIcons_PokemonBW, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 73, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePalettePokeBW =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 73, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplatePokeBW =
+    {
+                .tileTag = 73, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 73, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gDummySpriteAffineAnimTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//BAG
+
+    struct SpriteSheet spriteSheetBag =
+    {
+                .data = gMenuIcons_Bag, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 74, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteBag =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 74, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateBag =
+    {
+                .tileTag = 74, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 74, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconRotateOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gRotateTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//BAGBW
+
+    struct SpriteSheet spriteSheetBagBW =
+    {
+                .data = gMenuIcons_BagBW, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 75, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteBagBW =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 75, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateBagBW =
+    {
+                .tileTag = 75, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 75, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gDummySpriteAffineAnimTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//TCARD
+
+    struct SpriteSheet spriteSheetTCard =
+    {
+                .data = gMenuIcons_TCard, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 76, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteTCard =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 76, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateTCard =
+    {
+                .tileTag = 76, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 76, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconRotateOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gRotateTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//TCARDBW
+
+    struct SpriteSheet spriteSheetTCardBW =
+    {
+                .data = gMenuIcons_TCardBW, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 77, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteTCardBW =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 77, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateTCardBW =
+    {
+                .tileTag = 77, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 77, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gDummySpriteAffineAnimTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//SAVE
+
+    struct SpriteSheet spriteSheetSave =
+    {
+                .data = gMenuIcons_Save, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 78, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteSave =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 78, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateSave =
+    {
+                .tileTag = 78, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 78, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconRotateOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gRotateTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//SAVEBW
+
+    struct SpriteSheet spriteSheetSaveBW =
+    {
+                .data = gMenuIcons_SaveBW, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 79, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteSaveBW =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 79, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateSaveBW =
+    {
+                .tileTag = 79, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 79, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gDummySpriteAffineAnimTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//OPTIONS
+
+    struct SpriteSheet spriteSheetOptions =
+    {
+                .data = gMenuIcons_Options, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 80, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteOptions =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 80, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateOptions =
+    {
+                .tileTag = 80, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 80, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconRotateOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gRotateTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//OPTIONSBW
+
+    struct SpriteSheet spriteSheetOptionsBW =
+    {
+                .data = gMenuIcons_OptionsBW, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 81, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteOptionsBW =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 81, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateOptionsBW =
+    {
+                .tileTag = 81, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 81, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gDummySpriteAffineAnimTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//RETURN
+
+    struct SpriteSheet spriteSheetReturn =
+    {
+                .data = gMenuIcons_Return, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 82, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteReturn =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 82, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateReturn =
+    {
+                .tileTag = 82, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 82, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconRotateOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gRotateTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//RETURNBW
+
+    struct SpriteSheet spriteSheetReturnBW =
+    {
+                .data = gMenuIcons_ReturnBW, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 83, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteReturnBW =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 83, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateReturnBW =
+    {
+                .tileTag = 83, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 83, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gDummySpriteAffineAnimTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//CIRCLE
+
+    struct SpriteSheet spriteSheetCircle =
+    {
+                .data = gMenuIcons_Circle, //GRÁFICO ----------
+                .size = 512, //TAMAÑO DEL GRÁFICO
+                .tag = 84, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteCircle =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 84, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateCircle =
+    {
+                .tileTag = 84, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 84, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gCircleOamData, //OAM DATA DEL ICONO ----------
+                .anims = gIconAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gDummySpriteAffineAnimTable, 
+                .callback = SpriteCallbackDummy, //ANIMACIÓN DEL ICONO ----------
+    };
+
+//ARROW
+
+    struct SpriteSheet spriteSheetArrow =
+    {
+                .data = gMenuIcons_Arrow, //GRÁFICO ----------
+                .size = 0x200, //TAMAÑO DEL GRÁFICO
+                .tag = 85, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+    };
+    struct SpritePalette spritePaletteArrow =
+    {
+                .data = gMenuIcons_Palette,
+                .tag = 85, //LUGAR DONDE SE CARGA LA PALETA ----------
+    };
+    struct SpriteTemplate spriteTemplateArrow =
+    {
+                .tileTag = 85, //LUGAR DONDE SE CARGA EL GRÁFICO ----------
+                .paletteTag = 85, //LUGAR DONDE SE CARGA LA PALETA ----------
+                .oam = &gIconOamData16, //OAM DATA DEL ICONO ----------
+                .anims = gArrowAnimTable, //TABLA DE ANIMACIÓN DEL ICONO ---------- 
+                .images = NULL,
+                .affineAnims = gDummySpriteAffineAnimTable, 
+                .callback = ArrowCallback, //ANIMACIÓN DEL ICONO ----------
+    };
+
+
+
+
+/*
+const struct SpritePalette gIcons_SpritePalette[] = {
+    { gMenuIcons_Palette, 0 },
+    {}
+};*/
+/*
+const struct SpriteTemplate spriteTemplateDex = {
+    0, 0, &gIconRotateOamData, gIconAnimTable, NULL, gRotateTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateDexBW = {
+    1, 0, &gIconOamData, gIconAnimTable, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplatePoke = {
+    2, 0, &gIconRotateOamData, gIconAnimTable, NULL, gRotateTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplatePokeBW = {
+    3, 0, &gIconOamData, gIconAnimTable, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateBag = {
+    4, 0, &gIconRotateOamData, gIconAnimTable, NULL, gRotateTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateBagBW = {
+    5, 0, &gIconOamData, gIconAnimTable, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateTCard = {
+    6, 0, &gIconRotateOamData, gIconAnimTable, NULL, gRotateTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateTCardBW = {
+    7, 0, &gIconOamData, gIconAnimTable, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateSave = {
+    8, 0, &gIconRotateOamData, gIconAnimTable, NULL, gRotateTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateSaveBW = {
+    9, 0, &gIconOamData, gIconAnimTable, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateOptions = {
+    10, 0, &gIconRotateOamData, gIconAnimTable, NULL, gRotateTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateOptionsBW = {
+    11, 0, &gIconOamData, gIconAnimTable, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateReturn = {
+    12, 0, &gIconRotateOamData, gIconAnimTable, NULL, gRotateTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateReturnBW = {
+    13, 0, &gIconOamData, gIconAnimTable, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateCircle = {
+    14, 0, &gCircleOamData, gIconAnimTable, NULL, gDummySpriteAffineAnimTable, SpriteCallbackDummy
+};
+const struct SpriteTemplate spriteTemplateArrow = {
+    15, 0, &gIconOamData16, gArrowAnimTable, NULL, gDummySpriteAffineAnimTable, ArrowCallback
+};*/
+
+void DrawIcon(u8 x, u8 y, u8 numberOfIcon)
+{
+    u8 taskId;
+    u8 spriteId;
+
+    //iconDex = CreateSprite(&spriteTemplate, x, y, 0); //X and Y being the x any y co-ordinates. The 0 is sub-sprite, which tbh, i wouldn't mess with.
+    switch (numberOfIcon)
+    {
+        case 0:
+            LoadSpriteSheet(&spriteSheetDex);
+            LoadSpritePalette(&spritePaletteDex);
+            iconDex = CreateSprite(&spriteTemplateDex, x, y, 0);
+            break;
+        case 1:
+            LoadSpriteSheet(&spriteSheetPoke);
+            LoadSpritePalette(&spritePalettePoke);
+            iconPoke = CreateSprite(&spriteTemplatePoke, x, y, 0);
+            break;
+        case 2:
+            LoadSpriteSheet(&spriteSheetBag);
+            LoadSpritePalette(&spritePaletteBag);
+            iconBag = CreateSprite(&spriteTemplateBag, x, y, 0);
+            break;
+        case 3:
+            LoadSpriteSheet(&spriteSheetTCard);
+            LoadSpritePalette(&spritePaletteTCard);
+            iconTCard = CreateSprite(&spriteTemplateTCard, x, y, 0);
+            break;
+        case 4:
+            LoadSpriteSheet(&spriteSheetSave);
+            LoadSpritePalette(&spritePaletteSave);
+            iconSave = CreateSprite(&spriteTemplateSave, x, y, 0);
+            break;
+        case 5:
+            LoadSpriteSheet(&spriteSheetOptions);
+            LoadSpritePalette(&spritePaletteOptions);
+            iconOptions = CreateSprite(&spriteTemplateOptions, x, y, 0);
+            break;
+        case 6:
+            LoadSpriteSheet(&spriteSheetReturn);
+            LoadSpritePalette(&spritePaletteReturn);
+            iconReturn = CreateSprite(&spriteTemplateReturn, x, y, 0);
+            break;
+        case 7:
+            LoadSpriteSheet(&spriteSheetArrow);
+            LoadSpritePalette(&spritePaletteArrow);
+            spriteId = iconArrow = CreateSprite(&spriteTemplateArrow, x, y, 0);
+            gSprites[spriteId].data[0] = taskId;
+            gSprites[spriteId].data[1] = 0;
+            break;
+        case 8:
+            LoadSpriteSheet(&spriteSheetCircle);
+            LoadSpritePalette(&spritePaletteCircle);
+            iconCircle = CreateSprite(&spriteTemplateCircle, x, y, 0);
+            break;
+        case 9:
+            LoadSpriteSheet(&spriteSheetDexBW);
+            LoadSpritePalette(&spritePaletteDexBW);
+            iconDexBW = CreateSprite(&spriteTemplateDexBW, x, y, 0);
+            break;
+        case 10:
+            LoadSpriteSheet(&spriteSheetPokeBW);
+            LoadSpritePalette(&spritePalettePokeBW);
+            iconPokeBW = CreateSprite(&spriteTemplatePokeBW, x, y, 0);
+            break;
+        case 11:
+            LoadSpriteSheet(&spriteSheetBagBW);
+            LoadSpritePalette(&spritePaletteBagBW);
+            iconBagBW = CreateSprite(&spriteTemplateBagBW, x, y, 0);
+            break;
+        case 12:
+            LoadSpriteSheet(&spriteSheetTCardBW);
+            LoadSpritePalette(&spritePaletteTCardBW);
+            iconTCardBW = CreateSprite(&spriteTemplateTCardBW, x, y, 0);
+            break;
+        case 13:
+            LoadSpriteSheet(&spriteSheetSaveBW);
+            LoadSpritePalette(&spritePaletteSaveBW);
+            iconSaveBW = CreateSprite(&spriteTemplateSaveBW, x, y, 0);
+            break;
+        case 14:
+            LoadSpriteSheet(&spriteSheetOptionsBW);
+            LoadSpritePalette(&spritePaletteOptionsBW);
+            iconOptionsBW = CreateSprite(&spriteTemplateOptionsBW, x, y, 0);
+            break;
+        case 15:
+            LoadSpriteSheet(&spriteSheetReturnBW);
+            LoadSpritePalette(&spritePaletteReturnBW);
+            iconReturnBW = CreateSprite(&spriteTemplateReturnBW, x, y, 0);
+            break;
+        
+    }
+    //SetVBlankCallback(VblankCallback); //I dont know if this is needed or not.
+}
+
+void destroyIcons(void){
+    if (iconDex != 0) DestroySpriteAndFreeResources(&gSprites[iconDex]);
+    if (iconPoke != 0) DestroySpriteAndFreeResources(&gSprites[iconPoke]);
+    if (iconBag != 0) DestroySpriteAndFreeResources(&gSprites[iconBag]);
+    if (iconTCard != 0) DestroySpriteAndFreeResources(&gSprites[iconTCard]);
+    if (iconSave != 0) DestroySpriteAndFreeResources(&gSprites[iconSave]);
+    if (iconOptions != 0) DestroySpriteAndFreeResources(&gSprites[iconOptions]);
+    if (iconReturn != 0) DestroySpriteAndFreeResources(&gSprites[iconReturn]);
+    if (iconArrow != 0) DestroySpriteAndFreeResources(&gSprites[iconArrow]);
+    if (iconCircle != 0) DestroySpriteAndFreeResources(&gSprites[iconCircle]);
+    if (iconDexBW != 0) DestroySpriteAndFreeResources(&gSprites[iconDexBW]);
+    if (iconPokeBW != 0) DestroySpriteAndFreeResources(&gSprites[iconPokeBW]);
+    if (iconBagBW != 0) DestroySpriteAndFreeResources(&gSprites[iconBagBW]);
+    if (iconTCardBW != 0) DestroySpriteAndFreeResources(&gSprites[iconTCardBW]);
+    if (iconSaveBW != 0) DestroySpriteAndFreeResources(&gSprites[iconSaveBW]);
+    if (iconOptionsBW != 0) DestroySpriteAndFreeResources(&gSprites[iconOptionsBW]);
+    if (iconReturnBW != 0) DestroySpriteAndFreeResources(&gSprites[iconReturnBW]);
+}
+
+static u8 closeIconsAndMenu(void)
+{
+    REG_WIN0H = 240;
+    REG_WIN0V = 160;
+    REG_BLDY = 0x0;
+    destroyIcons();
+}
+
 static void BuildStartMenuActions(void)
 {
     sNumStartMenuActions = 0;
@@ -255,6 +1027,378 @@ static void BuildStartMenuActions(void)
     }
 }
 
+#define GENERAL_Y 144
+#define DEX_X 25
+#define POKE_X 57
+#define BAG_X 89
+#define TCARD_X 121
+#define SAVE_X 153
+#define OPTIONS_X 185
+#define RETURN_X 217
+
+void drawMain(void)
+{
+    u8 startValue;
+    
+    startValue = sStartMenuCursorPos;
+
+    if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE){
+        if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE){
+            if(sStartMenuCursorPos == 0){
+                DrawIcon(25, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(25, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(25, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 0;
+            } else if (sStartMenuCursorPos == 1){
+                DrawIcon(57, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(57, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(57, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 1;
+            } else if (sStartMenuCursorPos == 2){
+                DrawIcon(89, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(89, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(89, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 2;
+            } else if (sStartMenuCursorPos == 3){
+                DrawIcon(121, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(121, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(121, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 3;
+            } else if (sStartMenuCursorPos == 4){
+                DrawIcon(153, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(153, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(153, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 4;
+            } else if (sStartMenuCursorPos == 5){
+                DrawIcon(185, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(185, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(185, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 5;
+            } else if (sStartMenuCursorPos == 6){
+                DrawIcon(217, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(217, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(217, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 6;
+            }       
+
+            if (sStartMenuCursorPos != 0){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 9;
+                DrawIcon(25, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }   
+            if (sStartMenuCursorPos != 1){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 10;
+                DrawIcon(57, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }
+            if (sStartMenuCursorPos != 2){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 11;
+                DrawIcon(89, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }   
+            if (sStartMenuCursorPos != 3){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 12;
+                DrawIcon(121, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }   
+            if (sStartMenuCursorPos != 4){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 13;
+                DrawIcon(153, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }
+            if (sStartMenuCursorPos != 5){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 14;
+                DrawIcon(185, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }
+            if (sStartMenuCursorPos != 6){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 15;
+                DrawIcon(217, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }
+        } else {
+            if(sStartMenuCursorPos == 0){
+                DrawIcon(25, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(25, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(25, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 0;
+            } else if (sStartMenuCursorPos == 1){
+                sStartMenuCursorPos = 2;
+                DrawIcon(57, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(57, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(57, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 1;
+            } else if (sStartMenuCursorPos == 2){
+                sStartMenuCursorPos = 3;
+                DrawIcon(89, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(89, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(89, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 2;
+            } else if (sStartMenuCursorPos == 3){
+                sStartMenuCursorPos = 4;
+                DrawIcon(121, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(121, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(121, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 3;
+            } else if (sStartMenuCursorPos == 4){
+                sStartMenuCursorPos = 5;
+                DrawIcon(153, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(153, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(153, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 4;
+            } else if (sStartMenuCursorPos == 5){
+                sStartMenuCursorPos = 6;
+                DrawIcon(185, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 7;
+                DrawIcon(185, 128, sStartMenuCursorPos);
+                sStartMenuCursorPos = 8;
+                DrawIcon(185, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = 5;
+            }       
+
+            if (sStartMenuCursorPos != 0){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 9;
+                DrawIcon(25, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }
+            if (sStartMenuCursorPos != 1){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 11;
+                DrawIcon(57, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }   
+            if (sStartMenuCursorPos != 2){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 12;
+                DrawIcon(89, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }   
+            if (sStartMenuCursorPos != 3){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 13;
+                DrawIcon(121, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }
+            if (sStartMenuCursorPos != 4){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 14;
+                DrawIcon(153, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }
+            if (sStartMenuCursorPos != 5){
+                startValue = sStartMenuCursorPos;
+                sStartMenuCursorPos = 15;
+                DrawIcon(185, 144, sStartMenuCursorPos);
+                sStartMenuCursorPos = startValue;
+            }
+        }
+    } else if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE){
+        if (sStartMenuCursorPos == 0){
+            sStartMenuCursorPos = 1;
+            DrawIcon(25, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 7;
+            DrawIcon(25, 128, sStartMenuCursorPos);
+            sStartMenuCursorPos = 8;
+            DrawIcon(25, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 0;
+        } else if (sStartMenuCursorPos == 1){
+            sStartMenuCursorPos = 2;
+            DrawIcon(57, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 7;
+            DrawIcon(57, 128, sStartMenuCursorPos);
+            sStartMenuCursorPos = 8;
+            DrawIcon(57, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 1;
+        } else if (sStartMenuCursorPos == 2){
+            sStartMenuCursorPos = 3;
+            DrawIcon(89, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 7;
+            DrawIcon(89, 128, sStartMenuCursorPos);
+            sStartMenuCursorPos = 8;
+            DrawIcon(89, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 2;
+        } else if (sStartMenuCursorPos == 3){
+            sStartMenuCursorPos = 4;
+            DrawIcon(121, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 7;
+            DrawIcon(121, 128, sStartMenuCursorPos);
+            sStartMenuCursorPos = 8;
+            DrawIcon(121, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 3;
+        } else if (sStartMenuCursorPos == 4){
+            sStartMenuCursorPos = 5;
+            DrawIcon(153, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 7;
+            DrawIcon(153, 128, sStartMenuCursorPos);
+            sStartMenuCursorPos = 8;
+            DrawIcon(153, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 4;
+        } else if (sStartMenuCursorPos == 5){
+            sStartMenuCursorPos = 6;
+            DrawIcon(185, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 7;
+            DrawIcon(185, 128, sStartMenuCursorPos);
+            sStartMenuCursorPos = 8;
+            DrawIcon(185, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 5;
+        }       
+
+        if (sStartMenuCursorPos != 0){
+            startValue = sStartMenuCursorPos;
+            sStartMenuCursorPos = 10;
+            DrawIcon(25, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = startValue;
+        }
+        if (sStartMenuCursorPos != 1){
+            startValue = sStartMenuCursorPos;
+            sStartMenuCursorPos = 11;
+            DrawIcon(57, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = startValue;
+        }   
+        if (sStartMenuCursorPos != 2){
+            startValue = sStartMenuCursorPos;
+            sStartMenuCursorPos = 12;
+            DrawIcon(89, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = startValue;
+        }   
+        if (sStartMenuCursorPos != 3){
+            startValue = sStartMenuCursorPos;
+            sStartMenuCursorPos = 13;
+            DrawIcon(121, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = startValue;
+        }
+        if (sStartMenuCursorPos != 4){
+            startValue = sStartMenuCursorPos;
+            sStartMenuCursorPos = 14;
+            DrawIcon(153, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = startValue;
+        }
+        if (sStartMenuCursorPos != 5){
+            startValue = sStartMenuCursorPos;
+            sStartMenuCursorPos = 15;
+            DrawIcon(185, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = startValue;
+        }
+    } else {
+        if (sStartMenuCursorPos == 0){
+            sStartMenuCursorPos = 2;
+            DrawIcon(25, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 7;
+            DrawIcon(25, 128, sStartMenuCursorPos);
+            sStartMenuCursorPos = 8;
+            DrawIcon(25, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 0;
+        } else if (sStartMenuCursorPos == 1){
+            sStartMenuCursorPos = 3;
+            DrawIcon(57, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 7;
+            DrawIcon(57, 128, sStartMenuCursorPos);
+            sStartMenuCursorPos = 8;
+            DrawIcon(57, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 1;
+        } else if (sStartMenuCursorPos == 2){
+            sStartMenuCursorPos = 4;
+            DrawIcon(89, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 7;
+            DrawIcon(89, 128, sStartMenuCursorPos);
+            sStartMenuCursorPos = 8;
+            DrawIcon(89, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 2;
+        } else if (sStartMenuCursorPos == 3){
+            sStartMenuCursorPos = 5;
+            DrawIcon(121, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 7;
+            DrawIcon(121, 128, sStartMenuCursorPos);
+            sStartMenuCursorPos = 8;
+            DrawIcon(121, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 3;
+        } else if (sStartMenuCursorPos == 4){
+            sStartMenuCursorPos = 6;
+            DrawIcon(153, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 7;
+            DrawIcon(153, 128, sStartMenuCursorPos);
+            sStartMenuCursorPos = 8;
+            DrawIcon(153, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = 4;
+        }       
+
+        if (sStartMenuCursorPos != 0){
+            startValue = sStartMenuCursorPos;
+            sStartMenuCursorPos = 11;
+            DrawIcon(25, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = startValue;
+        }   
+        if (sStartMenuCursorPos != 1){
+            startValue = sStartMenuCursorPos;
+            sStartMenuCursorPos = 12;
+            DrawIcon(57, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = startValue;
+        }   
+        if (sStartMenuCursorPos != 2){
+            startValue = sStartMenuCursorPos;
+            sStartMenuCursorPos = 13;
+            DrawIcon(89, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = startValue;
+        }
+        if (sStartMenuCursorPos != 3){
+            startValue = sStartMenuCursorPos;
+            sStartMenuCursorPos = 14;
+            DrawIcon(121, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = startValue;
+        }
+        if (sStartMenuCursorPos != 4){
+            startValue = sStartMenuCursorPos;
+            sStartMenuCursorPos = 15;
+            DrawIcon(153, 144, sStartMenuCursorPos);
+            sStartMenuCursorPos = startValue;
+        }
+    }
+}
+
+static u8 setIconPos(void)
+{
+    u8 startValue;
+                            
+    startValue = sStartMenuCursorPos;
+    
+    destroyIcons();
+    drawMain();
+    
+    sStartMenuCursorPos = startValue;
+}
+
 static void AddStartMenuAction(u8 action)
 {
     AppendToList(sCurrentStartMenuActions, &sNumStartMenuActions, action);
@@ -262,13 +1406,30 @@ static void AddStartMenuAction(u8 action)
 
 static void BuildStartMenuActions_Normal(void)
 {
+    u8 labelLeft;
+    u8 labelRight;
+    u8 labelTop;
+    u8 labelBottom;
+    
+    labelLeft = 0;
+    labelRight = 240;
+    labelTop = 120;
+    labelBottom = 0;
+
+    drawMain();
+    
+    REG_WINOUT = 0xFF;
+    REG_BLDCNT = 0xFE;
+    REG_BLDALPHA = 0;
+    REG_BLDY = 6;
+    REG_WIN0H = WIN_RANGE(labelLeft, labelRight);
+    REG_WIN0V = WIN_RANGE(labelTop, labelBottom);
+
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEDEX);
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
-        AddStartMenuAction(MENU_ACTION_POKENAV);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
@@ -290,8 +1451,6 @@ static void BuildStartMenuActions_Link(void)
 {
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
-    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
-        AddStartMenuAction(MENU_ACTION_POKENAV);
     AddStartMenuAction(MENU_ACTION_PLAYER_LINK);
     AddStartMenuAction(MENU_ACTION_OPTION);
     AddStartMenuAction(MENU_ACTION_EXIT);
@@ -312,7 +1471,7 @@ static bool32 PrintStartMenuItemsMultistep(s16 *index, u32 n)
 
     do
     {
-        Menu_PrintText(sStartMenuItems[sCurrentStartMenuActions[_index]].text, 23, 2 + _index * 2);
+        //Menu_PrintText(sStartMenuItems[sCurrentStartMenuActions[_index]].text, 23, 2 + _index * 2);
         _index++;
         if (_index >= sNumStartMenuActions)
         {
@@ -334,7 +1493,7 @@ static bool32 InitStartMenuMultistep(s16 *step, s16 *index)
         (*step)++;
         break;
     case 2:
-        Menu_DrawStdWindowFrame(22, 0, 29, sNumStartMenuActions * 2 + 3);
+        //Menu_DrawStdWindowFrame(22, 0, 29, sNumStartMenuActions * 2 + 3);
         *index = 0;
         (*step)++;
         break;
@@ -351,7 +1510,7 @@ static bool32 InitStartMenuMultistep(s16 *step, s16 *index)
         (*step)++;
         break;
     case 5:
-        sStartMenuCursorPos = InitMenu(0, 0x17, 2, sNumStartMenuActions, sStartMenuCursorPos, 6);
+        //sStartMenuCursorPos = InitMenu(0, 0x17, 2, sNumStartMenuActions, sStartMenuCursorPos, 6);
         return TRUE;
     }
     return FALSE;
@@ -413,17 +1572,84 @@ void sub_8071310(void)
     ScriptContext2_Enable();
 }
 
+static u8 cursorPosCalcPlus(void){
+    
+    if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE){
+        if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE){
+            if (sStartMenuCursorPos != 6){
+                sStartMenuCursorPos++;
+            } else {
+                sStartMenuCursorPos = 0;
+            }
+        } else {
+            if (sStartMenuCursorPos != 5){
+                sStartMenuCursorPos++;
+            } else {
+                sStartMenuCursorPos = 0;
+            }
+        }
+    } else if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE){
+        if (sStartMenuCursorPos != 5){
+            sStartMenuCursorPos++;
+        } else {
+            sStartMenuCursorPos = 0;
+        }
+    } else {
+        if (sStartMenuCursorPos != 4){
+            sStartMenuCursorPos++;
+        } else {
+            sStartMenuCursorPos = 0;
+        }
+        
+    }
+}
+
+static u8 cursorPosCalcMinus(void){
+    if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE){
+        if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE){
+            if (sStartMenuCursorPos != 0){
+                sStartMenuCursorPos--;
+            } else {
+                sStartMenuCursorPos = 6;
+            }
+        } else {
+            if (sStartMenuCursorPos != 0){
+                sStartMenuCursorPos--;
+            } else {
+                sStartMenuCursorPos = 5;
+            }
+        }
+    } else if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE){
+        if (sStartMenuCursorPos != 0){
+            sStartMenuCursorPos--;
+        } else {
+            sStartMenuCursorPos = 5;
+        }
+    } else {
+        if (sStartMenuCursorPos != 0){
+            sStartMenuCursorPos--;
+        } else {
+            sStartMenuCursorPos = 4;
+        }
+        
+    }
+}
+
 static u8 StartMenu_InputProcessCallback(void)
 {
-    if (gMain.newKeys & DPAD_UP)
+    if (gMain.newKeys & DPAD_LEFT)
     {
         PlaySE(SE_SELECT);
-        sStartMenuCursorPos = Menu_MoveCursor(-1);
+        //sStartMenuCursorPos = Menu_MoveCursor(-1);
+        cursorPosCalcMinus();
+        setIconPos();
     }
-    if (gMain.newKeys & DPAD_DOWN)
+    if (gMain.newKeys & DPAD_RIGHT)
     {
         PlaySE(SE_SELECT);
-        sStartMenuCursorPos = Menu_MoveCursor(1);
+        //sStartMenuCursorPos = Menu_MoveCursor(1);
+        cursorPosCalcPlus();
+        setIconPos();
     }
     if (gMain.newKeys & A_BUTTON)
     {
@@ -442,6 +1668,7 @@ static u8 StartMenu_InputProcessCallback(void)
     }
     if (gMain.newKeys & (START_BUTTON | B_BUTTON))
     {
+        closeIconsAndMenu();
         CloseMenu();
         return 1;
     }
@@ -451,6 +1678,7 @@ static u8 StartMenu_InputProcessCallback(void)
 //When player selects POKEDEX
 static u8 StartMenu_PokedexCallback(void)
 {
+    closeIconsAndMenu();
     if (!gPaletteFade.active)
     {
         IncrementGameStat(GAME_STAT_CHECKED_POKEDEX);
@@ -464,6 +1692,7 @@ static u8 StartMenu_PokedexCallback(void)
 //When player selects POKEMON
 static u8 StartMenu_PokemonCallback(void)
 {
+    closeIconsAndMenu();
     if (!gPaletteFade.active)
     {
         PlayRainSoundEffect();
@@ -476,6 +1705,7 @@ static u8 StartMenu_PokemonCallback(void)
 //When player selects BAG
 static u8 StartMenu_BagCallback(void)
 {
+    closeIconsAndMenu();
     if (!gPaletteFade.active)
     {
         PlayRainSoundEffect();
@@ -485,21 +1715,10 @@ static u8 StartMenu_BagCallback(void)
     return 0;
 }
 
-//When player selects POKENAV
-static u8 StartMenu_PokenavCallback(void)
-{
-    if (!gPaletteFade.active)
-    {
-        PlayRainSoundEffect();
-        SetMainCallback2(sub_80EBA5C);
-        return 1;
-    }
-    return 0;
-}
-
 //When player selects his/her name
 static u8 StartMenu_PlayerCallback(void)
 {
+    closeIconsAndMenu();
     if (!gPaletteFade.active)
     {
         PlayRainSoundEffect();
@@ -512,6 +1731,7 @@ static u8 StartMenu_PlayerCallback(void)
 //When player selects SAVE
 static u8 StartMenu_SaveCallback(void)
 {
+    closeIconsAndMenu();
     Menu_DestroyCursor();
     gMenuCallback = SaveCallback1;
     return 0;
@@ -520,6 +1740,7 @@ static u8 StartMenu_SaveCallback(void)
 //When player selects OPTION
 static u8 StartMenu_OptionCallback(void)
 {
+    closeIconsAndMenu();
     if (!gPaletteFade.active)
     {
         PlayRainSoundEffect();
@@ -533,6 +1754,7 @@ static u8 StartMenu_OptionCallback(void)
 //When player selects EXIT
 static u8 StartMenu_ExitCallback(void)
 {
+    closeIconsAndMenu();
     CloseMenu();
     return 1;
 }
@@ -540,6 +1762,7 @@ static u8 StartMenu_ExitCallback(void)
 //When player selects RETIRE
 static u8 StartMenu_RetireCallback(void)
 {
+    closeIconsAndMenu();
     CloseMenu();
     SafariZoneRetirePrompt();
     return 1;
@@ -548,6 +1771,7 @@ static u8 StartMenu_RetireCallback(void)
 //When player selects their name in multiplayer mode
 static u8 StartMenu_PlayerLinkCallback(void)
 {
+    closeIconsAndMenu();
     if (!gPaletteFade.active)
     {
         PlayRainSoundEffect();
@@ -938,4 +2162,9 @@ static void Task_8071B64(u8 taskId)
             break;
         }
     }
+}
+
+static void ArrowCallback(struct Sprite *sprite)
+{
+        StartSpriteAnimIfDifferent(sprite, 0);
 }
