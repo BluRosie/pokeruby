@@ -1197,16 +1197,16 @@ static void Task_PokedexResultsScreenExitPokedex(u8 taskId);
 static bool8 DisplayMainScreen(u8 screen);
 static void sub_808D640(void);
 static void SortPokedex(u8 dexMode, u8 sortMode);
-static void sub_808DEB0(u16 a, u8 b, u8 c, u16 d);
-static void sub_808DF88(u16 a, u8 b, u8 c, u16 d);
-static u8 sub_808DFE4(u16 num, u8 b, u8 c);
-static void sub_808E090(u8 a, u8 b, u16 c);
+static void PrintDexNumberSlots(u16 index, u8 stringLength, u8 c, u16 d);
+static void PrintCaughtBall(u16 owned, u8 b, u8 c, u16 d);
+static u8 PrintMonNameMainPage(u16 num, u8 b, u8 c);
+static void FreeVRAMSpaceForMonNameText(u8 a, u8 b, u16 c);
 static void DrawSurroundingMons(u16 num, u16 b);
-static bool8 sub_808E208(u8 a, u8 b, u8 c);
+static bool8 ScrollMonSprites(u8 a, u8 b, u8 c);
 static u16 ProcessDPadInputsMainPage(u16 currentMon, u16 b);
 static void sub_808E6BC(void);
 static u8 HandleUpDownInputPageScreen(void);
-static u8 sub_808E82C(void);
+static u8 DestroySpritesForSkips(void);
 static u16 ParseDexNumberForSprite(u16 num);
 static u32 SetUpMonPic(u16 num, s16 x, s16 y);
 static void DrawCursorsAndText(u8 a);
@@ -1542,7 +1542,7 @@ void Task_PokedexMainScreen(u8 taskId)
 
 static void sub_808C898(u8 taskId)
 {
-    if (sub_808E208(gPokedexView->unk62F, gPokedexView->unk634, gPokedexView->unk636))
+    if (ScrollMonSprites(gPokedexView->unk62F, gPokedexView->unk634, gPokedexView->unk636))
         gTasks[taskId].func = Task_PokedexMainScreen;
 }
 
@@ -1567,14 +1567,14 @@ static void Task_PokedexMainScreenMenu(u8 taskId)
             case 1: //LIST TOP
                 gPokedexView->selectedPokemon = 0;
                 gPokedexView->unk62C = 0x40;
-                sub_808E82C();
+                DestroySpritesForSkips();
                 DrawSurroundingMons(gPokedexView->selectedPokemon, 0xE);
                 gMain.newKeys |= START_BUTTON;  //Exit menu
                 break;
             case 2: //LIST BOTTOM
                 gPokedexView->selectedPokemon = gPokedexView->pokemonListCount - 1;
                 gPokedexView->unk62C = gPokedexView->pokemonListCount * 16 + 0x30;
-                sub_808E82C();
+                DestroySpritesForSkips();
                 DrawSurroundingMons(gPokedexView->selectedPokemon, 0xE);
                 gMain.newKeys |= START_BUTTON;  //Exit menu
                 break;
@@ -1732,7 +1732,7 @@ static void Task_PokedexResultsScreen(u8 taskId)
 
 static void sub_808CEF8(u8 taskId)
 {
-    if (sub_808E208(gPokedexView->unk62F, gPokedexView->unk634, gPokedexView->unk636))
+    if (ScrollMonSprites(gPokedexView->unk62F, gPokedexView->unk634, gPokedexView->unk636))
         gTasks[taskId].func = Task_PokedexResultsScreen;
 }
 
@@ -1757,14 +1757,14 @@ static void Task_PokedexResultsScreenMenu(u8 taskId)
             case 1: //LIST TOP
                 gPokedexView->selectedPokemon = 0;
                 gPokedexView->unk62C = 0x40;
-                sub_808E82C();
+                DestroySpritesForSkips();
                 DrawSurroundingMons(gPokedexView->selectedPokemon, 0xE);
                 gMain.newKeys |= START_BUTTON;
                 break;
             case 2: //LIST BOTTOM
                 gPokedexView->selectedPokemon = gPokedexView->pokemonListCount - 1;
                 gPokedexView->unk62C = gPokedexView->pokemonListCount * 16 + 0x30;
-                sub_808E82C();
+                DestroySpritesForSkips();
                 DrawSurroundingMons(gPokedexView->selectedPokemon, 0xE);
                 gMain.newKeys |= START_BUTTON;
                 break;
@@ -2093,116 +2093,116 @@ static void SortPokedex(u8 dexMode, u8 sortMode)
     }
 }
 
-static void sub_808DBE8(u8 a, u16 b, u16 c)
+static void PrintOnScreenSlots(u8 a, u16 currentIndex, u16 c)
 {
-    s16 _b;
+    s16 index;
     u16 i;
     u16 r2;
 
     switch (a)
     {
-    case 0:
+    case 0: // called from DrawSurroundingMons
     default:
-        _b = b - 5;
-        for (i = 0; i <= 10; i++)
+        index = currentIndex - 5;
+        for (i = 0; i <= 10; i++) // draw 10 separate names?
         {
-            if (_b < 0 || _b >= NATIONAL_DEX_COUNT || gPokedexView->unk0[_b].dexNum == 0xFFFF)
+            if (index < 0 || index >= NATIONAL_DEX_COUNT || gPokedexView->unk0[index].dexNum == 0xFFFF)
             {
-                sub_808E090(0x11, i * 2, c);
+                FreeVRAMSpaceForMonNameText(0x11, i * 2, c); // show nothing
             }
             else
             {
-                sub_808E090(0x11, i * 2, c);
-                if (gPokedexView->unk0[_b].seen)
+                FreeVRAMSpaceForMonNameText(0x11, i * 2, c);
+                if (gPokedexView->unk0[index].seen)
                 {
-                    sub_808DEB0(_b, 0x12, i * 2, c);
-                    sub_808DF88(gPokedexView->unk0[_b].owned, 0x11, i * 2, c);
-                    sub_808DFE4(gPokedexView->unk0[_b].dexNum, 0x17, i * 2);
+                    PrintDexNumberSlots(index, 0x12, i * 2, c);
+                    PrintCaughtBall(gPokedexView->unk0[index].owned, 0x11, i * 2, c);
+                    PrintMonNameMainPage(gPokedexView->unk0[index].dexNum, 0x17, i * 2);
                 }
                 else
                 {
-                    sub_808DEB0(_b, 0x12, i * 2, c);
-                    sub_808DF88(0, 0x11, i * 2, c);
-                    sub_808DFE4(0, 0x17, i * 2);
+                    PrintDexNumberSlots(index, 0x12, i * 2, c);
+                    PrintCaughtBall(0, 0x11, i * 2, c);
+                    PrintMonNameMainPage(0, 0x17, i * 2);
                 }
             }
-            _b++;
+            index++;
         }
         break;
-    case 1:
-        _b = b - 5;
-        if (_b < 0 || _b >= NATIONAL_DEX_COUNT || gPokedexView->unk0[_b].dexNum == 0xFFFF)
+    case 1: // called when moving pokedex up
+        index = currentIndex - 5;
+        if (index < 0 || index >= NATIONAL_DEX_COUNT || gPokedexView->unk0[index].dexNum == 0xFFFF)
         {
-            sub_808E090(0x11, gPokedexView->unk630 * 2, c);
+            FreeVRAMSpaceForMonNameText(0x11, gPokedexView->unk630 * 2, c);
         }
         else
         {
-            sub_808E090(0x11, gPokedexView->unk630 * 2, c);
-            if (gPokedexView->unk0[_b].seen)
+            FreeVRAMSpaceForMonNameText(0x11, gPokedexView->unk630 * 2, c);
+            if (gPokedexView->unk0[index].seen)
             {
-                sub_808DEB0(_b, 0x12, gPokedexView->unk630 * 2, c);
-                sub_808DF88(gPokedexView->unk0[_b].owned, 0x11, gPokedexView->unk630 * 2, c);
-                sub_808DFE4(gPokedexView->unk0[_b].dexNum, 0x17, gPokedexView->unk630 * 2);
+                PrintDexNumberSlots(index, 0x12, gPokedexView->unk630 * 2, c);
+                PrintCaughtBall(gPokedexView->unk0[index].owned, 0x11, gPokedexView->unk630 * 2, c);
+                PrintMonNameMainPage(gPokedexView->unk0[index].dexNum, 0x17, gPokedexView->unk630 * 2);
             }
             else
             {
-                sub_808DEB0(_b, 0x12, gPokedexView->unk630 * 2, c);
-                sub_808DF88(0, 0x11, gPokedexView->unk630 * 2, c);
-                sub_808DFE4(0, 0x17, gPokedexView->unk630 * 2);
+                PrintDexNumberSlots(index, 0x12, gPokedexView->unk630 * 2, c);
+                PrintCaughtBall(0, 0x11, gPokedexView->unk630 * 2, c);
+                PrintMonNameMainPage(0, 0x17, gPokedexView->unk630 * 2);
             }
         }
         break;
-    case 2:
-        _b = b + 5;
+    case 2: // called when moving pokedex down
+        index = currentIndex + 5;
         r2 = gPokedexView->unk630 + 10;
         if (r2 > 15)
             r2 -= 16;
-        if (_b < 0 || _b >= NATIONAL_DEX_COUNT || gPokedexView->unk0[_b].dexNum == 0xFFFF)
-            sub_808E090(0x11, r2 * 2, c);
+        if (index < 0 || index >= NATIONAL_DEX_COUNT || gPokedexView->unk0[index].dexNum == 0xFFFF)
+            FreeVRAMSpaceForMonNameText(0x11, r2 * 2, c);
         else
         {
-            sub_808E090(0x11, r2 * 2, c);
-            if (gPokedexView->unk0[_b].seen)
+            FreeVRAMSpaceForMonNameText(0x11, r2 * 2, c);
+            if (gPokedexView->unk0[index].seen)
             {
-                sub_808DEB0(_b, 0x12, r2 * 2, c);
-                sub_808DF88(gPokedexView->unk0[_b].owned, 0x11, r2 * 2, c);
-                sub_808DFE4(gPokedexView->unk0[_b].dexNum, 0x17, r2 * 2);
+                PrintDexNumberSlots(index, 0x12, r2 * 2, c);
+                PrintCaughtBall(gPokedexView->unk0[index].owned, 0x11, r2 * 2, c);
+                PrintMonNameMainPage(gPokedexView->unk0[index].dexNum, 0x17, r2 * 2);
             }
             else
             {
-                sub_808DEB0(_b, 0x12, r2 * 2, c);
-                sub_808DF88(0, 0x11, r2 * 2, c);
-                sub_808DFE4(0, 0x17, r2 * 2);
+                PrintDexNumberSlots(index, 0x12, r2 * 2, c);
+                PrintCaughtBall(0, 0x11, r2 * 2, c);
+                PrintMonNameMainPage(0, 0x17, r2 * 2);
             }
         }
         break;
     }
 }
 
-static void sub_808DEB0(u16 a, u8 b, u8 c, u16 d)
+static void PrintDexNumberSlots(u16 index, u8 stringLength, u8 c, u16 d) // stringlength?
 {
     u8 text[4];
     u16 unk[2];
-    u16 r7 = gPokedexView->unk0[a].dexNum;
+    u16 r7 = gPokedexView->unk0[index].dexNum;
 
     if (gPokedexView->dexMode == DEX_MODE_HOENN)
         r7 = NationalToHoennOrder(r7);
     unk[0] = 0x3FC;
     unk[1] = 0x3FD;
-    text[0] = CHAR_0 + r7 / 100;
-    text[1] = CHAR_0 + (r7 % 100) / 10;
-    text[2] = CHAR_0 + (r7 % 100) % 10;
+    text[0] = CHAR_0 + r7 / 100;        // hundreds-place number
+    text[1] = CHAR_0 + (r7 % 100) / 10; // tens-place number
+    text[2] = CHAR_0 + (r7 % 100) % 10; // ones-place number
     text[3] = EOS;
-    *(u16 *)(VRAM + d * 0x800 + c * 0x40 + b * 2) = unk[0];
-    *(u16 *)(VRAM + d * 0x800 + (c + 1) * 0x40 + b * 2) = unk[1];
-    Menu_PrintText(text, b - 15, c);
+    *(u16 *)(VRAM + d * 0x800 +  c      * 0x40 + stringLength * 2) = unk[0];
+    *(u16 *)(VRAM + d * 0x800 + (c + 1) * 0x40 + stringLength * 2) = unk[1];
+    Menu_PrintText(text, stringLength - 15, c);
 }
 
-static void sub_808DF88(u16 a, u8 b, u8 c, u16 d)
+static void PrintCaughtBall(u16 owned, u8 b, u8 c, u16 d)
 {
     u16 unk[2];
 
-    if (a)
+    if (owned)
     {
         unk[0] = 0x3FE;
         unk[1] = 0x3FF;
@@ -2212,11 +2212,11 @@ static void sub_808DF88(u16 a, u8 b, u8 c, u16 d)
         unk[0] = 0;
         unk[1] = 0;
     }
-    *(u16 *)(VRAM + d * 0x800 + c * 0x40 + b * 2) = unk[0];
+    *(u16 *)(VRAM + d * 0x800 +  c      * 0x40 + b * 2) = unk[0];
     *(u16 *)(VRAM + d * 0x800 + (c + 1) * 0x40 + b * 2) = unk[1];
 }
 
-static u8 sub_808DFE4(u16 num, u8 b, u8 c)
+static u8 PrintMonNameMainPage(u16 num, u8 b, u8 c)
 {
     u8 text[10];
     u8 i;
@@ -2241,13 +2241,13 @@ static u8 sub_808DFE4(u16 num, u8 b, u8 c)
     return i;
 }
 
-static void sub_808E090(u8 a, u8 b, u16 c)
+static void FreeVRAMSpaceForMonNameText(u8 a, u8 b, u16 c)
 {
     u8 i;
 
     for (i = 0; i < 12; i++)
     {
-        *(u16 *)(VRAM + c * 0x800 + b * 64 + (a + i) * 2) = 0;
+        *(u16 *)(VRAM + c * 0x800 +  b *      64 + (a + i) * 2) = 0;
         *(u16 *)(VRAM + c * 0x800 + (b + 1) * 64 + (a + i) * 2) = 0;
     }
 }
@@ -2263,7 +2263,7 @@ static void DrawSurroundingMons(u16 num, u16 b)
     for (i = 0; i < 4; i++)
         gPokedexView->unk61E[i] = 0xFFFF;
     gPokedexView->selectedMonSpriteId = 0xFFFF;
-    sub_808DBE8(0, num, b);
+    PrintOnScreenSlots(0, num, b);
     REG_BG2VOFS = gPokedexView->unk62D;
 
     dexNum = ParseDexNumberForSprite(num - 1);
@@ -2294,7 +2294,7 @@ static void DrawSurroundingMons(u16 num, u16 b)
     gPokedexView->unk632 = 0;
 }
 
-static bool8 sub_808E208(u8 a, u8 b, u8 c)
+static bool8 ScrollMonSprites(u8 a, u8 b, u8 c)
 {
     u16 i;
     u8 foo;
@@ -2304,7 +2304,7 @@ static bool8 sub_808E208(u8 a, u8 b, u8 c)
         gPokedexView->unk62E--;
         switch (a)
         {
-        case 1:
+        case 1: // move up
             for (i = 0; i < 4; i++)
             {
                 if (gPokedexView->unk61E[i] != 0xFFFF)
@@ -2314,7 +2314,7 @@ static bool8 sub_808E208(u8 a, u8 b, u8 c)
             REG_BG2VOFS = gPokedexView->unk62D + gPokedexView->unk632 * 16 - foo;
             gPokedexView->unk62C -= gPokedexView->unk628;
             break;
-        case 2:
+        case 2: // move down
             for (i = 0; i < 4; i++)
             {
                 if (gPokedexView->unk61E[i] != 0xFFFF)
@@ -2334,15 +2334,15 @@ static bool8 sub_808E208(u8 a, u8 b, u8 c)
     }
 }
 
-static void sub_808E398(u8 a, u16 b)
+static void MatchPrintedNameWithPosition(u8 direction, u16 b) // why the fuck is it 15
 {
     u16 unk;
     u8 spriteId;
 
     gPokedexView->unk632 = gPokedexView->unk630;
-    switch (a)
+    switch (direction)
     {
-    case 1:
+    case 1: // move up
         unk = ParseDexNumberForSprite(b - 1);
         if (unk != 0xFFFF)
         {
@@ -2355,15 +2355,15 @@ static void sub_808E398(u8 a, u16 b)
         else
             gPokedexView->unk630 = 15;
         break;
-    case 2:
+    case 2: // move down
         unk = ParseDexNumberForSprite(b + 1);
         if (unk != 0xFFFF)
         {
             spriteId = SetUpMonPic(unk, X_POSITION_FOR_SCROLLING, Y_POSITION_FOR_SCROLLING);
             gSprites[spriteId].callback = sub_808EE28;
-            gSprites[spriteId].data[5] = 0x40;
+            gSprites[spriteId].data[5] = 64;
         }
-        if (gPokedexView->unk630 <= 0xE)
+        if (gPokedexView->unk630 < 15)
             gPokedexView->unk630++;
         else
             gPokedexView->unk630 = 0;
@@ -2390,9 +2390,9 @@ static u16 ProcessDPadInputsMainPage(u16 a, u16 b)
             {
                 r6 = a;
                 for (i = 0; i < 7; i++)
-                    a = GetSlotNumbersFromMinMax(1, a, 0, gPokedexView->pokemonListCount - 1);
+                    a = GetSlotNumbersFromMinMax(1, a, 0, gPokedexView->pokemonListCount - 1); // move the pokedex up 7
                 gPokedexView->unk62C += 16 * (a - r6);
-                sub_808E82C();
+                DestroySpritesForSkips();
                 DrawSurroundingMons(a, 0xE);
                 PlaySE(0x6D);
             }
@@ -2400,9 +2400,9 @@ static u16 ProcessDPadInputsMainPage(u16 a, u16 b)
             {
                 r6 = a;
                 for (i = 0; i < 7; i++)
-                    a = GetSlotNumbersFromMinMax(0, a, 0, gPokedexView->pokemonListCount - 1);
+                    a = GetSlotNumbersFromMinMax(0, a, 0, gPokedexView->pokemonListCount - 1); // move the pokedex down 7
                 gPokedexView->unk62C += (a - r6) * 16;
-                sub_808E82C();
+                DestroySpritesForSkips();
                 DrawSurroundingMons(a, 0xE);
                 PlaySE(0x6D);
             }
@@ -2416,9 +2416,9 @@ static u16 ProcessDPadInputsMainPage(u16 a, u16 b)
         else
         {
             r10 = 2;
-            a = GetSlotNumbersFromMinMax(0, a, 0, gPokedexView->pokemonListCount - 1);
-            sub_808E398(2, a);
-            sub_808DBE8(2, a, b);
+            a = GetSlotNumbersFromMinMax(0, a, 0, gPokedexView->pokemonListCount - 1); // move the pokedex down 1
+            MatchPrintedNameWithPosition(2, a);
+            PrintOnScreenSlots(2, a, b);
             PlaySE(0x6C);
             goto _0808E5A2;
         }
@@ -2426,9 +2426,9 @@ static u16 ProcessDPadInputsMainPage(u16 a, u16 b)
     else
     {
         r10 = 1;
-        a = GetSlotNumbersFromMinMax(1, a, 0, gPokedexView->pokemonListCount - 1);
-        sub_808E398(1, a);
-        sub_808DBE8(1, a, b);
+        a = GetSlotNumbersFromMinMax(1, a, 0, gPokedexView->pokemonListCount - 1); // move the pokedex up 1
+        MatchPrintedNameWithPosition(1, a);
+        PrintOnScreenSlots(1, a, b);
         PlaySE(0x6C);
         goto _0808E5A2;
     }
@@ -2439,7 +2439,7 @@ static u16 ProcessDPadInputsMainPage(u16 a, u16 b)
     gPokedexView->unk634 = r5;
     gPokedexView->unk62F = r10;
     gPokedexView->unk628 = r5 / 2;
-    sub_808E208(gPokedexView->unk62F, gPokedexView->unk634, gPokedexView->unk636);
+    ScrollMonSprites(gPokedexView->unk62F, gPokedexView->unk634, gPokedexView->unk636);
     if (gPokedexView->unk638 <= 0xB)
         gPokedexView->unk638++;
     return a;
@@ -2512,7 +2512,7 @@ static u8 HandleUpDownInputPageScreen(void)
     return 0;
 }
 
-static u8 sub_808E82C(void)
+static u8 DestroySpritesForSkips(void)
 {
     u16 i;
 
