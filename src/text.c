@@ -427,7 +427,7 @@ static const struct Font sFonts[] =
     { 0, (u8 *)sFont0LatinGlyphs, 16,   8 },
     { 1, (u8 *)sFont1LatinGlyphs,  8,   0 },
     { 2, (u8 *)sFont1LatinGlyphs,  8,   0 },
-    { 0, (u8 *)gFont3LatinGlyphs, 64,  32 },
+    { 0, (u8 *)gFont3LatinGlyphs, 64,  32 }, // main font for like all text
     { 1, (u8 *)gFont4LatinGlyphs, 32,   0 },
     { 2, (u8 *)gFont4LatinGlyphs, 32,   0 },
     { 3, (u8 *)sBrailleGlyphs,  8,   0 },
@@ -3404,11 +3404,7 @@ static u8 GetGlyphWidth(struct Window *win, u32 glyph)
 {
     u8 width = 8;
 
-#ifdef BUGFIX_GLYPHWIDTH
     if (win->language != LANGUAGE_JAPANESE)
-#else
-    if (win->language == LANGUAGE_ENGLISH)
-#endif
     {
         width = win->spacing;
         if (!win->spacing)

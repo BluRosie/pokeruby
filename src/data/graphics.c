@@ -1408,15 +1408,8 @@ const u8 gMenuIcons_Circle[] = INCBIN_U8("graphics/menu_icons/circle.4bpp");
 const u8 gMenuIcons_Arrow[] = INCBIN_U8("graphics/menu_icons/arrowanim.4bpp");
 const u8 gMenuIcons_Palette[] = INCBIN_U8("graphics/menu_icons/dex.gbapal");
 
-#ifdef ENGLISH
-    #if REVISION >= 1
-        const u8 gFont3LatinGlyphs[] = INCBIN_U8("graphics/fonts/font3_lat_rev1.4bpp");
-    #else
-        const u8 gFont3LatinGlyphs[] = INCBIN_U8("graphics/fonts/font3_lat.4bpp");
-    #endif
-#else
-    const u8 gFont3LatinGlyphs[] = INCBIN_U8("graphics/fonts/font3_lat.4bpp");
-#endif
+
+const u8 gFont3LatinGlyphs[] = INCBIN_U8("graphics/fonts/font3_lat.4bpp");
 
 #ifdef ENGLISH
     #if REVISION >= 1
