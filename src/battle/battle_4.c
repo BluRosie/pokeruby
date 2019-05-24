@@ -260,7 +260,7 @@ u8 CastformDataTypeChange(u8 bank);
 u8 Overworld_GetMapTypeOfSaveblockLocation(void);
 u8 CalculatePlayerPartyCount(void);
 u16 Sqrt(u32 num);
-u8 sub_809070C(u16 nationalNum, u32 TiD, u32 PiD); //task prepare poke dex display
+u8 PrepareDexDisplayForCaughtMon(u16 nationalNum, u32 TiD, u32 PiD); //task prepare poke dex display
 void MenuCursor_SetPos814A880(u8 a1, u8 a2);
 u8 CheckMoveLimitations(u8 bank, u8 unusable_moves, u8 flags);
 bool8 IsLinkDoubleBattle(void);
@@ -13922,20 +13922,20 @@ void atkEF_handleballthrow(void)
                     ball_multiplier = 10;
                 break;
             case ITEM_BEAST_BALL:
-                /*if (gBattleMons[gBankTarget].species == SPECIES_NIHILEGO
-                    && gBattleMons[gBankTarget].species == SPECIES_BUZZWOLE
-                    && gBattleMons[gBankTarget].species == SPECIES_PHEREMOSA
-                    && gBattleMons[gBankTarget].species == SPECIES_XURKITREE
-                    && gBattleMons[gBankTarget].species == SPECIES_CELESTEELA
-                    && gBattleMons[gBankTarget].species == SPECIES_KARTANA
-                    && gBattleMons[gBankTarget].species == SPECIES_GUZZLORD
-                    && gBattleMons[gBankTarget].species == SPECIES_POIPOLE
-                    && gBattleMons[gBankTarget].species == SPECIES_NAGANADEL
-                    && gBattleMons[gBankTarget].species == SPECIES_STAKATAKA
-                    && gBattleMons[gBankTarget].species == SPECIES_BLACEPHALON)
+                if (gBattleMons[gBankTarget].species == SPECIES_NIHILEGO
+                    || gBattleMons[gBankTarget].species == SPECIES_BUZZWOLE
+                    || gBattleMons[gBankTarget].species == SPECIES_PHEROMOSA
+                    || gBattleMons[gBankTarget].species == SPECIES_XURKITREE
+                    || gBattleMons[gBankTarget].species == SPECIES_CELESTEELA
+                    || gBattleMons[gBankTarget].species == SPECIES_KARTANA
+                    || gBattleMons[gBankTarget].species == SPECIES_GUZZLORD
+                    || gBattleMons[gBankTarget].species == SPECIES_POIPOLE
+                    || gBattleMons[gBankTarget].species == SPECIES_NAGANADEL
+                    || gBattleMons[gBankTarget].species == SPECIES_STAKATAKA
+                    || gBattleMons[gBankTarget].species == SPECIES_BLACEPHALON)
                     ball_multiplier = 50;
                 else
-                    */ball_multiplier = 1;
+                    ball_multiplier = 1;
                 break;
             }
         }
@@ -14047,7 +14047,7 @@ static void atkF2_displaydexinfo(void)
     case 1:
         if (!gPaletteFade.active)
         {
-            gBattleCommunication[1] = sub_809070C(SpeciesToNationalPokedexNum(gBattleMons[gBankTarget].species), gBattleMons[gBankTarget].otId, gBattleMons[gBankTarget].personality);
+            gBattleCommunication[1] = PrepareDexDisplayForCaughtMon(SpeciesToNationalPokedexNum(gBattleMons[gBankTarget].species), gBattleMons[gBankTarget].otId, gBattleMons[gBankTarget].personality);
             gBattleCommunication[0]++;
         }
         break;
