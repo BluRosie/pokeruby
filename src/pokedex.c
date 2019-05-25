@@ -51,9 +51,9 @@ struct PokedexView
     u16 ownedPokemon;
     u16 spriteIds[4]; // for scrolling mons
     u16 selectedMonSpriteId;
-    u16 unk628;
+    u16 changeInSelectedNamePixelPos; // for updating which mon is selected graphically (pixels)
     u16 unk62A;
-    u8 unk62C;
+    u8 selectedNamePixelPosition; // which mon is selected graphically (in pixels from the top)
     u8 unk62D;
     u8 iterationsOfScrolling; // directly manipulated by the function
     u8 scrollDirection;
@@ -506,7 +506,7 @@ static const struct SpritePalette gUnknown_083A05DC[] =
     {NULL, 0},
 };
 
-static const u8 gPixelsPerScrollIteration[] = {2,  4, 8, 16, 32}; // notice that the first number * second number = 32
+static const u8 gPixelsPerScrollIteration[] = { 2, 4, 8, 16, 32}; // notice that gPixelsPerScrollIteration[i] * gScrollingIterations[i] = 32
 static const u8 gScrollingIterations[] =      {16, 8, 4,  2,  1};
 
 const u8 gEmptySpacce_83A05F6[] = {0, 0};  // Padding, maybe?
@@ -1346,9 +1346,9 @@ static void ClearPokedexView(struct PokedexView *pokedexView)
     pokedexView->ownedPokemon = 0;
     for (i = 0; i <= 3; i++)
         pokedexView->spriteIds[i] |= 0xFFFF;
-    pokedexView->unk628 = 0;
+    pokedexView->changeInSelectedNamePixelPos = 0;
     pokedexView->unk62A = 0;
-    pokedexView->unk62C = 0;
+    pokedexView->selectedNamePixelPosition = 0;
     pokedexView->unk62D = 0;
     pokedexView->iterationsOfScrolling = 0;
     pokedexView->scrollDirection = 0;
@@ -1421,7 +1421,7 @@ void CB2_InitPokedex(void)
             gPokedexView->dexMode = DEX_MODE_HOENN;
         gPokedexView->dexOrder = gSaveBlock2.pokedex.order;
         gPokedexView->selectedPokemon = gUnknown_0202FFB8;
-        gPokedexView->unk62C = gUnknown_0202FFBA;
+        gPokedexView->selectedNamePixelPosition = gUnknown_0202FFBA;
         gPokedexView->selectedScreen = PAGE_SCREEN;
         gPokedexView->descriptionPageNum = 0;
         if (!IsNationalPokedexEnabled())
@@ -1530,7 +1530,7 @@ void Task_PokedexMainScreen(u8 taskId)
             BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB(0, 0, 0));
             gTasks[taskId].data[0] = sub_8091E3C();
             gPokedexView->unk64F = 0;
-            gPokedexView->unk62A = gPokedexView->unk62C;
+            gPokedexView->unk62A = gPokedexView->selectedNamePixelPosition;
             gPokedexView->unk610 = gPokedexView->selectedPokemon;
             gPokedexView->unk614 = gPokedexView->dexMode;
             gPokedexView->unk618 = gPokedexView->dexOrder;
@@ -1578,14 +1578,14 @@ static void Task_PokedexMainScreenMenu(u8 taskId)
                 break;
             case 1: //LIST TOP
                 gPokedexView->selectedPokemon = 0;
-                gPokedexView->unk62C = 0x40;
+                gPokedexView->selectedNamePixelPosition = 0x40; // start at top plus 4 positions (because the blanks above)
                 DestroySpritesForSkips();
                 DrawSurroundingMons(gPokedexView->selectedPokemon, 0xE);
                 gMain.newKeys |= START_BUTTON;  //Exit menu
                 break;
             case 2: //LIST BOTTOM
                 gPokedexView->selectedPokemon = gPokedexView->pokemonListCount - 1;
-                gPokedexView->unk62C = gPokedexView->pokemonListCount * 16 + 0x30;
+                gPokedexView->selectedNamePixelPosition = (gPokedexView->pokemonListCount - 1) * 16 + 0x40; // start at bottom
                 DestroySpritesForSkips();
                 DrawSurroundingMons(gPokedexView->selectedPokemon, 0xE);
                 gMain.newKeys |= START_BUTTON;  //Exit menu
@@ -1639,7 +1639,7 @@ static void sub_808CAE4(u8 taskId)
     else
     {
         gUnknown_0202FFB8 = gPokedexView->selectedPokemon;
-        gUnknown_0202FFBA = gPokedexView->unk62C;
+        gUnknown_0202FFBA = gPokedexView->selectedNamePixelPosition;
         gTasks[taskId].func = Task_PokedexShowMainScreen;
     }
 }
@@ -1653,12 +1653,12 @@ static void sub_808CB8C(u8 taskId)
         if (gPokedexView->unk64F != 0)
         {
             gPokedexView->selectedPokemon = isActive;
-            gPokedexView->unk62C = 0x40;
+            gPokedexView->selectedNamePixelPosition = 0x40;
             gTasks[taskId].func = sub_808CCC4;
         }
         else
         {
-            gPokedexView->unk62C = gPokedexView->unk62A;
+            gPokedexView->selectedNamePixelPosition = gPokedexView->unk62A;
             gPokedexView->selectedPokemon = gPokedexView->unk610;
             gPokedexView->dexMode = gPokedexView->unk614;
             if (!IsNationalPokedexEnabled())
@@ -1768,14 +1768,14 @@ static void Task_PokedexResultsScreenMenu(u8 taskId)
                 break;
             case 1: //LIST TOP
                 gPokedexView->selectedPokemon = 0;
-                gPokedexView->unk62C = 0x40;
+                gPokedexView->selectedNamePixelPosition = 0x40;
                 DestroySpritesForSkips();
                 DrawSurroundingMons(gPokedexView->selectedPokemon, 0xE);
                 gMain.newKeys |= START_BUTTON;
                 break;
             case 2: //LIST BOTTOM
                 gPokedexView->selectedPokemon = gPokedexView->pokemonListCount - 1;
-                gPokedexView->unk62C = gPokedexView->pokemonListCount * 16 + 0x30;
+                gPokedexView->selectedNamePixelPosition = (gPokedexView->pokemonListCount - 1) * 16 + 0x40;
                 DestroySpritesForSkips();
                 DrawSurroundingMons(gPokedexView->selectedPokemon, 0xE);
                 gMain.newKeys |= START_BUTTON;
@@ -1841,7 +1841,7 @@ static void Task_PokedexResultsScreenReturnToMainScreen(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        gPokedexView->unk62C = gPokedexView->unk62A;
+        gPokedexView->selectedNamePixelPosition = gPokedexView->unk62A;
         gPokedexView->selectedPokemon = gPokedexView->unk610;
         gPokedexView->dexMode = gPokedexView->unk614;
         if (!IsNationalPokedexEnabled())
@@ -1855,7 +1855,7 @@ static void Task_PokedexResultsScreenExitPokedex(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        gPokedexView->unk62C = gPokedexView->unk62A;
+        gPokedexView->selectedNamePixelPosition = gPokedexView->unk62A;
         gPokedexView->selectedPokemon = gPokedexView->unk610;
         gPokedexView->dexMode = gPokedexView->unk614;
         if (!IsNationalPokedexEnabled())
@@ -2324,7 +2324,7 @@ static bool8 ScrollMonSprites(u8 direction, u8 pixels, u8 iterations)
             }
             foo = 16 * (iterations - gPokedexView->iterationsOfScrolling) / iterations;
             REG_BG2VOFS = gPokedexView->unk62D + gPokedexView->unk632 * 16 - foo;
-            gPokedexView->unk62C -= gPokedexView->unk628;
+            gPokedexView->selectedNamePixelPosition -= gPokedexView->changeInSelectedNamePixelPos;
             break;
         case 2: // move down
             for (i = 0; i < 4; i++)
@@ -2334,7 +2334,7 @@ static bool8 ScrollMonSprites(u8 direction, u8 pixels, u8 iterations)
             }
             foo = 16 * (iterations - gPokedexView->iterationsOfScrolling) / iterations;
             REG_BG2VOFS = gPokedexView->unk62D + gPokedexView->unk632 * 16 + foo;
-            gPokedexView->unk62C += gPokedexView->unk628;
+            gPokedexView->selectedNamePixelPosition += gPokedexView->changeInSelectedNamePixelPos;
             break;
         }
         return FALSE;
@@ -2403,7 +2403,7 @@ static u16 ProcessDPadInputsMainPage(u16 a, u16 b)
                 r6 = a;
                 for (i = 0; i < 7; i++)
                     a = GetSlotNumbersFromMinMax(1, a, 0, gPokedexView->pokemonListCount - 1); // move the pokedex up 7
-                gPokedexView->unk62C += 16 * (a - r6);
+                gPokedexView->selectedNamePixelPosition += 16 * (a - r6);
                 DestroySpritesForSkips();
                 DrawSurroundingMons(a, 0xE);
                 PlaySE(0x6D);
@@ -2413,7 +2413,7 @@ static u16 ProcessDPadInputsMainPage(u16 a, u16 b)
                 r6 = a;
                 for (i = 0; i < 7; i++)
                     a = GetSlotNumbersFromMinMax(0, a, 0, gPokedexView->pokemonListCount - 1); // move the pokedex down 7
-                gPokedexView->unk62C += (a - r6) * 16;
+                gPokedexView->selectedNamePixelPosition += (a - r6) * 16;
                 DestroySpritesForSkips();
                 DrawSurroundingMons(a, 0xE);
                 PlaySE(0x6D);
@@ -2445,15 +2445,36 @@ static u16 ProcessDPadInputsMainPage(u16 a, u16 b)
         goto _0808E5A2;
     }
 
-    r5 = gPixelsPerScrollIteration[gPokedexView->timeHeldDPad / 4];
-    r3 = gScrollingIterations[gPokedexView->timeHeldDPad / 4];
-    gPokedexView->iterationsOfScrolling = r3;
-    gPokedexView->iterationsOfScrollingConstant = r3;
-    gPokedexView->pixelsToScrollPerIteration = r5;
-    gPokedexView->scrollDirection = r10;
-    gPokedexView->unk628 = r5 / 2;
-    ScrollMonSprites(gPokedexView->scrollDirection, gPokedexView->pixelsToScrollPerIteration, gPokedexView->iterationsOfScrollingConstant);
     if (gPokedexView->timeHeldDPad <= 15)
+    {
+        r5 = gPixelsPerScrollIteration[gPokedexView->timeHeldDPad / 4];
+        r3 = gScrollingIterations[gPokedexView->timeHeldDPad / 4];
+        gPokedexView->iterationsOfScrolling = r3;
+        gPokedexView->iterationsOfScrollingConstant = r3;
+        gPokedexView->pixelsToScrollPerIteration = r5;
+        gPokedexView->scrollDirection = r10;
+        gPokedexView->changeInSelectedNamePixelPos = r5 / 2;
+        ScrollMonSprites(gPokedexView->scrollDirection, gPokedexView->pixelsToScrollPerIteration, gPokedexView->iterationsOfScrollingConstant);
+    }
+    else
+    {
+        r6 = a;
+        if (gMain.heldKeys & DPAD_UP)
+        {
+            for (i = 0; i < 7; i++)
+                a = GetSlotNumbersFromMinMax(1, a, 0, gPokedexView->pokemonListCount - 1); // move the pokedex up 7
+        }
+        else if (gMain.heldKeys & DPAD_DOWN)
+        {
+            for (i = 0; i < 7; i++)
+                a = GetSlotNumbersFromMinMax(0, a, 0, gPokedexView->pokemonListCount - 1); // move the pokedex down 7
+        }
+        gPokedexView->selectedNamePixelPosition += (a - r6) * 16;
+        DestroySpritesForSkips();
+        DrawSurroundingMons(a, 0xE);
+    }
+
+    if (gPokedexView->timeHeldDPad <= 19)
         gPokedexView->timeHeldDPad++;
     return a;
 }
@@ -2495,7 +2516,7 @@ static u8 HandleUpDownInputPageScreen(void)
         else
         {
             gPokedexView->selectedPokemon = currentMon;
-            gPokedexView->unk62C -= 16;
+            gPokedexView->selectedNamePixelPosition -= 16;
             return 1;
         }
     }
@@ -2518,7 +2539,7 @@ static u8 HandleUpDownInputPageScreen(void)
         else
         {
             gPokedexView->selectedPokemon = currentMon;
-            gPokedexView->unk62C += 16;
+            gPokedexView->selectedNamePixelPosition += 16;
             return 1;
         }
     }
@@ -2803,12 +2824,12 @@ static void sub_808F0B4(struct Sprite *sprite)
         s16 r3;
         s16 r0;
 
-        val = gPokedexView->unk62C + sprite->data[1];
+        val = gPokedexView->selectedNamePixelPosition + sprite->data[1];
         r3 = gSineTable[val];
         r0 = gSineTable[val + 0x40];
         SetOamMatrix(sprite->data[0], r0, r3, -r3, r0);
 
-        val = gPokedexView->unk62C + (sprite->data[1] + 0x40);
+        val = gPokedexView->selectedNamePixelPosition + (sprite->data[1] + 0x40);
         r3 = gSineTable[val];
         r0 = gSineTable[val + 0x40];
         sprite->pos2.x = r0 * 40 / 256;
