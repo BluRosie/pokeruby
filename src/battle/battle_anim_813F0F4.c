@@ -2227,7 +2227,7 @@ void sub_8141828(u8 battler, struct Pokemon *mon)
     if (IsAnimBankSpriteVisible(battler))
     {
         shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
-        if (shinyValue < 8)
+        if (shinyValue < SHINY_RATE)
             isShiny = TRUE;
 
         if (isShiny)

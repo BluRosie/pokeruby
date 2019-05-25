@@ -28,13 +28,10 @@ POKEMON EXPANSION PROGRESS:
 EVERY SINGLE FILE THAT HAS ANY RELATION TO EXPANDING POKEMON:
 
 already existing things that are broken:
-gender differences (need to just get the sprites & get them back in)
-new cries sound like shit
+gender differences
 
-include/pokemon.h
 src/battle/battle_1.c
 src/data/pokedex_orders.h
-src/data/pokemon/tmhm_learnsets.h
 src/pokemon_3.c
 
 done:
@@ -44,3 +41,5 @@ src/data/text/species_names_en.h
 src/hall_of_fame.c
 src/pokemon_1.c
 sound/voice_groups.inc
+src/data/pokemon/tmhm_learnsets.h
+include/pokemon.h

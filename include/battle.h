@@ -670,6 +670,8 @@ extern struct Struct20238C8 gUnknown_020238C8;
 
 #define SET_STATCHANGER(statId, stage, goesDown)(gBattleScripting.statChanger = (statId) + (stage << 4) + (goesDown << 7))
 
+#define SHINY_RATE 16
+
 // used in many battle files, it seems as though Hisashi Sogabe wrote
 // some sort of macro to replace the use of actually calling memset.
 // Perhaps it was thought calling memset was much slower?
