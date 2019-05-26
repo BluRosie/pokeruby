@@ -42,6 +42,7 @@ BUILD_DIR := build/$(BUILD_NAME)
 C_SOURCES    := $(wildcard src/*.c src/*/*.c src/*/*/*.c)
 ASM_SOURCES  := $(wildcard src/*.s src/*/*.s asm/*.s data/*.s sound/*.s sound/*/*.s)
 CRY_BINS     := $(wildcard sound/direct_sound_samples/cries/*.bin)
+SPRITE_BINS  := $(wildcard graphics/pokemon/*/*.4bpp graphics/pokemon/*/*.4bpp.lz graphics/pokemon/*/*.1bpp graphics/pokemon/*/*.gbapal graphics/pokemon/*/*.gbapal.lz)
 
 C_OBJECTS    := $(addprefix $(BUILD_DIR)/, $(C_SOURCES:%.c=%.o))
 ASM_OBJECTS  := $(addprefix $(BUILD_DIR)/, $(ASM_SOURCES:%.s=%.o))
@@ -126,6 +127,9 @@ clean: tidy
 
 cleancries: 
 	$(RM) $(CRY_BINS)
+
+cleanmonsprites:
+	$(RM) $(SPRITE_BINS)
 
 tools:
 	@$(MAKE) -C tools/gbagfx

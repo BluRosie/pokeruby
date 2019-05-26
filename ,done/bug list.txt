@@ -28,7 +28,7 @@ POKEMON EXPANSION PROGRESS:
 EVERY SINGLE FILE THAT HAS ANY RELATION TO EXPANDING POKEMON:
 
 already existing things that are broken:
-gender differences
+nothing, actually
 
 src/battle/battle_1.c
 src/data/pokedex_orders.h
