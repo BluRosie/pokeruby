@@ -14,6 +14,7 @@
 #include "pokedex_area_screen.h"
 #include "pokedex_cry_screen.h"
 #include "pokemon.h"
+#include "pokemon_icon.h"
 #include "random.h"
 #include "overworld.h"
 #include "constants/songs.h"
@@ -159,6 +160,8 @@ extern const u8 gUnknown_08E96D2C[];
 extern const u16 gPokedexMenuSearch_Pal[];
 extern const u8 gTypeNames[][7];
 extern const u8 gPokedexMenu2_Gfx[];
+
+extern void SafeLoadMonIconPalette(u16 species);
 
 static EWRAM_DATA struct PokedexView *gPokedexView = NULL;
 static EWRAM_DATA u16 gUnknown_0202FFB8 = 0;
@@ -4385,10 +4388,8 @@ void PrintFootprints(u16 num, u16 b, u16 c)
     u16 r7;
     u8 r3;
 
-    if (NationalPokedexNumToSpecies(num) >= SPECIES_TURTWIG)
-        r12 = gMonFootprint_Rayquaza;
-    else
-        r12 = sMonFootprintTable[NationalPokedexNumToSpecies(num)];
+    r12 = gMonFootprint_Rayquaza;
+
     for (r7 = 0, i = 0; i < 32; i++)
     {
         r3 = r12[i];
@@ -4410,6 +4411,9 @@ void PrintFootprints(u16 num, u16 b, u16 c)
         }
     }
     CpuCopy16(arr, (u16 *)(VRAM + b * 0x4000 + c * 0x20), 0x80);
+
+    SafeLoadMonIconPalette(num);
+    CreateMonIcon(num, sub_809D62C, 208, 68, 3, 0);
 }
 
 static void sub_80917CC(u16 a, u16 b)
