@@ -4,7 +4,6 @@ currently known:
 - animation for sticky barb sticking doesn't work like thief's entirely, currently the animation is commented out
 
 TODO (ordered by priority):
-- fix the broken things
 - fairy type
 - giratina/arceus formes, form(e)s in general
 - daycare effects for destiny knot & power items
@@ -22,13 +21,14 @@ MOVE EXPANSION PROGRESS:
 1/?
 
 POKEMON EXPANSION PROGRESS:
-1/?
+practically done
 
 
 EVERY SINGLE FILE THAT HAS ANY RELATION TO EXPANDING POKEMON:
 
 already existing things that are broken:
-nothing, actually
+meowstic gender differences (moves/hidden abilities)
+tms/hms on new mons
 
 src/battle/battle_1.c
 src/data/pokedex_orders.h

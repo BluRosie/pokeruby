@@ -1,7 +1,7 @@
 # Pokémon Ruby and Sapphire
 
 Pokémon Ruby and Sapphire, but with various edits to show off just what is all super easily done with a decompilation.
-Everything here is public to use, no permission required.
+Everything here is public to use, no permission required.  Only requirement is that the credits are given where credits are due.
 
 Current implemented features:
 * a ton of decapitalization
@@ -19,9 +19,9 @@ Current implemented features:
 
 In Progress:
 * ability expansion (thanks znogyrop and dizzy for ability descriptions)
-* item expansion - maybe item pictures too?
-* move expansion (thanks dizzy)
-* eventually, pokémon expansion (huge thanks to lunos)
+* item expansion - maybe item pictures too? (all battle items in gen iv have been implemented)
+* move expansion (thanks dizzy for the base data for the moves)
+* eventually, pokémon expansion (huge thanks to dizzy & everyone there.  the ds-style 64x64 sprite projects as well)
 
 It builds the following rom:
 
