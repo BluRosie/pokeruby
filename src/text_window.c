@@ -9,14 +9,12 @@
 // Dimensions (in tiles) of a field dialogue frame
 #define STD_DLG_FRAME_LEFT    0
 #define STD_DLG_FRAME_TOP    14
-#define STD_DLG_FRAME_WIDTH  26
-#define STD_DLG_FRAME_HEIGHT  4
+#define STD_DLG_FRAME_WIDTH  28
+#define STD_DLG_FRAME_HEIGHT  5
 
 static void LoadTextWindowTiles(u8, void *);
 static void LoadTextWindowPalette(u8, u8);
 static void DrawStandardFrame(u16 *dest, u16 baseTileNum, u8 left, u8 top, u8 right, u8 bottom);
-static u16 GetDialogueFrameTilemapEntry(u16 tilemapEntry, u8 x, u8 y, u8 width, u8 height);
-static void DrawDialogueFrame(struct Window *win, u8 left, u8 top, u8 width, u8 height);
 
 static u16 sTextWindowBaseTileNum;
 static u16 sDialogueFrameBaseTileNum;
@@ -87,15 +85,6 @@ static const struct FrameGraphics sTextWindowFrameGraphics[20] =
     {gTextWindowFrame18_Gfx, gTextWindowFrame18_Pal},
     {gTextWindowFrame19_Gfx, gTextWindowFrame19_Pal},
     {gTextWindowFrame20_Gfx, gTextWindowFrame20_Pal},
-};
-
-static const u16 sDialogueFrameTilemap[5][7] =
-{
-    {1,      3,      4,      4,      5,      6,      9},
-    {11,     9,      9,      9,      9,      0x040B, 9},
-    {7,      9,      9,      9,      9,      10,     9},
-    {0x080B, 9,      9,      9,      9,      0x0C0B, 9},
-    {0x0801, 0x0803, 0x0804, 0x0804, 0x0805, 0x0806, 9},
 };
 
 u16 TextWindow_SetBaseTileNum(u16 baseTileNum)
@@ -200,67 +189,27 @@ static void DrawStandardFrame(u16 *tilemap, u16 baseTileNum, u8 left, u8 top, u8
 u16 TextWindow_SetDlgFrameBaseTileNum(u16 baseTileNum)
 {
     sDialogueFrameBaseTileNum = baseTileNum;
-    return baseTileNum + 14;
-}
-
-void unref_sub_80651DC(struct Window *win, u8 *text)
-{
-    Text_InitWindow8002EB0(win, text, sDialogueFrameBaseTileNum + 14, 2, 15);
+    return baseTileNum + STD_DLG_FRAME_TOP;
 }
 
 // Loads and draws a dialogue window frame
 void TextWindow_DisplayDialogueFrame(struct Window *win)
 {
-    TextWindow_LoadDialogueFrameTiles(win);
-    TextWindow_DrawDialogueFrame(win);
-}
-
-static u16 GetDialogueFrameTilemapEntry(u16 baseTilemapEntry, u8 x, u8 y, u8 width, u8 height)
-{
-    u16 tilemapEntry = 9;
-
-    if (y >= height)
-        y = y - height + 3;
-    else if (y > 1)
-        y = 2;
-
-    if (x >= width + 2)
-        x = x - (width + 2) + 4;
-    else if (x > 2)
-        x = 3;
-
-    if (x < 7 && y < 5)
-        tilemapEntry = sDialogueFrameTilemap[y][x];
-
-    tilemapEntry += baseTilemapEntry;
-
-    return tilemapEntry;
-}
-
-static void DrawDialogueFrame(struct Window *win, u8 left, u8 top, u8 width, u8 height)
-{
-    u8 x, y;
-    u16 baseTilemapEntry = (win->paletteNum << 12) | sDialogueFrameBaseTileNum;
-    u16 *tilemap = win->template->tilemap;
-
-    for (y = 0; y < height + 2; y++)
-    {
-        for (x = 0; x < width + 6; x++)
-            tilemap[(left + x) + 32 * (top + y)] = (win->paletteNum << 12) | GetDialogueFrameTilemapEntry(baseTilemapEntry, x, y, width, height);
-    }
+    TextWindow_LoadStdFrameGraphics(win);
+    TextWindow_DrawStdFrame(win, STD_DLG_FRAME_LEFT, STD_DLG_FRAME_TOP, STD_DLG_FRAME_LEFT + STD_DLG_FRAME_WIDTH, STD_DLG_FRAME_TOP + STD_DLG_FRAME_HEIGHT);
 }
 
 // Draws an alternate styled frame used for dialogue windows that appear on the overworld
 void TextWindow_DrawDialogueFrame(struct Window *win)
 {
-    DrawDialogueFrame(win, STD_DLG_FRAME_LEFT, STD_DLG_FRAME_TOP, STD_DLG_FRAME_WIDTH, STD_DLG_FRAME_HEIGHT);
+    TextWindow_LoadStdFrameGraphics(win);
+    TextWindow_DrawStdFrame(win, STD_DLG_FRAME_LEFT, STD_DLG_FRAME_TOP, STD_DLG_FRAME_LEFT + STD_DLG_FRAME_WIDTH, STD_DLG_FRAME_TOP + STD_DLG_FRAME_HEIGHT);
 }
 
 // Loads the dialogue window frame tiles into VRAM
 void TextWindow_LoadDialogueFrameTiles(struct Window *win)
 {
-    u8 *tileData = win->template->tileData;
-    CpuFastCopy(gDialogueFrame_Gfx, tileData + 32 * sDialogueFrameBaseTileNum, 14 * TILE_SIZE_4BPP);
+    TextWindow_LoadStdFrameGraphics(win);
 }
 
 // Erases a dialogue window frame
