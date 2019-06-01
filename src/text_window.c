@@ -221,6 +221,6 @@ void TextWindow_EraseDialogueFrame(struct Window *win)
     u16 *tilemap = win->template->tilemap + (STD_DLG_FRAME_TOP * 32);
     u16 tilemapEntry = win->paletteNum << 12;
 
-    for (i = 0; i < ((STD_DLG_FRAME_HEIGHT + 2) * 32); i++)
+    for (i = 0; i < ((STD_DLG_FRAME_HEIGHT + 1) * 32); i++)
         tilemap[i] = tilemapEntry;
 }
