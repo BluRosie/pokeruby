@@ -346,9 +346,9 @@ static const struct Coords8 gUnknown_083768B8[3][8] = {
     {{8,  28}, { 8,  84}, {92,  30}, {92,  54}, {92,  86}, {92, 110}, {196, 136}, {196, 152}}, // PARTY_MENU_LAYOUT_LINK_DOUBLE_BATTLE
 };
 
-static u16 *const gUnknown_08376918[2][PARTY_SIZE] = {
-    {(u16*)(BG_VRAM + 0xF1C6), (u16*)(BG_VRAM + 0xF06C), (u16*)(BG_VRAM + 0xF12C), (u16*)(BG_VRAM + 0xF1EC), (u16*)(BG_VRAM + 0xF2AC), (u16*)(BG_VRAM + 0xF36C)},
-    {(u16*)(BG_VRAM + 0xF148), (u16*)(BG_VRAM + 0xF308), (u16*)(BG_VRAM + 0xF0AE), (u16*)(BG_VRAM + 0xF1AE), (u16*)(BG_VRAM + 0xF2AE), (u16*)(BG_VRAM + 0xF3AE)},
+static const struct Coords8 gDescriptorCoords[2][PARTY_SIZE] = {
+    {{3, 7}, {22,  1}, {22, 4}, {22, 7}, {22, 10}, {22, 13}},
+    {{4, 5}, { 4, 12}, {23, 2}, {23, 6}, {23, 10}, {23, 14}},
 };
 
 static const struct PartyMenuWindowCoords gUnknown_08376948[2][6] = {
@@ -1279,7 +1279,7 @@ void DrawMonDescriptorStatus(u8 monIndex, u8 descriptorOffset)
 {
     u8 i;
     u32 offset;
-    u16 *vramPtr = gUnknown_08376918[IsDoubleBattle()][monIndex];
+    u16 *vramPtr = GetVRAMPointer(gDescriptorCoords[IsDoubleBattle()][monIndex].x, gDescriptorCoords[IsDoubleBattle()][monIndex].y);
     int paletteNum = 0;
 
     for (i = 0; i < 7; i++)
@@ -1594,7 +1594,7 @@ void ChangePartyMenuSelection(u8 taskId, s8 directionPressed)
         if (gSprites[spriteId].data[0] == 0 || gSprites[spriteId].data[0] == 2 || gSprites[spriteId].data[0] == 3)
             sub_806BF24(&gUnknown_083769C0[gSprites[spriteId].data[0] * 2], gSprites[spriteId].data[0], 3, 1);
         if (gSprites[spriteId].data[0] == 1 || gSprites[spriteId].data[0] == 4 || gSprites[spriteId].data[0] == 5)
-                sub_806BF24(&gUnknown_083769C0[gSprites[spriteId].data[0] * 2], gSprites[spriteId].data[0], 4, 1);
+            sub_806BF24(&gUnknown_083769C0[gSprites[spriteId].data[0] * 2], gSprites[spriteId].data[0], 4, 1);
         if (gSprites[spriteId].data[0] == 7)
             sub_806BBEC(2);
 
@@ -3204,7 +3204,7 @@ void PartyMenuPutStatusTilemap(u8 monIndex, u8 menuLayout, u8 status)
     u8 i;
     u8 x = gLvlSymbolCoords[menuLayout][monIndex].x - 1;
     u8 y = gLvlSymbolCoords[menuLayout][monIndex].y + 1;
-    u16 *vramPtr = (u16*)(VRAM + 0xF000) + (x + y * 32);
+    u16 *vramPtr = GetVRAMPointer(x, y);
     u8 var1 = status * 4;
 
     for (i = 0; i < 4; i++)
@@ -3227,14 +3227,14 @@ static void PartyMenuClearLevelStatusTilemap(u8 monIndex)
     x = gLvlSymbolCoords[menuLayout][monIndex].x - 1;
     y = gLvlSymbolCoords[menuLayout][monIndex].y + 1;
 
-    vramPtr = (u16*)(VRAM + 0xF000) + (x + y * 32);
+    vramPtr = GetVRAMPointer(x, y);
     for (i = 0; i < 4; i++)
         vramPtr[i] = 0;
 }
 
 static void PartyMenuWriteTilemap(u8 a, u8 x, u8 y)
 {
-    u16 *vramPtr = (u16*)(VRAM + 0xF000) + (x + y * 32);
+    u16 *vramPtr = GetVRAMPointer(x, y);
     *vramPtr = a + 0x10C;
 }
 
@@ -3372,9 +3372,9 @@ void unref_sub_806E568(void) { }
 void nullsub_12(u8 monIndex, struct Pokemon *pokemon) { }
 void nullsub_13(void) { }
 
-u16 *GetHPBarPointer(s16 x, u16 y)
+u16 *GetVRAMPointer(s16 x, u16 y)
 {
-    return (u16*)(BG_VRAM + (0xF000) + (0x40 * y) + (2 * x));
+    return (u16*)(VRAM + 0xF000) + 32 * y + x;
 }
 
 void PartyMenuDoDrawHPBar(u8 monIndex, u8 menuLayout, u16 currentHP, u16 maxHP)
@@ -3397,7 +3397,7 @@ void PartyMenuDoDrawHPBar(u8 monIndex, u8 menuLayout, u16 currentHP, u16 maxHP)
 
     battleInterface.unk10 = 0x100;
 
-    vramPtr = GetHPBarPointer(gHPBarCoords[menuLayout][monIndex].x, gHPBarCoords[menuLayout][monIndex].y);
+    vramPtr = GetVRAMPointer(gHPBarCoords[menuLayout][monIndex].x, gHPBarCoords[menuLayout][monIndex].y);
     sub_80460C8(&battleInterface, &var, vramPtr, 0); // get the hp bar to scale correctly
 
     vramPtr -= 2;
@@ -4091,7 +4091,7 @@ s16 sub_806F7E8(u8 taskId, struct BattleInterfaceStruct1 *b, s8 c)
         b->unkC_0 = 5;
     if (hpBarLevel < 2)
         b->unkC_0 = 6;
-    vramPtr = GetHPBarPointer(gHPBarCoords[IsDoubleBattle()][ewram1C000.primarySelectedMonIndex].x, gHPBarCoords[IsDoubleBattle()][ewram1C000.primarySelectedMonIndex].y);
+    vramPtr = GetVRAMPointer(gHPBarCoords[IsDoubleBattle()][ewram1C000.primarySelectedMonIndex].x, gHPBarCoords[IsDoubleBattle()][ewram1C000.primarySelectedMonIndex].y);
     return sub_80460C8(b, &ewram1C000.unkC, vramPtr, 0);
 }
 

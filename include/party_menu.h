@@ -163,7 +163,7 @@ void PartyMenuPrintGenderIcon(u8 monIndex, u8 b, struct Pokemon *pokemon);
 void PartyMenuDoPrintHP(u8 monIndex, u8 b, u16 currentHP, u16 maxHP);
 void PartyMenuTryPrintMonsHP(void);
 void nullsub_13(void);
-u16 *GetHPBarPointer(s16 x, u16 y);
+u16 *GetVRAMPointer(s16 x, u16 y);
 void PartyMenuDoDrawHPBar(u8 monIndex, u8 b, u16 currentHP, u16 maxHP);
 void PartyMenuDrawHPBar(u8 monIndex, u8 b, struct Pokemon *pokemon);
 void PartyMenuTryDrawHPBar(u8 monIndex, struct Pokemon *pokemon);
