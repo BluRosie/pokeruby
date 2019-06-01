@@ -131,10 +131,12 @@ const struct FrameGraphics *TextWindow_GetFrameGraphics(u8 frameType)
         return &sTextWindowFrameGraphics[frameType];
 }
 
+#define NUMBER_OF_TILES_TXT_WINDOW 9
+
 static void LoadTextWindowTiles(u8 frameType, void *dest)
 {
     const struct FrameGraphics *frameGraphics = TextWindow_GetFrameGraphics(frameType);
-    CpuFastCopy(frameGraphics->tiles, dest, 9 * TILE_SIZE_4BPP);
+    CpuFastCopy(frameGraphics->tiles, dest, NUMBER_OF_TILES_TXT_WINDOW * TILE_SIZE_4BPP);
 }
 
 static void LoadTextWindowPalette(u8 frameType, u8 palSlot)
