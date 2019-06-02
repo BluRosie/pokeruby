@@ -69,13 +69,15 @@ struct PartyMenuHandlersStruct
 static void nullsub_12(u8 monIndex, struct Pokemon *pokemon);
 static void TryPrintPartyMenuMonNickname(u8 monIndex, struct Pokemon *pokemon);
 static void PartyMenuTryPrintHP(u8 monIndex, struct Pokemon *pokemon);
-static void SwitchWithBigStepTwo(u8 taskId);
+static void SwitchLeftWithLeftStepTwo(u8 taskId);
+static void SwitchRightWithRightStepTwo(u8 taskId);
 static void SwitchStepTwo(u8 taskId);
 static void RedrawMonInfoAfterSwitch(u8 taskId);
 static void sub_806E884(u8 taskId);
 static void sub_8070D90(u8 taskId);
-static void sub_806D5B8(u8 taskId);
-static void SwitchWithBigStepOne(u8 taskId);
+static void EraseWindowsForSwitch(u8 taskId);
+static void SwitchLeftWithLeftStepOne(u8 taskId);
+static void SwitchRightWithRightStepOne(u8 taskId);
 static void SwitchStepOne(u8 taskId);
 static void CB2_InitPartyMenu(void);
 static void ReDrawPartyMonBackgrounds(void);
@@ -308,51 +310,51 @@ static const u8 *const PartyMenuPromptTexts[] = {
 };
 
 static const struct Coords8 gMonIconCoords[8][6] = {
-    {{16, 40}, {104, 18}, {104, 42}, {104, 66}, {104, 90}, {104, 114}}, // PARTY_MENU_TYPE_STANDARD
-    {{16, 24}, { 16, 80}, {104, 18}, {104, 50}, {104, 82}, {104, 114}}, // PARTY_MENU_TYPE_BATTLE
-    {{16, 24}, { 16, 80}, {104, 26}, {104, 50}, {104, 82}, {104, 106}}, // PARTY_MENU_TYPE_CONTEST
-    {{16, 24}, {104, 26}, {104, 50}, { 16, 80}, {104, 82}, {104, 106}}, // PARTY_MENU_TYPE_IN_GAME_TRADE
-    {{ 5,  4}, { 16,  1}, { 16,  4}, { 16,  7}, { 16, 10}, { 16,  13}}, // PARTY_MENU_TYPE_BATTLE_TOWER
-    {{ 5,  2}, {  5,  9}, { 16,  1}, { 16,  5}, { 16,  9}, { 16,  13}}, // PARTY_MENU_TYPE_LINK_MULTI_BATTLE
-    {{ 5,  2}, {  5,  9}, { 16,  2}, { 16,  5}, { 16,  9}, { 16,  12}}, // PARTY_MENU_TYPE_DAYCARE
-    {{ 5,  2}, { 16,  2}, { 16,  5}, {  5,  9}, { 16,  9}, { 16,  12}}, // PARTY_MENU_TYPE_MOVE_TUTOR
+    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
+    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
+    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
+    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
+    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
+    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
+    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
+    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
 };
 
 static const struct Coords8 gLvlSymbolCoords[12][6] = { // everything but hp things is based on this
-    {{6,  5}, {17,  2}, {17,  5}, {17,  8}, {17, 11}, {17, 14}},
-    {{6,  3}, { 6, 10}, {17,  2}, {17,  6}, {17, 10}, {17, 14}},
-    {{6,  3}, { 6, 10}, {17,  3}, {17,  6}, {17, 10}, {17, 13}},
-    {{6,  3}, {17,  3}, {17,  6}, { 6, 10}, {17, 10}, {17, 13}},
-    {{3,  7}, {22,  2}, {22,  5}, {22,  8}, {22, 11}, {22, 14}},
-    {{3,  5}, { 3, 12}, {22,  2}, {22,  6}, {22, 10}, {22, 14}},
-    {{3,  5}, { 3, 12}, {22,  3}, {22,  6}, {22, 10}, {22, 13}},
-    {{3,  5}, {22,  3}, {22,  6}, { 3, 12}, {22, 10}, {22, 13}},
-    {{7,  7}, {26,  2}, {26,  5}, {26,  8}, {26, 11}, {26, 14}},
-    {{7,  5}, { 7, 12}, {26,  2}, {26,  6}, {26, 10}, {26, 14}},
-    {{7,  5}, { 7, 12}, {26,  3}, {26,  6}, {26, 10}, {26, 13}},
-    {{7,  5}, {26,  3}, {26,  6}, { 7, 12}, {26, 10}, {26, 13}},
+    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
 };
 
 static const struct Coords8 gHPBarCoords[4][6] = {
-    {{4, 7}, {23,  2}, {23, 5}, {23,  8}, {23, 11}, {23, 14}},
-    {{4, 5}, { 4, 12}, {23, 2}, {23,  6}, {23, 10}, {23, 14}},
-    {{4, 5}, { 4, 12}, {23, 3}, {23,  6}, {23, 10}, {23, 13}},
-    {{4, 5}, {23,  3}, {23, 6}, { 4, 12}, {23, 10}, {23, 13}},
+    {{7, 3}, {21,  4}, { 7, 8}, {21,  9}, { 7, 13}, {21, 14}},
+    {{7, 3}, {21,  4}, { 7, 8}, {21,  9}, { 7, 13}, {21, 14}},
+    {{7, 3}, {21,  4}, { 7, 8}, {21,  9}, { 7, 13}, {21, 14}},
+    {{7, 3}, {21,  4}, { 7, 8}, {21,  9}, { 7, 13}, {21, 14}},
 };
 
 static const struct Coords8 gUnknown_083768B8[3][8] = {
-    {{8,  44}, {92,  22}, {92,  46}, {92,  70}, {92,  94}, {92, 118}, {196, 136}, {196, 152}}, // PARTY_MENU_LAYOUT_STANDARD
-    {{8,  28}, { 8,  84}, {92,  22}, {92,  54}, {92,  86}, {92, 118}, {196, 136}, {196, 152}}, // PARTY_MENU_LAYOUT_DOUBLE_BATTLE
-    {{8,  28}, { 8,  84}, {92,  30}, {92,  54}, {92,  86}, {92, 110}, {196, 136}, {196, 152}}, // PARTY_MENU_LAYOUT_LINK_DOUBLE_BATTLE
+    {{8,  44}, {92,  22}, {92,  46}, {92,  70}, {92,  94}, {92, 118}, {196, 136}, {196, 152}},
+    {{8,  28}, { 8,  84}, {92,  22}, {92,  54}, {92,  86}, {92, 118}, {196, 136}, {196, 152}},
+    {{8,  28}, { 8,  84}, {92,  30}, {92,  54}, {92,  86}, {92, 110}, {196, 136}, {196, 152}},
 };
 
 static const struct Coords8 gDescriptorCoords[2][PARTY_SIZE] = {
     {{3, 7}, {22,  1}, {22, 4}, {22, 7}, {22, 10}, {22, 13}},
-    {{4, 5}, { 4, 12}, {23, 2}, {23, 6}, {23, 10}, {23, 14}},
+    {{3, 7}, {22,  1}, {22, 4}, {22, 7}, {22, 10}, {22, 13}},
 };
 
 static const struct PartyMenuWindowCoords gUnknown_08376948[2][6] = {
-    {{2, 4, 10, 9}, {16, 1, 29,  3}, {16, 4, 29, 6}, {16, 7, 29, 9}, {16, 10, 29, 12}, {16, 13, 29, 15}},
+    {{1, 0, 14, 4}, {15, 1, 28,  5}, {1, 5, 14, 9}, {15, 6, 28, 10}, {1, 10, 14, 14}, {15, 11, 28, 15}},
     {{2, 2, 10, 7}, { 2, 9, 10, 14}, {16, 1, 29, 3}, {16, 5, 29, 7}, {16,  9, 29, 11}, {16, 13, 29, 15}},
 };
 
@@ -361,40 +363,51 @@ static const struct PartyMenuWindowCoords gUnknown_08376978[2][6] = {
     {{2, 2, 10,  7}, { 2, 9, 10, 14}, {16, 1, 29,  3}, {16, 5, 29, 7}, {16,  9, 29, 11}, {16, 13, 29, 15}},
 };
 
+#define LEFT_COLUMN_X_POS 1
+#define RIGHT_COLUMN_X_POS 15
+
 // This is actually a 2x6x2 array, but the code reads it as a flat array.
 static const u8 gPartyMenuWindowBaseTiles[] = {
-    0, 3,   11, 1,   11, 4,    11, 7,    11, 10,    11, 13,
-    0, 1,    0, 8,   11, 1,    11, 5,    11,  9,    11, 13, // Double battle
+    LEFT_COLUMN_X_POS, 0,   RIGHT_COLUMN_X_POS, 1,    LEFT_COLUMN_X_POS, 5,    RIGHT_COLUMN_X_POS, 6,     LEFT_COLUMN_X_POS, 10,    RIGHT_COLUMN_X_POS, 11,
+    LEFT_COLUMN_X_POS, 0,   RIGHT_COLUMN_X_POS, 1,    LEFT_COLUMN_X_POS, 5,    RIGHT_COLUMN_X_POS, 6,     LEFT_COLUMN_X_POS, 10,    RIGHT_COLUMN_X_POS, 11,
 };
 
 // This is actually a 2x6x2 array, but the code reads it as a flat array.
 //FIXME: sub_806B908() accesses this data via gPartyMenuWindowBaseTiles (directly above this). This means these
 // two arrays might be a struct, rather than separate arrays.
 static const u8 gUnknown_083769C0[] = {
-    0, 1,    0, 8,   11, 2,    11, 5,    11, 9,    11, 12,
-    0, 1,    0, 8,   11, 2,    11, 5,    11, 9,    11, 12, // Double battle
+    LEFT_COLUMN_X_POS, 0,   RIGHT_COLUMN_X_POS, 1,    LEFT_COLUMN_X_POS, 5,    RIGHT_COLUMN_X_POS, 6,     LEFT_COLUMN_X_POS, 10,    RIGHT_COLUMN_X_POS, 11,
+    LEFT_COLUMN_X_POS, 0,   RIGHT_COLUMN_X_POS, 1,    LEFT_COLUMN_X_POS, 5,    RIGHT_COLUMN_X_POS, 6,     LEFT_COLUMN_X_POS, 10,    RIGHT_COLUMN_X_POS, 11,
 };
+
+#define WIDTH_BIG_WINDOW 14
+#define HEIGHT_BIG_WINDOW 5
 
 static const u8 gBigMonWindowLayout[] = {
-    0x24,0x25,0x25,0x25,0x25,0x25,0x25,0x25,0x25,0x25,0x27,
-    0x34,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x37,
-    0x34,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x37,
-    0x34,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x37,
-    0x44,0x45,0x45,0x45,0x45,0x45,0x45,0x45,0x45,0x45,0x47,
-    0x44,0x45,0x45,0x45,0x45,0x45,0x45,0x45,0x45,0x45,0x47,
-    0x54,0x55,0x55,0x55,0x55,0x55,0x55,0x55,0x55,0x55,0x57,
+    0x24,0x25,0x25,0x25,0x25,0x25,0x25,0x25,0x25,0x25,0x25,0x25,0x25,0x27,
+    0x34,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x37,
+    0x34,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x35,0x37,
+    0x44,0x45,0x45,0x45,0x45,0x45,0x45,0x45,0x45,0x45,0x45,0x45,0x45,0x47,
+    0x54,0x55,0x55,0x55,0x55,0x55,0x55,0x55,0x55,0x55,0x55,0x55,0x55,0x57,
 };
 
+#define WIDTH_SMALL_WINDOW 14
+#define HEIGHT_SMALL_WINDOW 5
+
 static const u8 gFilledSlotLayout[] = {
-    0x50,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x53,
-    0x60,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x63,
-    0x70,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x73,
+    0x50,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x51,0x53,
+    0x60,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x63,
+    0x60,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x63,
+    0x60,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x61,0x63,
+    0x70,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x71,0x73,
 };
 
 static const u8 gEmptySlotLayout[] = {
-    0x20,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x23,
-    0x30,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x33,
-    0x40,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x43,
+    0x20,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x21,0x23,
+    0x30,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x33,
+    0x30,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x33,
+    0x30,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x31,0x33,
+    0x40,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x41,0x43,
 };
 
 static const u8 gUnusedData_08376A97[] = {
@@ -439,13 +452,13 @@ static const u16 PartyMonOAMSettings_LeftColumn[] = {
 };
 
 static const u16 PartyMonOAMSettings_RightColumn[] = {
-    PartyMonOAMSettings( 24,  0, 15, ST_OAM_H_RECTANGLE, 1, 1,  0),
-    PartyMonOAMSettings( 56,  0, 15, ST_OAM_H_RECTANGLE, 1, 1,  4),
-    PartyMonOAMSettings( 24,  8, 15, ST_OAM_H_RECTANGLE, 1, 1,  8),
-    PartyMonOAMSettings( 56,  8, 15, ST_OAM_H_RECTANGLE, 1, 1, 12),
-    PartyMonOAMSettings( 32, 16, 15, ST_OAM_H_RECTANGLE, 1, 1, 16),
-    PartyMonOAMSettings(101, 16, 15, ST_OAM_H_RECTANGLE, 1, 1, 24),
-    PartyMonOAMSettings(133, 16, 15, ST_OAM_H_RECTANGLE, 1, 1, 28),
+    PartyMonOAMSettings( 0,  0, 15, ST_OAM_H_RECTANGLE, 1, 1,  0), // no idea
+    PartyMonOAMSettings( 0,  0, 15, ST_OAM_H_RECTANGLE, 1, 1,  4), // no idea
+    PartyMonOAMSettings(24,  8, 15, ST_OAM_H_RECTANGLE, 1, 1,  8), // name part 1
+    PartyMonOAMSettings(56,  8, 15, ST_OAM_H_RECTANGLE, 1, 1, 12), // name part 2
+    PartyMonOAMSettings( 0, 24, 15, ST_OAM_H_RECTANGLE, 1, 1, 16), // level
+    PartyMonOAMSettings(44, 24, 15, ST_OAM_H_RECTANGLE, 1, 1, 24), // hp
+    PartyMonOAMSettings( 0,  0, 15, ST_OAM_H_RECTANGLE, 1, 1, 28), // no idea
     0xFFFF,
 };
 
@@ -453,12 +466,12 @@ static const u16 PartyMonOAMSettings_RightColumn[] = {
 static struct PartyMonTextSettingsStruct const PartyMonTextSettings[4][6] =
 {
     { // PARTY_MENU_LAYOUT_STANDARD
-        { 1,  4, PartyMonOAMSettings_LeftColumn},
-        {12,  1, PartyMonOAMSettings_RightColumn},
-        {12,  4, PartyMonOAMSettings_RightColumn},
-        {12,  7, PartyMonOAMSettings_RightColumn},
-        {12, 10, PartyMonOAMSettings_RightColumn},
-        {12, 13, PartyMonOAMSettings_RightColumn},
+        { 2,  1, PartyMonOAMSettings_RightColumn},
+        {16,  2, PartyMonOAMSettings_RightColumn},
+        { 2,  6, PartyMonOAMSettings_RightColumn},
+        {16,  7, PartyMonOAMSettings_RightColumn},
+        { 2, 11, PartyMonOAMSettings_RightColumn},
+        {16, 12, PartyMonOAMSettings_RightColumn},
     },
     { // PARTY_MENU_LAYOUT_DOUBLE_BATTLE
         { 1,  2, PartyMonOAMSettings_LeftColumn},
@@ -1137,9 +1150,6 @@ _0806B9A0: .4byte 0x00000261\n\
 }
 #endif // NONMATCHING
 
-#define WIDTH_BIG_WINDOW 11
-#define HEIGHT_BIG_WINDOW 7
-
 void DrawBigMonWindow(s16 x, u16 y, u8 c)
 {
     u8 row;
@@ -1180,9 +1190,6 @@ void ClearBigMonWindow(s16 x, u16 y)
     }
 }
 
-#define WIDTH_SMALL_WINDOW 19
-#define HEIGHT_SMALL_WINDOW 3
-
 void DrawSmallMonWindow(s16 x, u16 y, u8 isMonNotThere, u8 d)
 {
     u8 row;
@@ -1214,8 +1221,6 @@ void DrawSmallMonWindow(s16 x, u16 y, u8 isMonNotThere, u8 d)
         }
     }
 }
-
-// 256y + 8x
 
 void ClearSmallMonWindow(s16 x, u16 y)
 {
@@ -1552,12 +1557,12 @@ u16 HandleBattleTowerPartyMenuInput(u8 taskId)
     return gMain.newKeys & (A_BUTTON | B_BUTTON);
 }
 
-void task_pc_turn_off(const u8 *a, u8 b)
+void DrawMonWindows(const u8 *coords, u8 b)
 {
-    if (a[0])
-        DrawSmallMonWindow(a[0], a[1], 0, b);
+    if (coords[0]) // if x is not zero
+        DrawSmallMonWindow(coords[0], coords[1], 0, b);
     else
-        DrawBigMonWindow(a[0], a[1], b);
+        DrawBigMonWindow(coords[0], coords[1], b);
 }
 
 void sub_806BF24(const u8 *a, u8 monIndex, u8 c, u8 d)
@@ -1568,7 +1573,7 @@ void sub_806BF24(const u8 *a, u8 monIndex, u8 c, u8 d)
     if (d == 1)
         c += 4;
 
-    task_pc_turn_off(a, c);
+    DrawMonWindows(a, c);
 }
 
 void ChangePartyMenuSelection(u8 taskId, s8 directionPressed)
@@ -1636,61 +1641,91 @@ void ChangePartyMenuSelection(u8 taskId, s8 directionPressed)
 
 void ChangeDefaultPartyMenuSelection(u8 spriteId, u8 menuIndex, s8 directionPressed)
 {
-    u8 nextIndex;
     s8 menuMovement = directionPressed + 2;
 
     switch (menuMovement)
     {
     case 2: // no movement
-        gSprites[spriteId].data[1] = 0;
+        gSprites[spriteId].data[1] = menuIndex % 2; // store column
         break;
     case 1: // moving up
-        if (menuIndex == 0)
+        switch (menuIndex)
         {
-            gSprites[spriteId].data[0] = 7;
+            case 0:
+            case 1: // move to cancel from top
+                gSprites[spriteId].data[0] = 7;
+                break;
+            case 7: // move to the last one in each column
+                if (gPlayerPartyCount > 1) // if more than one mon in party
+                {
+                    if (gSprites[spriteId].data[1]) // if stored column is right column
+                        if ((gPlayerPartyCount - 1) % 2) // if last mon in right column
+                            gSprites[spriteId].data[0] = gPlayerPartyCount - 1;
+                        else
+                            gSprites[spriteId].data[0] = gPlayerPartyCount - 2;
+                    else                            // if stored column is left column
+                        if ((gPlayerPartyCount - 1) % 2) // if last mon in right column
+                            gSprites[spriteId].data[0] = gPlayerPartyCount - 2;
+                        else
+                            gSprites[spriteId].data[0] = gPlayerPartyCount - 1;
+                }
+                else
+                    gSprites[spriteId].data[0] = 0;
+                break;
+            default:
+                gSprites[spriteId].data[0] = menuIndex - 2;
+                break;
         }
-        else if (menuIndex == 7)
-        {
-            gSprites[spriteId].data[0] = gPlayerPartyCount - 1;
-        }
-        else
-        {
-            s8 diff = directionPressed;
-            gSprites[spriteId].data[0] += diff;
-        }
-        gSprites[spriteId].data[1] = 0;
         break;
     case 3: // moving down
-        if (menuIndex == gPlayerPartyCount - 1)
+        switch (menuIndex)
         {
-            gSprites[spriteId].data[0] = 7;
+            case 7:
+                if (gPlayerPartyCount > 1 && gSprites[spriteId].data[1]) // if more than one mon in party & stored column is right column
+                    gSprites[spriteId].data[0] = 1;
+                else
+                    gSprites[spriteId].data[0] = 0;
+                break;
+            default:
+                if ((menuIndex >= gPlayerPartyCount - 2)) // is higher than the second to last mon
+                    gSprites[spriteId].data[0] = 7;
+                else
+                    gSprites[spriteId].data[0] = menuIndex + 2;
+                break;
         }
-        else if (menuIndex == 7)
-        {
-            gSprites[spriteId].data[0] = 0;
-        }
-        else
-        {
-            s8 diff = directionPressed;
-            gSprites[spriteId].data[0] += diff;
-        }
-        gSprites[spriteId].data[1] = 0;
         break;
     case 4: // moving right
-        if (gPlayerPartyCount > 1 && menuIndex == 0)
+        switch (menuIndex)
         {
-            if (gSprites[spriteId].data[1] == 0)
-                gSprites[spriteId].data[1] = 1;
-            gSprites[spriteId].data[0] = gSprites[spriteId].data[1];
+            case 7:
+                gSprites[spriteId].data[0] = 7;
+                break;
+            default:
+                if (menuIndex == gPlayerPartyCount - 1 && !(menuIndex % 2)) // if last mon & in left column
+                    gSprites[spriteId].data[0] = menuIndex;
+                else if (menuIndex % 2)
+                    gSprites[spriteId].data[0] = menuIndex - 1;
+                else
+                    gSprites[spriteId].data[0] = menuIndex + 1;
+                gSprites[spriteId].data[1] = gSprites[spriteId].data[0] % 2; // store column
+                break;
         }
         break;
     case 0: // moving left
-        // Only move the selection to the left side if one of the mons in the right-hand column are currently selected
-        nextIndex = menuIndex - 1;
-        if (nextIndex <= 4)
+        switch (menuIndex)
         {
-            gSprites[spriteId].data[0] = 0;
-            gSprites[spriteId].data[1] = menuIndex;
+            case 7:
+                gSprites[spriteId].data[0] = 7;
+                break;
+            default:
+                if (menuIndex == gPlayerPartyCount - 1 && !(menuIndex % 2))
+                    gSprites[spriteId].data[0] = menuIndex;
+                else if (menuIndex % 2)
+                    gSprites[spriteId].data[0] = menuIndex - 1;
+                else
+                    gSprites[spriteId].data[0] = menuIndex + 1;
+                gSprites[spriteId].data[1] = gSprites[spriteId].data[0] % 2; // store column
+                break;
         }
         break;
     }
@@ -1698,502 +1733,19 @@ void ChangeDefaultPartyMenuSelection(u8 spriteId, u8 menuIndex, s8 directionPres
 
 void ChangeDoubleBattlePartyMenuSelection(u8 spriteId, u8 menuIndex, s8 directionPressed)
 {
-    u8 var1;
-    s8 menuMovement = directionPressed + 2;
-
-    switch(menuMovement)
-    {
-    case 2: // no movement
-        gSprites[spriteId].data[1] = 0;
-        break;
-    case 3: // moving down
-        if (menuIndex == 7)
-        {
-            gSprites[spriteId].data[0] = 0;
-        }
-        else if (menuIndex == gPlayerPartyCount - 1)
-        {
-            gSprites[spriteId].data[0] = 7;
-        }
-        else
-        {
-            s8 diff = directionPressed;
-            gSprites[spriteId].data[0] += diff;
-        }
-        gSprites[spriteId].data[1] = 0;
-        break;
-    case 1: // moving up
-        if (menuIndex == 0)
-        {
-            gSprites[spriteId].data[0] = 7;
-        }
-        else if (menuIndex == 7)
-        {
-            gSprites[spriteId].data[0] = gPlayerPartyCount - 1;
-        }
-        else
-        {
-            s8 diff = directionPressed;
-            gSprites[spriteId].data[0] += diff;
-        }
-        gSprites[spriteId].data[1] = 0;
-        break;
-    case 4: // moving right
-        if (menuIndex == 0)
-        {
-            if (gPlayerPartyCount > 2)
-            {
-                u16 var1 = gSprites[spriteId].data[1] - 2;
-                if (var1 > 1)
-                    gSprites[spriteId].data[0] = 2;
-                else
-                    gSprites[spriteId].data[0] = gSprites[spriteId].data[1];
-            }
-        }
-        else if (menuIndex == 1)
-        {
-            if (gPlayerPartyCount > 4)
-            {
-                u16 var1 = gSprites[spriteId].data[1] - 4;
-                if (var1 <= 1)
-                    gSprites[spriteId].data[0] = gSprites[spriteId].data[1];
-                else
-                    gSprites[spriteId].data[0] = 4;
-            }
-        }
-        break;
-    case 0: // moving left
-        var1 = menuIndex - 2;
-        if (var1 <= 1)
-        {
-            gSprites[spriteId].data[0] = 0;
-            gSprites[spriteId].data[1] = menuIndex;
-        }
-        else
-        {
-            u8 var2 = menuIndex - 4;
-            if (var2 <= 1)
-            {
-                gSprites[spriteId].data[0] = 1;
-                gSprites[spriteId].data[1] = menuIndex;
-            }
-        }
-        break;
-    }
+    ChangeDefaultPartyMenuSelection(spriteId, menuIndex, directionPressed);
 }
 
-// too many registers allocated, the function takes 0x4c more bytes
-#ifdef NONMATCHING
 void ChangeLinkDoubleBattlePartyMenuSelection(u8 spriteId, u8 menuIndex, s8 directionPressed)
 {
-    s8 menuMovement;
-    u16 var1;
-    u8 var2;
-
-    menuMovement = directionPressed + 2;
-    switch (menuMovement)
-    {
-        case 2: // no movement
-            gSprites[spriteId].data[1] = 0;
-            break;
-        case 3: // moving down
-            if (menuIndex == 7) {
-                gSprites[spriteId].data[0] = 0;
-            } else {
-                while (menuIndex != PARTY_SIZE - 1) {
-                    menuIndex++;
-                    if (GetMonData(&gPlayerParty[menuIndex], MON_DATA_SPECIES))
-                    {
-                        gSprites[spriteId].data[0] = menuIndex;
-                        gSprites[spriteId].data[1] = 0;
-                        return;
-                    }
-                }
-    
-                gSprites[spriteId].data[0] = 7;
-            }
-    
-            gSprites[spriteId].data[1] = 0;
-            break;
-        case 1: // moving up
-            while (menuIndex != 0) {
-                menuIndex--;
-                if (menuIndex != PARTY_SIZE && GetMonData(gPlayerParty[menuIndex], MON_DATA_SPECIES))
-                {
-                    gSprites[spriteId].data[0] = menuIndex;
-                    gSprites[spriteId].data[1] = 0;
-                    return;
-                }
-            }
-    
-            gSprites[spriteId].data[0] = 7;
-            gSprites[spriteId].data[1] = 0;
-            break;
-        case 4: // moving right
-            if (menuIndex == 0) {
-                var1 = gSprites[spriteId].data[1] - 2;
-                if (var1 > 1) {
-                    if (GetMonData(&gPlayerParty[2], MON_DATA_SPECIES)) {
-                        gSprites[spriteId].data[0] = 2;
-                    } else if (GetMonData(&gPlayerParty[3], MON_DATA_SPECIES)) {
-                        gSprites[spriteId].data[0] = 3;
-                    }
-                } else {
-                    gSprites[spriteId].data[0] = 1;
-                }
-            } else if (menuIndex == 1) {
-                var1 = gSprites[spriteId].data[1] - 4;
-                if (var1 <= 1) {
-                    gSprites[spriteId].data[0] = gSprites[spriteId].data[1];
-                } else {
-                    if (GetMonData(&gPlayerParty[4], MON_DATA_SPECIES)) {
-                        gSprites[spriteId].data[0] = 4;
-                    } else if (GetMonData(&gPlayerParty[5], MON_DATA_SPECIES)) {
-                        gSprites[spriteId].data[0] = 5;
-                    }
-                }
-            }
-            break;
-        case 0: // moving left
-            var2 = menuIndex - 2;
-            if (var2 <= 1) {
-                gSprites[spriteId].data[0] = 0;
-                gSprites[spriteId].data[1] = menuIndex;
-            } else {
-                var2 = menuIndex - 4;
-                if (var2 <= 1) {
-                    gSprites[spriteId].data[0] = 1;
-                    gSprites[spriteId].data[1] = menuIndex;
-                }
-            }
-    
-            break;
-    }
+    ChangeDefaultPartyMenuSelection(spriteId, menuIndex, directionPressed);   
 }
-
-#else
-NAKED
-void ChangeLinkDoubleBattlePartyMenuSelection(u8 spriteId, u8 menuIndex, s8 directionPressed)
-{
-    asm(".syntax unified\n\
-    push {r4-r6,lr}\n\
-    lsls r0, 24\n\
-    lsrs r5, r0, 24\n\
-    lsls r1, 24\n\
-    lsrs r4, r1, 24\n\
-    lsls r2, 24\n\
-    movs r0, 0x80\n\
-    lsls r0, 18\n\
-    adds r2, r0\n\
-    asrs r0, r2, 24\n\
-    cmp r0, 0x4\n\
-    bls _0806C4AA\n\
-    b _0806C64E\n\
-_0806C4AA:\n\
-    lsls r0, 2\n\
-    ldr r1, _0806C4B4 @ =_0806C4B8\n\
-    adds r0, r1\n\
-    ldr r0, [r0]\n\
-    mov pc, r0\n\
-    .align 2, 0\n\
-_0806C4B4: .4byte _0806C4B8\n\
-    .align 2, 0\n\
-_0806C4B8:\n\
-    .4byte _0806C618\n\
-    .4byte _0806C524\n\
-    .4byte _0806C4CC\n\
-    .4byte _0806C4E0\n\
-    .4byte _0806C57C\n\
-_0806C4CC:\n\
-    ldr r0, _0806C4DC @ =gSprites\n\
-    lsls r1, r5, 4\n\
-    adds r1, r5\n\
-    lsls r1, 2\n\
-    adds r1, r0\n\
-    movs r0, 0\n\
-    strh r0, [r1, 0x30]\n\
-    b _0806C64E\n\
-    .align 2, 0\n\
-_0806C4DC: .4byte gSprites\n\
-_0806C4E0:\n\
-    cmp r4, 0x7\n\
-    bne _0806C4FC\n\
-    ldr r2, _0806C4F8 @ =gSprites\n\
-    lsls r3, r5, 4\n\
-    adds r0, r3, r5\n\
-    lsls r0, 2\n\
-    adds r0, r2\n\
-    movs r1, 0\n\
-    strh r1, [r0, 0x2E]\n\
-    adds r1, r2, 0\n\
-    adds r6, r3, 0\n\
-    b _0806C566\n\
-    .align 2, 0\n\
-_0806C4F8: .4byte gSprites\n\
-_0806C4FC:\n\
-    lsls r6, r5, 4\n\
-    b _0806C518\n\
-_0806C500:\n\
-    adds r0, r4, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r4, r0, 24\n\
-    movs r0, 0x64\n\
-    muls r0, r4\n\
-    ldr r1, _0806C520 @ =gPlayerParty\n\
-    adds r0, r1\n\
-    movs r1, 0xB\n\
-    bl GetMonData\n\
-    cmp r0, 0\n\
-    bne _0806C528\n\
-_0806C518:\n\
-    cmp r4, 0x5\n\
-    bne _0806C500\n\
-    b _0806C558\n\
-    .align 2, 0\n\
-_0806C520: .4byte gPlayerParty\n\
-_0806C524:\n\
-    lsls r6, r5, 4\n\
-    b _0806C554\n\
-_0806C528:\n\
-    ldr r1, _0806C534 @ =gSprites\n\
-    adds r0, r6, r5\n\
-    lsls r0, 2\n\
-    adds r0, r1\n\
-    strh r4, [r0, 0x2E]\n\
-    b _0806C566\n\
-    .align 2, 0\n\
-_0806C534: .4byte gSprites\n\
-_0806C538:\n\
-    subs r0, r4, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r4, r0, 24\n\
-    cmp r4, 0x6\n\
-    beq _0806C554\n\
-    movs r0, 0x64\n\
-    muls r0, r4\n\
-    ldr r1, _0806C574 @ =gPlayerParty\n\
-    adds r0, r1\n\
-    movs r1, 0xB\n\
-    bl GetMonData\n\
-    cmp r0, 0\n\
-    bne _0806C528\n\
-_0806C554:\n\
-    cmp r4, 0\n\
-    bne _0806C538\n\
-_0806C558:\n\
-    ldr r0, _0806C578 @ =gSprites\n\
-    adds r1, r6, r5\n\
-    lsls r1, 2\n\
-    adds r1, r0\n\
-    movs r2, 0x7\n\
-    strh r2, [r1, 0x2E]\n\
-    adds r1, r0, 0\n\
-_0806C566:\n\
-    adds r0, r6, r5\n\
-    lsls r0, 2\n\
-    adds r0, r1\n\
-    movs r1, 0\n\
-    strh r1, [r0, 0x30]\n\
-    b _0806C64E\n\
-    .align 2, 0\n\
-_0806C574: .4byte gPlayerParty\n\
-_0806C578: .4byte gSprites\n\
-_0806C57C:\n\
-    cmp r4, 0\n\
-    bne _0806C5C8\n\
-    ldr r0, _0806C5AC @ =gSprites\n\
-    lsls r1, r5, 4\n\
-    adds r1, r5\n\
-    lsls r1, 2\n\
-    adds r4, r1, r0\n\
-    ldrh r1, [r4, 0x30]\n\
-    subs r0, r1, 0x2\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    cmp r0, 0x1\n\
-    bls _0806C5E2\n\
-    ldr r5, _0806C5B0 @ =gPlayerParty + 2 * 0x64\n\
-    adds r0, r5, 0\n\
-    movs r1, 0xB\n\
-    bl GetMonData\n\
-    cmp r0, 0\n\
-    beq _0806C5B4\n\
-    movs r0, 0x2\n\
-    strh r0, [r4, 0x2E]\n\
-    b _0806C64E\n\
-    .align 2, 0\n\
-_0806C5AC: .4byte gSprites\n\
-_0806C5B0: .4byte gPlayerParty + 2 * 0x64\n\
-_0806C5B4:\n\
-    adds r0, r5, 0\n\
-    adds r0, 0x64\n\
-    movs r1, 0xB\n\
-    bl GetMonData\n\
-    cmp r0, 0\n\
-    beq _0806C64E\n\
-    movs r0, 0x3\n\
-    strh r0, [r4, 0x2E]\n\
-    b _0806C64E\n\
-_0806C5C8:\n\
-    cmp r4, 0x1\n\
-    bne _0806C64E\n\
-    ldr r0, _0806C5E8 @ =gSprites\n\
-    lsls r1, r5, 4\n\
-    adds r1, r5\n\
-    lsls r1, 2\n\
-    adds r4, r1, r0\n\
-    ldrh r1, [r4, 0x30]\n\
-    subs r0, r1, 0x4\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    cmp r0, 0x1\n\
-    bhi _0806C5EC\n\
-_0806C5E2:\n\
-    strh r1, [r4, 0x2E]\n\
-    b _0806C64E\n\
-    .align 2, 0\n\
-_0806C5E8: .4byte gSprites\n\
-_0806C5EC:\n\
-    ldr r5, _0806C600 @ =gPlayerParty + 4 * 0x64\n\
-    adds r0, r5, 0\n\
-    movs r1, 0xB\n\
-    bl GetMonData\n\
-    cmp r0, 0\n\
-    beq _0806C604\n\
-    movs r0, 0x4\n\
-    strh r0, [r4, 0x2E]\n\
-    b _0806C64E\n\
-    .align 2, 0\n\
-_0806C600: .4byte gPlayerParty + 4 * 0x64\n\
-_0806C604:\n\
-    adds r0, r5, 0\n\
-    adds r0, 0x64\n\
-    movs r1, 0xB\n\
-    bl GetMonData\n\
-    cmp r0, 0\n\
-    beq _0806C64E\n\
-    movs r0, 0x5\n\
-    strh r0, [r4, 0x2E]\n\
-    b _0806C64E\n\
-_0806C618:\n\
-    subs r0, r4, 0x2\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    cmp r0, 0x1\n\
-    bhi _0806C634\n\
-    ldr r0, _0806C630 @ =gSprites\n\
-    lsls r1, r5, 4\n\
-    adds r1, r5\n\
-    lsls r1, 2\n\
-    adds r1, r0\n\
-    movs r0, 0\n\
-    b _0806C64A\n\
-    .align 2, 0\n\
-_0806C630: .4byte gSprites\n\
-_0806C634:\n\
-    subs r0, r4, 0x4\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    cmp r0, 0x1\n\
-    bhi _0806C64E\n\
-    ldr r0, _0806C654 @ =gSprites\n\
-    lsls r1, r5, 4\n\
-    adds r1, r5\n\
-    lsls r1, 2\n\
-    adds r1, r0\n\
-    movs r0, 0x1\n\
-_0806C64A:\n\
-    strh r0, [r1, 0x2E]\n\
-    strh r4, [r1, 0x30]\n\
-_0806C64E:\n\
-    pop {r4-r6}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_0806C654: .4byte gSprites\n\
-    .syntax divided\n");
-}
-#endif // NONMATCHING
 
 void ChangeBattleTowerPartyMenuSelection(u8 taskId, s8 directionPressed)
 {
-    u16 newMenuIndex;
-    u8 newMenuIndex2;
-    u8 newMenuIndex3;
-    s8 menuMovement;
     u8 spriteId = sub_806CA00(taskId);
     u8 menuIndex = gSprites[spriteId].data[0];
-
-    UpdateMonIconFrame_806DA44(taskId, menuIndex, 0);
-
-    if (menuIndex < PARTY_SIZE)
-        sub_806BF24(&gPartyMenuWindowBaseTiles[menuIndex * 2], menuIndex, 3, 0);
-    else if (menuIndex == PARTY_SIZE)
-        sub_806BB9C(1);
-    else
-        sub_806BBEC(1);
-
-    menuMovement = directionPressed + 2;
-    switch (menuMovement)
-    {
-    case 2: // no movement
-        gSprites[spriteId].data[1] = 0;
-        break;
-    case 1: // moving up
-        if (menuIndex == 0)
-            gSprites[spriteId].data[0] = 7;
-        else if (menuIndex == PARTY_SIZE)
-            gSprites[spriteId].data[0] = gPlayerPartyCount - 1;
-        else
-            gSprites[spriteId].data[0] += directionPressed;
-        gSprites[spriteId].data[1] = 0;
-        break;
-    case 3: // moving down
-        if (menuIndex == gPlayerPartyCount - 1)
-            gSprites[spriteId].data[0] = 6;
-        else if (menuIndex == 7)
-            gSprites[spriteId].data[0] = 0;
-        else
-            gSprites[spriteId].data[0] += directionPressed;
-        gSprites[spriteId].data[1] = 0;
-        break;
-    case 4: // moving right
-        if (gPlayerPartyCount > 1 && menuIndex == 0)
-        {
-            if (gSprites[spriteId].data[1] == 0)
-                gSprites[spriteId].data[1] = 1;
-            gSprites[spriteId].data[0] = gSprites[spriteId].data[1];
-        }
-        break;
-    case 0: // moving left
-        newMenuIndex3 = menuIndex - 1;
-        if (newMenuIndex3 <= 4)
-        {
-            gSprites[spriteId].data[0] = 0;
-            gSprites[spriteId].data[1] = menuIndex;
-        }
-        break;
-    }
-    
-    gSprites[spriteId].pos1.x = gUnknown_083768B8[PARTY_MENU_LAYOUT_STANDARD][gSprites[spriteId].data[0]].x;
-    gSprites[spriteId].pos1.y = gUnknown_083768B8[PARTY_MENU_LAYOUT_STANDARD][gSprites[spriteId].data[0]].y;
-
-
-    newMenuIndex = gSprites[spriteId].data[0];
-    if (gSprites[spriteId].data[0] < PARTY_SIZE)
-        sub_806BF24(&gPartyMenuWindowBaseTiles[gSprites[spriteId].data[0] * 2], newMenuIndex, 3, 1);
-    else if (gSprites[spriteId].data[0] == PARTY_SIZE)
-        sub_806BB9C(2);
-    else
-        sub_806BBEC(2);
-
-    ewram1B000.unk261 = 2;
-
-    newMenuIndex2 = gSprites[spriteId].data[0];
-    UpdateMonIconFrame_806DA44(taskId, newMenuIndex2, 1);
-
-    if (menuIndex != gSprites[spriteId].data[0])
-        PlaySE(SE_SELECT);
+    ChangeDefaultPartyMenuSelection(spriteId, menuIndex, directionPressed);
 }
 
 // Selects the "OK" button in the Battle Tower party menu.
@@ -2388,7 +1940,7 @@ void sub_806CD44(u8 taskId)
     sub_806CC2C(taskId);
 }
 
-void sub_806CD5C(u8 taskId)
+void SwitchMons(u8 taskId)
 {
     u8 monIndex1 = gSprites[ewram01000.unk1].data[0];
     u8 monIndex2 = gSprites[ewram01000.unk2].data[0];
@@ -2399,12 +1951,10 @@ void sub_806CD5C(u8 taskId)
     }
     else
     {
-        u8 var1;
+        EraseWindowsForSwitch(monIndex1);
+        EraseWindowsForSwitch(monIndex2);
 
-        sub_806D5B8(monIndex1);
-        sub_806D5B8(monIndex2);
-
-        if (monIndex1 > monIndex2)
+        if (!(monIndex2 % 2)) // switchIndexOne will always be left column
         {
             ewram01000.switchIndexOne = monIndex2;
             ewram01000.switchIndexTwo = monIndex1;
@@ -2418,32 +1968,45 @@ void sub_806CD5C(u8 taskId)
         ewram01000.unk3 = GetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexOne);
         ewram01000.unk4 = GetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexTwo);
 
-        var1 = ewram01000.switchIndexOne;
-        if (!var1)
+        if (!(ewram01000.switchIndexOne % 2) && !(ewram01000.switchIndexTwo % 2)) // switch left with left
         {
             gSprites[ewram01000.unk3].data[0] = -8;
             gSprites[ewram01000.unk3].data[2] = -0xA8;
-            ewram01000.xForSwitchOne = var1;
-            ewram01000.xForSwitchTwo = 11;
+            gSprites[ewram01000.unk4].data[0] = -8;
+            gSprites[ewram01000.unk4].data[2] = -0xA8;
 
-            gTasks[taskId].func = SwitchWithBigStepOne;
+            ewram01000.xForSwitchOne = LEFT_COLUMN_X_POS;
+            ewram01000.xForSwitchTwo = LEFT_COLUMN_X_POS;
+
+            gTasks[taskId].func = SwitchLeftWithLeftStepOne;
+            ewram1B000.unk261 = 1;
+        }
+        else if (ewram01000.switchIndexOne % 2 && ewram01000.switchIndexTwo % 2) // switch right with right
+        {
+            gSprites[ewram01000.unk3].data[0] = 8;
+            gSprites[ewram01000.unk3].data[2] = 0xA8;
+            gSprites[ewram01000.unk4].data[0] = 8;
+            gSprites[ewram01000.unk4].data[2] = 0xA8;
+            ewram01000.xForSwitchOne = RIGHT_COLUMN_X_POS;
+            ewram01000.xForSwitchTwo = RIGHT_COLUMN_X_POS;
+
+            gTasks[taskId].func = SwitchRightWithRightStepOne;
             ewram1B000.unk261 = 1;
         }
         else
         {
-            gSprites[ewram01000.unk3].data[0] = 8;
-            gSprites[ewram01000.unk3].data[2] = 0xA8;
-            ewram01000.xForSwitchOne = 11;
-            ewram01000.xForSwitchTwo = 11;
+            gSprites[ewram01000.unk3].data[0] = -8;
+            gSprites[ewram01000.unk3].data[2] = -0xA8;
+            gSprites[ewram01000.unk4].data[0] = 8;
+            gSprites[ewram01000.unk4].data[2] = 0xA8;
+            ewram01000.xForSwitchOne = LEFT_COLUMN_X_POS;
+            ewram01000.xForSwitchTwo = RIGHT_COLUMN_X_POS;
 
             gTasks[taskId].func = SwitchStepOne;
             ewram1B000.unk261 = 1;
         }
 
         gSprites[ewram01000.unk3].callback = SpriteCB_sub_806D37C;
-
-        gSprites[ewram01000.unk4].data[0] = 8;
-        gSprites[ewram01000.unk4].data[2] = 0xA8;
         gSprites[ewram01000.unk4].callback = SpriteCB_sub_806D37C;
 
         gSprites[ewram01000.unk3].callback(&gSprites[ewram01000.unk3]);
@@ -2469,51 +2032,54 @@ void SwapSpriteIconsMidSwitch(void)
     gSprites[ewram01000.unk4].callback = SpriteCB_sub_806D37C;
 }
 
-void SwitchWithBigMonWindowGfxUpdate(u8 taskId, u8 step)
+void SwitchLeftWithLeftWindowGfxUpdate(u8 taskId, u8 step)
 {
-    u8 ySwitchTwo = ((ewram01000.switchIndexTwo - 1) * 3) + 1;
+    const u8 *arr = &gPartyMenuWindowBaseTiles[IsDoubleBattle() * 12];
+    u8 ySwitchOne = arr[ewram01000.switchIndexOne * 2 + 1];
+    u8 ySwitchTwo = arr[ewram01000.switchIndexTwo * 2 + 1];
 
-    ClearBigMonWindow(ewram01000.xForSwitchOne, 3);
+    ClearSmallMonWindow(ewram01000.xForSwitchOne, ySwitchOne);
     ClearSmallMonWindow(ewram01000.xForSwitchTwo, ySwitchTwo);
 
     if (!step)
     {
         ewram01000.xForSwitchOne--;
-        ewram01000.xForSwitchTwo++;
+        ewram01000.xForSwitchTwo--;
     }
     else
     {
         ewram01000.xForSwitchOne++;
-        ewram01000.xForSwitchTwo--;
+        ewram01000.xForSwitchTwo++;
     }
 
-    DrawBigMonWindow(ewram01000.xForSwitchOne, 3, 10);
+    DrawSmallMonWindow(ewram01000.xForSwitchOne, ySwitchOne, 0, 10);
     DrawSmallMonWindow(ewram01000.xForSwitchTwo, ySwitchTwo, 0, 10);
 }
 
-void SwitchWithBigStepOne(u8 taskId)
+void SwitchLeftWithLeftStepOne(u8 taskId)
 {
-    SwitchWithBigMonWindowGfxUpdate(taskId, 0);
+    SwitchLeftWithLeftWindowGfxUpdate(taskId, 0);
 
-    if (ewram01000.xForSwitchOne < -WIDTH_BIG_WINDOW && ewram01000.xForSwitchTwo > 32) // wait until both are off-screen
+    if (ewram01000.xForSwitchOne < -WIDTH_BIG_WINDOW && ewram01000.xForSwitchTwo < -WIDTH_BIG_WINDOW) // wait until both are off-screen
     {
         SwapSpriteIconsMidSwitch();
-        gTasks[taskId].func = SwitchWithBigStepTwo;
+        gTasks[taskId].func = SwitchLeftWithLeftStepTwo;
     }
 }
 
-void SwitchWithBigStepTwo(u8 taskId)
+void SwitchLeftWithLeftStepTwo(u8 taskId)
 {
-    SwitchWithBigMonWindowGfxUpdate(taskId, 1);
+    SwitchLeftWithLeftWindowGfxUpdate(taskId, 1);
 
-    if (ewram01000.xForSwitchOne == 0 && ewram01000.xForSwitchTwo == 11) // wait until both are back in place
+    if (ewram01000.xForSwitchOne >= LEFT_COLUMN_X_POS && ewram01000.xForSwitchTwo >= LEFT_COLUMN_X_POS) // wait until both are back in place
         gTasks[taskId].func = RedrawMonInfoAfterSwitch;
 }
 
-void SwitchWindowGfxUpdate(u8 taskId, u8 step)
+void SwitchRightWithRightWindowGfxUpdate(u8 taskId, u8 step)
 {
-    u8 ySwitchOne = ((ewram01000.switchIndexOne - 1) * 3) + 1;
-    u8 ySwitchTwo = ((ewram01000.switchIndexTwo - 1) * 3) + 1;
+    const u8 *arr = &gPartyMenuWindowBaseTiles[IsDoubleBattle() * 12];
+    u8 ySwitchOne = arr[ewram01000.switchIndexOne * 2 + 1];
+    u8 ySwitchTwo = arr[ewram01000.switchIndexTwo * 2 + 1];
 
     ClearSmallMonWindow(ewram01000.xForSwitchOne, ySwitchOne);
     ClearSmallMonWindow(ewram01000.xForSwitchTwo, ySwitchTwo);
@@ -2533,11 +2099,54 @@ void SwitchWindowGfxUpdate(u8 taskId, u8 step)
     DrawSmallMonWindow(ewram01000.xForSwitchTwo, ySwitchTwo, 0, 10);
 }
 
+void SwitchRightWithRightStepOne(u8 taskId)
+{
+    SwitchRightWithRightWindowGfxUpdate(taskId, 0);
+
+    if (ewram01000.xForSwitchOne > 32 && ewram01000.xForSwitchTwo > 32) // wait until both are off-screen
+    {
+        SwapSpriteIconsMidSwitch();
+        gTasks[taskId].func = SwitchRightWithRightStepTwo;
+    }
+}
+
+void SwitchRightWithRightStepTwo(u8 taskId)
+{
+    SwitchRightWithRightWindowGfxUpdate(taskId, 1);
+
+    if (ewram01000.xForSwitchOne <= RIGHT_COLUMN_X_POS && ewram01000.xForSwitchTwo <= RIGHT_COLUMN_X_POS) // wait until both are back in place
+        gTasks[taskId].func = RedrawMonInfoAfterSwitch;
+}
+
+void SwitchWindowGfxUpdate(u8 taskId, u8 step)
+{
+    const u8 *arr = &gPartyMenuWindowBaseTiles[IsDoubleBattle() * 12];
+    u8 ySwitchOne = arr[ewram01000.switchIndexOne * 2 + 1];
+    u8 ySwitchTwo = arr[ewram01000.switchIndexTwo * 2 + 1];
+
+    ClearSmallMonWindow(ewram01000.xForSwitchOne, ySwitchOne);
+    ClearSmallMonWindow(ewram01000.xForSwitchTwo, ySwitchTwo);
+
+    if (!step)
+    {
+        ewram01000.xForSwitchOne--;
+        ewram01000.xForSwitchTwo++;
+    }
+    else
+    {
+        ewram01000.xForSwitchOne++;
+        ewram01000.xForSwitchTwo--;
+    }
+
+    DrawSmallMonWindow(ewram01000.xForSwitchOne, ySwitchOne, 0, 10);
+    DrawSmallMonWindow(ewram01000.xForSwitchTwo, ySwitchTwo, 0, 10);
+}
+
 void SwitchStepOne(u8 taskId)
 {
     SwitchWindowGfxUpdate(taskId, 0);
 
-    if (ewram01000.xForSwitchOne > 32 && ewram01000.xForSwitchTwo > 32)
+    if (ewram01000.xForSwitchOne < -WIDTH_BIG_WINDOW && ewram01000.xForSwitchTwo > 32)
     {
         SwapSpriteIconsMidSwitch();
         gTasks[taskId].func = SwitchStepTwo;
@@ -2548,7 +2157,7 @@ void SwitchStepTwo(u8 taskId)
 {
     SwitchWindowGfxUpdate(taskId, 1);
 
-    if (ewram01000.xForSwitchOne == 11 && ewram01000.xForSwitchTwo == 11)
+    if (ewram01000.xForSwitchOne == LEFT_COLUMN_X_POS && ewram01000.xForSwitchTwo == RIGHT_COLUMN_X_POS)
         gTasks[taskId].func = RedrawMonInfoAfterSwitch;
 }
 
@@ -2676,7 +2285,7 @@ void sub_806D5A4(void)
     Menu_EraseWindowRect(0, 16, 29, 19);
 }
 
-void sub_806D5B8(u8 monIndex)
+void EraseWindowsForSwitch(u8 monIndex)
 {
     u32 var1;
     u8 left = gUnknown_08376948[IsDoubleBattle()][monIndex].left;
@@ -3202,8 +2811,8 @@ u8 *GetMonNickname(struct Pokemon *pokemon, u8 *stringBuffer)
 void PartyMenuPutStatusTilemap(u8 monIndex, u8 menuLayout, u8 status)
 {
     u8 i;
-    u8 x = gLvlSymbolCoords[menuLayout][monIndex].x - 1;
-    u8 y = gLvlSymbolCoords[menuLayout][monIndex].y + 1;
+    u8 x = gLvlSymbolCoords[menuLayout][monIndex].x;
+    u8 y = gLvlSymbolCoords[menuLayout][monIndex].y;
     u16 *vramPtr = GetVRAMPointer(x, y);
     u8 var1 = status * 4;
 
@@ -3224,8 +2833,8 @@ static void PartyMenuClearLevelStatusTilemap(u8 monIndex)
     else
         menuLayout = IsDoubleBattle();
 
-    x = gLvlSymbolCoords[menuLayout][monIndex].x - 1;
-    y = gLvlSymbolCoords[menuLayout][monIndex].y + 1;
+    x = gLvlSymbolCoords[menuLayout][monIndex].x;
+    y = gLvlSymbolCoords[menuLayout][monIndex].y;
 
     vramPtr = GetVRAMPointer(x, y);
     for (i = 0; i < 4; i++)
@@ -3245,7 +2854,7 @@ void PartyMenuDoPrintLevel(u8 monIndex, u8 menuLayout, u8 level)
     u8 x = gLvlSymbolCoords[menuLayout][monIndex].x;
     u8 y = gLvlSymbolCoords[menuLayout][monIndex].y;
 
-    PartyMenuWriteTilemap(0x40, x - 1, y + 1);
+    PartyMenuWriteTilemap(0x40, x, y);
 
     stringVar = gStringVar1;
     stringVar[0] = 0xFC;
@@ -3299,8 +2908,8 @@ void PartyMenuDoPrintGenderIcon(u16 species, u8 gender, u8 menuLayout, u8 monInd
 {
     if (!ShouldHideGenderIcon(species, nickname))
     {
-        u8 x = gLvlSymbolCoords[menuLayout][monIndex].x + 3;
-        u8 y = gLvlSymbolCoords[menuLayout][monIndex].y + 1;
+        u8 x = gLvlSymbolCoords[menuLayout][monIndex].x + 10;
+        u8 y = gLvlSymbolCoords[menuLayout][monIndex].y - 2;
 
         switch (gender)
         {
@@ -4116,7 +3725,7 @@ void sub_806F8AC(u8 taskId)
         else
             StringExpandPlaceholders(gStringVar4, gOtherText_RegainedHealth);
         SetMonIconAnim(GetMonIconSpriteId(ewram1C000.unk4, ewram1C000.primarySelectedMonIndex), ewram1C000.pokemon);
-        task_pc_turn_off(&gPartyMenuWindowBaseTiles[IsDoubleBattle() * 12 + ewram1C000.primarySelectedMonIndex * 2], 7);
+        DrawMonWindows(&gPartyMenuWindowBaseTiles[IsDoubleBattle() * 12 + ewram1C000.primarySelectedMonIndex * 2], 7);
         ewram1B000.unk261 = 2;
         sub_806E834(gStringVar4, 1);
         sp14 += sp0.unk4;
@@ -4404,7 +4013,7 @@ void sub_8070088(u8 taskId)
             Menu_EraseWindowRect(WINDOW_LEFT, 14, WINDOW_RIGHT, 19);
             PlaySE(SE_KAIFUKU);
             PartyMenuUpdateLevelOrStatus(ewram1C000.pokemon, ewram1C000.primarySelectedMonIndex);
-            task_pc_turn_off(&gPartyMenuWindowBaseTiles[IsDoubleBattle() * 12 + ewram1C000.primarySelectedMonIndex * 2], 9);
+            DrawMonWindows(&gPartyMenuWindowBaseTiles[IsDoubleBattle() * 12 + ewram1C000.primarySelectedMonIndex * 2], 9);
             ewram1B000.unk261 = 2;
             taskData[12] = GetMonData(ewram1C000.pokemon, MON_DATA_HP) - taskData[11];
             taskData[14] = 1;
@@ -4424,7 +4033,7 @@ void sub_80701DC(u8 taskId)
         AddBagItem(ewram1C000.secondarySelectedIndex, 1);
         if (GetMonData(&gPlayerParty[ewram1C000.primarySelectedMonIndex], MON_DATA_SPECIES) != 0)
         {
-            task_pc_turn_off(&gPartyMenuWindowBaseTiles[IsDoubleBattle() * 12 + ewram1C000.primarySelectedMonIndex * 2], 3);
+            DrawMonWindows(&gPartyMenuWindowBaseTiles[IsDoubleBattle() * 12 + ewram1C000.primarySelectedMonIndex * 2], 3);
             ewram1B000.unk261 = 2;
         }
         ewram1B000.unk27E = 0;
@@ -4759,7 +4368,7 @@ void RedrawPokemonInfoInMenu(u8 monIndex, struct Pokemon *pokemon)
     icon = GetMonIconSpriteId(ewram1C000.unk4, monIndex);
     SetMonIconAnim(icon, pokemon);
 
-    task_pc_turn_off(&gPartyMenuWindowBaseTiles[IsDoubleBattle() * 12 + monIndex * 2], 7);
+    DrawMonWindows(&gPartyMenuWindowBaseTiles[IsDoubleBattle() * 12 + monIndex * 2], 7);
     ewram1B000.unk261 = 2;
 }
 

@@ -16,6 +16,7 @@ Current implemented features:
 * add fog (replaces weather_fog_3)
 * add snow and fog corresponding to in-battle
 * gender differences
+* redesigned party menus
 
 In Progress:
 * ability expansion (thanks znogyrop and dizzy for ability descriptions)

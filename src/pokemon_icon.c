@@ -1913,12 +1913,11 @@ void sub_809D51C(void)
         LoadSpritePalette(&gMonIconPaletteTable[i]);
 }
 
-// unused
 void SafeLoadMonIconPalette(u16 species)
 {
     u8 palIndex;
     if (species > SPECIES_EGG)
-        species = 260;
+        species = SPECIES_UNOWN_A;
     palIndex = gMonIconPaletteIndices[species];
     if (IndexOfSpritePaletteTag(gMonIconPaletteTable[palIndex].tag) == 0xFF)
         LoadSpritePalette(&gMonIconPaletteTable[palIndex]);

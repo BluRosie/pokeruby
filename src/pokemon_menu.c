@@ -373,7 +373,7 @@ void DoPokemonMenu_Switch(u8 taskID)
 static void PokemonMenu_Switch(u8 taskID)
 {
     Menu_DestroyCursor();
-    ewram01000.unkC = sub_806CD5C;
+    ewram01000.unkC = SwitchMons;
     ewram01000.array[53553] = 1;
     DoPokemonMenu_Switch(taskID);
 }
