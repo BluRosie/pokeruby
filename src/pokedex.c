@@ -1170,7 +1170,7 @@ static const struct UnknownStruct2 gUnknown_083B59C8[] =
 };
 static const u8 gUnknown_083B5A60[] = {0, 1};
 static const u8 gUnknown_083B5A62[] = {0, 1, 2, 3, 4, 5};
-static const u8 gUnknown_083B5A68[] = {0xFF, 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17};
+static const u8 gUnknown_083B5A68[] = {0xFF, TYPE_NORMAL, TYPE_FIGHTING, TYPE_FLYING, TYPE_POISON, TYPE_GROUND, TYPE_ROCK, TYPE_BUG, TYPE_GHOST, TYPE_STEEL, TYPE_FIRE, TYPE_WATER, TYPE_GRASS, TYPE_ELECTRIC, TYPE_PSYCHIC, TYPE_ICE, TYPE_DRAGON, TYPE_DARK, TYPE_FAIRY};
 static const struct UnknownStruct1 gUnknown_083B5A7C[] =
 {
     {gUnknown_083B5910,  6,  7, 10},
@@ -4877,8 +4877,8 @@ static void sub_80923FC(u8 taskId)
     u8 r9 = sub_8092E10(taskId, 4);
     u8 r8 = sub_8092E10(taskId, 0);
     u8 r6 = sub_8092E10(taskId, 1);
-    u8 r4 = sub_8092E10(taskId, 2);
-    u8 r0 = sub_8092E10(taskId, 3);
+    u8 r4 = sub_8092E10(taskId, 2); // type1
+    u8 r0 = sub_8092E10(taskId, 3); // type2
 
     sub_8091AF8(r10, r9, r8, r6, r4, r0);
     gTasks[taskId].func = sub_80924A4;
@@ -4951,14 +4951,15 @@ static void sub_8092644(u8 taskId)
     const struct UnknownStruct2 *r8;
     u16 *p1;
     u16 *p2;
-    u16 r2;
+    u16 numOptions;
     bool8 r3;
 
     r1 = gTasks[taskId].data[1];
     r8 = gUnknown_083B5A7C[r1].unk0;
     p1 = &gTasks[taskId].data[gUnknown_083B5A7C[r1].unk4];
     p2 = &gTasks[taskId].data[gUnknown_083B5A7C[r1].unk5];
-    r2 = gUnknown_083B5A7C[r1].unk6 - 1;
+    numOptions = gUnknown_083B5A7C[r1].unk6 - 1;
+
     if (gMain.newKeys & A_BUTTON)
     {
         sub_814ADC8();
@@ -5005,14 +5006,14 @@ static void sub_8092644(u8 taskId)
     }
     if (gMain.newAndRepeatedKeys & DPAD_DOWN)
     {
-        if (*p1 < 5 && *p1 < r2)
+        if (*p1 < 5 && *p1 < numOptions) // scroll down w/o scrolling text
         {
             sub_80925B4(*p1, 0);
             (*p1)++;
             sub_80925B4(*p1, 1);
             r3 = TRUE;
         }
-        else if (r2 > 5 && *p2 < r2 - 5)
+        else if (numOptions > 5 && *p2 < numOptions - 5) // scroll down
         {
             (*p2)++;
             sub_8092D78(taskId);
@@ -5304,9 +5305,6 @@ static void sub_8092D78(u8 taskId)
     Menu_EraseWindowRect(18, 1, 28, 12);
     for (i = 0, j = *r7; i < 6 && r6[j].text2 != NULL; i++, j++)
     {
-#ifndef NONMATCHING
-        j += 0;  // Useless statement needed to match
-#endif
         Menu_PrintText(r6[j].text2, 18, i * 2 + 1);
     }
     sub_8091E20(r6[*r8 + *r7].text1);
@@ -5336,8 +5334,8 @@ static u8 sub_8092E10(u8 taskId, u8 b)
             return 0xFF;
         else
             return r2 - 1;
-    case 2:
-    case 3:
+    case 2: // type 1
+    case 3: // type 2
         return gUnknown_083B5A68[r2];
     }
 }
