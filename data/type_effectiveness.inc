@@ -54,12 +54,14 @@ gTypeEffectiveness:: @ 81F9720
 	.byte TYPE_FIGHTING,     TYPE_ROCK, 20
 	.byte TYPE_FIGHTING,     TYPE_DARK, 20
 	.byte TYPE_FIGHTING,    TYPE_STEEL, 20
+	.byte TYPE_FIGHTING,    TYPE_FAIRY,  5
 	.byte   TYPE_POISON,    TYPE_GRASS, 20
 	.byte   TYPE_POISON,   TYPE_POISON,  5
 	.byte   TYPE_POISON,   TYPE_GROUND,  5
 	.byte   TYPE_POISON,     TYPE_ROCK,  5
 	.byte   TYPE_POISON,    TYPE_GHOST,  5
 	.byte   TYPE_POISON,    TYPE_STEEL,  0
+	.byte   TYPE_POISON,    TYPE_FAIRY,  5
 	.byte   TYPE_GROUND,     TYPE_FIRE, 20
 	.byte   TYPE_GROUND, TYPE_ELECTRIC, 20
 	.byte   TYPE_GROUND,    TYPE_GRASS,  5
@@ -88,6 +90,7 @@ gTypeEffectiveness:: @ 81F9720
 	.byte      TYPE_BUG,    TYPE_GHOST,  5
 	.byte      TYPE_BUG,     TYPE_DARK, 20
 	.byte      TYPE_BUG,    TYPE_STEEL,  5
+	.byte      TYPE_BUG,    TYPE_FAIRY,  5
 	.byte     TYPE_ROCK,     TYPE_FIRE, 20
 	.byte     TYPE_ROCK,      TYPE_ICE, 20
 	.byte     TYPE_ROCK, TYPE_FIGHTING,  5
@@ -102,17 +105,26 @@ gTypeEffectiveness:: @ 81F9720
 	.byte    TYPE_GHOST,    TYPE_GHOST, 20
 	.byte   TYPE_DRAGON,   TYPE_DRAGON, 20
 	.byte   TYPE_DRAGON,    TYPE_STEEL,  5
+	.byte   TYPE_DRAGON,    TYPE_FAIRY,  0
 	.byte     TYPE_DARK, TYPE_FIGHTING,  5
 	.byte     TYPE_DARK,  TYPE_PSYCHIC, 20
 	.byte     TYPE_DARK,    TYPE_GHOST, 20
 	.byte     TYPE_DARK,     TYPE_DARK,  5
 	.byte     TYPE_DARK,    TYPE_STEEL,  5
+	.byte     TYPE_DARK,    TYPE_FAIRY,  0
 	.byte    TYPE_STEEL,     TYPE_FIRE,  5
 	.byte    TYPE_STEEL,    TYPE_WATER,  5
 	.byte    TYPE_STEEL, TYPE_ELECTRIC,  5
 	.byte    TYPE_STEEL,      TYPE_ICE, 20
 	.byte    TYPE_STEEL,     TYPE_ROCK, 20
 	.byte    TYPE_STEEL,    TYPE_STEEL,  5
+	.byte    TYPE_STEEL,    TYPE_FAIRY, 20
+	.byte    TYPE_FAIRY,     TYPE_DARK, 20
+	.byte    TYPE_FAIRY,   TYPE_DRAGON, 20
+	.byte    TYPE_FAIRY, TYPE_FIGHTING, 20
+	.byte    TYPE_FAIRY,     TYPE_FIRE,  5
+	.byte    TYPE_FAIRY,   TYPE_POISON,  5
+	.byte    TYPE_FAIRY,    TYPE_STEEL,  5
 	.byte          0xFE,          0xFE,  0
 	.byte   TYPE_NORMAL,    TYPE_GHOST,  0
 	.byte TYPE_FIGHTING,    TYPE_GHOST,  0

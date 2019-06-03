@@ -16,3 +16,4 @@
 	.set TYPE_ICE,      0x0f
 	.set TYPE_DRAGON,   0x10
 	.set TYPE_DARK,     0x11
+	.set TYPE_FAIRY,    0x12

@@ -489,7 +489,6 @@ static struct PartyMonTextSettingsStruct const PartyMonTextSettings[4][6] =
         { 2, 11, PartyMonOAMSettings_RightColumn},
         {16, 12, PartyMonOAMSettings_RightColumn},
     },
-    },
     { // PARTY_MENU_LAYOUT_MULTI_BATTLE
         { 2,  1, PartyMonOAMSettings_RightColumn},
         {16,  2, PartyMonOAMSettings_RightColumn},

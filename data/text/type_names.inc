@@ -17,3 +17,4 @@ gTypeNames:: @ 81F9870
 	.string "Ice$", 7
 	.string "Dragon$", 7
 	.string "Dark$", 7
+	.string "Fairy$", 7

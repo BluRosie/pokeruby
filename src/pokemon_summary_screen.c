@@ -50,7 +50,7 @@ static void sub_80A18C4(void);
 static bool8 LoadPokemonSummaryScreenGraphics(void);
 static bool8 MonKnowsMultipleMoves(struct Pokemon *);
 static void PrintSummaryWindowHeaderText(void);
-static void sub_80A1DCC(struct Pokemon *);
+static void DestroyAndRedrawMonMarkings(struct Pokemon *);
 static void sub_809FE80(void);
 static void sub_80A00A4(void);
 static void sub_80A0390(void);
@@ -271,6 +271,10 @@ static const union AnimCmd sSpriteAnim_TypeDark[] = {
     ANIMCMD_FRAME(TYPE_DARK * 8, 0, FALSE, FALSE),
     ANIMCMD_END
 };
+static const union AnimCmd sSpriteAnim_TypeFairy[] = {
+    ANIMCMD_FRAME(TYPE_FAIRY * 8, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
 static const union AnimCmd sSpriteAnim_CategoryCool[] = {
     ANIMCMD_FRAME((CONTEST_CATEGORY_COOL + NUMBER_OF_MON_TYPES) * 8, 0, FALSE, FALSE),
     ANIMCMD_END
@@ -311,6 +315,7 @@ static const union AnimCmd *const sSpriteAnimTable_MoveTypes[NUMBER_OF_MON_TYPES
     sSpriteAnim_TypeIce,
     sSpriteAnim_TypeDragon,
     sSpriteAnim_TypeDark,
+    sSpriteAnim_TypeFairy,
     sSpriteAnim_CategoryCool,
     sSpriteAnim_CategoryBeauty,
     sSpriteAnim_CategoryCute,
@@ -356,6 +361,7 @@ static const u8 sMoveTypeToOamPaletteNum[NUMBER_OF_MON_TYPES + CONTEST_CATEGORIE
     [TYPE_ICE] = 14,
     [TYPE_DRAGON] = 15,
     [TYPE_DARK] = 13,
+    [TYPE_FAIRY] = 14,
     [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_COOL] = 13,
     [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_BEAUTY] = 14,
     [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_CUTE] = 14,
@@ -2029,11 +2035,11 @@ void sub_809F43C(u8 taskId)
         gMain.state++;
         break;
     case 1:
-        DestroySpriteAndFreeResources(&gSprites[pssData.monSpriteId]);
+        DestroySprite(&gSprites[pssData.monSpriteId]);
         gMain.state++;
         break;
     case 2:
-        DestroySpriteAndFreeResources(&gSprites[pssData.ballSpriteId]);
+        DestroySprite(&gSprites[pssData.ballSpriteId]);
         gMain.state++;
         break;
     case 3:
@@ -2060,7 +2066,7 @@ void sub_809F43C(u8 taskId)
         }
         break;
     case 6:
-        sub_80A1DCC(&pssData.loadedMon);
+        DestroyAndRedrawMonMarkings(&pssData.loadedMon);
         gMain.state++;
         break;
     case 7:
@@ -2598,7 +2604,7 @@ static void sub_80A015C(struct Pokemon *mon)
             if (pssData.page == PSS_PAGE_BATTLE_MOVES)
                 SummaryScreen_DrawTypeIcon(gBattleMoves[move].type, 87, ((2 * i) + 4) * 8, i);
             else
-                SummaryScreen_DrawTypeIcon(gContestMoves[move].contestCategory + 18, 87, ((2 * i) + 4) * 8, i);
+                SummaryScreen_DrawTypeIcon(gContestMoves[move].contestCategory + NUMBER_OF_MON_TYPES, 87, ((2 * i) + 4) * 8, i);
 
             SummaryScreen_PrintColoredText(gMoveNames[move], 13, 15, (2 * i) + 4);
             SummaryScreen_PlaceTextTile_White(1, 24, (2 * i) + 4);
@@ -2632,7 +2638,7 @@ static void sub_80A029C(struct Pokemon *mon)
     if (pssData.page == PSS_PAGE_BATTLE_MOVES)
         SummaryScreen_DrawTypeIcon(gBattleMoves[move].type, 87, 96, 4);
     else
-        SummaryScreen_DrawTypeIcon(gContestMoves[move].contestCategory + 18, 87, 96, 4);
+        SummaryScreen_DrawTypeIcon(gContestMoves[move].contestCategory + NUMBER_OF_MON_TYPES, 87, 96, 4);
 
     if (pssData.page == PSS_PAGE_BATTLE_MOVES)
         SummaryScreen_PrintColoredText(gMoveNames[move], 10, 15, 12);
@@ -4915,7 +4921,7 @@ static void sub_80A1D84(struct Pokemon *mon)
     }
 }
 
-static void sub_80A1DCC(struct Pokemon *mon)
+static void DestroyAndRedrawMonMarkings(struct Pokemon *mon)
 {
     DestroySprite(gUnknown_020384F4);
     sub_80A1D84(mon);

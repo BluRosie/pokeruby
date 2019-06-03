@@ -1,18 +1,25 @@
-currently known:
+urgent bugs:
+- meowstic gender difference
 
+meh whatever bugs:
+- pokedex searching in general
 - fog doesn't address loading a few different palettes.  it also definitely doesn't support any sort of dynamic system that may happen in the future
 - animation for sticky barb sticking doesn't work like thief's entirely, currently the animation is commented out
 
-TODO (ordered by priority):
-- fairy type
+TODO:
+asap
+- urgent bugs
+before step 5
 - giratina/arceus formes, form(e)s in general
 - daycare effects for destiny knot & power items
+continue on plan
 
 TENTATIVE PLAN:
 3 - pokémon expansion (!)
 4 - finish up items
 5 - finish up abilities
 6 - moves
+7 - decide tms/hms
 
 ITEM EXPANSION PROGRESS:
 10/?
@@ -22,24 +29,3 @@ MOVE EXPANSION PROGRESS:
 
 POKEMON EXPANSION PROGRESS:
 practically done
-
-
-EVERY SINGLE FILE THAT HAS ANY RELATION TO EXPANDING POKEMON:
-
-already existing things that are broken:
-meowstic gender differences (moves/hidden abilities)
-tms/hms on new mons
-
-src/battle/battle_1.c
-src/data/pokedex_orders.h
-src/pokemon_3.c
-
-done:
-include/constants/species.h
-src/data/pokemon/base_stats.h
-src/data/text/species_names_en.h
-src/hall_of_fame.c
-src/pokemon_1.c
-sound/voice_groups.inc
-src/data/pokemon/tmhm_learnsets.h
-include/pokemon.h
