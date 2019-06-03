@@ -2,6 +2,7 @@ urgent bugs:
 - meowstic gender difference
 
 meh whatever bugs:
+- fix up the font a bit more (Lv, PKMN, POKEBLOCK, parentheses, colon, semicolon, &)
 - pokedex searching in general (fix up the order lists)
 - fog doesn't address loading a few different palettes.  it also definitely doesn't support any sort of dynamic system that may happen in the future
 - animation for sticky barb sticking doesn't work like thief's entirely, currently the animation is commented out
