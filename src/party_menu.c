@@ -2819,23 +2819,23 @@ u8 GetBallIconSpriteId(u8 taskId, u8 monIndex)
     switch (monIndex)
     {
     case 1:
-        return gTasks[taskId].data[3]; 
+        return gTasks[taskId].data[4]; 
         break;
     case 2:
-        return gTasks[taskId].data[4] >> 8;
-        break;
-    case 3:
-        return gTasks[taskId].data[4];
-        break;
-    case 4:
         return gTasks[taskId].data[5] >> 8;
         break;
-    case 5:
+    case 3:
         return gTasks[taskId].data[5];
+        break;
+    case 4:
+        return gTasks[taskId].data[7] >> 8;
+        break;
+    case 5:
+        return gTasks[taskId].data[7];
         break;
     case 0:
     default:
-        return gTasks[taskId].data[3] >> 8;
+        return gTasks[taskId].data[4] >> 8;
         break;
     }
 }
@@ -2845,22 +2845,22 @@ void SetBallIconSpriteId(u8 taskId, u8 monIndex, u8 spriteId)
     switch (monIndex)
     {
     case 0:
-        gTasks[taskId].data[3] = (u8)gTasks[taskId].data[3] | (spriteId << 8);
-        break;
-    case 1:
-        gTasks[taskId].data[3] = (gTasks[taskId].data[3] & -0x100) | spriteId;
-        break;
-    case 2:
         gTasks[taskId].data[4] = (u8)gTasks[taskId].data[4] | (spriteId << 8);
         break;
-    case 3:
+    case 1:
         gTasks[taskId].data[4] = (gTasks[taskId].data[4] & -0x100) | spriteId;
         break;
-    case 4:
+    case 2:
         gTasks[taskId].data[5] = (u8)gTasks[taskId].data[5] | (spriteId << 8);
         break;
-    case 5:
+    case 3:
         gTasks[taskId].data[5] = (gTasks[taskId].data[5] & -0x100) | spriteId;
+        break;
+    case 4:
+        gTasks[taskId].data[7] = (u8)gTasks[taskId].data[7] | (spriteId << 8);
+        break;
+    case 5:
+        gTasks[taskId].data[7] = (gTasks[taskId].data[7] & -0x100) | spriteId;
         break;
     }
 }
