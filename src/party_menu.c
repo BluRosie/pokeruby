@@ -5,6 +5,7 @@
 #include "constants/species.h"
 #include "party_menu.h"
 #include "battle.h"
+#include "battle_anim_813F0F4.h"
 #include "battle_interface.h"
 #include "battle_party_menu.h"
 #include "choose_party.h"
@@ -21,6 +22,7 @@
 #include "menu.h"
 #include "menu_helpers.h"
 #include "palette.h"
+#include "pokeball.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "pokemon_item_effect.h"
@@ -92,7 +94,9 @@ static void UpdateMonIconFrame_806DA38(struct Sprite *sprite);
 static void UpdateMonIconFrame_806DA44(u8 taskId, u8 monIndex, u8 c);
 static u8 sub_806CA00(u8 taskId);
 static void SpriteCB_sub_806D37C(struct Sprite *sprite);
+static void SpriteCB_for_ball_switch(struct Sprite *sprite);
 static u8 GetMonIconSpriteId(u8 taskId, u8 monIndex);
+static u8 GetBallIconSpriteId(u8 taskId, u8 monIndex);
 void SpriteCB_UpdateHeldItemIconPosition(struct Sprite *sprite);
 static void ItemUseMoveMenu_HandleMoveSelection(u8 taskId);
 static void ItemUseMoveMenu_HandleCancel(u8 taskId);
@@ -310,14 +314,14 @@ static const u8 *const PartyMenuPromptTexts[] = {
 };
 
 static const struct Coords8 gMonIconCoords[8][6] = {
-    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
-    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
-    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
-    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
-    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
-    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
-    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
-    {{24, 16}, {132, 24}, {24, 56}, {132, 64}, {24, 96}, {132, 104}},
+    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
+    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
+    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
+    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
+    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
+    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
+    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
+    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
 };
 
 static const struct Coords8 gLvlSymbolCoords[12][6] = { // everything but hp things is based on this
@@ -355,12 +359,12 @@ static const struct Coords8 gDescriptorCoords[2][PARTY_SIZE] = {
 
 static const struct PartyMenuWindowCoords gUnknown_08376948[2][6] = {
     {{1, 0, 14, 4}, {15, 1, 28,  5}, {1, 5, 14, 9}, {15, 6, 28, 10}, {1, 10, 14, 14}, {15, 11, 28, 15}},
-    {{2, 2, 10, 7}, { 2, 9, 10, 14}, {16, 1, 29, 3}, {16, 5, 29, 7}, {16,  9, 29, 11}, {16, 13, 29, 15}},
+    {{1, 0, 14, 4}, {15, 1, 28,  5}, {1, 5, 14, 9}, {15, 6, 28, 10}, {1, 10, 14, 14}, {15, 11, 28, 15}},
 };
 
 static const struct PartyMenuWindowCoords gUnknown_08376978[2][6] = {
-    {{2, 7, 10,  9}, {21, 1, 29,  3}, {21, 4, 29,  6}, {21, 7, 29, 9}, {21, 10, 29, 12}, {21, 13, 29, 15}},
-    {{2, 2, 10,  7}, { 2, 9, 10, 14}, {16, 1, 29,  3}, {16, 5, 29, 7}, {16,  9, 29, 11}, {16, 13, 29, 15}},
+    {{1, 0, 14, 4}, {15, 1, 28,  5}, {1, 5, 14, 9}, {15, 6, 28, 10}, {1, 10, 14, 14}, {15, 11, 28, 15}},
+    {{1, 0, 14, 4}, {15, 1, 28,  5}, {1, 5, 14, 9}, {15, 6, 28, 10}, {1, 10, 14, 14}, {15, 11, 28, 15}},
 };
 
 #define LEFT_COLUMN_X_POS 1
@@ -1829,13 +1833,13 @@ void sub_806C9C4(u8 taskId, u8 spriteId)
 
 u8 sub_806CA00(u8 taskId)
 {
-    return gTasks[taskId].data[3] >> 8;
+    return gTasks[taskId].data[6] >> 8;
 }
 
 void sub_806CA18(u8 taskId, u8 b)
 {
-    u8 var1 = gTasks[taskId].data[3];
-    gTasks[taskId].data[3] = var1 | (b << 8);
+    u8 var1 = gTasks[taskId].data[6];
+    gTasks[taskId].data[6] = var1 | (b << 8);
 }
 
 u8 sub_806CA38(u8 taskId)
@@ -1965,15 +1969,23 @@ void SwitchMons(u8 taskId)
             ewram01000.switchIndexTwo = monIndex2;
         }
 
-        ewram01000.unk3 = GetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexOne);
-        ewram01000.unk4 = GetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexTwo);
+        ewram01000.iconIdSwitchOne = GetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexOne);
+        ewram01000.iconIdSwitchTwo = GetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexTwo);
+        
+        ewram01000.ballIdSwitchOne = GetBallIconSpriteId(ewram01000.unk0, ewram01000.switchIndexOne);
+        ewram01000.ballIdSwitchTwo = GetBallIconSpriteId(ewram01000.unk0, ewram01000.switchIndexTwo);
 
         if (!(ewram01000.switchIndexOne % 2) && !(ewram01000.switchIndexTwo % 2)) // switch left with left
         {
-            gSprites[ewram01000.unk3].data[0] = -8;
-            gSprites[ewram01000.unk3].data[2] = -0xA8;
-            gSprites[ewram01000.unk4].data[0] = -8;
-            gSprites[ewram01000.unk4].data[2] = -0xA8;
+            gSprites[ewram01000.iconIdSwitchOne].data[0] = -8;
+            gSprites[ewram01000.iconIdSwitchOne].data[2] = -0xA8;
+            gSprites[ewram01000.iconIdSwitchTwo].data[0] = -8;
+            gSprites[ewram01000.iconIdSwitchTwo].data[2] = -0xA8;
+            
+            gSprites[ewram01000.ballIdSwitchOne].data[0] = -8;
+            gSprites[ewram01000.ballIdSwitchOne].data[2] = -0xA8;
+            gSprites[ewram01000.ballIdSwitchTwo].data[0] = -8;
+            gSprites[ewram01000.ballIdSwitchTwo].data[2] = -0xA8;
 
             ewram01000.xForSwitchOne = LEFT_COLUMN_X_POS;
             ewram01000.xForSwitchTwo = LEFT_COLUMN_X_POS;
@@ -1983,10 +1995,16 @@ void SwitchMons(u8 taskId)
         }
         else if (ewram01000.switchIndexOne % 2 && ewram01000.switchIndexTwo % 2) // switch right with right
         {
-            gSprites[ewram01000.unk3].data[0] = 8;
-            gSprites[ewram01000.unk3].data[2] = 0xA8;
-            gSprites[ewram01000.unk4].data[0] = 8;
-            gSprites[ewram01000.unk4].data[2] = 0xA8;
+            gSprites[ewram01000.iconIdSwitchOne].data[0] = 8;
+            gSprites[ewram01000.iconIdSwitchOne].data[2] = 0xA8;
+            gSprites[ewram01000.iconIdSwitchTwo].data[0] = 8;
+            gSprites[ewram01000.iconIdSwitchTwo].data[2] = 0xA8;
+            
+            gSprites[ewram01000.ballIdSwitchOne].data[0] = 8;
+            gSprites[ewram01000.ballIdSwitchOne].data[2] = 0xA8;
+            gSprites[ewram01000.ballIdSwitchTwo].data[0] = 8;
+            gSprites[ewram01000.ballIdSwitchTwo].data[2] = 0xA8;
+
             ewram01000.xForSwitchOne = RIGHT_COLUMN_X_POS;
             ewram01000.xForSwitchTwo = RIGHT_COLUMN_X_POS;
 
@@ -1995,10 +2013,16 @@ void SwitchMons(u8 taskId)
         }
         else
         {
-            gSprites[ewram01000.unk3].data[0] = -8;
-            gSprites[ewram01000.unk3].data[2] = -0xA8;
-            gSprites[ewram01000.unk4].data[0] = 8;
-            gSprites[ewram01000.unk4].data[2] = 0xA8;
+            gSprites[ewram01000.iconIdSwitchOne].data[0] = -8;
+            gSprites[ewram01000.iconIdSwitchOne].data[2] = -0xA8;
+            gSprites[ewram01000.iconIdSwitchTwo].data[0] = 8;
+            gSprites[ewram01000.iconIdSwitchTwo].data[2] = 0xA8;
+            
+            gSprites[ewram01000.ballIdSwitchOne].data[0] = -8;
+            gSprites[ewram01000.ballIdSwitchOne].data[2] = -0xA8;
+            gSprites[ewram01000.ballIdSwitchTwo].data[0] = 8;
+            gSprites[ewram01000.ballIdSwitchTwo].data[2] = 0xA8;
+
             ewram01000.xForSwitchOne = LEFT_COLUMN_X_POS;
             ewram01000.xForSwitchTwo = RIGHT_COLUMN_X_POS;
 
@@ -2006,11 +2030,17 @@ void SwitchMons(u8 taskId)
             ewram1B000.unk261 = 1;
         }
 
-        gSprites[ewram01000.unk3].callback = SpriteCB_sub_806D37C;
-        gSprites[ewram01000.unk4].callback = SpriteCB_sub_806D37C;
+        gSprites[ewram01000.iconIdSwitchOne].callback = SpriteCB_sub_806D37C;
+        gSprites[ewram01000.iconIdSwitchTwo].callback = SpriteCB_sub_806D37C;
 
-        gSprites[ewram01000.unk3].callback(&gSprites[ewram01000.unk3]);
-        gSprites[ewram01000.unk4].callback(&gSprites[ewram01000.unk4]);
+        gSprites[ewram01000.ballIdSwitchOne].callback = SpriteCB_for_ball_switch;
+        gSprites[ewram01000.ballIdSwitchTwo].callback = SpriteCB_for_ball_switch;
+
+        gSprites[ewram01000.iconIdSwitchOne].callback(&gSprites[ewram01000.iconIdSwitchOne]);
+        gSprites[ewram01000.iconIdSwitchTwo].callback(&gSprites[ewram01000.iconIdSwitchTwo]);
+
+        gSprites[ewram01000.ballIdSwitchOne].callback(&gSprites[ewram01000.ballIdSwitchOne]);
+        gSprites[ewram01000.ballIdSwitchTwo].callback(&gSprites[ewram01000.ballIdSwitchTwo]);
     }
 }
 
@@ -2023,13 +2053,21 @@ void SwapValues_s16(s16 *a, s16 *b)
 
 void SwapSpriteIconsMidSwitch(void)
 {
-    SwapValues_s16(&gSprites[ewram01000.unk3].pos1.x, &gSprites[ewram01000.unk4].pos1.x);
-    SwapValues_s16(&gSprites[ewram01000.unk3].pos1.y, &gSprites[ewram01000.unk4].pos1.y);
-    SwapValues_s16(&gSprites[ewram01000.unk3].pos2.x, &gSprites[ewram01000.unk4].pos2.x);
-    SwapValues_s16(&gSprites[ewram01000.unk3].data[0], &gSprites[ewram01000.unk4].data[0]);
+    SwapValues_s16(&gSprites[ewram01000.iconIdSwitchOne].pos1.x, &gSprites[ewram01000.iconIdSwitchTwo].pos1.x);
+    SwapValues_s16(&gSprites[ewram01000.iconIdSwitchOne].pos1.y, &gSprites[ewram01000.iconIdSwitchTwo].pos1.y);
+    SwapValues_s16(&gSprites[ewram01000.iconIdSwitchOne].pos2.x, &gSprites[ewram01000.iconIdSwitchTwo].pos2.x);
+    SwapValues_s16(&gSprites[ewram01000.iconIdSwitchOne].data[0], &gSprites[ewram01000.iconIdSwitchTwo].data[0]);
+    
+    SwapValues_s16(&gSprites[ewram01000.ballIdSwitchOne].pos1.x, &gSprites[ewram01000.ballIdSwitchTwo].pos1.x);
+    SwapValues_s16(&gSprites[ewram01000.ballIdSwitchOne].pos1.y, &gSprites[ewram01000.ballIdSwitchTwo].pos1.y);
+    SwapValues_s16(&gSprites[ewram01000.ballIdSwitchOne].pos2.x, &gSprites[ewram01000.ballIdSwitchTwo].pos2.x);
+    SwapValues_s16(&gSprites[ewram01000.ballIdSwitchOne].data[0], &gSprites[ewram01000.ballIdSwitchTwo].data[0]);
 
-    gSprites[ewram01000.unk3].callback = SpriteCB_sub_806D37C;
-    gSprites[ewram01000.unk4].callback = SpriteCB_sub_806D37C;
+    gSprites[ewram01000.iconIdSwitchOne].callback = SpriteCB_sub_806D37C;
+    gSprites[ewram01000.iconIdSwitchTwo].callback = SpriteCB_sub_806D37C;
+
+    gSprites[ewram01000.ballIdSwitchOne].callback = SpriteCB_for_ball_switch;
+    gSprites[ewram01000.ballIdSwitchTwo].callback = SpriteCB_for_ball_switch;
 }
 
 void SwitchLeftWithLeftWindowGfxUpdate(u8 taskId, u8 step)
@@ -2161,27 +2199,45 @@ void SwitchStepTwo(u8 taskId)
         gTasks[taskId].func = RedrawMonInfoAfterSwitch;
 }
 
+#define BALL_ICON_OFFSET_X 86
+#define BALL_ICON_OFFSET_Y 0
+
 void RedrawMonInfoAfterSwitch(u8 taskId)
 {
     u8 spriteId;
 
-    SetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexOne, ewram01000.unk4);
-    SetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexTwo, ewram01000.unk3);
+    SetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexOne, ewram01000.iconIdSwitchTwo);
+    SetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexTwo, ewram01000.iconIdSwitchOne);
 
-    gSprites[ewram01000.unk3].pos1.x = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexTwo].x;
-    gSprites[ewram01000.unk3].pos1.y = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexTwo].y;
-    gSprites[ewram01000.unk3].pos2.x = 0;
-    gSprites[ewram01000.unk3].pos2.y = 0;
-    gSprites[ewram01000.unk3].callback = UpdateMonIconFrame_806DA38;
+    gSprites[ewram01000.iconIdSwitchOne].pos1.x = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexTwo].x;
+    gSprites[ewram01000.iconIdSwitchOne].pos1.y = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexTwo].y;
+    gSprites[ewram01000.iconIdSwitchOne].pos2.x = 0;
+    gSprites[ewram01000.iconIdSwitchOne].pos2.y = 0;
+    gSprites[ewram01000.iconIdSwitchOne].callback = UpdateMonIconFrame_806DA38;
 
-    gSprites[ewram01000.unk4].pos1.x = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexOne].x;
-    gSprites[ewram01000.unk4].pos1.y = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexOne].y;
-    gSprites[ewram01000.unk4].pos2.x = 0;
-    gSprites[ewram01000.unk4].pos2.y = 0;
-    gSprites[ewram01000.unk4].callback = UpdateMonIconFrame_806DA38;
+    gSprites[ewram01000.iconIdSwitchTwo].pos1.x = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexOne].x;
+    gSprites[ewram01000.iconIdSwitchTwo].pos1.y = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexOne].y;
+    gSprites[ewram01000.iconIdSwitchTwo].pos2.x = 0;
+    gSprites[ewram01000.iconIdSwitchTwo].pos2.y = 0;
+    gSprites[ewram01000.iconIdSwitchTwo].callback = UpdateMonIconFrame_806DA38;
 
     spriteId = GetMonIconSpriteId(ewram01000.unk0, gSprites[ewram01000.unk2].data[0]);
     gSprites[spriteId].callback = UpdateMonIconFrame_806DA0C;
+
+    SetBallIconSpriteId(ewram01000.unk0, ewram01000.switchIndexOne, ewram01000.ballIdSwitchTwo);
+    SetBallIconSpriteId(ewram01000.unk0, ewram01000.switchIndexTwo, ewram01000.ballIdSwitchOne);
+
+    gSprites[ewram01000.ballIdSwitchOne].pos1.x = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexTwo].x + BALL_ICON_OFFSET_X;
+    gSprites[ewram01000.ballIdSwitchOne].pos1.y = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexTwo].y + BALL_ICON_OFFSET_Y;
+    gSprites[ewram01000.ballIdSwitchOne].pos2.x = 0;
+    gSprites[ewram01000.ballIdSwitchOne].pos2.y = 0;
+    gSprites[ewram01000.ballIdSwitchOne].callback = SpriteCallbackDummy;
+
+    gSprites[ewram01000.ballIdSwitchTwo].pos1.x = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexOne].x + BALL_ICON_OFFSET_X;
+    gSprites[ewram01000.ballIdSwitchTwo].pos1.y = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexOne].y + BALL_ICON_OFFSET_Y;
+    gSprites[ewram01000.ballIdSwitchTwo].pos2.x = 0;
+    gSprites[ewram01000.ballIdSwitchTwo].pos2.y = 0;
+    gSprites[ewram01000.ballIdSwitchTwo].callback = SpriteCallbackDummy;
 
     SwapPokemon(&gPlayerParty[ewram01000.switchIndexOne], &gPlayerParty[ewram01000.switchIndexTwo]);
 
@@ -2208,6 +2264,20 @@ void SpriteCB_sub_806D37C(struct Sprite *sprite)
         sprite->data[0] *= -1;
         sprite->data[2] = 0;
         sprite->callback = UpdateMonIconFrame_806DA38;
+    }
+    else
+    {
+        sprite->pos2.x += sprite->data[0];
+    }
+}
+
+void SpriteCB_for_ball_switch(struct Sprite *sprite)
+{
+    if (sprite->pos2.x == sprite->data[2])
+    {
+        sprite->data[0] *= -1;
+        sprite->data[2] = 0;
+        sprite->callback = SpriteCallbackDummy;
     }
     else
     {
@@ -2248,6 +2318,12 @@ void sub_806D4AC(u8 taskId, u16 species, u8 c)
         gSprites[spriteId].data[0] = -8;
         gSprites[spriteId].data[2] = gTasks[taskId].data[0] * -8;
         gSprites[spriteId].callback = SpriteCB_sub_806D37C;
+
+        spriteId = GetBallIconSpriteId(taskId, monIndex);
+
+        gSprites[spriteId].data[0] = -8;
+        gSprites[spriteId].data[2] = gTasks[taskId].data[0] * -8;
+        gSprites[spriteId].callback = SpriteCB_for_ball_switch;
     }
 }
 
@@ -2386,10 +2462,16 @@ void CreatePartyMenuMonIcon(u8 taskId, u8 monIndex, u8 menuType, struct Pokemon 
 
     u16 species2 = GetMonData(pokemon, MON_DATA_SPECIES2);
     u32 personality = GetMonData(pokemon, MON_DATA_PERSONALITY);
+    u8 ball = ball_number_to_ball_processing_index(GetMonData(pokemon, MON_DATA_POKEBALL));
 
     u8 spriteId = CreateMonIcon(species2, sub_809D62C, x, y, 5, personality);
     SetMonIconSpriteId(taskId, monIndex, spriteId);
     SetMonIconAnim(spriteId, pokemon);
+    
+    LoadBallGraphics(ball);
+    spriteId = CreateSprite(&gBallSpriteTemplates[ball], x + BALL_ICON_OFFSET_X, y + BALL_ICON_OFFSET_Y, 0);
+    gSprites[spriteId].callback = SpriteCallbackDummy;
+    SetBallIconSpriteId(taskId, monIndex, spriteId);
 }
 
 void TryCreatePartyMenuMonIcon(u8 taskId, u8 monIndex, struct Pokemon *pokemon)
@@ -2415,10 +2497,16 @@ void CreateMonIcon_LinkMultiBattle(u8 taskId, u8 monIndex, u8 menuType, struct U
 {
     u8 x = gMonIconCoords[menuType][monIndex].x;
     u8 y = gMonIconCoords[menuType][monIndex].y;
+    u8 ball = ball_number_to_ball_processing_index(GetMonData(pokemon, MON_DATA_POKEBALL));
 
     u8 spriteId = CreateMonIcon(pokemon->species, sub_809D62C, x, y, 5, pokemon->personality);
     SetMonIconSpriteId(taskId, monIndex, spriteId);
     SetMonIconAnimByHP(spriteId, pokemon->hp, pokemon->maxhp);
+
+    LoadBallGraphics(ball);
+    spriteId = CreateSprite(&gBallSpriteTemplates[ball], x + BALL_ICON_OFFSET_X, y + BALL_ICON_OFFSET_Y, 0);
+    gSprites[spriteId].callback = SpriteCallbackDummy;
+    SetBallIconSpriteId(taskId, monIndex, spriteId);
 }
 
 void UpdateMonIconFrame_806DA0C(struct Sprite *sprite)
@@ -2722,6 +2810,57 @@ void SetMonIconSpriteId(u8 taskId, u8 monIndex, u8 spriteId)
         break;
     case 5:
         gTasks[taskId].data[2] = (gTasks[taskId].data[2] & -0x100) | spriteId;
+        break;
+    }
+}
+
+u8 GetBallIconSpriteId(u8 taskId, u8 monIndex)
+{
+    switch (monIndex)
+    {
+    case 1:
+        return gTasks[taskId].data[3]; 
+        break;
+    case 2:
+        return gTasks[taskId].data[4] >> 8;
+        break;
+    case 3:
+        return gTasks[taskId].data[4];
+        break;
+    case 4:
+        return gTasks[taskId].data[5] >> 8;
+        break;
+    case 5:
+        return gTasks[taskId].data[5];
+        break;
+    case 0:
+    default:
+        return gTasks[taskId].data[3] >> 8;
+        break;
+    }
+}
+
+void SetBallIconSpriteId(u8 taskId, u8 monIndex, u8 spriteId)
+{
+    switch (monIndex)
+    {
+    case 0:
+        gTasks[taskId].data[3] = (u8)gTasks[taskId].data[3] | (spriteId << 8);
+        break;
+    case 1:
+        gTasks[taskId].data[3] = (gTasks[taskId].data[3] & -0x100) | spriteId;
+        break;
+    case 2:
+        gTasks[taskId].data[4] = (u8)gTasks[taskId].data[4] | (spriteId << 8);
+        break;
+    case 3:
+        gTasks[taskId].data[4] = (gTasks[taskId].data[4] & -0x100) | spriteId;
+        break;
+    case 4:
+        gTasks[taskId].data[5] = (u8)gTasks[taskId].data[5] | (spriteId << 8);
+        break;
+    case 5:
+        gTasks[taskId].data[5] = (gTasks[taskId].data[5] & -0x100) | spriteId;
         break;
     }
 }
