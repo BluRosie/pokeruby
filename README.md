@@ -17,6 +17,7 @@ Current implemented features:
 * add snow and fog corresponding to in-battle
 * gender differences
 * redesigned party menus
+* fairy type
 
 In Progress:
 * ability expansion (thanks znogyrop and dizzy for ability descriptions)

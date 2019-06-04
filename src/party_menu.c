@@ -328,15 +328,10 @@ static const u8 *const PartyMenuPromptTexts[] = {
 #define BALL_ICON_OFFSET_X 86
 #define BALL_ICON_OFFSET_Y 20
 
-static const struct Coords8 gMonIconCoords[8][6] = {
-    {{ICON_X_LEFT, ICON_Y}, {ICON_X_RIGHT, ICON_Y + Y_OFFSET}, {ICON_X_LEFT, ICON_Y + DELTA_Y}, {ICON_X_RIGHT, ICON_Y + Y_OFFSET + DELTA_Y}, {ICON_X_LEFT, ICON_Y + DELTA_Y + DELTA_Y}, {ICON_X_RIGHT, ICON_Y + DELTA_Y + DELTA_Y + Y_OFFSET}},
-    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
-    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
-    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
-    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
-    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
-    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
-    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
+static const struct Coords8 gMonIconCoords[6] = {
+    {ICON_X_LEFT, ICON_Y},                     {ICON_X_RIGHT, ICON_Y + Y_OFFSET}, 
+    {ICON_X_LEFT, ICON_Y + DELTA_Y},           {ICON_X_RIGHT, ICON_Y + Y_OFFSET + DELTA_Y}, 
+    {ICON_X_LEFT, ICON_Y + DELTA_Y + DELTA_Y}, {ICON_X_RIGHT, ICON_Y + DELTA_Y + DELTA_Y + Y_OFFSET}
 };
 
 #define LVL_X_LEFT 2
@@ -346,30 +341,20 @@ static const struct Coords8 gMonIconCoords[8][6] = {
 #define GENDER_X_OFFSET 10
 #define GENDER_Y_OFFSET 2
 
-static const struct Coords8 gLvlSymbolCoords[12][6] = { // gender symbol based on this
-    {{LVL_X_LEFT, LVL_Y}, {LVL_X_RIGHT,  LVL_Y + Y_OFFSET_TILE}, {LVL_X_LEFT,  LVL_Y + DELTA_Y_TILE}, {LVL_X_RIGHT, LVL_Y + DELTA_Y_TILE + Y_OFFSET_TILE}, {LVL_X_LEFT, LVL_Y + DELTA_Y_TILE + DELTA_Y_TILE}, {LVL_X_RIGHT, LVL_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE}},
-    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
-    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
-    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
-    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
-    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
-    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
-    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
-    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
-    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
-    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
-    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+static const struct Coords8 gLvlSymbolCoords[6] = { // gender symbol based on this
+    {LVL_X_LEFT, LVL_Y},                               {LVL_X_RIGHT,  LVL_Y + Y_OFFSET_TILE}, 
+    {LVL_X_LEFT,  LVL_Y + DELTA_Y_TILE},               {LVL_X_RIGHT, LVL_Y + DELTA_Y_TILE + Y_OFFSET_TILE}, 
+    {LVL_X_LEFT, LVL_Y + DELTA_Y_TILE + DELTA_Y_TILE}, {LVL_X_RIGHT, LVL_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE},
 };
 
 #define HP_X_LEFT 7
 #define HP_X_RIGHT HP_X_LEFT + TILES_X_DIFFERENCE
 #define HP_Y 2
 
-static const struct Coords8 gHPBarCoords[4][6] = {
-    {{HP_X_LEFT, HP_Y}, {HP_X_RIGHT,  HP_Y + Y_OFFSET_TILE}, {HP_X_LEFT, HP_Y + DELTA_Y_TILE}, {HP_X_RIGHT,  HP_Y + DELTA_Y_TILE + Y_OFFSET_TILE}, {HP_X_LEFT, HP_Y + DELTA_Y_TILE + DELTA_Y_TILE}, {HP_X_RIGHT, HP_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE}},
-    {{7, 3}, {21,  4}, { 7, 8}, {21,  9}, { 7, 13}, {21, 14}},
-    {{7, 3}, {21,  4}, { 7, 8}, {21,  9}, { 7, 13}, {21, 14}},
-    {{7, 3}, {21,  4}, { 7, 8}, {21,  9}, { 7, 13}, {21, 14}},
+static const struct Coords8 gHPBarCoords[6] = {
+    {HP_X_LEFT, HP_Y},                               {HP_X_RIGHT,  HP_Y + Y_OFFSET_TILE}, 
+    {HP_X_LEFT, HP_Y + DELTA_Y_TILE},                {HP_X_RIGHT,  HP_Y + DELTA_Y_TILE + Y_OFFSET_TILE}, 
+    {HP_X_LEFT, HP_Y + DELTA_Y_TILE + DELTA_Y_TILE}, {HP_X_RIGHT, HP_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE}
 };
 
 static const struct Coords8 gUnknown_083768B8[3][8] = { // still have no idea what this is
@@ -382,9 +367,10 @@ static const struct Coords8 gUnknown_083768B8[3][8] = { // still have no idea wh
 #define DESC_X_RIGHT DESC_X_LEFT + TILES_X_DIFFERENCE
 #define DESC_Y 1
 
-static const struct Coords8 gDescriptorCoords[2][PARTY_SIZE] = {
-    {{DESC_X_LEFT, DESC_Y}, {DESC_X_RIGHT,  DESC_Y + Y_OFFSET_TILE}, {DESC_X_LEFT, DESC_Y + DELTA_Y_TILE}, {DESC_X_RIGHT, DESC_Y + DELTA_Y_TILE + Y_OFFSET_TILE}, {DESC_X_LEFT, DESC_Y + DELTA_Y_TILE + DELTA_Y_TILE}, {DESC_X_RIGHT, DESC_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE}},
-    {{3, 7}, {22,  1}, {22, 4}, {22, 7}, {22, 10}, {22, 13}},
+static const struct Coords8 gDescriptorCoords[PARTY_SIZE] = {
+    {DESC_X_LEFT, DESC_Y},                               {DESC_X_RIGHT,  DESC_Y + Y_OFFSET_TILE}, 
+    {DESC_X_LEFT, DESC_Y + DELTA_Y_TILE},                {DESC_X_RIGHT, DESC_Y + DELTA_Y_TILE + Y_OFFSET_TILE}, 
+    {DESC_X_LEFT, DESC_Y + DELTA_Y_TILE + DELTA_Y_TILE}, {DESC_X_RIGHT, DESC_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE},
 };
 
 static const struct PartyMenuWindowCoords gUnknown_08376948[2][6] = {
@@ -501,40 +487,14 @@ static const u16 PartyMonOAMSettings_RightColumn[] = {
 #define BASE_TEXT_TILE_Y 0
 
 // Controls where and how the mons' text appears in the party menu screen (nickname, HP, and level).
-static struct PartyMonTextSettingsStruct const PartyMonTextSettings[4][6] =
+static struct PartyMonTextSettingsStruct const PartyMonTextSettings[6] =
 {
-    { // PARTY_MENU_LAYOUT_STANDARD
-        { BASE_TEXT_TILE_X_LEFT, BASE_TEXT_TILE_Y,                                               PartyMonOAMSettings_RightColumn},
-        {BASE_TEXT_TILE_X_RIGHT, BASE_TEXT_TILE_Y + Y_OFFSET_TILE,                               PartyMonOAMSettings_RightColumn},
-        { BASE_TEXT_TILE_X_LEFT, BASE_TEXT_TILE_Y + DELTA_Y_TILE,                                PartyMonOAMSettings_RightColumn},
-        {BASE_TEXT_TILE_X_RIGHT, BASE_TEXT_TILE_Y + DELTA_Y_TILE + Y_OFFSET_TILE,                PartyMonOAMSettings_RightColumn},
-        { BASE_TEXT_TILE_X_LEFT, BASE_TEXT_TILE_Y + DELTA_Y_TILE + DELTA_Y_TILE,                 PartyMonOAMSettings_RightColumn},
-        {BASE_TEXT_TILE_X_RIGHT, BASE_TEXT_TILE_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE, PartyMonOAMSettings_RightColumn},
-    },
-    { // PARTY_MENU_LAYOUT_DOUBLE_BATTLE
-        { 2,  1, PartyMonOAMSettings_RightColumn},
-        {16,  2, PartyMonOAMSettings_RightColumn},
-        { 2,  6, PartyMonOAMSettings_RightColumn},
-        {16,  7, PartyMonOAMSettings_RightColumn},
-        { 2, 11, PartyMonOAMSettings_RightColumn},
-        {16, 12, PartyMonOAMSettings_RightColumn},
-    },
-    { // PARTY_MENU_LAYOUT_LINK_DOUBLE_BATTLE
-        { 2,  1, PartyMonOAMSettings_RightColumn},
-        {16,  2, PartyMonOAMSettings_RightColumn},
-        { 2,  6, PartyMonOAMSettings_RightColumn},
-        {16,  7, PartyMonOAMSettings_RightColumn},
-        { 2, 11, PartyMonOAMSettings_RightColumn},
-        {16, 12, PartyMonOAMSettings_RightColumn},
-    },
-    { // PARTY_MENU_LAYOUT_MULTI_BATTLE
-        { 2,  1, PartyMonOAMSettings_RightColumn},
-        {16,  2, PartyMonOAMSettings_RightColumn},
-        { 2,  6, PartyMonOAMSettings_RightColumn},
-        {16,  7, PartyMonOAMSettings_RightColumn},
-        { 2, 11, PartyMonOAMSettings_RightColumn},
-        {16, 12, PartyMonOAMSettings_RightColumn},
-    },
+    { BASE_TEXT_TILE_X_LEFT, BASE_TEXT_TILE_Y,                                               PartyMonOAMSettings_RightColumn},
+    {BASE_TEXT_TILE_X_RIGHT, BASE_TEXT_TILE_Y + Y_OFFSET_TILE,                               PartyMonOAMSettings_RightColumn},
+    { BASE_TEXT_TILE_X_LEFT, BASE_TEXT_TILE_Y + DELTA_Y_TILE,                                PartyMonOAMSettings_RightColumn},
+    {BASE_TEXT_TILE_X_RIGHT, BASE_TEXT_TILE_Y + DELTA_Y_TILE + Y_OFFSET_TILE,                PartyMonOAMSettings_RightColumn},
+    { BASE_TEXT_TILE_X_LEFT, BASE_TEXT_TILE_Y + DELTA_Y_TILE + DELTA_Y_TILE,                 PartyMonOAMSettings_RightColumn},
+    {BASE_TEXT_TILE_X_RIGHT, BASE_TEXT_TILE_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE, PartyMonOAMSettings_RightColumn},
 };
 
 static const struct PartyMenuHandlersStruct PartyMenuHandlers[] =
@@ -577,7 +537,7 @@ extern s32 gBattleMoveDamage;
 extern u16 gMoveToLearn;
 
 extern u16 gUnknown_08E9A300[];
-extern struct Coords8 const gLvlSymbolCoords[12][6];
+extern struct Coords8 const gLvlSymbolCoords[6];
 extern u8 gUnknown_02039460[];
 extern struct Window gUnknown_03004210;
 
@@ -606,7 +566,7 @@ void CB2_PartyMenuMain(void)
     AnimateSprites();
     BuildOamBuffer();
 
-    textSettings = PartyMonTextSettings[gPartyMenuType];
+    textSettings = PartyMonTextSettings;
     for (i = 0; i < PARTY_SIZE; i++)
     {
         // Draw mon name, level, and hp sprites
@@ -1322,7 +1282,7 @@ void DrawMonDescriptorStatus(u8 monIndex, u8 descriptorOffset)
 {
     u8 i;
     u32 offset;
-    u16 *vramPtr = GetVRAMPointer(gDescriptorCoords[IsDoubleBattle()][monIndex].x, gDescriptorCoords[IsDoubleBattle()][monIndex].y);
+    u16 *vramPtr = GetVRAMPointer(gDescriptorCoords[monIndex].x, gDescriptorCoords[monIndex].y);
     int paletteNum = 0;
 
     for (i = 0; i < 7; i++)
@@ -2240,14 +2200,14 @@ void RedrawMonInfoAfterSwitch(u8 taskId)
     SetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexOne, ewram01000.iconIdSwitchTwo);
     SetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexTwo, ewram01000.iconIdSwitchOne);
 
-    gSprites[ewram01000.iconIdSwitchOne].pos1.x = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexTwo].x;
-    gSprites[ewram01000.iconIdSwitchOne].pos1.y = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexTwo].y;
+    gSprites[ewram01000.iconIdSwitchOne].pos1.x = gMonIconCoords[ewram01000.switchIndexTwo].x;
+    gSprites[ewram01000.iconIdSwitchOne].pos1.y = gMonIconCoords[ewram01000.switchIndexTwo].y;
     gSprites[ewram01000.iconIdSwitchOne].pos2.x = 0;
     gSprites[ewram01000.iconIdSwitchOne].pos2.y = 0;
     gSprites[ewram01000.iconIdSwitchOne].callback = UpdateMonIconFrame_806DA38;
 
-    gSprites[ewram01000.iconIdSwitchTwo].pos1.x = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexOne].x;
-    gSprites[ewram01000.iconIdSwitchTwo].pos1.y = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexOne].y;
+    gSprites[ewram01000.iconIdSwitchTwo].pos1.x = gMonIconCoords[ewram01000.switchIndexOne].x;
+    gSprites[ewram01000.iconIdSwitchTwo].pos1.y = gMonIconCoords[ewram01000.switchIndexOne].y;
     gSprites[ewram01000.iconIdSwitchTwo].pos2.x = 0;
     gSprites[ewram01000.iconIdSwitchTwo].pos2.y = 0;
     gSprites[ewram01000.iconIdSwitchTwo].callback = UpdateMonIconFrame_806DA38;
@@ -2259,14 +2219,14 @@ void RedrawMonInfoAfterSwitch(u8 taskId)
     gBallSpriteIds[ewram01000.switchIndexTwo] = ewram01000.ballIdSwitchOne;
 
 
-    gSprites[ewram01000.ballIdSwitchOne].pos1.x = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexTwo].x + BALL_ICON_OFFSET_X;
-    gSprites[ewram01000.ballIdSwitchOne].pos1.y = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexTwo].y + BALL_ICON_OFFSET_Y;
+    gSprites[ewram01000.ballIdSwitchOne].pos1.x = gMonIconCoords[ewram01000.switchIndexTwo].x + BALL_ICON_OFFSET_X;
+    gSprites[ewram01000.ballIdSwitchOne].pos1.y = gMonIconCoords[ewram01000.switchIndexTwo].y + BALL_ICON_OFFSET_Y;
     gSprites[ewram01000.ballIdSwitchOne].pos2.x = 0;
     gSprites[ewram01000.ballIdSwitchOne].pos2.y = 0;
     gSprites[ewram01000.ballIdSwitchOne].callback = SpriteCallbackDummy;
 
-    gSprites[ewram01000.ballIdSwitchTwo].pos1.x = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexOne].x + BALL_ICON_OFFSET_X;
-    gSprites[ewram01000.ballIdSwitchTwo].pos1.y = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexOne].y + BALL_ICON_OFFSET_Y;
+    gSprites[ewram01000.ballIdSwitchTwo].pos1.x = gMonIconCoords[ewram01000.switchIndexOne].x + BALL_ICON_OFFSET_X;
+    gSprites[ewram01000.ballIdSwitchTwo].pos1.y = gMonIconCoords[ewram01000.switchIndexOne].y + BALL_ICON_OFFSET_Y;
     gSprites[ewram01000.ballIdSwitchTwo].pos2.x = 0;
     gSprites[ewram01000.ballIdSwitchTwo].pos2.y = 0;
     gSprites[ewram01000.ballIdSwitchTwo].callback = SpriteCallbackDummy;
@@ -2489,8 +2449,8 @@ void SetMonIconAnim(u8 spriteId, struct Pokemon *pokemon)
 
 void CreatePartyMenuMonIcon(u8 taskId, u8 monIndex, u8 menuType, struct Pokemon *pokemon)
 {
-    u8 x = gMonIconCoords[menuType][monIndex].x;
-    u8 y = gMonIconCoords[menuType][monIndex].y;
+    u8 x = gMonIconCoords[monIndex].x;
+    u8 y = gMonIconCoords[monIndex].y;
 
     u16 species2 = GetMonData(pokemon, MON_DATA_SPECIES2);
     u32 personality = GetMonData(pokemon, MON_DATA_PERSONALITY);
@@ -2506,7 +2466,7 @@ void CreatePartyMenuBall(u8 taskId, u8 monIndex, u8 menuType, struct Pokemon *po
 
     LoadBallGraphics(ball);
     
-    spriteId = CreateSprite(&gBallSpriteTemplates[ball], gMonIconCoords[menuType][monIndex].x + BALL_ICON_OFFSET_X, gMonIconCoords[menuType][monIndex].y + BALL_ICON_OFFSET_Y, 0);
+    spriteId = CreateSprite(&gBallSpriteTemplates[ball], gMonIconCoords[monIndex].x + BALL_ICON_OFFSET_X, gMonIconCoords[monIndex].y + BALL_ICON_OFFSET_Y, 0);
 
     gSprites[spriteId].callback = SpriteCallbackDummy;
     gBallSpriteIds[monIndex] = spriteId;
@@ -2545,8 +2505,8 @@ void unref_sub_806D964(u8 taskId)
 
 void CreateMonIcon_LinkMultiBattle(u8 taskId, u8 monIndex, u8 menuType, struct UnknownPokemonStruct2 *pokemon)
 {
-    u8 x = gMonIconCoords[menuType][monIndex].x;
-    u8 y = gMonIconCoords[menuType][monIndex].y;
+    u8 x = gMonIconCoords[monIndex].x;
+    u8 y = gMonIconCoords[monIndex].y;
     u8 ball = ball_number_to_ball_processing_index(GetMonData(pokemon, MON_DATA_POKEBALL));
 
     u8 spriteId = CreateMonIcon(pokemon->species, sub_809D62C, x, y, 5, pokemon->personality);
@@ -2949,8 +2909,8 @@ u8 *GetMonNickname(struct Pokemon *pokemon, u8 *stringBuffer)
 void PartyMenuPutStatusTilemap(u8 monIndex, u8 menuLayout, u8 status)
 {
     u8 i;
-    u8 x = gLvlSymbolCoords[menuLayout][monIndex].x;
-    u8 y = gLvlSymbolCoords[menuLayout][monIndex].y;
+    u8 x = gLvlSymbolCoords[monIndex].x;
+    u8 y = gLvlSymbolCoords[monIndex].y;
     u16 *vramPtr = GetVRAMPointer(x, y);
     u8 var1 = status * 4;
 
@@ -2971,8 +2931,8 @@ static void PartyMenuClearLevelStatusTilemap(u8 monIndex)
     else
         menuLayout = IsDoubleBattle();
 
-    x = gLvlSymbolCoords[menuLayout][monIndex].x;
-    y = gLvlSymbolCoords[menuLayout][monIndex].y;
+    x = gLvlSymbolCoords[monIndex].x;
+    y = gLvlSymbolCoords[monIndex].y;
 
     vramPtr = GetVRAMPointer(x, y);
     for (i = 0; i < 4; i++)
@@ -2989,8 +2949,8 @@ void PartyMenuDoPrintLevel(u8 monIndex, u8 menuLayout, u8 level)
 {
     u8 *stringVar;
     u32 var1;
-    u8 x = gLvlSymbolCoords[menuLayout][monIndex].x;
-    u8 y = gLvlSymbolCoords[menuLayout][monIndex].y;
+    u8 x = gLvlSymbolCoords[monIndex].x;
+    u8 y = gLvlSymbolCoords[monIndex].y;
 
     PartyMenuWriteTilemap(0x40, x, y);
 
@@ -3046,8 +3006,8 @@ void PartyMenuDoPrintGenderIcon(u16 species, u8 gender, u8 menuLayout, u8 monInd
 {
     if (!ShouldHideGenderIcon(species, nickname))
     {
-        u8 x = gLvlSymbolCoords[menuLayout][monIndex].x + GENDER_X_OFFSET;
-        u8 y = gLvlSymbolCoords[menuLayout][monIndex].y - GENDER_Y_OFFSET;
+        u8 x = gLvlSymbolCoords[monIndex].x + GENDER_X_OFFSET;
+        u8 y = gLvlSymbolCoords[monIndex].y - GENDER_Y_OFFSET;
 
         switch (gender)
         {
@@ -3144,7 +3104,7 @@ void PartyMenuDoDrawHPBar(u8 monIndex, u8 menuLayout, u16 currentHP, u16 maxHP)
 
     battleInterface.unk10 = 0x100;
 
-    vramPtr = GetVRAMPointer(gHPBarCoords[menuLayout][monIndex].x, gHPBarCoords[menuLayout][monIndex].y);
+    vramPtr = GetVRAMPointer(gHPBarCoords[monIndex].x, gHPBarCoords[monIndex].y);
     sub_80460C8(&battleInterface, &var, vramPtr, 0); // get the hp bar to scale correctly
 
     vramPtr -= 2;
@@ -3838,7 +3798,7 @@ s16 sub_806F7E8(u8 taskId, struct BattleInterfaceStruct1 *b, s8 c)
         b->unkC_0 = 5;
     if (hpBarLevel < 2)
         b->unkC_0 = 6;
-    vramPtr = GetVRAMPointer(gHPBarCoords[IsDoubleBattle()][ewram1C000.primarySelectedMonIndex].x, gHPBarCoords[IsDoubleBattle()][ewram1C000.primarySelectedMonIndex].y);
+    vramPtr = GetVRAMPointer(gHPBarCoords[ewram1C000.primarySelectedMonIndex].x, gHPBarCoords[ewram1C000.primarySelectedMonIndex].y);
     return sub_80460C8(b, &ewram1C000.unkC, vramPtr, 0);
 }
 
