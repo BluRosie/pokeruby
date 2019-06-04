@@ -321,12 +321,12 @@ static const u8 *const PartyMenuPromptTexts[] = {
 #define DELTA_Y DELTA_Y_TILE * 8
 
 
-#define ICON_X_LEFT 24
+#define ICON_X_LEFT 22
 #define ICON_X_RIGHT (ICON_X_LEFT + TILES_X_DIFFERENCE * 8)
-#define ICON_Y 16
+#define ICON_Y 10
 
 #define BALL_ICON_OFFSET_X 86
-#define BALL_ICON_OFFSET_Y 0
+#define BALL_ICON_OFFSET_Y 20
 
 static const struct Coords8 gMonIconCoords[8][6] = {
     {{ICON_X_LEFT, ICON_Y}, {ICON_X_RIGHT, ICON_Y + Y_OFFSET}, {ICON_X_LEFT, ICON_Y + DELTA_Y}, {ICON_X_RIGHT, ICON_Y + Y_OFFSET + DELTA_Y}, {ICON_X_LEFT, ICON_Y + DELTA_Y + DELTA_Y}, {ICON_X_RIGHT, ICON_Y + DELTA_Y + DELTA_Y + Y_OFFSET}},
@@ -341,7 +341,7 @@ static const struct Coords8 gMonIconCoords[8][6] = {
 
 #define LVL_X_LEFT 2
 #define LVL_X_RIGHT LVL_X_LEFT + TILES_X_DIFFERENCE
-#define LVL_Y 4
+#define LVL_Y 3
 
 #define GENDER_X_OFFSET 10
 #define GENDER_Y_OFFSET 2
@@ -363,7 +363,7 @@ static const struct Coords8 gLvlSymbolCoords[12][6] = { // gender symbol based o
 
 #define HP_X_LEFT 7
 #define HP_X_RIGHT HP_X_LEFT + TILES_X_DIFFERENCE
-#define HP_Y 3
+#define HP_Y 2
 
 static const struct Coords8 gHPBarCoords[4][6] = {
     {{HP_X_LEFT, HP_Y}, {HP_X_RIGHT,  HP_Y + Y_OFFSET_TILE}, {HP_X_LEFT, HP_Y + DELTA_Y_TILE}, {HP_X_RIGHT,  HP_Y + DELTA_Y_TILE + Y_OFFSET_TILE}, {HP_X_LEFT, HP_Y + DELTA_Y_TILE + DELTA_Y_TILE}, {HP_X_RIGHT, HP_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE}},
@@ -498,7 +498,7 @@ static const u16 PartyMonOAMSettings_RightColumn[] = {
 
 #define BASE_TEXT_TILE_X_LEFT 2
 #define BASE_TEXT_TILE_X_RIGHT BASE_TEXT_TILE_X_LEFT + TILES_X_DIFFERENCE
-#define BASE_TEXT_TILE_Y 1
+#define BASE_TEXT_TILE_Y 0
 
 // Controls where and how the mons' text appears in the party menu screen (nickname, HP, and level).
 static struct PartyMonTextSettingsStruct const PartyMonTextSettings[4][6] =
