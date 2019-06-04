@@ -1,6 +1,7 @@
 #include "global.h"
 #include "battle.h"
 #include "battle_anim_813F0F4.h"
+#include "constants/moves.h"
 #include "contest.h"
 #include "data2.h"
 #include "daycare.h"
@@ -149,6 +150,8 @@ extern const u16 gUnknown_08E94510[];
 extern const u16 gUnknown_08E94550[];
 extern const u16 gUnknown_08E94590[];
 extern const u8 gUnknown_08E73E88[];
+
+extern bool8 haveMarkingsBeenLoaded;
 
 EWRAM_DATA u8 gUnknown_020384F0 = 0;
 EWRAM_DATA struct Sprite *gUnknown_020384F4 = NULL;
@@ -923,6 +926,7 @@ static void SummaryScreenExit(u8 taskId)
 {
     PlaySE(SE_SELECT);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB(0, 0, 0));
+    haveMarkingsBeenLoaded = FALSE;
     gTasks[taskId].func = SummaryScreen_DestroyTask;
 }
 
@@ -2035,11 +2039,11 @@ void sub_809F43C(u8 taskId)
         gMain.state++;
         break;
     case 1:
-        DestroySprite(&gSprites[pssData.monSpriteId]);
+        DestroySpriteAndFreeResources(&gSprites[pssData.monSpriteId]);
         gMain.state++;
         break;
     case 2:
-        DestroySprite(&gSprites[pssData.ballSpriteId]);
+        DestroySpriteAndFreeResources(&gSprites[pssData.ballSpriteId]);
         gMain.state++;
         break;
     case 3:

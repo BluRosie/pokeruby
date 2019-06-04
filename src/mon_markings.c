@@ -279,6 +279,7 @@ const union AnimCmd *const gSpriteAnimTable_83E533C[] =
 };
 
 static EWRAM_DATA struct PokemonMarkMenu *sMenu = NULL;
+EWRAM_DATA bool8 haveMarkingsBeenLoaded = FALSE;
 
 static void sub_80F761C(s16, s16, u16, u16);
 static void nullsub_65(struct Sprite *);
@@ -601,8 +602,12 @@ struct Sprite *sub_80F7960(u16 tileTag, u16 paletteTag, const u16 *palette, u16 
 
     sheet.size = size * 0x80;
 
-    LoadSpriteSheet(&sheet);
-    LoadSpritePalette(&sprPalette);
+    if (!haveMarkingsBeenLoaded)
+    {
+        LoadSpriteSheet(&sheet);
+        LoadSpritePalette(&sprPalette);
+        haveMarkingsBeenLoaded = TRUE;
+    }
 
     spriteId = CreateSprite(&sprTemplate, 0, 0, 0);
     if (spriteId != 64)
