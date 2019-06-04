@@ -313,8 +313,23 @@ static const u8 *const PartyMenuPromptTexts[] = {
     OtherText_TeachWhichPoke,
 };
 
+#define TILES_X_DIFFERENCE 14
+#define Y_OFFSET_TILE 1
+#define DELTA_Y_TILE 5
+
+#define Y_OFFSET Y_OFFSET_TILE * 8
+#define DELTA_Y DELTA_Y_TILE * 8
+
+
+#define ICON_X_LEFT 22
+#define ICON_X_RIGHT (ICON_X_LEFT + TILES_X_DIFFERENCE * 8)
+#define ICON_Y 10
+
+#define BALL_ICON_OFFSET_X 86
+#define BALL_ICON_OFFSET_Y 20
+
 static const struct Coords8 gMonIconCoords[8][6] = {
-    {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
+    {{ICON_X_LEFT, ICON_Y}, {ICON_X_RIGHT, ICON_Y + Y_OFFSET}, {ICON_X_LEFT, ICON_Y + DELTA_Y}, {ICON_X_RIGHT, ICON_Y + Y_OFFSET + DELTA_Y}, {ICON_X_LEFT, ICON_Y + DELTA_Y + DELTA_Y}, {ICON_X_RIGHT, ICON_Y + DELTA_Y + DELTA_Y + Y_OFFSET}},
     {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
     {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
     {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
@@ -324,8 +339,15 @@ static const struct Coords8 gMonIconCoords[8][6] = {
     {{24, 16}, {136, 24}, {24, 56}, {136, 64}, {24, 96}, {136, 104}},
 };
 
-static const struct Coords8 gLvlSymbolCoords[12][6] = { // everything but hp things is based on this
-    {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
+#define LVL_X_LEFT 2
+#define LVL_X_RIGHT LVL_X_LEFT + TILES_X_DIFFERENCE
+#define LVL_Y 3
+
+#define GENDER_X_OFFSET 10
+#define GENDER_Y_OFFSET 2
+
+static const struct Coords8 gLvlSymbolCoords[12][6] = { // gender symbol based on this
+    {{LVL_X_LEFT, LVL_Y}, {LVL_X_RIGHT,  LVL_Y + Y_OFFSET_TILE}, {LVL_X_LEFT,  LVL_Y + DELTA_Y_TILE}, {LVL_X_RIGHT, LVL_Y + DELTA_Y_TILE + Y_OFFSET_TILE}, {LVL_X_LEFT, LVL_Y + DELTA_Y_TILE + DELTA_Y_TILE}, {LVL_X_RIGHT, LVL_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE}},
     {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
     {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
     {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
@@ -338,22 +360,30 @@ static const struct Coords8 gLvlSymbolCoords[12][6] = { // everything but hp thi
     {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
     {{2,  4}, {16,  5}, { 2,  9}, {16, 10}, { 2, 14}, {16, 15}},
 };
+
+#define HP_X_LEFT 7
+#define HP_X_RIGHT HP_X_LEFT + TILES_X_DIFFERENCE
+#define HP_Y 2
 
 static const struct Coords8 gHPBarCoords[4][6] = {
-    {{7, 3}, {21,  4}, { 7, 8}, {21,  9}, { 7, 13}, {21, 14}},
+    {{HP_X_LEFT, HP_Y}, {HP_X_RIGHT,  HP_Y + Y_OFFSET_TILE}, {HP_X_LEFT, HP_Y + DELTA_Y_TILE}, {HP_X_RIGHT,  HP_Y + DELTA_Y_TILE + Y_OFFSET_TILE}, {HP_X_LEFT, HP_Y + DELTA_Y_TILE + DELTA_Y_TILE}, {HP_X_RIGHT, HP_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE}},
     {{7, 3}, {21,  4}, { 7, 8}, {21,  9}, { 7, 13}, {21, 14}},
     {{7, 3}, {21,  4}, { 7, 8}, {21,  9}, { 7, 13}, {21, 14}},
     {{7, 3}, {21,  4}, { 7, 8}, {21,  9}, { 7, 13}, {21, 14}},
 };
 
-static const struct Coords8 gUnknown_083768B8[3][8] = {
+static const struct Coords8 gUnknown_083768B8[3][8] = { // still have no idea what this is
     {{8,  44}, {92,  22}, {92,  46}, {92,  70}, {92,  94}, {92, 118}, {196, 136}, {196, 152}},
     {{8,  28}, { 8,  84}, {92,  22}, {92,  54}, {92,  86}, {92, 118}, {196, 136}, {196, 152}},
     {{8,  28}, { 8,  84}, {92,  30}, {92,  54}, {92,  86}, {92, 110}, {196, 136}, {196, 152}},
 };
 
+#define DESC_X_LEFT 7
+#define DESC_X_RIGHT DESC_X_LEFT + TILES_X_DIFFERENCE
+#define DESC_Y 1
+
 static const struct Coords8 gDescriptorCoords[2][PARTY_SIZE] = {
-    {{3, 7}, {22,  1}, {22, 4}, {22, 7}, {22, 10}, {22, 13}},
+    {{DESC_X_LEFT, DESC_Y}, {DESC_X_RIGHT,  DESC_Y + Y_OFFSET_TILE}, {DESC_X_LEFT, DESC_Y + DELTA_Y_TILE}, {DESC_X_RIGHT, DESC_Y + DELTA_Y_TILE + Y_OFFSET_TILE}, {DESC_X_LEFT, DESC_Y + DELTA_Y_TILE + DELTA_Y_TILE}, {DESC_X_RIGHT, DESC_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE}},
     {{3, 7}, {22,  1}, {22, 4}, {22, 7}, {22, 10}, {22, 13}},
 };
 
@@ -466,16 +496,20 @@ static const u16 PartyMonOAMSettings_RightColumn[] = {
     0xFFFF,
 };
 
+#define BASE_TEXT_TILE_X_LEFT 2
+#define BASE_TEXT_TILE_X_RIGHT BASE_TEXT_TILE_X_LEFT + TILES_X_DIFFERENCE
+#define BASE_TEXT_TILE_Y 0
+
 // Controls where and how the mons' text appears in the party menu screen (nickname, HP, and level).
 static struct PartyMonTextSettingsStruct const PartyMonTextSettings[4][6] =
 {
     { // PARTY_MENU_LAYOUT_STANDARD
-        { 2,  1, PartyMonOAMSettings_RightColumn},
-        {16,  2, PartyMonOAMSettings_RightColumn},
-        { 2,  6, PartyMonOAMSettings_RightColumn},
-        {16,  7, PartyMonOAMSettings_RightColumn},
-        { 2, 11, PartyMonOAMSettings_RightColumn},
-        {16, 12, PartyMonOAMSettings_RightColumn},
+        { BASE_TEXT_TILE_X_LEFT, BASE_TEXT_TILE_Y,                                               PartyMonOAMSettings_RightColumn},
+        {BASE_TEXT_TILE_X_RIGHT, BASE_TEXT_TILE_Y + Y_OFFSET_TILE,                               PartyMonOAMSettings_RightColumn},
+        { BASE_TEXT_TILE_X_LEFT, BASE_TEXT_TILE_Y + DELTA_Y_TILE,                                PartyMonOAMSettings_RightColumn},
+        {BASE_TEXT_TILE_X_RIGHT, BASE_TEXT_TILE_Y + DELTA_Y_TILE + Y_OFFSET_TILE,                PartyMonOAMSettings_RightColumn},
+        { BASE_TEXT_TILE_X_LEFT, BASE_TEXT_TILE_Y + DELTA_Y_TILE + DELTA_Y_TILE,                 PartyMonOAMSettings_RightColumn},
+        {BASE_TEXT_TILE_X_RIGHT, BASE_TEXT_TILE_Y + DELTA_Y_TILE + DELTA_Y_TILE + Y_OFFSET_TILE, PartyMonOAMSettings_RightColumn},
     },
     { // PARTY_MENU_LAYOUT_DOUBLE_BATTLE
         { 2,  1, PartyMonOAMSettings_RightColumn},
@@ -2199,9 +2233,6 @@ void SwitchStepTwo(u8 taskId)
         gTasks[taskId].func = RedrawMonInfoAfterSwitch;
 }
 
-#define BALL_ICON_OFFSET_X 86
-#define BALL_ICON_OFFSET_Y 0
-
 void RedrawMonInfoAfterSwitch(u8 taskId)
 {
     u8 spriteId;
@@ -3015,8 +3046,8 @@ void PartyMenuDoPrintGenderIcon(u16 species, u8 gender, u8 menuLayout, u8 monInd
 {
     if (!ShouldHideGenderIcon(species, nickname))
     {
-        u8 x = gLvlSymbolCoords[menuLayout][monIndex].x + 10;
-        u8 y = gLvlSymbolCoords[menuLayout][monIndex].y - 2;
+        u8 x = gLvlSymbolCoords[menuLayout][monIndex].x + GENDER_X_OFFSET;
+        u8 y = gLvlSymbolCoords[menuLayout][monIndex].y - GENDER_Y_OFFSET;
 
         switch (gender)
         {
