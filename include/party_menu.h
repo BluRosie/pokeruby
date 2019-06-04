@@ -148,7 +148,6 @@ void TryCreatePartyMenuBall(u8 a, u8 monIndex, struct Pokemon *pokemon);
 void LoadHeldItemIconGraphics(void);
 void PartyMenuTryGiveMonHeldItem(u8 taskId, u16 newItem, TaskFunc c);
 void SetMonIconSpriteId(u8 taskId, u8 monIndex, u8 spriteId);
-void SetBallIconSpriteId(u8 taskId, u8 monIndex, u8 spriteId);
 void CreateHeldItemIcon_806DCD4(u8 taskId, u8 monIndex, u16 item);
 void CreateHeldItemIcons_806DC34(u8 taskId);
 void CreateHeldItemIcons(u8 *a, u8 *b, u8 c);

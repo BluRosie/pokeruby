@@ -96,7 +96,6 @@ static u8 sub_806CA00(u8 taskId);
 static void SpriteCB_sub_806D37C(struct Sprite *sprite);
 static void SpriteCB_for_ball_switch(struct Sprite *sprite);
 static u8 GetMonIconSpriteId(u8 taskId, u8 monIndex);
-static u8 GetBallIconSpriteId(u8 taskId, u8 monIndex);
 void SpriteCB_UpdateHeldItemIconPosition(struct Sprite *sprite);
 static void ItemUseMoveMenu_HandleMoveSelection(u8 taskId);
 static void ItemUseMoveMenu_HandleCancel(u8 taskId);
@@ -115,6 +114,7 @@ EWRAM_DATA u8 gUnknown_0202E8F5 = 0;
 EWRAM_DATA u8 gUnknown_0202E8F6 = 0;
 EWRAM_DATA u16 gUnknown_0202E8F8 = 0;
 EWRAM_DATA u8 gPartyMenuType = 0;
+EWRAM_DATA u8 gBallSpriteIds[6] = {0, 0, 0, 0, 0, 0};
 
 const u16 TMHMMoves[] =
 {
@@ -643,26 +643,14 @@ bool8 SetupDefaultPartyMenu(void)
         }
         break;
     case 1:
-        if (ewram1B000_alt.monIndex < gPlayerPartyCount)
-        {
-            TryCreatePartyMenuBall(ewram1B000_alt.menuHandlerTaskId, ewram1B000_alt.monIndex, &gPlayerParty[ewram1B000_alt.monIndex]);
-            ewram1B000_alt.monIndex++;
-        }
-        else
-        {
-            ewram1B000_alt.monIndex = 0;
-            ewram1B000_alt.setupState++;
-        }
-        break;
-    case 2:
         LoadHeldItemIconGraphics();
         ewram1B000_alt.setupState++;
         break;
-    case 3:
+    case 2:
         CreateHeldItemIcons_806DC34(ewram1B000_alt.menuHandlerTaskId);
         ewram1B000_alt.setupState++;
         break;
-    case 4:
+    case 3:
         if (sub_806BD58(ewram1B000_alt.menuHandlerTaskId, ewram1B000_alt.monIndex) != 1)
         {
             ewram1B000_alt.monIndex++;
@@ -673,27 +661,27 @@ bool8 SetupDefaultPartyMenu(void)
             ewram1B000_alt.setupState++;
         }
         break;
-    case 5:
+    case 4:
         PartyMenuPrintMonsLevelOrStatus();
         ewram1B000_alt.setupState++;
         break;
-    case 6:
+    case 5:
         PrintPartyMenuMonNicknames();
         ewram1B000_alt.setupState++;
         break;
-    case 7:
+    case 6:
         PartyMenuTryPrintMonsHP();
         ewram1B000_alt.setupState++;
         break;
-    case 8:
+    case 7:
         nullsub_13();
         ewram1B000_alt.setupState++;
         break;
-    case 9:
+    case 8:
         PartyMenuDrawHPBars();
         ewram1B000_alt.setupState++;
         break;
-    case 10:
+    case 9:
         if (DrawPartyMonBackground(ewram1B000_alt.monIndex) == 1)
         {
             ewram1B000_alt.monIndex = 0;
@@ -1845,13 +1833,13 @@ void sub_806C9C4(u8 taskId, u8 spriteId)
 
 u8 sub_806CA00(u8 taskId)
 {
-    return gTasks[taskId].data[6] >> 8;
+    return gTasks[taskId].data[3] >> 8;
 }
 
 void sub_806CA18(u8 taskId, u8 b)
 {
-    u8 var1 = gTasks[taskId].data[6];
-    gTasks[taskId].data[6] = var1 | (b << 8);
+    u8 var1 = gTasks[taskId].data[3];
+    gTasks[taskId].data[3] = var1 | (b << 8);
 }
 
 u8 sub_806CA38(u8 taskId)
@@ -1984,8 +1972,8 @@ void SwitchMons(u8 taskId)
         ewram01000.iconIdSwitchOne = GetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexOne);
         ewram01000.iconIdSwitchTwo = GetMonIconSpriteId(ewram01000.unk0, ewram01000.switchIndexTwo);
         
-        ewram01000.ballIdSwitchOne = GetBallIconSpriteId(ewram01000.unk0, ewram01000.switchIndexOne);
-        ewram01000.ballIdSwitchTwo = GetBallIconSpriteId(ewram01000.unk0, ewram01000.switchIndexTwo);
+        ewram01000.ballIdSwitchOne = gBallSpriteIds[ewram01000.switchIndexOne];
+        ewram01000.ballIdSwitchTwo = gBallSpriteIds[ewram01000.switchIndexTwo];
 
         if (!(ewram01000.switchIndexOne % 2) && !(ewram01000.switchIndexTwo % 2)) // switch left with left
         {
@@ -2236,8 +2224,9 @@ void RedrawMonInfoAfterSwitch(u8 taskId)
     spriteId = GetMonIconSpriteId(ewram01000.unk0, gSprites[ewram01000.unk2].data[0]);
     gSprites[spriteId].callback = UpdateMonIconFrame_806DA0C;
 
-    SetBallIconSpriteId(ewram01000.unk0, ewram01000.switchIndexOne, ewram01000.ballIdSwitchTwo);
-    SetBallIconSpriteId(ewram01000.unk0, ewram01000.switchIndexTwo, ewram01000.ballIdSwitchOne);
+    gBallSpriteIds[ewram01000.switchIndexOne] = ewram01000.ballIdSwitchTwo;
+    gBallSpriteIds[ewram01000.switchIndexTwo] = ewram01000.ballIdSwitchOne;
+
 
     gSprites[ewram01000.ballIdSwitchOne].pos1.x = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexTwo].x + BALL_ICON_OFFSET_X;
     gSprites[ewram01000.ballIdSwitchOne].pos1.y = gMonIconCoords[IsDoubleBattle()][ewram01000.switchIndexTwo].y + BALL_ICON_OFFSET_Y;
@@ -2331,7 +2320,7 @@ void sub_806D4AC(u8 taskId, u16 species, u8 c)
         gSprites[spriteId].data[2] = gTasks[taskId].data[0] * -8;
         gSprites[spriteId].callback = SpriteCB_sub_806D37C;
 
-        spriteId = GetBallIconSpriteId(taskId, monIndex);
+        spriteId = gBallSpriteIds[monIndex];
 
         gSprites[spriteId].data[0] = -8;
         gSprites[spriteId].data[2] = gTasks[taskId].data[0] * -8;
@@ -2489,7 +2478,7 @@ void CreatePartyMenuBall(u8 taskId, u8 monIndex, u8 menuType, struct Pokemon *po
     spriteId = CreateSprite(&gBallSpriteTemplates[ball], gMonIconCoords[menuType][monIndex].x + BALL_ICON_OFFSET_X, gMonIconCoords[menuType][monIndex].y + BALL_ICON_OFFSET_Y, 0);
 
     gSprites[spriteId].callback = SpriteCallbackDummy;
-    SetBallIconSpriteId(taskId, monIndex, spriteId);
+    gBallSpriteIds[monIndex] = spriteId;
 }
 
 void TryCreatePartyMenuMonIcon(u8 taskId, u8 monIndex, struct Pokemon *pokemon)
@@ -2501,6 +2490,7 @@ void TryCreatePartyMenuMonIcon(u8 taskId, u8 monIndex, struct Pokemon *pokemon)
         else
             CreatePartyMenuMonIcon(taskId, monIndex, IsDoubleBattle(), pokemon);
     }
+    TryCreatePartyMenuBall(taskId, monIndex, pokemon);
 }
 
 void TryCreatePartyMenuBall(u8 taskId, u8 monIndex, struct Pokemon *pokemon)
@@ -2535,7 +2525,7 @@ void CreateMonIcon_LinkMultiBattle(u8 taskId, u8 monIndex, u8 menuType, struct U
     LoadBallGraphics(ball);
     spriteId = CreateSprite(&gBallSpriteTemplates[ball], x + BALL_ICON_OFFSET_X, y + BALL_ICON_OFFSET_Y, 0);
     gSprites[spriteId].callback = SpriteCallbackDummy;
-    SetBallIconSpriteId(taskId, monIndex, spriteId);
+    gBallSpriteIds[monIndex] = spriteId;
 }
 
 void UpdateMonIconFrame_806DA0C(struct Sprite *sprite)
@@ -2839,57 +2829,6 @@ void SetMonIconSpriteId(u8 taskId, u8 monIndex, u8 spriteId)
         break;
     case 5:
         gTasks[taskId].data[2] = (gTasks[taskId].data[2] & -0x100) | spriteId;
-        break;
-    }
-}
-
-u8 GetBallIconSpriteId(u8 taskId, u8 monIndex)
-{
-    switch (monIndex)
-    {
-    case 1:
-        return gTasks[taskId].data[4]; 
-        break;
-    case 2:
-        return gTasks[taskId].data[5] >> 8;
-        break;
-    case 3:
-        return gTasks[taskId].data[5];
-        break;
-    case 4:
-        return gTasks[taskId].data[7] >> 8;
-        break;
-    case 5:
-        return gTasks[taskId].data[7];
-        break;
-    case 0:
-    default:
-        return gTasks[taskId].data[4] >> 8;
-        break;
-    }
-}
-
-void SetBallIconSpriteId(u8 taskId, u8 monIndex, u8 spriteId)
-{
-    switch (monIndex)
-    {
-    case 0:
-        gTasks[taskId].data[4] = (u8)gTasks[taskId].data[4] | (spriteId << 8);
-        break;
-    case 1:
-        gTasks[taskId].data[4] = (gTasks[taskId].data[4] & -0x100) | spriteId;
-        break;
-    case 2:
-        gTasks[taskId].data[5] = (u8)gTasks[taskId].data[5] | (spriteId << 8);
-        break;
-    case 3:
-        gTasks[taskId].data[5] = (gTasks[taskId].data[5] & -0x100) | spriteId;
-        break;
-    case 4:
-        gTasks[taskId].data[7] = (u8)gTasks[taskId].data[7] | (spriteId << 8);
-        break;
-    case 5:
-        gTasks[taskId].data[7] = (gTasks[taskId].data[7] & -0x100) | spriteId;
         break;
     }
 }
