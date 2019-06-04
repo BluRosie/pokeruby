@@ -17,6 +17,9 @@
         "event_data.h": "c",
         "cry_ids.h": "c",
         "font3_widths.h": "c",
-        "battle.h": "c"
+        "battle.h": "c",
+        "trainer.h": "c",
+        "items.h": "c",
+        "species.h": "c"
     }
 }

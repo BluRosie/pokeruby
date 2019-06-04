@@ -213,6 +213,8 @@
 #define ITEM_KEE_BERRY              198
 #define ITEM_MARANGA_BERRY          199
 
+#define NUM_BERRIES 67
+
 // mulch
 #define ITEM_GROWTH_MULCH           200
 #define ITEM_DAMP_MULCH             201
@@ -911,6 +913,8 @@
 
 #define NUM_TECHNICAL_MACHINES 100
 #define NUM_HIDDEN_MACHINES      8
+
+#define NUM_OF_ITEMS 853
 
 // Check if the item is one that can be used on a Pokemon.
 #define IS_POKEMON_ITEM(item) ((item) >= ITEM_POTION && (item) <= ITEM_MARANGA_BERRY)

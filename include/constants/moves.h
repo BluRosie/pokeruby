@@ -371,6 +371,8 @@
 #define MOVE_DOOM_DESIRE 353
 #define MOVE_PSYCHO_BOOST 354
 
+#define MOVES_GEN_3 355
+
 /*****************
  * GENERATION IV *
  *****************/ 

@@ -40,6 +40,24 @@ struct TrainerMonItemCustomMoves
     u16 moves[4];
 };
 
+#define RANDOM_VALUE 69
+
+// level, pokeball, species, item, nickname, moves, evs, ivs, ability (0, 1, or 2), isshiny
+struct TrainerMonFullControl
+{
+    u8 level; // if over 100 it will be randomized
+    u8 pokeball; // check out battle_anim_813F0F4.c on this one
+    u16 species; // if is over the amount of species total the species will be randomized
+    u16 heldItem; // if is over the amount of items total the item will be a random berry
+    u8 nickname[POKEMON_NAME_LENGTH]; // only used if hasNickname is true, otherwise species name is
+    u16 moves[4]; // if all the moves are 0 then the moves will be default
+    u8 evs[6]; // if any ev is RANDOM_VALUE then it will be random
+    u8 ivs[6]; // if any iv is above 31 that iv will be random
+    u8 ability:2; // altability | hiddenability
+    bool8 isShiny:1;
+    bool8 hasNickname:1;
+};
+
 struct TrainerEyeTrainer
 {
    u16 opponentIDs[5];  // Each of these trainers has 5 increasingly stronger teams.

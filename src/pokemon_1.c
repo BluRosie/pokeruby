@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle.h"
 #include "data2.h"
 #include "constants/abilities.h"
 #include "constants/items.h"
@@ -1359,6 +1360,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u32 personality;
     u32 value;
     u16 checksum;
+    u32 shinyValue;
 
     ZeroBoxMonData(boxMon);
 
@@ -1369,26 +1371,31 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 
     SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
 
-    //Determine original trainer ID
-    if (otIdType == 2) //Pokemon cannot be shiny
+    switch (otIdType)
     {
-        u32 shinyValue;
-        do
-        {
-            value = Random32();
-            shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
-        } while (shinyValue < 8);
-    }
-    else if (otIdType == 1) //Pokemon has a preset OT ID
-    {
-        value = fixedOtId;
-    }
-    else //Player is the OT
-    {
-        value = gSaveBlock2.playerTrainerId[0]
-              | (gSaveBlock2.playerTrainerId[1] << 8)
-              | (gSaveBlock2.playerTrainerId[2] << 16)
-              | (gSaveBlock2.playerTrainerId[3] << 24);
+        case 3: // fixed shiny
+            do
+            {
+                value = Random32();
+                shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
+            } while (shinyValue >= SHINY_RATE);
+            break;
+        case 2: // can't be shiny
+            do
+            {
+                value = Random32();
+                shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
+            } while (shinyValue < SHINY_RATE);
+            break;
+        case 1: // preset otid
+            value = fixedOtId;
+            break;
+        default: // protag is owner
+            value = gSaveBlock2.playerTrainerId[0]
+                  | (gSaveBlock2.playerTrainerId[1] << 8)
+                  | (gSaveBlock2.playerTrainerId[2] << 16)
+                  | (gSaveBlock2.playerTrainerId[3] << 24);
+            break;
     }
 
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);

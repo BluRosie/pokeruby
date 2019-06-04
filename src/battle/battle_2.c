@@ -1104,7 +1104,113 @@ u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                     SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
                     SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
                 }
+
+                
                 break;
+            }
+// level, pokeball, species, item, nickname, moves, evs, ivs, ability (0, 1, or 2), isshiny
+            case F_TRAINER_PARTY_FULL_CONTROL:
+            {
+                const struct TrainerMonFullControl *partyData = gTrainers[trainerNum].party.FullControl;
+                u8 level;
+                u8 species;
+                u16 heldItem;
+                u16 moves[4];
+                u8 evs[6];
+                u8 ivs[6];
+                u8 name[10];
+                bool8 altAbility, hiddenAbility, hasAMove = FALSE;
+
+                if (partyData[i].level > MAX_LEVEL)
+                {
+                    level = Random() % MAX_LEVEL;
+                    if (!level)
+                        level++;
+                }
+
+                if (partyData[i].species >= NUM_SPECIES)
+                {
+                    species = Random() % NUM_SPECIES;
+                    if (!species)
+                        species++;
+                }
+
+                if (partyData[i].hasNickname)
+                    for (j = 0; j < 10; j++)
+                        name[j] = partyData[i].nickname[j];
+                else
+                    for (j = 0; j < 10; j++)
+                        name[j] = gSpeciesNames[species][j];
+
+                if (partyData[i].heldItem >= NUM_OF_ITEMS)
+                    heldItem = Random() % NUM_BERRIES + ITEM_CHERI_BERRY;
+
+                for (j = 0; j < 4; j++)
+                {
+                    if (partyData[i].moves[j])
+                        hasAMove = TRUE;
+                }
+
+                if (hasAMove)
+                    for (j = 0; j < 4; j++)
+                    {
+                        if (partyData[i].moves[j] > MOVES_GEN_3)
+                        {
+                            moves[j] = Random() % MOVES_GEN_3/*NUM_MOVES*/;
+                            if (!moves[j])
+                                moves[j]++;
+                        }
+                        else 
+                            moves[j] = partyData[i].moves[j];
+                    }
+
+                for (j = 0; j < 6; j++)
+                {
+                    if (partyData[i].evs[j] == RANDOM_VALUE)
+                        evs[j] = Random() % 255;
+                    else
+                        evs[j] = partyData[i].evs[j];
+
+                    if (partyData[i].ivs[j] > 31)
+                        ivs[j] = Random() % 32;
+                    else
+                        ivs[j] = partyData[i].ivs[j];
+                }
+                
+
+                for (j = 0; name[j] != 0xFF; j++)
+                    nameHash += name[j];
+                personalityValue += nameHash << 8;
+                fixedIV = 0;
+                if (partyData[i].isShiny)
+                    CreateMon(&party[i], species, level, fixedIV, TRUE, personalityValue, 3, 0);
+                else
+                    CreateMon(&party[i], species, level, fixedIV, TRUE, personalityValue, 0, 0);
+
+                SetMonData(&party[i], MON_DATA_POKEBALL, &partyData[i].pokeball);
+                SetMonData(&party[i], MON_DATA_HELD_ITEM, &heldItem);
+                SetMonData(&party[i], MON_DATA_NICKNAME, &name);
+
+                if (hasAMove)
+                    for (j = 0; j < 4; j++)
+                    {
+                        SetMonData(&party[i], MON_DATA_MOVE1 + j, &moves[j]);
+                        SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[moves[j]].pp);
+                    }
+                else
+                    GiveMonInitialMoveset(&party[i]);
+
+                for (j = 0; j < 6; j++)
+                {
+                    SetMonData(&party[i], MON_DATA_HP_IV + j, &evs[j]);
+                    SetMonData(&party[i], MON_DATA_HP_EV + j, &ivs[j]);
+                }
+
+                altAbility = partyData[i].ability & 1;
+                hiddenAbility = partyData[i].ability & 2;
+
+                SetMonData(&party[i], MON_DATA_HIDDEN_ABILITY, &hiddenAbility);
+                SetMonData(&party[i], MON_DATA_ALT_ABILITY, &altAbility);
             }
             }
         }

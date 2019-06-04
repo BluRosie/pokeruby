@@ -4262,11 +4262,20 @@ const struct TrainerMonNoItemDefaultMoves gTrainerParty_Shelby5[] = {
     }
 };
 
-const struct TrainerMonNoItemDefaultMoves gTrainerParty_Calvin1[] = {
+// level, pokeball, species, item, nickname, moves, evs, ivs, ability (0, 1, or 2), isshiny
+const struct TrainerMonFullControl gTrainerParty_Calvin1[] = {
     {
-	.iv = 0,
-	.level = 5,
-	.species = SPECIES_ZIGZAGOON
+	.level = 101,
+	.pokeball = ITEM_HEAL_BALL,
+	.species = 809,
+	.heldItem = NUM_OF_ITEMS + 1,
+	.nickname = _("shinnygay"),
+	.moves = {MOVES_GEN_3 + 1, 0, 0, 0},
+	.evs = {255, 255, 255, 255, 255, 255},
+	.ivs = {31, 31, 31, 31, 31, 31},
+	.ability = 0,
+	.isShiny = TRUE,
+	.hasNickname = FALSE,
     }
 };
 

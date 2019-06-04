@@ -23,6 +23,12 @@ TENTATIVE PLAN:
 6 - moves
 7 - decide tms/hms
 
+BATTLE BUGS:
+all moves above psycho boost can and will freeze the game
+selfdestruct doesn't kill the user
+never miss moves always have been missing
+experience gained for the medium slow group is weird
+
 ITEM EXPANSION PROGRESS:
 10/?
 
