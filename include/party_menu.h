@@ -143,6 +143,8 @@ void sub_806D5A4(void);
 void SetMonIconAnim(u8 spriteId, struct Pokemon *pokemon);
 void CreatePartyMenuMonIcon(u8 taskId, u8 monIndex, u8 c, struct Pokemon *pokemon);
 void TryCreatePartyMenuMonIcon(u8 a, u8 monIndex, struct Pokemon *pokemon);
+void CreatePartyMenuBall(u8 taskId, u8 monIndex, u8 c, struct Pokemon *pokemon);
+void TryCreatePartyMenuBall(u8 a, u8 monIndex, struct Pokemon *pokemon);
 void LoadHeldItemIconGraphics(void);
 void PartyMenuTryGiveMonHeldItem(u8 taskId, u16 newItem, TaskFunc c);
 void SetMonIconSpriteId(u8 taskId, u8 monIndex, u8 spriteId);

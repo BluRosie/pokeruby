@@ -456,13 +456,13 @@ static const u16 PartyMonOAMSettings_LeftColumn[] = {
 };
 
 static const u16 PartyMonOAMSettings_RightColumn[] = {
-    PartyMonOAMSettings( 0,  0, 15, ST_OAM_H_RECTANGLE, 1, 1,  0), // no idea
-    PartyMonOAMSettings( 0,  0, 15, ST_OAM_H_RECTANGLE, 1, 1,  4), // no idea
+    PartyMonOAMSettings( 0,  0, 15, ST_OAM_H_RECTANGLE, 1, 3,  0), // no idea
+    PartyMonOAMSettings( 0,  0, 15, ST_OAM_H_RECTANGLE, 1, 3,  4), // no idea
     PartyMonOAMSettings(24,  8, 15, ST_OAM_H_RECTANGLE, 1, 1,  8), // name part 1
     PartyMonOAMSettings(56,  8, 15, ST_OAM_H_RECTANGLE, 1, 1, 12), // name part 2
     PartyMonOAMSettings( 0, 24, 15, ST_OAM_H_RECTANGLE, 1, 1, 16), // level
     PartyMonOAMSettings(44, 24, 15, ST_OAM_H_RECTANGLE, 1, 1, 24), // hp
-    PartyMonOAMSettings( 0,  0, 15, ST_OAM_H_RECTANGLE, 1, 1, 28), // no idea
+    PartyMonOAMSettings( 0,  0, 15, ST_OAM_H_RECTANGLE, 1, 3, 28), // the weird Black Dots
     0xFFFF,
 };
 
@@ -643,14 +643,26 @@ bool8 SetupDefaultPartyMenu(void)
         }
         break;
     case 1:
+        if (ewram1B000_alt.monIndex < gPlayerPartyCount)
+        {
+            TryCreatePartyMenuBall(ewram1B000_alt.menuHandlerTaskId, ewram1B000_alt.monIndex, &gPlayerParty[ewram1B000_alt.monIndex]);
+            ewram1B000_alt.monIndex++;
+        }
+        else
+        {
+            ewram1B000_alt.monIndex = 0;
+            ewram1B000_alt.setupState++;
+        }
+        break;
+    case 2:
         LoadHeldItemIconGraphics();
         ewram1B000_alt.setupState++;
         break;
-    case 2:
+    case 3:
         CreateHeldItemIcons_806DC34(ewram1B000_alt.menuHandlerTaskId);
         ewram1B000_alt.setupState++;
         break;
-    case 3:
+    case 4:
         if (sub_806BD58(ewram1B000_alt.menuHandlerTaskId, ewram1B000_alt.monIndex) != 1)
         {
             ewram1B000_alt.monIndex++;
@@ -661,27 +673,27 @@ bool8 SetupDefaultPartyMenu(void)
             ewram1B000_alt.setupState++;
         }
         break;
-    case 4:
+    case 5:
         PartyMenuPrintMonsLevelOrStatus();
         ewram1B000_alt.setupState++;
         break;
-    case 5:
+    case 6:
         PrintPartyMenuMonNicknames();
         ewram1B000_alt.setupState++;
         break;
-    case 6:
+    case 7:
         PartyMenuTryPrintMonsHP();
         ewram1B000_alt.setupState++;
         break;
-    case 7:
+    case 8:
         nullsub_13();
         ewram1B000_alt.setupState++;
         break;
-    case 8:
+    case 9:
         PartyMenuDrawHPBars();
         ewram1B000_alt.setupState++;
         break;
-    case 9:
+    case 10:
         if (DrawPartyMonBackground(ewram1B000_alt.monIndex) == 1)
         {
             ewram1B000_alt.monIndex = 0;
@@ -2462,14 +2474,20 @@ void CreatePartyMenuMonIcon(u8 taskId, u8 monIndex, u8 menuType, struct Pokemon 
 
     u16 species2 = GetMonData(pokemon, MON_DATA_SPECIES2);
     u32 personality = GetMonData(pokemon, MON_DATA_PERSONALITY);
-    u8 ball = ball_number_to_ball_processing_index(GetMonData(pokemon, MON_DATA_POKEBALL));
 
     u8 spriteId = CreateMonIcon(species2, sub_809D62C, x, y, 5, personality);
     SetMonIconSpriteId(taskId, monIndex, spriteId);
     SetMonIconAnim(spriteId, pokemon);
-    
+}
+
+void CreatePartyMenuBall(u8 taskId, u8 monIndex, u8 menuType, struct Pokemon *pokemon) {
+    u8 ball = ball_number_to_ball_processing_index(GetMonData(pokemon, MON_DATA_POKEBALL));
+    u8 spriteId;
+
     LoadBallGraphics(ball);
-    spriteId = CreateSprite(&gBallSpriteTemplates[ball], x + BALL_ICON_OFFSET_X, y + BALL_ICON_OFFSET_Y, 0);
+    
+    spriteId = CreateSprite(&gBallSpriteTemplates[ball], gMonIconCoords[menuType][monIndex].x + BALL_ICON_OFFSET_X, gMonIconCoords[menuType][monIndex].y + BALL_ICON_OFFSET_Y, 0);
+
     gSprites[spriteId].callback = SpriteCallbackDummy;
     SetBallIconSpriteId(taskId, monIndex, spriteId);
 }
@@ -2482,6 +2500,17 @@ void TryCreatePartyMenuMonIcon(u8 taskId, u8 monIndex, struct Pokemon *pokemon)
             CreatePartyMenuMonIcon(taskId, monIndex, PARTY_MENU_LAYOUT_LINK_DOUBLE_BATTLE, pokemon);
         else
             CreatePartyMenuMonIcon(taskId, monIndex, IsDoubleBattle(), pokemon);
+    }
+}
+
+void TryCreatePartyMenuBall(u8 taskId, u8 monIndex, struct Pokemon *pokemon)
+{
+    if (GetMonData(pokemon, MON_DATA_SPECIES))
+    {
+        if (IsLinkDoubleBattle() == TRUE)
+            CreatePartyMenuBall(taskId, monIndex, PARTY_MENU_LAYOUT_LINK_DOUBLE_BATTLE, pokemon);
+        else
+            CreatePartyMenuBall(taskId, monIndex, IsDoubleBattle(), pokemon);
     }
 }
 
