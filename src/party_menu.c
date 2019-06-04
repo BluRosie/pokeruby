@@ -460,7 +460,7 @@ static const u16 PartyMonOAMSettings_RightColumn[] = {
     PartyMonOAMSettings( 0,  0, 15, ST_OAM_H_RECTANGLE, 1, 3,  4), // no idea
     PartyMonOAMSettings(24,  8, 15, ST_OAM_H_RECTANGLE, 1, 1,  8), // name part 1
     PartyMonOAMSettings(56,  8, 15, ST_OAM_H_RECTANGLE, 1, 1, 12), // name part 2
-    PartyMonOAMSettings( 0, 24, 15, ST_OAM_H_RECTANGLE, 1, 1, 16), // level
+    PartyMonOAMSettings( 1, 24, 15, ST_OAM_H_RECTANGLE, 1, 1, 16), // level
     PartyMonOAMSettings(44, 24, 15, ST_OAM_H_RECTANGLE, 1, 1, 24), // hp
     PartyMonOAMSettings( 0,  0, 15, ST_OAM_H_RECTANGLE, 1, 3, 28), // the weird Black Dots
     0xFFFF,
@@ -3048,7 +3048,7 @@ void PartyMenuDoPrintHP(u8 monIndex, u8 b, u16 currentHP, u16 maxHP)
     register u8 *textPtr asm("r2") = AlignInt1InMenuWindow(stringVar1, currentHP, 15, 1);
     textPtr[0] = CHAR_SLASH;
 
-    AlignInt1InMenuWindow(++textPtr, maxHP, 35, 1);
+    AlignInt1InMenuWindow(++textPtr, maxHP, 34, 1);
     var = 0;
 
     CpuFastSet(&var, gUnknown_02039460, 0x1000040);
