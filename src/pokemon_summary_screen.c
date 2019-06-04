@@ -4929,6 +4929,7 @@ static void DestroyAndRedrawMonMarkings(struct Pokemon *mon)
 {
     DestroySprite(gUnknown_020384F4);
     sub_80A1D84(mon);
+    haveMarkingsBeenLoaded = TRUE;
 }
 
 static void sub_80A1DE8(struct Pokemon *mon)

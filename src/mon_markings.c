@@ -606,7 +606,6 @@ struct Sprite *sub_80F7960(u16 tileTag, u16 paletteTag, const u16 *palette, u16 
     {
         LoadSpriteSheet(&sheet);
         LoadSpritePalette(&sprPalette);
-        haveMarkingsBeenLoaded = TRUE;
     }
 
     spriteId = CreateSprite(&sprTemplate, 0, 0, 0);
