@@ -63,16 +63,6 @@ u16 ConvertDateToDayCount(u8 year, u8 month, u8 day)
     s32 i;
     u16 dayCount = 0;
 
-#ifndef BUGFIX_BERRY
-    // The berry glitch was caused by not adding days for the year 2000.
-    for (i = year - 1; i > 0; i--)
-    {
-        dayCount += 365;
-
-        if (IsLeapYear(i) == TRUE)
-            dayCount++;
-    }
-#else
     // The fix was to use "i >= 0" as the condition instead of "i > 0".
     for (i = year - 1; i >= 0; i--)
     {
@@ -81,7 +71,6 @@ u16 ConvertDateToDayCount(u8 year, u8 month, u8 day)
         if (IsLeapYear(i) == TRUE)
             dayCount++;
     }
-#endif // BUGFIX_BERRY
 
     for (i = 0; i < month - 1; i++)
         dayCount += sNumDaysInMonths[i];

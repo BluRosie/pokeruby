@@ -1209,19 +1209,28 @@ static const bool8 affectedPalettes[32] = {
 static void FogBlendAffectedPalettes(bool8 fadeDirection) {
     u8 i;
 
-    if (++gWeatherPtr->blendFrameCounter > 60)
+    if (fadeDirection)
     {
-        gWeatherPtr->blendFrameCounter = 60;
-        gWeatherPtr->isFog = fadeDirection;
+        if (++gWeatherPtr->blendFrameCounter > 60)
+        {
+            gWeatherPtr->blendFrameCounter = 60;
+            gWeatherPtr->isFog = TRUE;
+        }
     }
+    else
+    {
+        if (!--gWeatherPtr->blendFrameCounter)
+        {
+            gWeatherPtr->blendFrameCounter = 1;
+            gWeatherPtr->isFog = FALSE;
+        }
+    }
+
 
     for (i = 0; i < 32; i++) {
         if (affectedPalettes[i])
         {
-            if (fadeDirection) // fade in
-                BlendPalette(i * 16, 16, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
-            else               // fade out
-                BlendPalette(i * 16, 16, 10 - (gWeatherPtr->blendFrameCounter / 6), RGB(31, 31, 31));
+            BlendPalette(i * 16, 16, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
         }
         else
         {
@@ -1270,6 +1279,10 @@ static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
     else if (gWeatherPtr->isFog && GetCurrentWeather() == WEATHER_FOG_3) // during fog, transition to fog
     {
         FogBlendAffectedPalettes(TRUE);
+    }
+    else if (gWeatherPtr->blendFrameCounter > 1)
+    {
+        FogBlendAffectedPalettes(FALSE);
     }
 }
 

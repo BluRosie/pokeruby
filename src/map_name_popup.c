@@ -39,7 +39,6 @@ void ShowMapNamePopup(void)
             gTasks[sTaskId].data[3] = 1;
         }
     }
-    gWeatherPtr->blendFrameCounter = 0;
 }
 
 void Task_MapNamePopup(u8 taskId)
