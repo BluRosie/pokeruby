@@ -3,6 +3,7 @@
 #include "overworld.h"
 #include "battle_setup.h"
 #include "berry.h"
+#include "blend_palette.h"
 #include "cable_club.h"
 #include "clock.h"
 #include "event_data.h"
@@ -1196,6 +1197,39 @@ bool32 is_c1_link_related_active(void)
         return FALSE;
 }
 
+static const bool8 affectedPalettes[32] = {
+    TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
+    FALSE, FALSE,
+
+    TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
+    FALSE, FALSE, FALSE, FALSE,
+    TRUE, TRUE, TRUE,
+};
+
+static void FogBlendAffectedPalettes(bool8 fadeDirection) {
+    u8 i;
+
+    if (++gWeatherPtr->blendFrameCounter > 60)
+    {
+        gWeatherPtr->blendFrameCounter = 60;
+        gWeatherPtr->isFog = fadeDirection;
+    }
+
+    for (i = 0; i < 32; i++) {
+        if (affectedPalettes[i])
+        {
+            if (fadeDirection) // fade in
+                BlendPalette(i * 16, 16, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
+            else               // fade out
+                BlendPalette(i * 16, 16, 10 - (gWeatherPtr->blendFrameCounter / 6), RGB(31, 31, 31));
+        }
+        else
+        {
+            CpuFastCopy(gPlttBufferUnfaded + i * 16, gPlttBufferFaded + i * 16, 16 * sizeof(u16));
+        }
+    }
+}
+
 static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
 {
     struct FieldInput fieldInput;
@@ -1225,52 +1259,17 @@ static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
         }
     }
 
-    if (GetCurrentWeather() == WEATHER_FOG_3 && gWeatherPtr->isFog == 0) // transition to fog from no fog
+    if (GetCurrentWeather() == WEATHER_FOG_3 && !gWeatherPtr->isFog) // transition to fog from no fog
     {
-        if (++gWeatherPtr->blendFrameCounter <= 60)
-        {
-            ApplyGammaShiftWithBlend(0, 14, 1, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
-            ApplyGammaShift(14, 2, 0);
-            ApplyGammaShiftWithBlend(16, 9, 1, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
-            ApplyGammaShift(26, 3, 0);
-            ApplyGammaShiftWithBlend(30, 3, 1, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
-        }
-        else
-        {
-            gWeatherPtr->blendFrameCounter = 60;
-            gWeatherPtr->isFog = 1;
-        }
+        FogBlendAffectedPalettes(TRUE);
     }
-    else if (gWeatherPtr->isFog == 1 && GetCurrentWeather() != WEATHER_FOG_3) // transition to not fog from fog
+    else if (gWeatherPtr->isFog && GetCurrentWeather() != WEATHER_FOG_3) // transition to not fog from fog
     {
-        if (++gWeatherPtr->blendFrameCounter <= 60)
-        {
-            ApplyGammaShiftWithBlend(0, 13, 1, 10 - (gWeatherPtr->blendFrameCounter / 6), RGB(31, 31, 31));
-            ApplyGammaShift(14, 2, 0);
-            ApplyGammaShiftWithBlend(16, 13, 1, 10 - (gWeatherPtr->blendFrameCounter / 6), RGB(31, 31, 31));
-            ApplyGammaShift(26, 3, 0);
-            ApplyGammaShiftWithBlend(30, 3, 1, 10 - (gWeatherPtr->blendFrameCounter / 6), RGB(31, 31, 31));
-        }
-        else
-        {
-            gWeatherPtr->blendFrameCounter = 60;
-            gWeatherPtr->isFog = 0;
-//            ApplyGammaShift(0, 32, 0);
-        }
+        FogBlendAffectedPalettes(FALSE);
     }
-    else if (gWeatherPtr->isFog == 1 && GetCurrentWeather() == WEATHER_FOG_3) // during fog, transition to fog
+    else if (gWeatherPtr->isFog && GetCurrentWeather() == WEATHER_FOG_3) // during fog, transition to fog
     {
-        if (++gWeatherPtr->blendFrameCounter <= 60)
-        {
-            ApplyGammaShiftWithBlend(0, 13, 1, 10, RGB(31, 31, 31));
-            ApplyGammaShift(14, 2, 0);
-            ApplyGammaShiftWithBlend(16, 13, 1, 10, RGB(31, 31, 31));
-            ApplyGammaShift(26, 3, 0);
-            ApplyGammaShiftWithBlend(30, 3, 1, 10, RGB(31, 31, 31));
-        }
-        else
-            gWeatherPtr->blendFrameCounter = 60;
-            ApplyGammaShiftWithBlend(30, 3, 1, 10, RGB(31, 31, 31));
+        FogBlendAffectedPalettes(TRUE);
     }
 }
 

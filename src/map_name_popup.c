@@ -1,4 +1,5 @@
 #include "global.h"
+#include "constants/weather.h"
 #include "field_weather.h"
 #include "map_name_popup.h"
 #include "event_data.h"
