@@ -47,6 +47,12 @@ extern const u8 SystemText_Option[];
 extern const u8 SystemText_Exit[];
 extern const u8 SystemText_Retire[];
 extern const u8 gOtherText_SafariStock[];
+extern const u8 gOtherText_Morning[];
+extern const u8 gOtherText_DayTime[];
+extern const u8 gOtherText_Evening[];
+extern const u8 gOtherText_Night[];
+extern const u8 gOtherText_AM[];
+extern const u8 gOtherText_PM[];
 
 // mystery_event_menu
 extern const u8 gSystemText_LinkStandby[];

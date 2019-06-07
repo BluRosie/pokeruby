@@ -1,5 +1,18 @@
 #include "global.h"
 #include "play_time.h"
+#include "clock.h"
+#include "berry.h"
+#include "dewford_trend.h"
+#include "event_data.h"
+#include "field_specials.h"
+#include "field_weather.h"
+#include "lottery_corner.h"
+#include "main.h"
+#include "overworld.h"
+#include "rtc.h"
+#include "time_events.h"
+#include "tv.h"
+#include "wallclock.h"
 
 enum
 {
@@ -33,6 +46,19 @@ void PlayTimeCounter_Stop()
     sPlayTimeCounterState = STOPPED;
 }
 
+static void DailyUpdates()
+{
+    ClearDailyFlags();
+    UpdateDewfordTrendPerDay(1);
+    UpdateTVShowsPerDay(1);
+    UpdateWeatherPerDay(1);
+    UpdatePartyPokerusTime(1);
+    UpdateMirageRnd(1);
+    UpdateBirchState(1);
+    SetShoalItemFlag(1);
+    SetRandomLotteryNumber(1);
+}
+
 void PlayTimeCounter_Update()
 {
     if (sPlayTimeCounterState == RUNNING)
@@ -53,16 +79,31 @@ void PlayTimeCounter_Update()
                 {
                     gSaveBlock2.playTimeMinutes = 0;
                     gSaveBlock2.playTimeHours++;
+                    BerryTreeTimeUpdate(1);
 
-                    if (gSaveBlock2.playTimeHours > 999)
-                        PlayTimeCounter_SetToMax();
+                    if (gSaveBlock2.playTimeHours > 23)
+                    {
+                        gSaveBlock2.playTimeHours = 0;
+                        gSaveBlock2.playTimeDays++;
+                        DailyUpdates();
+
+                        if (gSaveBlock2.playTimeDays > IsLeapYear(gSaveBlock2.playTimeYears) + 365)
+                        {
+                            gSaveBlock2.playTimeDays = 0;
+
+                            if (gSaveBlock2.playTimeYears < 255)
+                                gSaveBlock2.playTimeYears++;
+                            else
+                                sPlayTimeCounterState = MAXED_OUT;
+                        }
+                    }
                 }
             }
         }
     }
 }
 
-void PlayTimeCounter_SetToMax()
+void PlayTimeCounter_SetToMax() 
 {
     sPlayTimeCounterState = MAXED_OUT;
 

@@ -107,6 +107,24 @@ SystemText_Retire:: @ safari zone?
 gOtherText_SafariStock:: @ 842C4A9
 	.string "Safari Balls\nStock: {STR_VAR_1}$"
 
+gOtherText_Morning::
+	.string "Morning$"
+
+gOtherText_DayTime::
+	.string "Day$"
+
+gOtherText_Evening::
+	.string "Evening$"
+
+gOtherText_Night::
+	.string "Night$"
+
+gOtherText_AM::
+	.string "AM$"
+
+gOtherText_PM::
+	.string "PM$"
+
 gSystemText_LinkStandby:: @ 842C4C0
 	.string "Link standby...\n... ... B Button: Cancel$"
 
@@ -251,7 +269,7 @@ gOtherText_Pokedex:: @ 842C992
 	.string "Pokédex$"
 
 gOtherText_PlayTime:: @ 842C99A
-	.string "Play Time$"
+	.string "Time$"
 
 gOtherText_SentToPC:: @ 842C9A4
 	.string "{STR_VAR_1} was sent to\nthe PC.{PAUSE_UNTIL_PRESS}$"

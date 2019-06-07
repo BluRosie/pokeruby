@@ -17,7 +17,55 @@
 
 #define RTC_ERR_FLAG_MASK      0x0FF0
 
+#define LENGTH_DAY 24
+
+#define IS_NIGHT(hour) (hour >= 20 || hour < 4)
+#define IS_MORNING(hour) (hour < 10)
+#define IS_DAY(hour) (hour < 17)
+#define IS_EVENING(hour) (hour < 20)
+
 extern struct Time gLocalTime;
+
+#define GET_BLEND_COEFF_AND_COLOR if (gLocalTime.hours < 4) { \
+        blendCoeff = 6; \
+        blendColor = RGB(9, 3, 31); \
+    } else if (gLocalTime.hours < 5) { \
+        blendCoeff = 4; \
+        blendColor = RGB(9, 3, 31); \
+    } else if (gLocalTime.hours < 8) { \
+        blendCoeff = 3; \
+        blendColor = RGB(9, 3, 31); \
+    } else if (gLocalTime.hours < 12) { \
+        blendCoeff = 1; \
+        blendColor = RGB(9, 3, 31); \
+    } else if (gLocalTime.hours < 15) { \
+        blendCoeff = 0; \
+        blendColor = RGB(9, 3, 31); \
+    } else if (gLocalTime.hours < 16) { \
+        blendCoeff = 1; \
+        blendColor = RGB(31, 27, 13); \
+    } else if (gLocalTime.hours < 17) { \
+        blendCoeff = 1; \
+        blendColor = RGB(31, 25, 4); \
+    } else if (gLocalTime.hours < 18) { \
+        blendCoeff = 2; \
+        blendColor = RGB(31, 25, 4); \
+    } else if (gLocalTime.hours < 19) { \
+        blendCoeff = 3; \
+        blendColor = RGB(31, 13, 8); \
+    } else if (gLocalTime.hours < 20) { \
+        blendCoeff = 2; \
+        blendColor = RGB(9, 3, 31); \
+    } else if (gLocalTime.hours < 21) { \
+        blendCoeff = 4; \
+        blendColor = RGB(9, 3, 31); \
+    } else if (gLocalTime.hours < 22) { \
+        blendCoeff = 5; \
+        blendColor = RGB(9, 3, 31); \
+    } else { \
+        blendCoeff = 6; \
+        blendColor = RGB(9, 3, 31); \
+    } \
 
 void RtcDisableInterrupts(void);
 void RtcRestoreInterrupts(void);

@@ -8,6 +8,7 @@
 #include "menu.h"
 #include "palette.h"
 #include "random.h"
+#include "rtc.h"
 #include "script.h"
 #include "start_menu.h"
 #include "sound.h"
@@ -495,7 +496,7 @@ static void FadeInScreenWithWeather(void)
         }
         break;
     case WEATHER_FOG_3:
-        gWeatherPtr->gammaIndex = 3;
+        gWeatherPtr->gammaIndex = 0;
     case WEATHER_SANDSTORM:
     case WEATHER_FOG_2:
     default:
@@ -947,6 +948,14 @@ void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex)
 {
     u16 paletteIndex = 16 + spritePaletteIndex;
     u16 i;
+    u8 blendCoeff;
+    u16 blendColor;
+
+    RtcCalcLocalTime();
+
+    GET_BLEND_COEFF_AND_COLOR
+        
+    BlendPalette(paletteIndex * 16, 16, blendCoeff, blendColor); // rtc blend
 
     switch (gWeatherPtr->palProcessingState)
     {
@@ -968,16 +977,19 @@ void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex)
     // WEATHER_PAL_STATE_CHANGING_WEATHER
     // WEATHER_PAL_STATE_CHANGING_IDLE
     default:
+
         if (gWeatherPtr->currWeather != WEATHER_FOG_1
          && gWeatherPtr->currWeather != WEATHER_FOG_3)
         {
             ApplyGammaShift(paletteIndex, 1, gWeatherPtr->gammaIndex);
         }
-        else
-        {
-            paletteIndex *= 16;
+        paletteIndex *= 16;
+
+        if (gWeatherPtr->currWeather == WEATHER_FOG_3)
             BlendPalette(paletteIndex, 16, 10, RGB(31, 31, 31));
-        }
+        else if (gWeatherPtr->currWeather == WEATHER_FOG_1)
+            BlendPalette(paletteIndex, 16, 12, RGB(28, 31, 28));
+
         break;
     }
 }

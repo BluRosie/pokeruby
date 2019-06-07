@@ -20,6 +20,7 @@
         "battle.h": "c",
         "trainer.h": "c",
         "items.h": "c",
-        "species.h": "c"
+        "species.h": "c",
+        "strings2.h": "c"
     }
 }

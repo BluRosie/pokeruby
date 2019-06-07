@@ -842,7 +842,9 @@ struct SaveBlock2 /* 0x02024EA4 */
              u16 regionMapZoom:1;          // whether the map is zoomed in
 			 u16 expShare:1;               // whether the exp share is activated
     /*0x18*/ struct Pokedex pokedex;
-    /*0x90*/ u8 filler_90[0x8];
+    /*0x90*/ u8 filler_90[0x5];
+    /*0x95*/ u8 playTimeYears;
+    /*0x96*/ u16 playTimeDays;
     /*0x98*/ struct Time localTimeOffset;
     /*0xA0*/ struct Time lastBerryTreeUpdate;
     /*0xA8*/ struct BattleTowerData battleTower;

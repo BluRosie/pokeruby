@@ -18,6 +18,7 @@
 #include "pokemon_menu.h"
 #include "pokenav.h"
 #include "overworld.h"
+#include "rtc.h"
 #include "safari_zone.h"
 #include "save.h"
 #include "save_menu_util.h"
@@ -106,6 +107,7 @@ static void BuildStartMenuActions_Normal(void);
 static void BuildStartMenuActions_SafariZone(void);
 static void BuildStartMenuActions_Link(void);
 static void DisplaySafariBallsWindow(void);
+static void DisplayTime(void);
 static bool32 PrintStartMenuItemsMultistep(s16 *a, u32 b);
 static bool32 InitStartMenuMultistep(s16 *a, s16 *b);
 static void Task_StartMenu(u8 taskId);
@@ -393,10 +395,10 @@ static const union AffineAnimCmd gRotateAnim[] =
 {
     AFFINEANIMCMD_FRAME(0, 0, 4, 5),
     AFFINEANIMCMD_FRAME(0, 0, -4, 5),
-    AFFINEANIMCMD_FRAME(0, 0, 4, 5),
-    AFFINEANIMCMD_FRAME(0, 0, -4, 5),
-    AFFINEANIMCMD_FRAME(0, 0, 4, 5),
-    AFFINEANIMCMD_FRAME(0, 0, -4, 5),
+    AFFINEANIMCMD_FRAME(0, 0, 4, 4),
+    AFFINEANIMCMD_FRAME(0, 0, -4, 4),
+    AFFINEANIMCMD_FRAME(0, 0, 4, 3),
+    AFFINEANIMCMD_FRAME(0, 0, -4, 3),
     AFFINEANIMCMD_END,
 };
 
@@ -1464,6 +1466,42 @@ static void DisplaySafariBallsWindow(void)
     Menu_PrintText(gOtherText_SafariStock, 1, 1);
 }
 
+static void DisplayTime(void)
+{
+    const u8 *string;
+    const u8 *suffix;
+    char currTime[16];
+    bool8 isPM;
+
+    RtcCalcLocalTime();
+
+    isPM = gLocalTime.hours / 12;
+
+    if (IS_NIGHT(gLocalTime.hours)) // night time
+        string = gOtherText_Night;
+    else if (IS_MORNING(gLocalTime.hours)) // morning
+        string = gOtherText_Morning;
+    else if (IS_DAY(gLocalTime.hours)) // day
+        string = gOtherText_Day;
+    else
+        string = gOtherText_Evening;
+
+    AlignStringInMenuWindow(gStringVar1, string, 7, 1);
+    Menu_DrawStdWindowFrame(0, 0, 13, 3);
+    Menu_PrintText(gStringVar1, 1, 1);
+
+    if (isPM) {
+        suffix = gOtherText_PM;
+    } else {
+        suffix = gOtherText_AM;
+    }
+
+    FormatPlayTime(currTime, gSaveBlock2.playTimeHours, gSaveBlock2.playTimeMinutes, 1);
+    MenuPrint_RightAligned(currTime, 10, 1);
+    MenuPrint_RightAligned(suffix, 12, 1);
+
+}
+
 //Prints n menu items starting at *index
 static bool32 PrintStartMenuItemsMultistep(s16 *index, u32 n)
 {
@@ -1510,6 +1548,8 @@ static bool32 InitStartMenuMultistep(s16 *step, s16 *index)
         (*step)++;
         break;
     case 5:
+        if (!GetSafariZoneFlag())
+            DisplayTime();
         //sStartMenuCursorPos = InitMenu(0, 0x17, 2, sNumStartMenuActions, sStartMenuCursorPos, 6);
         return TRUE;
     }
@@ -1635,6 +1675,8 @@ static u8 cursorPosCalcMinus(void){
     }
 }
 
+static EWRAM_DATA bool8 sPrintedTimeThisMinute;
+
 static u8 StartMenu_InputProcessCallback(void)
 {
     if (gMain.newKeys & DPAD_LEFT)
@@ -1671,6 +1713,13 @@ static u8 StartMenu_InputProcessCallback(void)
         closeIconsAndMenu();
         CloseMenu();
         return 1;
+    }
+    if (!GetSafariZoneFlag() && gSaveBlock2.playTimeVBlanks == 40 && !sPrintedTimeThisMinute) { // print a new time asap, but disable it until the next time 0 seconds passes by
+        DisplayTime();
+        sPrintedTimeThisMinute = TRUE;
+    }
+    if (!GetSafariZoneFlag() && gSaveBlock2.playTimeSeconds == 0 && sPrintedTimeThisMinute) {
+        sPrintedTimeThisMinute = FALSE;
     }
     return 0;
 }

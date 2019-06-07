@@ -4,6 +4,7 @@
 #include "menu.h"
 #include "pokedex.h"
 #include "region_map.h"
+#include "rtc.h"
 #include "string_util.h"
 #include "strings2.h"
 
@@ -95,10 +96,22 @@ void PrintSavePokedexCount(s16 x, s16 y)
 void PrintSavePlayTime(s16 x, s16 y)
 {
     char playtime[16];
+    const u8 *suffix;
+    bool8 isPM;
+
+    RtcCalcLocalTime();
+
+    isPM = gLocalTime.hours / 12;
+
+    if (isPM)
+        suffix = gOtherText_PM;
+    else
+        suffix = gOtherText_AM;
 
     Menu_PrintText(gOtherText_PlayTime, x, y);
     FormatPlayTime(playtime, gSaveBlock2.playTimeHours, gSaveBlock2.playTimeMinutes, 1);
-    MenuPrint_RightAligned(playtime, x + 12, y);
+    MenuPrint_RightAligned(playtime, x + 10, y);
+    MenuPrint_RightAligned(suffix, x + 12, y);
 }
 
 u8 GetBadgeCount(void)
@@ -127,7 +140,14 @@ u16 GetPokedexSeenCount()
 
 void FormatPlayTime(char *playtime, u16 hours, u16 minutes, u16 colon)
 {
+    bool8 isPM = hours / 12;
     s16 _colon = colon;
+
+    if (isPM && hours > 12) {
+        hours -= 12;
+    } else if (hours == 0) {
+        hours = 12;
+    }
     playtime = ConvertIntToDecimalString(playtime, hours);
 
     // playtime[0] is hours.

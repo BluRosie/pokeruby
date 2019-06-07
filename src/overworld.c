@@ -35,6 +35,7 @@
 #include "random.h"
 #include "roamer.h"
 #include "rotating_gate.h"
+#include "rtc.h"
 #include "safari_zone.h"
 #include "script.h"
 #include "script_pokemon_80C4.h"
@@ -1202,9 +1203,33 @@ static const bool8 affectedPalettes[32] = {
     FALSE, FALSE,
 
     TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
-    FALSE, FALSE, FALSE, FALSE,
-    TRUE, TRUE, TRUE,
+    FALSE, FALSE, FALSE, FALSE, FALSE, 
+    TRUE, 
+    FALSE,
 };
+
+static void TimeBlendAffectedPalettes() {
+    u8 i;
+    u8 blendCoeff;
+    u16 blendColor;
+
+    RtcCalcLocalTime();
+
+    GET_BLEND_COEFF_AND_COLOR
+
+    for (i = 0; i < 32; i++) {
+        if (affectedPalettes[i])
+        {
+            BlendPalette(i * 16, 16, blendCoeff, blendColor);
+        }
+        else
+        {
+            CpuFastCopy(gPlttBufferUnfaded + i * 16, gPlttBufferFaded + i * 16, 16 * sizeof(u16));
+            CpuFastCopy(gPlttBufferFaded + i * 16, gPlttBufferUnfaded + i * 16, 16 * sizeof(u16)); // this way the base unfaded can be used later
+        }
+    }
+
+}
 
 static void FogBlendAffectedPalettes(bool8 fadeDirection) {
     u8 i;
@@ -1226,7 +1251,6 @@ static void FogBlendAffectedPalettes(bool8 fadeDirection) {
         }
     }
 
-
     for (i = 0; i < 32; i++) {
         if (affectedPalettes[i])
         {
@@ -1242,6 +1266,7 @@ static void FogBlendAffectedPalettes(bool8 fadeDirection) {
 static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
 {
     struct FieldInput fieldInput;
+    u8 mapType;
 
     sub_8059204();
     ClearPlayerFieldInput(&fieldInput);
@@ -1267,6 +1292,14 @@ static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
                 player_step(fieldInput.dpadDirection, newKeys, heldKeys);
         }
     }
+
+    mapType = Overworld_GetMapTypeOfSaveblockLocation();
+
+    if (mapType != MAP_TYPE_UNDERGROUND
+     && mapType != MAP_TYPE_INDOOR
+     && mapType != MAP_TYPE_SECRET_BASE
+     && mapType != MAP_TYPE_UNDERWATER)
+        TimeBlendAffectedPalettes();
 
     if (GetCurrentWeather() == WEATHER_FOG_3 && !gWeatherPtr->isFog) // transition to fog from no fog
     {

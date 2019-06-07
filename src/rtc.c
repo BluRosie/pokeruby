@@ -58,6 +58,27 @@ bool8 IsLeapYear(u8 year)
     return FALSE;
 }
 
+static u8 GetMonthBasedOnDays(u8 year, u16 days) 
+{
+    u8 i;
+    u8 month;
+
+    for (i = 0; i < 12; i++) 
+    {
+        if (days > sNumDaysInMonths[i]) // if day isn't in this month
+        {
+            days -= sNumDaysInMonths[i];
+            month++;
+            if (IsLeapYear(year) && month == MONTH_FEB)
+                days--;
+        }
+        else
+            return month;
+    }
+
+    return 0xFF;
+}
+
 u16 ConvertDateToDayCount(u8 year, u8 month, u8 day)
 {
     s32 i;
@@ -85,9 +106,10 @@ u16 ConvertDateToDayCount(u8 year, u8 month, u8 day)
 
 u16 RtcGetDayCount(struct SiiRtcInfo *rtc)
 {
-    u8 year = ConvertBcdToBinary(rtc->year);
-    u8 month = ConvertBcdToBinary(rtc->month);
-    u8 day = ConvertBcdToBinary(rtc->day);
+    
+    u8 year = gSaveBlock2.playTimeYears; //ConvertBcdToBinary(rtc->year);
+    u8 month = GetMonthBasedOnDays(gSaveBlock2.playTimeYears, gSaveBlock2.playTimeDays); //ConvertBcdToBinary(rtc->month);
+    u8 day = gSaveBlock2.playTimeDays; //ConvertBcdToBinary(rtc->day);
     return ConvertDateToDayCount(year, month, day);
 }
 
@@ -161,43 +183,32 @@ u16 RtcCheckInfo(struct SiiRtcInfo *rtc)
     if (!(rtc->status & SIIRTCINFO_24HOUR))
         errorFlags |= RTC_ERR_12HOUR_CLOCK;
 
-    year = ConvertBcdToBinary(rtc->year);
+    year = gSaveBlock2.playTimeYears; //ConvertBcdToBinary(rtc->year);
 
     if (year == 0xFF)
         errorFlags |= RTC_ERR_INVALID_YEAR;
 
-    month = ConvertBcdToBinary(rtc->month);
+    month = GetMonthBasedOnDays(gSaveBlock2.playTimeYears, gSaveBlock2.playTimeDays); //ConvertBcdToBinary(rtc->month);
 
     if (month == 0xFF || month == 0 || month > 12)
         errorFlags |= RTC_ERR_INVALID_MONTH;
 
-    value = ConvertBcdToBinary(rtc->day);
+    value = gSaveBlock2.playTimeDays;
 
     if (value == 0xFF)
         errorFlags |= RTC_ERR_INVALID_DAY;
 
-    if (month == MONTH_FEB)
-    {
-        if (value > IsLeapYear(year) + sNumDaysInMonths[month - 1])
-            errorFlags |= RTC_ERR_INVALID_DAY;
-    }
-    else
-    {
-        if (value > sNumDaysInMonths[month - 1])
-            errorFlags |= RTC_ERR_INVALID_DAY;
-    }
-
-    value = ConvertBcdToBinary(rtc->hour);
+    value = gSaveBlock2.playTimeHours; //ConvertBcdToBinary(rtc->hour);
 
     if (value > 24)
         errorFlags |= RTC_ERR_INVALID_HOUR;
 
-    value = ConvertBcdToBinary(rtc->minute);
+    value = gSaveBlock2.playTimeMinutes; //ConvertBcdToBinary(rtc->minute);
 
     if (value > 60)
         errorFlags |= RTC_ERR_INVALID_MINUTE;
 
-    value = ConvertBcdToBinary(rtc->second);
+    value = gSaveBlock2.playTimeSeconds; //ConvertBcdToBinary(rtc->second);
 
     if (value > 60)
         errorFlags |= RTC_ERR_INVALID_SECOND;
@@ -308,8 +319,12 @@ void RtcCalcTimeDifference(struct SiiRtcInfo *rtc, struct Time *result, struct T
 
 void RtcCalcLocalTime()
 {
-    RtcGetInfo(&sRtc);
-    RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2.localTimeOffset);
+    //RtcGetInfo(&sRtc);
+    //RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2.localTimeOffset);
+    gLocalTime.days = gSaveBlock2.playTimeDays;
+    gLocalTime.hours = gSaveBlock2.playTimeHours;
+    gLocalTime.minutes = gSaveBlock2.playTimeMinutes;
+    gLocalTime.seconds = gSaveBlock2.playTimeSeconds;
 }
 
 void RtcInitLocalTimeOffset(s32 hour, s32 minute)

@@ -19,6 +19,7 @@
 #include "sound.h"
 #include "string_util.h"
 #include "strings.h"
+#include "strings2.h"
 #include "task.h"
 #include "text.h"
 #include "title_screen.h"
@@ -700,18 +701,23 @@ void PrintPlayTime(void)
 {
     u8 playTime[16];
     u8 alignedPlayTime[32];
+    const u8 *suffix;
+    u8 alignedSuffix[16];
+    bool8 isPM;
 
-#if defined(ENGLISH)
+    isPM = gLocalTime.hours / 12;
+
+    if (isPM)
+        suffix = gOtherText_PM;
+    else
+        suffix = gOtherText_AM;
+
     Menu_PrintText(gMainMenuString_Time, 16, 3);
     FormatPlayTime(playTime, gSaveBlock2.playTimeHours, gSaveBlock2.playTimeMinutes, 1);
     AlignStringInMenuWindow(alignedPlayTime, playTime, 48, 1);
-    Menu_PrintText(alignedPlayTime, 22, 3);
-#elif defined(GERMAN)
-    Menu_PrintTextPixelCoords(gMainMenuString_Time, 124, 24, TRUE);
-    FormatPlayTime(playTime, gSaveBlock2.playTimeHours, gSaveBlock2.playTimeMinutes, 1);
-    AlignStringInMenuWindow(alignedPlayTime, playTime, 40, 1);
-    Menu_PrintText(alignedPlayTime, 23, 3);
-#endif
+    Menu_PrintText(alignedPlayTime, 20, 3);
+    AlignStringInMenuWindow(alignedSuffix, suffix, 0, 1);
+    MenuPrint_RightAligned(alignedSuffix, 28, 3);
 }
 
 void PrintPokedexCount(void)
