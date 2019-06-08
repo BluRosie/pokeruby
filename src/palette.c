@@ -45,7 +45,7 @@ EWRAM_DATA static struct PaletteStruct sPaletteStructs[0x10] = {0};
 EWRAM_DATA struct PaletteFadeControl gPaletteFade = {0};
 EWRAM_DATA u32 gFiller_202F394 = 0;
 EWRAM_DATA static u32 sPlttBufferTransferPending = 0;
-EWRAM_DATA static u8 sPaletteDecompressionBuffer[0x400] = {0};
+EWRAM_DATA u16 sPaletteDecompressionBuffer[0x200] = {0};
 
 static const struct PaletteStructTemplate sDummyPaletteStructTemplate =
 {

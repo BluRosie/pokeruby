@@ -2288,6 +2288,8 @@ void White_Main(void)
 
 bool8 White_Finish(void)
 {
+    if (gWeather.blendFrameCounter < 5)
+        return TRUE;
     return FALSE;
 }
 

@@ -21,6 +21,9 @@
         "trainer.h": "c",
         "items.h": "c",
         "species.h": "c",
-        "strings2.h": "c"
+        "strings2.h": "c",
+        "weather.h": "c",
+        "maps.h": "c",
+        "map_types.h": "c"
     }
 }

@@ -352,11 +352,24 @@ void Overworld_SetEventObjTemplateMovementType(u8 localId, u8 movementType)
     }
 }
 
+void TimeBlendAffectedPalettes(void);
+void FogBlendAffectedPalettes(bool8 fadeDirection);
+
 static void mapdata_load_assets_to_gpu_and_full_redraw(void)
 {
     move_tilemap_camera_to_upper_left_corner();
     copy_map_tileset1_tileset2_to_vram(gMapHeader.mapLayout);
     apply_map_tileset1_tileset2_palette(gMapHeader.mapLayout);
+
+    if (Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_UNDERGROUND
+     && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_INDOOR
+     && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_SECRET_BASE
+     && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_UNDERWATER)
+    {
+        TimeBlendAffectedPalettes();
+        FogBlendAffectedPalettes(TRUE);
+    }
+
     DrawWholeMapView();
     cur_mapheader_run_tileset_funcs_after_some_cpuset();
 }
@@ -630,6 +643,15 @@ void sub_80538F0(u8 mapGroup, u8 mapNum)
 
     for (paletteIndex = 6; paletteIndex < 12; paletteIndex++)
         ApplyWeatherGammaShiftToPal(paletteIndex);
+
+    if (Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_UNDERGROUND
+     && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_INDOOR
+     && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_SECRET_BASE
+     && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_UNDERWATER)
+    {
+        TimeBlendAffectedPalettes();
+        FogBlendAffectedPalettes(TRUE);
+    }
 
     sub_8072ED0();
     UpdateLocationHistoryForRoamer();
@@ -1208,7 +1230,7 @@ static const bool8 affectedPalettes[32] = {
     FALSE,
 };
 
-static void TimeBlendAffectedPalettes() {
+void TimeBlendAffectedPalettes() {
     u8 i;
     u8 blendCoeff;
     u16 blendColor;
@@ -1225,13 +1247,13 @@ static void TimeBlendAffectedPalettes() {
         else
         {
             CpuFastCopy(gPlttBufferUnfaded + i * 16, gPlttBufferFaded + i * 16, 16 * sizeof(u16));
-            CpuFastCopy(gPlttBufferFaded + i * 16, gPlttBufferUnfaded + i * 16, 16 * sizeof(u16)); // this way the base unfaded can be used later
         }
+        CpuFastCopy(gPlttBufferFaded + i * 16, sPaletteDecompressionBuffer + i * 16, 16 * sizeof(u16)); // this way the faded can be used later
     }
 
 }
 
-static void FogBlendAffectedPalettes(bool8 fadeDirection) {
+void FogBlendAffectedPalettes(bool8 fadeDirection) {
     u8 i;
 
     if (fadeDirection)
@@ -1254,7 +1276,7 @@ static void FogBlendAffectedPalettes(bool8 fadeDirection) {
     for (i = 0; i < 32; i++) {
         if (affectedPalettes[i])
         {
-            BlendPalette(i * 16, 16, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
+            BlendPaletteWithDecompressBuffer(i * 16, 16, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
         }
         else
         {
@@ -1266,7 +1288,6 @@ static void FogBlendAffectedPalettes(bool8 fadeDirection) {
 static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
 {
     struct FieldInput fieldInput;
-    u8 mapType;
 
     sub_8059204();
     ClearPlayerFieldInput(&fieldInput);
@@ -1291,31 +1312,6 @@ static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
             else
                 player_step(fieldInput.dpadDirection, newKeys, heldKeys);
         }
-    }
-
-    mapType = Overworld_GetMapTypeOfSaveblockLocation();
-
-    if (mapType != MAP_TYPE_UNDERGROUND
-     && mapType != MAP_TYPE_INDOOR
-     && mapType != MAP_TYPE_SECRET_BASE
-     && mapType != MAP_TYPE_UNDERWATER)
-        TimeBlendAffectedPalettes();
-
-    if (GetCurrentWeather() == WEATHER_FOG_3 && !gWeatherPtr->isFog) // transition to fog from no fog
-    {
-        FogBlendAffectedPalettes(TRUE);
-    }
-    else if (gWeatherPtr->isFog && GetCurrentWeather() != WEATHER_FOG_3) // transition to not fog from fog
-    {
-        FogBlendAffectedPalettes(FALSE);
-    }
-    else if (gWeatherPtr->isFog && GetCurrentWeather() == WEATHER_FOG_3) // during fog, transition to fog
-    {
-        FogBlendAffectedPalettes(TRUE);
-    }
-    else if (gWeatherPtr->blendFrameCounter > 1)
-    {
-        FogBlendAffectedPalettes(FALSE);
     }
 }
 
@@ -1583,6 +1579,7 @@ void CB2_ContinueSavedGame(void)
     PlayTimeCounter_Start();
     ScriptContext1_Init();
     ScriptContext2_Disable();
+    
     if (GetSecretBase2Field_9() == 1)
     {
         ClearSecretBase2Field_9();
@@ -1682,6 +1679,15 @@ static bool32 sub_805483C(u8 *state)
         break;
     case 8:
         apply_map_tileset1_tileset2_palette(gMapHeader.mapLayout);
+            
+        if (Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_UNDERGROUND
+        && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_INDOOR
+        && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_SECRET_BASE
+        && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_UNDERWATER)
+        {
+            TimeBlendAffectedPalettes();
+            FogBlendAffectedPalettes(TRUE);
+        }
         (*state)++;
         break;
     case 9:
@@ -1748,6 +1754,15 @@ bool32 sub_805493C(u8 *state, u32 a2)
         break;
     case 8:
         apply_map_tileset1_tileset2_palette(gMapHeader.mapLayout);
+        
+        if (Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_UNDERGROUND
+        && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_INDOOR
+        && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_SECRET_BASE
+        && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_UNDERWATER)
+        {
+            TimeBlendAffectedPalettes();
+            FogBlendAffectedPalettes(TRUE);
+        }
         (*state)++;
         break;
     case 9:
@@ -1838,6 +1853,15 @@ bool32 sub_8054A9C(u8 *state)
         break;
     case 7:
         apply_map_tileset1_tileset2_palette(gMapHeader.mapLayout);
+        
+        if (Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_UNDERGROUND
+        && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_INDOOR
+        && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_SECRET_BASE
+        && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_UNDERWATER)
+        {
+            TimeBlendAffectedPalettes();
+            FogBlendAffectedPalettes(TRUE);
+        }
         (*state)++;
         break;
     case 8:

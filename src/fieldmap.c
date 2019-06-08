@@ -1,4 +1,5 @@
 #include "global.h"
+#include "constants/map_types.h"
 #include "fieldmap.h"
 #include "palette.h"
 #include "overworld.h"

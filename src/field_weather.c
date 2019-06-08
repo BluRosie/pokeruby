@@ -1,4 +1,5 @@
 #include "global.h"
+#include "constants/map_types.h"
 #include "constants/songs.h"
 #include "constants/weather.h"
 #include "blend_palette.h"
@@ -6,6 +7,7 @@
 #include "field_weather.h"
 #include "main.h"
 #include "menu.h"
+#include "overworld.h"
 #include "palette.h"
 #include "random.h"
 #include "rtc.h"
@@ -332,6 +334,9 @@ void Task_WeatherInit(u8 taskId)
     }
 }
 
+void TimeBlendAffectedPalettes(void);
+void FogBlendAffectedPalettes(bool8 fadeDirection);
+
 void Task_WeatherMain(u8 taskId)
 {
     if (gWeatherPtr->currWeather != gWeatherPtr->nextWeather)
@@ -352,6 +357,31 @@ void Task_WeatherMain(u8 taskId)
     }
 
     gWeatherPalStateFuncs[gWeatherPtr->palProcessingState]();
+
+
+    if (Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_UNDERGROUND
+     && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_INDOOR
+     && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_SECRET_BASE
+     && Overworld_GetMapTypeOfSaveblockLocation() != MAP_TYPE_UNDERWATER)
+    {
+        TimeBlendAffectedPalettes();
+        if (GetCurrentWeather() == WEATHER_FOG_3 && !gWeatherPtr->isFog) // transition to fog from no fog
+        {
+            FogBlendAffectedPalettes(TRUE);
+        }
+        else if (gWeatherPtr->isFog && GetCurrentWeather() != WEATHER_FOG_3) // transition to not fog from fog
+        {
+            FogBlendAffectedPalettes(FALSE);
+        }
+        else if (gWeatherPtr->isFog && GetCurrentWeather() == WEATHER_FOG_3) // during fog, transition to fog
+        {
+            FogBlendAffectedPalettes(TRUE);
+        }
+        else if (gWeatherPtr->blendFrameCounter > 1)
+        {
+            FogBlendAffectedPalettes(FALSE);
+        }
+    }
 }
 
 void None_Init(void)
@@ -953,10 +983,6 @@ void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex)
 
     RtcCalcLocalTime();
 
-    GET_BLEND_COEFF_AND_COLOR
-        
-    BlendPalette(paletteIndex * 16, 16, blendCoeff, blendColor); // rtc blend
-
     switch (gWeatherPtr->palProcessingState)
     {
     case WEATHER_PAL_STATE_SCREEN_FADING_IN:
@@ -985,8 +1011,13 @@ void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex)
         }
         paletteIndex *= 16;
 
+        GET_BLEND_COEFF_AND_COLOR
+            
+        BlendPalette(paletteIndex, 16, blendCoeff, blendColor); // rtc blend
+        CpuFastCopy(gPlttBufferFaded + paletteIndex, sPaletteDecompressionBuffer + paletteIndex, 16 * 16 * sizeof(u16));
+
         if (gWeatherPtr->currWeather == WEATHER_FOG_3)
-            BlendPalette(paletteIndex, 16, 10, RGB(31, 31, 31));
+            BlendPaletteWithDecompressBuffer(paletteIndex, 16, 10, RGB(31, 31, 31));
         else if (gWeatherPtr->currWeather == WEATHER_FOG_1)
             BlendPalette(paletteIndex, 16, 12, RGB(28, 31, 28));
 
