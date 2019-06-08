@@ -65,29 +65,29 @@ void PlayTimeCounter_Update()
     {
         gSaveBlock2.playTimeVBlanks++;
 
-        if (gSaveBlock2.playTimeVBlanks > 59)
+        if (gSaveBlock2.playTimeVBlanks > VBLANKS_PER_SECOND - 1)
         {
             gSaveBlock2.playTimeVBlanks = 0;
             gSaveBlock2.playTimeSeconds++;
 
-            if (gSaveBlock2.playTimeSeconds > 59)
+            if (gSaveBlock2.playTimeSeconds > SECONDS_PER_MINUTE - 1)
             {
                 gSaveBlock2.playTimeSeconds = 0;
                 gSaveBlock2.playTimeMinutes++;
 
-                if (gSaveBlock2.playTimeMinutes > 59)
+                if (gSaveBlock2.playTimeMinutes > MINUTES_PER_HOUR - 1)
                 {
                     gSaveBlock2.playTimeMinutes = 0;
                     gSaveBlock2.playTimeHours++;
                     BerryTreeTimeUpdate(1);
 
-                    if (gSaveBlock2.playTimeHours > 23)
+                    if (gSaveBlock2.playTimeHours > HOURS_PER_DAY - 1)
                     {
                         gSaveBlock2.playTimeHours = 0;
                         gSaveBlock2.playTimeDays++;
                         DailyUpdates();
 
-                        if (gSaveBlock2.playTimeDays > IsLeapYear(gSaveBlock2.playTimeYears) + 365)
+                        if (gSaveBlock2.playTimeDays > DAYS_PER_YEAR - 1)
                         {
                             gSaveBlock2.playTimeDays = 0;
 

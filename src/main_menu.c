@@ -705,7 +705,7 @@ void PrintPlayTime(void)
     u8 alignedSuffix[16];
     bool8 isPM;
 
-    isPM = gLocalTime.hours / 12;
+    isPM = gLocalTime.hours / (HOURS_PER_DAY / 2);
 
     if (isPM)
         suffix = gOtherText_PM;

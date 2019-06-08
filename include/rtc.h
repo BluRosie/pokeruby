@@ -17,7 +17,11 @@
 
 #define RTC_ERR_FLAG_MASK      0x0FF0
 
-#define LENGTH_DAY 24
+#define VBLANKS_PER_SECOND 60
+#define SECONDS_PER_MINUTE 60
+#define MINUTES_PER_HOUR 60
+#define HOURS_PER_DAY 24
+#define DAYS_PER_YEAR IsLeapYear(gSaveBlock2.playTimeYears) + 365
 
 #define IS_NIGHT(hour) (hour >= 20 || hour < 4)
 #define IS_MORNING(hour) (hour < 10)

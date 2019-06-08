@@ -101,7 +101,7 @@ void PrintSavePlayTime(s16 x, s16 y)
 
     RtcCalcLocalTime();
 
-    isPM = gLocalTime.hours / 12;
+    isPM = gLocalTime.hours / (HOURS_PER_DAY / 2);
 
     if (isPM)
         suffix = gOtherText_PM;
@@ -140,13 +140,13 @@ u16 GetPokedexSeenCount()
 
 void FormatPlayTime(char *playtime, u16 hours, u16 minutes, u16 colon)
 {
-    bool8 isPM = hours / 12;
+    bool8 isPM = hours / (HOURS_PER_DAY / 2);
     s16 _colon = colon;
 
-    if (isPM && hours > 12) {
-        hours -= 12;
+    if (isPM) {
+        hours -= HOURS_PER_DAY / 2;
     } else if (hours == 0) {
-        hours = 12;
+        hours = HOURS_PER_DAY / 2;
     }
     playtime = ConvertIntToDecimalString(playtime, hours);
 

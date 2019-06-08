@@ -1475,7 +1475,7 @@ static void DisplayTime(void)
 
     RtcCalcLocalTime();
 
-    isPM = gLocalTime.hours / 12;
+    isPM = gLocalTime.hours / (HOURS_PER_DAY / 2);
 
     if (IS_NIGHT(gLocalTime.hours)) // night time
         string = gOtherText_Night;
