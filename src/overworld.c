@@ -1230,6 +1230,14 @@ static const bool8 affectedPalettes[32] = {
     FALSE,
 };
 
+//#define WINDOW_COLOR_1 RGB(0xD, 0x17, 0x18)
+//#define WINDOW_COLOR_2 RGB(0x14, 0x1A, 0x1C)
+
+//#define WINDOW_LIT_COLOR_1 RGB(31, 31, 31)
+//#define WINDOW_LIT_COLOR_2 RGB(28, 28, 28)
+//#define WINDOW_LIT_COLOR_2 
+//#define WINDOW_LIT_COLOR_3
+
 void TimeBlendAffectedPalettes() {
     u8 i;
     u8 blendCoeff;
@@ -1242,7 +1250,20 @@ void TimeBlendAffectedPalettes() {
     for (i = 0; i < 32; i++) {
         if (affectedPalettes[i])
         {
+            #ifdef WINDOW_LIT_COLOR_1
+            u8 j;
+            #endif
             BlendPalette(i * 16, 16, blendCoeff, blendColor);
+            #ifdef WINDOW_LIT_COLOR_1
+            if (IS_EVENING(gLocalTime.hours) || IS_NIGHT(gLocalTime.hours))
+                for (j = 0; j < 16; j++)
+                {
+                    if (gPlttBufferUnfaded[i * 16 + j] == WINDOW_COLOR_1)
+                        gPlttBufferFaded[i * 16 + j] = WINDOW_LIT_COLOR_1;
+                    if (gPlttBufferUnfaded[i * 16 + j] == WINDOW_COLOR_2)
+                        gPlttBufferFaded[i * 16 + j] = WINDOW_LIT_COLOR_2;
+                }
+            #endif
         }
         else
         {
@@ -1250,7 +1271,6 @@ void TimeBlendAffectedPalettes() {
         }
         CpuFastCopy(gPlttBufferFaded + i * 16, sPaletteDecompressionBuffer + i * 16, 16 * sizeof(u16)); // this way the faded can be used later
     }
-
 }
 
 void FogBlendAffectedPalettes(bool8 fadeDirection) {
