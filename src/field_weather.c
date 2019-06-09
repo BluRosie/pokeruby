@@ -1017,7 +1017,7 @@ void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex)
         CpuFastCopy(gPlttBufferFaded + paletteIndex, sPaletteDecompressionBuffer + paletteIndex, 16 * 16 * sizeof(u16));
 
         if (gWeatherPtr->currWeather == WEATHER_FOG_3)
-            BlendPaletteWithDecompressBuffer(paletteIndex, 16, 10, RGB(31, 31, 31));
+            BlendPaletteWithMixBuffer(paletteIndex, 16, 10, RGB(31, 31, 31));
         else if (gWeatherPtr->currWeather == WEATHER_FOG_1)
             BlendPalette(paletteIndex, 16, 12, RGB(28, 31, 28));
 

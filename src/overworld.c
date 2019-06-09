@@ -1269,7 +1269,7 @@ void TimeBlendAffectedPalettes() {
         {
             CpuFastCopy(gPlttBufferUnfaded + i * 16, gPlttBufferFaded + i * 16, 16 * sizeof(u16));
         }
-        CpuFastCopy(gPlttBufferFaded + i * 16, sPaletteDecompressionBuffer + i * 16, 16 * sizeof(u16)); // this way the faded can be used later
+        CpuFastCopy(gPlttBufferFaded + i * 16, gPlttBufferForMixes + i * 16, 16 * sizeof(u16)); // this way the faded can be used later
     }
 }
 
@@ -1296,7 +1296,7 @@ void FogBlendAffectedPalettes(bool8 fadeDirection) {
     for (i = 0; i < 32; i++) {
         if (affectedPalettes[i])
         {
-            BlendPaletteWithDecompressBuffer(i * 16, 16, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
+            BlendPaletteWithMixBuffer(i * 16, 16, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
         }
         else
         {

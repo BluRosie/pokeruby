@@ -19,13 +19,13 @@ void BlendPalette(u16 palOffset, u16 numEntries, u8 coeff, u16 blendColor)
     }
 }
 
-void BlendPaletteWithDecompressBuffer(u16 palOffset, u16 numEntries, u8 coeff, u16 blendColor)
+void BlendPaletteWithMixBuffer(u16 palOffset, u16 numEntries, u8 coeff, u16 blendColor)
 {
     u16 i;
     for (i = 0; i < numEntries; i++)
     {
         u16 index = i + palOffset;
-        struct PlttData *data1 = (struct PlttData *)&sPaletteDecompressionBuffer[index];
+        struct PlttData *data1 = (struct PlttData *)&gPlttBufferForMixes[index];
         s8 r = data1->r;
         s8 g = data1->g;
         s8 b = data1->b;
