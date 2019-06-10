@@ -216,6 +216,10 @@
 #define EFFECT_DRAGON_DANCE 212
 #define EFFECT_CAMOUFLAGE 213
 
+/*******************
+ *  GENERATION IV  *
+ *******************/
+
 #define EFFECT_GROWTH 214
 #define EFFECT_SPECIAL_ATTACK_UP_3 215
 #define EFFECT_ROOST 216
@@ -267,6 +271,11 @@
 #define EFFECT_SP_ATTACK_UP_HIT 262
 #define EFFECT_RECOIL_50 263
 #define EFFECT_SPECIAL_DEFENSE_DOWN_HIT_2 264
+
+/******************
+ *  GENERATION V  *
+ ******************/
+
 #define EFFECT_ATTACK_ACCURACY_UP 265
 #define EFFECT_GUARD_SPLIT 266
 #define EFFECT_POWER_SPLIT 267
@@ -314,6 +323,11 @@
 #define EFFECT_TECHNO_BLAST 309
 #define EFFECT_V_CREATE 310
 #define EFFECT_FUSION_COMBO 311
+
+/*******************
+ *  GENERATION VI  *
+ *******************/
+
 #define EFFECT_TWO_TYPED_MOVE 312
 #define EFFECT_MAT_BLOCK 313
 #define EFFECT_BELCH 314
@@ -345,6 +359,11 @@
 #define EFFECT_HIT_ENEMY_HEAL_ALLY 340
 #define EFFECT_PSYCHIC_TERRAIN 341
 #define EFFECT_SPEED_SWAP 342
+
+/********************
+ *  GENERATION VII  *
+ ********************/
+
 #define EFFECT_REVELATION_DANCE 343
 #define EFFECT_CORE_ENFORCER 344
 #define EFFECT_INSTRUCT 345

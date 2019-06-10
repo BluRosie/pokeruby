@@ -3180,12 +3180,12 @@ static void atk15_seteffectwithchance(void)
     else if ((gBattleCommunication[MOVE_EFFECT_BYTE] & 0x80) && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
     {
         gBattleCommunication[MOVE_EFFECT_BYTE] &= 0x7F;
-        SetMoveEffect(0, 0x80);
+        SetMoveEffect(0, MOVE_EFFECT_CERTAIN);
     }
     else if (Random() % 100 <= PercentChance && gBattleCommunication[MOVE_EFFECT_BYTE] != 0 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
     {
         if (PercentChance >= 100)
-            SetMoveEffect(0, 0x80);
+            SetMoveEffect(0, MOVE_EFFECT_CERTAIN);
         else
             SetMoveEffect(0, 0);
     }
