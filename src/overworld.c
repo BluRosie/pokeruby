@@ -1243,64 +1243,69 @@ void TimeBlendAffectedPalettes() {
     u8 blendCoeff;
     u16 blendColor;
 
-    RtcCalcLocalTime();
+    if (!gPaletteFade.active)
+    {
+        RtcCalcLocalTime();
 
-    GET_BLEND_COEFF_AND_COLOR
+        GET_BLEND_COEFF_AND_COLOR
 
-    for (i = 0; i < 32; i++) {
-        if (affectedPalettes[i])
-        {
-            #ifdef WINDOW_LIT_COLOR_1
-            u8 j;
-            #endif
-            BlendPalette(i * 16, 16, blendCoeff, blendColor);
-            #ifdef WINDOW_LIT_COLOR_1
-            if (IS_EVENING(gLocalTime.hours) || IS_NIGHT(gLocalTime.hours))
-                for (j = 0; j < 16; j++)
-                {
-                    if (gPlttBufferUnfaded[i * 16 + j] == WINDOW_COLOR_1)
-                        gPlttBufferFaded[i * 16 + j] = WINDOW_LIT_COLOR_1;
-                    if (gPlttBufferUnfaded[i * 16 + j] == WINDOW_COLOR_2)
-                        gPlttBufferFaded[i * 16 + j] = WINDOW_LIT_COLOR_2;
-                }
-            #endif
+        for (i = 0; i < 32; i++) {
+            if (affectedPalettes[i])
+            {
+                #ifdef WINDOW_LIT_COLOR_1
+                u8 j;
+                #endif
+                BlendPalette(i * 16, 16, blendCoeff, blendColor);
+                #ifdef WINDOW_LIT_COLOR_1
+                if (IS_EVENING(gLocalTime.hours) || IS_NIGHT(gLocalTime.hours))
+                    for (j = 0; j < 16; j++)
+                    {
+                        if (gPlttBufferUnfaded[i * 16 + j] == WINDOW_COLOR_1)
+                            gPlttBufferFaded[i * 16 + j] = WINDOW_LIT_COLOR_1;
+                        if (gPlttBufferUnfaded[i * 16 + j] == WINDOW_COLOR_2)
+                            gPlttBufferFaded[i * 16 + j] = WINDOW_LIT_COLOR_2;
+                    }
+                #endif
+            }
+            else
+            {
+                CpuFastCopy(gPlttBufferUnfaded + i * 16, gPlttBufferFaded + i * 16, 16 * sizeof(u16));
+            }
+            CpuFastCopy(gPlttBufferFaded + i * 16, gPlttBufferForMixes + i * 16, 16 * sizeof(u16)); // this way the faded can be used later
         }
-        else
-        {
-            CpuFastCopy(gPlttBufferUnfaded + i * 16, gPlttBufferFaded + i * 16, 16 * sizeof(u16));
-        }
-        CpuFastCopy(gPlttBufferFaded + i * 16, gPlttBufferForMixes + i * 16, 16 * sizeof(u16)); // this way the faded can be used later
     }
 }
 
 void FogBlendAffectedPalettes(bool8 fadeDirection) {
     u8 i;
-
-    if (fadeDirection)
+    if (!gPaletteFade.active)
     {
-        if (++gWeatherPtr->blendFrameCounter > 60)
+        if (fadeDirection)
         {
-            gWeatherPtr->blendFrameCounter = 60;
-            gWeatherPtr->isFog = TRUE;
-        }
-    }
-    else
-    {
-        if (!--gWeatherPtr->blendFrameCounter)
-        {
-            gWeatherPtr->blendFrameCounter = 1;
-            gWeatherPtr->isFog = FALSE;
-        }
-    }
-
-    for (i = 0; i < 32; i++) {
-        if (affectedPalettes[i])
-        {
-            BlendPaletteWithMixBuffer(i * 16, 16, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
+            if (++gWeatherPtr->blendFrameCounter > 60)
+            {
+                gWeatherPtr->blendFrameCounter = 60;
+                gWeatherPtr->isFog = TRUE;
+            }
         }
         else
         {
-            CpuFastCopy(gPlttBufferUnfaded + i * 16, gPlttBufferFaded + i * 16, 16 * sizeof(u16));
+            if (!--gWeatherPtr->blendFrameCounter)
+            {
+                gWeatherPtr->blendFrameCounter = 1;
+                gWeatherPtr->isFog = FALSE;
+            }
+        }
+
+        for (i = 0; i < 32; i++) {
+            if (affectedPalettes[i])
+            {
+                BlendPaletteWithMixBuffer(i * 16, 16, gWeatherPtr->blendFrameCounter / 6, RGB(31, 31, 31));
+            }
+            else
+            {
+                CpuFastCopy(gPlttBufferUnfaded + i * 16, gPlttBufferFaded + i * 16, 16 * sizeof(u16));
+            }
         }
     }
 }
