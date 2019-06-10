@@ -32,6 +32,8 @@
 
 EWRAM_DATA s32 gFieldEffectArguments[8] = {0};
 
+EWRAM_DATA u16 gReflectionPaletteBuffer[0x10] = {0};
+
 const u32 gSpriteImage_839DC14[] = INCBIN_U32("graphics/birch_speech/birch.4bpp");
 const u16 gBirchPalette[16] = INCBIN_U16("graphics/birch_speech/birch.gbapal");
 const u32 gSpriteImage_839E434[] = INCBIN_U32("graphics/misc/pokeball_glow.4bpp");
@@ -412,6 +414,7 @@ void FieldEffectScript_LoadFadedPalette(u8 **script)
     struct SpritePalette *palette = (struct SpritePalette *)FieldEffectScript_ReadWord(script);
     LoadSpritePalette(palette);
     UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(palette->tag));
+    UpdatePaletteGammaType(IndexOfSpritePaletteTag(palette->tag), GAMMA_NORMAL);
     (*script) += 4;
 }
 
@@ -2905,9 +2908,11 @@ u8 FldEff_NPCFlyOut(void)
 {
     u8 spriteId;
     struct Sprite *sprite;
+
+    LoadFieldEffectPalette(26);
     spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[26], 0x78, 0, 1);
     sprite = &gSprites[spriteId];
-    sprite->oam.paletteNum = 0;
+    
     sprite->oam.priority = 1;
     sprite->callback = sub_8088BC4;
     sprite->data[1] = gFieldEffectArguments[0];
@@ -3092,9 +3097,11 @@ u8 sub_8088F60(void)
 {
     u8 spriteId;
     struct Sprite *sprite;
+
+    LoadFieldEffectPalette(26);
     spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[26], 0xff, 0xb4, 0x1);
     sprite = &gSprites[spriteId];
-    sprite->oam.paletteNum = 0;
+    
     sprite->oam.priority = 1;
     sprite->callback = sub_8089018;
     return spriteId;

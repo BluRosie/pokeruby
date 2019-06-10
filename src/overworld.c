@@ -1974,7 +1974,7 @@ void sub_8054D4C(u32 a1)
     ScanlineEffect_Clear();
     ResetCameraUpdateInfo();
     InstallCameraPanAheadCallback();
-    InitEventObjectPalettes(0);
+    FreeAllSpritePalettes();
     FieldEffectActiveListClear();
     InitFieldMessageBox();
     StartWeather();

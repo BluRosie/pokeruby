@@ -4,12 +4,16 @@
 #include "field_effect.h"
 #include "event_object_movement.h"
 #include "field_player_avatar.h"
+#include "field_weather.h"
 #include "script.h"
 #include "sprite.h"
 #include "task.h"
 #include "util.h"
 #include "constants/event_object_movement_constants.h"
 #include "constants/field_effects.h"
+
+extern const struct SpritePalette sEventObjectSpritePalettes[];
+extern const struct SpritePalette gFieldEffectObjectPaletteInfo0;
 
 static bool8 CheckTrainer(u8);
 static void sub_8084894(struct Sprite *sprite, u16 a2, u8 a3);
@@ -487,16 +491,21 @@ static const union AnimCmd *const gSpriteAnimTable_839B508[] = {
     gSpriteAnim_839B500
 };
 
-static const struct SpriteTemplate gSpriteTemplate_839B510 = {
-    0xffff, 0xffff, &gOamData_839B4D8, gSpriteAnimTable_839B508, gSpriteImageTable_839B4E0, gDummySpriteAffineAnimTable, objc_exclamation_mark_probably
+static const struct SpriteTemplate gSpriteTemplate_ExclamationQuestionMark = {
+    0xffff, 0x1100, &gOamData_839B4D8, gSpriteAnimTable_839B508, gSpriteImageTable_839B4E0, gDummySpriteAffineAnimTable, objc_exclamation_mark_probably
 };
 static const struct SpriteTemplate gSpriteTemplate_839B528 = {
-    0xffff, 4100, &gOamData_839B4D8, gSpriteAnimTable_839B508, gSpriteImageTable_839B4F0, gDummySpriteAffineAnimTable, objc_exclamation_mark_probably
+    0xffff, 0x1100, &gOamData_839B4D8, gSpriteAnimTable_839B508, gSpriteImageTable_839B4F0, gDummySpriteAffineAnimTable, objc_exclamation_mark_probably
 };
 
 u8 FldEff_ExclamationMarkIcon(void)
 {
-    u8 spriteId = CreateSpriteAtEnd(&gSpriteTemplate_839B510, 0, 0, 0x53);
+    u8 spriteId;
+
+    LoadEventObjectPalette(0x1100);
+    UpdatePaletteGammaType(IndexOfSpritePaletteTag(0x1100), GAMMA_ALT);
+    UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(0x1100));
+    spriteId = CreateSpriteAtEnd(&gSpriteTemplate_ExclamationQuestionMark, 0, 0, 0x53);
 
     if (spriteId != 64)
         sub_8084894(&gSprites[spriteId], 0, 0);
@@ -506,7 +515,12 @@ u8 FldEff_ExclamationMarkIcon(void)
 
 u8 FldEff_QuestionMarkIcon(void)
 {
-    u8 spriteId = CreateSpriteAtEnd(&gSpriteTemplate_839B510, 0, 0, 0x52);
+    u8 spriteId;
+
+    LoadEventObjectPalette(0x1100);
+    UpdatePaletteGammaType(IndexOfSpritePaletteTag(0x1100), GAMMA_ALT);
+    UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(0x1100));
+    spriteId = CreateSpriteAtEnd(&gSpriteTemplate_ExclamationQuestionMark, 0, 0, 0x52);
 
     if (spriteId != 64)
         sub_8084894(&gSprites[spriteId], 33, 1);
@@ -516,7 +530,12 @@ u8 FldEff_QuestionMarkIcon(void)
 
 u8 FldEff_HeartIcon(void)
 {
-    u8 spriteId = CreateSpriteAtEnd(&gSpriteTemplate_839B528, 0, 0, 0x52);
+    u8 spriteId;
+
+    LoadSpritePalette(&gFieldEffectObjectPaletteInfo0);
+    UpdatePaletteGammaType(IndexOfSpritePaletteTag(0x1004), GAMMA_ALT);
+    UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(0x1004));
+    spriteId = CreateSpriteAtEnd(&gSpriteTemplate_839B528, 0, 0, 0x52);
 
     if (spriteId != 64)
         sub_8084894(&gSprites[spriteId], 46, 0);

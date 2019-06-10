@@ -13,6 +13,7 @@
 
 extern struct Weather *const gWeatherPtr;
 
+extern const u16 gUnknown_083970E8[];
 const u16 gUnknown_08397108[] = INCBIN_U16("graphics/weather/1.gbapal");
 const u16 gUnknown_08397128[] = INCBIN_U16("graphics/weather/2.gbapal");
 const u8 gWeatherFog2Tiles[] = INCBIN_U8("graphics/weather/fog2.4bpp");
@@ -24,6 +25,10 @@ const u8 gWeatherBubbleTiles[] = INCBIN_U8("graphics/weather/bubble.4bpp");
 const u8 gWeatherAshTiles[] = INCBIN_U8("graphics/weather/ash.4bpp");
 const u8 gWeatherRainTiles[] = INCBIN_U8("graphics/weather/rain.4bpp");
 const u8 gWeatherSandstormTiles[] = INCBIN_U8("graphics/weather/sandstorm.4bpp");
+
+const struct SpritePalette sSpritePalette_Weather0 = {gUnknown_083970E8, 0x1201};
+const struct SpritePalette sCloudsSpritePalette = {gUnknown_08397108, 0x1201};
+const struct SpritePalette sSandstormSpritePalette = {gUnknown_08397128, 0x1201};
 
 static const struct Coords16 gUnknown_0839A9C8[] =
 {
@@ -181,7 +186,7 @@ void CreateCloudSprites(void)
     if (gWeatherPtr->cloudSpritesCreated == TRUE)
         return;
     LoadSpriteSheet(&sCloudSpriteSheet);
-    LoadCustomWeatherSpritePalette(gUnknown_08397108);
+    LoadCustomWeatherSpritePalette(&sCloudsSpritePalette);
     for (i = 0; i < 3; i++)
     {
         u8 spriteId = CreateSprite(&sCloudSpriteTemplate, 0, 0, 0xFF);
@@ -1374,6 +1379,7 @@ static void CreateFog1Sprites(void)
                 sprite->pos1.x = (i % 5) * 64 + 32;
                 sprite->pos1.y = (i / 5) * 64 + 32;
                 gWeatherPtr->sprites.s2.fog1Sprites[i] = sprite;
+                sprite->oam.paletteNum = gWeatherPtr->altGammaSpritePalIndex;
             }
             else
             {
@@ -1525,7 +1531,7 @@ void sub_807FAA8(struct Sprite *);
 static const struct SpriteTemplate sAshSpriteTemplate =
 {
     .tileTag = 4610,
-    .paletteTag = 4608,
+    .paletteTag = 4609,
     .oam = &gOamData_839ABB8,
     .anims = gSpriteAnimTable_839ABCC,
     .images = NULL,
@@ -1539,6 +1545,7 @@ void CreateAshSprites(void)
 
     if (!gWeatherPtr->ashSpritesCreated)
     {
+        LoadCustomWeatherSpritePalette(&sSpritePalette_Weather0);
         for (i = 0; i < 20; i++)
         {
             u8 spriteId = CreateSpriteAtEnd(&sAshSpriteTemplate, 0, 0, 0x4E);
@@ -1708,6 +1715,7 @@ void CreateFog2Sprites(void)
         struct SpriteSheet fog2SpriteSheet = {gWeatherFog2Tiles, sizeof(gWeatherFog2Tiles), 0x1203};
 
         LoadSpriteSheet(&fog2SpriteSheet);
+        LoadCustomWeatherSpritePalette(&sSpritePalette_Weather0);
         for (i = 0; i < 20; i++)
         {
             u8 spriteId = CreateSpriteAtEnd(&sFog2SpriteTemplate, 0, (i / 5) * 64, 0xFF);
@@ -1761,7 +1769,7 @@ void Fog2SpriteCallback(struct Sprite *);
 const struct SpriteTemplate sFog2SpriteTemplate =
 {
     .tileTag = 4611,
-    .paletteTag = 4608,
+    .paletteTag = 4609,
     .oam = &gOamData_839ABF0,
     .anims = gSpriteAnimTable_839AC00,
     .images = NULL,
@@ -1984,7 +1992,7 @@ void CreateSandstormSprites_1(void)
     if (!gWeatherPtr->sandstormSprites1Created)
     {
         LoadSpriteSheet(&sSandstormSpriteSheet);
-        LoadCustomWeatherSpritePalette(gUnknown_08397128);
+        LoadCustomWeatherSpritePalette(&sSandstormSpritePalette);
         for (i = 0; i < 20; i++)
         {
             u8 spriteId = CreateSpriteAtEnd(&sSandstormSpriteTemplate, 0, (i / 5) * 64, 1);

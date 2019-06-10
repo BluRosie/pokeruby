@@ -32,5 +32,6 @@ void StartAshFieldEffect(s16, s16, u16, s16);
 void InitObjectReflectionSprite(struct EventObject *eventObj, struct Sprite *sprite, u8 a);
 u32 StartFieldEffectForEventObject(u8 fieldEffectId, struct EventObject *eventObject);
 u8 FindTallGrassFieldEffectSpriteId(u8, u8, u8, s16, s16);
+void LoadFieldEffectPalette(u8 fieldEffect);
 
 #endif // GUARD_FIELD_EFFECT_HELPERS_H

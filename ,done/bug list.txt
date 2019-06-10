@@ -3,11 +3,15 @@ urgent bugs:
 meh whatever bugs:
 - fix up the font a bit more (Lv, PKMN, POKEBLOCK, parentheses, colon, semicolon, &)
 - pokedex searching in general (fix up the order lists)
-- fog doesn't address loading a few different palettes.  it also definitely doesn't support any sort of dynamic system that may happen in the future
+- fog needs to be adapted for the new dynamic system
 - animation for sticky barb sticking doesn't work like thief's entirely, currently the animation is commented out
-- the start menu doesn't have the correct palette loaded when more than 2 ow particles are loaded (like grass and dust from jumping)
-- trying to save and then subsequently opening up the options menu causes the camera to stop panning with the player.  something to do with textboxes?
+- trying to save and then subsequently opening up the options menu causes the camera to stop panning with the player (on frame type 2?  what?)
+  - what the fuck i literally can't even reproduce this one anymore
 - meowstic gender difference
+
+polishing:
+- the day/night blending could use some polish
+- start menu is super inefficient
 
 TODO:
 - load different icons based on major gender difference
