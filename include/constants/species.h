@@ -864,15 +864,6 @@
 #define SPECIES_PRIMAL_KYOGRE 856
 #define SPECIES_PRIMAL_GROUDON 857
 
-#define SPECIES_BURMY_SANDY 858
-#define SPECIES_BURMY_TRASH 859
-#define SPECIES_WORMADAM_SANDY 860
-#define SPECIES_WORMADAM_TRASH 861
-#define SPECIES_ROTOM_HEAT 862
-#define SPECIES_ROTOM_WASH 863
-#define SPECIES_ROTOM_FROST 864
-#define SPECIES_ROTOM_FAN 865
-#define SPECIES_ROTOM_MOW 866
 #define SPECIES_KYUREM_BLACK 867
 #define SPECIES_KYUREM_WHITE 868*/
 
@@ -910,7 +901,48 @@
 #define SPECIES_UNOWN_Z NUM_SPECIES + 26
 #define SPECIES_UNOWN_EMARK NUM_SPECIES + 27
 #define SPECIES_UNOWN_QMARK NUM_SPECIES + 28
-#define SPECIES_MEOWSTIC_F NUM_SPECIES + 29
+
+// formes after this point only have significant differences, i.e. different moveset or base stats
+
+#define HAS_DIFFERENT_FORM(species) (species == SPECIES_PIKACHU \
+|| species == SPECIES_PICHU \
+|| species == SPECIES_DEOXYS \
+|| species == SPECIES_BURMY \
+|| species == SPECIES_WORMADAM \
+|| species == SPECIES_CHERRIM \
+|| species == SPECIES_SHELLOS \
+|| species == SPECIES_GASTRODON \
+|| species == SPECIES_ROTOM \
+|| species == SPECIES_GIRATINA \
+|| species == SPECIES_SHAYMIN \
+|| species == SPECIES_ARCEUS \
+|| species == SPECIES_BASCULIN \
+|| species == SPECIES_DARMANITAN \
+|| species == SPECIES_DEERLING \
+|| species == SPECIES_SAWSBUCK \
+|| species == SPECIES_TORNADUS \
+|| species == SPECIES_THUNDURUS \
+|| species == SPECIES_LANDORUS \
+|| species == SPECIES_KYUREM \
+|| species == SPECIES_KELDEO \
+|| species == SPECIES_MELOETTA \
+|| species == SPECIES_GENESECT \
+|| species == SPECIES_VIVILLON \
+|| (species >= SPECIES_FLABEBE && species <= SPECIES_FLOETTE) \
+|| species == SPECIES_FURFROU \
+|| species == SPECIES_AEGISLASH \
+|| species == SPECIES_PUMPKABOO \
+|| species == SPECIES_GOURGEIST \
+|| species == SPECIES_ZYGARDE \
+|| species == SPECIES_HOOPA \
+|| species == SPECIES_ORICORIO \
+|| species == SPECIES_LYCANROC \
+|| species == SPECIES_WISHIWASHI \
+|| species == SPECIES_SILVALLY \
+|| species == SPECIES_MINIOR \
+|| species == SPECIES_NECROZMA \
+|| species == SPECIES_MAGEARNA \
+) \
 
 // National Dex Index Defines
 

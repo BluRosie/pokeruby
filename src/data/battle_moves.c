@@ -1813,7 +1813,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_SWIFT] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_ALWAYS_HIT,
         .power = 60,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -2597,7 +2597,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_FAINT_ATTACK] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_ALWAYS_HIT,
         .power = 60,
         .type = TYPE_DARK,
         .accuracy = 0,
@@ -4557,7 +4557,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_SHADOW_PUNCH] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_ALWAYS_HIT,
         .power = 60,
         .type = TYPE_GHOST,
         .accuracy = 0,
@@ -4655,7 +4655,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_AERIAL_ACE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_ALWAYS_HIT,
         .power = 60,
         .type = TYPE_FLYING,
         .accuracy = 0,
@@ -4837,7 +4837,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_MAGICAL_LEAF] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_ALWAYS_HIT,
         .power = 60,
         .type = TYPE_GRASS,
         .accuracy = 0,
@@ -4921,7 +4921,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_SHOCK_WAVE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_ALWAYS_HIT,
         .power = 60,
         .type = TYPE_ELECTRIC,
         .accuracy = 0,

@@ -64,7 +64,6 @@ static u32 InitMainMenu(bool8 a1);
 static void Task_MainMenuCheckSave(u8 taskId);
 static void Task_MainMenuWaitForSaveErrorAck(u8 taskId);
 static void Task_MainMenuCheckRtc(u8 taskId);
-static void Task_MainMenuWaitForRtcErrorAck(u8 taskId);
 static void Task_MainMenuDraw(u8 taskId);
 static void Task_MainMenuHighlight(u8 taskId);
 static bool8 MainMenuProcessKeyInput(u8 taskId);
@@ -352,30 +351,7 @@ void Task_MainMenuCheckRtc(u8 taskId)
         REG_BLDALPHA = 0;
         REG_BLDY = 7;
 
-        if (!(RtcGetErrorStatus() & RTC_ERR_FLAG_MASK))
-        {
-            gTasks[taskId].func = Task_MainMenuDraw;
-        }
-        else
-        {
-            Menu_DrawStdWindowFrame(2, 14, 27, 19);
-            MenuPrintMessage(gBatteryDryMessage, 3, 15);
-            REG_WIN0H = WIN_RANGE(17, 223);
-            REG_WIN0V = WIN_RANGE(113, 159);
-            gTasks[taskId].func = Task_MainMenuWaitForRtcErrorAck;
-        }
-    }
-}
-
-void Task_MainMenuWaitForRtcErrorAck(u8 taskId)
-{
-    if (Menu_UpdateWindowText())
-    {
-        if ( gMain.newKeys & 1 )
-        {
-            Menu_EraseWindowRect(2, 14, 27, 19);
-            gTasks[taskId].func = Task_MainMenuDraw;
-        }
+        gTasks[taskId].func = Task_MainMenuDraw;
     }
 }
 
