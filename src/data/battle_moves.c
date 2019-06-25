@@ -8717,7 +8717,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_HYPERSPACE_FURY] = // always hit??
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_HYPERSPACE_FURY,
         .power = 0,
         .type = TYPE_MYSTERY,
         .accuracy = 0,
@@ -8731,7 +8731,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_SHORE_UP] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_SHORE_UP,
         .power = 0,
         .type = TYPE_GROUND,
         .accuracy = 0,
@@ -8858,7 +8858,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_STRENGTH_SAP] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_STRENGTH_SAP,
         .power = 0,
         .type = TYPE_GRASS,
         .accuracy = 100,
@@ -9054,7 +9054,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_BURN_UP] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_BURN_UP,
         .power = 130,
         .type = TYPE_FIRE,
         .accuracy = 100,
@@ -9096,7 +9096,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_PURIFY] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_PURIFY,
         .power = 0,
         .type = TYPE_POISON,
         .accuracy = 0,
@@ -9166,7 +9166,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_BEAK_BLAST] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_BEAK_BLAST,
         .power = 100,
         .type = TYPE_FLYING,
         .accuracy = 100,
@@ -9236,7 +9236,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_SHELL_TRAP] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_SHELL_TRAP,
         .power = 150,
         .type = TYPE_FIRE,
         .accuracy = 100,
@@ -9432,7 +9432,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_MULTI_ATTACK] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_MULTI_ATTACK,
         .power = 90,
         .type = TYPE_NORMAL,
         .accuracy = 100,

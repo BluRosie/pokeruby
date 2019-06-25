@@ -868,7 +868,7 @@ const u8 BattleText_Psychic[] = _("a Psychic move");
 const u8 BattleText_Ice[] = _("an Ice move");
 const u8 BattleText_Dragon[] = _("a Dragon move");
 const u8 BattleText_Dark[] = _("a Dark move");
-//const u8 BattleText_Fairy[] = _("a Fairy move");
+const u8 BattleText_Fairy[] = _("a Fairy move");
 
 const u8 *const gStatStrings[] =
 {
@@ -1650,5 +1650,5 @@ const u8 *const gUnknown_08401674[] =
     BattleText_Ice,
     BattleText_Dragon,
     BattleText_Dark,
-	//BattleText_Fairy,
+	BattleText_Fairy,
 };

@@ -365,6 +365,14 @@ gBattleScriptsForMoveEffects:: @ 81D6BBC
 	.4byte BattleScript_EffectSkyDrop
 	.4byte BattleScript_EffectTempMeanLook
 	.4byte BattleScript_EffectGeomancy
+	.4byte BattleScript_EffectHyperspaceFury
+	.4byte BattleScript_EffectShoreUp
+	.4byte BattleScript_EffectStrengthSap
+	.4byte BattleScript_EffectBurnUp
+	.4byte BattleScript_EffectPurify
+	.4byte BattleScript_EffectBeakBlast
+	.4byte BattleScript_EffectShellTrap
+	.4byte BattleScript_EffectMultiAttack
 
 @ new battle scripts - sort of a TODO for me if you know what i'm saying
 
@@ -514,6 +522,15 @@ BattleScript_EffectSkyDrop:
 
 BattleScript_EffectTempMeanLook:
 BattleScript_EffectGeomancy:
+BattleScript_EffectHyperspaceFury:
+
+BattleScript_EffectShoreUp:
+BattleScript_EffectStrengthSap:
+BattleScript_EffectBurnUp:
+BattleScript_EffectPurify:
+BattleScript_EffectBeakBlast:
+BattleScript_EffectShellTrap:
+BattleScript_EffectMultiAttack:
 
 BattleScript_EffectHit: @ 81D6F14
 BattleScript_EffectAccuracyDown2: @ 81D6F14
