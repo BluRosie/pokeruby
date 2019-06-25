@@ -5118,7 +5118,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_PLUCK] =
     {
-        .effect = EFFECT_PLACEHOLDER, // Needs a custom move effect (Bug Bite and Pluck should have the same move effect)
+        .effect = EFFECT_EAT_BERRY, // Needs a custom move effect (Bug Bite and Pluck should have the same move effect)
         .power = 60,
         .type = TYPE_FLYING,
         .accuracy = 100,
@@ -5553,7 +5553,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_AURA_SPHERE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_ALWAYS_HIT,
         .power = 80,
         .type = TYPE_FIGHTING,
         .accuracy = 0,
@@ -6214,7 +6214,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_MAGNET_BOMB] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_ALWAYS_HIT,
         .power = 60,
         .type = TYPE_STEEL,
         .accuracy = 0,
@@ -6312,7 +6312,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_BUG_BITE] =
     {
-        .effect = EFFECT_PLACEHOLDER, // Needs a custom move effect (Bug Bite and Pluck should have the same move effect)
+        .effect = EFFECT_EAT_BERRY, // Needs a custom move effect (Bug Bite and Pluck should have the same move effect)
         .power = 60,
         .type = TYPE_BUG,
         .accuracy = 100,
@@ -7042,7 +7042,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_ALLY_SWITCH] =
     {
-        .effect = EFFECT_PLACEHOLDER, // Needs a custom move effect
+        .effect = EFFECT_ALLY_SWITCH, // Needs a custom move effect
         .power = 0,
         .type = TYPE_PSYCHIC,
         .accuracy = 0,
@@ -7112,7 +7112,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_SKY_DROP] =
     {
-        .effect = EFFECT_PLACEHOLDER, // Needs a custom move effect
+        .effect = EFFECT_SKY_DROP, // Needs a custom move effect
         .power = 60,
         .type = TYPE_FLYING,
         .accuracy = 100,
@@ -8056,7 +8056,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_DISARMING_VOICE] =
     {
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_ALWAYS_HIT,
         .power = 40,
         .type = TYPE_FAIRY,
         .accuracy = 0,
@@ -8240,7 +8240,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_FAIRY_LOCK] =
     {
-        .effect = EFFECT_PLACEHOLDER, // Needs a custom move effect
+        .effect = EFFECT_TEMP_MEAN_LOOK, // Needs a custom move effect
         .power = 0,
         .type = TYPE_FAIRY,
         .accuracy = 0,
@@ -8436,7 +8436,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
 
     [MOVE_GEOMANCY] =
     {
-        .effect = EFFECT_PLACEHOLDER, // Needs a custom move effect
+        .effect = EFFECT_GEOMANCY, // Needs a custom move effect
         .power = 0,
         .type = TYPE_FAIRY,
         .accuracy = 0,
@@ -8715,7 +8715,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
         .split = SPLIT_PHYSICAL,
     },
 
-    [MOVE_HYPERSPACE_FURY] =
+    [MOVE_HYPERSPACE_FURY] = // always hit??
     {
         .effect = EFFECT_PLACEHOLDER,
         .power = 0,
