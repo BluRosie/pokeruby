@@ -225,6 +225,295 @@ gBattleScriptsForMoveEffects:: @ 81D6BBC
 	.4byte BattleScript_EffectCalmMind
 	.4byte BattleScript_EffectDragonDance
 	.4byte BattleScript_EffectCamouflage
+	.4byte BattleScript_EffectGrowth
+	.4byte BattleScript_EffectSpecialAttackUp3
+	.4byte BattleScript_EffectRoost
+	.4byte BattleScript_EffectGravity
+	.4byte BattleScript_EffectMiracleEye
+	.4byte BattleScript_EffectWakeUpSlap
+	.4byte BattleScript_EffectHammerArm
+	.4byte BattleScript_EffectGyroBall
+	.4byte BattleScript_EffectHealingWish
+	.4byte BattleScript_EffectBrine
+	.4byte BattleScript_EffectNaturalGift
+	.4byte BattleScript_EffectFeint
+	.4byte BattleScript_EffectPlaceholder
+	.4byte BattleScript_EffectTailwind
+	.4byte BattleScript_EffectAcupressure
+	.4byte BattleScript_EffectMetalBurst
+	.4byte BattleScript_EffectHitEscape
+	.4byte BattleScript_EffectCloseCombat
+	.4byte BattleScript_EffectPayback
+	.4byte BattleScript_EffectAssurance
+	.4byte BattleScript_EffectEmbargo
+	.4byte BattleScript_EffectFling
+	.4byte BattleScript_EffectPsychoShift
+	.4byte BattleScript_EffectTrumpCard
+	.4byte BattleScript_EffectHealBlock
+	.4byte BattleScript_EffectWringOut
+	.4byte BattleScript_EffectPowerTrick
+	.4byte BattleScript_EffectGastroAcid
+	.4byte BattleScript_EffectLuckyChant
+	.4byte BattleScript_EffectMeFirst
+	.4byte BattleScript_EffectCopyCat
+	.4byte BattleScript_EffectPowerSwap
+	.4byte BattleScript_EffectGuardSwap
+	.4byte BattleScript_EffectPunishment
+	.4byte BattleScript_EffectLastResort
+	.4byte BattleScript_EffectWorrySeed
+	.4byte BattleScript_EffectSuckerPunch
+	.4byte BattleScript_EffectToxicSpikes
+	.4byte BattleScript_EffectHeartSwap
+	.4byte BattleScript_EffectAquaRing
+	.4byte BattleScript_EffectRecoil33Status
+	.4byte BattleScript_EffectMagnetRise
+	.4byte BattleScript_EffectFlinchStatus
+	.4byte BattleScript_EffectDefog
+	.4byte BattleScript_EffectTrickRoom
+	.4byte BattleScript_EffectCaptivate
+	.4byte BattleScript_EffectStealthRock
+	.4byte BattleScript_EffectJudgment
+	.4byte BattleScript_EffectSpecialAttackUpHit
+	.4byte BattleScript_EffectRecoil50
+	.4byte BattleScript_EffectSpecialDefenseDownHit2
+	.4byte BattleScript_EffectAttackAccuracyUp
+	.4byte BattleScript_EffectGuardSplit
+	.4byte BattleScript_EffectPowerSplit
+	.4byte BattleScript_EffectWonderRoom
+	.4byte BattleScript_EffectPsyshock
+	.4byte BattleScript_EffectVenoshock
+	.4byte BattleScript_EffectAutonomize
+	.4byte BattleScript_EffectTelekinesis
+	.4byte BattleScript_EffectMagicRoom
+	.4byte BattleScript_EffectSmackDown
+	.4byte BattleScript_EffectAlwaysCrit
+	.4byte BattleScript_EffectFlameBurst
+	.4byte BattleScript_EffectQuiverDance
+	.4byte BattleScript_EffectHeatCrash
+	.4byte BattleScript_EffectSynchronoise
+	.4byte BattleScript_EffectElectroBall
+	.4byte BattleScript_EffectSoak
+	.4byte BattleScript_EffectSpeedUpHit
+	.4byte BattleScript_EffectCoil
+	.4byte BattleScript_EffectFoulPlay
+	.4byte BattleScript_EffectSimpleBeam
+	.4byte BattleScript_EffectEntrainment
+	.4byte BattleScript_EffectAfterYou
+	.4byte BattleScript_EffectRound
+	.4byte BattleScript_EffectEchoedVoice
+	.4byte BattleScript_EffectClearSmog
+	.4byte BattleScript_EffectStoredPower
+	.4byte BattleScript_EffectScald
+	.4byte BattleScript_EffectShellSmash
+	.4byte BattleScript_EffectHealPulse
+	.4byte BattleScript_EffectHex
+	.4byte BattleScript_EffectShiftGear
+	.4byte BattleScript_EffectHitSwitchTarget
+	.4byte BattleScript_EffectIncinerate
+	.4byte BattleScript_EffectQuash
+	.4byte BattleScript_EffectAcrobatics
+	.4byte BattleScript_EffectReflectType
+	.4byte BattleScript_EffectRetaliate
+	.4byte BattleScript_EffectBestow
+	.4byte BattleScript_EffectPledge
+	.4byte BattleScript_EffectBulldoze
+	.4byte BattleScript_EffectAttackSpecialAttackUp
+	.4byte BattleScript_EffectDefenseUp3
+	.4byte BattleScript_EffectHurricane
+	.4byte BattleScript_EffectTechnoBlast
+	.4byte BattleScript_EffectVCreate
+	.4byte BattleScript_EffectFusionCombo
+	.4byte BattleScript_EffectTwoTypes
+	.4byte BattleScript_EffectMatBlock
+	.4byte BattleScript_EffectBelch
+	.4byte BattleScript_EffectRototiller
+	.4byte BattleScript_EffectStickyWeb
+	.4byte BattleScript_EffectFellStinger
+	.4byte BattleScript_EffectThirdType
+	.4byte BattleScript_EffectNobleRoar
+	.4byte BattleScript_EffectIonDeluge
+	.4byte BattleScript_EffectFreezeDry
+	.4byte BattleScript_EffectPartingShot
+	.4byte BattleScript_EffectTopsyTurvy
+	.4byte BattleScript_EffectFlowerShield
+	.4byte BattleScript_EffectGrassyTerrain
+	.4byte BattleScript_EffectMistyTerrain
+	.4byte BattleScript_EffectElectrify
+	.4byte BattleScript_EffectDefenseUp2Hit
+	.4byte BattleScript_EffectAromaticMist
+	.4byte BattleScript_EffectVenomDrench
+	.4byte BattleScript_EffectPowder
+	.4byte BattleScript_EffectMagneticFlux
+	.4byte BattleScript_EffectElectricTerrain
+	.4byte BattleScript_EffectHitPreventEscape
+	.4byte BattleScript_EffectSparklingAria
+	.4byte BattleScript_EffectToxicThread
+	.4byte BattleScript_EffectLaserFocus
+	.4byte BattleScript_EffectGearUp
+	.4byte BattleScript_EffectThroatChop
+	.4byte BattleScript_EffectHitEnemyHealAlly
+	.4byte BattleScript_EffectPsychicTerrain
+	.4byte BattleScript_EffectSpeedSwap
+	.4byte BattleScript_EffectRevelationDance
+	.4byte BattleScript_EffectCoreEnforcer
+	.4byte BattleScript_EffectInstruct
+	.4byte BattleScript_EffectAuroraVeil
+	.4byte BattleScript_EffectStompingTantrum
+	.4byte BattleScript_EffectSpectralThief
+	.4byte BattleScript_EffectEatBerry
+	.4byte BattleScript_EffectAllySwitch
+	.4byte BattleScript_EffectSkyDrop
+	.4byte BattleScript_EffectTempMeanLook
+	.4byte BattleScript_EffectGeomancy
+
+@ new battle scripts - sort of a TODO for me if you know what i'm saying
+
+BattleScript_EffectGrowth:
+BattleScript_EffectSpecialAttackUp3:
+BattleScript_EffectRoost:
+BattleScript_EffectGravity:
+BattleScript_EffectMiracleEye:
+BattleScript_EffectWakeUpSlap:
+BattleScript_EffectHammerArm:
+BattleScript_EffectGyroBall:
+BattleScript_EffectHealingWish:
+BattleScript_EffectBrine:
+BattleScript_EffectNaturalGift:
+BattleScript_EffectFeint:
+BattleScript_EffectPlaceholder:
+BattleScript_EffectTailwind:
+BattleScript_EffectAcupressure:
+BattleScript_EffectMetalBurst:
+BattleScript_EffectHitEscape:
+BattleScript_EffectCloseCombat:
+BattleScript_EffectPayback:
+BattleScript_EffectAssurance:
+BattleScript_EffectEmbargo:
+BattleScript_EffectFling:
+BattleScript_EffectPsychoShift:
+BattleScript_EffectTrumpCard:
+BattleScript_EffectHealBlock:
+BattleScript_EffectWringOut:
+BattleScript_EffectPowerTrick:
+BattleScript_EffectGastroAcid:
+BattleScript_EffectLuckyChant:
+BattleScript_EffectMeFirst:
+BattleScript_EffectCopyCat:
+BattleScript_EffectPowerSwap:
+BattleScript_EffectGuardSwap:
+BattleScript_EffectPunishment:
+BattleScript_EffectLastResort:
+BattleScript_EffectWorrySeed:
+BattleScript_EffectSuckerPunch:
+BattleScript_EffectToxicSpikes:
+BattleScript_EffectHeartSwap:
+BattleScript_EffectAquaRing:
+BattleScript_EffectRecoil33Status:
+BattleScript_EffectMagnetRise:
+BattleScript_EffectFlinchStatus:
+BattleScript_EffectDefog:
+BattleScript_EffectTrickRoom:
+BattleScript_EffectCaptivate:
+BattleScript_EffectStealthRock:
+BattleScript_EffectJudgment:
+BattleScript_EffectSpecialAttackUpHit:
+BattleScript_EffectRecoil50:
+BattleScript_EffectSpecialDefenseDownHit2:
+
+BattleScript_EffectAttackAccuracyUp:
+BattleScript_EffectGuardSplit:
+BattleScript_EffectPowerSplit:
+BattleScript_EffectWonderRoom:
+BattleScript_EffectPsyshock:
+BattleScript_EffectVenoshock:
+BattleScript_EffectAutonomize:
+BattleScript_EffectTelekinesis:
+BattleScript_EffectMagicRoom:
+BattleScript_EffectSmackDown:
+BattleScript_EffectAlwaysCrit:
+BattleScript_EffectFlameBurst:
+BattleScript_EffectQuiverDance:
+BattleScript_EffectHeatCrash:
+BattleScript_EffectSynchronoise:
+BattleScript_EffectElectroBall:
+BattleScript_EffectSoak:
+BattleScript_EffectSpeedUpHit:
+BattleScript_EffectCoil:
+BattleScript_EffectFoulPlay:
+BattleScript_EffectSimpleBeam:
+BattleScript_EffectEntrainment:
+BattleScript_EffectAfterYou:
+BattleScript_EffectRound:
+BattleScript_EffectEchoedVoice:
+BattleScript_EffectClearSmog:
+BattleScript_EffectStoredPower:
+BattleScript_EffectScald:
+BattleScript_EffectShellSmash:
+BattleScript_EffectHealPulse:
+BattleScript_EffectHex:
+BattleScript_EffectShiftGear:
+BattleScript_EffectHitSwitchTarget:
+BattleScript_EffectIncinerate:
+BattleScript_EffectQuash:
+BattleScript_EffectAcrobatics:
+BattleScript_EffectReflectType:
+BattleScript_EffectRetaliate:
+BattleScript_EffectBestow:
+BattleScript_EffectPledge:
+BattleScript_EffectBulldoze:
+BattleScript_EffectAttackSpecialAttackUp:
+BattleScript_EffectDefenseUp3:
+BattleScript_EffectHurricane:
+BattleScript_EffectTechnoBlast:
+BattleScript_EffectVCreate:
+BattleScript_EffectFusionCombo:
+
+BattleScript_EffectTwoTypes:
+BattleScript_EffectMatBlock:
+BattleScript_EffectBelch:
+BattleScript_EffectRototiller:
+BattleScript_EffectStickyWeb:
+BattleScript_EffectFellStinger:
+BattleScript_EffectThirdType:
+BattleScript_EffectNobleRoar:
+BattleScript_EffectIonDeluge:
+BattleScript_EffectFreezeDry:
+BattleScript_EffectPartingShot:
+BattleScript_EffectTopsyTurvy:
+BattleScript_EffectFlowerShield:
+BattleScript_EffectGrassyTerrain:
+BattleScript_EffectMistyTerrain:
+BattleScript_EffectElectrify:
+BattleScript_EffectDefenseUp2Hit:
+BattleScript_EffectAromaticMist:
+BattleScript_EffectVenomDrench:
+BattleScript_EffectPowder:
+BattleScript_EffectMagneticFlux:
+BattleScript_EffectElectricTerrain:
+BattleScript_EffectHitPreventEscape:
+
+BattleScript_EffectSparklingAria:
+BattleScript_EffectToxicThread:
+BattleScript_EffectLaserFocus:
+BattleScript_EffectGearUp:
+BattleScript_EffectThroatChop:
+BattleScript_EffectHitEnemyHealAlly:
+BattleScript_EffectPsychicTerrain:
+BattleScript_EffectSpeedSwap:
+BattleScript_EffectRevelationDance:
+BattleScript_EffectCoreEnforcer:
+BattleScript_EffectInstruct:
+BattleScript_EffectAuroraVeil:
+BattleScript_EffectStompingTantrum:
+BattleScript_EffectSpectralThief:
+
+BattleScript_EffectEatBerry:
+
+BattleScript_EffectAllySwitch:
+BattleScript_EffectSkyDrop:
+
+BattleScript_EffectTempMeanLook:
+BattleScript_EffectGeomancy:
 
 BattleScript_EffectHit: @ 81D6F14
 BattleScript_EffectAccuracyDown2: @ 81D6F14
@@ -236,7 +525,6 @@ BattleScript_EffectEvasionDownHit: @ 81D6F14
 BattleScript_EffectEvasionUp2: @ 81D6F14
 BattleScript_EffectFalseSwipe: @ 81D6F14
 BattleScript_EffectHighCritical: @ 81D6F14
-BattleScript_EffectHit: @ 81D6F14
 BattleScript_EffectPursuit: @ 81D6F14
 BattleScript_EffectQuickAttack: @ 81D6F14
 BattleScript_EffectSpecialAttackDown2: @ 81D6F14
