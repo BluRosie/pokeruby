@@ -5019,11 +5019,11 @@ Move_MIND_READER: @ 81CDA06
 	delay 40
 	playsewithpan SE_W043, SOUND_PAN_TARGET
 	createvisualtask sub_80E1F8C, 2, 1, 1, 2, 0, 10, 0
-	call _81CDA4D
+	call MindReaderEffect
 	waitforvisualfinish
 	clearmonbg 4
 	end
-_81CDA4D:
+MindReaderEffect:
 	createsprite gBattleAnimSpriteTemplate_840220C, ANIM_BATTLER_ATTACKER, 4, 70, 0, 6
 	createsprite gBattleAnimSpriteTemplate_840220C, ANIM_BATTLER_ATTACKER, 4, 40, 40, 6
 	createsprite gBattleAnimSpriteTemplate_840220C, ANIM_BATTLER_ATTACKER, 4, 10, -60, 6
@@ -10356,6 +10356,23 @@ Move_GRAVITY:
 	end
 
 Move_MIRACLE_EYE:
+	loadspritegfx ANIM_TAG_TEAL_ALERT
+	loadspritegfx ANIM_TAG_OPENING_EYE
+	loadspritegfx ANIM_TAG_ROUND_WHITE_HALO
+	monbg ANIM_BATTLER_DEF_PARTNER
+	call SetPsychicBackground
+	playsewithpan SE_W109, SOUND_PAN_TARGET
+	createsprite gBattleAnimSpriteTemplate_84021DC, ANIM_BATTLER_ATTACKER, 5, 0, 0, 1, 0
+	createsprite gBattleAnimSpriteTemplate_84021F4, ANIM_BATTLER_ATTACKER, 5
+	delay 40
+	playsewithpan SE_W043, SOUND_PAN_TARGET
+	createvisualtask sub_80E1F8C, 2, 1, 1, 2, 0, 10, 0
+	call MindReaderEffect
+	waitforvisualfinish
+	call BackgroundRestore
+	clearmonbg ANIM_BATTLER_DEF_PARTNER
+	end	
+
 Move_WAKE_UP_SLAP:
 Move_HAMMER_ARM:
 Move_GYRO_BALL:

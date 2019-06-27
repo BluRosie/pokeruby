@@ -5,6 +5,7 @@
 #include "battle_string_ids.h"
 #include "battle_script_commands.h"
 #include "battle_util.h"
+#include "constants/battle_constants.h"
 #include "constants/battle_move_effects.h"
 #include "constants/hold_effects.h"
 #include "constants/moves.h"
@@ -1318,9 +1319,9 @@ static void atk01_accuracycheck(void)
 {
     u16 move = T2_READ_16(gBattlescriptCurrInstr + 5);
 
-    if (move == 0xFFFE || move == 0xFFFF)
+    if (move == NO_ACC_CALC || move == NO_ACC_CALC_CHECK_LOCK_ON)
     {
-        if (gStatuses3[gBankTarget] & STATUS3_ALWAYS_HITS && move == 0xFFFF && gDisableStructs[gBankTarget].bankWithSureHit == gBankAttacker)
+        if (gStatuses3[gBankTarget] & STATUS3_ALWAYS_HITS && move == NO_ACC_CALC_CHECK_LOCK_ON && gDisableStructs[gBankTarget].bankWithSureHit == gBankAttacker)
             gBattlescriptCurrInstr += 7;
         else if (gStatuses3[gBankTarget] & (STATUS3_ON_AIR | STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
@@ -1334,7 +1335,7 @@ static void atk01_accuracycheck(void)
         s8 buff;
         u16 calc;
 
-        if (move == 0)
+        if (move == ACC_CURR_MOVE)
             move = gCurrentMove;
 
         GET_MOVE_TYPE(move, type);
@@ -1383,11 +1384,13 @@ static void atk01_accuracycheck(void)
         if (gBattleMons[gBankTarget].ability == ABILITY_TANGLED_FEET && gBattleMons[gBankTarget].status2 & STATUS2_CONFUSION)
             calc = (calc * 50) / 100; // halve it for tangled feet
         for (i = 0; i <= 5; i++)
+        {
             if (GetAbilityBySpecies(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL), GetMonData(&gPlayerParty[i], MON_DATA_ALT_ABILITY, NULL), GetMonData(&gPlayerParty[i], MON_DATA_HIDDEN_ABILITY, NULL)) == ABILITY_VICTORY_STAR)
             {
                 calc = (calc * 110) / 100; // 1.1 victory star boost
                 break;
             }
+        }
 
         if (gBattleMons[gBankTarget].item == ITEM_ENIGMA_BERRY)
         {

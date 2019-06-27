@@ -400,12 +400,24 @@ BattleScript_EffectGravity:
 	waitmessage 64
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectMiracleEye:
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifstatus2 TARGET, STATUS2_SUBSTITUTE, BattleScript_ButItFailed
+	setalwayshitflag
+	@ setmiracleye
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_TookAim
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
 @ new battle scripts - sort of a TODO for me if you know what i'm saying
 
 BattleScript_EffectGrowth:
 BattleScript_EffectSpecialAttackUp3:
 
-BattleScript_EffectMiracleEye:
 BattleScript_EffectWakeUpSlap:
 BattleScript_EffectHammerArm:
 BattleScript_EffectGyroBall:
@@ -1686,7 +1698,6 @@ BattleScript_EffectLockOn: @ 81D7AFF
 	attackstring
 	ppreduce
 	jumpifstatus2 TARGET, STATUS2_SUBSTITUTE, BattleScript_ButItFailed
-	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
 	setalwayshitflag
 	attackanimation
 	waitanimation
