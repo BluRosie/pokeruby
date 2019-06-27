@@ -21,16 +21,20 @@ TODO:
 TENTATIVE PLAN:
 
 3.5 - BATTLE BUGS
- - at least get placeholder stuff in there
  - formes
+ 
+6 - moves (haha didn't see THAT one coming did ya?)
+ - animations
+ - effects
+   - setroost
+   - setgravity
 
 4 - finish up items
 5 - finish up abilities
-6 - moves
 7 - decide tms/hms
 
 BATTLE BUGS:
-all moves above psycho boost can and will freeze the game
+MOVE_TARGET_USER & MOVE_TARGET_SELECTED bring up a selection even when in single battles
 experience gained for the medium slow group is weird
 
 ITEM EXPANSION PROGRESS:

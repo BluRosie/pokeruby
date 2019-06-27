@@ -847,7 +847,7 @@ u8 UpdateTurnCounters(void)
         case 9:
             if (gBattleWeather & WEATHER_HAIL)
             {
-                if (!gNewBattleEffects.hailPermanent && --gWishFutureKnock.weatherDuration == 0)
+                if (!gBattleGlobalTimers.hailPermanent && --gWishFutureKnock.weatherDuration == 0)
                 {
                     gBattleWeather &= ~WEATHER_HAIL;
                     gBattlescriptCurrInstr = BattleScript_SandStormHailEnds;
@@ -863,7 +863,7 @@ u8 UpdateTurnCounters(void)
             gBattleStruct->turncountersTracker++;
             break;
         case 10:
-            if (gNewBattleEffects.fog)
+            if (gBattleGlobalTimers.fog)
             {
                 gBattlescriptCurrInstr = BattleScript_FogIsDeep;
             /*else
@@ -1701,7 +1701,7 @@ u8 CastformDataTypeChange(u8 bank)
     }
     if (!WEATHER_HAS_EFFECT)
         return CASTFORM_NO_CHANGE;
-    if ((!(gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_SUN_ANY | WEATHER_HAIL)) || gNewBattleEffects.fog) && gBattleMons[bank].type1 != TYPE_NORMAL && gBattleMons[bank].type2 != TYPE_NORMAL)
+    if ((!(gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_SUN_ANY | WEATHER_HAIL)) || gBattleGlobalTimers.fog) && gBattleMons[bank].type1 != TYPE_NORMAL && gBattleMons[bank].type2 != TYPE_NORMAL)
     {
         gBattleMons[bank].type1 = TYPE_NORMAL;
         gBattleMons[bank].type2 = TYPE_NORMAL;
@@ -1825,16 +1825,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                     if (!(gBattleWeather & WEATHER_HAIL))
                     {
                         gBattleWeather = WEATHER_HAIL;
-                        gNewBattleEffects.hailPermanent = TRUE;
+                        gBattleGlobalTimers.hailPermanent = TRUE;
                         gBattleStruct->animArg1 = B_ANIM_HAIL_CONTINUES;
                         gBattleStruct->scriptingActive = bank;
                         effect++;
                     }
                     break;
                 case WEATHER_FOG_3:
-                    if (!gNewBattleEffects.fog)
+                    if (!gBattleGlobalTimers.fog)
                     {
-                        gNewBattleEffects.fog = TRUE;
+                        gBattleGlobalTimers.fog = TRUE;
                         gBattleStruct->animArg1 = B_ANIM_FOG_IS_DEEP;
                         gBattleStruct->scriptingActive = bank;
                         effect++;
@@ -1878,7 +1878,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                 if (!(gBattleWeather & WEATHER_HAIL))
                 {
                     gBattleWeather = WEATHER_HAIL;
-                    gNewBattleEffects.hailPermanent = TRUE;
+                    gBattleGlobalTimers.hailPermanent = TRUE;
                     BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
                     gBattleStruct->scriptingActive = bank;
                     effect++;

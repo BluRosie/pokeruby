@@ -3433,7 +3433,7 @@ void sub_8010874(void)
     gBankAttacker = 0;
     gBankTarget = 0;
     gBattleWeather = 0;
-    gNewBattleEffects.fog = 0;
+    gBattleGlobalTimers.fog = 0;
 
     MEMSET_ALT(&gWishFutureKnock, 0, 0x2C, i, r4);
 
@@ -4644,7 +4644,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     if (gBattleMons[bank1].ability == ABILITY_SLOW_START && gDisableStructs[bank1].slowStartTimer)
         bank1AdjustedSpeed /= 2;
 
-/*    if (gBattleMons[bank1].ability == ABILITY_SURGE_SURFER && gNewBattleEffects.electricTerrain & BATTLE_ELECTRIC_TERRAIN)
+/*    if (gBattleMons[bank1].ability == ABILITY_SURGE_SURFER && gBattleGlobalTimers.electricTerrain & BATTLE_ELECTRIC_TERRAIN)
         bank1AdjustedSpeed *= 2;*/
 
     if (heldItemEffect == HOLD_EFFECT_MACHO_BRACE || heldItemEffect == HOLD_EFFECT_POWER_ITEM)
@@ -4693,7 +4693,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     if (gBattleMons[bank2].ability == ABILITY_SLOW_START && gDisableStructs[bank2].slowStartTimer)
         bank2AdjustedSpeed /= 2;
 
-/*    if (gBattleMons[bank2].ability == ABILITY_SURGE_SURFER && gNewBattleEffects.electricTerrain & BATTLE_ELECTRIC_TERRAIN)
+/*    if (gBattleMons[bank2].ability == ABILITY_SURGE_SURFER && gBattleGlobalTimers.electricTerrain & BATTLE_ELECTRIC_TERRAIN)
         bank2AdjustedSpeed *= 2;*/
 
     if (heldItemEffect == HOLD_EFFECT_MACHO_BRACE || heldItemEffect == HOLD_EFFECT_POWER_ITEM)

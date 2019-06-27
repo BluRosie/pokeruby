@@ -1369,7 +1369,7 @@ static void atk01_accuracycheck(void)
         calc = gAccuracyStageRatios[buff].dividend * moveAcc;
         calc /= gAccuracyStageRatios[buff].divisor;
 
-        if (gNewBattleEffects.fog)
+        if (gBattleGlobalTimers.fog)
             calc = (calc * 60) / 100; // .6 fog multiplier
 
         if (gBattleMons[gBankAttacker].ability == ABILITY_COMPOUND_EYES)
@@ -9421,7 +9421,7 @@ static void atk7D_setrain(void)
     }
     else
     {
-        gNewBattleEffects.fog = 0;
+        gBattleGlobalTimers.fog = 0;
         gBattleWeather = WEATHER_RAIN_TEMPORARY;
         gBattleCommunication[MULTISTRING_CHOOSER] = 0;
         if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_EXTEND_RAIN)
@@ -12072,7 +12072,7 @@ static void atkBB_setsunny(void)
     }
     else
     {
-        gNewBattleEffects.fog = 0;
+        gBattleGlobalTimers.fog = 0;
         gBattleWeather = WEATHER_SUN_TEMPORARY;
         gBattleCommunication[MULTISTRING_CHOOSER] = 4;
         if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_EXTEND_SUN)
@@ -12590,7 +12590,7 @@ static void atkC8_sethail(void)
     }
     else
     {
-        gNewBattleEffects.fog = 0;
+        gBattleGlobalTimers.fog = 0;
         gBattleWeather = WEATHER_HAIL;
         gBattleCommunication[MULTISTRING_CHOOSER] = 5;
         if (ItemId_GetHoldEffect(gBattleMons[gBankAttacker].item) == HOLD_EFFECT_EXTEND_HAIL)

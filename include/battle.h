@@ -555,9 +555,6 @@ struct sideTimer
     u8 followmeTarget;      //0x9
     u8 fieldA;              //0xA
     u8 fieldB;              //0xB
-//  u8 slowStartTimer;
-//  u8 gravityTimer;
-//  u8 someOtherTimer;
 };
 
 struct WishFutureKnock
@@ -572,7 +569,7 @@ struct WishFutureKnock
     u8 knockedOffPokes[2];
 };
 
-struct NewBattleEffects // currently have 0x10 of space for this
+struct BattleGlobalTimers // currently have 0x10 of space for this
 {
     u32 hailPermanent:1;
     u32 fog:1;
@@ -585,7 +582,7 @@ extern struct ProtectStruct gProtectStructs[MAX_BATTLERS_COUNT];
 extern struct SpecialStatus gSpecialStatuses[MAX_BATTLERS_COUNT];
 extern struct sideTimer gSideTimers[2];
 extern struct WishFutureKnock gWishFutureKnock;
-extern struct NewBattleEffects gNewBattleEffects;
+extern struct BattleGlobalTimers gBattleGlobalTimers;
 extern struct AI_ThinkingStruct gAIThinkingSpace;
 extern struct Struct20238C8 gUnknown_020238C8;
 

@@ -3766,7 +3766,7 @@ Move_MOONLIGHT: @ 81CBDAE
 	delay 20
 	createvisualtask sub_80CE3EC, 2
 	waitforvisualfinish
-	call Unknown_81D5EF5
+	call HealingStars
 	waitforvisualfinish
 	end
 
@@ -4493,7 +4493,7 @@ Move_SLACK_OFF: @ 81CCF23
 	createvisualtask AnimTask_SlackOffSquish, 2, 0
 	playsewithpan SE_W281, SOUND_PAN_ATTACKER
 	waitforvisualfinish
-	call Unknown_81D5EF5
+	call HealingStars
 	waitforvisualfinish
 	end
 
@@ -6109,7 +6109,7 @@ Move_ABSORB: @ 81CF427
 	call _81CF496
 	waitforvisualfinish
 	delay 15
-	call Unknown_81D5EF5
+	call HealingStars
 	waitforvisualfinish
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 1, 4, 0, rgb(13, 31, 12)
 	waitforvisualfinish
@@ -6161,7 +6161,7 @@ Move_MEGA_DRAIN: @ 81CF53F
 	call _81CF5AE
 	waitforvisualfinish
 	delay 15
-	call Unknown_81D5EF5
+	call HealingStars
 	waitforvisualfinish
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 1, 8, 0, rgb(13, 31, 12)
 	waitforvisualfinish
@@ -6221,7 +6221,7 @@ Move_GIGA_DRAIN: @ 81CF6CF
 	call _81CF73E
 	waitforvisualfinish
 	delay 15
-	call Unknown_81D5EF5
+	call HealingStars
 	waitforvisualfinish
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 1, 12, 0, rgb(13, 31, 12)
 	waitforvisualfinish
@@ -6293,7 +6293,7 @@ Move_LEECH_LIFE: @ 81CF8D7
 	call _81CF496
 	waitforvisualfinish
 	delay 15
-	call Unknown_81D5EF5
+	call HealingStars
 	waitforvisualfinish
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 1, 7, 0, rgb(0, 0, 0)
 	waitforvisualfinish
@@ -6308,7 +6308,7 @@ Move_SYNTHESIS: @ 81CF959
 	playsewithpan SE_W025, SOUND_PAN_ATTACKER
 	call Unknown_81D5ECA
 	waitforvisualfinish
-	call Unknown_81D5EF5
+	call HealingStars
 	waitforvisualfinish
 	end
 
@@ -7399,7 +7399,7 @@ Move_DREAM_EATER: @ 81D1271
 	call _81D12DB
 	waitforvisualfinish
 	delay 15
-	call Unknown_81D5EF5
+	call HealingStars
 	waitforvisualfinish
 	clearmonbg ANIM_BATTLER_DEF_PARTNER
 	blendoff
@@ -7945,7 +7945,7 @@ Move_RECOVER: @ 81D1F1F
 	clearmonbg ANIM_BATTLER_ATK_PARTNER
 	blendoff
 	delay 1
-	call Unknown_81D5EF5
+	call HealingStars
 	waitforvisualfinish
 	end
 _81D1F5F:
@@ -8614,7 +8614,7 @@ Move_SWALLOW: @ 81D2FA8
 	jumpifmoveturn 3, _81D3045
 _81D2FF2:
 	waitforvisualfinish
-	call Unknown_81D5EF5
+	call HealingStars
 	end
 _81D2FF9:
 	createsprite gBattleAnimSpriteTemplate_8402578, ANIM_BATTLER_ATTACKER, 2, 0, -8
@@ -8670,7 +8670,7 @@ Move_MORNING_SUN: @ 81D306C
 	createvisualtask sub_80E2A38, 10, 1921, 3, 12, 0, 32767
 	waitforvisualfinish
 	waitsound
-	call Unknown_81D5EF5
+	call HealingStars
 	end
 _81D30F2:
 	createsprite gBattleAnimSpriteTemplate_84025EC, ANIM_BATTLER_ATTACKER, 2, 30, 640
@@ -10311,7 +10311,50 @@ _81D5B99:
 	end
 
 Move_ROOST:
+	loadspritegfx ANIM_TAG_WHITE_FEATHER
+	loadspritegfx ANIM_TAG_BLUE_STAR
+	monbg ANIM_BATTLER_ATTACKER
+	monbgprio_29
+	playsewithpan SE_W080, SOUND_PAN_TARGET
+	delay 0
+	createsprite gBattleAnimSpriteTemplate_83DA498, ANIM_BATTLER_TARGET, 0, 0, -16, 64, 2, 104, 11304, 32, 1
+	delay 6
+	createsprite gBattleAnimSpriteTemplate_83DA498, ANIM_BATTLER_TARGET, 0, 0, -16, 32, 2, 104, 11304, 32, 1
+	createsprite gBattleAnimSpriteTemplate_83DA498, ANIM_BATTLER_TARGET, 0, 0, -16, 0, 2, 104, 11304, 32, 1
+	delay 6
+	createsprite gBattleAnimSpriteTemplate_83DA498, ANIM_BATTLER_TARGET, 0, 0, -16, 224, 2, 104, 11304, 32, 1
+	createsprite gBattleAnimSpriteTemplate_83DA498, ANIM_BATTLER_TARGET, 0, 0, -16, 128, 2, 104, 11304, 32, 1
+	delay 6
+	createsprite gBattleAnimSpriteTemplate_83DA498, ANIM_BATTLER_TARGET, 0, 0, -16, 192, 2, 104, 11304, 32, 1
+	createsprite gBattleAnimSpriteTemplate_83DA498, ANIM_BATTLER_TARGET, 0, 0, -16, 160, 2, 104, 11304, 32, 1
+	delay 6
+	createsprite gBattleAnimSpriteTemplate_83DA498, ANIM_BATTLER_TARGET, 0, 0, -16, 96, 2, 104, 11304, 32, 1
+	waitforvisualfinish
+	clearmonbg ANIM_BATTLER_DEF_PARTNER
+	call HealingStars
+	waitforvisualfinish
+	end
+
 Move_GRAVITY:
+	fadetobg BG_COSMIC
+	waitbgfadein
+	playsewithpan SE_W036, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ShakeAndSinkMon, 5, ANIM_BATTLER_ATTACKER, 2, 0, 96, 30
+	createvisualtask AnimTask_ShakeAndSinkMon, 5, ANIM_BATTLER_DEF_PARTNER, 2, 0, 96, 30
+	createvisualtask AnimTask_ShakeAndSinkMon, 5, ANIM_BATTLER_ATK_PARTNER, 2, 0, 96, 30
+	createvisualtask AnimTask_ShakeAndSinkMon, 5, ANIM_BATTLER_TARGET, 2, 0, 96, 30
+	waitforvisualfinish
+	restorebg
+	waitbgfadeout
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_ATTACKER, 3, 0, 1, 1
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_ATK_PARTNER, 3, 0, 1, 1
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_DEF_PARTNER, 3, 0, 1, 1
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_TARGET, 3, 0, 1, 1
+	setarg ARG_RET_ID, -1
+	waitbgfadein
+	waitforvisualfinish
+	end
+
 Move_MIRACLE_EYE:
 Move_WAKE_UP_SLAP:
 Move_HAMMER_ARM:
@@ -10814,7 +10857,7 @@ Unknown_81D5ECA: @ 81D5ECA
 	delay 8
 	return
 
-Unknown_81D5EF5: @ 81D5EF5
+HealingStars: @ 81D5EF5
 	playsewithpan SE_W071B, SOUND_PAN_ATTACKER
 	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_ATTACKER, 2, 0, -5, 0, 0
 	delay 7
@@ -11449,7 +11492,7 @@ General_IngrainHeal: @ 81D6A39
 	call _81CF496
 	waitforvisualfinish
 	delay 15
-	call Unknown_81D5EF5
+	call HealingStars
 	waitforvisualfinish
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 1, 4, 0, rgb(13, 31, 12)
 	waitforvisualfinish
@@ -11465,14 +11508,14 @@ General_WishHeal: @ 81D6A7C
 	playsewithpan SE_W025, SOUND_PAN_ATTACKER
 	call Unknown_81D5ECA
 	waitforvisualfinish
-	call Unknown_81D5EF5
+	call HealingStars
 	waitforvisualfinish
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 3, 10, 0, rgb(0, 0, 0)
 	end
 
 General_Heal:
 	loadspritegfx ANIM_TAG_BLUE_STAR
-	call Unknown_81D5EF5
+	call HealingStars
 	waitforvisualfinish
 	end
 

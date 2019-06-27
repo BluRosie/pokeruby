@@ -374,12 +374,37 @@ gBattleScriptsForMoveEffects:: @ 81D6BBC
 	.4byte BattleScript_EffectShellTrap
 	.4byte BattleScript_EffectMultiAttack
 
+BattleScript_EffectRoost:
+	attackcanceler
+	attackstring
+	ppreduce
+	tryhealhalfhealth BattleScript_AlreadyAtFullHp, 1
+	attackanimation
+	waitanimation
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate USER
+	datahpupdate USER
+	@ setroost
+	printstring BATTLE_TEXT_RegainedHealth
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectGravity:
+	attackcanceler
+	attackstring
+	ppreduce
+	@ setgravity BattleScript_ButItFailed
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_GravityIntensified
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
 @ new battle scripts - sort of a TODO for me if you know what i'm saying
 
 BattleScript_EffectGrowth:
 BattleScript_EffectSpecialAttackUp3:
-BattleScript_EffectRoost:
-BattleScript_EffectGravity:
+
 BattleScript_EffectMiracleEye:
 BattleScript_EffectWakeUpSlap:
 BattleScript_EffectHammerArm:
