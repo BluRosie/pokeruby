@@ -72,7 +72,7 @@
 	.set EFFECT_NIGHTMARE, 0x21
 	.set EFFECT_ALL_STATS_UP, 0x22
 	.set EFFECT_RAPIDSPIN, 0x23
-	.set EFFECT_REMOVE_PARALYSIS, 0x24
+	.set EFFECT_REMOVE_STATUS, 0x24
 	.set EFFECT_ATK_DEF_DOWN, 0x25
 	.set EFFECT_RECOIL_33_PARALYSIS, 0x26
 	.set EFFECT_ATK_PLUS_2, 0x27
@@ -100,7 +100,7 @@
 	.set EFFECT_NOTHING_3D, 0x3D
 	.set EFFECT_NOTHING_3E, 0x3E
 	.set EFFECT_NOTHING_3F, 0x3F
-	
+@ aight bitch niggas did a dumb & i am pissed.  need more effect numbers, maybe a setmoveeffect2 eventually
 	.set AFFECTS_USER, 0x40
 	.set CERTAIN, 0x80
 	

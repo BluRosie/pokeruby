@@ -10374,6 +10374,25 @@ Move_MIRACLE_EYE:
 	end	
 
 Move_WAKE_UP_SLAP:
+	loadspritegfx ANIM_TAG_TAG_HAND
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_SMELLINGSALT_EFFECT
+	monbg ANIM_BATTLER_DEF_PARTNER
+	monbgprio_28 ANIM_BATTLER_TARGET
+	setalpha 12, 8
+	playsewithpan SE_W104, SOUND_PAN_TARGET
+	createsprite gBattleAnimSpriteTemplate_83D9F78, ANIM_BATTLER_ATTACKER, 2, -16, 0, 0, 0, 10, 1, 3, 0
+	waitforvisualfinish
+	playsewithpan SE_W003, SOUND_PAN_TARGET
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_ATTACKER, 3, 0, 0, 1, 2
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_BATTLER_TARGET, 4, 0, 6, 2
+	waitforvisualfinish
+	createsprite gBattleAnimSpriteTemplate_84029F4, ANIM_BATTLER_TARGET, 2, 1, 8, 3
+	loopsewithpan SE_W207B, +63, 16, 3
+	clearmonbg ANIM_BATTLER_DEF_PARTNER
+	blendoff
+	end
+
 Move_HAMMER_ARM:
 Move_GYRO_BALL:
 Move_HEALING_WISH:

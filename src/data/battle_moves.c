@@ -3727,6 +3727,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_PHYSICAL,
+        .argument = STATUS_PARALYSIS,
     },
 
     [MOVE_FOLLOW_ME] =

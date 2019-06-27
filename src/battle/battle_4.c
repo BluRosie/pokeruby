@@ -288,6 +288,8 @@ extern u8 BattleScript_NoItemSteal[];
 extern u8 BattleScript_ItemSteal[];
 extern u8 BattleScript_RapidSpinAway[];
 extern u8 BattleScript_TargetPRLZHeal[];
+extern u8 BattleScript_TargetSleepHeal[];
+extern u8 BattleScript_TargetBurnHeal[];
 extern u8 BattleScript_KnockedOff[];
 extern u8 BattleScript_LevelUp[];
 extern u8 BattleScript_WrapFree[];
@@ -3081,17 +3083,24 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_RapidSpinAway;
                 return;
-            case MOVE_EFFECT_REMOVE_PARALYSIS:
-                if (gBattleMons[gBankTarget].status1 & STATUS_PARALYSIS)
+            case MOVE_EFFECT_REMOVE_STATUS:
+                if (gBattleMons[gBankTarget].status1 & gBattleMoves[gCurrentMove].argument)
                 {
-                    gBattleMons[gBankTarget].status1 &= ~(STATUS_PARALYSIS);
+                    gBattleMons[gBankTarget].status1 &= ~(gBattleMoves[gCurrentMove].argument);
 
                     gActiveBattler = gBankTarget;
                     EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gBankTarget].status1);
                     MarkBufferBankForExecution(gActiveBattler);
 
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
-                    gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
+                    
+                    if (gBattleMoves[gCurrentMove].argument == STATUS_BURN)
+                        gBattlescriptCurrInstr = BattleScript_TargetBurnHeal;
+                    else if (gBattleMoves[gCurrentMove].argument == STATUS_SLEEP)
+                        gBattlescriptCurrInstr = BattleScript_TargetSleepHeal;
+                    else if (gBattleMoves[gCurrentMove].argument == STATUS_PARALYSIS)
+                        gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
+
                 }
                 else
                 {
@@ -3158,7 +3167,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
             case MOVE_EFFECT_SP_ATK_TWO_DOWN: //overheat
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_SAtkDown2;
-                return;
+                break;
             }
         }
     }

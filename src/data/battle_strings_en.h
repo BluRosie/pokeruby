@@ -370,6 +370,8 @@ enum
     BATTLE_TEXT_ItemStuck,
     BATTLE_TEXT_AssaultVest,
     BATTLE_TEXT_GravityIntensified,
+    BATTLE_TEXT_SleepHealed,
+    BATTLE_TEXT_DefendingBurnHealed,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -872,6 +874,8 @@ const u8 BattleText_Dark[] = _("a Dark move");
 const u8 BattleText_Fairy[] = _("a Fairy move");
 
 const u8 BattleText_GravityIntensified[] = _("Gravity was strengthened!\nAll Pokémon were grounded!");
+const u8 BattleText_SleepHealed[] = _("{DEFENDING_MON} woke up!");
+const u8 BattleText_DefendingBurnHealed[] = _("{DEFENDING_MON}'s burn was\nhealed!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1259,7 +1263,9 @@ const u8 *const gBattleStringsTable[] =
     BattleText_ItemCausedLittleDamage,
     BattleText_ItemStuck,
     BattleText_AssaultVest,
-    BattleText_GravityIntensified
+    BattleText_GravityIntensified,
+    BattleText_SleepHealed,
+    BattleText_DefendingBurnHealed
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.

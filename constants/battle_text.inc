@@ -363,3 +363,5 @@
 	enum BATTLE_TEXT_ItemStuck
 	enum BATTLE_TEXT_AssaultVest
 	enum BATTLE_TEXT_GravityIntensified
+	enum BATTLE_TEXT_SleepHealed
+	enum BATTLE_TEXT_DefendingBurnHealed

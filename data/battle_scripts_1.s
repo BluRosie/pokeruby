@@ -413,12 +413,17 @@ BattleScript_EffectMiracleEye:
 	waitmessage 64
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectWakeUpSlap:
+	jumpifstatus2 TARGET, STATUS2_SUBSTITUTE, BattleScript_EffectHit
+	setmoveeffect EFFECT_REMOVE_STATUS | CERTAIN
+	jumpifstatus TARGET, SLP, BattleScript_SmellingsaltDoubleDmg
+	goto BattleScript_EffectHit
+
 @ new battle scripts - sort of a TODO for me if you know what i'm saying
 
 BattleScript_EffectGrowth:
 BattleScript_EffectSpecialAttackUp3:
 
-BattleScript_EffectWakeUpSlap:
 BattleScript_EffectHammerArm:
 BattleScript_EffectGyroBall:
 BattleScript_EffectHealingWish:
@@ -2726,7 +2731,7 @@ BattleScript_EffectFocusPunch: @ 81D8640
 
 BattleScript_EffectSmellingsalt: @ 81D8652
 	jumpifstatus2 TARGET, STATUS2_SUBSTITUTE, BattleScript_EffectHit
-	setmoveeffect EFFECT_REMOVE_PARALYSIS | CERTAIN
+	setmoveeffect EFFECT_REMOVE_STATUS | CERTAIN
 	jumpifstatus TARGET, PAR, BattleScript_SmellingsaltDoubleDmg
 	goto BattleScript_EffectHit
 
@@ -4261,6 +4266,18 @@ BattleScript_CurseTurnDmg:: @ 81D9624
 
 BattleScript_TargetPRLZHeal:: @ 81D9635
 	printstring BATTLE_TEXT_ParalysisHealed
+	waitmessage 64
+	updatestatusicon TARGET
+	return
+
+BattleScript_TargetSleepHeal::
+	printstring BATTLE_TEXT_SleepHealed
+	waitmessage 64
+	updatestatusicon TARGET
+	return
+
+BattleScript_TargetBurnHeal::
+	printstring BATTLE_TEXT_DefendingBurnHealed
 	waitmessage 64
 	updatestatusicon TARGET
 	return
