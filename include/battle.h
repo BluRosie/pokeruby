@@ -403,6 +403,7 @@ struct DisableStruct
              u8 quickClaw:1;
     /*0x1D*/ u8 berryActivates:1;
              u8 intimidate:1;
+             u8 roost:1;
 };
 
 struct BattleResults
@@ -573,6 +574,7 @@ struct BattleGlobalTimers // currently have 0x10 of space for this
 {
     u32 hailPermanent:1;
     u32 fog:1;
+    u32 gravityTimer:3;
 };
 
 extern struct BattleHistory unk_2016A00;

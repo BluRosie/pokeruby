@@ -1665,7 +1665,7 @@ static void atk06_typecalc(void)
             gBattleMoveDamage = gBattleMoveDamage / 10;
         }
 
-        if (gBattleMons[gBankTarget].ability == ABILITY_LEVITATE && move_type == TYPE_GROUND && ItemId_GetHoldEffect(gBattleMons[gBankTarget].item) != HOLD_EFFECT_IRON_BALL)
+        if (gBattleMons[gBankTarget].ability == ABILITY_LEVITATE && move_type == TYPE_GROUND && ItemId_GetHoldEffect(gBattleMons[gBankTarget].item) != HOLD_EFFECT_IRON_BALL && !gBattleGlobalTimers.gravityTimer)
         {
             gLastUsedAbility = gBattleMons[gBankTarget].ability;
             gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
@@ -1685,7 +1685,11 @@ static void atk06_typecalc(void)
                     i += 3;
                     continue;
                 }
-
+                else if (gTypeEffectiveness[i + 1] == TYPE_FLYING && (gDisableStructs[gBankTarget].roost || gBattleGlobalTimers.gravityTimer)) // effectively eliminate flying type from the pool
+                {
+                    i += 3;
+                    continue;
+                }
                 else if (gTypeEffectiveness[i] == move_type)
                 {
                     //check type1
@@ -1730,7 +1734,7 @@ static void CheckWonderGuardAndLevitate(void)
     else
         move_type = gBattleMoves[gCurrentMove].type;
 
-    if (gBattleMons[gBankTarget].ability == ABILITY_LEVITATE && move_type == TYPE_GROUND)
+    if (gBattleMons[gBankTarget].ability == ABILITY_LEVITATE && move_type == TYPE_GROUND && !gBattleGlobalTimers.gravityTimer)
     {
         RecordAbilitySetField6(ABILITY_LEVITATE, move_type);
         return;
@@ -1860,7 +1864,7 @@ u8 TypeCalc(u16 move, u8 bank_atk, u8 bank_def)
         gBattleMoveDamage = gBattleMoveDamage / 10;
     }
 
-    if (gBattleMons[bank_def].ability == ABILITY_LEVITATE && move_type == TYPE_GROUND)
+    if (gBattleMons[bank_def].ability == ABILITY_LEVITATE && move_type == TYPE_GROUND && !gBattleGlobalTimers.gravityTimer)
     {
         flags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
     }
@@ -1878,7 +1882,8 @@ u8 TypeCalc(u16 move, u8 bank_atk, u8 bank_def)
 
             if (move_type == TYPE_GROUND
                 && (gBattleMons[bank_def].type1 == TYPE_FLYING || gBattleMons[bank_def].type2 == TYPE_FLYING)
-                && ItemId_GetHoldEffect(gBattleMons[bank_def].item) == HOLD_EFFECT_IRON_BALL)
+                && (ItemId_GetHoldEffect(gBattleMons[bank_def].item) == HOLD_EFFECT_IRON_BALL
+                || gBattleGlobalTimers.gravityTimer))
             { // if attacking with ground and the other pokemon is flying but grounded by the iron ball
                 i += 3;
                 continue;
@@ -1918,7 +1923,7 @@ u8 AI_TypeCalc(u16 move, u16 species, u8 ability)
 
     move_type = gBattleMoves[move].type;
 
-    if (ability == ABILITY_LEVITATE && move_type == TYPE_GROUND)
+    if (ability == ABILITY_LEVITATE && move_type == TYPE_GROUND && !gBattleGlobalTimers.gravityTimer)
         flags = MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE;
     else
     {
@@ -6373,7 +6378,7 @@ static void atk4A_typecalc2(void)
     int i = 0;
     u8 move_type = gBattleMoves[gCurrentMove].type;
 
-    if (gBattleMons[gBankTarget].ability == ABILITY_LEVITATE && move_type == TYPE_GROUND)
+    if (gBattleMons[gBankTarget].ability == ABILITY_LEVITATE && move_type == TYPE_GROUND && !gBattleGlobalTimers.gravityTimer)
     {
         gLastUsedAbility = gBattleMons[gBankTarget].ability;
         gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
@@ -7739,7 +7744,8 @@ static void atk52_switchineffects(void)
     gSpecialStatuses[gActiveBattler].flag40 = 0;
 
     if (!(gSideAffecting[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES_DAMAGED) && (gSideAffecting[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES)
-        && gBattleMons[gActiveBattler].type1 != TYPE_FLYING && gBattleMons[gActiveBattler].type2 != TYPE_FLYING && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE)
+        && (((gBattleMons[gActiveBattler].type1 != TYPE_FLYING && gBattleMons[gActiveBattler].type2 != TYPE_FLYING && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE)
+        || gBattleGlobalTimers.gravityTimer)))
     {
         u8 spikesDmg;
 
@@ -9199,6 +9205,8 @@ static void atk75_useitemonopponent(void)
 #define VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP 6
 #define VARIOUS_RESTORE_PP 7
 #define VARIOUS_RESTORE_ALL_HEALTH 8
+#define VARIOUS_SET_ROOST 9
+#define VARIOUS_SET_GRAVITY 10
 
 static void atk76_various(void)
 {
@@ -9276,14 +9284,23 @@ static void atk76_various(void)
         MarkBufferBankForExecution(gActiveBattler);
         break;
     case VARIOUS_RESTORE_ALL_HEALTH:
-        gBattleMoveDamage = gBattleMons[gBankTarget].maxHP;
+        gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP;
 
         if (gBattleMoveDamage == 0)
             gBattleMoveDamage = 1;
         gBattleMoveDamage *= -1;
 
-        if (gBattleMons[gBankTarget].maxHP == gBattleMons[gBankTarget].hp)
+        if (gBattleMons[gActiveBattler].maxHP == gBattleMons[gActiveBattler].hp)
             BattleScriptExecute(BattleScript_AlreadyAtFullHp);
+        break;
+    case VARIOUS_SET_ROOST:
+        gDisableStructs[gActiveBattler].roost = TRUE;
+        break;
+    case VARIOUS_SET_GRAVITY:
+        if (gBattleGlobalTimers.gravityTimer)
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+        else
+            gBattleGlobalTimers.gravityTimer = 7;
         break;
     }
 

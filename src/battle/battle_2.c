@@ -4893,6 +4893,16 @@ static void TurnValuesCleanUp(bool8 var0)
         {
             gProtectStructs[gActiveBattler].protected = 0;
             gProtectStructs[gActiveBattler].endured = 0;
+
+            if (gDisableStructs[gActiveBattler].slowStartTimer)
+            {
+                gDisableStructs[gActiveBattler].slowStartTimer--;
+            }
+
+            if (gBattleGlobalTimers.gravityTimer) 
+            {
+                gBattleGlobalTimers.gravityTimer--;
+            }
         }
         else
         {
@@ -4909,11 +4919,6 @@ static void TurnValuesCleanUp(bool8 var0)
                 if (gDisableStructs[gActiveBattler].rechargeCounter == 0)
                     gBattleMons[gActiveBattler].status2 &= ~(STATUS2_RECHARGE);
             }
-
-            if (gDisableStructs[gActiveBattler].slowStartTimer)
-            {
-                gDisableStructs[gActiveBattler].slowStartTimer--;
-            }
         }
 
         if (gDisableStructs[gActiveBattler].substituteHP == 0)
@@ -4922,6 +4927,11 @@ static void TurnValuesCleanUp(bool8 var0)
 
     gSideTimers[0].followmeTimer = 0;
     gSideTimers[1].followmeTimer = 0;
+
+    gDisableStructs[0].roost = FALSE;
+    gDisableStructs[1].roost = FALSE;
+    gDisableStructs[2].roost = FALSE;
+    gDisableStructs[3].roost = FALSE;
 }
 
 void SpecialStatusesClear(void)

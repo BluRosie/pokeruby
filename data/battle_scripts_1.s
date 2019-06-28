@@ -384,7 +384,7 @@ BattleScript_EffectRoost:
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate USER
 	datahpupdate USER
-	@ setroost
+	setroost USER
 	printstring BATTLE_TEXT_RegainedHealth
 	waitmessage 64
 	goto BattleScript_MoveEnd
@@ -393,7 +393,8 @@ BattleScript_EffectGravity:
 	attackcanceler
 	attackstring
 	ppreduce
-	@ setgravity BattleScript_ButItFailed
+	setgravity USER
+	waitstate
 	attackanimation
 	waitanimation
 	printstring BATTLE_TEXT_GravityIntensified

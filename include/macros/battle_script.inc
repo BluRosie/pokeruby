@@ -1271,12 +1271,12 @@
 	various \bank, VARIOUS_RESTORE_ALL_HEALTH
 	.endm
 
-	.macro various9 bank
-	various \bank, 9
+	.macro setroost bank
+	various \bank, VARIOUS_SET_ROOST
 	.endm
 
-	.macro various10 bank
-	various \bank, 10
+	.macro setgravity bank
+	various \bank, VARIOUS_SET_GRAVITY
 	.endm
 
 	.macro various11 bank

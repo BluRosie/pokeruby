@@ -1,12 +1,13 @@
 urgent bugs:
+- trying to save and then subsequently opening up the options menu causes the camera to stop panning with the player (on frame type 2?  what?)
+  - what the fuck i literally can't even reproduce this one consistently anymore
+  - map name popup?
 
 meh whatever bugs:
 - fix up the font a bit more (Lv, PKMN, POKEBLOCK, parentheses, colon, semicolon, &)
 - pokedex searching in general (fix up the order lists)
 - fog needs to be adapted for the new dynamic palette system
 - animation for sticky barb sticking doesn't work like thief's entirely, currently the animation is commented out
-- trying to save and then subsequently opening up the options menu causes the camera to stop panning with the player (on frame type 2?  what?)
-  - what the fuck i literally can't even reproduce this one consistently anymore
 - meowstic gender difference
 
 polishing:
@@ -23,11 +24,9 @@ TENTATIVE PLAN:
 3.5 - BATTLE BUGS
  - formes
  
-6 - moves (haha didn't see THAT one coming did ya?)
+6 - moves
  - animations
  - effects
-   - setroost
-   - setgravity
 
 4 - finish up items
 5 - finish up abilities
@@ -41,10 +40,16 @@ ITEM EXPANSION PROGRESS:
 10/?
 
 MOVE EXPANSION PROGRESS:
-2/?
+?/?
 
 POKEMON EXPANSION PROGRESS:
 practically done
 
+
 move animations that i personally want to polish:
 gyro ball (new particle)
+
+move effects that need to be polished:
+gravity
+ - needs a 5/3 accuracy boost
+ - needs to cancel out bounce, fly, splash, high/jump kick, telekinesis, sky drop, & flying press
