@@ -45,3 +45,6 @@ MOVE EXPANSION PROGRESS:
 
 POKEMON EXPANSION PROGRESS:
 practically done
+
+move animations that i personally want to polish:
+gyro ball (new particle)

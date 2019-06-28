@@ -22,8 +22,8 @@ Current implemented features:
 In Progress:
 * ability expansion (thanks znogyrop and dizzy for ability descriptions)
 * item expansion - maybe item pictures too? (all battle items in gen iv have been implemented)
-* move expansion (thanks dizzy for the base data for the moves)
-* eventually, pokémon expansion (huge thanks to dizzy & everyone there.  the ds-style 64x64 sprite projects as well)
+* move expansion (thanks dizzy for a lot of things move-related which i based my things on)
+* pokémon expansion (huge thanks to dizzy & everyone there.  the ds-style 64x64 sprite projects as well)
 
 It builds the following rom:
 

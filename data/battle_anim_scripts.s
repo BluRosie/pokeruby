@@ -4490,7 +4490,7 @@ Move_NEEDLE_ARM: @ 81CCD73
 
 Move_SLACK_OFF: @ 81CCF23
 	loadspritegfx ANIM_TAG_BLUE_STAR
-	createvisualtask AnimTask_SlackOffSquish, 2, 0
+	createvisualtask AnimTask_SlackOffSquish, 2, ANIM_BATTLER_ATTACKER
 	playsewithpan SE_W281, SOUND_PAN_ATTACKER
 	waitforvisualfinish
 	call HealingStars
@@ -10394,7 +10394,54 @@ Move_WAKE_UP_SLAP:
 	end
 
 Move_HAMMER_ARM:
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_ROCKS
+	loadspritegfx ANIM_TAG_SLAM_HIT
+	monbg ANIM_BATTLER_TARGET
+	setalpha 12, 8
+	playsewithpan SE_W004, SOUND_PAN_ATTACKER
+	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 0, 20, 3, 0, 4
+	delay 1
+	createsprite gBattleAnimSpriteTemplate_83D69DC, ANIM_BATTLER_ATTACKER, 2, 0, 0
+	delay 3
+	setarg 7, 0
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_TARGET, 3, 10, -8, 1, 1
+	playsewithpan SE_W088, SOUND_PAN_TARGET
+	createvisualtask AnimTask_SlackOffSquish, 2, ANIM_BATTLER_TARGET
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_TARGET, 0, 3, 5, 1
+	createsprite gBattleAnimSpriteTemplate_83DAE00, ANIM_BATTLER_TARGET, 2, -12, 32, 3, 4
+	createsprite gBattleAnimSpriteTemplate_83DAE00, ANIM_BATTLER_TARGET, 2, 8, 31, 2, 2
+	createsprite gBattleAnimSpriteTemplate_83DAE00, ANIM_BATTLER_TARGET, 2, -4, 28, 2, 3
+	createsprite gBattleAnimSpriteTemplate_83DAE00, ANIM_BATTLER_TARGET, 2, 12, 30, 4, 3
+	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_BATTLER_TARGET, 2, 0, 0, 5
+	clearmonbg ANIM_BATTLER_TARGET
+	blendoff
+	end
+
 Move_GYRO_BALL:
+	loadspritegfx ANIM_TAG_IMPACT
+	loopsewithpan SE_W231, SOUND_PAN_ATTACKER, 28, 2
+	createvisualtask sub_80E0A4C, 5, 0, 0, 0
+	waitforvisualfinish
+	playsewithpan SE_W207, SOUND_PAN_ATTACKER
+	waitplaysewithpan SE_W207, SOUND_PAN_ATTACKER, 8
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_BATTLER_ATTACKER, 18, 6, 1, 4
+	waitforvisualfinish
+	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 0, 10, 0, 0, 4
+	delay 3
+	waitforvisualfinish
+	playsewithpan SE_W025B, SOUND_PAN_TARGET
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_TARGET, 4, -10, 0, 1, 0
+	waitforvisualfinish\
+	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_BATTLER_TARGET, 2, 0, 12, 1
+	waitforvisualfinish
+	waitforvisualfinish
+	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 0, 0, 5
+	delay 3
+	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 0, 7
+	waitforvisualfinish
+	end
+
 Move_HEALING_WISH:
 Move_BRINE:
 Move_NATURAL_GIFT:

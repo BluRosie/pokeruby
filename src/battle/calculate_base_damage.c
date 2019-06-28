@@ -126,7 +126,13 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     u8 attackerHoldEffect;
     u8 attackerHoldEffectParam;
 
-    if (!powerOverride)
+    if (gBattleMoves[move].effect == EFFECT_GYRO_BALL)
+    {
+        gBattleMovePower = 25 * gBattleMons[bankDef].speed / gBattleMons[bankAtk].speed;
+        if (gBattleMovePower > 150)
+            gBattleMovePower = 150;
+    }
+    else if (!powerOverride)
         gBattleMovePower = gBattleMoves[move].power;
     else
         gBattleMovePower = powerOverride;
@@ -307,7 +313,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         gBattleMovePower = (150 * gBattleMovePower) / 100;
     if (gBattleMoves[move].effect == EFFECT_EXPLOSION)
         defense /= 2;
-
+        
     if (gBattleMoves[move].split == MOVE_PHYSICAL)
     {
         if (gCritMultiplier == 2)
@@ -353,9 +359,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         // moves always do at least 1 damage.
         if (damage == 0)
             damage = 1;
-    }
-
-    if (gBattleMoves[move].split == MOVE_SPECIAL)
+    } 
+    else if (gBattleMoves[move].split == MOVE_SPECIAL)
     {
         if (gCritMultiplier == 2)
         {
@@ -372,15 +377,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
 
         if (gCritMultiplier == 2)
         {
-            /*if (gBattleMoves[move].effect == EFFECT_PSYCHO_CUT && defender->statStages[STAT_STAGE_DEF] < 6)
-                APPLY_STAT_MOD(damageHelper, defender, defense, STAT_STAGE_DEF)
-            else */if (defender->statStages[STAT_STAGE_SPDEF] < 6)
+            if (defender->statStages[STAT_STAGE_SPDEF] < 6)
                 APPLY_STAT_MOD(damageHelper, defender, spDefense, STAT_STAGE_SPDEF)
             else
-                /*if (gBattleMoves[move].effect == EFFECT_PSYCHO_CUT)
-                    damageHelper = defense;
-                else*/
-                    damageHelper = spDefense;
+                damageHelper = spDefense;
         }
         else
             APPLY_STAT_MOD(damageHelper, defender, spDefense, STAT_STAGE_SPDEF)

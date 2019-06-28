@@ -419,13 +419,14 @@ BattleScript_EffectWakeUpSlap:
 	jumpifstatus TARGET, SLP, BattleScript_SmellingsaltDoubleDmg
 	goto BattleScript_EffectHit
 
+BattleScript_EffectHammerArm:
+	setmoveeffect EFFECT_SPD_MINUS_1 | AFFECTS_USER | CERTAIN
+	goto BattleScript_EffectHit
+
 @ new battle scripts - sort of a TODO for me if you know what i'm saying
 
 BattleScript_EffectGrowth:
 BattleScript_EffectSpecialAttackUp3:
-
-BattleScript_EffectHammerArm:
-BattleScript_EffectGyroBall:
 BattleScript_EffectHealingWish:
 BattleScript_EffectBrine:
 BattleScript_EffectNaturalGift:
@@ -597,6 +598,7 @@ BattleScript_EffectUnused83: @ 81D6F14
 BattleScript_EffectUnused8D: @ 81D6F14
 BattleScript_EffectUnusedA3: @ 81D6F14
 BattleScript_EffectVitalThrow: @ 81D6F14
+BattleScript_EffectGyroBall: @ damage calculation handled in calculate_base_damage.c
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
 	jumpifnostatus3 TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAtkCanceler
 	orword gHitMarker, HITMARKER_IGNORE_UNDERWATER
