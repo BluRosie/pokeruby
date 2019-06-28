@@ -1263,12 +1263,12 @@
 	various \bank, VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP
 	.endm
 
-	.macro various7 bank
-	various \bank, 7
+	.macro restorepp bank
+	various \bank, VARIOUS_RESTORE_PP
 	.endm
 
-	.macro various8 bank
-	various \bank, 8
+	.macro tryhealfullhealth bank
+	various \bank, VARIOUS_RESTORE_ALL_HEALTH
 	.endm
 
 	.macro various9 bank

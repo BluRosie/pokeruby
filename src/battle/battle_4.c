@@ -3093,7 +3093,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                     MarkBufferBankForExecution(gActiveBattler);
 
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
-                    
+
                     if (gBattleMoves[gCurrentMove].argument == STATUS_BURN)
                         gBattlescriptCurrInstr = BattleScript_TargetBurnHeal;
                     else if (gBattleMoves[gCurrentMove].argument == STATUS_SLEEP)
@@ -9191,15 +9191,28 @@ static void atk75_useitemonopponent(void)
     gBattlescriptCurrInstr += 1;
 }
 
+#define VARIOUS_CANCEL_MULTI_TURN_MOVES 0
+#define VARIOUS_SET_MAGIC_COAT_TARGET 1
+#define VARIOUS_IS_RUNNING_IMPOSSIBLE 2
+#define VARIOUS_GET_MOVE_TARGET 3
+#define VARIOUS_RESET_INTIMIDATE_TRACE_BITS 5
+#define VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP 6
+#define VARIOUS_RESTORE_PP 7
+#define VARIOUS_RESTORE_ALL_HEALTH 8
+
 static void atk76_various(void)
 {
+    u8 data[10];
+    int i;
+
     gActiveBattler = GetBattleBank(T2_READ_8(gBattlescriptCurrInstr + 1));
+
     switch (T2_READ_8(gBattlescriptCurrInstr + 2))
     {
-    case 0:
+    case VARIOUS_CANCEL_MULTI_TURN_MOVES:
         CancelMultiTurnMoves(gActiveBattler);
         break;
-    case 1:
+    case VARIOUS_SET_MAGIC_COAT_TARGET:
         {
             u8 side;
             gBankAttacker = gBankTarget;
@@ -9210,10 +9223,10 @@ static void atk76_various(void)
                 gBankTarget = gActiveBattler;
         }
         break;
-    case 2:
+    case VARIOUS_IS_RUNNING_IMPOSSIBLE:
         gBattleCommunication[0] = CanRunFromBattle();
         break;
-    case 3:
+    case VARIOUS_GET_MOVE_TARGET:
         gBankTarget = GetMoveTarget(gCurrentMove, 0);
         break;
     case 4:
@@ -9222,14 +9235,14 @@ static void atk76_various(void)
         else
             gBattleCommunication[0] = 0;
         break;
-    case 5:
+    case VARIOUS_RESET_INTIMIDATE_TRACE_BITS:
         gSpecialStatuses[gActiveBattler].intimidatedPoke = 0;
         gSpecialStatuses[gActiveBattler].traced = 0;
         break;
-    case 6:
+    case VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP:
         {
-            int i;
             u16* choiced_move;
+
             if (gBattlerPartyIndexes[0] == gBattleStruct->expGetterID)
                 goto ACTIVE_0;
             if (gBattlerPartyIndexes[2] != gBattleStruct->expGetterID)
@@ -9251,6 +9264,26 @@ static void atk76_various(void)
             if (i == 4)
                 *choiced_move = 0;
         }
+        break;
+    case VARIOUS_RESTORE_PP:
+        for (i = 0; i < 4; i++)
+        {
+            gBattleMons[gActiveBattler].pp[i] = CalculatePPWithBonus(gBattleMons[gActiveBattler].moves[i], gBattleMons[gActiveBattler].ppBonuses, i);
+            data[i] = gBattleMons[gActiveBattler].pp[i];
+        }
+        data[i] = gBattleMons[gActiveBattler].ppBonuses;
+        EmitSetMonData(0, REQUEST_MOVES_PP_BATTLE, 0, 5, data);
+        MarkBufferBankForExecution(gActiveBattler);
+        break;
+    case VARIOUS_RESTORE_ALL_HEALTH:
+        gBattleMoveDamage = gBattleMons[gBankTarget].maxHP;
+
+        if (gBattleMoveDamage == 0)
+            gBattleMoveDamage = 1;
+        gBattleMoveDamage *= -1;
+
+        if (gBattleMons[gBankTarget].maxHP == gBattleMons[gBankTarget].hp)
+            BattleScriptExecute(BattleScript_AlreadyAtFullHp);
         break;
     }
 
@@ -9370,6 +9403,7 @@ static void atk7B_tryhealhalfhealth(void)
         gBankTarget = gBankAttacker;
 
     gBattleMoveDamage = gBattleMons[gBankTarget].maxHP / 2;
+
     if (gBattleMoveDamage == 0)
         gBattleMoveDamage = 1;
     gBattleMoveDamage *= -1;
@@ -9504,6 +9538,9 @@ static void atk80_manipulatedamage(void)
         break;
     case 2:
         gBattleMoveDamage *= 2;
+        break;
+    case 3:
+        gBattleMoveDamage = gBattleMons[gBankAttacker].maxHP;
         break;
     }
 

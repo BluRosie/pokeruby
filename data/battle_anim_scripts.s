@@ -10443,6 +10443,25 @@ Move_GYRO_BALL:
 	end
 
 Move_HEALING_WISH:
+	loadspritegfx ANIM_TAG_SPARKLE_5
+	setalpha 0, 16
+	createvisualtask sub_8079670, 3, 0, 16, 16, 0, 1
+	playsewithpan SE_W236, 0
+	delay 30
+	createsprite gBattleAnimSpriteTemplate_83D6FF8, ANIM_BATTLER_ATTACKER, 40, -12, 0
+	delay 30
+	createsprite gBattleAnimSpriteTemplate_83D6FF8, ANIM_BATTLER_ATTACKER, 40, -24, 0
+	delay 30
+	createsprite gBattleAnimSpriteTemplate_83D6FF8, ANIM_BATTLER_ATTACKER, 40, 21, 0
+	delay 30
+	createsprite gBattleAnimSpriteTemplate_83D6FF8, ANIM_BATTLER_ATTACKER, 40, 0, 0
+	delay 30
+	createsprite gBattleAnimSpriteTemplate_83D6FF8, ANIM_BATTLER_ATTACKER, 40, 10, 0
+	delay 20
+	createvisualtask sub_80CE3EC, 2
+	waitforvisualfinish
+	end
+
 Move_BRINE:
 Move_NATURAL_GIFT:
 Move_FEINT:

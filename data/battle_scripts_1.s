@@ -422,12 +422,62 @@ BattleScript_EffectWakeUpSlap:
 BattleScript_EffectHammerArm:
 	setmoveeffect EFFECT_SPD_MINUS_1 | AFFECTS_USER | CERTAIN
 	goto BattleScript_EffectHit
+	
+BattleScript_EffectHealingWish:
+	attackcanceler
+	attackstring
+	ppreduce
+	manipulatedamage 3
+	attackanimation
+	waitanimation
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate USER
+	datahpupdate USER
+	waitstate
+	tryfaintmon USER, FALSE, NULL
+	jumpifcantswitch ATK4F_DONT_CHECK_STATUSES | USER, _HealingWishEnd
+	openpartyscreen 1, _HealingWishEnd
+	switchoutabilities USER
+	waitstate
+	switchhandleorder USER, 2
+	returnatktoball
+	getswitchedmondata USER
+	switchindataupdate USER
+	hpthresholds USER
+	printstring 3
+	switchinanim USER, 1
+	waitstate
+	setbyte cMULTISTRING_CHOOSER, 0
+	jumpifnotmove MOVE_LUNAR_DANCE, _HealingWishNewMon
+	setbyte cMULTISTRING_CHOOSER, 1
+	restorepp USER
+_HealingWishNewMon:
+	printfromtable gHealingWishStringIds
+	waitmessage 64
+	tryhealfullhealth USER
+	playanimation USER, B_ANIM_WISH_HEAL, NULL
+	waitanimation
+	healthbarupdate USER
+	datahpupdate USER
+	waitstate
+	jumpifstatus USER, SLP | PSN | BRN | FRZ | PAR | TOX, _HealingWishStatusClear
+_HealingWishRet:
+	switchineffects USER
+_HealingWishEnd:
+	setbyte sMOVEEND_STATE, 0
+	moveend 0, 0
+	end
+_HealingWishStatusClear:
+	cureifburnedparalysedorpoisoned _HealingWishRet
+	updatestatusicon USER
+	waitstate
+	goto _HealingWishRet
+
 
 @ new battle scripts - sort of a TODO for me if you know what i'm saying
 
 BattleScript_EffectGrowth:
 BattleScript_EffectSpecialAttackUp3:
-BattleScript_EffectHealingWish:
 BattleScript_EffectBrine:
 BattleScript_EffectNaturalGift:
 BattleScript_EffectFeint:

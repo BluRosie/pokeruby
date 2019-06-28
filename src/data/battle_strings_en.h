@@ -372,6 +372,8 @@ enum
     BATTLE_TEXT_GravityIntensified,
     BATTLE_TEXT_SleepHealed,
     BATTLE_TEXT_DefendingBurnHealed,
+    BATTLE_TEXT_HealingWishCameTrue,
+    BATTLE_TEXT_LunarDanceSwitch,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -876,6 +878,8 @@ const u8 BattleText_Fairy[] = _("a Fairy move");
 const u8 BattleText_GravityIntensified[] = _("Gravity was strengthened!\nAll Pokémon were grounded!");
 const u8 BattleText_SleepHealed[] = _("{DEFENDING_MON} woke up!");
 const u8 BattleText_DefendingBurnHealed[] = _("{DEFENDING_MON}'s burn was\nhealed!");
+const u8 BattleText_HealingWishCameTrue[] = _("The healing wish came\ntrue for {STRING 2}!");
+const u8 BattleText_LunarDanceSwitch[] = _("{STRING 2} became cloaked\nin mystical moonlight!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1265,7 +1269,9 @@ const u8 *const gBattleStringsTable[] =
     BattleText_AssaultVest,
     BattleText_GravityIntensified,
     BattleText_SleepHealed,
-    BattleText_DefendingBurnHealed
+    BattleText_DefendingBurnHealed,
+    BattleText_HealingWishCameTrue,
+    BattleText_LunarDanceSwitch
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
@@ -1611,6 +1617,12 @@ const u16 gItemSwapStringIds[] =
     BATTLE_TEXT_Obtained1,
     BATTLE_TEXT_Obtained2,
     BATTLE_TEXT_Obtained3,
+};
+
+const u16 gHealingWishStringIds[] =
+{
+    BATTLE_TEXT_HealingWishCameTrue,
+    BATTLE_TEXT_LunarDanceSwitch,
 };
 
 const u16 gFlashFireStringIds[] =

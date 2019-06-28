@@ -103,6 +103,9 @@
 @ aight bitch niggas did a dumb & i am pissed.  need more effect numbers, maybe a setmoveeffect2 eventually
 	.set AFFECTS_USER, 0x40
 	.set CERTAIN, 0x80
+
+@ various (atk76) effect enumerations
+	.set RESTORE_PP, 7
 	
 @ accuracy calc
 	.set NO_ACC_CALC, 0xFFFE
@@ -124,6 +127,9 @@
 	.set VARIOUS_GET_MOVE_TARGET, 3
 	.set VARIOUS_RESET_INTIMIDATE_TRACE_BITS, 5
 	.set VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP, 6
+	.set VARIOUS_RESTORE_PP, 7
+	.set VARIOUS_RESTORE_ALL_HEALTH, 8
+	
 	.set VARIOUS_EMIT_YESNOBOX, 13
 	.set VARIOUS_WAIT_CRY, 18
 	.set VARIOUS_RETURN_OPPONENT_MON1, 19
