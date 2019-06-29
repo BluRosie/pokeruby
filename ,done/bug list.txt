@@ -46,8 +46,13 @@ POKEMON EXPANSION PROGRESS:
 practically done
 
 
+moves that need animations:
+pluck
+acupressure
+
 move animations that i personally want to polish:
 gyro ball (new particle)
+u-turn (looks rough, fly up then hit with the fly noise)
 
 move effects that need to be polished:
 gravity

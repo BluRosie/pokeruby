@@ -10594,9 +10594,87 @@ Move_TAILWIND:
 	end
 
 Move_ACUPRESSURE:
+	end
+
 Move_METAL_BURST:
+	loadspritegfx ANIM_TAG_ECLIPSING_ORB
+	loadspritegfx ANIM_TAG_RED_ORB
+	@loopsewithpan SE_W161, SOUND_PAN_ATTACKER, 18, 3
+	loopsewithpan SE_W231, SOUND_PAN_ATTACKER, 28, 2
+	createvisualtask sub_80E0A4C, 5, 0, 0, 0
+	waitforvisualfinish
+	createvisualtask sub_80E0E24, 5, ANIM_BATTLER_ATTACKER, 0
+	delay 12
+	setarg ARG_RET_ID, -1
+	playsewithpan SE_W115, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, ANIM_BATTLER_ATTACKER, 0
+	createvisualtask sub_80798AC, 5, ANIM_TAG_RED_ORB, rgb(6, 6, 6), 14, 0, 1
+	createsprite gHiddenPowerOrbScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 0
+	createsprite gHiddenPowerOrbScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 32
+	createsprite gHiddenPowerOrbScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 64
+	createsprite gHiddenPowerOrbScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 96
+	createsprite gHiddenPowerOrbScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 128
+	createsprite gHiddenPowerOrbScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 160
+	createsprite gHiddenPowerOrbScatterSpriteTemplate, ANIM_BATTLER_TARGET, 20, 192
+	createsprite gHiddenPowerOrbScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 224
+	waitforvisualfinish
+	createvisualtask sub_80E0E24, 5, ANIM_BATTLER_ATTACKER, 1
+	waitforvisualfinish
+	end
+
 Move_U_TURN:
+	loadspritegfx ANIM_TAG_ROUND_SHADOW
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_BATTLER_DEF_PARTNER
+	setalpha 12, 8
+	playsewithpan SE_W019, SOUND_PAN_ATTACKER
+	createsprite gBattleAnimSpriteTemplate_83DA450, ANIM_BATTLER_ATTACKER, 2, 0, 0, 13, 336
+	delay 20
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 0, 0, 1, 0
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_BATTLER_TARGET, 6, 0, 8, 1
+	playsewithpan SE_W013, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_BATTLER_DEF_PARTNER
+	blendoff
+	waitforvisualfinish
+	end
+
 Move_CLOSE_COMBAT:
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	call SetHighSpeedBg
+	createsprite gBattleAnimSpriteTemplate_83D9FC0, ANIM_BATTLER_TARGET, 3, 1, 10, 0
+	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_BATTLER_TARGET, 4, 0, 7, 1
+	playsewithpan SE_W004, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBattleAnimSpriteTemplate_83D9FC0, ANIM_BATTLER_TARGET, 3, 1, 10, 0
+	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_BATTLER_TARGET, 4, 0, 7, 1
+	playsewithpan SE_W233B, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBattleAnimSpriteTemplate_83D9FC0, ANIM_BATTLER_TARGET, 3, 1, 10, 0
+	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_BATTLER_TARGET, 4, 0, 7, 1
+	playsewithpan SE_W025B, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBattleAnimSpriteTemplate_83D9FC0, ANIM_BATTLER_TARGET, 3, 1, 10, 0
+	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_BATTLER_TARGET, 4, 0, 7, 1
+	playsewithpan SE_W004, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBattleAnimSpriteTemplate_83D9FC0, ANIM_BATTLER_TARGET, 3, 1, 10, 0
+	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_BATTLER_TARGET, 4, 0, 7, 1
+	playsewithpan SE_W233B, SOUND_PAN_TARGET
+	delay 10
+	createsprite gBattleAnimSpriteTemplate_83D9FC0, ANIM_BATTLER_TARGET, 3, 1, 10, 0
+	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_BATTLER_TARGET, 4, 0, 7, 1
+	playsewithpan SE_W025B, SOUND_PAN_TARGET
+	delay 10
+	call UnsetHighSpeedBg
+	clearmonbg ANIM_BATTLER_TARGET
+	blendoff
+	delay 1
+	setarg ARG_RET_ID, 0x1000
+	delay 1
+	end
+
 Move_PAYBACK:
 Move_ASSURANCE:
 Move_EMBARGO:
