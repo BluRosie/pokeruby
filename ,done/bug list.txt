@@ -35,6 +35,7 @@ TENTATIVE PLAN:
 BATTLE BUGS:
 MOVE_TARGET_USER & MOVE_TARGET_SELECTED bring up a selection even when in single battles
 experience gained for the medium slow group is weird
+metronome is entirely fucked
 
 ITEM EXPANSION PROGRESS:
 10/?
@@ -47,12 +48,11 @@ practically done
 
 
 moves that need animations:
-pluck
-acupressure
 
 move animations that i personally want to polish:
 gyro ball (new particle)
-u-turn (looks rough, fly up then hit with the fly noise)
+u-turn (looks rough, fly up then hit with the fly noise?)
+acupressure (new particle?)
 
 move effects that need to be polished:
 gravity

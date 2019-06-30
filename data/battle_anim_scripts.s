@@ -10537,8 +10537,25 @@ Move_FEINT:
 	end
 
 Move_PLUCK:
+	loadspritegfx ANIM_TAG_IMPACT
+	playsewithpan SE_W030, SOUND_PAN_TARGET
+	createvisualtask sub_80A8EFC, 2, 3, -768, 1, 2
+	createsprite gBattleAnimSpriteTemplate_83DB538, ANIM_BATTLER_TARGET, 3, 5, -10, 1, 3
+	delay 6
+	createvisualtask sub_80A8EFC, 2, 3, -768, 1, 2
+	createsprite gBattleAnimSpriteTemplate_83DB538, ANIM_BATTLER_TARGET, 3, 0, -8, 1, 3
+	delay 6
+	createvisualtask sub_80A8EFC, 2, 3, -768, 1, 2
+	createsprite gBattleAnimSpriteTemplate_83DB538, ANIM_BATTLER_TARGET, 3, -2, 0, 1, 3
+	delay 6
+	createvisualtask sub_80A8EFC, 2, 3, -768, 1, 2
+	createsprite gBattleAnimSpriteTemplate_83DB538, ANIM_BATTLER_TARGET, 3, -8, -5, 1, 3
+	delay 6
+	createvisualtask sub_80A8EFC, 2, 3, -768, 1, 2
+	createsprite gBattleAnimSpriteTemplate_83DB538, ANIM_BATTLER_TARGET, 3, -11, -12, 1, 3
+	waitforvisualfinish
 	end
-
+	
 SetHighSpeedBg:
 	createvisualtask sub_80E3B4C, 2
 	jumpargeq ARG_RET_ID, 1, _highspeedplayer
@@ -10594,6 +10611,11 @@ Move_TAILWIND:
 	end
 
 Move_ACUPRESSURE:
+	loadspritegfx ANIM_TAG_FINGER
+	createsprite gBattleAnimSpriteTemplate_83D72C8, ANIM_BATTLER_ATTACKER, 12, 0
+	delay 24
+	playsewithpan SE_W118, SOUND_PAN_ATTACKER
+	waitforvisualfinish
 	end
 
 Move_METAL_BURST:

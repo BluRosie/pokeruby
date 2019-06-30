@@ -57,7 +57,7 @@ const union AffineAnimCmd *const gSpriteAffineAnimTable_83D72C0[] =
     gSpriteAffineAnim_83D7250,
 };
 
-const struct SpriteTemplate gBattleAnimSpriteTemplate_83D72C8 =
+const struct SpriteTemplate gBattleAnimSpriteTemplate_83D72C8 = // metronome
 {
     .tileTag = ANIM_TAG_FINGER,
     .paletteTag = ANIM_TAG_FINGER,
