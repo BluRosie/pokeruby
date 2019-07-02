@@ -50,9 +50,8 @@ practically done
 moves that need animations:
 
 move animations that i personally want to polish:
-gyro ball (new particle)
+gyro ball (new particle?)
 u-turn (looks rough, fly up then hit with the fly noise?)
-acupressure (new particle?)
 
 move effects that need to be polished:
 gravity

@@ -148,6 +148,17 @@ const struct SpriteTemplate gFistFootSpriteTemplate =
     .callback = AnimBasicFistOrFoot,
 };
 
+const struct SpriteTemplate gAcupressureFingerTemplate =
+{
+    .tileTag = ANIM_TAG_ACUPRESSURE_FINGER,
+    .paletteTag = ANIM_TAG_ACUPRESSURE_FINGER,
+    .oam = &gOamData_837DF34,
+    .anims = gSpriteAnimTable_83D9F64,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimBasicFistOrFoot,
+};
+
 const struct SpriteTemplate gBattleAnimSpriteTemplate_83D9FC0 =
 {
     .tileTag = ANIM_TAG_HANDS_AND_FEET,

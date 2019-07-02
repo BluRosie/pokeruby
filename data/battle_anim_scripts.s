@@ -10611,10 +10611,16 @@ Move_TAILWIND:
 	end
 
 Move_ACUPRESSURE:
-	loadspritegfx ANIM_TAG_FINGER
-	createsprite gBattleAnimSpriteTemplate_83D72C8, ANIM_BATTLER_ATTACKER, 12, 0
-	delay 24
-	playsewithpan SE_W118, SOUND_PAN_ATTACKER
+	loadspritegfx ANIM_TAG_ACUPRESSURE_FINGER
+	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -25, 6, 1, 0
+	waitforvisualfinish
+	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -21, 6, 1, 0
+	waitforvisualfinish
+	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -17, 6, 1, 0
+	waitforvisualfinish
+	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -13, 20, 1, 0
+	playsewithpan SE_W197, SOUND_PAN_TARGET
+	createvisualtask AnimTask_SlackOffSquish, 2, ANIM_BATTLER_ATTACKER
 	waitforvisualfinish
 	end
 
