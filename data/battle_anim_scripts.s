@@ -10612,16 +10612,25 @@ Move_TAILWIND:
 
 Move_ACUPRESSURE:
 	loadspritegfx ANIM_TAG_ACUPRESSURE_FINGER
-	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -25, 6, 1, 0
-	waitforvisualfinish
-	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -21, 6, 1, 0
-	waitforvisualfinish
-	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -17, 6, 1, 0
-	waitforvisualfinish
-	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -13, 20, 1, 0
-	playsewithpan SE_W197, SOUND_PAN_TARGET
+	setalpha 12, 4
+	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -25, 2, 1, 0
+	delay 1
+	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -23, 2, 1, 0
+	delay 1
+	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -21, 2, 1, 0
+	delay 1
+	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -19, 2, 1, 0
+	delay 1
+	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -17, 2, 1, 0
+	delay 1
+	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -15, 2, 1, 0
+	delay 1
+	createsprite gAcupressureFingerTemplate, ANIM_BATTLER_ATTACKER, 3, 0, -13, 30, 1, 0
+	playsewithpan SE_W197, SOUND_PAN_ATTACKER
+	createvisualtask sub_80DC4F4, 5, 0
 	createvisualtask AnimTask_SlackOffSquish, 2, ANIM_BATTLER_ATTACKER
 	waitforvisualfinish
+	blendoff
 	end
 
 Move_METAL_BURST:
