@@ -10713,9 +10713,87 @@ Move_CLOSE_COMBAT:
 	end
 
 Move_PAYBACK:
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_BATTLER_TARGET
+	fadetobg BG_DARK
+	waitbgfadein
+	delay 0
+	setalpha 12, 8
+	createvisualtask AnimTask_ShakeMon2, 5, ANIM_BATTLER_TARGET, 4, 0, 30, 1
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_ATTACKER, 3, 0, 0, 1, 0
+	playsewithpan SE_W004, SOUND_PAN_TARGET
+	delay 5
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_ATTACKER, 3, 24, 8, 1, 0
+	playsewithpan SE_W004, SOUND_PAN_TARGET
+	delay 5
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_ATTACKER, 3, -24, -16, 1, 0
+	playsewithpan SE_W004, SOUND_PAN_TARGET
+	delay 5
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_ATTACKER, 3, 8, 4, 1, 0
+	playsewithpan SE_W004, SOUND_PAN_TARGET
+	delay 5
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_ATTACKER, 3, -16, 19, 1, 0
+	playsewithpan SE_W004, SOUND_PAN_TARGET
+	delay 5
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_ATTACKER, 3, 18, -18, 1, 0
+	playsewithpan SE_W004, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_BATTLER_TARGET
+	blendoff
+	restorebg
+	waitbgfadein
+	end
+
 Move_ASSURANCE:
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_PURPLE_HAND_OUTLINE
+	monbg ANIM_BATTLER_TARGET
+	fadetobg BG_DARK
+	waitbgfadein
+	delay 0
+	setalpha 12, 8
+	createsprite gAssuranceHandTemplate, ANIM_BATTLER_TARGET, 3, 0, 0, 8, 1, 0
+	playsewithpan SE_W233B, -64
+	delay 10
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_TARGET, 2, 0, 0, 1, 1
+	waitforvisualfinish
+	clearmonbg ANIM_BATTLER_TARGET
+	blendoff
+	delay 0
+	restorebg
+	waitbgfadein
+	end
+
 Move_EMBARGO:
+	loadspritegfx ANIM_TAG_X_SIGN
+	monbg ANIM_BATTLER_TARGET
+	fadetobg BG_DARK
+	waitbgfadein
+	delay 0
+	createsprite gBattleAnimSpriteTemplate_8402A6C, ANIM_BATTLER_TARGET, 66
+	playsewithpan SE_W207, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_BATTLER_TARGET
+	restorebg
+	waitbgfadein
+	end
+
 Move_FLING:
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_BLACK_BALL
+	monbg ANIM_BATTLER_DEF_PARTNER
+	monbgprio_28 ANIM_BATTLER_TARGET
+	setalpha 12, 8
+	createsprite gBattleAnimSpriteTemplate_84021B0, ANIM_BATTLER_TARGET, 2, 20, 0, 0, 0, 35, -25
+	playsewithpan SE_W207, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 0, 0, 1, 2
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_TARGET, 3, 0, 6, 1
+	playsewithpan SE_W233, SOUND_PAN_TARGET
+	clearmonbg ANIM_BATTLER_DEF_PARTNER
+	blendoff
+	end
+
 Move_PSYCHO_SHIFT:
 Move_TRUMP_CARD:
 Move_HEAL_BLOCK:
