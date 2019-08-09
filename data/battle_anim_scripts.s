@@ -10818,7 +10818,43 @@ Move_PSYCHO_SHIFT:
 
 Move_TRUMP_CARD:
 	loadspritegfx ANIM_TAG_TRUMP_CARD
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 6, 0, -25, 20, 1, 0
+	loadspritegfx ANIM_TAG_SLASH
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 12, 0, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 11, -6, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 8, -9, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 5, -11, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 2, -12, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 0, -12, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -2, -12, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -5, -11, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -8, -9, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -11, -6, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -12, 0, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -11, 6, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -8, 9, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -5, 11, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -2, 12, 4, 1, 0 @ x, y, frames up, priority, smth
+	delay 1
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 0, 12, 10, 1, 0 @ x, y, frames up, priority, smth
+	waitforvisualfinish
+	createsprite gBattleAnimSpriteTemplate_83D6E38, ANIM_BATTLER_TARGET, 2, 1, 0, 0
+	playsewithpan SE_W013, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_TARGET, 3, 0, 6, 1
+	waitforvisualfinish
 	end
 
 Move_HEAL_BLOCK:
