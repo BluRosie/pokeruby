@@ -10795,7 +10795,32 @@ Move_FLING:
 	end
 
 Move_PSYCHO_SHIFT:
+	loadspritegfx ANIM_TAG_ELECTRIC_ORBS
+	loadspritegfx ANIM_TAG_CIRCLE_OF_LIGHT
+	loadspritegfx ANIM_TAG_THIN_RING
+	call SetPsychicBackground
+	setalpha 12, 8
+	playsewithpan SE_W025, SOUND_PAN_ATTACKER
+	createsprite gBattleAnimSpriteTemplate_83DB0E8, ANIM_BATTLER_ATTACKER, 2, 0
+	delay 30
+	createsprite gBattleAnimSpriteTemplate_83D795C, ANIM_BATTLER_ATTACKER, 40, 0, 0, 1, 0
+	playsewithpan SE_W048, SOUND_PAN_ATTACKER
+	delay 14
+	createsprite gBattleAnimSpriteTemplate_83D795C, ANIM_BATTLER_ATTACKER, 40, 0, 0, 1, 0
+	playsewithpan SE_W048, SOUND_PAN_ATTACKER
+	delay 14
+	createsprite gBattleAnimSpriteTemplate_83D795C, ANIM_BATTLER_ATTACKER, 40, 0, 0, 1, 0
+	playsewithpan SE_W048, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	call BackgroundRestore
+	blendoff
+	end
+
 Move_TRUMP_CARD:
+	loadspritegfx ANIM_TAG_TRUMP_CARD
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 6, 0, -25, 20, 1, 0
+	end
+
 Move_HEAL_BLOCK:
 Move_WRING_OUT:
 Move_POWER_TRICK:

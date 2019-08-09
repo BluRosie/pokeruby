@@ -300,6 +300,7 @@
 #define ANIM_TAG_WHIP_HIT                   (ANIM_SPRITES_START + 287) 
 #define ANIM_TAG_BLUE_RING_2                (ANIM_SPRITES_START + 288) 
 #define ANIM_TAG_ACUPRESSURE_FINGER         (ANIM_SPRITES_START + 289)
+#define ANIM_TAG_TRUMP_CARD                 (ANIM_SPRITES_START + 290)
 
 // battlers
 #define ANIM_BATTLER_ATTACKER    0

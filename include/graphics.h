@@ -5660,6 +5660,7 @@ extern const u8 gBattleAnimSpriteSheet_283[];
 extern const u8 gBattleAnimSpriteSheet_284[];
 extern const u8 gBattleAnimSpriteSheet_285[];
 extern const u8 gBattleAnimSpriteSheet_Acupressure[];
+extern const u8 gBattleAnimSpriteSheet_TrumpCard[];
 
 extern const u8 gBattleAnimSpritePalette_000[];
 extern const u8 gBattleAnimSpritePalette_001[];

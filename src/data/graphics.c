@@ -753,6 +753,7 @@ const u8 gBattleAnimSpriteSheet_257[] = INCBIN_U8("graphics/battle_anims/sprites
 const u8 gBattleAnimSpritePalette_257[] = INCBIN_U8("graphics/battle_anims/sprites/257.gbapal.lz");
 const u8 gBattleAnimSpriteSheet_Acupressure[] = INCBIN_U8("graphics/battle_anims/sprites/acupressure.4bpp.lz");
 const u8 gBattleAnimSpritePalette_Acupressure[] = INCBIN_U8("graphics/battle_anims/sprites/acupressure.gbapal.lz");
+const u8 gBattleAnimSpriteSheet_TrumpCard[] = INCBIN_U8("graphics/battle_anims/sprites/trump_card.4bpp.lz");
 
 #define SPECIES_SHINY_TAG 5000
 

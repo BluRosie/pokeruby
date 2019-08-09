@@ -159,6 +159,17 @@ const struct SpriteTemplate gAcupressureFingerTemplate =
     .callback = AnimBasicFistOrFoot,
 };
 
+const struct SpriteTemplate gTrumpCardTemplate =
+{
+    .tileTag = ANIM_TAG_TRUMP_CARD,
+    .paletteTag = ANIM_TAG_TRUMP_CARD,
+    .oam = &gOamData_837DF34,
+    .anims = gSpriteAnimTable_83D9F64,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimBasicFistOrFoot,
+};
+
 const struct SpriteTemplate gAssuranceHandTemplate =
 {
     .tileTag = ANIM_TAG_PURPLE_HAND_OUTLINE,
