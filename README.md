@@ -23,6 +23,10 @@ In Progress:
 * move expansion (thanks dizzy for a lot of things move-related which i based my things on)
 * pokémon expansion (huge thanks to dizzy & everyone there.  the ds-style 64x64 sprite projects as well)
 
+This ROM will build with a lot of unused data:
+* abilities/moves/items/pokemon from gen v and up.  these are actually just entirely incomplete and placeholders for if i decide to complete them in the future.
+
+
 It builds the following rom:
 
 * pokeruby.gba

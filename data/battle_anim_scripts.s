@@ -3698,7 +3698,7 @@ Move_MILK_DRINK: @ 81CBC6E
 	playsewithpan SE_W208, SOUND_PAN_ATTACKER
 	waitforvisualfinish
 	clearmonbg ANIM_BATTLER_TARGET
-	call Unknown_81D5F3E
+	call HealingStars2
 	waitforvisualfinish
 	end
 
@@ -8065,7 +8065,7 @@ Move_SOFT_BOILED: @ 81D213B
 	setarg ARG_RET_ID, -1
 	waitforvisualfinish
 	clearmonbg ANIM_BATTLER_ATK_PARTNER
-	call Unknown_81D5F3E
+	call HealingStars2
 	end
 
 Move_HEAL_BELL: @ 81D21BD
@@ -8276,7 +8276,7 @@ _81D26B9:
 	createsprite gBattleAnimSpriteTemplate_83D6764, ANIM_BATTLER_TARGET, 4, -24, 32, -3, 1
 	waitforvisualfinish
 	waitsound
-	call Unknown_81D5F3E
+	call HealingStars2
 	end
 
 Move_BATON_PASS: @ 81D2762
@@ -10858,6 +10858,29 @@ Move_TRUMP_CARD:
 	end
 
 Move_HEAL_BLOCK:
+	loadspritegfx ANIM_TAG_BLUE_STAR
+	monbg ANIM_BATTLER_TARGET
+	playsewithpan SE_W071B, SOUND_PAN_ATTACKER
+	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_ATTACKER, 2, 0, -5, 1, 0
+	delay 7
+	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_ATTACKER, 2, -15, 10, 1, 0
+	delay 7
+	createvisualtask sub_80E2A38, 10, 1 | 4, 4, 2, 12, 0, rgb(0, 0, 0)
+	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_ATTACKER, 2, 0, -5, 1, 0
+	delay 7
+	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_ATTACKER, 2, -15, 10, 1, 0
+	delay 7
+	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_ATTACKER, 2, -15, -15, 1, 0
+	delay 7
+	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_ATTACKER, 2, 10, -5, 1, 0
+	delay 7
+	waitforvisualfinish
+	delay 11
+	createvisualtask sub_80E2A38, 10, 1 | 4, 4, 2, 0, 12, rgb(0, 0, 0)
+	waitforvisualfinish
+	clearmonbg ANIM_BATTLER_TARGET
+	return
+
 Move_WRING_OUT:
 Move_POWER_TRICK:
 Move_GASTRO_ACID:
@@ -10948,6 +10971,7 @@ Move_DARK_VOID:
 Move_SEED_FLARE:
 Move_OMINOUS_WIND:
 Move_SHADOW_FORCE:
+
 Move_HONE_CLAWS:
 Move_WIDE_GUARD:
 Move_GUARD_SPLIT:
@@ -11039,6 +11063,7 @@ Move_ICICLE_CRASH:
 Move_V_CREATE:
 Move_FUSION_FLARE:
 Move_FUSION_BOLT:
+
 Move_FLYING_PRESS:
 Move_MAT_BLOCK:
 Move_BELCH:
@@ -11101,6 +11126,7 @@ Move_ORIGIN_PULSE:
 Move_PRECIPICE_BLADES:
 Move_DRAGON_ASCENT:
 Move_HYPERSPACE_FURY:
+
 Move_BREAKNECK_BLITZ_P:
 Move_BREAKNECK_BLITZ_S:
 Move_ALL_OUT_PUMMELING_P:
@@ -11222,6 +11248,7 @@ Move_FREEZY_FROST:
 Move_SPARKLY_SWIRL:
 Move_VEEVEE_VOLLEY:
 Move_DOUBLE_IRON_BASH:
+
 PoundCopy: @ 81D5C05
 	loadspritegfx ANIM_TAG_IMPACT
 	monbg ANIM_BATTLER_TARGET
@@ -11351,7 +11378,7 @@ HealingStars: @ 81D5EF5
 	delay 7
 	return
 
-Unknown_81D5F3E: @ 81D5F3E
+HealingStars2: @ 81D5F3E
 	playsewithpan SE_W071B, SOUND_PAN_TARGET
 	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_TARGET, 2, 0, -5, 1, 0
 	delay 7
