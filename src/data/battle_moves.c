@@ -3727,7 +3727,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_PHYSICAL,
-        .argument = STATUS_PARALYSIS,
+        .argument = STATUS1_PARALYSIS,
     },
 
     [MOVE_FOLLOW_ME] =
@@ -5030,7 +5030,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGSROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
-        .argument = STATUS_SLEEP,
+        .argument = STATUS1_SLEEP,
     },
 
     [MOVE_HAMMER_ARM] =
@@ -5535,7 +5535,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGSROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_RECKLESS_BOOST,
         .split = SPLIT_PHYSICAL,
-        .argument = STATUS_BURN,
+        .argument = STATUS1_BURN,
     },
 
     [MOVE_FORCE_PALM] =
@@ -5928,7 +5928,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGSROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_STRONG_JAW_BOOST,
         .split = SPLIT_PHYSICAL,
-        .argument = STATUS_PARALYSIS,
+        .argument = STATUS1_PARALYSIS,
     },
 
     [MOVE_ICE_FANG] =
@@ -5943,7 +5943,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGSROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_STRONG_JAW_BOOST,
         .split = SPLIT_PHYSICAL,
-        .argument = STATUS_FREEZE,
+        .argument = STATUS1_FREEZE,
     },
 
     [MOVE_FIRE_FANG] =
@@ -5958,7 +5958,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGSROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_STRONG_JAW_BOOST,
         .split = SPLIT_PHYSICAL,
-        .argument = STATUS_BURN,
+        .argument = STATUS1_BURN,
     },
 
     [MOVE_SHADOW_SNEAK] =
@@ -8812,7 +8812,7 @@ const struct BattleMove gBattleMoves[NUM_MOVES] =
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGSROCK_AFFECTED | FLAG_SOUND,
         .split = SPLIT_SPECIAL,
-        .argument = STATUS_BURN,
+        .argument = STATUS1_BURN,
     },
 
     [MOVE_ICE_HAMMER] =
