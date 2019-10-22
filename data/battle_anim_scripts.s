@@ -10816,45 +10816,54 @@ Move_PSYCHO_SHIFT:
 	blendoff
 	end
 
+.equ CARD_FRAMES, 2
+
 Move_TRUMP_CARD:
 	loadspritegfx ANIM_TAG_TRUMP_CARD
 	loadspritegfx ANIM_TAG_SLASH
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 12, 0, 4, 1, 0 @ x, y, frames up, priority, smth
+	fadetobg BG_DARK
+	waitbgfadein
+	delay 0
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 12, 0, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 11, -6, 4, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 11, -6, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 8, -9, 4, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 8, -9, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 5, -11, 4, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 5, -11, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 2, -12, 4, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 2, -12, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 0, -12, 4, 1, 0 @ x, y, frames up, priority, smth
+	playsewithpan SE_W104, SOUND_PAN_TARGET
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 0, -12, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -2, -12, 4, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -2, -12, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -5, -11, 4, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -5, -11, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -8, -9, 4, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -8, -9, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -11, -6, 4, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -11, -6, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -12, 0, 4, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -12, 0, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -11, 6, 4, 1, 0 @ x, y, frames up, priority, smth
+	playsewithpan SE_W104, SOUND_PAN_TARGET
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -11, 6, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -8, 9, 4, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -8, 9, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -5, 11, 4, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -5, 11, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -2, 12, 4, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, -2, 12, CARD_FRAMES, 1, 0 @ x, y, frames up, priority, smth
 	delay 1
-	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 0, 12, 10, 1, 0 @ x, y, frames up, priority, smth
+	createsprite gTrumpCardTemplate, ANIM_BATTLER_TARGET, 3, 0, 12, 20, 1, 0 @ x, y, frames up, priority, smth
 	waitforvisualfinish
 	createsprite gBattleAnimSpriteTemplate_83D6E38, ANIM_BATTLER_TARGET, 2, 1, 0, 0
 	playsewithpan SE_W013, SOUND_PAN_TARGET
 	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_TARGET, 3, 0, 6, 1
 	waitforvisualfinish
+	restorebg
+	waitbgfadein
 	end
 
 Move_HEAL_BLOCK:
@@ -10865,26 +10874,127 @@ Move_HEAL_BLOCK:
 	delay 7
 	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_ATTACKER, 2, -15, 10, 1, 0
 	delay 7
-	createvisualtask sub_80E2A38, 10, 1 | 4, 4, 2, 12, 0, rgb(0, 0, 0)
 	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_ATTACKER, 2, 0, -5, 1, 0
 	delay 7
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 3, 0, 16, rgb(0, 0, 0)
+	createvisualtask sub_80E0E24, 5, 4, 0
+	createvisualtask sub_80E0E24, 5, 5, 0
+	createvisualtask sub_80E0E24, 5, 6, 0
+	createvisualtask sub_80E0E24, 5, 7, 0
+	panse_1B SE_W195, 0, 0, 2, 0 // pan first half, pan second half, smth, smth
+	delay 50
 	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_ATTACKER, 2, -15, 10, 1, 0
 	delay 7
 	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_ATTACKER, 2, -15, -15, 1, 0
 	delay 7
 	createsprite gBattleAnimSpriteTemplate_83D7038, ANIM_BATTLER_ATTACKER, 2, 10, -5, 1, 0
 	delay 7
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_TARGET, 3, 0, 6, 1
 	waitforvisualfinish
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 3, 16, 0, rgb(0, 0, 0)
 	delay 11
-	createvisualtask sub_80E2A38, 10, 1 | 4, 4, 2, 0, 12, rgb(0, 0, 0)
+	createvisualtask sub_80E0E24, 5, 4, 1
+	createvisualtask sub_80E0E24, 5, 5, 1
+	createvisualtask sub_80E0E24, 5, 6, 1
+	createvisualtask sub_80E0E24, 5, 7, 1
 	waitforvisualfinish
 	clearmonbg ANIM_BATTLER_TARGET
-	return
+	waitforvisualfinish
+	end
 
 Move_WRING_OUT:
+	loadspritegfx ANIM_TAG_THIN_RING
+	createsprite gBattleAnimSpriteTemplate_83D795C, ANIM_BATTLER_TARGET, 40, 0, 0, 1, 0
+	playsewithpan SE_W118, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_SlackOffSquish, 2, ANIM_BATTLER_TARGET
+	delay 24
+	createsprite gBattleAnimSpriteTemplate_83D795C, ANIM_BATTLER_TARGET, 40, 0, 0, 1, 0
+	playsewithpan SE_W118, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_SlackOffSquish, 2, ANIM_BATTLER_TARGET
+	delay 24
+	createsprite gBattleAnimSpriteTemplate_83D795C, ANIM_BATTLER_TARGET, 40, 0, 0, 1, 0
+	playsewithpan SE_W118, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_SlackOffSquish, 2, ANIM_BATTLER_TARGET
+	waitforvisualfinish
+	end
+
 Move_POWER_TRICK:
+	loadspritegfx ANIM_TAG_THIN_RING
+	call SetPsychicBackground
+	setalpha 12, 8
+	waitforvisualfinish
+	createsprite gBattleAnimSpriteTemplate_83D795C, ANIM_BATTLER_ATTACKER, 40, 0, 0, 1, 0
+	playsewithpan SE_W048, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_SlackOffSquish, 2, ANIM_BATTLER_ATTACKER
+	delay 14
+	createsprite gBattleAnimSpriteTemplate_83D795C, ANIM_BATTLER_ATTACKER, 40, 0, 0, 1, 0
+	playsewithpan SE_W048, SOUND_PAN_ATTACKER
+	delay 14
+	createvisualtask AnimTask_SlackOffSquish, 2, ANIM_BATTLER_ATTACKER
+	createsprite gBattleAnimSpriteTemplate_83D795C, ANIM_BATTLER_ATTACKER, 40, 0, 0, 1, 0
+	playsewithpan SE_W048, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	createvisualtask sub_80E3BDC, 5, 0
+	call BackgroundRestore
+	waitforvisualfinish
+	blendoff
+	end
+
 Move_GASTRO_ACID:
+	loadspritegfx ANIM_TAG_TOXIC_BUBBLE
+	call _bubbleanim
+	call _bubbleanim
+	waitforvisualfinish
+	delay 15
+	end
+_bubbleanim:
+	createvisualtask sub_80798AC, 5, ANIM_TAG_TOXIC_BUBBLE, rgb(10, 25, 7), 14, 0, 3
+	createsprite gBattleAnimSpriteTemplate_83DA244, ANIM_BATTLER_TARGET, 2, -24, 16, 1, 1
+	playsewithpan SE_W092, SOUND_PAN_ATTACKER
+	delay 12
+	createsprite gBattleAnimSpriteTemplate_83DA244, ANIM_BATTLER_TARGET, 2, 8, 16, 1, 1
+	playsewithpan SE_W092, SOUND_PAN_ATTACKER
+	delay 12
+	createsprite gBattleAnimSpriteTemplate_83DA244, ANIM_BATTLER_TARGET, 2, -8, 16, 1, 1
+	playsewithpan SE_W092, SOUND_PAN_ATTACKER
+	delay 12
+	createsprite gBattleAnimSpriteTemplate_83DA244, ANIM_BATTLER_TARGET, 2, 24, 16, 1, 1
+	playsewithpan SE_W092, SOUND_PAN_ATTACKER
+	delay 12
+	return
+
+.equ center_notes, -10
+
 Move_LUCKY_CHANT:
+	loadspritegfx ANIM_TAG_MUSIC_NOTES_2
+	loadspritegfx ANIM_TAG_SPARKLE_2
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 3, 0, 10, rgb(0, 0, 0)
+	playsewithpan SE_W215, SOUND_PAN_ATTACKER
+	createsprite gBattleAnimSpriteTemplate_83D7A68, ANIM_BATTLER_ATTACKER, 40, 0, center_notes, 48, -18, 35, 0, 0
+	createsprite gBattleAnimSpriteTemplate_83D7A68, ANIM_BATTLER_ATTACKER, 40, 0, center_notes, -48, 20, 30, 1, 1
+	createsprite gBattleAnimSpriteTemplate_83D7A68, ANIM_BATTLER_ATTACKER, 40, 0, center_notes, -38, -29, 30, 2, 2
+	createsprite gBattleAnimSpriteTemplate_83D7A68, ANIM_BATTLER_ATTACKER, 40, 0, center_notes, 36, 18, 30, 3, 3
+	delay 20
+	playsewithpan SE_W215, SOUND_PAN_ATTACKER
+	createsprite gBattleAnimSpriteTemplate_83D7A68, ANIM_BATTLER_ATTACKER, 40, 0, center_notes, 19, 26, 35, 4, 4
+	createsprite gBattleAnimSpriteTemplate_83D7A68, ANIM_BATTLER_ATTACKER, 40, 0, center_notes, -34, -12, 30, 5, 5
+	createsprite gBattleAnimSpriteTemplate_83D7A68, ANIM_BATTLER_ATTACKER, 40, 0, center_notes, 41, -20, 34, 6, 6
+	createsprite gBattleAnimSpriteTemplate_83D7A68, ANIM_BATTLER_ATTACKER, 40, 0, center_notes, -15, 26, 32, 7, 0
+	delay 20
+	playsewithpan SE_W215, SOUND_PAN_ATTACKER
+	createsprite gBattleAnimSpriteTemplate_83D7A68, ANIM_BATTLER_ATTACKER, 40, 0, center_notes, -48, 18, 31, 0, 2
+	createsprite gBattleAnimSpriteTemplate_83D7A68, ANIM_BATTLER_ATTACKER, 40, 0, center_notes, 48, -20, 30, 2, 5
+	createsprite gBattleAnimSpriteTemplate_83D7A68, ANIM_BATTLER_ATTACKER, 40, 0, center_notes, 38, 29, 33, 4, 3
+	createsprite gBattleAnimSpriteTemplate_83D7A68, ANIM_BATTLER_ATTACKER, 40, 0, center_notes, -36, -18, 30, 6, 1
+	waitforvisualfinish
+	delay 13
+	playsewithpan SE_W071B, SOUND_PAN_ATTACKER
+	call GrantingStarsEffect
+	waitforvisualfinish
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 3, 10, 0, rgb(0, 0, 0)
+	waitforvisualfinish
+	end
+
 Move_ME_FIRST:
 Move_COPYCAT:
 Move_POWER_SWAP:

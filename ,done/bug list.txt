@@ -1,53 +1,27 @@
 urgent bugs:
-- trying to save and then subsequently opening up the options menu causes the camera to stop panning with the player (on frame type 2?  what?)
-  - what the fuck i literally can't even reproduce this one consistently anymore
-  - map name popup?
+- messing around with too much in the start menu stuff causes the camera to stop panning
+- i broke leveling up
 
 meh whatever bugs:
-- fix up the font a bit more (Lv, PKMN, POKEBLOCK, parentheses, colon, semicolon, &)
+- fix up the font a bit more (Lv, PKMN, POKEBLOCK, parentheses, colon, semicolon, &, pp)
 - pokedex searching in general (fix up the order lists)
-- fog needs to be adapted for the new dynamic palette system
 - animation for sticky barb sticking doesn't work like thief's entirely, currently the animation is commented out
-- meowstic gender difference
 
-polishing:
-- the day/night blending could use some polish
-- start menu is super inefficient
+day/night bugs:
+- every blending thing needs to be adapted for the new dynamic palette system
+- when an applymovement is used, the player gets blended with the colors (when inside)
+- when a battle starts, the black covering is still blended
 
 TODO:
 - load different icons based on major gender difference
+- meowstic/wormadam gender difference
 - giratina/arceus formes, form(e)s in general
 - daycare effects for destiny knot & power items
 
-TENTATIVE PLAN:
-
-3.5 - BATTLE BUGS
- - formes
- 
-6 - moves
- - animations
- - effects
-
-4 - finish up items
-5 - finish up abilities
-7 - decide tms/hms
-
 BATTLE BUGS:
 MOVE_TARGET_USER & MOVE_TARGET_SELECTED bring up a selection even when in single battles
-experience gained for the medium slow group is weird
-metronome is entirely fucked
+experience broke
 
-ITEM EXPANSION PROGRESS:
-10/?
-
-MOVE EXPANSION PROGRESS:
-?/?
-
-POKEMON EXPANSION PROGRESS:
-practically done
-
-
-moves that need animations:
 
 move animations that i personally want to polish:
 gyro ball (new particle?)
