@@ -44,3 +44,4 @@ build/
 .projects/ARM/
 pokeruby.ss1
 *.diff
+porymap.project.cfg

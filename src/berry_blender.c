@@ -180,8 +180,8 @@ s8 GetFirstFreePokeblockSlot(void);
 extern void de_sub_8073110();
 #endif
 
-extern struct MusicPlayerInfo gMPlay_SE2;
-extern struct MusicPlayerInfo gMPlay_BGM;
+extern struct MusicPlayerInfo gMPlayInfo_SE2;
+extern struct MusicPlayerInfo gMPlayInfo_BGM;
 extern u16 gSpecialVar_ItemId;
 extern u8 gUnknown_020297ED;
 extern u8 byte_3002A68;
@@ -778,7 +778,7 @@ static const u8 sNewLineString_2[] = _("\n");
 
 static void Blender_ControlHitPitch(void)
 {
-    m4aMPlayPitchControl(&gMPlay_SE2, 0xFFFF, (gBerryBlenderData->field_56 - 128) * 2);
+    m4aMPlayPitchControl(&gMPlayInfo_SE2, 0xFFFF, (gBerryBlenderData->field_56 - 128) * 2);
 }
 
 static void VBlankCB0_BerryBlender(void)
@@ -1793,9 +1793,9 @@ static void sub_804FE70(void)
             if (gRecvCmds[2][i] == 0x2345 || gRecvCmds[2][i] == 0x4523 || gRecvCmds[2][i] == 0x5432)
             {
                 if (gBerryBlenderData->field_56 > 1500)
-                    m4aMPlayTempoControl(&gMPlay_BGM, ((gBerryBlenderData->field_56 - 750) / 20) + 256);
+                    m4aMPlayTempoControl(&gMPlayInfo_BGM, ((gBerryBlenderData->field_56 - 750) / 20) + 256);
                 else
-                    m4aMPlayTempoControl(&gMPlay_BGM, 256);
+                    m4aMPlayTempoControl(&gMPlayInfo_BGM, 256);
             }
         }
     }
@@ -2164,7 +2164,7 @@ static void sub_8050954(void)
     {
     case 1:
         ClearLinkCallback();
-        m4aMPlayTempoControl(&gMPlay_BGM, 256);
+        m4aMPlayTempoControl(&gMPlayInfo_BGM, 256);
         for (i = 0; i < gSpecialVar_0x8004; i++)
         {
             DestroyTask(gBerryBlenderData->field_148[i]);
@@ -2181,7 +2181,7 @@ static void sub_8050954(void)
             else
                 gBerryBlenderData->field_6F = 5;
             gBerryBlenderData->field_0 = 0;
-            m4aMPlayStop(&gMPlay_SE2);
+            m4aMPlayStop(&gMPlayInfo_SE2);
         }
         Blender_ControlHitPitch();
         break;
@@ -3271,6 +3271,13 @@ void debug_sub_80524BC(void)
     SetMainCallback2(sub_8052AF8);
 }
 
+// Partially fixes the clipping on longer names.
+#if DEBUG_TRANSLATE && DEBUG
+#  define BLENDER_DEBUG_BERRY_LEN 12
+#else
+#  define BLENDER_DEBUG_BERRY_LEN 6
+#endif
+
 static void BlenderDebug_PrintBerryData(void)
 {
     u8 text[128];
@@ -3294,8 +3301,8 @@ static void BlenderDebug_PrintBerryData(void)
         else
         {
             CopyItemName(sBlenderDebug.berries[i] + 133, &text[0]);
-            text[6] = CHAR_SPACE;
-            text[7] = EOS;
+            text[BLENDER_DEBUG_BERRY_LEN] = CHAR_SPACE;
+            text[BLENDER_DEBUG_BERRY_LEN + 1] = EOS;
         }
         var = (i * 3) + 3;
         Menu_PrintText(text, 2, var);
@@ -3318,7 +3325,7 @@ static void BlenderDebug_PrintBerryData(void)
         ConvertIntToDecimalStringN(&text[15], gBerries[sBlenderDebug.berries[i]].smoothness, 2, 2);
 
         text[17] = EOS;
-        Menu_PrintText(text, 7, var);
+        Menu_PrintText(text, BLENDER_DEBUG_BERRY_LEN + 1, var);
     }
     if (sBlenderDebug.pokeblock.color != 0)
     {
@@ -3343,7 +3350,7 @@ static void BlenderDebug_PrintBerryData(void)
         ConvertIntToHexStringN(&text[15], sBlenderDebug.feel, 2, 2);
 
         text[17] = EOS;
-        Menu_PrintText(text, 7, 17);
+        Menu_PrintText(text, BLENDER_DEBUG_BERRY_LEN + 1, 17);
     }
 }
 

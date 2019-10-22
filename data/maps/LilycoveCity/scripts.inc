@@ -14,47 +14,47 @@ LilycoveCity_MapScript1_14CA20:: @ 814CA20
 
 LilycoveCity_MapScript1_14CA3F:: @ 814CA3F
 	.ifndef SAPPHIRE
-	setmetatile 69, 4, 169, 1
-	setmetatile 70, 4, 680, 1
-	setmetatile 71, 4, 681, 1
-	setmetatile 72, 4, 682, 1
-	setmetatile 69, 5, 145, 1
-	setmetatile 70, 5, 688, 1
-	setmetatile 71, 5, 689, 0
-	setmetatile 72, 5, 690, 1
-	setmetatile 69, 6, 446, 0
-	setmetatile 70, 6, 447, 0
-	setmetatile 71, 6, 368, 0
-	setmetatile 72, 6, 445, 0
+	setmetatile 69, 4, METATILE_General_RockWall_WaterBase, 1
+	setmetatile 70, 4, METATILE_Lilycove_AquaHideout_Entrance_TopLeft, 1
+	setmetatile 71, 4, METATILE_Lilycove_AquaHideout_Entrance_TopMid, 1
+	setmetatile 72, 4, METATILE_Lilycove_AquaHideout_Entrance_TopRight, 1
+	setmetatile 69, 5, METATILE_General_RockWall_SandBase, 1
+	setmetatile 70, 5, METATILE_Lilycove_AquaHideout_Entrance_BottomLeft, 1
+	setmetatile 71, 5, METATILE_Lilycove_AquaHideout_Entrance_BottomMid, 0
+	setmetatile 72, 5, METATILE_Lilycove_AquaHideout_Entrance_BottomRight, 1
+	setmetatile 69, 6, METATILE_General_Shore_BottomMid, 0
+	setmetatile 70, 6, METATILE_General_Shore_BottomRight, 0
+	setmetatile 71, 6, METATILE_General_CalmWater, 0
+	setmetatile 72, 6, METATILE_General_Shore_BottomLeft, 0
 	.endif
 	call_if_unset FLAG_EVIL_TEAM_ESCAPED_IN_SUBMARINE, LilycoveCity_EventScript_14CABE
 	call_if_set FLAG_BADGE07_GET, LilycoveCity_EventScript_14CB2B
 	end
 
 LilycoveCity_EventScript_14CABE:: @ 814CABE
-	setmetatile 76, 12, 656, 1
-	setmetatile 77, 12, 657, 1
-	setmetatile 76, 13, 672, 1
-	setmetatile 77, 13, 673, 1
-	setmetatile 76, 14, 664, 1
-	setmetatile 77, 14, 665, 1
-	setmetatile 76, 15, 672, 1
-	setmetatile 77, 15, 673, 1
-	setmetatile 77, 16, 664, 1
-	setmetatile 78, 16, 665, 1
-	setmetatile 77, 17, 672, 1
-	setmetatile 78, 17, 673, 1
+	setmetatile 76, 12, METATILE_Lilycove_Wailmer0, 1
+	setmetatile 77, 12, METATILE_Lilycove_Wailmer1, 1
+	setmetatile 76, 13, METATILE_Lilycove_Wailmer2, 1
+	setmetatile 77, 13, METATILE_Lilycove_Wailmer3, 1
+	setmetatile 76, 14, METATILE_Lilycove_Wailmer0_Alt, 1
+	setmetatile 77, 14, METATILE_Lilycove_Wailmer1_Alt, 1
+	setmetatile 76, 15, METATILE_Lilycove_Wailmer2, 1
+	setmetatile 77, 15, METATILE_Lilycove_Wailmer3, 1
+	setmetatile 77, 16, METATILE_Lilycove_Wailmer0_Alt, 1
+	setmetatile 78, 16, METATILE_Lilycove_Wailmer1_Alt, 1
+	setmetatile 77, 17, METATILE_Lilycove_Wailmer2, 1
+	setmetatile 78, 17, METATILE_Lilycove_Wailmer3, 1
 	return
 
 LilycoveCity_EventScript_14CB2B:: @ 814CB2B
-	setmetatile 69, 4, 169, 1
-	setmetatile 70, 4, 169, 1
-	setmetatile 71, 4, 169, 1
-	setmetatile 72, 4, 169, 1
-	setmetatile 69, 5, 145, 1
-	setmetatile 70, 5, 145, 1
-	setmetatile 71, 5, 145, 1
-	setmetatile 72, 5, 145, 1
+	setmetatile 69, 4, METATILE_General_RockWall_WaterBase, 1
+	setmetatile 70, 4, METATILE_General_RockWall_WaterBase, 1
+	setmetatile 71, 4, METATILE_General_RockWall_WaterBase, 1
+	setmetatile 72, 4, METATILE_General_RockWall_WaterBase, 1
+	setmetatile 69, 5, METATILE_General_RockWall_SandBase, 1
+	setmetatile 70, 5, METATILE_General_RockWall_SandBase, 1
+	setmetatile 71, 5, METATILE_General_RockWall_SandBase, 1
+	setmetatile 72, 5, METATILE_General_RockWall_SandBase, 1
 	return
 
 LilycoveCity_EventScript_14CB74:: @ 814CB74
@@ -64,9 +64,9 @@ LilycoveCity_EventScript_14CB74:: @ 814CB74
 	goto_if_set FLAG_DAILY_RECEIVED_BERRY_LILYCOVE, LilycoveCity_EventScript_14CBB4
 	msgbox LilycoveCity_Text_1C5A7A, 4
 	random 10
-	addvar RESULT, ITEM_CHERI_BERRY
-	giveitem_std RESULT
-	compare RESULT, 0
+	addvar VAR_RESULT, ITEM_CHERI_BERRY
+	giveitem_std VAR_RESULT
+	compare VAR_RESULT, 0
 	goto_if_eq LilycoveCity_EventScript_1A029B
 	setflag FLAG_DAILY_RECEIVED_BERRY_LILYCOVE
 	msgbox LilycoveCity_Text_1C5B1D, 4
@@ -164,8 +164,8 @@ LilycoveCity_EventScript_14CC79:: @ 814CC79
 
 LilycoveCity_EventScript_14CC82:: @ 814CC82
 	lockall
-	specialvar VAR_SPECIAL_4, sub_80C4D50
-	switch VAR_SPECIAL_4
+	specialvar VAR_0x8004, sub_80C4D50
+	switch VAR_0x8004
 	case 0, LilycoveCity_EventScript_14CCA2
 	msgbox LilycoveCity_Text_168EA4, 4
 	releaseall
@@ -204,10 +204,10 @@ LilycoveCity_EventScript_14CCE5:: @ 814CCE5
 	lockall
 	goto_if_set FLAG_MET_WAILMER_TRAINER, LilycoveCity_EventScript_14CD18
 	msgbox LilycoveCity_Text_16864A, 4
-	applymovement LAST_TALKED, LilycoveCity_Movement_1A0839
+	applymovement VAR_LAST_TALKED, LilycoveCity_Movement_1A0839
 	waitmovement 0
 	msgbox LilycoveCity_Text_168675, 4
-	applymovement LAST_TALKED, LilycoveCity_Movement_1A083D
+	applymovement VAR_LAST_TALKED, LilycoveCity_Movement_1A083D
 	waitmovement 0
 	setflag FLAG_MET_WAILMER_TRAINER
 	releaseall
@@ -238,9 +238,9 @@ LilycoveCity_EventScript_14CD46:: @ 814CD46
 	lock
 	faceplayer
 	checkplayergender
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	goto_if_eq LilycoveCity_EventScript_14CD60
-	compare RESULT, 1
+	compare VAR_RESULT, 1
 	goto_if_eq LilycoveCity_EventScript_14CDD3
 	end
 
@@ -248,7 +248,7 @@ LilycoveCity_EventScript_14CD60:: @ 814CD60
 	playbgm MUS_GIRL_SUP, TRUE
 	call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_14CDB0
 	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_14CDB9
-	compare RESULT, NO
+	compare VAR_RESULT, NO
 	goto_if_eq LilycoveCity_EventScript_14CDC2
 	msgbox LilycoveCity_Text_167B94, 4
 	switch VAR_STARTER_MON
@@ -277,7 +277,7 @@ LilycoveCity_EventScript_14CDD3:: @ 814CDD3
 	playbgm MUS_BOY_SUP, TRUE
 	call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_14CE23
 	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_14CE2C
-	compare RESULT, NO
+	compare VAR_RESULT, NO
 	goto_if_eq LilycoveCity_EventScript_14CE35
 	msgbox LilycoveCity_Text_1680A9, 4
 	switch VAR_STARTER_MON
@@ -334,11 +334,11 @@ LilycoveCity_EventScript_14CE96:: @ 814CE96
 
 LilycoveCity_EventScript_14CEA6:: @ 814CEA6
 	msgbox LilycoveCity_Text_167C6B, 4
-	setvar RESULT, 0
+	setvar VAR_RESULT, 0
 	call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_14CEDE
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	call_if_eq LilycoveCity_EventScript_14CEEE
-	compare RESULT, 1
+	compare VAR_RESULT, 1
 	call_if_eq LilycoveCity_EventScript_14CEF7
 	clearflag FLAG_HIDE_MAY_UPSTAIRS
 	clearflag FLAG_HIDE_MAY_PICHU_DOLL
@@ -350,7 +350,7 @@ LilycoveCity_EventScript_14CEDE:: @ 814CEDE
 	return
 
 LilycoveCity_EventScript_14CEE8:: @ 814CEE8
-	setvar RESULT, 1
+	setvar VAR_RESULT, 1
 	return
 
 LilycoveCity_EventScript_14CEEE:: @ 814CEEE
@@ -368,11 +368,11 @@ LilycoveCity_EventScript_14CF09:: @ 814CF09
 
 LilycoveCity_EventScript_14CF12:: @ 814CF12
 	msgbox LilycoveCity_Text_168149, 4
-	setvar RESULT, 0
+	setvar VAR_RESULT, 0
 	call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_14CEDE
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	call_if_eq LilycoveCity_EventScript_14CF47
-	compare RESULT, 1
+	compare VAR_RESULT, 1
 	call_if_eq LilycoveCity_EventScript_14CF50
 	clearflag FLAG_HIDE_BRENDAN_UPSTAIRS
 	goto LilycoveCity_EventScript_14CF6B
@@ -393,13 +393,13 @@ LilycoveCity_EventScript_14CF62:: @ 814CF62
 
 LilycoveCity_EventScript_14CF6B:: @ 814CF6B
 	closemessage
-	applymovement LAST_TALKED, LilycoveCity_Movement_1A0845
+	applymovement VAR_LAST_TALKED, LilycoveCity_Movement_1A0845
 	waitmovement 0
 	delay 50
 	setfieldeffectargument 0, 1
 	dofieldeffect FLDEFF_NPCFLY_OUT
 	delay 15
-	removeobject LAST_TALKED
+	removeobject VAR_LAST_TALKED
 	waitfieldeffect FLDEFF_NPCFLY_OUT
 	savebgm 0
 	fadedefaultbgm

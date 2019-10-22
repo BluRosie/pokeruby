@@ -13,11 +13,11 @@ AbandonedShip_Corridors_B1F_MapScript1_15E9A3:: @ 815E9A3
 	end
 
 AbandonedShip_Corridors_B1F_EventScript_15E9B6:: @ 815E9B6
-	setmetatile 11, 4, 563, 1
+	setmetatile 11, 4, METATILE_InsideShip_InTactDoor0_Bottom, 1
 	return
 
 AbandonedShip_Corridors_B1F_EventScript_15E9C0:: @ 815E9C0
-	setmetatile 11, 4, 555, 1
+	setmetatile 11, 4, METATILE_InsideShip_InTactDoor1_Bottom, 1
 	return
 
 AbandonedShip_Corridors_B1F_EventScript_15E9CA:: @ 815E9CA
@@ -28,7 +28,7 @@ AbandonedShip_Corridors_B1F_EventScript_15E9D3:: @ 815E9D3
 	lockall
 	goto_if_set FLAG_USED_STORAGE_KEY, AbandonedShip_Corridors_B1F_EventScript_15EA14
 	checkitem ITEM_STORAGE_KEY, 1
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	goto_if_eq AbandonedShip_Corridors_B1F_EventScript_15EA0A
 	msgbox AbandonedShip_Corridors_B1F_Text_198692, 4
 	playse SE_PIN

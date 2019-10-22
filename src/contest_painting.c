@@ -342,7 +342,7 @@ static void sub_8106AC4(u16 species, u8 arg1)
                 &gMonFrontPicTableFemale[species],
                 gMonFrontPicCoords[species].coords,
                 gMonFrontPicCoords[species].y_offset,
-                0x2000000,
+                EWRAM,
                 gUnknown_081FAF4C[1],
                 species,
                 (u32)gUnknown_03005E8C->personality
@@ -352,7 +352,7 @@ static void sub_8106AC4(u16 species, u8 arg1)
                 &gMonFrontPicTable[species],
                 gMonFrontPicCoords[species].coords,
                 gMonFrontPicCoords[species].y_offset,
-                0x2000000,
+                EWRAM,
                 gUnknown_081FAF4C[1],
                 species,
                 (u32)gUnknown_03005E8C->personality
@@ -366,7 +366,7 @@ static void sub_8106AC4(u16 species, u8 arg1)
                 &gMonBackPicTableFemale[species],
                 gMonBackPicCoords[species].coords,
                 gMonBackPicCoords[species].y_offset,
-                0x2000000,
+                EWRAM,
                 gUnknown_081FAF4C[0],
                 species,
                 (u32)gUnknown_03005E8C->personality
@@ -376,7 +376,7 @@ static void sub_8106AC4(u16 species, u8 arg1)
                 &gMonBackPicTable[species],
                 gMonBackPicCoords[species].coords,
                 gMonBackPicCoords[species].y_offset,
-                0x2000000,
+                EWRAM,
                 gUnknown_081FAF4C[0],
                 species,
                 (u32)gUnknown_03005E8C->personality

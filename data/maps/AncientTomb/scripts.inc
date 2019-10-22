@@ -9,7 +9,7 @@ AncientTomb_MapScript1_15EFCE:: @ 815EFCE
 	end
 
 AncientTomb_EventScript_15EFD8:: @ 815EFD8
-	removeobject LAST_TALKED
+	removeobject VAR_LAST_TALKED
 	return
 
 AncientTomb_MapScript1_15EFDC:: @ 815EFDC
@@ -21,12 +21,12 @@ AncientTomb_MapScript1_15EFE0:: @ 815EFE0
 	end
 
 AncientTomb_EventScript_15EFEA:: @ 815EFEA
-	setmetatile 7, 19, 553, 1
-	setmetatile 8, 19, 553, 1
-	setmetatile 9, 19, 553, 1
-	setmetatile 7, 20, 565, 1
-	setmetatile 8, 20, 565, 1
-	setmetatile 9, 20, 565, 1
+	setmetatile 7, 19, METATILE_Cave_EntranceCover, 1
+	setmetatile 8, 19, METATILE_Cave_EntranceCover, 1
+	setmetatile 9, 19, METATILE_Cave_EntranceCover, 1
+	setmetatile 7, 20, METATILE_Cave_SealedChamberBraille_Mid, 1
+	setmetatile 8, 20, METATILE_Cave_SealedChamberBraille_Mid, 1
+	setmetatile 9, 20, METATILE_Cave_SealedChamberBraille_Mid, 1
 	return
 
 AncientTomb_EventScript_15F021:: @ 815F021

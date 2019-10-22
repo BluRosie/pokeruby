@@ -21,7 +21,7 @@
 #include "trig.h"
 #include "ewram.h"
 
-extern struct MusicPlayerInfo gMPlay_BGM;
+extern struct MusicPlayerInfo gMPlayInfo_BGM;
 extern u8 gPokeblockMonID;
 extern s16 gPokeblockGain;
 
@@ -616,7 +616,7 @@ static bool8 sub_8147B20(struct Pokemon* mon)
     case 0:
         species = GetMonData(mon, MON_DATA_SPECIES2);
         PiD = GetMonData(mon, MON_DATA_PERSONALITY);
-        HandleLoadSpecialPokePic(&gMonFrontPicTable[species], gMonFrontPicCoords[species].coords, gMonFrontPicCoords[species].y_offset, 0x2000000, gUnknown_081FAF4C[1], species, PiD);
+        HandleLoadSpecialPokePic(&gMonFrontPicTable[species], gMonFrontPicCoords[species].coords, gMonFrontPicCoords[species].y_offset, EWRAM, gUnknown_081FAF4C[1], species, PiD);
         ewram1FFFF++;
         break;
     case 1:
@@ -743,7 +743,7 @@ static void Task_ReturnAfterPaletteFade(u8 taskID)
 {
     if (!gPaletteFade.active)
     {
-        m4aMPlayVolumeControl(&gMPlay_BGM, -1, 256);
+        m4aMPlayVolumeControl(&gMPlayInfo_BGM, -1, 256);
         SetMainCallback2(gMain.savedCallback);
         DestroyTask(taskID);
     }

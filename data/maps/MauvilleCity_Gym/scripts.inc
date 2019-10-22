@@ -16,47 +16,47 @@ MauvilleCity_Gym_EventScript_156491:: @ 8156491
 	end
 
 MauvilleCity_Gym_EventScript_15649B:: @ 815649B
-	setmetatile 4, 7, 560, 0
-	setmetatile 4, 8, 568, 0
-	setmetatile 5, 7, 561, 0
-	setmetatile 5, 8, 569, 0
-	setmetatile 3, 8, 578, 1
-	setmetatile 3, 9, 538, 0
-	setmetatile 3, 10, 593, 0
-	setmetatile 1, 10, 546, 0
-	setmetatile 1, 11, 554, 1
-	setmetatile 2, 10, 547, 0
-	setmetatile 2, 11, 555, 1
-	setmetatile 4, 10, 546, 0
-	setmetatile 4, 11, 554, 1
-	setmetatile 5, 10, 547, 0
-	setmetatile 5, 11, 555, 1
-	setmetatile 6, 11, 578, 1
-	setmetatile 6, 12, 538, 0
-	setmetatile 6, 13, 593, 0
-	setmetatile 3, 11, 577, 1
-	setmetatile 3, 12, 585, 1
-	setmetatile 3, 13, 592, 1
-	setmetatile 4, 13, 560, 0
-	setmetatile 4, 14, 568, 0
-	setmetatile 5, 13, 561, 0
-	setmetatile 5, 14, 569, 0
+	setmetatile 4, 7, METATILE_MauvilleGym_GreenBeamH1_Off, 0
+	setmetatile 4, 8, METATILE_MauvilleGym_GreenBeamH3_Off, 0
+	setmetatile 5, 7, METATILE_MauvilleGym_GreenBeamH2_Off, 0
+	setmetatile 5, 8, METATILE_MauvilleGym_GreenBeamH4_Off, 0
+	setmetatile 3, 8, METATILE_MauvilleGym_PoleBottom_On, 1
+	setmetatile 3, 9, METATILE_MauvilleGym_FloorTile, 0
+	setmetatile 3, 10, METATILE_MauvilleGym_PoleTop_Off, 0
+	setmetatile 1, 10, METATILE_MauvilleGym_RedBeamH1_On, 0
+	setmetatile 1, 11, METATILE_MauvilleGym_RedBeamH3_On, 1
+	setmetatile 2, 10, METATILE_MauvilleGym_RedBeamH2_On, 0
+	setmetatile 2, 11, METATILE_MauvilleGym_RedBeamH4_On, 1
+	setmetatile 4, 10, METATILE_MauvilleGym_RedBeamH1_On, 0
+	setmetatile 4, 11, METATILE_MauvilleGym_RedBeamH3_On, 1
+	setmetatile 5, 10, METATILE_MauvilleGym_RedBeamH2_On, 0
+	setmetatile 5, 11, METATILE_MauvilleGym_RedBeamH4_On, 1
+	setmetatile 6, 11, METATILE_MauvilleGym_PoleBottom_On, 1
+	setmetatile 6, 12, METATILE_MauvilleGym_FloorTile, 0
+	setmetatile 6, 13, METATILE_MauvilleGym_PoleTop_Off, 0
+	setmetatile 3, 11, METATILE_MauvilleGym_RedBeamV1_On, 1
+	setmetatile 3, 12, METATILE_MauvilleGym_RedBeamV2_On, 1
+	setmetatile 3, 13, METATILE_MauvilleGym_PoleTop_On, 1
+	setmetatile 4, 13, METATILE_MauvilleGym_GreenBeamH1_Off, 0
+	setmetatile 4, 14, METATILE_MauvilleGym_GreenBeamH3_Off, 0
+	setmetatile 5, 13, METATILE_MauvilleGym_GreenBeamH2_Off, 0
+	setmetatile 5, 14, METATILE_MauvilleGym_GreenBeamH4_Off, 0
 	end
 
 MauvilleCity_Gym_EventScript_15657D:: @ 815657D
-	setvar VAR_SPECIAL_4, 0
+	setvar VAR_0x8004, 0
 	special MauvilleGymSpecial1
 	goto MauvilleCity_Gym_EventScript_156491
 	end
 
 MauvilleCity_Gym_EventScript_15658B:: @ 815658B
-	setvar VAR_SPECIAL_4, 1
+	setvar VAR_0x8004, 1
 	special MauvilleGymSpecial1
 	goto MauvilleCity_Gym_EventScript_156491
 	end
 
 MauvilleCity_Gym_EventScript_156599:: @ 8156599
-	setvar VAR_SPECIAL_4, 2
+	setvar VAR_0x8004, 2
 	special MauvilleGymSpecial1
 	goto MauvilleCity_Gym_EventScript_156491
 	end
@@ -84,7 +84,7 @@ MauvilleCity_Gym_EventScript_1565DB:: @ 81565DB
 	addvar VAR_PETALBURG_GYM_STATE, 1
 	compare VAR_PETALBURG_GYM_STATE, 6
 	call_if_eq MauvilleCity_Gym_EventScript_1A00FB
-	setvar VAR_SPECIAL_8, 3
+	setvar VAR_0x8008, 3
 	call MauvilleCity_Gym_EventScript_1A01C0
 	special MauvilleGymSpecial3
 	special DrawWholeMapView
@@ -94,7 +94,7 @@ MauvilleCity_Gym_EventScript_1565DB:: @ 81565DB
 
 MauvilleCity_Gym_EventScript_15661D:: @ 815661D
 	giveitem_std ITEM_TM34
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	goto_if_eq MauvilleCity_Gym_EventScript_1A029B
 	msgbox MauvilleCity_Gym_Text_180E76, 4
 	setflag FLAG_RECEIVED_TM34
@@ -112,7 +112,7 @@ MauvilleCity_Gym_EventScript_15664B:: @ 815664B
 	compare VAR_MAUVILLE_GYM_STATE, 1
 	goto_if_eq MauvilleCity_Gym_EventScript_1566DA
 	setvar VAR_MAUVILLE_GYM_STATE, 1
-	setvar VAR_SPECIAL_4, 0
+	setvar VAR_0x8004, 0
 	goto MauvilleCity_Gym_EventScript_1566BA
 	end
 
@@ -122,7 +122,7 @@ MauvilleCity_Gym_EventScript_156670:: @ 8156670
 	compare VAR_MAUVILLE_GYM_STATE, 2
 	goto_if_eq MauvilleCity_Gym_EventScript_1566DA
 	setvar VAR_MAUVILLE_GYM_STATE, 2
-	setvar VAR_SPECIAL_4, 1
+	setvar VAR_0x8004, 1
 	goto MauvilleCity_Gym_EventScript_1566BA
 	end
 
@@ -132,7 +132,7 @@ MauvilleCity_Gym_EventScript_156695:: @ 8156695
 	compare VAR_MAUVILLE_GYM_STATE, 3
 	goto_if_eq MauvilleCity_Gym_EventScript_1566DA
 	setvar VAR_MAUVILLE_GYM_STATE, 3
-	setvar VAR_SPECIAL_4, 2
+	setvar VAR_0x8004, 2
 	goto MauvilleCity_Gym_EventScript_1566BA
 	end
 

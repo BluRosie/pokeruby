@@ -46,23 +46,23 @@ EverGrandeCity_ChampionsRoom_EventScript_15B805:: @ 815B805
 
 EverGrandeCity_ChampionsRoom_EventScript_15B821:: @ 815B821
 	playse SE_DOOR
-	setmetatile 6, 1, 838, 0
-	setmetatile 6, 2, 839, 0
+	setmetatile 6, 1, METATILE_EliteFour_OpenDoorChampion_Frame, 0
+	setmetatile 6, 2, METATILE_EliteFour_OpenDoorChampion_Opening, 0
 	special DrawWholeMapView
 	msgbox EverGrandeCity_ChampionsRoom_Text_1910FE, 4
 	closemessage
 	playse SE_DOOR
 	checkplayergender
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_15B87C
-	compare RESULT, 1
+	compare VAR_RESULT, 1
 	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_15B881
 	addobject 2
 	call EverGrandeCity_ChampionsRoom_EventScript_15B9BD
 	checkplayergender
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	goto_if_eq EverGrandeCity_ChampionsRoom_EventScript_15B886
-	compare RESULT, 1
+	compare VAR_RESULT, 1
 	goto_if_eq EverGrandeCity_ChampionsRoom_EventScript_15B8BB
 	end
 
@@ -128,9 +128,9 @@ EverGrandeCity_ChampionsRoom_EventScript_15B8F0:: @ 815B8F0
 	waitmovement 0
 	msgbox EverGrandeCity_ChampionsRoom_Text_191546, 4
 	checkplayergender
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_15B9AB
-	compare RESULT, 1
+	compare VAR_RESULT, 1
 	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_15B9B4
 	closemessage
 	applymovement 1, EverGrandeCity_ChampionsRoom_Movement_15B9FF

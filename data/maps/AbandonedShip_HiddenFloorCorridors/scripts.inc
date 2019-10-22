@@ -19,42 +19,42 @@ AbandonedShip_HiddenFloorCorridors_MapScript1_15EB5A:: @ 815EB5A
 	end
 
 AbandonedShip_HiddenFloorCorridors_EventScript_15EBA3:: @ 815EBA3
-	setmetatile 3, 8, 555, 1
+	setmetatile 3, 8, METATILE_InsideShip_InTactDoor1_Bottom, 1
 	return
 
 AbandonedShip_HiddenFloorCorridors_EventScript_15EBAD:: @ 815EBAD
-	setmetatile 6, 8, 555, 1
+	setmetatile 6, 8, METATILE_InsideShip_InTactDoor1_Bottom, 1
 	return
 
 AbandonedShip_HiddenFloorCorridors_EventScript_15EBB7:: @ 815EBB7
-	setmetatile 3, 3, 538, 0
+	setmetatile 3, 3, METATILE_InsideShip_DoorIndent1, 0
 	return
 
 AbandonedShip_HiddenFloorCorridors_EventScript_15EBC1:: @ 815EBC1
-	setmetatile 9, 3, 538, 0
+	setmetatile 9, 3, METATILE_InsideShip_DoorIndent1, 0
 	return
 
 AbandonedShip_HiddenFloorCorridors_EventScript_15EBCB:: @ 815EBCB
-	setmetatile 3, 8, 563, 1
+	setmetatile 3, 8, METATILE_InsideShip_InTactDoor0_Bottom, 1
 	return
 
 AbandonedShip_HiddenFloorCorridors_EventScript_15EBD5:: @ 815EBD5
-	setmetatile 6, 8, 563, 1
+	setmetatile 6, 8, METATILE_InsideShip_InTactDoor0_Bottom, 1
 	return
 
 AbandonedShip_HiddenFloorCorridors_EventScript_15EBDF:: @ 815EBDF
-	setmetatile 3, 3, 564, 0
+	setmetatile 3, 3, METATILE_InsideShip_DoorIndent0, 0
 	return
 
 AbandonedShip_HiddenFloorCorridors_EventScript_15EBE9:: @ 815EBE9
-	setmetatile 9, 3, 564, 0
+	setmetatile 9, 3, METATILE_InsideShip_DoorIndent0, 0
 	return
 
 AbandonedShip_HiddenFloorCorridors_EventScript_15EBF3:: @ 815EBF3
 	lockall
 	goto_if_set FLAG_USED_ROOM_1_KEY, AbandonedShip_HiddenFloorCorridors_EventScript_15ECF7
 	checkitem ITEM_ROOM_1_KEY, 1
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	goto_if_eq AbandonedShip_HiddenFloorCorridors_EventScript_15ECCF
 	msgbox AbandonedShip_HiddenFloorCorridors_Text_198E90, 4
 	playse SE_PIN
@@ -69,7 +69,7 @@ AbandonedShip_HiddenFloorCorridors_EventScript_15EC2A:: @ 815EC2A
 	lockall
 	goto_if_set FLAG_USED_ROOM_2_KEY, AbandonedShip_HiddenFloorCorridors_EventScript_15ECF7
 	checkitem ITEM_ROOM_2_KEY, 1
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	goto_if_eq AbandonedShip_HiddenFloorCorridors_EventScript_15ECD9
 	msgbox AbandonedShip_HiddenFloorCorridors_Text_198E90, 4
 	playse SE_PIN
@@ -84,7 +84,7 @@ AbandonedShip_HiddenFloorCorridors_EventScript_15EC61:: @ 815EC61
 	lockall
 	goto_if_set FLAG_USED_ROOM_4_KEY, AbandonedShip_HiddenFloorCorridors_EventScript_15ECF7
 	checkitem ITEM_ROOM_4_KEY, 1
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	goto_if_eq AbandonedShip_HiddenFloorCorridors_EventScript_15ECE3
 	msgbox AbandonedShip_HiddenFloorCorridors_Text_198E90, 4
 	playse SE_PIN
@@ -99,7 +99,7 @@ AbandonedShip_HiddenFloorCorridors_EventScript_15EC98:: @ 815EC98
 	lockall
 	goto_if_set FLAG_USED_ROOM_6_KEY, AbandonedShip_HiddenFloorCorridors_EventScript_15ECF7
 	checkitem ITEM_ROOM_6_KEY, 1
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	goto_if_eq AbandonedShip_HiddenFloorCorridors_EventScript_15ECED
 	msgbox AbandonedShip_HiddenFloorCorridors_Text_198E90, 4
 	playse SE_PIN

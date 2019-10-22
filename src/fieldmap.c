@@ -383,13 +383,13 @@ u8 MapGridIsImpassableAt(int x, int y)
         i = (x + 1) & 1;
         i += ((y + 1) & 1) * 2;
         block = gMapHeader.mapLayout->border[i];
-        block |= 0xc00;
+        block |= METATILE_COLLISION_MASK;
     }
-    if (block == 0x3ff)
+    if (block == METATILE_ID_UNDEFINED)
     {
         return 1;
     }
-    return (block & 0xc00) >> 10;
+    return (block & METATILE_COLLISION_MASK) >> 10;
 }
 
 u32 MapGridGetMetatileIdAt(int x, int y)
@@ -911,8 +911,8 @@ void sub_8056CBC(struct Tileset *tileset, int offset, int size)
         }
         else
         {
-            LZ77UnCompVram(tileset->palettes, (void*)0x2000000);
-            LoadPalette((void*)0x2000000, offset, size);
+            LZ77UnCompVram(tileset->palettes, (void*)EWRAM);
+            LoadPalette((void*)EWRAM, offset, size);
         }
     }
 }

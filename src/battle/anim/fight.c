@@ -5,13 +5,13 @@
 #include "sprite.h"
 #include "task.h"
 #include "trig.h"
-#include "constants/battle_constants.h"
+#include "constants/battle.h"
 
 extern s16 gBattleAnimArgs[];
-extern u8 gBankAttacker;
+extern u8 gBattlerAttacker;
 extern u8 gBattleAnimAttacker;
 extern u8 gBattleAnimTarget;
-extern u8 gBankSpriteIds[];
+extern u8 gBattlerSpriteIds[];
 extern u8 gBanksBySide[];
 extern u16 gBattle_BG1_X;
 extern u16 gBattle_BG1_Y;
@@ -850,8 +850,8 @@ void sub_80D97CC(struct Sprite *sprite)
 {
     if (gBattleAnimArgs[0] == 0)
     {
-        sprite->pos1.x = GetBattlerSpriteCoord(gBankAttacker, 2);
-        sprite->pos1.y = GetBattlerSpriteCoord(gBankAttacker, 3);
+        sprite->pos1.x = GetBattlerSpriteCoord(gBattlerAttacker, 2);
+        sprite->pos1.y = GetBattlerSpriteCoord(gBattlerAttacker, 3);
         sprite->oam.priority = GetBattlerSpriteBGPriority(gBattleAnimAttacker);
         sprite->data[7] = gBattleAnimTarget;
     }
@@ -952,8 +952,8 @@ void sub_80D9A38(struct Sprite *sprite)
 
     if (gBattleAnimArgs[0] == 0)
     {
-        sprite->pos1.x = GetBattlerSpriteCoord(gBankAttacker, 2);
-        sprite->pos1.y = GetBattlerSpriteCoord(gBankAttacker, 3);
+        sprite->pos1.x = GetBattlerSpriteCoord(gBattlerAttacker, 2);
+        sprite->pos1.y = GetBattlerSpriteCoord(gBattlerAttacker, 3);
         bank = gBattleAnimTarget;
         sprite->oam.priority = GetBattlerSpriteBGPriority(gBattleAnimAttacker);
     }

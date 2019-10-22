@@ -7,10 +7,15 @@ const u16 gBattleTextboxTiles[] = INCBIN_U16("graphics/interface/menu.4bpp.lz");
 const u16 gBattleTextboxPalette[] = INCBIN_U16("graphics/interface/menu.gbapal.lz");
 const u16 gBattleTextboxTilemap[] = INCBIN_U16("graphics/interface/menu_map.bin");
 
-// japanese table and bunch of stuff
-const u8 gUnusedOldCharmap_Gfx_lz[] = INCBIN_U8("graphics/unused/old_charmap.4bpp.lz");
-const u8 gUnusedOldCharmap_Tilemap_lz[] = INCBIN_U8("graphics/unused/old_charmap.bin.lz");
-const u16 gUnusedOldCharmap_Pal_lz[] = INCBIN_U16("graphics/unused/old_charmap.gbapal.lz");
+#if DEBUG_TRANSLATE || GERMAN
+const u8 gDebugBattleCharmap_Gfx_lz[] = INCBIN_U8("graphics/debug/debug_battle_charmap_en.4bpp.lz");
+const u8 gDebugBattleCharmap_Tilemap_lz[] = INCBIN_U8("graphics/debug/debug_battle_charmap_en.bin.lz");
+const u8 gDebugBattleCharmap_Pal_lz[] = INCBIN_U8("graphics/debug/debug_battle_charmap_en.gbapal.lz");
+#else
+const u8 gDebugBattleCharmap_Gfx_lz[] = INCBIN_U8("graphics/debug/debug_battle_charmap_jp.4bpp.lz");
+const u8 gDebugBattleCharmap_Tilemap_lz[] = INCBIN_U8("graphics/debug/debug_battle_charmap_jp.bin.lz");
+const u8 gDebugBattleCharmap_Pal_lz[] = INCBIN_U8("graphics/debug/debug_battle_charmap_jp.gbapal.lz");
+#endif
 
 const u8 gSmokescreenImpactTiles[] = INCBIN_U8("graphics/battle_anims/sprites/smokescreen_impact.4bpp.lz");
 const u16 gSmokescreenImpactPalette[] = INCBIN_U16("graphics/battle_anims/sprites/smokescreen_impact.gbapal.lz");
@@ -319,16 +324,7 @@ const u8 unused_basic_frame_bin[] = INCBIN_U8("graphics/unused/basic_frame.bin.l
 const u8 gUnknown_08D1212C[] = INCBIN_U8("graphics/battle_interface/window.gbapal");
 const u8 gUnknown_08D1214C[] = INCBIN_U8("graphics/battle_interface/hpbar.gbapal");
 
-const u8 gHealthboxElementsGfxTable[] = INCBIN_U8("graphics/battle_interface/hpbar.4bpp");
-const u8 gHealthboxElementsGfxTable_ExpBar[] = INCBIN_U8("graphics/battle_interface/expbar.4bpp");
-const u8 gHealthboxElementsGfxTable_StatusPsn[] = INCBIN_U8("graphics/battle_interface/status_psn.4bpp");
-const u8 gHealthboxElementsGfxTable_StatusPar[] = INCBIN_U8("graphics/battle_interface/status_par.4bpp");
-const u8 gHealthboxElementsGfxTable_StatusSlp[] = INCBIN_U8("graphics/battle_interface/status_slp.4bpp");
-const u8 gHealthboxElementsGfxTable_StatusFrz[] = INCBIN_U8("graphics/battle_interface/status_frz.4bpp");
-const u8 gHealthboxElementsGfxTable_StatusBrn[] = INCBIN_U8("graphics/battle_interface/status_brn.4bpp");
-const u8 gHealthboxElementsGfxTable_Misc[] = INCBIN_U8("graphics/battle_interface/misc.4bpp");
-const u8 gHealthboxElementsGfxTable_HpBarAnim[] = INCBIN_U8("graphics/battle_interface/hpbar_anim.4bpp");
-const u8 gHealthboxElementsGfxTable_MiscFrameEnd[] = INCBIN_U8("graphics/battle_interface/misc_frameend.4bpp");
+const u8 gHealthboxElementsGfxTable[][32] = INCBIN_U8("graphics/battle_interface/healthbox_elements.4bpp");
 
 const u8 Tiles_D129AC[] = INCBIN_U8("graphics/battle_interface/ball_display.4bpp");
 
@@ -762,6 +758,7 @@ const u8 gBattleAnimSpriteSheet_TrumpCard[] = INCBIN_U8("graphics/battle_anims/s
 #define SPECIES_SHINY_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species + SPECIES_SHINY_TAG}
 
 #include "graphics/pokemon/pokemon_gfx.h"
+//#include "graphics/pokemon.h" // the new file apparently but fuck that
 
 #include "graphics/pokemon/back_pic_table.h"
 #include "graphics/pokemon/back_pic_coords.h"
@@ -772,7 +769,7 @@ const u8 gBattleAnimSpriteSheet_TrumpCard[] = INCBIN_U8("graphics/battle_anims/s
 #include "graphics/pokemon/palette_table.h"
 #include "graphics/pokemon/shiny_palette_table.h"
 
-#include "trainer_gfx.h"
+#include "graphics/trainers.h"
 
 const u8 gVersusFrameGfx[] = INCBIN_U8("graphics/battle_transitions/vs_frame.4bpp.lz");
 const u8 gVersusFrameTilemap[] = INCBIN_U8("graphics/battle_transitions/vs_frame.bin.lz");
@@ -983,7 +980,7 @@ const u8 gUnknown_08E788E4[] = INCBIN_U8("graphics/interface/berry_tag.bin.lz");
 const u8 gUnknown_08E78A84[] = INCBIN_U8("graphics/interface/berry_tag_title.bin.lz");
 const u8 gBerryCheckCircle_Gfx[] = INCBIN_U8("graphics/interface/check_berry_circle.4bpp.lz");
 
-#include "berry_gfx.h"
+#include "graphics/berries.h"
 
 const u8 gBattleAnimSpritePalette_282[] = INCBIN_U8("graphics/battle_anims/sprites/282.gbapal.lz");
 const u8 gBattleAnimSpriteSheet_282[] = INCBIN_U8("graphics/battle_anims/sprites/282.4bpp.lz");

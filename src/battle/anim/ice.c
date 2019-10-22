@@ -4,7 +4,7 @@
 #include "rom_8077ABC.h"
 #include "battle.h"
 #include "battle_anim.h"
-#include "constants/battle_constants.h"
+#include "constants/battle.h"
 #include "task.h"
 #include "decompress.h"
 #include "palette.h"
@@ -15,7 +15,7 @@ extern u8  gBattleAnimAttacker;
 extern u8  gBattleAnimTarget;
 extern u8  gAnimVisualTaskCount;
 extern u8  gBanksBySide[];
-extern u8  gBankSpriteIds[];
+extern u8  gBattlerSpriteIds[];
 
 extern u16 gBattle_BG1_X;
 extern u16 gBattle_BG1_Y;

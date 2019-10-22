@@ -25,16 +25,16 @@ SootopolisCity_Gym_1F_EventScript_15AF2E:: @ 815AF2E
 	goto_if_lt SootopolisCity_Gym_1F_EventScript_15AF73
 	compare VAR_ICE_STEP_COUNT, 69
 	goto_if_lt SootopolisCity_Gym_1F_EventScript_15AF61
-	setmetatile 8, 4, 519, 0
-	setmetatile 8, 5, 519, 0
+	setmetatile 8, 4, METATILE_SootopolisGym_Stairs, 0
+	setmetatile 8, 5, METATILE_SootopolisGym_Stairs, 0
 
 SootopolisCity_Gym_1F_EventScript_15AF61:: @ 815AF61
-	setmetatile 8, 10, 519, 0
-	setmetatile 8, 11, 519, 0
+	setmetatile 8, 10, METATILE_SootopolisGym_Stairs, 0
+	setmetatile 8, 11, METATILE_SootopolisGym_Stairs, 0
 
 SootopolisCity_Gym_1F_EventScript_15AF73:: @ 815AF73
-	setmetatile 8, 15, 519, 0
-	setmetatile 8, 16, 519, 0
+	setmetatile 8, 15, METATILE_SootopolisGym_Stairs, 0
+	setmetatile 8, 16, METATILE_SootopolisGym_Stairs, 0
 
 SootopolisCity_Gym_1F_EventScript_15AF85:: @ 815AF85
 	return
@@ -100,14 +100,14 @@ SootopolisCity_Gym_1F_EventScript_15B02D:: @ 815B02D
 	msgbox SootopolisCity_Gym_1F_Text_18F36B, 4
 	setflag FLAG_DEFEATED_SOOTOPOLIS_GYM
 	setflag FLAG_BADGE08_GET
-	setvar VAR_SPECIAL_8, 8
+	setvar VAR_0x8008, 8
 	call SootopolisCity_Gym_1F_EventScript_1A01C0
 	goto SootopolisCity_Gym_1F_EventScript_15B056
 	end
 
 SootopolisCity_Gym_1F_EventScript_15B056:: @ 815B056
 	giveitem_std ITEM_TM03
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	goto_if_eq SootopolisCity_Gym_1F_EventScript_1A029B
 	msgbox SootopolisCity_Gym_1F_Text_18F466, 4
 	setflag FLAG_RECEIVED_TM03

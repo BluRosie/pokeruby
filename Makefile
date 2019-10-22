@@ -7,7 +7,6 @@ else
 EXE :=
 endif
 
-
 #### Tools ####
 
 SHELL     := /bin/bash -o pipefail
@@ -26,11 +25,15 @@ SCANINC   := tools/scaninc/scaninc$(EXE)
 RAMSCRGEN := tools/ramscrgen/ramscrgen$(EXE)
 GBAFIX    := tools/gbafix/gbafix$(EXE)
 MAPJSON   := tools/mapjson/mapjson$(EXE)
+JSONPROC  := tools/jsonproc/jsonproc$(EXE)
 
-ASFLAGS  := -mcpu=arm7tdmi -I include --defsym $(GAME_VERSION)=1 --defsym REVISION=$(GAME_REVISION) --defsym $(GAME_LANGUAGE)=1 --defsym DEBUG=$(DEBUG)
+ASFLAGS  := -mcpu=arm7tdmi -I include --defsym $(GAME_VERSION)=1 --defsym REVISION=$(GAME_REVISION) --defsym DEBUG_TRANSLATE=$(DEBUG_TRANSLATE) --defsym $(GAME_LANGUAGE)=1 --defsym DEBUG=$(DEBUG)
 CC1FLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Wunused -Werror -O2 -fhex-asm
-CPPFLAGS := -I tools/agbcc/include -iquote include -nostdinc -undef -Werror -Wno-trigraphs -D $(GAME_VERSION) -D REVISION=$(GAME_REVISION) -D $(GAME_LANGUAGE) -D DEBUG=$(DEBUG)
-
+CPPFLAGS := -I tools/agbcc/include -iquote include -nostdinc -undef -Werror -Wno-trigraphs -D $(GAME_VERSION) -D REVISION=$(GAME_REVISION) -D $(GAME_LANGUAGE) -DDEBUG_TRANSLATE=$(DEBUG_TRANSLATE) -D DEBUG=$(DEBUG)
+ifneq (,$(NONMATCHING))
+CPPFLAGS += -DNONMATCHING
+ASFLAGS  += --defsym NONMATCHING=1
+endif
 
 #### Files ####
 
@@ -48,10 +51,12 @@ C_OBJECTS    := $(addprefix $(BUILD_DIR)/, $(C_SOURCES:%.c=%.o))
 ASM_OBJECTS  := $(addprefix $(BUILD_DIR)/, $(ASM_SOURCES:%.s=%.o))
 ALL_OBJECTS  := $(C_OBJECTS) $(ASM_OBJECTS)
 
-SUBDIRS      := $(sort $(dir $(ALL_OBJECTS)))
+SUBDIRS        := $(sort $(dir $(ALL_OBJECTS)))
+DATA_SRC_SUBDIR = src/data
 
 LIBC   := tools/agbcc/lib/libc.a
 LIBGCC := tools/agbcc/lib/libgcc.a
+LDFLAGS := -L ../../tools/agbcc/lib -lgcc -lc
 
 LD_SCRIPT := $(BUILD_DIR)/ld_script.ld
 
@@ -67,7 +72,7 @@ LD_SCRIPT := $(BUILD_DIR)/ld_script.ld
 
 #### Main Rules ####
 
-ALL_BUILDS := ruby ruby_rev1 ruby_rev2 sapphire sapphire_rev1 sapphire_rev2 ruby_de sapphire_de ruby_de_debug
+ALL_BUILDS := ruby ruby_rev1 ruby_rev2 sapphire sapphire_rev1 sapphire_rev2 ruby_de sapphire_de ruby_de_debug ruby_en_debug
 
 # Available targets
 .PHONY: all clean tidy tools $(ALL_BUILDS)
@@ -103,10 +108,14 @@ MAKEFLAGS += --no-print-directory
 # Create build subdirectories
 $(shell mkdir -p $(SUBDIRS))
 
+AUTO_GEN_TARGETS :=
+
 all: $(ROM)
 ifeq ($(COMPARE),1)
 	@$(SHA1SUM) $(BUILD_NAME).sha1
 endif
+
+compare: ; @$(MAKE) COMPARE=1
 
 clean: tidy
 	find sound/direct_sound_samples \( -iname '*.bin' \) -exec rm {} +
@@ -115,6 +124,7 @@ clean: tidy
 	rm -f data/layouts/layouts.inc data/layouts/layouts_table.inc
 	rm -f data/maps/connections.inc data/maps/events.inc data/maps/groups.inc data/maps/headers.inc
 	find data/maps \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} +
+	rm -f $(AUTO_GEN_TARGETS)
 	$(MAKE) clean -C tools/gbagfx
 	$(MAKE) clean -C tools/scaninc
 	$(MAKE) clean -C tools/preproc
@@ -124,6 +134,7 @@ clean: tidy
 	$(MAKE) clean -C tools/ramscrgen
 	$(MAKE) clean -C tools/gbafix
 	$(MAKE) clean -C tools/mapjson
+	$(MAKE) clean -C tools/jsonproc
 
 cleancries: 
 	$(RM) $(CRY_BINS)
@@ -142,6 +153,7 @@ tools:
 	@$(MAKE) -C tools/mid2agb
 	@$(MAKE) -C tools/gbafix
 	@$(MAKE) -C tools/mapjson
+	@$(MAKE) -C tools/jsonproc
 
 tidy:
 	$(RM) $(ALL_BUILDS:%=poke%{.gba,.elf,.map})
@@ -152,7 +164,7 @@ $(ROM): %.gba: %.elf
 	$(GBAFIX) $@ -p -t"$(TITLE)" -c$(GAME_CODE) -m$(MAKER_CODE) -r$(GAME_REVISION) --silent
 
 %.elf: $(LD_SCRIPT) $(ALL_OBJECTS)
-	cd $(BUILD_DIR) && $(LD) -T ld_script.ld -Map ../../$(MAP) ../../$(LIBGCC) ../../$(LIBC) -o ../../$@
+	cd $(BUILD_DIR) && $(LD) -T ld_script.ld -Map ../../$(MAP) -o ../../$@ $(LDFLAGS)
 
 $(LD_SCRIPT): ld_script.txt $(BUILD_DIR)/sym_common.ld $(BUILD_DIR)/sym_ewram.ld $(BUILD_DIR)/sym_bss.ld
 	cd $(BUILD_DIR) && sed -e "s#tools/#../../tools/#g" ../../ld_script.txt >ld_script.ld
@@ -182,7 +194,18 @@ sapphire_rev2: ; @$(MAKE) GAME_VERSION=SAPPHIRE GAME_REVISION=2
 ruby_de:       ; @$(MAKE) GAME_VERSION=RUBY GAME_LANGUAGE=GERMAN
 sapphire_de:   ; @$(MAKE) GAME_VERSION=SAPPHIRE GAME_LANGUAGE=GERMAN
 ruby_de_debug: ; @$(MAKE) GAME_VERSION=RUBY GAME_LANGUAGE=GERMAN DEBUG=1
+ruby_en_debug: ; @$(MAKE) GAME_VERSION=RUBY DEBUG=1 DEBUG_TRANSLATE=1
 
+compare_ruby:          ; @$(MAKE) GAME_VERSION=RUBY COMPARE=1
+compare_ruby_rev1:     ; @$(MAKE) GAME_VERSION=RUBY GAME_REVISION=1 COMPARE=1
+compare_ruby_rev2:     ; @$(MAKE) GAME_VERSION=RUBY GAME_REVISION=2 COMPARE=1
+compare_sapphire:      ; @$(MAKE) GAME_VERSION=SAPPHIRE COMPARE=1
+compare_sapphire_rev1: ; @$(MAKE) GAME_VERSION=SAPPHIRE GAME_REVISION=1 COMPARE=1
+compare_sapphire_rev2: ; @$(MAKE) GAME_VERSION=SAPPHIRE GAME_REVISION=2 COMPARE=1
+compare_ruby_de:       ; @$(MAKE) GAME_VERSION=RUBY GAME_LANGUAGE=GERMAN COMPARE=1
+compare_sapphire_de:   ; @$(MAKE) GAME_VERSION=SAPPHIRE GAME_LANGUAGE=GERMAN COMPARE=1
+compare_ruby_de_debug: ; @$(MAKE) GAME_VERSION=RUBY GAME_LANGUAGE=GERMAN DEBUG=1 COMPARE=1
+compare_ruby_en_debug: ; @$(MAKE) GAME_VERSION=RUBY DEBUG=1 DEBUG_TRANSLATE=1 COMPARE=1
 
 #### Graphics Rules ####
 
@@ -195,6 +218,7 @@ include misc.mk
 include spritesheet_rules.mk
 include override.mk
 include map_data_rules.mk
+include json_data_rules.mk
 
 %.1bpp:   %.png ; $(GBAGFX) $< $@ $(GFX_OPTS)
 %.4bpp:   %.png ; $(GBAGFX) $< $@ $(GFX_OPTS)

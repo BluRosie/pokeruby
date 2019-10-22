@@ -45,9 +45,9 @@ extern u16 gSpeciesIdToCryId[];
 extern u8 gBattleTextBuff1[];
 extern u8 gBattleTextBuff2[];
 extern u8 gDisplayedStringBattle[];
-extern u8 gBankAttacker;
-extern u8 gBankTarget;
-extern u8 gStringBank;
+extern u8 gBattlerAttacker;
+extern u8 gBattlerTarget;
+extern u8 gPotentialItemEffectBattler;
 extern u8 gBankInMenu;
 extern struct SpindaSpot gSpindaSpotGraphics[];
 extern s8 gNatureStatTable[][5];
@@ -200,10 +200,10 @@ u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit)
 
 void statToMessage(int stat)
 {
-    gBankTarget = gBankInMenu;
+    gBattlerTarget = gBankInMenu;
     StringCopy(gBattleTextBuff1, gStatStrings[stat + 1]);
     StringCopy(gBattleTextBuff2, BattleText_Rose);
-    StrCpyDecodeToDisplayedStringBattle(BattleText_UnknownString3);
+    BattleStringExpandPlaceholdersToDisplayedString(BattleText_UnknownString3);
 }
 
 u8 *displayXItemMessage(u16 itemId)
@@ -227,7 +227,7 @@ u8 *displayXItemMessage(u16 itemId)
         itemEffect = ItemId_GetEffect(itemId);
     }
 
-    gStringBank = gBankInMenu;
+    gPotentialItemEffectBattler = gBankInMenu;
 
     for (i = 0; i <= 6; i++)
     {
@@ -239,14 +239,14 @@ u8 *displayXItemMessage(u16 itemId)
 
     if (itemEffect[X_ITEMS] & RAISE_CRITICAL) // dire hit
     {
-        gBankAttacker = gBankInMenu;
-        StrCpyDecodeToDisplayedStringBattle(BattleText_GetPumped);
+        gBattlerAttacker = gBankInMenu;
+        BattleStringExpandPlaceholdersToDisplayedString(BattleText_GetPumped);
     }
 
     if (itemEffect[X_ITEMS] & PREVENT_STAT_LOSS)
     {
-        gBankAttacker = gBankInMenu;
-        StrCpyDecodeToDisplayedStringBattle(BattleText_MistShroud);
+        gBattlerAttacker = gBankInMenu;
+        BattleStringExpandPlaceholdersToDisplayedString(BattleText_MistShroud);
     }
 
     return gDisplayedStringBattle;
@@ -651,7 +651,7 @@ void EvolutionRenameMon(struct Pokemon *mon, u16 oldSpecies, u16 newSpecies)
 bool8 sub_803FBBC(void)
 {
     bool8 retVal = FALSE;
-    switch (gLinkPlayers[GetMultiplayerId()].lp_field_18)
+    switch (gLinkPlayers[GetMultiplayerId()].id)
     {
     case 0:
     case 3:
@@ -668,7 +668,7 @@ bool8 sub_803FBBC(void)
 bool8 sub_803FBFC(u8 id)
 {
     bool8 retVal = FALSE;
-    switch (gLinkPlayers[id].lp_field_18)
+    switch (gLinkPlayers[id].id)
     {
     case 0:
     case 3:
@@ -686,7 +686,7 @@ s32 sub_803FC34(u16 a1)
 {
     s32 id;
     for (id = 0; id < MAX_LINK_PLAYERS; id++)
-        if (gLinkPlayers[id].lp_field_18 == a1)
+        if (gLinkPlayers[id].id == a1)
             break;
     return id;
 }
@@ -1410,7 +1410,7 @@ void sub_8040B8C(void)
     gBattleTextBuff2[2] = gBankInMenu;
     gBattleTextBuff2[3] = pokemon_order_func(gBattlerPartyIndexes[gBankInMenu]);
     gBattleTextBuff2[4] = EOS;
-    StrCpyDecodeBattle(BattleText_PreventedSwitch, gStringVar4);
+    BattleStringExpandPlaceholders(BattleText_PreventedSwitch, gStringVar4);
 }
 
 void SetWildMonHeldItem(void)
@@ -1456,7 +1456,7 @@ bool8 IsShinyOtIdPersonality(u32 otId, u32 personality)
 u8 *sub_8040D08(void)
 {
     u8 id = GetMultiplayerId();
-    return gLinkPlayers[sub_803FC34(gLinkPlayers[id].lp_field_18 ^ 2)].name;
+    return gLinkPlayers[sub_803FC34(gLinkPlayers[id].id ^ 2)].name;
 }
 
 const u8 gJapaneseNidoranNames[][11] = {_("ニドラン♂"), _("ニドラン♀")};

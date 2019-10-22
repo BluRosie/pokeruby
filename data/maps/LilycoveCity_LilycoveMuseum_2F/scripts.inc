@@ -28,32 +28,32 @@ LilycoveCity_LilycoveMuseum_2F_EventScript_1585F3:: @ 81585F3
 	end
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_1585FD:: @ 81585FD
-	setmetatile 10, 6, 606, 1
-	setmetatile 11, 6, 607, 1
+	setmetatile 10, 6, METATILE_LilycoveMuseum_Painting2_Left, 1
+	setmetatile 11, 6, METATILE_LilycoveMuseum_Painting2_Right, 1
 	goto LilycoveCity_LilycoveMuseum_2F_EventScript_1585C6
 	end
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_158615:: @ 8158615
-	setmetatile 18, 6, 604, 1
-	setmetatile 19, 6, 605, 1
+	setmetatile 18, 6, METATILE_LilycoveMuseum_Painting1_Left, 1
+	setmetatile 19, 6, METATILE_LilycoveMuseum_Painting1_Right, 1
 	goto LilycoveCity_LilycoveMuseum_2F_EventScript_1585D5
 	end
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_15862D:: @ 815862D
-	setmetatile 14, 10, 608, 1
-	setmetatile 15, 10, 609, 1
+	setmetatile 14, 10, METATILE_LilycoveMuseum_Painting3_Left, 1
+	setmetatile 15, 10, METATILE_LilycoveMuseum_Painting3_Right, 1
 	goto LilycoveCity_LilycoveMuseum_2F_EventScript_1585E4
 	end
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_158645:: @ 8158645
-	setmetatile 6, 10, 602, 1
-	setmetatile 7, 10, 603, 1
+	setmetatile 6, 10, METATILE_LilycoveMuseum_Painting0_Left, 1
+	setmetatile 7, 10, METATILE_LilycoveMuseum_Painting0_Right, 1
 	goto LilycoveCity_LilycoveMuseum_2F_EventScript_1585F3
 	end
 
 LilycoveCity_LilycoveMuseum_2F_EventScript_15865D:: @ 815865D
-	setmetatile 2, 6, 610, 1
-	setmetatile 3, 6, 611, 1
+	setmetatile 2, 6, METATILE_LilycoveMuseum_Painting4_Left, 1
+	setmetatile 3, 6, METATILE_LilycoveMuseum_Painting4_Right, 1
 	end
 
 LilycoveCity_LilycoveMuseum_2F_MapScript2_158670:: @ 8158670
@@ -92,8 +92,8 @@ LilycoveCity_LilycoveMuseum_2F_Movement_1586D5:: @ 81586D5
 LilycoveCity_LilycoveMuseum_2F_EventScript_1586D8:: @ 81586D8
 	lockall
 	goto_if_set FLAG_RECEIVED_GLASS_ORNAMENT, LilycoveCity_LilycoveMuseum_2F_EventScript_158793
-	specialvar VAR_SPECIAL_4, sub_80C4D50
-	switch VAR_SPECIAL_4
+	specialvar VAR_0x8004, sub_80C4D50
+	switch VAR_0x8004
 	case 1, LilycoveCity_LilycoveMuseum_2F_EventScript_15872C
 	case 2, LilycoveCity_LilycoveMuseum_2F_EventScript_15872C
 	case 3, LilycoveCity_LilycoveMuseum_2F_EventScript_15872C
@@ -119,7 +119,7 @@ LilycoveCity_LilycoveMuseum_2F_EventScript_15875C:: @ 815875C
 	applymovement 1, LilycoveCity_LilycoveMuseum_2F_Movement_1A0839
 	msgbox LilycoveCity_LilycoveMuseum_2F_Text_188120, 4
 	givedecoration_std DECOR_GLASS_ORNAMENT
-	compare RESULT, 0
+	compare VAR_RESULT, 0
 	goto_if_eq LilycoveCity_LilycoveMuseum_2F_EventScript_158783
 	setflag FLAG_RECEIVED_GLASS_ORNAMENT
 	closemessage
