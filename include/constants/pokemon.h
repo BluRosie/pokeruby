@@ -90,6 +90,7 @@
 #define MON_DATA_SPEED2            86
 #define MON_DATA_SPATK2            87
 #define MON_DATA_SPDEF2            88
+#define MON_DATA_HIDDEN_ABILITY    89
 
 #define MIN_LEVEL 1
 #define MAX_LEVEL 100
@@ -116,7 +117,10 @@
 #define TYPE_ICE      0x0f
 #define TYPE_DRAGON   0x10
 #define TYPE_DARK     0x11
-#define NUMBER_OF_MON_TYPES     0x12
+#define TYPE_FAIRY    0x12
+#define NUMBER_OF_MON_TYPES     0x13
+
+#define MAX_LEVEL 100
 
 #define FRIENDSHIP_EVENT_GROW_LEVEL           0x0
 #define FRIENDSHIP_EVENT_VITAMIN              0x1 // unused

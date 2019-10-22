@@ -5,7 +5,7 @@
 #include "constants/species.h"
 #include "party_menu.h"
 #include "battle.h"
-#include "battle_anim_813F0F4.h"
+#include "battle_anim_special.h"
 #include "battle_interface.h"
 #include "battle_party_menu.h"
 #include "choose_party.h"

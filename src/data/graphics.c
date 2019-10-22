@@ -758,7 +758,6 @@ const u8 gBattleAnimSpriteSheet_TrumpCard[] = INCBIN_U8("graphics/battle_anims/s
 #define SPECIES_SHINY_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species + SPECIES_SHINY_TAG}
 
 #include "graphics/pokemon/pokemon_gfx.h"
-//#include "graphics/pokemon.h" // the new file apparently but fuck that
 
 #include "graphics/pokemon/back_pic_table.h"
 #include "graphics/pokemon/back_pic_coords.h"
