@@ -272,9 +272,9 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     }
     if (attacker->ability == ABILITY_BERSERK && attacker->hp <= (attacker->maxHP / 2))
         spAttack *= 2;
-    if (attacker->ability == ABILITY_FLARE_BOOST && attacker->status1 & STATUS_BURN)
+    if (attacker->ability == ABILITY_FLARE_BOOST && attacker->status1 & STATUS1_BURN)
         spAttack *= 2;
-    if (attacker->ability == ABILITY_TOXIC_BOOST && attacker->status1 & STATUS_PSN_ANY)
+    if (attacker->ability == ABILITY_TOXIC_BOOST && attacker->status1 & STATUS1_PSN_ANY)
         attack *= 2;
     if (attacker->ability == ABILITY_SOLAR_POWER && gBattleWeather & WEATHER_SUN_ANY)
         spAttack = (150 * spAttack) / 100;
@@ -342,7 +342,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         damage = damage / damageHelper;
         damage /= 50;
 
-        if ((attacker->status1 & STATUS_BURN) && attacker->ability != ABILITY_GUTS)
+        if ((attacker->status1 & STATUS1_BURN) && attacker->ability != ABILITY_GUTS)
             damage /= 2;
 
         if ((sideStatus & SIDE_STATUS_REFLECT) && gCritMultiplier == 1)

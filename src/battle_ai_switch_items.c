@@ -1,6 +1,7 @@
 #include "global.h"
 #include "battle.h"
 #include "battle_ai_switch_items.h"
+#include "battle_controllers.h"
 #include "battle_script_commands.h"
 #include "data2.h"
 #include "ewram.h"
@@ -9,7 +10,6 @@
 #include "pokemon_item_effect.h"
 #include "random.h"
 #include "rom_8077ABC.h"
-#include "rom3.h"
 #include "util.h"
 #include "constants/abilities.h"
 #include "constants/items.h"
@@ -388,7 +388,7 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
 
 static bool8 ShouldSwitchIfNaturalCure(void)
 {
-    if (!(gBattleMons[gActiveBattler].status1 & STATUS_SLEEP))
+    if (!(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP))
         return FALSE;
     if (gBattleMons[gActiveBattler].ability != ABILITY_NATURAL_CURE)
         return FALSE;
@@ -943,27 +943,27 @@ static bool8 ShouldUseItem(void)
                ewram160DA(gActiveBattler) |= CURE_INFATUATION;
                 shouldUse = TRUE;
             }
-            if (itemEffects[STATUS_HEALING] & CURE_SLEEP && gBattleMons[gActiveBattler].status1 & STATUS_SLEEP)
+            if (itemEffects[STATUS_HEALING] & CURE_SLEEP && gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP)
             {
                ewram160DA(gActiveBattler) |= CURE_SLEEP;
                 shouldUse = TRUE;
             }
-            if (itemEffects[STATUS_HEALING] & CURE_POISON && (gBattleMons[gActiveBattler].status1 & STATUS_POISON || gBattleMons[gActiveBattler].status1 & STATUS_TOXIC_POISON))
+            if (itemEffects[STATUS_HEALING] & CURE_POISON && (gBattleMons[gActiveBattler].status1 & STATUS1_POISON || gBattleMons[gActiveBattler].status1 & STATUS1_TOXIC_POISON))
             {
                ewram160DA(gActiveBattler) |= CURE_POISON;
                 shouldUse = TRUE;
             }
-            if (itemEffects[STATUS_HEALING] & CURE_BURN && gBattleMons[gActiveBattler].status1 & STATUS_BURN)
+            if (itemEffects[STATUS_HEALING] & CURE_BURN && gBattleMons[gActiveBattler].status1 & STATUS1_BURN)
             {
                ewram160DA(gActiveBattler) |= CURE_BURN;
                 shouldUse = TRUE;
             }
-            if (itemEffects[STATUS_HEALING] & CURE_ICE && gBattleMons[gActiveBattler].status1 & STATUS_FREEZE)
+            if (itemEffects[STATUS_HEALING] & CURE_ICE && gBattleMons[gActiveBattler].status1 & STATUS1_FREEZE)
             {
                ewram160DA(gActiveBattler) |= CURE_ICE;
                 shouldUse = TRUE;
             }
-            if (itemEffects[STATUS_HEALING] & CURE_PARALYSIS && gBattleMons[gActiveBattler].status1 & STATUS_PARALYSIS)
+            if (itemEffects[STATUS_HEALING] & CURE_PARALYSIS && gBattleMons[gActiveBattler].status1 & STATUS1_PARALYSIS)
             {
                ewram160DA(gActiveBattler) |= CURE_PARALYSIS;
                 shouldUse = TRUE;
