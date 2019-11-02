@@ -1424,6 +1424,32 @@ void TranslateAnimSpriteToTargetMonLocation(struct Sprite *sprite)
     StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
 }
 
+void TranslateAnimSpriteToAttackerMonLocation(struct Sprite *sprite)
+{
+    bool8 v1;
+    u8 v2;
+
+    if (!(gBattleAnimArgs[5] & 0xff00))
+        v1 = TRUE;
+    else
+        v1 = FALSE;
+
+    if (!(gBattleAnimArgs[5] & 0xff))
+        v2 = 3;
+    else
+        v2 = 1;
+
+    sub_8078764(sprite, v1);
+    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        gBattleAnimArgs[2] = -gBattleAnimArgs[2];
+
+    sprite->data[0] = gBattleAnimArgs[4];
+    sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimAttacker, 2) + gBattleAnimArgs[2];
+    sprite->data[4] = GetBattlerSpriteCoord(gBattleAnimAttacker, v2) + gBattleAnimArgs[3];
+    sprite->callback = StartAnimLinearTranslation;
+    StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
+}
+
 void sub_80794A8(struct Sprite *sprite)
 {
     InitAnimSpritePos(sprite, 1);

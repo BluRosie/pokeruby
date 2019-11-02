@@ -388,6 +388,30 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83DA9E0 =
     .callback = sub_80793C4,
 };
 
+const union AffineAnimCmd gSpriteAffineAnim_MeFirst[] =
+{
+    AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 0),
+    AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 17),
+    AFFINEANIMCMD_FRAME(0xFFF0, 0xFFF0, 0, 17),
+    AFFINEANIMCMD_END_ALT(1),
+};
+
+const union AffineAnimCmd *const gSpriteAffineAnimTable_MeFirst[] =
+{
+    gSpriteAffineAnim_MeFirst,
+};
+
+const struct SpriteTemplate gBattleSpriteMeFirstCircle =
+{
+    .tileTag = ANIM_TAG_THIN_RING,
+    .paletteTag = ANIM_TAG_THIN_RING,
+    .oam = &gOamData_837E11C,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gSpriteAffineAnimTable_MeFirst,
+    .callback = sub_80793C4,
+};
+
 const union AffineAnimCmd gSpriteAffineAnim_83DA9F8[] =
 {
     AFFINEANIMCMD_FRAME(0x20, 0x20, 0, 0),

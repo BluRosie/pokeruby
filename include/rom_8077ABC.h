@@ -110,6 +110,7 @@ bool8 sub_8078CE8(struct Sprite *sprite);
 void oamt_add_pos2_onto_pos1(struct Sprite *sprite);
 void sub_8078BD4(struct Sprite *sprite);
 void TranslateAnimSpriteToTargetMonLocation(struct Sprite *sprite);
+void TranslateAnimSpriteToAttackerMonLocation(struct Sprite *sprite);
 void sub_80789D4(bool8 a1);
 void sub_8079AB8(u8 sprite, u8 sprite2);
 u8 sub_807A4A0(int bank, u8 sprite, int species);

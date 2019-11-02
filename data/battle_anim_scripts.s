@@ -3845,7 +3845,7 @@ Move_UPROAR: @ 81CBEFC
 
 Move_HEAT_WAVE: @ 81CBFC6
 	loadspritegfx ANIM_TAG_FLYING_DIRT
-	createvisualtask AnimTask_BlendSpriteColor, 5, 10261, 0, 6, 6, rgb(31, 0, 0)
+	createvisualtask AnimTask_BlendSpriteColor, 5, ANIM_TAG_FLYING_DIRT, 0, 6, 6, rgb(31, 0, 0)
 	createvisualtask do_boulder_dust, 5, 1
 	createvisualtask AnimTask_BlendInterfaceColor, 6, 6, 31
 	panse_1B SE_W257, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 2, 0
@@ -4306,9 +4306,9 @@ Move_LUSTER_PURGE: @ 81CC95B
 	createsprite gBattleAnimSpriteTemplate_83DA9E0, ANIM_BATTLER_ATTACKER, 41, 0, 0, 0, 0
 	delay 20
 	createvisualtask sub_80E2A7C, 5, 5, 2, 0, 16, -1
-	createvisualtask AnimTask_BlendSpriteColor, 5, 10267, 2, 0, 16, 0xFFFF
+	createvisualtask AnimTask_BlendSpriteColor, 5, ANIM_TAG_WHITE_CIRCLE_OF_LIGHT, 2, 0, 16, 0xFFFF
 	waitforvisualfinish
-	createvisualtask AnimTask_BlendSpriteColor, 5, 10135, 0, 12, 12, rgb(0, 0, 23)
+	createvisualtask AnimTask_BlendSpriteColor, 5, ANIM_TAG_IMPACT, 0, 12, 12, rgb(0, 0, 23)
 	waitforvisualfinish
 	createsprite gBattleAnimSpriteTemplate_83DB4F0, ANIM_BATTLER_TARGET, 3, 1, 2
 	createvisualtask sub_812B30C, 5, 215, SOUND_PAN_TARGET
@@ -4562,7 +4562,7 @@ Move_FAKE_TEARS: @ 81CD10D
 	loadspritegfx ANIM_TAG_SMALL_BUBBLES
 	loadspritegfx ANIM_TAG_THOUGHT_BUBBLE
 	loadspritegfx ANIM_TAG_MUSIC_NOTES
-	createvisualtask AnimTask_BlendSpriteColor, 5, 10155, 0, 4, 4, rgb(12, 11, 31)
+	createvisualtask AnimTask_BlendSpriteColor, 5, ANIM_TAG_SMALL_BUBBLES, 0, 4, 4, rgb(12, 11, 31)
 	waitforvisualfinish
 	createvisualtask sub_812E568, 5, 0, 2, 1
 	loopsewithpan SE_W039, SOUND_PAN_ATTACKER, 12, 4
@@ -10996,6 +10996,22 @@ Move_LUCKY_CHANT:
 	end
 
 Move_ME_FIRST:
+	loadspritegfx ANIM_TAG_THIN_RING
+	loadspritegfx ANIM_TAG_SMALL_BUBBLES
+	playsewithpan SE_W208, SOUND_PAN_TARGET
+	createsprite gMeFirstBallSpriteTemplate, 0, 0, 0, 0, 0, 0, 20, 0
+	waitforvisualfinish
+	delay 10
+	// ending part
+	playsewithpan SE_REAPOKE, SOUND_PAN_ATTACKER
+	createsprite gBattleSpriteMeFirstCircle, ANIM_BATTLER_ATTACKER, 41, 0, 0, 0, 0
+	delay 10
+	createsprite gBattleSpriteMeFirstCircle, ANIM_BATTLER_ATTACKER, 41, 0, 0, 0, 0
+	delay 10
+	createsprite gBattleSpriteMeFirstCircle, ANIM_BATTLER_ATTACKER, 41, 0, 0, 0, 0
+	waitforvisualfinish
+	end
+
 Move_COPYCAT:
 Move_POWER_SWAP:
 Move_GUARD_SWAP:

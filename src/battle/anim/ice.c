@@ -34,6 +34,7 @@ static void AnimMoveParticleBeyondTarget(struct Sprite *sprite);
 static void AnimWaveFromCenterOfTarget(struct Sprite *sprite);
 static void InitSwirlingFogAnim(struct Sprite *sprite);
 static void AnimThrowMistBall(struct Sprite *sprite);
+static void AnimThrowMeFirstBall(struct Sprite *sprite);
 static void InitPoisonGasCloudAnim(struct Sprite *sprite);
 static void AnimHailBegin(struct Sprite *sprite);
 void sub_807A9BC(struct Sprite *sprite);
@@ -356,6 +357,17 @@ const struct SpriteTemplate gMistBallSpriteTemplate =
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimThrowMistBall,
+};
+
+const struct SpriteTemplate gMeFirstBallSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_SMALL_BUBBLES,
+    .paletteTag = ANIM_TAG_SMALL_BUBBLES,
+    .oam = &gOamData_837DF2C,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimThrowMeFirstBall,
 };
 
 const u8 gUnknown_083D9D98[] =
@@ -1302,7 +1314,7 @@ static void AnimTask_Haze2(u8 taskId)
 // Throws the ball in Mist Ball.
 // arg 0: initial x pixel offset
 // arg 1: initial y pixel offset
-// arg 2: targey x offset
+// arg 2: target x offset
 // arg 3: target y offset
 // arg 4: duration
 // arg 5: ??? unknown (seems to vibrate target mon somehow)
@@ -1311,6 +1323,13 @@ static void AnimThrowMistBall(struct Sprite *sprite)
     sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
     sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
     sprite->callback = TranslateAnimSpriteToTargetMonLocation;
+}
+
+static void AnimThrowMeFirstBall(struct Sprite *sprite)
+{
+    sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
+    sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
+    sprite->callback = TranslateAnimSpriteToAttackerMonLocation;
 }
 
 // Displays misty background in Mist Ball.
