@@ -124,7 +124,7 @@ static void sub_812EC78(struct Sprite *sprite);
 static void sub_812ED84(struct Sprite *sprite);
 static void sub_812EEA4(struct Sprite *sprite);
 static void sub_812F88C(struct Sprite *sprite);
-static void sub_812F948(struct Sprite *sprite);
+static void PinkCloudAroundAttacker(struct Sprite *sprite);
 static void sub_812FF94(struct Sprite *sprite);
 static void sub_81300F4(struct Sprite *sprite);
 static void sub_81304DC(struct Sprite *sprite);
@@ -904,7 +904,7 @@ const struct SpriteTemplate gPinkSmokeTemplate =
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gSpriteAffineAnimTable_8402884,
-    .callback = sub_812F948,
+    .callback = PinkCloudAroundAttacker,
 };
 
 const union AffineAnimCmd gUnknown_084028AC[] =
@@ -3556,7 +3556,7 @@ static void sub_812F8DC(struct Sprite *sprite)
     }
 }
 
-static void sub_812F948(struct Sprite *sprite)
+static void PinkCloudAroundAttacker(struct Sprite *sprite)
 {
     sprite->data[0] = gBattleAnimArgs[3];
     StartSpriteAffineAnim(sprite, gBattleAnimArgs[0]);

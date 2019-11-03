@@ -13,6 +13,7 @@ day/night bugs:
 - when a battle starts, the black covering is still blended
 
 TODO:
+- 79 MORE MOVE ANIMATIONS
 - load different icons based on major gender difference
 - meowstic/wormadam gender difference
 - giratina/arceus formes, form(e)s in general
@@ -25,7 +26,7 @@ experience broke
 
 move animations that i personally want to polish:
 gyro ball (new particle?)
-u-turn (looks rough, fly up then hit with the fly noise?)
+punishment is slash w a purple blend
 
 move effects that need to be polished:
 gravity
