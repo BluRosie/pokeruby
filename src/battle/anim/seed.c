@@ -63,22 +63,6 @@ const union AffineAnimCmd gSpriteAffineAnim_WorrySeedCloud2[] =
     AFFINEANIMCMD_JUMP(0),
 };
 
-const union AffineAnimCmd gSpriteAffineAnim_WorrySeedCloud3[] =
-{
-    AFFINEANIMCMD_FRAME(0xC0, 0xC0, 0, 0),
-    AFFINEANIMCMD_FRAME(0x4, 0x6, 0, 16),
-    AFFINEANIMCMD_FRAME(0xFFFC, 0xFFFA, 0, 16),
-    AFFINEANIMCMD_JUMP(0),
-};
-
-const union AffineAnimCmd gSpriteAffineAnim_WorrySeedCloud4[] =
-{
-    AFFINEANIMCMD_FRAME(0xE0, 0xE0, 0, 0),
-    AFFINEANIMCMD_FRAME(0x8, 0xA, 0, 30),
-    AFFINEANIMCMD_FRAME(0xFFF8, 0xFFF6, 0, 16),
-    AFFINEANIMCMD_JUMP(0),
-};
-
 const struct SpriteTemplate gWorrySeedSpriteTemplate =
 {
     .tileTag = ANIM_TAG_SEED,
@@ -94,8 +78,6 @@ const union AffineAnimCmd *const gSpriteAffineAnimTable_WorrySeedCloud[] =
 {
     gSpriteAffineAnim_WorrySeedCloud1,
     gSpriteAffineAnim_WorrySeedCloud2,
-    gSpriteAffineAnim_WorrySeedCloud3,
-    gSpriteAffineAnim_WorrySeedCloud4,
 };
 
 const struct OamData gWorrySeedCloudOAM =
@@ -107,7 +89,7 @@ const struct OamData gWorrySeedCloudOAM =
     .priority = 1,
 };
 
-//arg[0]: affine anim table entry (0-3)
+//arg[0]: affine anim table entry (0-1)
 //arg[1]: x
 //arg[2]: y
 //arg[3]: ??? (time on screen?)
