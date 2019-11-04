@@ -11122,10 +11122,11 @@ Move_WORRY_SEED:
 	createsprite gWorrySeedSpriteTemplate, ANIM_BATTLER_TARGET, 2, 15, 0, 0, 24, 35, -32
 	waitforvisualfinish
 	delay 4
+	createvisualtask AnimTask_SlackOffSquish, 2, ANIM_BATTLER_TARGET
 	playsewithpan SE_BOWA2, SOUND_PAN_TARGET
 	createsprite gWorrySeedCloudTemplate, ANIM_BATTLER_TARGET, 0, 0, 32, 28, 60
-	@ large clouds
 	delay 0
+	@ large clouds
 	createsprite gWorrySeedCloudTemplate, ANIM_BATTLER_TARGET, 127, 1, 20, 0, 60
 	delay 0
 	createsprite gWorrySeedCloudTemplate, ANIM_BATTLER_TARGET, 126, 1, -20, 0, 60
@@ -11145,7 +11146,55 @@ Move_WORRY_SEED:
 	end
 
 Move_SUCKER_PUNCH:
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	loadspritegfx ANIM_TAG_IMPACT
+	createvisualtask AnimTask_BlendSpriteColor, 5, ANIM_TAG_HANDS_AND_FEET, 0, 12, 12, rgb(25, 4, 25)
+	call _suckerright
+	call _suckerleft
+	call _suckerright
+	call _suckerleft
+	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, ANIM_BATTLER_ATTACKER, 20, 0, 0, 3
+	playsewithpan SE_W233B, SOUND_PAN_TARGET
+	createsprite gFistFootSpriteTemplate, ANIM_BATTLER_TARGET, 3, 0, 0, 20, 1, 0
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_TARGET, 2, 0, 0, 1, 0
+	createvisualtask AnimTask_ShakeMon, 5, 1, 5, 0, 7, 1
+	waitforvisualfinish
+	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 0, 0, 10
+	waitforvisualfinish
+	end
+_suckerright:
+	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, ANIM_BATTLER_ATTACKER, 20, 0, 0, 3
+	goto _suckerend
+_suckerleft:
+	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, ANIM_BATTLER_ATTACKER, -20, 0, 0, 3
+_suckerend:
+	playsewithpan SE_W104, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 0, 0, 3
+	waitforvisualfinish
+	return
+
 Move_TOXIC_SPIKES:
+	loadspritegfx ANIM_TAG_SPIKES
+	loadspritegfx ANIM_TAG_POISON_BUBBLE
+	monbg ANIM_BATTLER_DEF_PARTNER
+	createvisualtask AnimTask_BlendSpriteColor, 5, ANIM_TAG_SPIKES, 0, 12, 12, rgb(25, 4, 25)
+	playsewithpan SE_W026, SOUND_PAN_ATTACKER
+	waitplaysewithpan SE_W030, SOUND_PAN_TARGET, 28
+	createsprite gBattleAnimSpriteTemplate_840227C, ANIM_BATTLER_TARGET, 2, 20, 0, 0, 24, 30
+	delay 10
+	playsewithpan SE_W026, SOUND_PAN_ATTACKER
+	waitplaysewithpan SE_W030, SOUND_PAN_TARGET, 28
+	createsprite gBattleAnimSpriteTemplate_840227C, ANIM_BATTLER_TARGET, 2, 20, 0, -24, 24, 30
+	delay 10
+	waitplaysewithpan SE_W030, SOUND_PAN_TARGET, 28
+	createsprite gBattleAnimSpriteTemplate_840227C, ANIM_BATTLER_TARGET, 2, 20, 0, 24, 24, 30
+	waitforvisualfinish
+	call PoisonBubblesAnim
+	waitforvisualfinish
+	clearmonbg ANIM_BATTLER_DEF_PARTNER
+	end
+
 Move_HEART_SWAP:
 Move_AQUA_RING:
 Move_MAGNET_RISE:
