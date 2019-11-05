@@ -273,3 +273,7 @@
 	.byte 0x30
 	.byte \coefficient
 	.endm
+
+	.macro switchtargetandattacker
+	.byte 0x31
+	.endm

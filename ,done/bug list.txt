@@ -24,9 +24,12 @@ MOVE_TARGET_USER & MOVE_TARGET_SELECTED bring up a selection even when in single
 experience broke
 
 
+consider erasing the hp boxes when battle is happening as opposed to just letting the move animation take place
+
 move animations that i personally want to polish:
 gyro ball (new particle?)
 punishment is slash w a purple blend
+maybe toxic spikes?
 
 move effects that need to be polished:
 gravity

@@ -74,6 +74,17 @@ const struct SpriteTemplate gWorrySeedSpriteTemplate =
     .callback = AnimWorrySeed,
 };
 
+const struct SpriteTemplate gHeartSwapSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_RED_ORB,
+    .paletteTag = ANIM_TAG_RED_ORB,
+    .oam = &gOamData_837DF2C,
+    .anims = gSpriteAnimTable_83D63C0,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimWorrySeed,
+};
+
 const union AffineAnimCmd *const gSpriteAffineAnimTable_WorrySeedCloud[] =
 {
     gSpriteAffineAnim_WorrySeedCloud1,
@@ -104,8 +115,7 @@ const struct SpriteTemplate gWorrySeedCloudTemplate =
     .callback = PinkCloudAroundTarget,
 };
 
-// seed (sprouts a sapling from a seed.)
-// Used by Leech Seed.
+// seed thrown
 // arg 0: initial x pixel offset
 // arg 1: initial y pixel offset
 // arg 2: target x pixel offset
@@ -150,6 +160,14 @@ static void PinkCloudAroundTarget(struct Sprite *sprite)
     sprite->callback = sub_80DA48C;
 }
 
+// seed (sprouts a sapling from a seed.)
+// Used by Leech Seed.
+// arg 0: initial x pixel offset
+// arg 1: initial y pixel offset
+// arg 2: target x pixel offset
+// arg 3: target y pixel offset
+// arg 4: duration
+// arg 5: wave amplitude
 void AnimLeechSeed(struct Sprite* sprite)
 {
     InitAnimSpritePos(sprite, 1);

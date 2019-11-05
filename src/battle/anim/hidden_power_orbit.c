@@ -9,6 +9,7 @@ extern u8 gBattleAnimAttacker;
 extern u8 gBattleAnimTarget;
 
 void AnimOrbitFast(struct Sprite* sprite);
+void AnimOrbitFastTarget(struct Sprite* sprite);
 void AnimOrbitScatter(struct Sprite* sprite);
 static void AnimOrbitFastStep(struct Sprite* sprite);
 static void AnimOrbitScatterStep(struct Sprite* sprite);
@@ -36,6 +37,17 @@ const struct SpriteTemplate gHiddenPowerOrbSpriteTemplate =
     .callback = AnimOrbitFast,
 };
 
+const struct SpriteTemplate gHiddenPowerOrbTargetSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_RED_ORB,
+    .paletteTag = ANIM_TAG_RED_ORB,
+    .oam = &gOamData_837DF8C,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gSpriteAffineAnimTable_83D7B10,
+    .callback = AnimOrbitFastTarget,
+};
+
 const struct SpriteTemplate gHiddenPowerOrbScatterSpriteTemplate =
 {
     .tileTag = ANIM_TAG_RED_ORB,
@@ -59,6 +71,18 @@ void AnimOrbitFast(struct Sprite* sprite)
     sprite->data[0] = gBattleAnimArgs[0];
     sprite->data[1] = gBattleAnimArgs[1];
     sprite->data[7] = GetBattlerSubpriority(gBattleAnimAttacker);
+    sprite->callback = AnimOrbitFastStep;
+    sprite->callback(sprite);
+}
+
+void AnimOrbitFastTarget(struct Sprite* sprite)
+{
+    sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
+    sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
+    sprite->affineAnimPaused = 1;
+    sprite->data[0] = gBattleAnimArgs[0];
+    sprite->data[1] = gBattleAnimArgs[1];
+    sprite->data[7] = GetBattlerSubpriority(gBattleAnimTarget);
     sprite->callback = AnimOrbitFastStep;
     sprite->callback(sprite);
 }

@@ -11196,6 +11196,36 @@ Move_TOXIC_SPIKES:
 	end
 
 Move_HEART_SWAP:
+	loadspritegfx ANIM_TAG_RED_ORB
+	playsewithpan SE_W048, SOUND_PAN_TARGET
+	createsprite gHeartSwapSpriteTemplate, ANIM_BATTLER_TARGET, 2, 15, 0, 0, 24, 35, -32
+	waitforvisualfinish
+	delay 10
+	switchtargetandattacker
+	playsewithpan SE_W048, SOUND_PAN_TARGET
+	createsprite gHeartSwapSpriteTemplate, ANIM_BATTLER_TARGET, 2, 0, 24, -12, 12, 35, 20
+	waitforvisualfinish
+	switchtargetandattacker
+	delay 6
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, ANIM_BATTLER_ATTACKER, 0
+	playsewithpan SE_W179, SOUND_PAN_ATTACKER
+	createsprite gHiddenPowerOrbSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 26, 0
+	createsprite gHiddenPowerOrbSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 26, 42
+	createsprite gHiddenPowerOrbSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 26, 84
+	createsprite gHiddenPowerOrbSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 26, 126
+	createsprite gHiddenPowerOrbSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 26, 168
+	createsprite gHiddenPowerOrbSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 26, 210
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, ANIM_BATTLER_TARGET, 0
+	createsprite gHiddenPowerOrbTargetSpriteTemplate, ANIM_BATTLER_TARGET, 2, 26, 0
+	createsprite gHiddenPowerOrbTargetSpriteTemplate, ANIM_BATTLER_TARGET, 2, 26, 42
+	createsprite gHiddenPowerOrbTargetSpriteTemplate, ANIM_BATTLER_TARGET, 2, 26, 84
+	createsprite gHiddenPowerOrbTargetSpriteTemplate, ANIM_BATTLER_TARGET, 2, 26, 126
+	createsprite gHiddenPowerOrbTargetSpriteTemplate, ANIM_BATTLER_TARGET, 2, 26, 168
+	createsprite gHiddenPowerOrbTargetSpriteTemplate, ANIM_BATTLER_TARGET, 2, 26, 210
+	delay 54
+	setarg ARG_RET_ID, -1
+	end
+
 Move_AQUA_RING:
 Move_MAGNET_RISE:
 Move_FLARE_BLITZ:
