@@ -26,6 +26,10 @@ extern u8 gAnimMoveTurn;
 
 extern struct SpriteTemplate gBasicHitSplatSpriteTemplate;
 
+extern void sub_80DA48C(struct Sprite *sprite);
+
+void ForcePalmAnimCallback(struct Sprite *sprite);
+void AuraSphereCallback(struct Sprite *sprite);
 void sub_080B08A0(struct Sprite *sprite);
 void sub_80D902C(struct Sprite *sprite);
 void sub_80D9078(struct Sprite *sprite);
@@ -465,6 +469,138 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83DA214 =
     .affineAnims = gSpriteAffineAnimTable_83DA210,
     .callback = sub_80D9C40,
 };
+
+// FORCE PALM
+
+const union AffineAnimCmd gForcePalmAffineAnimCmd_1[] =
+{
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd gForcePalmAffineAnimCmd_2[] =
+{
+    AFFINEANIMCMD_FRAME(0xD8, 0xD8, 0, 0),
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd gForcePalmAffineAnimCmd_3[] =
+{
+    AFFINEANIMCMD_FRAME(0xB0, 0xB0, 0, 0),
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd gForcePalmAffineAnimCmd_4[] =
+{
+    AFFINEANIMCMD_FRAME(0x80, 0x80, 0, 0),
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd *const gForcePalmAffineAnims[] =
+{
+    gForcePalmAffineAnimCmd_1,
+    gForcePalmAffineAnimCmd_2,
+    gForcePalmAffineAnimCmd_3,
+    gForcePalmAffineAnimCmd_4,
+};
+
+const struct SpriteTemplate gForcePalmImpactTemplate =
+{
+    .tileTag = ANIM_TAG_IMPACT,
+    .paletteTag = ANIM_TAG_SHADOW_BALL,
+    .oam = &gOamData_837E0B4,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gForcePalmAffineAnims,
+    .callback = ForcePalmAnimCallback,
+};
+
+void ForcePalmAnimCallback(struct Sprite *sprite)
+{
+    StartSpriteAffineAnim(sprite, gBattleAnimArgs[3]);
+    if (gBattleAnimArgs[2] == 0)
+        InitAnimSpritePos(sprite, 1);
+    else
+        sub_8078764(sprite, TRUE);
+
+    sprite->callback = WaitAnimForDuration;
+    StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
+}
+
+// end force palm
+
+// aura sphere
+
+/*void AuraSphereCallback(struct Sprite *sprite)
+{
+    sprite->data[0] = 0;
+    StartSpriteAffineAnim(sprite, 0);
+    
+    sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
+    sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
+    
+    sprite->callback = sub_80DA48C;
+    //sprite->callback = WaitAnimForDuration;
+    //StoreSpriteCallbackInData(sprite, sub_80D9A38);
+}*/
+
+const union AffineAnimCmd gAuraSphereAffineAnimCmd[] =
+{
+    AFFINEANIMCMD_FRAME(0x20, 0x20, 0, 0),
+    AFFINEANIMCMD_FRAME(0x2, 0x2, 0, 64),
+    AFFINEANIMCMD_FRAME(0xFFFC, 0xFFFC, 0, 8),
+    AFFINEANIMCMD_FRAME(0x4, 0x4, 0, 8),
+    AFFINEANIMCMD_END_ALT(1),
+};
+
+const union AffineAnimCmd *const gAuraSphereAffineAnim[] =
+{
+    gAuraSphereAffineAnimCmd,
+};
+
+// arg 0: initial x pixel offset
+// arg 1: initial y pixel offset
+// arg 2: duration
+// arg 3: side
+void AuraSphereCallback(struct Sprite *sprite)
+{
+    StartSpriteAnim(sprite, 0);
+
+    if (gBattleAnimArgs[3] == 0)
+        InitAnimSpritePos(sprite, FALSE);
+    else
+        sub_8078764(sprite, FALSE);
+
+    sprite->pos1.x = GetBattlerSpriteCoord(gBattlerAttacker, 2) + gBattleAnimArgs[0];
+    sprite->pos1.y = GetBattlerSpriteCoord(gBattlerAttacker, 3) + gBattleAnimArgs[1];
+
+    StartSpriteAffineAnim(sprite, 0);
+
+    sprite->data[0] = gBattleAnimArgs[2];
+    sprite->callback = WaitAnimForDuration;
+
+    gBattleAnimArgs[0] = gBattleAnimArgs[3]; // store the side here for sub_80D9A38
+
+    StoreSpriteCallbackInData(sprite, sub_80D9A38);
+}
+
+const struct SpriteTemplate gAuraSphereBlast =
+{
+	.tileTag = ANIM_TAG_CIRCLE_OF_LIGHT,
+	.paletteTag = ANIM_TAG_CIRCLE_OF_LIGHT,
+	.oam = &gOamData_837E11C,
+	.anims = gDummySpriteAnimTable,
+	.images = NULL,
+	.affineAnims = gAuraSphereAffineAnim,
+	.callback = AuraSphereCallback,
+};
+
+// end aura sphere
+
+
 
 void sub_080B08A0(struct Sprite *sprite)
 {
@@ -946,6 +1082,9 @@ static void sub_80D99F4(struct Sprite *sprite)
         DestroyAnimSprite(sprite);
 }
 
+/*
+    arg 0 - side
+*/
 void sub_80D9A38(struct Sprite *sprite)
 {
     u8 bank;
