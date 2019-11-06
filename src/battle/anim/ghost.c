@@ -224,7 +224,7 @@ const struct SpriteTemplate gSpriteTemplate_83DAF98 =
 
 static void sub_80DDB6C(struct Sprite *sprite)
 {
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
     sprite->data[0] = gBattleAnimArgs[2];
     sprite->data[1] = sprite->pos1.x;
     sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
@@ -320,7 +320,7 @@ static void sub_80DDCC8(struct Sprite *sprite)
 
 static void sub_80DDD58(struct Sprite *sprite)
 {
-    sub_8078764(sprite, TRUE);
+    InitSpritePosToAnimTarget(sprite, TRUE);
     sprite->callback = sub_80DDD78;
     sub_80DDD78(sprite);
 }
@@ -468,7 +468,7 @@ static void AnimShadowBallStep(struct Sprite *sprite)
 
 static void sub_80DE0FC(struct Sprite *sprite)
 {
-    sub_8078764(sprite, TRUE);
+    InitSpritePosToAnimTarget(sprite, TRUE);
     sprite->callback = sub_80DE114;
 }
 
@@ -1031,7 +1031,7 @@ static void sub_80DEF3C(struct Sprite *sprite)
     s16 xDelta;
     s16 xDelta2;
 
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
     if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
     {
         xDelta = 24;

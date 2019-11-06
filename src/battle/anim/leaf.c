@@ -187,7 +187,7 @@ static void sub_80CAF6C(struct Sprite* sprite)
 // arg 6: target between double battle opponents (boolean)
 void AnimTranslateLinearSingleSineWave(struct Sprite* sprite)
 {
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
     if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
     {
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];

@@ -196,7 +196,7 @@ static void AnimBonemerangProjectileEnd(struct Sprite *sprite)
 // arg 4: duration
 static void AnimBoneHitProjectile(struct Sprite *sprite)
 {
-    sub_8078764(sprite, TRUE);
+    InitSpritePosToAnimTarget(sprite, TRUE);
     if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];
     
@@ -218,7 +218,7 @@ static void AnimDirtScatter(struct Sprite *sprite)
     u8 targetXPos, targetYPos;
     s16 xOffset, yOffset;
 
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
 
     targetXPos = sub_8077EE4(gBattleAnimTarget, 2);
     targetYPos = sub_8077EE4(gBattleAnimTarget, 3);

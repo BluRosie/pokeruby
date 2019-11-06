@@ -221,7 +221,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83D9438 =
 
 void sub_80D37FC(struct Sprite *sprite)
 {
-    sub_8078764(sprite, TRUE);
+    InitSpritePosToAnimTarget(sprite, TRUE);
 
     sprite->data[0] = gBattleAnimArgs[4];
     sprite->data[2] = sprite->pos1.x + gBattleAnimArgs[2];
@@ -235,11 +235,11 @@ void sub_80D3838(struct Sprite *sprite)
 {
     if (gBattleAnimArgs[3] != 0)
     {
-        sub_8078764(sprite, TRUE);
+        InitSpritePosToAnimTarget(sprite, TRUE);
     }
     else
     {
-        InitAnimSpritePos(sprite, 1);
+        InitSpritePosToAnimAttacker(sprite, 1);
     }
 
     sprite->data[7] = gBattleAnimArgs[2];
@@ -1367,7 +1367,7 @@ void sub_80D4044(struct Sprite *sprite)
     s16 randData2;
 
     sprite->oam.tileNum += 8;
-    sub_8078764(sprite, TRUE);
+    InitSpritePosToAnimTarget(sprite, TRUE);
     randData = (Random() & 0xFF) | 256;
     randData2 = (Random() & 0x1FF);
     if (randData2 > 255)
@@ -1867,7 +1867,7 @@ void sub_80D4C64(struct Sprite *sprite)
 
 void sub_80D4CA4(struct Sprite *sprite)
 {
-    InitAnimSpritePos(sprite, TRUE);
+    InitSpritePosToAnimAttacker(sprite, TRUE);
     sprite->data[1] = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
     sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
     sprite->data[3] = gBattleAnimArgs[2];

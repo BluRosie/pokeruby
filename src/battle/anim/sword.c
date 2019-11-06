@@ -40,7 +40,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83D748C =
 
 void sub_80CF690(struct Sprite* sprite)
 {
-    InitAnimSpritePos(sprite, 0);
+    InitSpritePosToAnimAttacker(sprite, 0);
     sprite->callback = RunStoredCallbackWhenAffineAnimEnds;
     StoreSpriteCallbackInData(sprite, sub_80CF6B4);
 }

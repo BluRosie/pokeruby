@@ -27,6 +27,15 @@ const struct OamData gOamData_AffineDouble_ObjBlend_32x8 =
     .priority = 2,
 };
 
+const struct OamData gOamData_AffineDouble_ObjBlend_32x16 =
+{
+    .affineMode = ST_OAM_AFFINE_DOUBLE,
+    .objMode = ST_OAM_OBJ_BLEND,
+    .shape = SPRITE_SHAPE(32x16),
+    .size = SPRITE_SIZE(32x16),
+    .priority = 2,
+};
+
 const struct OamData gOamData_837DF24 =
 {
     .affineMode = 0,
@@ -969,6 +978,7 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     { gBattleAnimSpriteSheet_Acupressure, 0x200, ANIM_TAG_ACUPRESSURE_FINGER },
     { gBattleAnimSpriteSheet_TrumpCard, 0x200, ANIM_TAG_TRUMP_CARD },
     { gBattleAnimSpriteSheet_WhiteStreak, 0x200, ANIM_TAG_WHITE_STREAK },
+    { gBattleAnimSpriteSheet_PoisonJab, 0x100, ANIM_TAG_POISON_JAB },
 };
 
 const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
@@ -1265,6 +1275,7 @@ const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
     { gBattleAnimSpritePalette_Acupressure, ANIM_TAG_ACUPRESSURE_FINGER },
     { gBattleAnimSpritePalette_Acupressure, ANIM_TAG_TRUMP_CARD },
     { gBattleAnimSpritePalette_WhiteStreak, ANIM_TAG_WHITE_STREAK },
+    { gBattleAnimSpritePalette_PoisonJab, ANIM_TAG_POISON_JAB },
 };
 
 const struct BattleAnimBackground gBattleAnimBackgroundTable[] =

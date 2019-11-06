@@ -221,7 +221,7 @@ void sub_80D5210(struct Sprite *sprite)
 // arg 2: initial wave offset
 void AnimFireRing(struct Sprite *sprite)
 {
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
 
     sprite->data[7] = gBattleAnimArgs[2];
     sprite->data[0] = 0;
@@ -307,7 +307,7 @@ void AnimFireCross(struct Sprite *sprite)
 
 void sub_80D53B4(struct Sprite *sprite)
 {
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
 
     sprite->data[1] = gBattleAnimArgs[2];
     sprite->data[0] = gBattleAnimArgs[3];

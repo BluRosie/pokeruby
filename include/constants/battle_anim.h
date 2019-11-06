@@ -302,6 +302,7 @@
 #define ANIM_TAG_ACUPRESSURE_FINGER         (ANIM_SPRITES_START + 289)
 #define ANIM_TAG_TRUMP_CARD                 (ANIM_SPRITES_START + 290)
 #define ANIM_TAG_WHITE_STREAK               (ANIM_SPRITES_START + 291)
+#define ANIM_TAG_POISON_JAB                 (ANIM_SPRITES_START + 292)
 
 // battlers
 #define ANIM_BATTLER_ATTACKER    0

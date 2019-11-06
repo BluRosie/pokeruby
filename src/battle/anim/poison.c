@@ -20,6 +20,8 @@ static void sub_80D9E78(struct Sprite *sprite);
 static void sub_80D9EE8(struct Sprite *sprite);
 static void AnimBubbleEffectStep(struct Sprite *sprite);
 
+void AnimPoisonJabProjectile(struct Sprite *sprite);
+
 const union AnimCmd gSpriteAnim_83DA22C[] =
 {
     ANIMCMD_FRAME(0, 5),
@@ -197,7 +199,7 @@ void sub_80D9D70(struct Sprite *sprite)
     if (!gBattleAnimArgs[3])
         StartSpriteAnim(sprite, 2);
 
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
 
     sprite->data[0] = gBattleAnimArgs[2];
     sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
@@ -221,7 +223,7 @@ void sub_80D9DF0(struct Sprite *sprite)
     if (!gBattleAnimArgs[3])
         StartSpriteAnim(sprite, 2);
 
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
     SetAverageBattlerPositions(gBattleAnimTarget, 1, &l1, &l2);
 
     if (GetBattlerSide(gBattleAnimAttacker))
@@ -298,7 +300,7 @@ void AnimBubbleEffect(struct Sprite *sprite)
 {
     if (!gBattleAnimArgs[2])
     {
-        sub_8078764(sprite, TRUE);
+        InitSpritePosToAnimTarget(sprite, TRUE);
     }
     else
     {
@@ -323,4 +325,42 @@ static void AnimBubbleEffectStep(struct Sprite *sprite)
 
     if (sprite->affineAnimEnded)
         DestroyAnimSprite(sprite);
+}
+
+// poison jab
+
+extern const struct OamData gOamData_AffineDouble_ObjBlend_32x16;
+
+const struct SpriteTemplate gPoisonJabProjectileSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_POISON_JAB,
+    .paletteTag = ANIM_TAG_POISON_JAB,
+    .oam = &gOamData_AffineDouble_ObjBlend_32x16,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimPoisonJabProjectile,
+};
+
+// Moves a projectile towards the center of the target mon.  The sprite is rotated to look
+// like it's traveling along that path.
+// arg 0: initial x pixel offset
+// arg 1: initial y pixel offset
+// arg 2: duration
+void AnimPoisonJabProjectile(struct Sprite *sprite)
+{
+    s16 targetXPos;
+    s16 targetYPos;
+    u16 rotation;
+
+    InitSpritePosToAnimTarget(sprite, TRUE);
+    targetXPos = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X_2);
+    targetYPos = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y_PIC_OFFSET);
+    rotation = ArcTan2Neg(targetXPos - sprite->pos1.x, targetYPos - sprite->pos1.y);
+    TrySetSpriteRotScale(sprite, FALSE, 0x100, 0x100, rotation);
+    sprite->data[0] = gBattleAnimArgs[2];
+    sprite->data[2] = targetXPos;
+    sprite->data[4] = targetYPos;
+    sprite->callback = StartAnimLinearTranslation;
+    StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
 }

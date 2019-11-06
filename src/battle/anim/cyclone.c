@@ -38,7 +38,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83D765C =
 
 void sub_80D0118(struct Sprite* sprite)
 {
-    InitAnimSpritePos(sprite, 0);
+    InitSpritePosToAnimAttacker(sprite, 0);
     if (GetBattlerSide(gBattleAnimAttacker) == 0)
         sprite->pos1.y += 16;
 

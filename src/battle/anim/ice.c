@@ -840,7 +840,7 @@ static void AnimIcePunchSwirlingParticle(struct Sprite *sprite)
 // arg 4: duration
 static void AnimIceBeamParticle(struct Sprite *sprite)
 {
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
     sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
 
     if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
@@ -863,7 +863,7 @@ static void AnimIceEffectParticle(struct Sprite *sprite)
 {
     if (gBattleAnimArgs[2] == 0)
     {
-        sub_8078764(sprite, TRUE);
+        InitSpritePosToAnimTarget(sprite, TRUE);
     }
     else
     {
@@ -899,7 +899,7 @@ static void AnimSwirlingSnowball_Step1(struct Sprite *sprite)
     int i;
     s16 tempDataHolder[8];
 
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
 
     sprite->data[0] = gBattleAnimArgs[4];
     sprite->data[1] = sprite->pos1.x;
@@ -1019,7 +1019,7 @@ static void AnimMoveParticleBeyondTarget(struct Sprite *sprite)
     int i;
     s16 tempDataHolder[8];
 
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
 
     sprite->data[0] = gBattleAnimArgs[4];
     sprite->data[1] = sprite->pos1.x;
@@ -1099,7 +1099,7 @@ static void AnimWaveFromCenterOfTarget(struct Sprite *sprite)
     {
         if (gBattleAnimArgs[2] == 0)
         {
-            sub_8078764(sprite, FALSE);
+            InitSpritePosToAnimTarget(sprite, FALSE);
         }
         else
         {
@@ -1137,7 +1137,7 @@ static void InitSwirlingFogAnim(struct Sprite *sprite)
     {
         if (gBattleAnimArgs[5] == 0)
         {
-            InitAnimSpritePos(sprite, 0);
+            InitSpritePosToAnimAttacker(sprite, 0);
         }
         else
         {
@@ -1156,7 +1156,7 @@ static void InitSwirlingFogAnim(struct Sprite *sprite)
     {
         if (gBattleAnimArgs[5] == 0)
         {
-            sub_8078764(sprite, FALSE);
+            InitSpritePosToAnimTarget(sprite, FALSE);
         }
         else 
         {
@@ -2268,7 +2268,7 @@ static void InitIceBallAnim(struct Sprite *sprite)
         animNum = 4;
 
     StartSpriteAffineAnim(sprite, animNum);
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
 
     sprite->data[0] = gBattleAnimArgs[4];
 
@@ -2301,7 +2301,7 @@ static void InitIceBallParticle(struct Sprite *sprite)
     s16 randA, randB;
 
     sprite->oam.tileNum += 8;
-    sub_8078764(sprite, TRUE);
+    InitSpritePosToAnimTarget(sprite, TRUE);
 
     randA = (Random() & 0xFF) + 256;
     randB = Random() & 0x1FF;

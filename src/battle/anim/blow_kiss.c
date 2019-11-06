@@ -27,7 +27,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83D7AB0 =
 
 void sub_80D1F58(struct Sprite* sprite)
 {
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
     sprite->data[0] = 0x5F;
     sprite->data[1] = sprite->pos1.x;
     sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, 2);

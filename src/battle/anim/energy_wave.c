@@ -162,7 +162,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83D92E8 =
 
 void sub_80D3554(struct Sprite *sprite)
 {
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
 
     sprite->data[0] = 30;
     sprite->data[1] = sprite->pos1.x;
@@ -289,7 +289,7 @@ void sub_80D3728(struct Sprite *sprite)
     else
         var2 = 1;
 
-    InitAnimSpritePos(sprite, var1);
+    InitSpritePosToAnimAttacker(sprite, var1);
 
     if (GetBattlerSide(gBattleAnimAttacker) != 0)
     {

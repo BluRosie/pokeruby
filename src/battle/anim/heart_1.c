@@ -27,7 +27,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83D7A80 =
 void sub_80D1C80(struct Sprite* sprite)
 {
     if (++sprite->data[0] == 1)
-        InitAnimSpritePos(sprite, 0);
+        InitSpritePosToAnimAttacker(sprite, 0);
 
     sprite->pos2.x = Sin(sprite->data[1], 8);
     sprite->pos2.y = sprite->data[2] >> 8;

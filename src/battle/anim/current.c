@@ -358,7 +358,7 @@ const struct SpriteTemplate gSpriteTemplate_83D9B40 =
 
 void sub_80D648C(struct Sprite *sprite)
 {
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
 
     sprite->data[0] = gBattleAnimArgs[3];
     sprite->data[1] = sprite->pos1.x;
@@ -463,7 +463,7 @@ static void sub_80D672C(struct Sprite *sprite)
 
 void sub_80D679C(struct Sprite *sprite)
 {
-    sub_8078764(sprite, FALSE);
+    InitSpritePosToAnimTarget(sprite, FALSE);
     sprite->oam.tileNum += gBattleAnimArgs[3] * 4;
 
     if (gBattleAnimArgs[3] == 1)

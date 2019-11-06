@@ -348,7 +348,7 @@ void sub_80D1318(struct Sprite* sprite)
 void sub_80D1368(struct Sprite* sprite)
 {
     s16 r1;
-    InitAnimSpritePos(sprite, 0);
+    InitSpritePosToAnimAttacker(sprite, 0);
     r1 = (GetBattlerSide(gBattleAnimAttacker)) ? -0xA0 : 0xA0;
     sprite->data[0] = 0x380;
     sprite->data[1] = r1;

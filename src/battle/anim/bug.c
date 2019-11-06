@@ -260,7 +260,7 @@ void sub_80DC9A0(struct Sprite *sprite)
     if (IsContest())
         gBattleAnimArgs[2] /= 2;
 
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
     sprite->data[0] = gBattleAnimArgs[2];
     sprite->data[1] = sprite->pos1.x;
     sprite->data[3] = sprite->pos1.y;
@@ -402,13 +402,13 @@ void AnimTranslateStinger(struct Sprite *sprite)
         }
     }
 
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
 
     lVarX = GetBattlerSpriteCoord(gBattleAnimTarget, 2) + gBattleAnimArgs[2];
     lVarY = GetBattlerSpriteCoord(gBattleAnimTarget, 3) + gBattleAnimArgs[3];
     rot = ArcTan2Neg(lVarX - sprite->pos1.x, lVarY - sprite->pos1.y);
     rot += 0xC000;
-    sub_8078FDC(sprite, FALSE, 0x100, 0x100, rot);
+    TrySetSpriteRotScale(sprite, FALSE, 0x100, 0x100, rot);
 
     sprite->data[0] = gBattleAnimArgs[4];
     sprite->data[2] = lVarX;
@@ -429,7 +429,7 @@ void AnimTranslateStinger(struct Sprite *sprite)
 // arg 5: wave amplitude
 void AnimMissileArc(struct Sprite *sprite)
 {
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
 
     if (GetBattlerSide(gBattleAnimAttacker))
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];
@@ -473,7 +473,7 @@ static void AnimMissileArcStep(struct Sprite *sprite)
             u16 rotation = ArcTan2Neg(sprite->pos1.x + sprite->pos2.x - x2,
                                   sprite->pos1.y + sprite->pos2.y - y2);
             rotation += 0xC000;
-            sub_8078FDC(sprite, FALSE, 0x100, 0x100, rotation);
+            TrySetSpriteRotScale(sprite, FALSE, 0x100, 0x100, rotation);
 
             for (i = 0; i < 8; i++)
                 data[i] = tempData[i];

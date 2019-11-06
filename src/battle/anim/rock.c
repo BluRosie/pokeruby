@@ -389,9 +389,9 @@ void sub_80DCF60(struct Sprite *sprite)
 void sub_80DCFE4(struct Sprite *sprite)
 {
     if (gBattleAnimArgs[6] == 0)
-        InitAnimSpritePos(sprite, 0);
+        InitSpritePosToAnimAttacker(sprite, 0);
     else
-        sub_8078764(sprite, FALSE);
+        InitSpritePosToAnimTarget(sprite, FALSE);
 
     sprite->data[0] = gBattleAnimArgs[3];
     sprite->data[1] = gBattleAnimArgs[2];
@@ -574,7 +574,7 @@ void AnimDirtParticleAcrossScreen(struct Sprite *sprite)
 void AnimRaiseSprite(struct Sprite *sprite)
 {
     StartSpriteAnim(sprite, gBattleAnimArgs[4]);
-    InitAnimSpritePos(sprite, 0);
+    InitSpritePosToAnimAttacker(sprite, 0);
 
     sprite->data[0] = gBattleAnimArgs[3];
     sprite->data[2] = sprite->pos1.x;
@@ -1055,7 +1055,7 @@ void AnimRockPolishStreak(struct Sprite *sprite)
 {
     int affineAnimNum = Random() % ARRAY_COUNT(gRockPolishStreak_AffineAnimCmds);
     
-    InitAnimSpritePos(sprite, TRUE);
+    InitSpritePosToAnimAttacker(sprite, TRUE);
     StartSpriteAffineAnim(sprite, affineAnimNum);
     
     StoreSpriteCallbackInData(sprite, DestroySpriteAndMatrix);
@@ -1092,7 +1092,7 @@ const struct SpriteTemplate gRockPolishSparkleTemplate =
 // arg 1: initial y pixel offset
 void AnimRockPolishSparkle(struct Sprite *sprite)
 {
-    InitAnimSpritePos(sprite, TRUE);
+    InitSpritePosToAnimAttacker(sprite, TRUE);
 
     StoreSpriteCallbackInData(sprite, DestroySpriteAndMatrix);
     sprite->callback = RunStoredCallbackWhenAnimEnds;

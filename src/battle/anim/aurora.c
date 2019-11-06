@@ -65,7 +65,7 @@ void AnimAuroraRings(struct Sprite *sprite)
 {
     s16 r6;
 
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
     if (GetBattlerSide(gBattleAnimAttacker) != 0)
         r6 = -gBattleAnimArgs[2];
     else

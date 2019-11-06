@@ -124,7 +124,7 @@ const struct SpriteTemplate gWorrySeedCloudTemplate =
 // arg 5: wave amplitude
 void AnimWorrySeed(struct Sprite* sprite)
 {
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
     if (GetBattlerSide(gBattleAnimAttacker))
     {
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];
@@ -170,7 +170,7 @@ static void PinkCloudAroundTarget(struct Sprite *sprite)
 // arg 5: wave amplitude
 void AnimLeechSeed(struct Sprite* sprite)
 {
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
     if (GetBattlerSide(gBattleAnimAttacker))
     {
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];

@@ -89,7 +89,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83D6440 =
 
 void sub_80CABF8(struct Sprite* sprite)
 {
-    sub_8078764(sprite, TRUE);
+    InitSpritePosToAnimTarget(sprite, TRUE);
     StartSpriteAnim(sprite, gBattleAnimArgs[4]);
     if (gBattleAnimArgs[4] == 1)
     {
@@ -152,7 +152,7 @@ void sub_80CACEC(u8 taskId)
 
 void sub_80CAD54(struct Sprite* sprite)
 {
-    InitAnimSpritePos(sprite, 0);
+    InitSpritePosToAnimAttacker(sprite, 0);
     sprite->data[0] = gBattleAnimArgs[3];
     sprite->data[1] = sprite->pos1.x;
     sprite->data[2] = sprite->pos1.x;
@@ -189,7 +189,7 @@ static void sub_80CADA8(struct Sprite* sprite)
 
 void sub_80CAE20(struct Sprite* sprite)
 {
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
     sprite->data[0] = gBattleAnimArgs[3];
     sprite->data[1] = sprite->pos1.x;
     sprite->data[2] = sprite->pos1.x;

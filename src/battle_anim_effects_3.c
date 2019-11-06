@@ -1253,14 +1253,14 @@ static void sub_812C2BC(struct Sprite *sprite)
     u8 x = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
     u8 y = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
 
-    sub_8078764(sprite, TRUE);
+    InitSpritePosToAnimTarget(sprite, TRUE);
 
     rotation = ArcTan2Neg(sprite->pos1.x - x, sprite->pos1.y - y);
     rotation += 0x6000;
     if (IsContest())
         rotation += 0x4000;
 
-    sub_8078FDC(sprite, 0, 0x100, 0x100, rotation);
+    TrySetSpriteRotScale(sprite, 0, 0x100, 0x100, rotation);
 
     sprite->data[0] = gBattleAnimArgs[2];
     sprite->data[2] = x;
@@ -1434,7 +1434,7 @@ static void sub_812C720(struct Sprite *sprite)
     u16 x;
     u16 y;
 
-    InitAnimSpritePos(sprite, 1);
+    InitSpritePosToAnimAttacker(sprite, 1);
     SetAverageBattlerPositions(gBattleAnimTarget, 0, &x, &y);
 
     if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
@@ -1557,7 +1557,7 @@ static void sub_812C990(struct Sprite *sprite)
     REG_WIN0H = 0;
     REG_WIN0V = 0;
 
-    sub_8078764(sprite, FALSE);
+    InitSpritePosToAnimTarget(sprite, FALSE);
 
     sprite->oam.objMode = ST_OAM_OBJ_WINDOW;
     sprite->invisible = 1;
@@ -2021,7 +2021,7 @@ static void sub_812D254(struct Sprite *sprite)
 static void sub_812D294(struct Sprite *sprite)
 {
     if (sprite->data[0] == 0)
-        InitAnimSpritePos(sprite, 0);
+        InitSpritePosToAnimAttacker(sprite, 0);
 
     sprite->data[0]++;
     if (sprite->data[0] < 40)
@@ -2226,7 +2226,7 @@ static void sub_812D724(struct Sprite *sprite)
     switch (sprite->data[0])
     {
     case 0:
-        InitAnimSpritePos(sprite, 0);
+        InitSpritePosToAnimAttacker(sprite, 0);
         sprite->data[1] = 0x900;
         sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
         sprite->data[0]++;
@@ -2702,7 +2702,7 @@ static void sub_812E4F0(struct Sprite *sprite)
 {
     if (sprite->data[0] == 0)
     {
-        InitAnimSpritePos(sprite, 0);
+        InitSpritePosToAnimAttacker(sprite, 0);
         sprite->data[0]++;
     }
     else if (sprite->data[0]++ > 20)
@@ -3100,7 +3100,7 @@ static void sub_812ED84(struct Sprite *sprite)
     REG_WIN0V = 0;
 
     sprite->data[0] = gBattleAnimArgs[2];
-    sub_8078764(sprite, FALSE);
+    InitSpritePosToAnimTarget(sprite, FALSE);
     sprite->oam.objMode = ST_OAM_OBJ_WINDOW;
     sprite->invisible = 1;
     sprite->callback = sub_812EE00;
@@ -3282,7 +3282,7 @@ static void sub_812F290(u8 taskId)
     gTasks[taskId].data[10] -= 16;
     gTasks[taskId].data[11] += 128;
     gSprites[spriteId].oam.affineMode |= 2;
-    sub_8078FDC(&gSprites[spriteId], 1, gTasks[taskId].data[10], gTasks[taskId].data[11], 0);
+    TrySetSpriteRotScale(&gSprites[spriteId], 1, gTasks[taskId].data[10], gTasks[taskId].data[11], 0);
     if (++gTasks[taskId].data[12] == 9)
     {
         sub_8079098(&gSprites[spriteId]);
@@ -4485,7 +4485,7 @@ static void sub_8130F5C(struct Sprite *sprite)
 {
     if (gBattleAnimArgs[0] == 0)
     {
-        InitAnimSpritePos(sprite, 1);
+        InitSpritePosToAnimAttacker(sprite, 1);
         sprite->data[7] = gBattleAnimAttacker;
     }
     else

@@ -149,7 +149,7 @@ void sub_80CB94C(struct Sprite* sprite)
 {
     s16 e1;
     s16 e2;
-    InitAnimSpritePos(sprite, 0);
+    InitSpritePosToAnimAttacker(sprite, 0);
     e1 = GetBattlerSpriteCoord(gBattleAnimTarget, 0);
     e2 = GetBattlerSpriteCoord(gBattleAnimTarget, 1);
     if ((gBattleAnimAttacker ^ 2) == gBattleAnimTarget)
