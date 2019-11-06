@@ -11,7 +11,9 @@ extern u8 gBattleAnimTarget;
 void AnimOrbitFast(struct Sprite* sprite);
 void AnimOrbitFastTarget(struct Sprite* sprite);
 void AnimOrbitScatter(struct Sprite* sprite);
+void AnimPulseScatter(struct Sprite* sprite);
 static void AnimOrbitFastStep(struct Sprite* sprite);
+static void AnimPulseScatterStep(struct Sprite* sprite);
 static void AnimOrbitScatterStep(struct Sprite* sprite);
 
 const union AffineAnimCmd gSpriteAffineAnim_83D7AF8[] =
@@ -57,6 +59,19 @@ const struct SpriteTemplate gHiddenPowerOrbScatterSpriteTemplate =
     .images = NULL,
     .affineAnims = gSpriteAffineAnimTable_83D7B10,
     .callback = AnimOrbitScatter,
+};
+
+extern const struct OamData gOamData_AffineDouble_ObjBlend_32x16;
+
+const struct SpriteTemplate gDarkPulseScatterSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_POISON_JAB,
+    .paletteTag = ANIM_TAG_POISON_JAB,
+    .oam = &gOamData_AffineDouble_ObjBlend_32x16,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimPulseScatter,
 };
 
 // Orbits a sphere in an ellipse around the mon.
@@ -135,10 +150,42 @@ void AnimOrbitScatter(struct Sprite* sprite)
     sprite->callback = AnimOrbitScatterStep;
 }
 
+// Moves pulses away from the mon while setting rotscale based on where they are in their orbit.
+// Used in MOVE_DARK_PULSE.
+// arg 0: initial wave offset
+void AnimPulseScatter(struct Sprite* sprite)
+{
+    sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
+    sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
+    sprite->data[0] = Sin(gBattleAnimArgs[0], 10);
+    sprite->data[1] = Cos(gBattleAnimArgs[0], 7);
+    sprite->data[4] = 3;
+    sprite->callback = AnimPulseScatterStep;
+}
+
 static void AnimOrbitScatterStep(struct Sprite* sprite)
 {
     sprite->pos2.x += sprite->data[0];
     sprite->pos2.y += sprite->data[1];
+
     if (sprite->pos1.x + sprite->pos2.x + 16 > 0x110u || sprite->pos1.y + sprite->pos2.y > 0xA0 || sprite->pos1.y + sprite->pos2.y < -16)
         DestroyAnimSprite(sprite);
+}
+
+static void AnimPulseScatterStep(struct Sprite* sprite)
+{
+    u16 rotation;
+    sprite->pos2.x += sprite->data[0] / (sprite->data[4] / 3);
+    sprite->pos2.y += sprite->data[1] / (sprite->data[4] / 3);
+
+    rotation = ArcTan2Neg(sprite->data[0], sprite->data[1]);
+    TrySetSpriteRotScale(sprite, FALSE, 0x100, 0x100, rotation);
+
+    if (sprite->pos1.x + sprite->pos2.x + 16 > 0x110u 
+     || sprite->pos1.y + sprite->pos2.y > 0xA0 
+     || sprite->pos1.y + sprite->pos2.y < -16
+     || sprite->data[0] / (sprite->data[4] / 3) == 0)
+        DestroyAnimSprite(sprite);
+    else
+        sprite->data[4]++;
 }

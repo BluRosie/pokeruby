@@ -11178,7 +11178,7 @@ Move_TOXIC_SPIKES:
 	loadspritegfx ANIM_TAG_SPIKES
 	loadspritegfx ANIM_TAG_POISON_BUBBLE
 	monbg ANIM_BATTLER_DEF_PARTNER
-	createvisualtask AnimTask_BlendSpriteColor, 5, ANIM_TAG_SPIKES, 0, 12, 12, rgb(25, 4, 25)
+	createvisualtask AnimTask_BlendSpriteColor, 5, ANIM_TAG_SPIKES, 0, 12, 12, rgb(16, 0, 16)
 	playsewithpan SE_W026, SOUND_PAN_ATTACKER
 	waitplaysewithpan SE_W030, SOUND_PAN_TARGET, 28
 	createsprite gBattleAnimSpriteTemplate_840227C, ANIM_BATTLER_TARGET, 2, 20, 0, 0, 24, 30
@@ -11558,6 +11558,25 @@ Move_POISON_JAB:
 	end
 
 Move_DARK_PULSE:
+	loadspritegfx ANIM_TAG_POISON_JAB
+	waitforvisualfinish
+	createvisualtask sub_80798AC, 5, ANIM_TAG_POISON_JAB, rgb(0, 0, 0), 14, 0, 3
+	playsewithpan SE_W028, SOUND_PAN_TARGET
+	greyscalebattlebackground 0
+	createsprite gDarkPulseScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 0x20
+	createsprite gDarkPulseScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 0x40
+	createsprite gDarkPulseScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 0x60
+	createsprite gDarkPulseScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 0xA0
+	createsprite gDarkPulseScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 0xC0
+	createsprite gDarkPulseScatterSpriteTemplate, ANIM_BATTLER_TARGET, 2, 0xE0
+	delay 30
+	playsewithpan SE_W171, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_BATTLER_TARGET, 4, 0, 8, 1
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_BATTLER_TARGET, rgb(16, 0, 16), 12, 0, 1
+	waitforvisualfinish
+	greyscalebattlebackground 1
+	end
+
 Move_NIGHT_SLASH:
 Move_AQUA_TAIL:
 Move_SEED_BOMB:

@@ -1408,6 +1408,7 @@ static void ScriptCmd_doublebattle_2E(void);
 static void ScriptCmd_stopsound(void);
 static void ScriptCmd_fogeffect(void);
 static void ScriptCmd_switchtargetandattacker(void);
+static void ScriptCmd_greyscalebattlebackground(void);
 
 static void (*const sScriptCmdTable[])(void) = {
     ScriptCmd_loadspritegfx,
@@ -1460,6 +1461,7 @@ static void (*const sScriptCmdTable[])(void) = {
     ScriptCmd_stopsound,
     ScriptCmd_fogeffect,
     ScriptCmd_switchtargetandattacker,
+    ScriptCmd_greyscalebattlebackground,
 };
 
 void ClearBattleAnimationVars(void)
@@ -3288,4 +3290,15 @@ static void ScriptCmd_switchtargetandattacker(void)
     gBattleAnimTarget = temp;
     
     sBattleAnimScriptPtr += 1;
+}
+
+static void ScriptCmd_greyscalebattlebackground()
+{
+    bool8 reset = T1_READ_8(sBattleAnimScriptPtr + 1);
+
+    sub_8079108(2, reset);
+    sub_8079108(3, reset);
+    sub_8079108(4, reset);
+
+    sBattleAnimScriptPtr += 2;
 }

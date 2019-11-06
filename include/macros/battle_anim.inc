@@ -277,3 +277,8 @@
 	.macro switchtargetandattacker
 	.byte 0x31
 	.endm
+
+	.macro greyscalebattlebackground reset
+	.byte 0x32
+	.byte \reset
+	.endm
