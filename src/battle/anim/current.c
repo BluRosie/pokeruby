@@ -647,7 +647,7 @@ static void sub_80D6BB8(u8 taskId)
 
                 InitAnimLinearTranslation(sprite);
                 StoreSpriteCallbackInData(sprite, sub_80D6D00);
-                sprite->callback = sub_8078600;
+                sprite->callback = RunStoredCallbackWhenAnimEnds;
 
                 if (++task->data[9] > 15)
                     task->data[9] = 0;
@@ -702,7 +702,7 @@ void sub_80D6D18(struct Sprite *sprite)
     }
 
     StoreSpriteCallbackInData(sprite, DestroySpriteAndMatrix);
-    sprite->callback = sub_80785E4;
+    sprite->callback = RunStoredCallbackWhenAffineAnimEnds;
 }
 
 void sub_80D6D70(struct Sprite *sprite)
@@ -721,7 +721,7 @@ void sub_80D6D70(struct Sprite *sprite)
     sprite->pos2.x = gBattleAnimArgs[1];
     sprite->pos2.y = gBattleAnimArgs[2];
     StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
-    sprite->callback = sub_8078600;
+    sprite->callback = RunStoredCallbackWhenAnimEnds;
 }
 
 void sub_80D6DD8(struct Sprite *sprite)

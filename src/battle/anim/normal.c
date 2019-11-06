@@ -880,7 +880,7 @@ static void sub_80E27A0(struct Sprite *sprite)
     else
         sub_8078764(sprite, TRUE);
 
-    sprite->callback = sub_80785E4;
+    sprite->callback = RunStoredCallbackWhenAffineAnimEnds;
     StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
 }
 
@@ -893,7 +893,7 @@ static void sub_80E27E8(struct Sprite *sprite)
         sub_8078764(sprite, TRUE);
 
     sprite->data[0] = gBattleAnimArgs[4];
-    sprite->callback = sub_80785E4;
+    sprite->callback = RunStoredCallbackWhenAffineAnimEnds;
     StoreSpriteCallbackInData(sprite, sub_80DA48C);
 }
 
@@ -920,7 +920,7 @@ static void sub_80E2870(struct Sprite *sprite)
     sprite->pos2.y += (Random() % 24) - 12;
 
     StoreSpriteCallbackInData(sprite, DestroySpriteAndMatrix);
-    sprite->callback = sub_80785E4;
+    sprite->callback = RunStoredCallbackWhenAffineAnimEnds;
 }
 
 static void sub_80E2908(struct Sprite *sprite)
@@ -932,7 +932,7 @@ static void sub_80E2908(struct Sprite *sprite)
     sprite->pos2.y = gBattleAnimArgs[2];
     StartSpriteAffineAnim(sprite, gBattleAnimArgs[3]);
     StoreSpriteCallbackInData(sprite, DestroySpriteAndMatrix);
-    sprite->callback = sub_80785E4;
+    sprite->callback = RunStoredCallbackWhenAffineAnimEnds;
 }
 
 static void sub_80E2978(struct Sprite *sprite)

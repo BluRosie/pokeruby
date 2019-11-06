@@ -1169,7 +1169,7 @@ void sub_80D9BD4(struct Sprite *sprite)
         StartSpriteAnim(sprite, 1);
     }
 
-    sprite->callback = sub_8078600;
+    sprite->callback = RunStoredCallbackWhenAnimEnds;
     StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
 }
 

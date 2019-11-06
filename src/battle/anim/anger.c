@@ -55,5 +55,5 @@ void sub_80D09C0(struct Sprite* sprite)
         sprite->pos1.y = 8;
 
     StoreSpriteCallbackInData(sprite, DestroySpriteAndMatrix);
-    sprite->callback = sub_80785E4;
+    sprite->callback = RunStoredCallbackWhenAffineAnimEnds;
 }

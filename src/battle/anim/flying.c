@@ -15,7 +15,7 @@ extern struct OamMatrix gOamMatrices[];
 extern u8 gBattlerPositions[];
 extern const struct SpriteTemplate gBattleAnimSpriteTemplate_83DB538;
 
-void sub_80785E4(struct Sprite *sprite);
+void RunStoredCallbackWhenAffineAnimEnds(struct Sprite *sprite);
 void sub_80DA034(struct Sprite *sprite);
 void sub_80DA05C(struct Sprite *sprite);
 void sub_80DA16C(struct Sprite *sprite);
@@ -440,7 +440,7 @@ void sub_80DA16C(struct Sprite *sprite)
     sprite->data[3] = sprite->pos1.y;
     sprite->data[4] = GetBattlerSpriteCoord(gBattleAnimTarget, 3) + gBattleAnimArgs[3];
     InitAnimLinearTranslation(sprite);
-    sprite->callback = sub_80785E4;
+    sprite->callback = RunStoredCallbackWhenAffineAnimEnds;
     StoreSpriteCallbackInData(sprite, sub_80DA1EC);
 }
 

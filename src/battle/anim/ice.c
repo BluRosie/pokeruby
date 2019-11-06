@@ -876,7 +876,7 @@ static void AnimIceEffectParticle(struct Sprite *sprite)
     }
 
     StoreSpriteCallbackInData(sprite, AnimFlickerIceEffectParticle);
-    sprite->callback = sub_80785E4;
+    sprite->callback = RunStoredCallbackWhenAffineAnimEnds;
 }
 
 static void AnimFlickerIceEffectParticle(struct Sprite *sprite)
@@ -2291,7 +2291,7 @@ static void AnimThrowIceBall(struct Sprite *sprite)
         return;
 
     StartSpriteAnim(sprite, 1);
-    sprite->callback = sub_8078600;
+    sprite->callback = RunStoredCallbackWhenAnimEnds;
     StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
 }
 

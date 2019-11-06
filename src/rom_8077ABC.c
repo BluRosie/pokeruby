@@ -706,13 +706,15 @@ void unref_sub_80785CC(struct Sprite *sprite)
     DestroySpriteAndMatrix(sprite);
 }
 
-void sub_80785E4(struct Sprite *sprite)
+// sub_80785E4
+void RunStoredCallbackWhenAffineAnimEnds(struct Sprite *sprite)
 {
     if (sprite->affineAnimEnded)
         SetCallbackToStoredInData(sprite);
 }
 
-void sub_8078600(struct Sprite *sprite)
+// sub_8078600
+void RunStoredCallbackWhenAnimEnds(struct Sprite *sprite)
 {
     if (sprite->animEnded)
         SetCallbackToStoredInData(sprite);
@@ -2266,7 +2268,7 @@ void sub_807A63C(struct Sprite *sprite)
     else
         sprite->pos1.x += gBattleAnimArgs[0];
     sprite->pos1.y += gBattleAnimArgs[1];
-    sprite->callback = sub_8078600;
+    sprite->callback = RunStoredCallbackWhenAnimEnds;
     StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
 }
 

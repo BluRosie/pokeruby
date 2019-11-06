@@ -127,7 +127,7 @@ static void sub_80D32E8(struct Sprite *sprite)
 static void sub_80D3370(struct Sprite *sprite)
 {
     sprite->animPaused = 0;
-    sprite->callback = sub_8078600;
+    sprite->callback = RunStoredCallbackWhenAnimEnds;
     StoreSpriteCallbackInData(sprite, sub_80D3398);
 }
 

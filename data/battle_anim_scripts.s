@@ -11438,6 +11438,71 @@ Move_AURA_SPHERE:
 	end
 
 Move_ROCK_POLISH:
+	loadspritegfx ANIM_TAG_WHITE_STREAK
+	loadspritegfx ANIM_TAG_SPARKLE_3
+	setalpha 12, 8
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 0, 1, 3, 0, 12, rgb(0, 0, 0)
+	waitforvisualfinish
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -10, 3
+	delay 1
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 24, -19
+	delay 1
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -28, -15
+	delay 2
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -6, -30
+	delay 1
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -20, 6
+	delay 1
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 28, 2
+	delay 2
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -14, -25
+	delay 1
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 9, -2
+	delay 2
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -1, 0
+	delay 1
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 21, 4
+	delay 2
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 28, 20
+	delay 2
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -7, 24
+	delay 2
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -11, 1
+	delay 2
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 12, -18
+	delay 2
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -21, -14
+	delay 1
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -29, 7
+	delay 2
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 15, 28
+	delay 1
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -21, -16
+	delay 2
+	waitforvisualfinish
+	playsewithpan SE_W213, SOUND_PAN_ATTACKER
+	createsprite gRockPolishSparkleTemplate, ANIM_BATTLER_ATTACKER, 2, -20, 9
+	createsprite gRockPolishSparkleTemplate, ANIM_BATTLER_ATTACKER, 2, -10, -15
+	createsprite gRockPolishSparkleTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 17
+	delay 1
+	createsprite gRockPolishSparkleTemplate, ANIM_BATTLER_ATTACKER, 2, -23, -16
+	createsprite gRockPolishSparkleTemplate, ANIM_BATTLER_ATTACKER, 2, 10, -6
+	delay 1
+	createsprite gRockPolishSparkleTemplate, ANIM_BATTLER_ATTACKER, 2, -16, -7
+	delay 1
+	createsprite gRockPolishSparkleTemplate, ANIM_BATTLER_ATTACKER, 2, 22, -7
+	delay 1
+	createsprite gRockPolishSparkleTemplate, ANIM_BATTLER_ATTACKER, 2, -19, 11
+	delay 1
+	createsprite gRockPolishSparkleTemplate, ANIM_BATTLER_ATTACKER, 2, 12, 12
+	delay 1
+	createsprite gRockPolishSparkleTemplate, ANIM_BATTLER_ATTACKER, 2, 0, -17
+	waitforvisualfinish
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 0, 1, 3, 12, 0, rgb(0, 0, 0)
+	waitforvisualfinish
+	blendoff
+	end
+
 Move_POISON_JAB:
 Move_DARK_PULSE:
 Move_NIGHT_SLASH:

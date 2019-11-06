@@ -262,7 +262,7 @@ void sub_80DF6F0(struct Sprite *sprite)
     }
     sub_807867C(sprite, gBattleAnimArgs[1]);
     sprite->pos1.y += gBattleAnimArgs[2];
-    sprite->callback = sub_8078600;
+    sprite->callback = RunStoredCallbackWhenAnimEnds;
     StoreSpriteCallbackInData(sprite, DestroySpriteAndMatrix);
 }
 

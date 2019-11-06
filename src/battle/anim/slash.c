@@ -88,7 +88,7 @@ void sub_80CDD74(struct Sprite* sprite)
     sprite->data[0] = 0;
     sprite->data[1] = 0;
     StoreSpriteCallbackInData(sprite, sub_80CDEC0);
-    sprite->callback = sub_8078600;
+    sprite->callback = RunStoredCallbackWhenAnimEnds;
 }
 
 void sub_80CDDDC(struct Sprite* sprite)
@@ -96,7 +96,7 @@ void sub_80CDDDC(struct Sprite* sprite)
     sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimTarget, 2) + 0xFFD0;
     sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
     StoreSpriteCallbackInData(sprite, sub_80CDE78);
-    sprite->callback = sub_8078600;
+    sprite->callback = RunStoredCallbackWhenAnimEnds;
 }
 
 void sub_80CDE24(struct Sprite* sprite)
