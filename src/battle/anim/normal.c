@@ -129,7 +129,7 @@ const struct SpriteTemplate gSimplePaletteBlendSpriteTemplate =
     .callback = AnimSimplePaletteBlend,
 };
 
-const struct SpriteTemplate gBattleAnimSpriteTemplate_83DB3DC =
+const struct SpriteTemplate gComplexPaletteBlendSpriteTemplate =
 {
     .tileTag = 0,
     .paletteTag = 0,

@@ -303,6 +303,7 @@
 #define ANIM_TAG_TRUMP_CARD                 (ANIM_SPRITES_START + 290)
 #define ANIM_TAG_WHITE_STREAK               (ANIM_SPRITES_START + 291)
 #define ANIM_TAG_POISON_JAB                 (ANIM_SPRITES_START + 292)
+#define ANIM_TAG_DRAGON_PULSE               (ANIM_SPRITES_START + 293)
 
 // battlers
 #define ANIM_BATTLER_ATTACKER    0

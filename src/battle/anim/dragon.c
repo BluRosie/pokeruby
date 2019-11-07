@@ -447,3 +447,78 @@ static void sub_80DFBD8(struct Sprite *sprite)
     if (++sprite->data[0] > sprite->data[3])
         DestroyAnimSprite(sprite);
 }
+
+// dragon pulse
+
+extern const struct OamData gOamData_AffineOff_ObjNormal_16x32;
+
+const struct SpriteTemplate gDragonPulseSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_DRAGON_PULSE,
+    .paletteTag = ANIM_TAG_DRAGON_PULSE,
+    .oam = &gOamData_AffineOff_ObjNormal_16x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = TranslateAnimSpriteToTargetMonLocation,
+};
+
+// dragon rush
+
+static void AnimDragonRushCallback(struct Sprite *sprite)
+{
+    sprite->data[1] += sprite->data[0];
+    sprite->data[1] &= 0xFF;
+
+    sprite->pos2.x = Cos(sprite->data[1], 20);
+    sprite->pos2.y = Sin(sprite->data[1], 20);
+    if (sprite->animEnded)
+        DestroyAnimSprite(sprite);
+
+    sprite->data[2]++;
+}
+
+const union AnimCmd gDragonRushAnimCmds[] =
+{
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(64, 4),
+    ANIMCMD_END,
+};
+
+const union AnimCmd *const gDragonRushAnimTable[] =
+{
+    gDragonRushAnimCmds,
+};
+
+const union AffineAnimCmd gDragonRushAffineAnimCmd1[] =
+{
+    AFFINEANIMCMD_FRAME(0x100, 0x100, 0, 0),
+    AFFINEANIMCMD_FRAME(0, 0, -4, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd gDragonRushAffineAnimCmd2[] =
+{
+    AFFINEANIMCMD_FRAME(-0x100, 0x100, 0, 0),
+    AFFINEANIMCMD_FRAME(0, 0, 4, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd *const gDragonRushAffineAnimTable[] =
+{
+    gDragonRushAffineAnimCmd1,
+    gDragonRushAffineAnimCmd2,
+};
+
+extern const struct OamData gOamData_AffineNormal_ObjNormal_64x64;
+
+const struct SpriteTemplate gDragonRushSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_SLAM_HIT_2,
+    .paletteTag = ANIM_TAG_RED_HEART,
+    .oam = &gOamData_AffineNormal_ObjNormal_64x64,
+    .anims = gDragonRushAnimTable,
+    .images = NULL,
+    .affineAnims = gDragonRushAffineAnimTable,
+    .callback = AnimDragonRushCallback,
+};

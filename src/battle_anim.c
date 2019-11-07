@@ -18,6 +18,15 @@
 #include "constants/battle_anim.h"
 #include "constants/songs.h"
 
+const struct OamData gOamData_AffineOff_ObjNormal_16x32 =
+{
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .shape = SPRITE_SHAPE(16x32),
+    .size = SPRITE_SIZE(16x32),
+    .priority = 2,
+};
+
 const struct OamData gOamData_AffineDouble_ObjBlend_32x8 =
 {
     .affineMode = ST_OAM_AFFINE_DOUBLE,
@@ -1006,6 +1015,7 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     { gBattleAnimSpriteSheet_TrumpCard, 0x200, ANIM_TAG_TRUMP_CARD },
     { gBattleAnimSpriteSheet_WhiteStreak, 0x200, ANIM_TAG_WHITE_STREAK },
     { gBattleAnimSpriteSheet_PoisonJab, 0x100, ANIM_TAG_POISON_JAB },
+    { gBattleAnimSpriteSheet_DragonPulse, 0x100, ANIM_TAG_DRAGON_PULSE },
 };
 
 const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
@@ -1303,6 +1313,7 @@ const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
     { gBattleAnimSpritePalette_Acupressure, ANIM_TAG_TRUMP_CARD },
     { gBattleAnimSpritePalette_WhiteStreak, ANIM_TAG_WHITE_STREAK },
     { gBattleAnimSpritePalette_PoisonJab, ANIM_TAG_POISON_JAB },
+    { gBattleAnimSpritePalette_DragonPulse, ANIM_TAG_DRAGON_PULSE },
 };
 
 const struct BattleAnimBackground gBattleAnimBackgroundTable[] =
