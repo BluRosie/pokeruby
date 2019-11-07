@@ -11798,6 +11798,85 @@ Move_DRAGON_RUSH:
 	end
 
 Move_POWER_GEM:
+	createsprite gSimplePaletteBlendSpriteTemplate, 2, 5, 1, 1, 0, 7, 0
+	waitforvisualfinish 
+	loadspritegfx ANIM_TAG_POWER_GEM 
+	loadspritegfx ANIM_TAG_WHITE_STREAK
+	playsewithpan 152, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, 0, 0
+	waitforvisualfinish 
+	delay 30
+	createvisualtask AnimTask_BlendMonInAndOut 5, 5, 0, rgb(31, 31, 31), 12, 5, 1
+	delay 4 
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, 0, 0
+	playsewithpan SE_W179, SOUND_PAN_ATTACKER
+	createsprite gPowerGemOrbSpriteTemplate 2, 2, 26, 0 
+	createsprite gPowerGemOrbSpriteTemplate 2, 2, 26, 42  
+	createsprite gPowerGemOrbSpriteTemplate 2, 2, 26, 84  
+	createsprite gPowerGemOrbSpriteTemplate 2, 2, 26, 126  
+	createsprite gPowerGemOrbSpriteTemplate 2, 2, 26, 168  
+	createsprite gPowerGemOrbSpriteTemplate 2, 2, 26, 210  
+	delay 52
+	setarg 7, -1 
+	playsewithpan SE_W115, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, 0, 0
+	createsprite gPowerGemScatterSpriteTemplate 130, 1, 0
+	createsprite gPowerGemScatterSpriteTemplate 130, 1, 32
+	createsprite gPowerGemScatterSpriteTemplate 130, 1, 64
+	createsprite gPowerGemScatterSpriteTemplate 130, 1, 96
+	createsprite gPowerGemScatterSpriteTemplate 130, 1, 128
+	createsprite gPowerGemScatterSpriteTemplate 130, 1, 160
+	createsprite gPowerGemScatterSpriteTemplate 130, 1, SOUND_PAN_ATTACKER
+	createsprite gPowerGemScatterSpriteTemplate 130, 1, 224
+	waitforvisualfinish 
+	switchtargetandattacker
+	playsewithpan SE_W043, SOUND_PAN_TARGET
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -10, 3
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 24, -19
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -28, -15
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -6, -30
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -20, 6
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 28, 2
+	delay 1
+	playsewithpan SE_W043, SOUND_PAN_TARGET
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -14, -25
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 9, -2
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -1, 0
+	delay 1
+	playsewithpan SE_W043, SOUND_PAN_TARGET
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 21, 4
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 28, 20
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -7, 24
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -11, 1
+	delay 1
+	playsewithpan SE_W043, SOUND_PAN_TARGET
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 12, -18
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -21, -14
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -29, 7
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, 15, 28
+	delay 0
+	createsprite gRockPolishStreakTemplate, ANIM_BATTLER_ATTACKER, 2, -21, -16
+	delay 2
+	waitforvisualfinish
+	switchtargetandattacker
+	clearmonbg ANIM_BATTLER_DEF_PARTNER 
+	createsprite gSimplePaletteBlendSpriteTemplate 2, 5, 1, 1, 7, 0, 0
+	blendoff
+	end
+
 Move_DRAIN_PUNCH:
 Move_VACUUM_WAVE:
 Move_FOCUS_BLAST:

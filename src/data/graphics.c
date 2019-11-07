@@ -756,6 +756,8 @@ const u8 gBattleAnimSpriteSheet_PoisonJab[] = INCBIN_U8("graphics/battle_anims/s
 const u8 gBattleAnimSpritePalette_PoisonJab[] = INCBIN_U8("graphics/battle_anims/sprites/poison_jab.gbapal.lz");
 const u8 gBattleAnimSpriteSheet_DragonPulse[] = INCBIN_U8("graphics/battle_anims/sprites/dragon_pulse.4bpp.lz");
 const u8 gBattleAnimSpritePalette_DragonPulse[] = INCBIN_U8("graphics/battle_anims/sprites/dragon_pulse.gbapal.lz");
+const u8 gBattleAnimSpriteSheet_PowerGem[] = INCBIN_U8("graphics/battle_anims/sprites/power_gem.4bpp.lz");
+const u8 gBattleAnimSpritePalette_PowerGem[] = INCBIN_U8("graphics/battle_anims/sprites/power_gem.gbapal.lz");
 
 #define SPECIES_SHINY_TAG 5000
 
