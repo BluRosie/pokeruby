@@ -36,6 +36,33 @@ const struct OamData gOamData_AffineDouble_ObjBlend_32x16 =
     .priority = 2,
 };
 
+const struct OamData gOamData_AffineOff_ObjNormal_32x32 =
+{
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .shape = SPRITE_SHAPE(32x32),
+    .size = SPRITE_SIZE(32x32),
+    .priority = 2,
+};
+
+const struct OamData gOamData_AffineNormal_ObjBlend_32x32 =
+{
+    .affineMode = ST_OAM_AFFINE_NORMAL,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .shape = SPRITE_SHAPE(32x32),
+    .size = SPRITE_SIZE(32x32),
+    .priority = 2,
+};
+
+const struct OamData gOamData_AffineNormal_ObjNormal_64x64 =
+{
+    .affineMode = ST_OAM_AFFINE_NORMAL,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .shape = SPRITE_SHAPE(64x64),
+    .size = SPRITE_SIZE(64x64),
+    .priority = 2,
+};
+
 const struct OamData gOamData_837DF24 =
 {
     .affineMode = 0,
