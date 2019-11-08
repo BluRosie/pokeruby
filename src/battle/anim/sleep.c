@@ -63,7 +63,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83D6D94 =
 {
     .tileTag = ANIM_TAG_LETTER_Z,
     .paletteTag = ANIM_TAG_LETTER_Z,
-    .oam = &gOamData_837DF94,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
     .anims = gSpriteAnimTable_83D6D28,
     .images = NULL,
     .affineAnims = gSpriteAffineAnimTable_83D6D8C,

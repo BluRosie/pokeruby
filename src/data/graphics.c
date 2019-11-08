@@ -758,6 +758,8 @@ const u8 gBattleAnimSpriteSheet_DragonPulse[] = INCBIN_U8("graphics/battle_anims
 const u8 gBattleAnimSpritePalette_DragonPulse[] = INCBIN_U8("graphics/battle_anims/sprites/dragon_pulse.gbapal.lz");
 const u8 gBattleAnimSpriteSheet_PowerGem[] = INCBIN_U8("graphics/battle_anims/sprites/power_gem.4bpp.lz");
 const u8 gBattleAnimSpritePalette_PowerGem[] = INCBIN_U8("graphics/battle_anims/sprites/power_gem.gbapal.lz");
+const u8 gBattleAnimSpriteSheet_EnergyBall[] = INCBIN_U8("graphics/battle_anims/sprites/energy_ball.4bpp.lz");
+const u8 gBattleAnimSpritePalette_EnergyBall[] = INCBIN_U8("graphics/battle_anims/sprites/energy_ball.gbapal.lz");
 
 #define SPECIES_SHINY_TAG 5000
 

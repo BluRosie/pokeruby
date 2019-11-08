@@ -50,7 +50,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83D671C =
 {
     .tileTag = ANIM_TAG_ITEM_BAG,
     .paletteTag = ANIM_TAG_ITEM_BAG,
-    .oam = &gOamData_837DF94,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
     .anims = gSpriteAnimTable_83D66B8,
     .images = NULL,
     .affineAnims = gSpriteAffineAnimTable_83D6714,
@@ -61,7 +61,7 @@ const struct SpriteTemplate gFallingItemBagTemplate =
 {
     .tileTag = ANIM_TAG_ITEM_BAG,
     .paletteTag = ANIM_TAG_ITEM_BAG,
-    .oam = &gOamData_837DF94,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
     .anims = gSpriteAnimTable_83D66B8,
     .images = NULL,
     .affineAnims = gSpriteAffineAnimTable_83D6714,

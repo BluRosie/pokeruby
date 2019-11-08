@@ -216,12 +216,12 @@ const struct OamData gOamData_837DF8C =
     .priority = 2,
 };
 
-const struct OamData gOamData_837DF94 =
+const struct OamData gOamData_AffineNormal_ObjNormal_32x32 =
 {
-    .affineMode = 1,
-    .objMode = 0,
-    .shape = 0,
-    .size = 2,
+    .affineMode = ST_OAM_AFFINE_NORMAL,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .shape = SPRITE_SHAPE(32x32),
+    .size = SPRITE_SIZE(32x32),
     .priority = 2,
 };
 
@@ -1035,6 +1035,7 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     { gBattleAnimSpriteSheet_PoisonJab, 0x100, ANIM_TAG_POISON_JAB },
     { gBattleAnimSpriteSheet_DragonPulse, 0x100, ANIM_TAG_DRAGON_PULSE },
     { gBattleAnimSpriteSheet_PowerGem, 0x80, ANIM_TAG_POWER_GEM },
+    { gBattleAnimSpriteSheet_EnergyBall, 0x200, ANIM_TAG_ENERGY_BALL },
 };
 
 const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
@@ -1334,6 +1335,7 @@ const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
     { gBattleAnimSpritePalette_PoisonJab, ANIM_TAG_POISON_JAB },
     { gBattleAnimSpritePalette_DragonPulse, ANIM_TAG_DRAGON_PULSE },
     { gBattleAnimSpritePalette_PowerGem, ANIM_TAG_POWER_GEM },
+    { gBattleAnimSpritePalette_EnergyBall, ANIM_TAG_ENERGY_BALL },
 };
 
 const struct BattleAnimBackground gBattleAnimBackgroundTable[] =

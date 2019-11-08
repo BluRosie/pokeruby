@@ -90,7 +90,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83D98F0 =
 {
     .tileTag = ANIM_TAG_SHOCK_3,
     .paletteTag = ANIM_TAG_SHOCK_3,
-    .oam = &gOamData_837DF94,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
     .anims = gSpriteAnimTable_83D98C8,
     .images = NULL,
     .affineAnims = gSpriteAffineAnimTable_83D98EC,

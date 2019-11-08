@@ -6160,7 +6160,7 @@ Move_MEGA_DRAIN: @ 81CF53F
 	createvisualtask AnimTask_ShakeMon, 5, 1, 0, 5, 5, 1
 	waitforvisualfinish
 	delay 3
-	call _81CF5AE
+	call MegaDrainEffect
 	waitforvisualfinish
 	delay 15
 	call HealingStars
@@ -6170,7 +6170,7 @@ Move_MEGA_DRAIN: @ 81CF53F
 	clearmonbg ANIM_BATTLER_DEF_PARTNER
 	blendoff
 	end
-_81CF5AE:
+MegaDrainEffect:
 	playsewithpan SE_W145C, SOUND_PAN_TARGET
 	createsprite gBattleAnimSpriteTemplate_83D637C, ANIM_BATTLER_ATTACKER, 3, 0, 5, 8, 26
 	createsprite gBattleAnimSpriteTemplate_83D637C, ANIM_BATTLER_ATTACKER, 3, 5, -18, -20, 35
@@ -11878,9 +11878,83 @@ Move_POWER_GEM:
 	end
 
 Move_DRAIN_PUNCH:
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_BLUE_STAR
+	loadspritegfx ANIM_TAG_ORBS
+	monbg ANIM_BATTLER_DEF_PARTNER
+	setalpha 12, 8
+	playsewithpan SE_W233B, -64
+	createsprite gFistFootSpriteTemplate, ANIM_BATTLER_TARGET, 3, 0, 0, 8, 1, 0
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_TARGET, 2, 0, 0, 1, 1
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_TARGET, 0, 3, 15, 1
+	delay 20
+	call MegaDrainEffect
+	waitforvisualfinish
+	delay 15
+	call HealingStars
+	waitforvisualfinish
+	clearmonbg ANIM_BATTLER_DEF_PARTNER
+	blendoff
+	end
+
 Move_VACUUM_WAVE:
+	loadspritegfx ANIM_TAG_IMPACT 
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET 
+	monbg ANIM_BATTLER_ATK_PARTNER 
+	waitbgfadein
+	delay 0
+	setalpha 9, 8 
+	createvisualtask sub_807A69C, 2, 2, rgb(8, 9, 24), 17  
+	playsewithpan SE_W026, SOUND_PAN_ATTACKER
+	delay 6
+	createsprite gBasicHitSplatSpriteTemplate 131, 4, 0, 0, 1, 1 
+	createsprite gFistFootSpriteTemplate 132, 5, 0, 0, 8, 1, 0 
+	playsewithpan SE_W004, SOUND_PAN_TARGET 
+	createvisualtask AnimTask_ShakeMon 2, 5, ANIM_BATTLER_TARGET, 3, 0, 6, 1
+	waitforvisualfinish 
+	clearmonbg ANIM_BATTLER_ATK_PARTNER 
+	blendoff 
+	end 
+
 Move_FOCUS_BLAST:
+	loadspritegfx ANIM_TAG_CIRCLE_OF_LIGHT
+	loadspritegfx ANIM_TAG_METEOR
+	loadspritegfx ANIM_TAG_FLAT_ROCK
+	monbg ANIM_BATTLER_TARGET
+	monbgprio_28 ANIM_BATTLER_TARGET
+	setalpha 12, 8
+	call SetHighSpeedBg
+	createsprite gBattleAnimSpriteTemplate_83DA0FC, ANIM_BATTLER_TARGET, 2, 0
+	playsewithpan SE_W025, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_BATTLER_TARGET, 8, 0, 16, 1
+	playsewithpan SE_W025B, SOUND_PAN_TARGET
+	waitforvisualfinish
+	call UnsetHighSpeedBg
+	clearmonbg ANIM_BATTLER_TARGET
+	blendoff
+	delay 1
+	end
+
 Move_ENERGY_BALL:
+	loadspritegfx ANIM_TAG_ENERGY_BALL
+	monbg ANIM_BATTLER_TARGET
+	setalpha 12, 8
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 1, 0, 8, rgb(0, 0, 0)
+	waitforvisualfinish
+	delay 15
+	createsoundtask sub_812B058, SE_W054, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 5, 5, 0, 5
+	createsprite gEnergyBallSpriteTemplate, ANIM_BATTLER_TARGET, 2, 12, 4, 8
+	waitforvisualfinish
+	playsewithpan SE_W028, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_BATTLER_TARGET, 4, 0, 8, 1
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 1, 1, 8, 0, rgb(0, 0, 0)
+	waitforvisualfinish
+	clearmonbg ANIM_BATTLER_TARGET
+	blendoff
+	end
+
 Move_BRAVE_BIRD:
 Move_EARTH_POWER:
 Move_SWITCHEROO:
