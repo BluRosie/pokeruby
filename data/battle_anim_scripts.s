@@ -11956,8 +11956,77 @@ Move_ENERGY_BALL:
 	end
 
 Move_BRAVE_BIRD:
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_BIRD
+	call SetSkyBg
+	monbg ANIM_BATTLER_ATTACKER
+	createvisualtask sub_80E2A38, 10, 2, 0, 0, 16, rgb(31, 31, 31)
+	delay 4
+	createvisualtask sub_80DFC24, 5, 0
+	waitforvisualfinish
+	createvisualtask sub_812B340, 5, 238, -64
+	createsprite gBattleAnimSpriteTemplate_83DA65C, ANIM_BATTLER_TARGET, 2
+	delay 14
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_BATTLER_TARGET, 10, 0, 18, 1
+	createvisualtask sub_812B30C, 5, 141, 63
+	delay 20
+	createvisualtask sub_80DFD24, 5, 1
+	delay 2
+	createvisualtask sub_80E2A38, 10, 2, 0, 15, 0, rgb(31, 31, 31)
+	waitforvisualfinish
+	clearmonbg ANIM_BATTLER_ATTACKER
+	call UnsetSkyBg
+	end
+
 Move_EARTH_POWER:
+	loadspritegfx ANIM_TAG_SMALL_EMBER 
+	loadspritegfx ANIM_TAG_FIRE_PLUME 
+	createvisualtask sub_80E1864, 3, 5, 10, 50
+	createvisualtask sub_80E1864, 3, 1, 10, 50
+	playsewithpan SE_W089, SOUND_PAN_TARGET
+	delay 40
+	loopsewithpan 145, SOUND_PAN_TARGET 11, 3
+	createvisualtask AnimTask_ShakeMon 5, 5, ANIM_BATTLER_TARGET, 0, 3, 25, 1 
+	createsprite gBattleAnimSpriteTemplate_83DB078, 194, 3, 1, 5, 0
+	delay 1
+	createsprite gBattleAnimSpriteTemplate_83DB078, 194, 3, 1, -10, -15 
+	delay 1
+	createsprite gBattleAnimSpriteTemplate_83DB078, 130, 3, 1, 0, 25 
+	delay 1
+	createsprite gBattleAnimSpriteTemplate_83DB078, 194, 3, 1, 15, 5  
+	delay 1
+	createsprite gBattleAnimSpriteTemplate_83DB078, 194, 3, 1, -25, 0  
+	delay 1
+	createsprite gBattleAnimSpriteTemplate_83DB078, 130, 3, 1, 30, 30 
+	delay 1
+	createsprite gBattleAnimSpriteTemplate_83DB078, 130, 3, 1, -27, 25 
+	delay 1
+	createsprite gBattleAnimSpriteTemplate_83DB078, 194, 3, 1, 0, 8
+	waitforvisualfinish 
+	createsprite gSlideMonToOriginalPosSpriteTemplate, 194, 3, 0, 0, 4
+	waitforvisualfinish 
+	end
+
 Move_SWITCHEROO:
+	call _bag_throw
+	switchtargetandattacker
+	call _bag_throw
+	waitforvisualfinish
+	end
+_bag_throw:
+	loadspritegfx ANIM_TAG_ITEM_BAG
+	createvisualtask sub_812C960, 2
+	createsprite gBattleAnimSpriteTemplate_83D671C, ANIM_BATTLER_TARGET, 2, 0, -5, 10, 2, -1
+	playsewithpan SE_W039, SOUND_PAN_ATTACKER
+	delay 14
+	playsewithpan SE_W145B, SOUND_PAN_ATTACKER
+	delay 14
+	playsewithpan SE_W145B, 0
+	delay 20
+	playsewithpan SE_W145B, SOUND_PAN_TARGET
+	waitforvisualfinish
+	return
+
 Move_GIGA_IMPACT:
 Move_NASTY_PLOT:
 Move_BULLET_PUNCH:
