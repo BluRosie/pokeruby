@@ -2339,3 +2339,81 @@ void AnimTask_CountIceBallThrows(u8 taskId)
     gBattleAnimArgs[arg] = gAnimDisableStructPtr->rolloutTimer2 - gAnimDisableStructPtr->rolloutTimer1 - 1;    
     DestroyAnimVisualTask(taskId);
 }
+
+// avalanche
+
+const union AnimCmd gAvalancheAnimTable_1[] =
+{
+    ANIMCMD_FRAME(32, 1),
+    ANIMCMD_END,
+};
+
+const union AnimCmd gAvalancheAnimTable_2[] =
+{
+    ANIMCMD_FRAME(48, 1),
+    ANIMCMD_END,
+};
+
+const union AnimCmd gAvalancheAnimTable_3[] =
+{
+    ANIMCMD_FRAME(64, 1),
+    ANIMCMD_END,
+};
+
+const union AnimCmd *const gAvalancheAnimCmd[] =
+{
+    gAvalancheAnimTable_1,
+    gAvalancheAnimTable_2,
+    gAvalancheAnimTable_3,
+};
+
+static void AvalancheAnim_Step2(struct Sprite *sprite)
+{
+    sprite->pos1.x += sprite->data[5];
+
+    sprite->data[0] = 192;
+    sprite->data[1] = sprite->data[5];
+    sprite->data[2] = 4;
+    sprite->data[3] = 32;
+    sprite->data[4] = -24;
+
+    StoreSpriteCallbackInData(sprite, DestroySpriteAndMatrix);
+    sprite->callback = TranslateSpriteInEllipseOverDuration;
+    sprite->callback(sprite);
+}
+
+static void AvalancheAnim_Step(struct Sprite *sprite)
+{
+    if (gBattleAnimArgs[3] != 0)
+        SetAverageBattlerPositions(gBattleAnimTarget, 0, &sprite->pos1.x, &sprite->pos1.y);
+
+    sprite->pos1.x += gBattleAnimArgs[0];
+    sprite->pos1.y += 14;
+
+    StartSpriteAnim(sprite, gBattleAnimArgs[1]);
+    AnimateSprite(sprite);
+
+    sprite->data[0] = 0;
+    sprite->data[1] = 0;
+    sprite->data[2] = 4;
+    sprite->data[3] = 16;
+    sprite->data[4] = -70;
+    sprite->data[5] = gBattleAnimArgs[2];
+
+    StoreSpriteCallbackInData(sprite, AvalancheAnim_Step2);
+    sprite->callback = TranslateSpriteInEllipseOverDuration;
+    sprite->callback(sprite);
+}
+
+extern const struct OamData gOamData_AffineOff_ObjNormal_32x32;
+
+const struct SpriteTemplate gAvalancheSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_ROCKS,
+    .paletteTag = ANIM_TAG_ICE_CHUNK,
+    .oam = &gOamData_AffineOff_ObjNormal_32x32,
+    .anims = gAvalancheAnimCmd,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AvalancheAnim_Step,
+};

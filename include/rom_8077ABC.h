@@ -84,7 +84,7 @@ void sub_807861C(struct Sprite *sprite);
 void sub_8078650(struct Sprite *sprite);
 void sub_8078394(struct Sprite *sprite);
 void RunStoredCallbackWhenAffineAnimEnds(struct Sprite *sprite);
-void sub_8078278(struct Sprite *sprite);
+void TranslateSpriteInEllipseOverDuration(struct Sprite *sprite);
 void sub_8078C00(struct Sprite *sprite);
 void sub_8078114(struct Sprite *sprite);
 void sub_8078174(struct Sprite *sprite);

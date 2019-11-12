@@ -5995,6 +5995,7 @@ extern struct BattleAnimBackground gBattleAnimBackgroundPalette_20[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_21[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_22[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_24[];
+extern struct BattleAnimBackground gBattleAnimBackgroundPaletteGigaImpact[];
 extern struct BattleAnimBackground gBattleAnimBackgroundTilemap_00[];
 extern struct BattleAnimBackground gBattleAnimBackgroundTilemap_02[];
 extern struct BattleAnimBackground gBattleAnimBackgroundTilemap_03[];

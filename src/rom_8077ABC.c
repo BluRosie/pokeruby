@@ -525,7 +525,8 @@ void unref_sub_80781F0(struct Sprite *sprite)
     }
 }
 
-void sub_8078278(struct Sprite *sprite)
+// sub_8078278
+void TranslateSpriteInEllipseOverDuration(struct Sprite *sprite)
 {
     if (sprite->data[3])
     {

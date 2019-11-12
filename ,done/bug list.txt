@@ -31,6 +31,7 @@ gyro ball (new particle?)
 punishment is slash w a purple blend
 maybe toxic spikes?
 focus blast takes priority over textbox
+go through each move description and edit for space as necessary
 
 move effects that need to be polished:
 gravity
