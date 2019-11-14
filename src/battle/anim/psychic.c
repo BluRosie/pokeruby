@@ -1288,3 +1288,81 @@ void sub_80DC700(struct Sprite *sprite)
         break;
     }
 }
+
+// psycho cut
+
+static void AnimPsychoCut(struct Sprite *sprite)
+{
+    s16 lVarX, lVarY;
+    u16 rot;
+
+    if (IsContest())
+    {
+        gBattleAnimArgs[2] = -gBattleAnimArgs[2];
+    }
+    else
+    {
+        if (GetBattlerSide(gBattleAnimAttacker))
+        {
+            gBattleAnimArgs[2] = -gBattleAnimArgs[2];
+            gBattleAnimArgs[1] = -gBattleAnimArgs[1];
+            gBattleAnimArgs[3] = -gBattleAnimArgs[3];
+        }
+    }
+
+    if (!IsContest() && GetBattlerSide(gBattleAnimAttacker) == GetBattlerSide(gBattleAnimTarget))
+    {
+        if (GetBattlerPosition(gBattleAnimTarget) == B_POSITION_PLAYER_LEFT
+         || GetBattlerPosition(gBattleAnimTarget) == B_POSITION_OPPONENT_LEFT)
+        {
+            s16 temp1, temp2;
+
+            temp1 = gBattleAnimArgs[2];
+            gBattleAnimArgs[2] = -temp1;
+
+            temp2 = gBattleAnimArgs[0];
+            gBattleAnimArgs[0] = -temp2;
+        }
+    }
+
+    InitSpritePosToAnimAttacker(sprite, 1);
+
+    lVarX = GetBattlerSpriteCoord(gBattleAnimTarget, 2) + gBattleAnimArgs[2];
+    lVarY = GetBattlerSpriteCoord(gBattleAnimTarget, 3) + gBattleAnimArgs[3];
+    rot = ArcTan2Neg(lVarX - sprite->pos1.x, lVarY - sprite->pos1.y);
+    rot += 0xC000;
+    TrySetSpriteRotScale(sprite, FALSE, 0x100, 0x100, rot);
+
+    sprite->data[0] = gBattleAnimArgs[4];
+    sprite->data[2] = lVarX;
+    sprite->data[4] = lVarY;
+
+    sprite->callback = StartAnimLinearTranslation;
+    StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
+}
+
+extern const struct OamData gOamData_AffineNormal_ObjNormal_32x32;
+
+const struct SpriteTemplate gPsychoCutSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_PSYCHO_CUT,
+    .paletteTag = ANIM_TAG_PSYCHO_CUT,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimPsychoCut,
+};
+
+extern const struct OamData gOamData_AffineNormal_ObjBlend_64x64;
+
+const struct SpriteTemplate gPsychoCutSpiralSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_SPIRAL,
+    .paletteTag = ANIM_TAG_PSYCHO_CUT,
+    .oam = &gOamData_AffineNormal_ObjBlend_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gSpriteAffineAnimTable_83DA68C,
+    .callback = sub_80793C4,
+};

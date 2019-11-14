@@ -759,3 +759,82 @@ static void sub_80E1C58(u8 taskId)
         gBattle_BG3_Y = task->data[2];
     }
 }
+
+// mud bomb
+
+//also lifted from sludge bomb
+static void MudBombParticles_Callback(struct Sprite *sprite)
+{
+    sub_8078394(sprite);
+
+    sprite->data[1] -= sprite->data[5];
+    sprite->data[2] -= sprite->data[6];
+
+    if (!sprite->data[0])
+        DestroyAnimSprite(sprite);
+}
+
+//Lifted from sludge bomb
+static void MudBombParticles(struct Sprite *sprite)
+{
+    sprite->data[0] = gBattleAnimArgs[2];
+    sprite->data[1] = sprite->pos1.x;
+    sprite->data[2] = sprite->pos1.x + gBattleAnimArgs[0];
+    sprite->data[3] = sprite->pos1.y;
+    sprite->data[4] = sprite->pos1.y + gBattleAnimArgs[1];
+
+    InitSpriteDataForLinearTranslation(sprite);
+
+    sprite->data[5] = sprite->data[1] / gBattleAnimArgs[2];
+    sprite->data[6] = sprite->data[2] / gBattleAnimArgs[2];
+
+    sprite->callback = MudBombParticles_Callback;
+}
+
+extern const struct OamData gOamData_AffineOff_ObjNormal_8x8;
+
+const struct SpriteTemplate gMudBombSplash =
+{
+    .tileTag = ANIM_TAG_MUD_SAND,
+    .paletteTag = ANIM_TAG_MUD_SAND,
+    .oam = &gOamData_AffineOff_ObjNormal_8x8,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = MudBombParticles,
+};
+
+//Also lifted from smokescreen
+static void MudBombBall_Callback(struct Sprite *sprite)
+{
+    if (TranslateAnimArc(sprite))
+        DestroyAnimSprite(sprite);
+}
+
+//lifted from smokescreen
+static void MudBombBall(struct Sprite *sprite)
+{
+    InitSpritePosToAnimAttacker(sprite, 1);
+    if (GetBattlerSide(gBattleAnimAttacker))
+        gBattleAnimArgs[2] = -gBattleAnimArgs[2];
+    sprite->data[0] = gBattleAnimArgs[4];
+    sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X_2) + gBattleAnimArgs[2];
+    sprite->data[4] = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y_PIC_OFFSET) + gBattleAnimArgs[3];
+    sprite->data[5] = gBattleAnimArgs[5];
+    InitAnimArcTranslation(sprite);
+
+    sprite->callback = MudBombBall_Callback;
+}
+
+extern const struct OamData gOamData_AffineOff_ObjNormal_16x16;
+
+const struct SpriteTemplate gMudBombToss =
+{
+    .tileTag = ANIM_TAG_MUD_SAND,
+    .paletteTag = ANIM_TAG_MUD_SAND,
+    .oam = &gOamData_AffineOff_ObjNormal_16x16,
+    .anims = gMudSlapDirtSpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = MudBombBall,
+};

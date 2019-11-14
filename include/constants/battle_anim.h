@@ -306,6 +306,7 @@
 #define ANIM_TAG_DRAGON_PULSE               (ANIM_SPRITES_START + 293)
 #define ANIM_TAG_POWER_GEM                  (ANIM_SPRITES_START + 294)
 #define ANIM_TAG_ENERGY_BALL                (ANIM_SPRITES_START + 295)
+#define ANIM_TAG_PSYCHO_CUT                 (ANIM_SPRITES_START + 296)
 
 // battlers
 #define ANIM_BATTLER_ATTACKER    0

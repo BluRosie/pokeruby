@@ -762,6 +762,8 @@ const u8 gBattleAnimSpriteSheet_PowerGem[] = INCBIN_U8("graphics/battle_anims/sp
 const u8 gBattleAnimSpritePalette_PowerGem[] = INCBIN_U8("graphics/battle_anims/sprites/power_gem.gbapal.lz");
 const u8 gBattleAnimSpriteSheet_EnergyBall[] = INCBIN_U8("graphics/battle_anims/sprites/energy_ball.4bpp.lz");
 const u8 gBattleAnimSpritePalette_EnergyBall[] = INCBIN_U8("graphics/battle_anims/sprites/energy_ball.gbapal.lz");
+const u8 gBattleAnimSpriteSheet_PsychoCut[] = INCBIN_U8("graphics/battle_anims/sprites/psycho_cut.4bpp.lz");
+const u8 gBattleAnimSpritePalette_PsychoCut[] = INCBIN_U8("graphics/battle_anims/sprites/psycho_cut.gbapal.lz");
 
 #define SPECIES_SHINY_TAG 5000
 

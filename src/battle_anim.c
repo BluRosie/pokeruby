@@ -45,6 +45,24 @@ const struct OamData gOamData_AffineOff_ObjNormal_16x32 =
     .priority = 2,
 };
 
+const struct OamData gOamData_AffineOff_ObjNormal_8x8 =
+{
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .shape = SPRITE_SHAPE(8x8),
+    .size = SPRITE_SIZE(8x8),
+    .priority = 2,
+};
+
+const struct OamData gOamData_AffineOff_ObjNormal_16x16 =
+{
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .shape = SPRITE_SHAPE(16x16),
+    .size = SPRITE_SIZE(16x16),
+    .priority = 2,
+};
+
 const struct OamData gOamData_AffineDouble_ObjBlend_32x8 =
 {
     .affineMode = ST_OAM_AFFINE_DOUBLE,
@@ -85,6 +103,15 @@ const struct OamData gOamData_AffineNormal_ObjNormal_64x64 =
 {
     .affineMode = ST_OAM_AFFINE_NORMAL,
     .objMode = ST_OAM_OBJ_NORMAL,
+    .shape = SPRITE_SHAPE(64x64),
+    .size = SPRITE_SIZE(64x64),
+    .priority = 2,
+};
+
+const struct OamData gOamData_AffineNormal_ObjBlend_64x64 =
+{
+    .affineMode = ST_OAM_AFFINE_NORMAL,
+    .objMode = ST_OAM_OBJ_BLEND,
     .shape = SPRITE_SHAPE(64x64),
     .size = SPRITE_SIZE(64x64),
     .priority = 2,
@@ -1036,6 +1063,7 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     { gBattleAnimSpriteSheet_DragonPulse, 0x100, ANIM_TAG_DRAGON_PULSE },
     { gBattleAnimSpriteSheet_PowerGem, 0x80, ANIM_TAG_POWER_GEM },
     { gBattleAnimSpriteSheet_EnergyBall, 0x200, ANIM_TAG_ENERGY_BALL },
+    { gBattleAnimSpriteSheet_PsychoCut, 0x200, ANIM_TAG_PSYCHO_CUT },
 };
 
 const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
@@ -1336,6 +1364,7 @@ const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
     { gBattleAnimSpritePalette_DragonPulse, ANIM_TAG_DRAGON_PULSE },
     { gBattleAnimSpritePalette_PowerGem, ANIM_TAG_POWER_GEM },
     { gBattleAnimSpritePalette_EnergyBall, ANIM_TAG_ENERGY_BALL },
+    { gBattleAnimSpritePalette_PsychoCut, ANIM_TAG_PSYCHO_CUT },
 };
 
 const struct BattleAnimBackground gBattleAnimBackgroundTable[] =

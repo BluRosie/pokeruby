@@ -591,6 +591,7 @@ void TranslateSpriteOverDuration(struct Sprite *sprite)
     }
 }
 
+// sub_8078394
 void sub_8078394(struct Sprite *sprite)
 {
     if (sprite->data[0] > 0)
