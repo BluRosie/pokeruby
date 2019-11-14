@@ -534,25 +534,14 @@ void ForcePalmAnimCallback(struct Sprite *sprite)
 
 // aura sphere
 
-/*void AuraSphereCallback(struct Sprite *sprite)
-{
-    sprite->data[0] = 0;
-    StartSpriteAffineAnim(sprite, 0);
-    
-    sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
-    sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
-    
-    sprite->callback = sub_80DA48C;
-    //sprite->callback = WaitAnimForDuration;
-    //StoreSpriteCallbackInData(sprite, sub_80D9A38);
-}*/
-
 const union AffineAnimCmd gAuraSphereAffineAnimCmd[] =
 {
     AFFINEANIMCMD_FRAME(0x20, 0x20, 0, 0),
     AFFINEANIMCMD_FRAME(0x2, 0x2, 0, 64),
+    AFFINEANIMCMD_LOOP(0),
     AFFINEANIMCMD_FRAME(0xFFFC, 0xFFFC, 0, 8),
     AFFINEANIMCMD_FRAME(0x4, 0x4, 0, 8),
+    AFFINEANIMCMD_LOOP(5),
     AFFINEANIMCMD_END_ALT(1),
 };
 

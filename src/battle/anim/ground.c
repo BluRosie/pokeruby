@@ -143,7 +143,7 @@ const struct SpriteTemplate gDigDirtMoundSpriteTemplate =
 {
     .tileTag = ANIM_TAG_DIRT_MOUND,
     .paletteTag = ANIM_TAG_DIRT_MOUND,
-    .oam = &gOamData_837DF54,
+    .oam = &gOamData_AffineOff_ObjNormal_32x16,
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,

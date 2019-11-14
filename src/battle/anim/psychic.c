@@ -1366,3 +1366,49 @@ const struct SpriteTemplate gPsychoCutSpiralSpriteTemplate =
     .affineAnims = gSpriteAffineAnimTable_83DA68C,
     .callback = sub_80793C4,
 };
+
+// zen headbutt
+
+const union AffineAnimCmd gZenHeadbuttAffineAnimCmd[] =
+{
+    AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 0),
+    AFFINEANIMCMD_FRAME(0x8, 0x8, 0, 18),
+    AFFINEANIMCMD_LOOP(0),
+    AFFINEANIMCMD_FRAME(0xFFFB, 0xFFFB, 0, 8),
+    AFFINEANIMCMD_FRAME(0x5, 0x5, 0, 8),
+    AFFINEANIMCMD_LOOP(5),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd *const gZenHeadbuttAffineAnims[] =
+{
+    gZenHeadbuttAffineAnimCmd,
+};
+
+static void AnimateZenHeadbutt(struct Sprite *sprite)
+{
+    if (gBattleAnimArgs[0] == 0)
+    {
+        sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
+        sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
+    }
+    else
+    {
+        sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
+        sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
+    }
+
+    StoreSpriteCallbackInData(sprite, DestroySpriteAndMatrix);
+    sprite->callback = RunStoredCallbackWhenAffineAnimEnds;
+}
+
+const struct SpriteTemplate gZenHeadbuttSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_CIRCLE_OF_LIGHT,
+    .paletteTag = ANIM_TAG_WATER_IMPACT,
+    .oam = &gOamData_AffineNormal_ObjBlend_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gZenHeadbuttAffineAnims,
+    .callback = AnimateZenHeadbutt,
+};

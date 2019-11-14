@@ -134,7 +134,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83D9950 =
 {
     .tileTag = ANIM_TAG_SPARK_H,
     .paletteTag = ANIM_TAG_SPARK_H,
-    .oam = &gOamData_837DF54,
+    .oam = &gOamData_AffineOff_ObjNormal_32x16,
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,

@@ -99,7 +99,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83DA3E4 =
 {
     .tileTag = ANIM_TAG_AIR_WAVE_2,
     .paletteTag = ANIM_TAG_AIR_WAVE_2,
-    .oam = &gOamData_837DF54,
+    .oam = &gOamData_AffineOff_ObjNormal_32x16,
     .anims = gSpriteAnimTable_83DA3E0,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
@@ -232,7 +232,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83DA51C =
 {
     .tileTag = ANIM_TAG_WHIRLWIND_LINES,
     .paletteTag = ANIM_TAG_WHIRLWIND_LINES,
-    .oam = &gOamData_837DF54,
+    .oam = &gOamData_AffineOff_ObjNormal_32x16,
     .anims = gSpriteAnimTable_83DA518,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,

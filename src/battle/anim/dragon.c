@@ -522,3 +522,75 @@ const struct SpriteTemplate gDragonRushSpriteTemplate =
     .affineAnims = gDragonRushAffineAnimTable,
     .callback = AnimDragonRushCallback,
 };
+
+// draco meteor
+
+extern const struct OamData gOamData_AffineOff_ObjNormal_32x32;
+extern void sub_8131264(struct Sprite *sprite);
+
+const struct SpriteTemplate gDracoMeteorSmashSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_WARM_ROCK,
+    .paletteTag = ANIM_TAG_WARM_ROCK,
+    .oam = &gOamData_AffineOff_ObjNormal_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = sub_8131264,
+};
+
+static void AnimSpinningDracoMeteorFinish(struct Sprite *sprite)
+{
+    StartSpriteAffineAnim(sprite, 0);
+    sprite->affineAnimPaused = 1;
+    sprite->data[0] = 20;
+
+    sprite->callback = WaitAnimForDuration;
+    StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
+}
+
+static void AnimSpinningDracoMeteor(struct Sprite *sprite)
+{
+    InitSpritePosToAnimTarget(sprite, TRUE);
+    StartSpriteAnim(sprite, gBattleAnimArgs[2]);
+    sprite->data[0] = gBattleAnimArgs[3];
+
+    sprite->callback = WaitAnimForDuration;
+    StoreSpriteCallbackInData(sprite, AnimSpinningDracoMeteorFinish);
+}
+
+const union AnimCmd gDracoMeteorAnimCmd[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+const union AnimCmd *const gDracoMeteorAnimTable[] =
+{
+    gDracoMeteorAnimCmd,
+};
+
+const union AffineAnimCmd gDracoMeteorAffineAnimCmd[] =
+{
+    AFFINEANIMCMD_FRAME(0x100, 0x100, 0, 0),
+    AFFINEANIMCMD_FRAME(0xFFF8, 0xFFF8, 20, 1),
+    AFFINEANIMCMD_JUMP(1),
+};
+
+const union AffineAnimCmd *const gDracoMeteorAffineAnims[] =
+{
+    gDracoMeteorAffineAnimCmd,
+};
+
+extern const struct OamData gOamData_AffineDouble_ObjNormal_32x32;
+
+const struct SpriteTemplate gDracoMetorSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_IMPACT,
+    .paletteTag = ANIM_TAG_IMPACT,
+    .oam = &gOamData_AffineDouble_ObjNormal_32x32,
+    .anims = gDracoMeteorAnimTable,
+    .images = NULL,
+    .affineAnims = gDracoMeteorAffineAnims,
+    .callback = AnimSpinningDracoMeteor,
+};

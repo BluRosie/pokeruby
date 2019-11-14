@@ -133,7 +133,7 @@ static void sub_81307B0(struct Sprite *sprite);
 static void sub_8130A2C(struct Sprite *sprite);
 static void sub_8130AEC(struct Sprite *sprite);
 static void sub_8130F5C(struct Sprite *sprite);
-static void sub_8131264(struct Sprite *sprite);
+void sub_8131264(struct Sprite *sprite);
 extern void sub_80D1FDC(struct Sprite *sprite);// kiss_fountain.c
 static void sub_8131564(struct Sprite *sprite);
 static void AnimTask_TeeterDanceMovementStep(u8);
@@ -174,7 +174,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_8402198 =
 {
     .tileTag = ANIM_TAG_BLACK_SMOKE,
     .paletteTag = ANIM_TAG_BLACK_SMOKE,
-    .oam = &gOamData_837DF54,
+    .oam = &gOamData_AffineOff_ObjNormal_32x16,
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
@@ -448,7 +448,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_84023E8 =
 {
     .tileTag = ANIM_TAG_RAPID_SPIN,
     .paletteTag = ANIM_TAG_RAPID_SPIN,
-    .oam = &gOamData_837DF54,
+    .oam = &gOamData_AffineOff_ObjNormal_32x16,
     .anims = gSpriteAnimTable_84023E4,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
@@ -4621,7 +4621,7 @@ static void sub_81311E4(struct Sprite *sprite)
     sprite->data[5]++;
 }
 
-static void sub_8131264(struct Sprite *sprite)
+void sub_8131264(struct Sprite *sprite)
 {
     GetBattlerSpriteCoord(gBattleAnimTarget, 2); // unused local variable
     GetBattlerSpriteCoord(gBattleAnimTarget, 3); // unused local variable

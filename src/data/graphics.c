@@ -687,6 +687,14 @@ const u8 gBattleAnimBackgroundImage_11[] = INCBIN_U8("graphics/battle_anims/back
 const u8 gBattleAnimBackgroundPalette_11[] = INCBIN_U8("graphics/battle_anims/backgrounds/11.gbapal.lz");
 const u8 gBattleAnimBackgroundTilemap_11[] = INCBIN_U8("graphics/battle_anims/backgrounds/11.bin.lz");
 const u8 gBattleAnimBackgroundPaletteGigaImpact[] = INCBIN_U8("graphics/battle_anims/backgrounds/giga_impact.gbapal.lz");
+const u8 gBattleAnimBgImage_TrickRoom[] = INCBIN_U8("graphics/battle_anims/backgrounds/trick_room.4bpp.lz");
+const u8 gBattleAnimBgPalette_TrickRoom[] = INCBIN_U8("graphics/battle_anims/backgrounds/trick_room.gbapal.lz");
+const u8 gBattleAnimBgTilemap_TrickRoom[] = INCBIN_U8("graphics/battle_anims/backgrounds/trick_room_map.bin.lz");
+const u8 gBattleAnimBgImage_RockWrecker[] = INCBIN_U8("graphics/battle_anims/backgrounds/rock_wrecker.4bpp.lz");
+const u8 gBattleAnimBgPalette_RockWrecker[] = INCBIN_U8("graphics/battle_anims/backgrounds/rock_wrecker.gbapal.lz");
+const u8 gBattleAnimBgTilemap_RockWrecker[] = INCBIN_U8("graphics/battle_anims/backgrounds/rock_wrecker_map.bin.lz");
+
+
 const u8 gBattleAnimSpriteSheet_239[] = INCBIN_U8("graphics/battle_anims/sprites/239.4bpp.lz");
 const u8 gBattleAnimSpritePalette_239[] = INCBIN_U8("graphics/battle_anims/sprites/239.gbapal.lz");
 const u8 gBattleAnimSpriteSheet_143[] = INCBIN_U8("graphics/battle_anims/sprites/143.4bpp.lz");

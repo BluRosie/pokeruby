@@ -1341,3 +1341,36 @@ static void sub_80DF4F4(struct Sprite *sprite)
         sprite->callback = DestroySpriteAndMatrix;
     }
 }
+
+// leaf storm
+
+extern const struct OamData gOamData_AffineOff_ObjNormal_32x16;
+extern const union AnimCmd *const gSpriteAnimTable_83DA3E0[];
+extern void sub_80DA208(struct Sprite *sprite);
+
+const struct SpriteTemplate gBattleAnimSpriteTemplate_LeafStorm =
+{
+    .tileTag = ANIM_TAG_RAZOR_LEAF,
+    .paletteTag = ANIM_TAG_RAZOR_LEAF,
+    .oam = &gOamData_AffineOff_ObjNormal_32x16,
+    .anims = gSpriteAnimTable_83DA3E0,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = sub_80DA208,
+};
+
+extern const struct OamData gOamData_AffineDouble_ObjNormal_16x16;
+extern void sub_80CC6CC(struct Sprite* sprite);
+extern const union AnimCmd *const gSpriteAnimTable_83D6494[];
+extern const union AffineAnimCmd *const gSpriteAffineAnimTable_83DA2B0[];
+
+const struct SpriteTemplate gBattleAnimSpriteTemplate_LeafStorm2 =
+{
+    .tileTag = ANIM_TAG_LEAF,
+    .paletteTag = ANIM_TAG_LEAF,
+    .oam = &gOamData_AffineDouble_ObjNormal_16x16,
+    .anims = gSpriteAnimTable_83D6494,
+    .images = NULL,
+    .affineAnims = gSpriteAffineAnimTable_83DA2B0,
+    .callback = sub_80CC6CC,
+};

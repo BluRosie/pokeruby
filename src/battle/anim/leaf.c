@@ -88,7 +88,7 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83D64E4 =
 {
     .tileTag = ANIM_TAG_RAZOR_LEAF,
     .paletteTag = ANIM_TAG_RAZOR_LEAF,
-    .oam = &gOamData_837DF54,
+    .oam = &gOamData_AffineOff_ObjNormal_32x16,
     .anims = gSpriteAnimTable_83D64E0,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,

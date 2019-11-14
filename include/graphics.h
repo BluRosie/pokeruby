@@ -5981,6 +5981,9 @@ extern struct BattleAnimBackground gBattleAnimBackgroundImage_16[];
 extern struct BattleAnimBackground gBattleAnimBackgroundImage_17[];
 extern struct BattleAnimBackground gBattleAnimBackgroundImage_20[];
 extern struct BattleAnimBackground gBattleAnimBackgroundImage_21[];
+extern struct BattleAnimBackground gBattleAnimBgImage_TrickRoom[];
+extern struct BattleAnimBackground gBattleAnimBgImage_RockWrecker[];
+
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_00[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_02[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_03[];
@@ -5998,6 +6001,9 @@ extern struct BattleAnimBackground gBattleAnimBackgroundPalette_21[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_22[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_24[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPaletteGigaImpact[];
+extern struct BattleAnimBackground gBattleAnimBgPalette_TrickRoom[];
+extern struct BattleAnimBackground gBattleAnimBgPalette_RockWrecker[];
+
 extern struct BattleAnimBackground gBattleAnimBackgroundTilemap_00[];
 extern struct BattleAnimBackground gBattleAnimBackgroundTilemap_02[];
 extern struct BattleAnimBackground gBattleAnimBackgroundTilemap_03[];
@@ -6017,6 +6023,8 @@ extern struct BattleAnimBackground gBattleAnimBackgroundTilemap_16[];
 extern struct BattleAnimBackground gBattleAnimBackgroundTilemap_17[];
 extern struct BattleAnimBackground gBattleAnimBackgroundTilemap_20[];
 extern struct BattleAnimBackground gBattleAnimBackgroundTilemap_21[];
+extern struct BattleAnimBackground gBattleAnimBgTilemap_TrickRoom[];
+extern struct BattleAnimBackground gBattleAnimBgTilemap_RockWrecker[];
 
 extern const u8 gContestConfetti_Gfx[];
 extern const u8 gContestConfetti_Pal[];

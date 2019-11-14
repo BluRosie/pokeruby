@@ -144,7 +144,7 @@ const struct SpriteTemplate gFlyingDirtSpriteTemplate =
 {
     .tileTag = ANIM_TAG_FLYING_DIRT,
     .paletteTag = ANIM_TAG_FLYING_DIRT,
-    .oam = &gOamData_837DF54,
+    .oam = &gOamData_AffineOff_ObjNormal_32x16,
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
