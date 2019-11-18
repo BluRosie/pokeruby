@@ -37,3 +37,12 @@ move effects that need to be polished:
 gravity
  - needs a 5/3 accuracy boost
  - needs to cancel out bounce, fly, splash, high/jump kick, telekinesis, sky drop, & flying press
+
+
+Generation I introduced 165 moves; 
+Generation II introduced 86 moves; 
+Generation III introduced 103 moves; 
+Generation IV introduced 113 moves; 
+Generation V introduced 92 moves; 
+Generation VI introduced 62 moves; 
+and Generation VII introduced 107 moves, including 35 Z-Moves.

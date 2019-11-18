@@ -1216,3 +1216,73 @@ const struct SpriteTemplate gPowerGemScatterSpriteTemplate =
     .affineAnims = gPowerGemScatterAffineAnims,
     .callback = AnimPowerGemScatter,
 };
+
+// stone edge
+
+extern const struct OamData gOamData_AffineOff_ObjNormal_32x32;
+
+const struct SpriteTemplate gStoneEdgeSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_STONE_EDGE,
+    .paletteTag = ANIM_TAG_STONE_EDGE,
+    .oam = &gOamData_AffineOff_ObjNormal_32x32,
+    .anims = gSpriteAnimTable_83D95E0,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = sub_80DCFE4,
+};
+
+// stealth rock
+
+static void AnimStealthRockStep2(struct Sprite *sprite)
+{
+    if (sprite->data[1] & 1)
+        sprite->invisible ^= 1;
+
+    if (++sprite->data[1] == 16)
+        DestroyAnimSprite(sprite);
+}
+
+static void AnimStealthRockStep(struct Sprite *sprite)
+{
+    if (TranslateAnimArc(sprite))
+    {
+        sprite->data[0] = 30;
+        sprite->data[1] = 0;
+        sprite->callback = WaitAnimForDuration;
+        StoreSpriteCallbackInData(sprite, AnimStealthRockStep2);
+    }
+}
+
+static void AnimStealthRock(struct Sprite *sprite)
+{
+    u16 x;
+    u16 y;
+
+    InitSpritePosToAnimAttacker(sprite, TRUE);
+    SetAverageBattlerPositions(gBattleAnimTarget, FALSE, &x, &y);
+
+    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        gBattleAnimArgs[2] = -gBattleAnimArgs[2];
+
+    sprite->data[0] = gBattleAnimArgs[4];
+    sprite->data[2] = x + gBattleAnimArgs[2];
+    sprite->data[4] = y + gBattleAnimArgs[3];
+    sprite->data[5] = -50;
+
+    InitAnimArcTranslation(sprite);
+    sprite->callback = AnimStealthRockStep;
+}
+
+extern const struct OamData gOamData_AffineOff_ObjNormal_16x16;
+
+const struct SpriteTemplate gStealthRockSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_STEALTH_ROCK,
+    .paletteTag = ANIM_TAG_STEALTH_ROCK,
+    .oam = &gOamData_AffineOff_ObjNormal_16x16,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimStealthRock,
+};

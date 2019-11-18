@@ -772,6 +772,10 @@ const u8 gBattleAnimSpriteSheet_EnergyBall[] = INCBIN_U8("graphics/battle_anims/
 const u8 gBattleAnimSpritePalette_EnergyBall[] = INCBIN_U8("graphics/battle_anims/sprites/energy_ball.gbapal.lz");
 const u8 gBattleAnimSpriteSheet_PsychoCut[] = INCBIN_U8("graphics/battle_anims/sprites/psycho_cut.4bpp.lz");
 const u8 gBattleAnimSpritePalette_PsychoCut[] = INCBIN_U8("graphics/battle_anims/sprites/psycho_cut.gbapal.lz");
+const u8 gBattleAnimSpriteSheet_StoneEdge[] = INCBIN_U8("graphics/battle_anims/sprites/stone_edge.4bpp.lz");
+const u8 gBattleAnimSpritePalette_StoneEdge[] = INCBIN_U8("graphics/battle_anims/sprites/stone_edge.gbapal.lz");
+const u8 gBattleAnimSpriteSheet_StealthRock[] = INCBIN_U8("graphics/battle_anims/sprites/stealth_rock.4bpp.lz");
+const u8 gBattleAnimSpritePalette_StealthRock[] = INCBIN_U8("graphics/battle_anims/sprites/stealth_rock.gbapal.lz");
 
 #define SPECIES_SHINY_TAG 5000
 

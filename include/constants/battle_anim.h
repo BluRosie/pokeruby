@@ -307,6 +307,8 @@
 #define ANIM_TAG_POWER_GEM                  (ANIM_SPRITES_START + 294)
 #define ANIM_TAG_ENERGY_BALL                (ANIM_SPRITES_START + 295)
 #define ANIM_TAG_PSYCHO_CUT                 (ANIM_SPRITES_START + 296)
+#define ANIM_TAG_STONE_EDGE                 (ANIM_SPRITES_START + 297)
+#define ANIM_TAG_STEALTH_ROCK               (ANIM_SPRITES_START + 298)
 
 // battlers
 #define ANIM_BATTLER_ATTACKER    0

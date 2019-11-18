@@ -36,6 +36,15 @@ const struct OamData gOamData_AffineDouble_ObjNormal_16x16 =
     .priority = 2,
 };
 
+const struct OamData gOamData_AffineOff_ObjBlend_16x16 =
+{
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_BLEND,
+    .shape = SPRITE_SHAPE(16x16),
+    .size = SPRITE_SIZE(16x16),
+    .priority = 2,
+};
+
 const struct OamData gOamData_AffineOff_ObjNormal_16x32 =
 {
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -1074,6 +1083,8 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     { gBattleAnimSpriteSheet_PowerGem, 0x80, ANIM_TAG_POWER_GEM },
     { gBattleAnimSpriteSheet_EnergyBall, 0x200, ANIM_TAG_ENERGY_BALL },
     { gBattleAnimSpriteSheet_PsychoCut, 0x200, ANIM_TAG_PSYCHO_CUT },
+    { gBattleAnimSpriteSheet_StoneEdge, 0xA00, ANIM_TAG_STONE_EDGE },
+    { gBattleAnimSpriteSheet_StealthRock, 0x80, ANIM_TAG_STEALTH_ROCK },
 };
 
 const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
@@ -1375,6 +1386,8 @@ const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
     { gBattleAnimSpritePalette_PowerGem, ANIM_TAG_POWER_GEM },
     { gBattleAnimSpritePalette_EnergyBall, ANIM_TAG_ENERGY_BALL },
     { gBattleAnimSpritePalette_PsychoCut, ANIM_TAG_PSYCHO_CUT },
+    { gBattleAnimSpritePalette_StoneEdge, ANIM_TAG_STONE_EDGE },
+    { gBattleAnimSpritePalette_StealthRock, ANIM_TAG_STEALTH_ROCK },
 };
 
 const struct BattleAnimBackground gBattleAnimBackgroundTable[] =

@@ -364,3 +364,135 @@ void AnimPoisonJabProjectile(struct Sprite *sprite)
     sprite->callback = StartAnimLinearTranslation;
     StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
 }
+
+// gunk shot
+
+void AnimGunkShotParticlesStep(struct Sprite *sprite)
+{
+    if (TranslateAnimLinear(sprite))
+        DestroyAnimSprite(sprite);
+    sprite->pos2.y += Sin(sprite->data[6] >> 8, sprite->data[7]);
+    if ((sprite->data[6] + sprite->data[5]) >> 8 > 127)
+    {
+        sprite->data[6] = 0;
+        sprite->data[7] = -sprite->data[7];
+    }
+    else
+    {
+        sprite->data[6] += sprite->data[5];
+    }
+}
+
+static void AnimGunkShotParticles(struct Sprite *sprite)
+{
+    u16 retArg;
+
+    InitSpritePosToAnimAttacker(sprite, TRUE);
+    sprite->data[0] = 30;
+    sprite->data[1] = sprite->pos1.x;
+    sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
+    sprite->data[3] = sprite->pos1.y;
+    sprite->data[4] = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
+    InitAnimLinearTranslation(sprite);
+    sprite->data[5] = 0xD200 / sprite->data[0];
+    sprite->data[7] = gBattleAnimArgs[3];
+    retArg = gBattleAnimArgs[ARG_RET_ID];
+    if (gBattleAnimArgs[ARG_RET_ID] > 127)
+    {
+        sprite->data[6] = (retArg - 127) * 256;
+        sprite->data[7] = -sprite->data[7];
+    }
+    else
+    {
+        sprite->data[6] = retArg * 256;
+    }
+    sprite->callback = AnimGunkShotParticlesStep;
+    sprite->callback(sprite);
+}
+
+const union AnimCmd gGunkShotParticlesAnimCmd[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_FRAME(8, 1),
+    ANIMCMD_FRAME(12, 1),
+    ANIMCMD_JUMP(0),
+};
+
+const union AnimCmd *const gGunkShotParticlesAnims[] =
+{
+    gGunkShotParticlesAnimCmd,
+};
+
+extern const struct OamData gOamData_AffineOff_ObjBlend_16x16;
+
+const struct SpriteTemplate gGunkShotSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_WATER_ORB,
+    .paletteTag = ANIM_TAG_POISON_BUBBLE,
+    .oam = &gOamData_AffineOff_ObjBlend_16x16,
+    .anims = gGunkShotParticlesAnims,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimGunkShotParticles,
+};
+
+const union AffineAnimCmd gGunkShotImpactAffineAnimCmd_1[] =
+{
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd gGunkShotImpactAffineAnimCmd_2[] =
+{
+    AFFINEANIMCMD_FRAME(0xD8, 0xD8, 0, 0),
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd gGunkShotImpactAffineAnimCmd_3[] =
+{
+    AFFINEANIMCMD_FRAME(0xB0, 0xB0, 0, 0),
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd gGunkShotImpactAffineAnimCmd_4[] =
+{
+    AFFINEANIMCMD_FRAME(0x80, 0x80, 0, 0),
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd *const gGunkShotImpactAffineAnim[] =
+{
+    gGunkShotImpactAffineAnimCmd_1,
+    gGunkShotImpactAffineAnimCmd_2,
+    gGunkShotImpactAffineAnimCmd_3,
+    gGunkShotImpactAffineAnimCmd_4,
+};
+
+void AnimGunkShotImpact(struct Sprite *sprite)
+{
+    StartSpriteAffineAnim(sprite, gBattleAnimArgs[3]);
+    if (gBattleAnimArgs[2] == 0)
+        InitSpritePosToAnimAttacker(sprite, 1);
+    else
+        InitSpritePosToAnimTarget(sprite, TRUE);
+
+    sprite->callback = RunStoredCallbackWhenAffineAnimEnds;
+    StoreSpriteCallbackInData(sprite, DestroyAnimSprite);
+}
+
+extern const struct OamData gOamData_AffineNormal_ObjBlend_32x32;
+
+const struct SpriteTemplate gGunkShotImpactSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_WATER_IMPACT,
+    .paletteTag = ANIM_TAG_POISON_BUBBLE,
+    .oam = &gOamData_AffineNormal_ObjBlend_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gGunkShotImpactAffineAnim,
+    .callback = AnimGunkShotImpact,
+};
