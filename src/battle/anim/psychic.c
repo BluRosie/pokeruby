@@ -377,6 +377,18 @@ const union AffineAnimCmd *const gSpriteAffineAnimTable_83DA9DC[] =
     gSpriteAffineAnim_83DA9C4,
 };
 
+const union AffineAnimCmd gJudgmentAffineAnim[] =
+{
+    AFFINEANIMCMD_FRAME(0x20, 0x20, 0, 0),
+    AFFINEANIMCMD_FRAME(0x4, 0x4, 0, 60),
+    AFFINEANIMCMD_END_ALT(1),
+};
+
+const union AffineAnimCmd *const gJudgmentAffineAnimTable[] =
+{
+    gJudgmentAffineAnim,
+};
+
 const struct SpriteTemplate gBattleAnimSpriteTemplate_83DA9E0 =
 {
     .tileTag = ANIM_TAG_WHITE_CIRCLE_OF_LIGHT,
@@ -385,6 +397,17 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_83DA9E0 =
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gSpriteAffineAnimTable_83DA9DC,
+    .callback = sub_80793C4,
+};
+
+const struct SpriteTemplate gJudgmentCircleTemplate =
+{
+    .tileTag = ANIM_TAG_WHITE_CIRCLE_OF_LIGHT,
+    .paletteTag = ANIM_TAG_WHITE_CIRCLE_OF_LIGHT,
+    .oam = &gOamData_837E11C,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gJudgmentAffineAnimTable,
     .callback = sub_80793C4,
 };
 
