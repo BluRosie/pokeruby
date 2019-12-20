@@ -309,6 +309,8 @@
 #define ANIM_TAG_PSYCHO_CUT                 (ANIM_SPRITES_START + 296)
 #define ANIM_TAG_STONE_EDGE                 (ANIM_SPRITES_START + 297)
 #define ANIM_TAG_STEALTH_ROCK               (ANIM_SPRITES_START + 298)
+#define ANIM_TAG_WOOD_HAMMER                (ANIM_SPRITES_START + 299)
+#define ANIM_TAG_BEE                        (ANIM_SPRITES_START + 300)
 
 // battlers
 #define ANIM_BATTLER_ATTACKER    0

@@ -306,3 +306,45 @@ static void AnimMoveTwisterParticleStep(struct Sprite* sprite)
     if (!sprite->data[0])
         DestroyAnimSprite(sprite);
 }
+
+// wood hammer
+
+extern void AnimStompFoot(struct Sprite *sprite);
+
+const struct SpriteTemplate gWoodHammerStompTemplate =
+{
+    .tileTag = ANIM_TAG_WOOD_HAMMER,
+    .paletteTag = ANIM_TAG_WOOD_HAMMER,
+    .oam = &gOamData_AffineOff_ObjNormal_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimStompFoot,
+};
+
+extern const union AnimCmd *const gSpriteAnimTable_83DAC40[];
+extern void sub_80DCF60(struct Sprite *sprite);
+
+const struct SpriteTemplate gWoodHammerBurstTemplate =
+{
+    .tileTag = ANIM_TAG_WOOD_HAMMER,
+    .paletteTag = ANIM_TAG_WOOD_HAMMER,
+    .oam = &gOamData_AffineOff_ObjNormal_32x32,
+    .anims = gSpriteAnimTable_83DAC40,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = sub_80DCF60,
+};
+
+// BEES!
+
+const struct SpriteTemplate gBeeSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_BEE,
+    .paletteTag = ANIM_TAG_BEE,
+    .oam = &gOamData_AffineOff_ObjNormal_16x16,
+    .anims = gSpriteAnimTable_83D6494,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimMoveTwisterParticle,
+};

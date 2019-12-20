@@ -5669,6 +5669,8 @@ extern const u8 gBattleAnimSpriteSheet_EnergyBall[];
 extern const u8 gBattleAnimSpriteSheet_PsychoCut[];
 extern const u8 gBattleAnimSpriteSheet_StoneEdge[];
 extern const u8 gBattleAnimSpriteSheet_StealthRock[];
+extern const u8 gBattleAnimSpriteSheet_WoodHammer[];
+extern const u8 gBattleAnimSpriteSheet_Bee[];
 
 extern const u8 gBattleAnimSpritePalette_000[];
 extern const u8 gBattleAnimSpritePalette_001[];
@@ -5953,6 +5955,8 @@ extern const u8 gBattleAnimSpritePalette_EnergyBall[];
 extern const u8 gBattleAnimSpritePalette_PsychoCut[];
 extern const u8 gBattleAnimSpritePalette_StoneEdge[];
 extern const u8 gBattleAnimSpritePalette_StealthRock[];
+extern const u8 gBattleAnimSpritePalette_WoodHammer[];
+extern const u8 gBattleAnimSpritePalette_Bee[];
 
 extern const u8 gMenuIcons_Dex[];
 extern const u8 gMenuIcons_DexBW[];

@@ -776,6 +776,10 @@ const u8 gBattleAnimSpriteSheet_StoneEdge[] = INCBIN_U8("graphics/battle_anims/s
 const u8 gBattleAnimSpritePalette_StoneEdge[] = INCBIN_U8("graphics/battle_anims/sprites/stone_edge.gbapal.lz");
 const u8 gBattleAnimSpriteSheet_StealthRock[] = INCBIN_U8("graphics/battle_anims/sprites/stealth_rock.4bpp.lz");
 const u8 gBattleAnimSpritePalette_StealthRock[] = INCBIN_U8("graphics/battle_anims/sprites/stealth_rock.gbapal.lz");
+const u8 gBattleAnimSpriteSheet_WoodHammer[] = INCBIN_U8("graphics/battle_anims/sprites/wood.4bpp.lz");
+const u8 gBattleAnimSpritePalette_WoodHammer[] = INCBIN_U8("graphics/battle_anims/sprites/wood.gbapal.lz");
+const u8 gBattleAnimSpriteSheet_Bee[] = INCBIN_U8("graphics/battle_anims/sprites/bee.4bpp.lz");
+const u8 gBattleAnimSpritePalette_Bee[] = INCBIN_U8("graphics/battle_anims/sprites/bee.gbapal.lz");
 
 #define SPECIES_SHINY_TAG 5000
 
