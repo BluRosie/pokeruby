@@ -1428,6 +1428,7 @@ const struct BattleAnimBackground gBattleAnimBackgroundTable[] =
     [BG_GIGA_IMPACT_CONTESTS]   = {&gBattleAnimBackgroundImage_04,  &gBattleAnimBackgroundPaletteGigaImpact, &gBattleAnimBackgroundTilemap_06 },
     [BG_TRICK_ROOM]             = {&gBattleAnimBgImage_TrickRoom,   &gBattleAnimBgPalette_TrickRoom,         &gBattleAnimBgTilemap_TrickRoom  },
     [BG_ROCK_WRECKER]           = {&gBattleAnimBgImage_RockWrecker, &gBattleAnimBgPalette_RockWrecker,       &gBattleAnimBgTilemap_RockWrecker},
+    [BG_MAGMA_STORM]            = {&gBattleAnimBackgroundImage_17,  &gBattleAnimBgPalette_MagmaStorm,        &gBattleAnimBackgroundTilemap_17 },
 };
 
 extern u16 gBattlerPartyIndexes[4];

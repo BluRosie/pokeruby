@@ -1217,3 +1217,47 @@ void sub_80D9C80(u8 taskId)
         DestroyAnimVisualTask(taskId);
     }
 }
+
+// spacial rend
+
+static void SpacialRendAnimEnd(struct Sprite *sprite)
+{
+    if (++sprite->data[0] == 180)
+    {
+        sprite->callback = DestroySpriteAndMatrix;
+    }
+}
+
+static void SpacialRendAnimCallback(struct Sprite *sprite)
+{
+    if (gBattleAnimArgs[0] == 0)
+    {
+        sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
+        sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
+        sprite->oam.priority = GetBattlerSpriteBGPriority(gBattleAnimAttacker);
+        sprite->data[7] = gBattleAnimTarget;
+    }
+    else
+    {
+        sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
+        sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
+        sprite->oam.priority = GetBattlerSpriteBGPriority(gBattleAnimTarget);
+        sprite->data[7] = gBattleAnimAttacker;
+    }
+
+    sprite->data[0] = 0;
+    sprite->data[1] = 12;
+    sprite->data[2] = 8;
+    sprite->callback = SpacialRendAnimEnd;
+}
+
+const struct SpriteTemplate gSpacialRendCircleTemplate =
+{
+    .tileTag = ANIM_TAG_CIRCLE_OF_LIGHT,
+    .paletteTag = ANIM_TAG_CIRCLE_OF_LIGHT,
+    .oam = &gOamData_837E11C,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gSpriteAffineAnimTable_83DA0F8,
+    .callback = SpacialRendAnimCallback,
+};

@@ -693,6 +693,7 @@ const u8 gBattleAnimBgTilemap_TrickRoom[] = INCBIN_U8("graphics/battle_anims/bac
 const u8 gBattleAnimBgImage_RockWrecker[] = INCBIN_U8("graphics/battle_anims/backgrounds/rock_wrecker.4bpp.lz");
 const u8 gBattleAnimBgPalette_RockWrecker[] = INCBIN_U8("graphics/battle_anims/backgrounds/rock_wrecker.gbapal.lz");
 const u8 gBattleAnimBgTilemap_RockWrecker[] = INCBIN_U8("graphics/battle_anims/backgrounds/rock_wrecker_map.bin.lz");
+const u8 gBattleAnimBgPalette_MagmaStorm[] = INCBIN_U8("graphics/battle_anims/backgrounds/magma_storm.gbapal.lz");
 
 
 const u8 gBattleAnimSpriteSheet_239[] = INCBIN_U8("graphics/battle_anims/sprites/239.4bpp.lz");

@@ -6011,6 +6011,7 @@ extern struct BattleAnimBackground gBattleAnimBackgroundPalette_24[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPaletteGigaImpact[];
 extern struct BattleAnimBackground gBattleAnimBgPalette_TrickRoom[];
 extern struct BattleAnimBackground gBattleAnimBgPalette_RockWrecker[];
+extern struct BattleAnimBackground gBattleAnimBgPalette_MagmaStorm[];
 
 extern struct BattleAnimBackground gBattleAnimBackgroundTilemap_00[];
 extern struct BattleAnimBackground gBattleAnimBackgroundTilemap_02[];

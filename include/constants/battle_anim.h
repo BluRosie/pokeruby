@@ -366,6 +366,7 @@
 #define BG_GIGA_IMPACT_CONTESTS 29
 #define BG_TRICK_ROOM 30
 #define BG_ROCK_WRECKER 31
+#define BG_MAGMA_STORM 32
 
 // status animation table
 #define B_ANIM_STATUS_PSN               0x0
