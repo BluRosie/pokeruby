@@ -1515,6 +1515,12 @@ void AI_CalcDmg(u8 attacker, u8 defender)
     gDynamicBasePower = 0;
     gBattleMoveDamage = gBattleMoveDamage * gCritMultiplier * gBattleStruct->dmgMultiplier;
 
+    if (ItemId_GetHoldEffect(gBattleMons[attacker].item) == HOLD_EFFECT_METRONOME && gLastMoves[attacker] == gCurrentMove) {
+        double multiplier = 0.2 * gDisableStructs[attacker].metronomeCounter;
+        
+        gBattleMoveDamage *= (multiplier + 1);
+    }
+
     if (gStatuses3[attacker] & STATUS3_CHARGED_UP && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
         gBattleMoveDamage *= 2;
     if (gProtectStructs[attacker].helpingHand)
