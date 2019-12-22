@@ -374,6 +374,8 @@ enum
     BATTLE_TEXT_DefendingBurnHealed,
     BATTLE_TEXT_HealingWishCameTrue,
     BATTLE_TEXT_LunarDanceSwitch,
+    BATTLE_TEXT_Severely,
+    BATTLE_TEXT_Drastically,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -630,8 +632,10 @@ const u8 BattleText_PowerHerbActivates[] = _("{ATTACKING_MON}'s {STRING 19}\ncha
 const u8 BattleText_ItemCausedLittleDamage[] = _("{ATTACKING_MON}'s {STRING 19}\ndamaged it a little!");
 const u8 BattleText_ItemStuck[] = _("{DEFENDING_MON}'s {STRING 19}\nstuck to {ATTACKING_MON}!");
 const u8 BattleText_Sharply[] = _("sharply ");
+const u8 BattleText_Drastically[] = _("drastically ");
 const u8 BattleText_Rose[] = _("rose!");
 const u8 BattleText_Harshly[] = _("harshly ");
+const u8 BattleText_Severely[] = _("severely ");
 const u8 BattleText_Fell[] = _("fell!");
 const u8 BattleText_UnknownString7[] = _("{ATTACKING_MON}'s {STRING 0}\n{STRING 1}");
 const u8 BattleText_UnknownString3[] = _("{DEFENDING_MON}'s {STRING 0}\n{STRING 1}");
@@ -1271,7 +1275,9 @@ const u8 *const gBattleStringsTable[] =
     BattleText_SleepHealed,
     BattleText_DefendingBurnHealed,
     BattleText_HealingWishCameTrue,
-    BattleText_LunarDanceSwitch
+    BattleText_LunarDanceSwitch,
+    BattleText_Severely,
+    BattleText_Drastically,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.

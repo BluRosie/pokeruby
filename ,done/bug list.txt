@@ -13,7 +13,7 @@ day/night bugs:
 - when a battle starts, the black covering is still blended
 
 TODO:
-- 79 MORE MOVE ANIMATIONS
+- 44 MOVE EFFECTS
 - load different icons based on major gender difference
 - meowstic/wormadam gender difference
 - giratina/arceus formes, form(e)s in general

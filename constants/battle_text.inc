@@ -367,3 +367,5 @@
 	enum BATTLE_TEXT_DefendingBurnHealed
 	enum BATTLE_TEXT_HealingWishCameTrue
 	enum BATTLE_TEXT_LunarDanceSwitch
+	enum BATTLE_TEXT_Severely
+	enum BATTLE_TEXT_Drastically

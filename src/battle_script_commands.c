@@ -1281,7 +1281,7 @@ static void atk01_accuracycheck(void)
         if (AccuracyCalcHelper(move))
             return;
 
-        if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT)
+        if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT || gStatuses3[gBattlerTarget] & STATUS3_MIRACLE_EYED)
         {
             u8 acc = gBattleMons[gBattlerAttacker].statStages[STAT_STAGE_ACC];
             buff = acc;
@@ -1619,7 +1619,8 @@ static void atk06_typecalc(void)
                     i += 3;
                     continue;
                 }
-                else if (gTypeEffectiveness[i + 1] == TYPE_FLYING && (gDisableStructs[gBattlerTarget].roost || gBattleGlobalTimers.gravityTimer)) // effectively eliminate flying type from the pool
+                else if ((gTypeEffectiveness[i + 1] == TYPE_FLYING && (gDisableStructs[gBattlerTarget].roost || gBattleGlobalTimers.gravityTimer)) // effectively eliminate flying type from the pool
+                         || (gTypeEffectiveness[i] == TYPE_PSYCHIC && gTypeEffectiveness[i + 1] == TYPE_DARK && (gStatuses3[gBattlerTarget] & STATUS3_MIRACLE_EYED))) // moves ineffective against dark may be used
                 {
                     i += 3;
                     continue;
@@ -8002,6 +8003,7 @@ static void atk75_useitemonopponent(void)
 #define VARIOUS_RESTORE_ALL_HEALTH 8
 #define VARIOUS_SET_ROOST 9
 #define VARIOUS_SET_GRAVITY 10
+#define VARIOUS_SET_MIRACLE_EYE 11
 
 static void atk76_various(void)
 {
@@ -8096,6 +8098,12 @@ static void atk76_various(void)
             gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
         else
             gBattleGlobalTimers.gravityTimer = 7;
+        break;
+    case VARIOUS_SET_MIRACLE_EYE:
+        if (!(gStatuses3[gActiveBattler] & STATUS3_MIRACLE_EYED))
+            gStatuses3[gActiveBattler] |= STATUS3_MIRACLE_EYED;
+        else
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
         break;
     }
 
@@ -8633,6 +8641,13 @@ static u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8 *BS_ptr)
                 gBattleTextBuff2[3] = STRINGID_STATHARSHLY >> 8;
                 index = 4;
             }
+            else if (statValue == -3)
+            {
+                gBattleTextBuff2[1] = B_BUFF_STRING;
+                gBattleTextBuff2[2] = (u8) STRINGID_STATSEVERELY;
+                gBattleTextBuff2[3] = STRINGID_STATSEVERELY >> 8;
+                index = 4;
+            }
             gBattleTextBuff2[index] = B_BUFF_STRING;
             index++;
             gBattleTextBuff2[index] = STRINGID_STATFELL;
@@ -8658,6 +8673,13 @@ static u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8 *BS_ptr)
             gBattleTextBuff2[1] = B_BUFF_STRING;
             gBattleTextBuff2[2] = STRINGID_STATSHARPLY;
             gBattleTextBuff2[3] = STRINGID_STATSHARPLY >> 8;
+            index = 4;
+        }
+        else if (statValue == 3)
+        {
+            gBattleTextBuff2[1] = B_BUFF_STRING;
+            gBattleTextBuff2[2] = (u8) STRINGID_STATDRASTICALLY;
+            gBattleTextBuff2[3] = STRINGID_STATDRASTICALLY >> 8;
             index = 4;
         }
         gBattleTextBuff2[index] = B_BUFF_STRING;

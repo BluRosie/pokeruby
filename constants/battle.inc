@@ -45,6 +45,15 @@
 .equiv BATTLE_WEATHER_SANDSTORM, 2
 .equiv BATTLE_WEATHER_HAIL, 3
 
+.equiv BIT_HP,      0x1
+.equiv BIT_ATK,     0x2
+.equiv BIT_DEF,     0x4
+.equiv BIT_SPEED,   0x8
+.equiv BIT_SPATK,   0x10
+.equiv BIT_SPDEF,   0x20
+.equiv BIT_ACC,     0x40
+.equiv BIT_EVASION, 0x80
+
 	enum_start 1
 	enum ATTACK
 	enum DEFENSE

@@ -1279,8 +1279,8 @@
 	various \bank, VARIOUS_SET_GRAVITY
 	.endm
 
-	.macro various11 bank
-	various \bank, 11
+	.macro setmiracleeye bank
+	various \bank, VARIOUS_SET_MIRACLE_EYE
 	.endm
 
 	.macro various12 bank

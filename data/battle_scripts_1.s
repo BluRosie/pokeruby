@@ -374,6 +374,45 @@ gBattleScriptsForMoveEffects:: @ 81D6BBC
 	.4byte BattleScript_EffectShellTrap
 	.4byte BattleScript_EffectMultiAttack
 
+BattleScript_EffectGrowth:
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifstat USER, LESS_THAN, ATTACK, 0xC, BattleScript_GrowthDoMoveAnim
+	jumpifstat USER, EQUAL, SP_ATTACK, 0xC, BattleScript_CantRaiseMultipleStats
+BattleScript_GrowthDoMoveAnim::
+	attackanimation
+	waitanimation
+	setbyte sFIELD_1B, 0
+	playstatchangeanimation USER, BIT_ATK | BIT_SPATK, 0x0
+	jumpifhalfword COMMON_BITS, gBattleWeather, WEATHER_SUN_ANY, BattleScript_GrowthAtk2
+	setstatchanger ATTACK, 1, FALSE
+	goto BattleScript_GrowthAtk
+BattleScript_GrowthAtk2:
+	setstatchanger ATTACK, 2, FALSE
+BattleScript_GrowthAtk:
+	statbuffchange AFFECTS_USER | 1, BattleScript_GrowthTrySpAtk
+	jumpifbyte EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_GrowthTrySpAtk
+	printfromtable gStatUpStringIds
+	waitmessage 0x40
+BattleScript_GrowthTrySpAtk::
+	jumpifhalfword COMMON_BITS, gBattleWeather, WEATHER_SUN_ANY, BattleScript_GrowthSpAtk2
+	setstatchanger SP_ATTACK, 1, FALSE
+	goto BattleScript_GrowthSpAtk
+BattleScript_GrowthSpAtk2:
+	setstatchanger SP_ATTACK, 2, FALSE
+BattleScript_GrowthSpAtk:
+	statbuffchange AFFECTS_USER | 1, BattleScript_GrowthEnd
+	jumpifbyte EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_GrowthEnd
+	printfromtable gStatUpStringIds
+	waitmessage 0x40
+BattleScript_GrowthEnd:
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectSpecialAttackUp3:
+	setstatchanger SP_ATTACK, 3, FALSE
+	goto BattleScript_EffectStatUp
+
 BattleScript_EffectRoost:
 	attackcanceler
 	attackstring
@@ -407,7 +446,7 @@ BattleScript_EffectMiracleEye:
 	ppreduce
 	jumpifstatus2 TARGET, STATUS2_SUBSTITUTE, BattleScript_ButItFailed
 	setalwayshitflag
-	@ setmiracleye
+	setmiracleeye TARGET
 	attackanimation
 	waitanimation
 	printstring BATTLE_TEXT_TookAim
@@ -474,11 +513,6 @@ _HealingWishStatusClear:
 	waitstate
 	goto _HealingWishRet
 
-
-@ new battle scripts - sort of a TODO for me if you know what i'm saying
-
-BattleScript_EffectGrowth:
-BattleScript_EffectSpecialAttackUp3:
 BattleScript_EffectBrine:
 BattleScript_EffectNaturalGift:
 BattleScript_EffectFeint:
