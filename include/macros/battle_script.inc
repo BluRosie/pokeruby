@@ -1343,6 +1343,14 @@
 	various \bank, VARIOUS_PLAY_TRAINER_DEFEATED_MUSIC
 	.endm
 
+	.macro brinecalc bank
+	various \bank, VARIOUS_CALC_BRINE
+	.endm
+
+	.macro jumptofailifnotberry, bank
+	various \bank, VARIOUS_JUMP_IF_NOT_BERRY
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat, stages, down
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7

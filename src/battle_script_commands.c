@@ -8010,6 +8010,8 @@ static void atk75_useitemonopponent(void)
 #define VARIOUS_SET_ROOST 9
 #define VARIOUS_SET_GRAVITY 10
 #define VARIOUS_SET_MIRACLE_EYE 11
+#define VARIOUS_CALC_BRINE 27
+#define VARIOUS_JUMP_IF_NOT_BERRY 28
 
 static void atk76_various(void)
 {
@@ -8109,6 +8111,23 @@ static void atk76_various(void)
         if (!(gStatuses3[gActiveBattler] & STATUS3_MIRACLE_EYED))
             gStatuses3[gActiveBattler] |= STATUS3_MIRACLE_EYED;
         else
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+        break;
+    case VARIOUS_CALC_BRINE:
+        if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+        {
+            gBattlescriptCurrInstr = BattleScript_MoveMissedPause - 3;
+        }
+        else
+        {
+            gDynamicBasePower = gBattleMoves[gCurrentMove].power;
+
+            if (gBattleMons[gActiveBattler].hp < gBattleMons[gActiveBattler].maxHP / 2)
+                gDynamicBasePower *= 2;
+        }
+        break;
+    case VARIOUS_JUMP_IF_NOT_BERRY:
+        if (ITEM_IS_BERRY(gBattleMons[gActiveBattler].item))
             gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
         break;
     }

@@ -514,7 +514,50 @@ _HealingWishStatusClear:
 	goto _HealingWishRet
 
 BattleScript_EffectBrine:
+	attackcanceler
+	attackstring
+	ppreduce
+	accuracycheck BattleScript_BrineHit, ACC_CURR_MOVE
+BattleScript_BrineHit:
+	brinecalc USER
+	critcalc
+	damagecalc
+	typecalc
+	jumpifmovehadnoeffect BattleScript_BrineHit
+	adjustnormaldamage
+	goto BattleScript_HitFromAtkAnimation
+
 BattleScript_EffectNaturalGift:
+	attackcanceler
+	attackstring
+	ppreduce
+	jumptofailifnotberry USER
+	@jumpifword COMMON_BITS, gFieldStatuses, STATUS_FIELD_MAGIC_ROOM, BattleScript_ButItFailed
+	jumpifability USER, ABILITY_KLUTZ, BattleScript_ButItFailed
+	@jumpifstatus3 USER, STATUS3_EMBARGO, BattleScript_ButItFailed
+	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation TARGET
+	waitstate
+	healthbarupdate TARGET
+	datahpupdate TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	seteffectwithchance
+	jumpifmovehadnoeffect BattleScript_EffectNaturalGiftEnd
+	removeitem USER
+BattleScript_EffectNaturalGiftEnd:
+	tryfaintmon TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectFeint:
 BattleScript_EffectPlaceholder:
 BattleScript_EffectTailwind:

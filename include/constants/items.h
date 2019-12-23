@@ -214,6 +214,7 @@
 #define ITEM_MARANGA_BERRY          199
 
 #define NUM_BERRIES 67
+#define ITEM_IS_BERRY(item)         (item >= ITEM_CHERI_BERRY && item <= ITEM_MARANGA_BERRY)
 
 // mulch
 #define ITEM_GROWTH_MULCH           200
