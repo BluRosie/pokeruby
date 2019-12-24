@@ -1371,6 +1371,14 @@
 	various \bank, VARIOUS_CALC_METAL_BURST
 	.endm
 
+	.macro jumptoendifbattleend
+	various USER, VARIOUS_JUMP_TO_END_IF_BATTLE_OVER
+	.endm
+
+	.macro doclosecombatstatdrops bank
+	various \bank, VARIOUS_DO_CLOSE_COMBAT_STAT_DROPS
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat, stages, down
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7

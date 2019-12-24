@@ -604,11 +604,78 @@ BattleScript_EffectMetalBurst:
 	ppreduce
 	typecalc
 	bicbyte gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	adjustsetdamage
+	adjustsetdamage @ bc it is set at 1.5x the enemy damage
 	goto BattleScript_HitFromAtkAnimation
 
 BattleScript_EffectHitEscape:
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation TARGET
+	waitstate
+	healthbarupdate TARGET
+	datahpupdate TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	jumpifmovehadnoeffect BattleScript_MoveEnd
+	seteffectwithchance
+	tryfaintmon TARGET, FALSE, NULL
+	setbyte sMOVEEND_STATE, 0
+	moveend 0, 0
+	jumptoendifbattleend
+	jumpifbyte NOT_EQUAL, gBattleOutcome, 0, BattleScript_HitEscapeEnd
+	jumpifcantswitch ATK4F_DONT_CHECK_STATUSES | USER, BattleScript_HitEscapeEnd
+	openpartyscreen 0x1, BattleScript_HitEscapeEnd
+	switchoutabilities USER
+	waitstate
+	switchhandleorder USER, 0x2
+	returntoball USER
+	getswitchedmondata USER
+	switchindataupdate USER
+	hpthresholds USER
+	printstring 3
+	switchinanim USER, TRUE
+	waitstate
+	switchineffects USER
+BattleScript_HitEscapeEnd::
+	end
+
 BattleScript_EffectCloseCombat:
+	setbyte sDMG_MULTIPLIER, 2
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation TARGET
+	waitstate
+	healthbarupdate TARGET
+	datahpupdate TARGET
+	critmessage
+	waitmessage 64
+	resultmessage
+	waitmessage 64
+	doclosecombatstatdrops USER
+	seteffectwithchance
+	tryfaintmon TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectPayback:
 BattleScript_EffectAssurance:
 BattleScript_EffectEmbargo:
@@ -4218,6 +4285,25 @@ BattleScript_1D9427: @ 81D9427
 	waitmessage 64
 
 BattleScript_1D944A: @ 81D944A
+	return
+
+BattleScript_DefSpDefDown::
+	setbyte sFIELD_1B, FALSE
+	playstatchangeanimation USER, BIT_DEF | BIT_SPDEF, 13
+	playstatchangeanimation USER, BIT_DEF, 9
+	setstatchanger DEFENSE, 1, TRUE
+	statbuffchange AFFECTS_USER | CERTAIN | 1, BattleScript_DefSpDefDownTrySpDef
+	jumpifbyte EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_DefSpDefDownTrySpDef
+	printfromtable gStatDownStringIds
+	waitmessage 0x40
+BattleScript_DefSpDefDownTrySpDef::
+	playstatchangeanimation USER, BIT_SPDEF, 9
+	setstatchanger SP_DEFENSE, 1, TRUE
+	statbuffchange AFFECTS_USER | CERTAIN | 1, BattleScript_DefSpDefDownRet
+	jumpifbyte EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_DefSpDefDownRet
+	printfromtable gStatDownStringIds
+	waitmessage 0x40
+BattleScript_DefSpDefDownRet::
 	return
 
 BattleScript_KnockedOff:: @ 81D944B

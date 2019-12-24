@@ -49,6 +49,7 @@
 #define WINDOW_CLEAR            0x1
 #define WINDOW_x80              0x80
 
+bool32 NoAliveMonsForEitherParty(void);
 void AI_CalcDmg(u8 bankAtk, u8 bankDef);
 u8 TypeCalc(u16 move, u8 bankAtk, u8 bankDef);
 u8 AI_TypeCalc(u16 move, u16 targetSpecies, u8 targetAbility);

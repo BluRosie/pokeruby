@@ -317,6 +317,7 @@ extern u8 BattleScript_LeechSeedFree[];
 extern u8 BattleScript_SpikesFree[];
 extern u8 BattleScript_ButItFailed[];
 extern u8 BattleScript_ButItFailedAtkStringPpReduce[];
+extern u8 BattleScript_HitEscapeEnd[];
 extern u8 BattleScript_ObliviousPreventsAttraction[];
 extern u8 BattleScript_DestinyKnotActivates[];
 extern u8 BattleScript_MistProtected[];
@@ -328,6 +329,7 @@ extern u8 BattleScript_SuccessBallThrow[];
 extern u8 BattleScript_ShakeBallThrow[];
 extern u8 BattleScript_AllStatsUp[];
 extern u8 BattleScript_AtkDefDown[];
+extern u8 BattleScript_DefSpDefDown[];
 extern u8 BattleScript_SAtkDown2[];
 
 extern u8 BattleScript_SpikesOnTarget[]; //spikes1
@@ -436,6 +438,9 @@ static void atk20_jumpifstat(void);
 static void atk21_jumpifstatus3condition(void);
 static void atk22_jumpiftype(void);
 static void atk23_getexp(void);
+static bool32 NoAliveMonsForOpponent(void);
+static bool32 NoAliveMonsForPlayer(void);
+bool32 NoAliveMonsForEitherParty(void);
 static void atk24(void);
 static void atk25_movevaluescleanup(void);
 static void atk26_setmultihit(void);
@@ -3824,6 +3829,55 @@ static void atk23_getexp(void)
         }
         break;
     }
+}
+
+static bool32 NoAliveMonsForPlayer(void)
+{
+    u32 i;
+    u32 HP_count = 0;
+
+    if (gBattleTypeFlags & BATTLE_TYPE_MULTI // && (gPartnerTrainerId == TRAINER_STEVEN_PARTNER || gPartnerTrainerId >= TRAINER_CUSTOM_PARTNER)
+        ) // we will figure out the whole multi battle stuff in a hot minute
+    {
+        for (i = 0; i < 3; i++)
+        {
+            if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+                HP_count += GetMonData(&gPlayerParty[i], MON_DATA_HP);
+        }
+    }
+    else
+    {
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+            {
+                HP_count += GetMonData(&gPlayerParty[i], MON_DATA_HP);
+            }
+        }
+    }
+
+    return (HP_count == 0);
+}
+
+static bool32 NoAliveMonsForOpponent(void)
+{
+    u32 i;
+    u32 HP_count = 0;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gEnemyParty[i], MON_DATA_SPECIES) && !GetMonData(&gEnemyParty[i], MON_DATA_IS_EGG))
+        {
+            HP_count += GetMonData(&gEnemyParty[i], MON_DATA_HP);
+        }
+    }
+
+    return (HP_count == 0);
+}
+
+bool32 NoAliveMonsForEitherParty(void)
+{
+    return (NoAliveMonsForPlayer() || NoAliveMonsForOpponent());
 }
 
 #ifdef NONMATCHING
@@ -8102,6 +8156,8 @@ static void atk75_useitemonopponent(void)
 #define VARIOUS_SET_TAILWIND 31
 #define VARIOUS_TRY_ACUPRESSURE 32
 #define VARIOUS_CALC_METAL_BURST 33
+#define VARIOUS_JUMP_TO_END_IF_BATTLE_OVER 34
+#define VARIOUS_DO_CLOSE_COMBAT_STAT_DROPS 35
 
 static void atk76_various(void)
 {
@@ -8310,6 +8366,14 @@ static void atk76_various(void)
             gSpecialStatuses[gActiveBattler].ppNotAffectedByPressure = 1;
             gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce - 3;
         }
+        break;
+    case VARIOUS_JUMP_TO_END_IF_BATTLE_OVER:
+        if (NoAliveMonsForEitherParty())
+            gBattlescriptCurrInstr = BattleScript_HitEscapeEnd - 3;
+        break;
+    case VARIOUS_DO_CLOSE_COMBAT_STAT_DROPS:
+        BattleScriptPush(gBattlescriptCurrInstr + 3);
+        gBattlescriptCurrInstr = BattleScript_AtkDefDown - 3;
         break;
     }
 
