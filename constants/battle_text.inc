@@ -369,3 +369,5 @@
 	enum BATTLE_TEXT_LunarDanceSwitch
 	enum BATTLE_TEXT_Severely
 	enum BATTLE_TEXT_Drastically
+	enum BATTLE_TEXT_TailwindBlew
+	enum BATTLE_TEXT_TailwindPetered

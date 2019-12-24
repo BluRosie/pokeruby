@@ -1,6 +1,7 @@
 #include "global.h"
 #include "battle.h"
 #include "battle_message.h"
+#include "battle_string_ids.h"
 #include "battle_tower.h"
 #include "item.h"
 #include "event_data.h"
@@ -16,7 +17,7 @@
 #include "ewram.h"
 
 #define BATTLESTRING_TO_SUB 12
-#define BATTLESTRINGS_NO    367
+#define BATTLESTRINGS_NO    BATTLE_STRING_NUMBER
 #define BATTLESTRINGS_MAX   BATTLESTRINGS_NO + BATTLESTRING_TO_SUB
 
 #ifdef GERMAN

@@ -132,6 +132,7 @@ extern u8 BattleScript_PerishSongHits[];
 extern u8 BattleScript_PerishSongTimerGoesDown[];
 extern u8 BattleScript_GiveExp[];
 extern u8 BattleScript_HandleFaintedMon[];
+extern u8 BattleScript_TailwindPetered[];
 
 extern u8 BattleScript_MoveUsedIsAsleep[];
 extern u8 BattleScript_MoveUsedWokeUp[];
@@ -640,6 +641,7 @@ enum
     ENDTURN_SUN,
     ENDTURN_HAIL,
     ENDTURN_FOG,
+    ENDTURN_TAILWIND,
     ENDTURN_FIELD_COUNT,
 };
 
@@ -891,6 +893,25 @@ u8 DoFieldEndTurnEffects(void)
             }
             gBattleStruct->turnCountersTracker++;
             break;
+        case ENDTURN_TAILWIND:
+            if (gSideTimers[0].tailwindTimer)
+                gSideTimers[0].tailwindTimer--;
+            if (gSideTimers[1].tailwindTimer)
+                gSideTimers[1].tailwindTimer--;
+
+            if (gSideTimers[0].tailwindTimer == 0)
+            {
+                gBattlescriptCurrInstr = BattleScript_TailwindPetered;
+                BattleScriptExecute(gBattlescriptCurrInstr);
+                effect++;
+            }
+            if (gSideTimers[1].tailwindTimer == 0)
+            {
+                gBattlescriptCurrInstr = BattleScript_TailwindPetered;
+                BattleScriptExecute(gBattlescriptCurrInstr);
+                effect++;
+            }
+            gBattleStruct->turnCountersTracker++;
         case ENDTURN_FIELD_COUNT:
             effect++;
             break;
@@ -3576,41 +3597,6 @@ static const struct CombinedMove sCombinedMoves[2] = // bro this is so sad
     {MOVE_EMBER, MOVE_GUST, MOVE_HEAT_WAVE},
     {0xFFFF, 0xFFFF, 0xFFFF}
 };
-
-void unref_sub_801B40C(void)
-{
-    int i = 0;
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-    {
-        do
-        {
-            u8 bank = 0;
-            do
-            {
-                u8 absent = gAbsentBattlerFlags;
-                if (gBitTable[bank] & absent || absent & gBitTable[bank + 2])
-                    bank++;
-                else
-                {
-                    if (sCombinedMoves[i].move1 == gChosenMovesByBanks[bank] && sCombinedMoves[i].move2 == gChosenMovesByBanks[bank + 2])
-                    {
-                        gSideTimers[GetBattlerPosition(bank) & 1].field3 = (bank) | ((bank + 2) << 4);
-                        gSideTimers[GetBattlerPosition(bank) & 1].field4 = sCombinedMoves[i].newMove;
-                        gSideStatuses[GetBattlerPosition(bank) & 1] |= SIDE_STATUS_X4;
-                    }
-                    if (sCombinedMoves[i].move1 == gChosenMovesByBanks[bank + 2] && sCombinedMoves[i].move2 == gChosenMovesByBanks[bank])
-                    {
-                        gSideTimers[GetBattlerPosition(bank) & 1].field3 = (bank + 2) | ((bank) << 4);
-                        gSideTimers[GetBattlerPosition(bank) & 1].field4 = sCombinedMoves[i].newMove;
-                        gSideStatuses[GetBattlerPosition(bank) & 1] |= SIDE_STATUS_X4;
-                    }
-                    bank++;
-                }
-            } while (bank < 2);
-            i++;
-        } while (sCombinedMoves[i].move1 != 0xFFFF);
-    }
-}
 
 void sub_801B594(void)
 {

@@ -172,7 +172,7 @@ struct SideTimer
     u8 reflectTimer;        //0x0
     u8 lightscreenTimer;    //0x1
     u8 mistTimer;           //0x2
-    u8 field3;              //0x3
+    u8 tailwindTimer;       //0x3
     u16 field4;             //0x4
     u8 spikesAmount;        //0x6
     u8 safeguardTimer;      //0x7
@@ -180,6 +180,7 @@ struct SideTimer
     u8 followmeTarget;      //0x9
     u8 fieldA;              //0xA
     u8 fieldB;              //0xB
+    u8 fieldC;
 };
 
 struct WishFutureKnock

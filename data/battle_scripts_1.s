@@ -564,6 +564,21 @@ BattleScript_EffectFeint:
 	goto BattleScript_EffectHit
 
 BattleScript_EffectTailwind:
+	attackcanceler
+	attackstring
+	ppreduce
+	settailwind USER
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_TailwindBlew
+	waitmessage 0x40
+	goto BattleScript_MoveEnd
+
+BattleScript_TailwindPetered::
+	printstring BATTLE_TEXT_TailwindPetered
+	waitmessage 64
+	end2
+
 BattleScript_EffectAcupressure:
 BattleScript_EffectMetalBurst:
 BattleScript_EffectHitEscape:

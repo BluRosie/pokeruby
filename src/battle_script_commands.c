@@ -8098,6 +8098,7 @@ static void atk75_useitemonopponent(void)
 #define VARIOUS_JUMP_TO_FAIL_IF_NOT_BERRY 28
 #define VARIOUS_SET_NATURAL_GIFT 29
 #define VARIOUS_REMOVE_PROTECT 30
+#define VARIOUS_SET_TAILWIND 31
 
 static void atk76_various(void)
 {
@@ -8241,6 +8242,13 @@ static void atk76_various(void)
             gProtectStructs[gActiveBattler].kingsShielded = 0;
             gProtectStructs[gActiveBattler].banefulBunkered = 0;*/
         }
+        break;
+    case VARIOUS_SET_TAILWIND:
+        if (gSideTimers[GetBattlerSide(gActiveBattler)].tailwindTimer
+            || gSideTimers[!GetBattlerSide(gActiveBattler)].tailwindTimer)
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+        else
+            gSideTimers[GetBattlerSide(gActiveBattler)].tailwindTimer = 4; // lasts for 4 turns
         break;
     }
 
