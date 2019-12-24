@@ -8273,7 +8273,7 @@ static void atk76_various(void)
         }
         else
         {
-            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
         }
         break;
     }
