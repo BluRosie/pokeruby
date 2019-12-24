@@ -34,7 +34,13 @@
 
 #define RET_VALUE_LEVELLED_UP   11
 
-const u8 gBerryToType[][2] =
+struct BerryTypeStruct
+{
+    u16 berry; // while 16 bits technically wouldn't be necessary for the berries alone, i'm putting it out there now in case i get lazy
+    u8 type;
+};
+
+const struct BerryTypeStruct gBerryToType[] =
 {
     {ITEM_TANGA_BERRY,    TYPE_BUG},
     {ITEM_BABIRI_BERRY,   TYPE_STEEL},
@@ -54,6 +60,83 @@ const u8 gBerryToType[][2] =
     {ITEM_HABAN_BERRY,    TYPE_DRAGON},
     {ITEM_CHILAN_BERRY,   TYPE_NORMAL},
     {ITEM_ROSELI_BERRY,   TYPE_FAIRY}
+};
+
+struct NaturalGiftBerry
+{
+    u8 power;
+    u8 type;
+};
+
+const struct NaturalGiftBerry gNaturalGiftBerries[] =
+{
+    [ ITEM_CHERI_BERRY - FIRST_BERRY ] = { 80, TYPE_FIRE },
+    [ ITEM_CHESTO_BERRY - FIRST_BERRY ] = { 80, TYPE_WATER },
+    [ ITEM_PECHA_BERRY - FIRST_BERRY ] = { 80, TYPE_ELECTRIC },
+    [ ITEM_RAWST_BERRY - FIRST_BERRY ] = { 80, TYPE_GRASS },
+    [ ITEM_ASPEAR_BERRY - FIRST_BERRY ] = { 80, TYPE_ICE },
+    [ ITEM_LEPPA_BERRY - FIRST_BERRY ] = { 80, TYPE_FIGHTING },
+    [ ITEM_ORAN_BERRY - FIRST_BERRY ] = { 80, TYPE_POISON },
+    [ ITEM_PERSIM_BERRY - FIRST_BERRY ] = { 80, TYPE_GROUND },
+    [ ITEM_LUM_BERRY - FIRST_BERRY ] = { 80, TYPE_FLYING },
+    [ ITEM_SITRUS_BERRY - FIRST_BERRY ] = { 80, TYPE_PSYCHIC },
+    [ ITEM_FIGY_BERRY - FIRST_BERRY ] = { 80, TYPE_BUG },
+    [ ITEM_WIKI_BERRY - FIRST_BERRY ] = { 80, TYPE_ROCK },
+    [ ITEM_MAGO_BERRY - FIRST_BERRY ] = { 80, TYPE_GHOST },
+    [ ITEM_AGUAV_BERRY - FIRST_BERRY ] = { 80, TYPE_DRAGON },
+    [ ITEM_IAPAPA_BERRY - FIRST_BERRY ] = { 80, TYPE_DARK },
+    [ ITEM_RAZZ_BERRY - FIRST_BERRY ] = { 80, TYPE_STEEL },
+    [ ITEM_BLUK_BERRY - FIRST_BERRY ] = { 90, TYPE_FIRE },
+    [ ITEM_NANAB_BERRY - FIRST_BERRY ] = { 90, TYPE_WATER },
+    [ ITEM_WEPEAR_BERRY - FIRST_BERRY ] = { 90, TYPE_ELECTRIC },
+    [ ITEM_PINAP_BERRY - FIRST_BERRY ] = { 90, TYPE_GRASS },
+    [ ITEM_POMEG_BERRY - FIRST_BERRY ] = { 90, TYPE_ICE },
+    [ ITEM_KELPSY_BERRY - FIRST_BERRY ] = { 90, TYPE_FIGHTING },
+    [ ITEM_QUALOT_BERRY - FIRST_BERRY ] = { 90, TYPE_POISON },
+    [ ITEM_HONDEW_BERRY - FIRST_BERRY ] = { 90, TYPE_GROUND },
+    [ ITEM_GREPA_BERRY - FIRST_BERRY ] = { 90, TYPE_FLYING },
+    [ ITEM_TAMATO_BERRY - FIRST_BERRY ] = { 90, TYPE_PSYCHIC },
+    [ ITEM_CORNN_BERRY - FIRST_BERRY ] = { 90, TYPE_BUG },
+    [ ITEM_MAGOST_BERRY - FIRST_BERRY ] = { 90, TYPE_ROCK },
+    [ ITEM_RABUTA_BERRY - FIRST_BERRY ] = { 90, TYPE_GHOST },
+    [ ITEM_NOMEL_BERRY - FIRST_BERRY ] = { 90, TYPE_DRAGON },
+    [ ITEM_SPELON_BERRY - FIRST_BERRY ] = { 90, TYPE_DARK },
+    [ ITEM_PAMTRE_BERRY - FIRST_BERRY ] = { 90, TYPE_STEEL },
+    [ ITEM_WATMEL_BERRY - FIRST_BERRY ] = { 100, TYPE_FIRE },
+    [ ITEM_DURIN_BERRY - FIRST_BERRY ] = { 100, TYPE_WATER },
+    [ ITEM_BELUE_BERRY - FIRST_BERRY ] = { 100, TYPE_ELECTRIC },
+    [ ITEM_OCCA_BERRY - FIRST_BERRY ] = { 80, TYPE_FIRE },
+    [ ITEM_PASSHO_BERRY - FIRST_BERRY ] = { 80, TYPE_WATER },
+    [ ITEM_WACAN_BERRY - FIRST_BERRY ] = { 80, TYPE_ELECTRIC },
+    [ ITEM_RINDO_BERRY - FIRST_BERRY ] = { 80, TYPE_GRASS },
+    [ ITEM_YACHE_BERRY - FIRST_BERRY ] = { 80, TYPE_ICE },
+    [ ITEM_CHOPLE_BERRY - FIRST_BERRY ] = { 80, TYPE_FIGHTING },
+    [ ITEM_KEBIA_BERRY - FIRST_BERRY ] = { 80, TYPE_POISON },
+    [ ITEM_SHUCA_BERRY - FIRST_BERRY ] = { 80, TYPE_GROUND },
+    [ ITEM_COBA_BERRY - FIRST_BERRY ] = { 80, TYPE_FLYING },
+    [ ITEM_PAYAPA_BERRY - FIRST_BERRY ] = { 80, TYPE_PSYCHIC },
+    [ ITEM_TANGA_BERRY - FIRST_BERRY ] = { 80, TYPE_BUG },
+    [ ITEM_CHARTI_BERRY - FIRST_BERRY ] = { 80, TYPE_ROCK },
+    [ ITEM_KASIB_BERRY - FIRST_BERRY ] = { 80, TYPE_GHOST },
+    [ ITEM_HABAN_BERRY - FIRST_BERRY ] = { 80, TYPE_DRAGON },
+    [ ITEM_COLBUR_BERRY - FIRST_BERRY ] = { 80, TYPE_DARK },
+    [ ITEM_BABIRI_BERRY - FIRST_BERRY ] = { 80, TYPE_STEEL },
+    [ ITEM_CHILAN_BERRY - FIRST_BERRY ] = { 80, TYPE_NORMAL },
+    [ ITEM_ROSELI_BERRY - FIRST_BERRY ] = { 80, TYPE_FAIRY },
+    [ ITEM_LIECHI_BERRY - FIRST_BERRY ] = { 100, TYPE_GRASS },
+    [ ITEM_GANLON_BERRY - FIRST_BERRY ] = { 100, TYPE_ICE },
+    [ ITEM_SALAC_BERRY - FIRST_BERRY ] = { 100, TYPE_FIGHTING },
+    [ ITEM_PETAYA_BERRY - FIRST_BERRY ] = { 100, TYPE_POISON },
+    [ ITEM_APICOT_BERRY - FIRST_BERRY ] = { 100, TYPE_GROUND },
+    [ ITEM_LANSAT_BERRY - FIRST_BERRY ] = { 100, TYPE_FLYING },
+    [ ITEM_STARF_BERRY - FIRST_BERRY ] = { 100, TYPE_PSYCHIC },
+    [ ITEM_ENIGMA_BERRY - FIRST_BERRY ] = { 100, TYPE_BUG },
+    [ ITEM_MICLE_BERRY - FIRST_BERRY ] = { 100, TYPE_ROCK },
+    [ ITEM_CUSTAP_BERRY - FIRST_BERRY ] = { 100, TYPE_GHOST },
+    [ ITEM_JABOCA_BERRY - FIRST_BERRY ] = { 100, TYPE_DRAGON },
+    [ ITEM_ROWAP_BERRY - FIRST_BERRY ] = { 100, TYPE_DARK },
+    [ ITEM_KEE_BERRY - FIRST_BERRY ] = { 100, TYPE_FAIRY },
+    [ ITEM_MARANGA_BERRY - FIRST_BERRY ] = { 100, TYPE_DARK },
 };
 
 //extern needed variables
@@ -100,6 +183,7 @@ extern u16 gLastLandedMoves[4];
 extern u16 gLastHitByType[4];
 extern u8 gPotentialItemEffectBattler;
 extern u16 gDynamicBasePower;
+extern u8 gDynamicType;
 extern const u8 gTypeEffectiveness[];
 extern u16 gLastUsedItem;
 extern u16 gBattleMovePower;
@@ -1568,8 +1652,8 @@ static void ModulateDmgByType(u8 multiplier)
         if (ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) == HOLD_EFFECT_HALVE_BERRIES
             && multiplier > 10)
         {
-            if (gBattleMons[gBattlerTarget].item == gBerryToType[i][0]
-                && gBattleMoves[gCurrentMove].type == gBerryToType[i][1])
+            if (gBattleMons[gBattlerTarget].item == gBerryToType[i].berry
+                && gBattleMoves[gCurrentMove].type == gBerryToType[i].type)
                 multiplier /= 2;
         }
     }
@@ -1773,8 +1857,8 @@ static void ModulateDmgByType2(u8 multiplier, u16 move, u8* flags) // same as Mo
         if (ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) == HOLD_EFFECT_HALVE_BERRIES
             && multiplier == 20)
         {
-            if (gBattleMons[gBattlerTarget].item == gBerryToType[i][0]
-                && gBattleMoves[gCurrentMove].type == gBerryToType[i][1])
+            if (gBattleMons[gBattlerTarget].item == gBerryToType[i].berry
+                && gBattleMoves[gCurrentMove].type == gBerryToType[i].type)
                 multiplier = 10;
         }
     }
@@ -8011,7 +8095,9 @@ static void atk75_useitemonopponent(void)
 #define VARIOUS_SET_GRAVITY 10
 #define VARIOUS_SET_MIRACLE_EYE 11
 #define VARIOUS_CALC_BRINE 27
-#define VARIOUS_JUMP_IF_NOT_BERRY 28
+#define VARIOUS_JUMP_TO_FAIL_IF_NOT_BERRY 28
+#define VARIOUS_SET_NATURAL_GIFT 29
+#define VARIOUS_REMOVE_PROTECT 30
 
 static void atk76_various(void)
 {
@@ -8126,9 +8212,35 @@ static void atk76_various(void)
                 gDynamicBasePower *= 2;
         }
         break;
-    case VARIOUS_JUMP_IF_NOT_BERRY:
-        if (ITEM_IS_BERRY(gBattleMons[gActiveBattler].item))
+    case VARIOUS_JUMP_TO_FAIL_IF_NOT_BERRY:
+        if (!ITEM_IS_BERRY(gBattleMons[gActiveBattler].item))
             gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+        break;
+    case VARIOUS_SET_NATURAL_GIFT: // the assumption here is that the above various succeeded and no jump happened, therefore the mon is holding a berry
+                                    // note that this is separate from the above for moves like incinerate that may eventually be implemented
+        gDynamicBasePower = gNaturalGiftBerries[gBattleMons[gActiveBattler].item - FIRST_BERRY].power;
+        gBattleStruct->dynamicMoveType = gNaturalGiftBerries[gBattleMons[gActiveBattler].item - FIRST_BERRY].type;
+        break;
+    case VARIOUS_REMOVE_PROTECT:
+        if (gProtectStructs[gActiveBattler].protected
+            /*|| gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_WIDE_GUARD
+            || gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_QUICK_GUARD
+            || gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_CRAFTY_SHIELD
+            || gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_MAT_BLOCK
+            || gProtectStructs[gActiveBattler].spikyShielded
+            || gProtectStructs[gActiveBattler].kingsShielded
+            || gProtectStructs[gActiveBattler].banefulBunkered*/
+            )
+        {
+            gProtectStructs[gActiveBattler].protected = 0;
+            /*gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_WIDE_GUARD);
+            gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_QUICK_GUARD);
+            gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_CRAFTY_SHIELD);
+            gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_MAT_BLOCK);
+            gProtectStructs[gActiveBattler].spikyShielded = 0;
+            gProtectStructs[gActiveBattler].kingsShielded = 0;
+            gProtectStructs[gActiveBattler].banefulBunkered = 0;*/
+        }
         break;
     }
 
@@ -9713,32 +9825,32 @@ NAKED
 static void atk9E_metronome(void)
 {
     asm("\
-	push	{r4, r5, r6, r7, lr}\n\
-	mov	r7, r8\n\
-	push	{r7}\n\
-	ldr	r6, ._3076      @ gBattlerAttacker\n\
-	ldrb	r2, [r6]\n\
-	lsl	r1, r2, #0x1\n\
-	ldr	r0, ._3076 + 4  @ \n\
-	add	r3, r1, r0\n\
-	ldr	r5, ._3076 + 8  @ \n\
-	mov	r4, #0x58\n\
-	add	r0, r2, #0\n\
-	mul	r0, r0, r4\n\
-	add	r1, r0, r5\n\
-	ldrh	r0, [r1, #0xe]\n\
-	cmp	r0, #0\n\
-	bne	._3071	@cond_branch\n\
-	ldrh	r2, [r1, #0x10]\n\
-	cmp	r2, #0\n\
-	beq	._3071	@cond_branch\n\
-	ldrh	r0, [r1, #0x12]\n\
-	cmp	r0, #0\n\
-	beq	._3071	@cond_branch\n\
-	ldrh	r0, [r3]\n\
-	cmp	r0, #0\n\
-	bne	._3072	@cond_branch\n\
-	strh	r2, [r3]\n\
+    push    {r4, r5, r6, r7, lr}\n\
+    mov r7, r8\n\
+    push    {r7}\n\
+    ldr r6, ._3076      @ gBattlerAttacker\n\
+    ldrb    r2, [r6]\n\
+    lsl r1, r2, #0x1\n\
+    ldr r0, ._3076 + 4  @ \n\
+    add r3, r1, r0\n\
+    ldr r5, ._3076 + 8  @ \n\
+    mov r4, #0x58\n\
+    add r0, r2, #0\n\
+    mul r0, r0, r4\n\
+    add r1, r0, r5\n\
+    ldrh    r0, [r1, #0xe]\n\
+    cmp r0, #0\n\
+    bne ._3071  @cond_branch\n\
+    ldrh    r2, [r1, #0x10]\n\
+    cmp r2, #0\n\
+    beq ._3071  @cond_branch\n\
+    ldrh    r0, [r1, #0x12]\n\
+    cmp r0, #0\n\
+    beq ._3071  @cond_branch\n\
+    ldrh    r0, [r3]\n\
+    cmp r0, #0\n\
+    bne ._3072  @cond_branch\n\
+    strh    r2, [r3]\n\
 ._3072:\n\
     ldr r1, ._3076 + 12 @ \n\
     ldrh    r0, [r3]\n\
@@ -9759,10 +9871,10 @@ static void atk9E_metronome(void)
 ._3077:\n\
     .align  2, 0\n\
 ._3076:\n\
-	.word	gBattlerAttacker\n\
-	.word	+0x20160b4\n\
-	.word	gBattleMons\n\
-	.word	gCurrentMove\n\
+    .word   gBattlerAttacker\n\
+    .word   +0x20160b4\n\
+    .word   gBattleMons\n\
+    .word   gCurrentMove\n\
 ._3073:\n\
     ldrh    r4, [r3]\n\
     add r1, r4, #0\n\
@@ -9871,28 +9983,28 @@ static void atk9E_metronome(void)
     str r0, [r1]\n\
     ldrh    r0, [r4]\n\
 ._3082:\n\
-	mov	r1, #0x0\n\
-	bl	GetMoveTarget\n\
-	ldr	r1, ._3090 + 36 @ gBattlerTarget\n\
-	strb	r0, [r1]\n\
-	pop	{r3}\n\
-	mov	r8, r3\n\
-	pop	{r4, r5, r6, r7}\n\
-	pop	{r0}\n\
-	bx	r0\n\
+    mov r1, #0x0\n\
+    bl  GetMoveTarget\n\
+    ldr r1, ._3090 + 36 @ gBattlerTarget\n\
+    strb    r0, [r1]\n\
+    pop {r3}\n\
+    mov r8, r3\n\
+    pop {r4, r5, r6, r7}\n\
+    pop {r0}\n\
+    bx  r0\n\
 ._3091:\n\
     .align  2, 0\n\
 ._3090:\n\
-	.word	gCurrentMove\n\
-	.word	sMovesForbiddenToCopy\n\
-	.word	gBattlescriptCurrInstr\n\
-	.word	0x1ff\n\
-	.word	0xffff\n\
-	.word	gHitMarker\n\
-	.word	0xfffffbff\n\
-	.word	gBattleScriptsForMoveEffects\n\
-	.word	gBattleMoves\n\
-	.word	gBattlerTarget");
+    .word   gCurrentMove\n\
+    .word   sMovesForbiddenToCopy\n\
+    .word   gBattlescriptCurrInstr\n\
+    .word   0x1ff\n\
+    .word   0xffff\n\
+    .word   gHitMarker\n\
+    .word   0xfffffbff\n\
+    .word   gBattleScriptsForMoveEffects\n\
+    .word   gBattleMoves\n\
+    .word   gBattlerTarget");
 }
 #else
 #ifdef NONMATCHING
@@ -11083,28 +11195,28 @@ static void atkC0_recoverbasedonsunlight(void)
 
 static void atkC1_hiddenpowercalc(void)
 {
-	u8 power = ((gBattleMons[gBattlerAttacker].hpIV & 2) >> 1) |
-	           ((gBattleMons[gBattlerAttacker].attackIV & 2)) |
-	           ((gBattleMons[gBattlerAttacker].defenseIV & 2) << 1) |
-	           ((gBattleMons[gBattlerAttacker].speedIV & 2) << 2) |
-	           ((gBattleMons[gBattlerAttacker].spAttackIV & 2) << 3) |
-	           ((gBattleMons[gBattlerAttacker].spDefenseIV & 2) << 4);
-	u8 type = ((gBattleMons[gBattlerAttacker].hpIV & 1)) |
-	          ((gBattleMons[gBattlerAttacker].attackIV & 1) << 1) |
-	          ((gBattleMons[gBattlerAttacker].defenseIV & 1) << 2) |
-	          ((gBattleMons[gBattlerAttacker].speedIV & 1) << 3) |
-	          ((gBattleMons[gBattlerAttacker].spAttackIV & 1) << 4) |
-	          ((gBattleMons[gBattlerAttacker].spDefenseIV & 1) << 5);
+    u8 power = ((gBattleMons[gBattlerAttacker].hpIV & 2) >> 1) |
+               ((gBattleMons[gBattlerAttacker].attackIV & 2)) |
+               ((gBattleMons[gBattlerAttacker].defenseIV & 2) << 1) |
+               ((gBattleMons[gBattlerAttacker].speedIV & 2) << 2) |
+               ((gBattleMons[gBattlerAttacker].spAttackIV & 2) << 3) |
+               ((gBattleMons[gBattlerAttacker].spDefenseIV & 2) << 4);
+    u8 type = ((gBattleMons[gBattlerAttacker].hpIV & 1)) |
+              ((gBattleMons[gBattlerAttacker].attackIV & 1) << 1) |
+              ((gBattleMons[gBattlerAttacker].defenseIV & 1) << 2) |
+              ((gBattleMons[gBattlerAttacker].speedIV & 1) << 3) |
+              ((gBattleMons[gBattlerAttacker].spAttackIV & 1) << 4) |
+              ((gBattleMons[gBattlerAttacker].spDefenseIV & 1) << 5);
 
-	gDynamicBasePower = 30 + (power * 40 / 63);
+    gDynamicBasePower = 30 + (power * 40 / 63);
 
-	gBattleStruct->dynamicMoveType = ((type * 15) / 63) + 1;
-	if (gBattleStruct->dynamicMoveType >= TYPE_MYSTERY)
-		gBattleStruct->dynamicMoveType++;
+    gBattleStruct->dynamicMoveType = ((type * 15) / 63) + 1;
+    if (gBattleStruct->dynamicMoveType >= TYPE_MYSTERY)
+        gBattleStruct->dynamicMoveType++;
 
-	gBattleStruct->dynamicMoveType |= 0xC0;
+    gBattleStruct->dynamicMoveType |= 0xC0;
 
-	gBattlescriptCurrInstr++;
+    gBattlescriptCurrInstr++;
 }
 
 static void atkC2_selectfirstvalidtarget(void)

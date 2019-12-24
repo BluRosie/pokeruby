@@ -536,6 +536,7 @@ BattleScript_EffectNaturalGift:
 	jumpifability USER, ABILITY_KLUTZ, BattleScript_ButItFailed
 	@jumpifstatus3 USER, STATUS3_EMBARGO, BattleScript_ButItFailed
 	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+	setnaturalgift USER
 	critcalc
 	damagecalc
 	typecalc
@@ -552,14 +553,16 @@ BattleScript_EffectNaturalGift:
 	resultmessage
 	waitmessage 0x40
 	seteffectwithchance
-	jumpifmovehadnoeffect BattleScript_EffectNaturalGiftEnd
+	jumpifmovehadnoeffect BattleScript_EffectNaturalGiftEnd @ if for whatever reason the script failed, then don't remove the item
 	removeitem USER
 BattleScript_EffectNaturalGiftEnd:
 	tryfaintmon TARGET, FALSE, NULL
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectFeint:
-BattleScript_EffectPlaceholder:
+	removeprotect TARGET
+	goto BattleScript_EffectHit
+
 BattleScript_EffectTailwind:
 BattleScript_EffectAcupressure:
 BattleScript_EffectMetalBurst:
@@ -727,6 +730,7 @@ BattleScript_EffectUnused8D: @ 81D6F14
 BattleScript_EffectUnusedA3: @ 81D6F14
 BattleScript_EffectVitalThrow: @ 81D6F14
 BattleScript_EffectGyroBall: @ damage calculation handled in calculate_base_damage.c
+BattleScript_EffectPlaceholder: @ why the fuck did i leave the god damn placeholder
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
 	jumpifnostatus3 TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAtkCanceler
 	orword gHitMarker, HITMARKER_IGNORE_UNDERWATER

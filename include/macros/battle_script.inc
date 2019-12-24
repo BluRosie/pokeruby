@@ -1347,8 +1347,16 @@
 	various \bank, VARIOUS_CALC_BRINE
 	.endm
 
-	.macro jumptofailifnotberry, bank
-	various \bank, VARIOUS_JUMP_IF_NOT_BERRY
+	.macro jumptofailifnotberry bank
+	various \bank, VARIOUS_JUMP_TO_FAIL_IF_NOT_BERRY
+	.endm
+
+	.macro setnaturalgift bank
+	various \bank, VARIOUS_SET_NATURAL_GIFT
+	.endm
+
+	.macro removeprotect bank
+	various \bank, VARIOUS_REMOVE_PROTECT
 	.endm
 
 @ helpful macros
