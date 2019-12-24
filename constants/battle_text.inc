@@ -200,10 +200,10 @@
 	enum BATTLE_TEXT_Rose
 	enum BATTLE_TEXT_Harshly
 	enum BATTLE_TEXT_Fell
-	enum BATTLE_TEXT_UnknownString7
-	enum BATTLE_TEXT_UnknownString3
-	enum BATTLE_TEXT_UnknownString5
-	enum BATTLE_TEXT_UnknownString6
+	enum BATTLE_TEXT_StatChangedAttacker
+	enum BATTLE_TEXT_StatChangedDefender
+	enum BATTLE_TEXT_StatChanged3
+	enum BATTLE_TEXT_StatChanged4
 	enum BATTLE_TEXT_Critical
 	enum BATTLE_TEXT_GrandSlam
 	enum BATTLE_TEXT_MoveForget123

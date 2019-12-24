@@ -3452,6 +3452,7 @@ void sub_8010874(void)
     {
         gSideStatuses[i] = 0;
         MEMSET_ALT(&gSideTimers[i], 0, 12, j, r4);
+        gSideTimers[i].tailwindTimer = 0;
     }
 
     gBattlerAttacker = 0;
@@ -3523,6 +3524,7 @@ void sub_8010874(void)
         gBattleResults.pokeString2[i] = 0;
         gBattleResults.caughtNick[i] = 0;
     }
+
 #if DEBUG
     gSharedMem[0x1609E] = 0;
     gSharedMem[0x1609F] = 0;

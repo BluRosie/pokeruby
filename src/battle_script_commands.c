@@ -8099,11 +8099,13 @@ static void atk75_useitemonopponent(void)
 #define VARIOUS_SET_NATURAL_GIFT 29
 #define VARIOUS_REMOVE_PROTECT 30
 #define VARIOUS_SET_TAILWIND 31
+#define VARIOUS_TRY_ACUPRESSURE 32
 
 static void atk76_various(void)
 {
     u8 data[10];
     int i;
+    u32 bits;
 
     gActiveBattler = GetBattlerForBattleScript(T2_READ_8(gBattlescriptCurrInstr + 1));
     
@@ -8249,6 +8251,30 @@ static void atk76_various(void)
             gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
         else
             gSideTimers[GetBattlerSide(gActiveBattler)].tailwindTimer = 4; // lasts for 4 turns
+        break;
+    case VARIOUS_TRY_ACUPRESSURE:
+        for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
+        {
+            if (gBattleMons[gActiveBattler].statStages[i] != 12)
+                bits |= gBitTable[i];
+        }
+        if (bits)
+        {
+            u32 statId;
+            do
+            {
+                statId = (Random() % NUM_BATTLE_STATS) + 1;
+            } while (!(bits & gBitTable[statId]));
+
+            if (gBattleMons[gActiveBattler].statStages[statId] >= 11)
+                SET_STATCHANGER(statId, 1, FALSE);
+            else
+                SET_STATCHANGER(statId, 2, FALSE);
+        }
+        else
+        {
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        }
         break;
     }
 

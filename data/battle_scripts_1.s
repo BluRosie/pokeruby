@@ -580,6 +580,22 @@ BattleScript_TailwindPetered::
 	end2
 
 BattleScript_EffectAcupressure:
+	attackcanceler
+	jumpifbyteequal gBattlerTarget, gBattlerAttacker, BattleScript_EffectAcupressureTry
+	jumpifstatus2 TARGET, STATUS2_SUBSTITUTE, BattleScript_PrintMoveMissed
+BattleScript_EffectAcupressureTry:
+	attackstring
+	ppreduce
+	tryacupressure TARGET
+	attackanimation
+	waitanimation
+	setgraphicalstatchangevalues
+	playanimation TARGET, B_ANIM_STATS_CHANGE, sANIM_ARG1
+	statbuffchange CERTAIN, BattleScript_MoveEnd
+	printstring BATTLE_TEXT_StatChangedDefender
+	waitmessage 0x40
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectMetalBurst:
 BattleScript_EffectHitEscape:
 BattleScript_EffectCloseCombat:

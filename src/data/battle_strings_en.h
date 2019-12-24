@@ -207,10 +207,10 @@ enum
     BATTLE_TEXT_Rose,
     BATTLE_TEXT_Harshly,
     BATTLE_TEXT_Fell,
-    BATTLE_TEXT_UnknownString7,
-    BATTLE_TEXT_UnknownString3,
-    BATTLE_TEXT_UnknownString5,
-    BATTLE_TEXT_UnknownString6,
+    BATTLE_TEXT_StatChangedAttacker,
+    BATTLE_TEXT_StatChangedDefender,
+    BATTLE_TEXT_StatChanged3,
+    BATTLE_TEXT_StatChanged4,
     BATTLE_TEXT_Critical,
     BATTLE_TEXT_GrandSlam,
     BATTLE_TEXT_MoveForget123,
@@ -639,12 +639,12 @@ const u8 BattleText_Rose[] = _("rose!");
 const u8 BattleText_Harshly[] = _("harshly ");
 const u8 BattleText_Severely[] = _("severely ");
 const u8 BattleText_Fell[] = _("fell!");
-const u8 BattleText_UnknownString7[] = _("{ATTACKING_MON}'s {STRING 0}\n{STRING 1}");
-const u8 BattleText_UnknownString3[] = _("{DEFENDING_MON}'s {STRING 0}\n{STRING 1}");
+const u8 BattleText_StatChangedAttacker[] = _("{ATTACKING_MON}'s {STRING 0}\n{STRING 1}");
+const u8 BattleText_StatChangedDefender[] = _("{DEFENDING_MON}'s {STRING 0}\n{STRING 1}");
 const u8 BattleText_UnknownString4[] = _("Using {STRING 19}, the {STRING 0}\nof {STRING 16} {STRING 1}");
 const u8 BattleText_FirstBattleItem[] = _("Using {STRING 19}, the Speed\nof {ATTACKING_MON} rose!");
-const u8 BattleText_UnknownString5[] = _("{ATTACKING_MON}'s {STRING 0}\n{STRING 1}");
-const u8 BattleText_UnknownString6[] = _("{DEFENDING_MON}'s {STRING 0}\n{STRING 1}");
+const u8 BattleText_StatChanged3[] = _("{ATTACKING_MON}'s {STRING 0}\n{STRING 1}");
+const u8 BattleText_StatChanged4[] = _("{DEFENDING_MON}'s {STRING 0}\n{STRING 1}");
 const u8 BattleText_StatNoHigher[] = _("{ATTACKING_MON}'s stats won't\ngo any higher!");
 const u8 BattleText_StatNoLower[] = _("{DEFENDING_MON}'s stats won't\ngo any lower!");
 const u8 BattleText_Critical[] = _("A critical hit!");
@@ -1113,10 +1113,10 @@ const u8 *const gBattleStringsTable[] =
     BattleText_Rose,
     BattleText_Harshly,
     BattleText_Fell,
-    BattleText_UnknownString7,
-    BattleText_UnknownString3,
-    BattleText_UnknownString5,
-    BattleText_UnknownString6,
+    BattleText_StatChangedAttacker,
+    BattleText_StatChangedDefender,
+    BattleText_StatChanged3,
+    BattleText_StatChanged4,
     BattleText_Critical,
     BattleText_GrandSlam,
     BattleText_MoveForget123,
@@ -1405,8 +1405,8 @@ const u16 gUproarAwakeStringIds[] =
 
 const u16 gStatUpStringIds[] =
 {
-    BATTLE_TEXT_UnknownString7,
-    BATTLE_TEXT_UnknownString3,
+    BATTLE_TEXT_StatChangedAttacker,
+    BATTLE_TEXT_StatChangedDefender,
     BATTLE_TEXT_AttackingStatNoHigher,
     BATTLE_TEXT_Terminator2,
     BATTLE_TEXT_UnknownString4,
@@ -1415,8 +1415,8 @@ const u16 gStatUpStringIds[] =
 
 const u16 gStatDownStringIds[] =
 {
-    BATTLE_TEXT_UnknownString5,
-    BATTLE_TEXT_UnknownString6,
+    BATTLE_TEXT_StatChanged3,
+    BATTLE_TEXT_StatChanged4,
     BATTLE_TEXT_DefendingStatNoHigher,
     BATTLE_TEXT_Terminator2,
 };

@@ -62,7 +62,7 @@ extern const u8 BattleText_PreventedSwitch[];
 extern u16 gBattlerPartyIndexes[];
 
 extern u8 BattleText_Rose[];
-extern u8 BattleText_UnknownString3[];
+extern u8 BattleText_StatChangedDefender[];
 extern u8 BattleText_MistShroud[];
 extern u8 BattleText_GetPumped[];
 extern u8 *gStatStrings[];
@@ -203,7 +203,7 @@ void statToMessage(int stat)
     gBattlerTarget = gBankInMenu;
     StringCopy(gBattleTextBuff1, gStatStrings[stat + 1]);
     StringCopy(gBattleTextBuff2, BattleText_Rose);
-    BattleStringExpandPlaceholdersToDisplayedString(BattleText_UnknownString3);
+    BattleStringExpandPlaceholdersToDisplayedString(BattleText_StatChangedDefender);
 }
 
 u8 *displayXItemMessage(u16 itemId)

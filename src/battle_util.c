@@ -648,6 +648,7 @@ enum
 u8 DoFieldEndTurnEffects(void)
 {
     u8 effect = 0;
+    bool8 canTailwindPeter[2];
     s32 i;
 
     for (gBattlerAttacker = 0; gBattlerAttacker < gBattlersCount && gAbsentBattlerFlags & gBitTable[gBattlerAttacker]; gBattlerAttacker++)
@@ -894,22 +895,22 @@ u8 DoFieldEndTurnEffects(void)
             gBattleStruct->turnCountersTracker++;
             break;
         case ENDTURN_TAILWIND:
-            if (gSideTimers[0].tailwindTimer)
-                gSideTimers[0].tailwindTimer--;
-            if (gSideTimers[1].tailwindTimer)
-                gSideTimers[1].tailwindTimer--;
+            for (i = 0; i < 2; i++)
+            {
+                if (gSideTimers[i].tailwindTimer)
+                {
+                    gSideTimers[i].tailwindTimer--;
+                    canTailwindPeter[i] = TRUE;
+                }
+                else
+                    canTailwindPeter[i] = FALSE;
 
-            if (gSideTimers[0].tailwindTimer == 0)
-            {
-                gBattlescriptCurrInstr = BattleScript_TailwindPetered;
-                BattleScriptExecute(gBattlescriptCurrInstr);
-                effect++;
-            }
-            if (gSideTimers[1].tailwindTimer == 0)
-            {
-                gBattlescriptCurrInstr = BattleScript_TailwindPetered;
-                BattleScriptExecute(gBattlescriptCurrInstr);
-                effect++;
+                if (gSideTimers[i].tailwindTimer == 0 && canTailwindPeter[i])
+                {
+                    gBattlescriptCurrInstr = BattleScript_TailwindPetered;
+                    BattleScriptExecute(gBattlescriptCurrInstr);
+                    effect++;
+                }
             }
             gBattleStruct->turnCountersTracker++;
         case ENDTURN_FIELD_COUNT:

@@ -260,6 +260,8 @@ enum
     STAT_SPDEF,  // 5
 };
 
+#define NUM_BATTLE_STATS 8
+
 struct BaseStats
 {
     /*0x00*/ u8 baseHP;
