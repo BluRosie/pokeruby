@@ -1367,6 +1367,10 @@
 	various \bank, VARIOUS_TRY_ACUPRESSURE
 	.endm
 
+	.macro calcmetalburst bank
+	various \bank, VARIOUS_CALC_METAL_BURST
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat, stages, down
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7

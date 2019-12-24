@@ -316,6 +316,7 @@ extern u8 BattleScript_WrapFree[];
 extern u8 BattleScript_LeechSeedFree[];
 extern u8 BattleScript_SpikesFree[];
 extern u8 BattleScript_ButItFailed[];
+extern u8 BattleScript_ButItFailedAtkStringPpReduce[];
 extern u8 BattleScript_ObliviousPreventsAttraction[];
 extern u8 BattleScript_DestinyKnotActivates[];
 extern u8 BattleScript_MistProtected[];
@@ -8100,12 +8101,14 @@ static void atk75_useitemonopponent(void)
 #define VARIOUS_REMOVE_PROTECT 30
 #define VARIOUS_SET_TAILWIND 31
 #define VARIOUS_TRY_ACUPRESSURE 32
+#define VARIOUS_CALC_METAL_BURST 33
 
 static void atk76_various(void)
 {
     u8 data[10];
     int i;
     u32 bits;
+    u8 sideAttacker = 0, sideTarget = 0;
 
     gActiveBattler = GetBattlerForBattleScript(T2_READ_8(gBattlescriptCurrInstr + 1));
     
@@ -8274,6 +8277,38 @@ static void atk76_various(void)
         else
         {
             gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+        }
+        break;
+    case VARIOUS_CALC_METAL_BURST:
+        sideAttacker = GetBattlerSide(gActiveBattler);
+        sideTarget = GetBattlerSide(gProtectStructs[gActiveBattler].physicalBattlerId);
+
+        if (gProtectStructs[gActiveBattler].physicalDmg
+         && sideAttacker != sideTarget
+         && gBattleMons[gProtectStructs[gActiveBattler].physicalBattlerId].hp)
+        {
+            gBattleMoveDamage = gProtectStructs[gActiveBattler].physicalDmg * 150 / 100;
+
+            if (gSideTimers[sideTarget].followmeTimer && gBattleMons[gSideTimers[sideTarget].followmeTarget].hp)
+                gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
+            else
+                gBattlerTarget = gProtectStructs[gActiveBattler].physicalBattlerId;
+        }
+        else if (gProtectStructs[gActiveBattler].specialDmg
+              && sideAttacker != sideTarget
+              && gBattleMons[gProtectStructs[gActiveBattler].specialBattlerId].hp)
+        {
+            gBattleMoveDamage = gProtectStructs[gActiveBattler].specialDmg * 150 / 100;
+
+            if (gSideTimers[sideTarget].followmeTimer && gBattleMons[gSideTimers[sideTarget].followmeTarget].hp)
+                gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
+            else
+                gBattlerTarget = gProtectStructs[gActiveBattler].specialBattlerId;
+        }
+        else
+        {
+            gSpecialStatuses[gActiveBattler].ppNotAffectedByPressure = 1;
+            gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce - 3;
         }
         break;
     }

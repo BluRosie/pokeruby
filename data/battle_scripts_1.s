@@ -597,6 +597,16 @@ BattleScript_EffectAcupressureTry:
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectMetalBurst:
+	attackcanceler
+	calcmetalburst USER
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	typecalc
+	bicbyte gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
+	adjustsetdamage
+	goto BattleScript_HitFromAtkAnimation
+
 BattleScript_EffectHitEscape:
 BattleScript_EffectCloseCombat:
 BattleScript_EffectPayback:
@@ -2674,7 +2684,7 @@ BattleScript_EffectFakeOut: @ 81D83C3
 	setmoveeffect 136
 	goto BattleScript_EffectHit
 
-BattleScript_ButItFailedAtkStringPpReduce: @ 81D83D4
+BattleScript_ButItFailedAtkStringPpReduce:: @ 81D83D4
 	attackstring
 
 BattleScript_ButItFailedPpReduce: @ 81D83D5
