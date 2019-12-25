@@ -134,23 +134,24 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     {
         switch (gBattleMoves[move].effect) // here the move effect stuff is handled a new, more readable way
         {
-            case EFFECT_GYRO_BALL:
-                gBattleMovePower = 25 * gBattleMons[bankDef].speed / gBattleMons[bankAtk].speed;
-                if (gBattleMovePower > 150)
-                    gBattleMovePower = 150;
-                break;
-            case EFFECT_PAYBACK:
-                gBattleMovePower = gBattleMoves[move].power;
-                if (GetWhoStrikesFirst(bankAtk, bankDef, 0)) // a non-zero result on GetWhoStrikesFirst means that bankAtk didn't go first
-                    gBattleMovePower *= 2;
-                break;
-            case EFFECT_ASSURANCE:
-                gBattleMovePower = gBattleMoves[move].power;
-                if (gProtectStructs[bankDef].specialDmg || gProtectStructs[bankDef].physicalDmg) // the mon has taken damage
-                    gBattleMovePower *= 2;
-            default:
-                gBattleMovePower = gBattleMoves[move].power;
-                break;
+        case EFFECT_GYRO_BALL:
+            gBattleMovePower = 25 * gBattleMons[bankDef].speed / gBattleMons[bankAtk].speed;
+            if (gBattleMovePower > 150)
+                gBattleMovePower = 150;
+            break;
+        case EFFECT_PAYBACK:
+            gBattleMovePower = gBattleMoves[move].power;
+            if (GetWhoStrikesFirst(bankAtk, bankDef, 0)) // a non-zero result on GetWhoStrikesFirst means that bankAtk didn't go first
+                gBattleMovePower *= 2;
+            break;
+        case EFFECT_ASSURANCE:
+            gBattleMovePower = gBattleMoves[move].power;
+            if (gProtectStructs[bankDef].specialDmg || gProtectStructs[bankDef].physicalDmg) // the mon has taken damage
+                gBattleMovePower *= 2;
+            break;
+        default:
+            gBattleMovePower = gBattleMoves[move].power;
+            break;
         } 
     }
 
@@ -217,8 +218,6 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack = (150 * attack) / 100;
     if (attackerHoldEffect == HOLD_EFFECT_CHOICE_ITEM && attacker->item == ITEM_CHOICE_SPECS)
         spAttack = (150 * spAttack) / 100;
-    /*if (attackerHoldEffect == HOLD_EFFECT_ASSAULT_VEST)
-        spDefense = (150 * spDefense) / 100;*/
     if (attackerHoldEffect == HOLD_EFFECT_SOUL_DEW && !(gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER) && (attacker->species == SPECIES_LATIAS || attacker->species == SPECIES_LATIOS))
         spAttack = (150 * spAttack) / 100;
     if (defenderHoldEffect == HOLD_EFFECT_SOUL_DEW && !(gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER) && (defender->species == SPECIES_LATIAS || defender->species == SPECIES_LATIOS))
