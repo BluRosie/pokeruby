@@ -108,7 +108,8 @@ struct DisableStruct
              u8 quickClaw:1;
     /*0x1D*/ u8 berryActivates:1;
              u8 intimidate:1;
-             u8 roost:1;
+             u8 embargoTimer:3;
+    /*0x1E*/ u8 roost:1;
 };
 
 struct ProtectStruct

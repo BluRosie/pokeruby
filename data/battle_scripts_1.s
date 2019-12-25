@@ -534,7 +534,7 @@ BattleScript_EffectNaturalGift:
 	jumptofailifnotberry USER
 	@jumpifword COMMON_BITS, gFieldStatuses, STATUS_FIELD_MAGIC_ROOM, BattleScript_ButItFailed
 	jumpifability USER, ABILITY_KLUTZ, BattleScript_ButItFailed
-	@jumpifstatus3 USER, STATUS3_EMBARGO, BattleScript_ButItFailed
+	jumpifstatus3 USER, STATUS3_EMBARGO, BattleScript_ButItFailed
 	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
 	setnaturalgift USER
 	critcalc
@@ -676,9 +676,23 @@ BattleScript_EffectCloseCombat:
 	tryfaintmon TARGET, FALSE, NULL
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectPayback:
-BattleScript_EffectAssurance:
 BattleScript_EffectEmbargo:
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	setembargo TARGET
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_TargetCantUseItems
+	waitmessage 0x40
+	goto BattleScript_MoveEnd
+	
+BattleScript_EmbargoEndTurn::
+	printstring BATTLE_TEXT_EmbargoEnds
+	waitmessage 0x40
+	end2
+
 BattleScript_EffectFling:
 BattleScript_EffectPsychoShift:
 BattleScript_EffectTrumpCard:
@@ -839,6 +853,8 @@ BattleScript_EffectUnusedA3: @ 81D6F14
 BattleScript_EffectVitalThrow: @ 81D6F14
 BattleScript_EffectGyroBall: @ damage calculation handled in calculate_base_damage.c
 BattleScript_EffectPlaceholder: @ why the fuck did i leave the god damn placeholder
+BattleScript_EffectPayback: @ damage calculation handled in calculate_base_damage.c
+BattleScript_EffectAssurance: @ damage calculation handled in calculate_base_damage.c
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
 	jumpifnostatus3 TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAtkCanceler
 	orword gHitMarker, HITMARKER_IGNORE_UNDERWATER

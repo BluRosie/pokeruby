@@ -378,6 +378,8 @@ enum
     BATTLE_TEXT_Drastically,
     BATTLE_TEXT_TailwindBlew,
     BATTLE_TEXT_TailwindPetered,
+    BATTLE_TEXT_TargetCantUseItems,
+    BATTLE_TEXT_EmbargoEnds,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -888,6 +890,8 @@ const u8 BattleText_HealingWishCameTrue[] = _("The healing wish came\ntrue for {
 const u8 BattleText_LunarDanceSwitch[] = _("{STRING 2} became cloaked\nin mystical moonlight!");
 const u8 BattleText_TailwindBlew[] = _("The tailwind blew from\nbehind your team!");
 const u8 BattleText_TailwindPetered[] = _("The tailwind petered out.");
+const u8 BattleText_TargetCantUseItems[] = _("{DEFENDING_MON} can't use\nitems anymore!");
+const u8 BattleText_EmbargoEnds[] =("{ATTACKING_MON} can\nuse items again!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1284,6 +1288,8 @@ const u8 *const gBattleStringsTable[] =
     BattleText_Drastically,
     BattleText_TailwindBlew,
     BattleText_TailwindPetered,
+    BattleText_TargetCantUseItems,
+    BattleText_EmbargoEnds,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.

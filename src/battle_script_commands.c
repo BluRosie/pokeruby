@@ -8158,6 +8158,7 @@ static void atk75_useitemonopponent(void)
 #define VARIOUS_CALC_METAL_BURST 33
 #define VARIOUS_JUMP_TO_END_IF_BATTLE_OVER 34
 #define VARIOUS_DO_CLOSE_COMBAT_STAT_DROPS 35
+#define VARIOUS_SET_EMBARGO 36
 
 static void atk76_various(void)
 {
@@ -8306,7 +8307,7 @@ static void atk76_various(void)
         break;
     case VARIOUS_SET_TAILWIND:
         if (gSideTimers[GetBattlerSide(gActiveBattler)].tailwindTimer
-            || gSideTimers[!GetBattlerSide(gActiveBattler)].tailwindTimer)
+         || gSideTimers[!GetBattlerSide(gActiveBattler)].tailwindTimer)
             gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
         else
             gSideTimers[GetBattlerSide(gActiveBattler)].tailwindTimer = 4; // lasts for 4 turns
@@ -8374,6 +8375,15 @@ static void atk76_various(void)
     case VARIOUS_DO_CLOSE_COMBAT_STAT_DROPS:
         BattleScriptPush(gBattlescriptCurrInstr + 3);
         gBattlescriptCurrInstr = BattleScript_AtkDefDown - 3;
+        break;
+    case VARIOUS_SET_EMBARGO:
+        if (gStatuses3[gActiveBattler] & STATUS3_EMBARGO)
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+        else
+        {
+            gStatuses3[gActiveBattler] |= STATUS3_EMBARGO;
+            gDisableStructs[gActiveBattler].embargoTimer = 5;
+        }
         break;
     }
 

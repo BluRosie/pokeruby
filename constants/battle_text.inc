@@ -371,3 +371,5 @@
 	enum BATTLE_TEXT_Drastically
 	enum BATTLE_TEXT_TailwindBlew
 	enum BATTLE_TEXT_TailwindPetered
+	enum BATTLE_TEXT_TargetCantUseItems
+	enum BATTLE_TEXT_EmbargoEnds

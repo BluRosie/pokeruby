@@ -126,16 +126,33 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     u8 attackerHoldEffect;
     u8 attackerHoldEffectParam;
 
-    if (gBattleMoves[move].effect == EFFECT_GYRO_BALL)
+    if (powerOverride)
     {
-        gBattleMovePower = 25 * gBattleMons[bankDef].speed / gBattleMons[bankAtk].speed;
-        if (gBattleMovePower > 150)
-            gBattleMovePower = 150;
-    }
-    else if (!powerOverride)
-        gBattleMovePower = gBattleMoves[move].power;
-    else
         gBattleMovePower = powerOverride;
+    }
+    else
+    {
+        switch (gBattleMoves[move].effect) // here the move effect stuff is handled a new, more readable way
+        {
+            case EFFECT_GYRO_BALL:
+                gBattleMovePower = 25 * gBattleMons[bankDef].speed / gBattleMons[bankAtk].speed;
+                if (gBattleMovePower > 150)
+                    gBattleMovePower = 150;
+                break;
+            case EFFECT_PAYBACK:
+                gBattleMovePower = gBattleMoves[move].power;
+                if (GetWhoStrikesFirst(bankAtk, bankDef, 0)) // a non-zero result on GetWhoStrikesFirst means that bankAtk didn't go first
+                    gBattleMovePower *= 2;
+                break;
+            case EFFECT_ASSURANCE:
+                gBattleMovePower = gBattleMoves[move].power;
+                if (gProtectStructs[bankDef].specialDmg || gProtectStructs[bankDef].physicalDmg) // the mon has taken damage
+                    gBattleMovePower *= 2;
+            default:
+                gBattleMovePower = gBattleMoves[move].power;
+                break;
+        } 
+    }
 
     if (!typeOverride)
         type = gBattleMoves[move].type;

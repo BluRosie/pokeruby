@@ -133,6 +133,7 @@ extern u8 BattleScript_PerishSongTimerGoesDown[];
 extern u8 BattleScript_GiveExp[];
 extern u8 BattleScript_HandleFaintedMon[];
 extern u8 BattleScript_TailwindPetered[];
+extern u8 BattleScript_EmbargoEndTurn[];
 
 extern u8 BattleScript_MoveUsedIsAsleep[];
 extern u8 BattleScript_MoveUsedWokeUp[];
@@ -642,6 +643,7 @@ enum
     ENDTURN_HAIL,
     ENDTURN_FOG,
     ENDTURN_TAILWIND,
+    ENDTURN_EMBARGO,
     ENDTURN_FIELD_COUNT,
 };
 
@@ -913,6 +915,22 @@ u8 DoFieldEndTurnEffects(void)
                 }
             }
             gBattleStruct->turnCountersTracker++;
+            break;
+        case ENDTURN_EMBARGO:
+            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            {
+                if (gStatuses3[i] & STATUS3_EMBARGO)
+                {
+                    if (gDisableStructs[i].embargoTimer == 0 || --gDisableStructs[i].embargoTimer == 0)
+                    {
+                        gStatuses3[i] &= ~(STATUS3_EMBARGO);
+                        BattleScriptExecute(BattleScript_EmbargoEndTurn);
+                        effect++;
+                    }
+                }
+            }
+            gBattleStruct->turnEffectsTracker++;
+            break;
         case ENDTURN_FIELD_COUNT:
             effect++;
             break;
@@ -2764,6 +2782,11 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
     u8 bankHoldEffect, atkHoldEffect, defHoldEffect;
     u8 bankQuality, atkQuality, defQuality;
     u16 atkItem, defItem;
+
+    if (gStatuses3[bank] & STATUS3_EMBARGO)
+        return ITEM_NO_EFFECT;
+    if (gBattleMons[bank].ability == ABILITY_KLUTZ)
+        return ITEM_NO_EFFECT;
 
     gLastUsedItem = gBattleMons[bank].item;
     if (gLastUsedItem == ITEM_ENIGMA_BERRY)
