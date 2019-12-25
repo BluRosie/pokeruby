@@ -917,7 +917,7 @@ u8 DoFieldEndTurnEffects(void)
             gBattleStruct->turnCountersTracker++;
             break;
         case ENDTURN_EMBARGO:
-            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            for (i = 0; i < gBattlersCount; i++)
             {
                 if (gStatuses3[i] & STATUS3_EMBARGO)
                 {
@@ -930,7 +930,7 @@ u8 DoFieldEndTurnEffects(void)
                 }
             }
             gBattleStruct->turnEffectsTracker++;
-            break;
+            //break; // this prevents this loop from apparently running forever.  which is super weird...  what about newer effects?
         case ENDTURN_FIELD_COUNT:
             effect++;
             break;

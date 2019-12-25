@@ -3585,7 +3585,7 @@ void SwitchInClearSetData(void)
     gActionSelectionCursor[gActiveBattler] = 0;
     gMoveSelectionCursor[gActiveBattler] = 0;
 
-    MEMSET_ALT(&gDisableStructs[gActiveBattler], 0, 0x1C, i, ptr);
+    MEMSET_ALT(&gDisableStructs[gActiveBattler], 0, 0x20, i, ptr);
 
     if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
     {
@@ -3595,7 +3595,7 @@ void SwitchInClearSetData(void)
         gDisableStructs[gActiveBattler].perishSongTimer2 = sp0.perishSongTimer2;
     }
 
-    gDisableStructs[gActiveBattler].isFirstTurn= 2;
+    gDisableStructs[gActiveBattler].isFirstTurn = 2;
     gLastMoves[gActiveBattler] = 0;
     gLastLandedMoves[gActiveBattler] = 0;
     gLastHitByType[gActiveBattler] = 0;
