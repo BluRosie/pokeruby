@@ -523,6 +523,7 @@ static void atk72_jumpifplayerran(void);
 static void atk73_hpthresholds(void);
 static void atk74_hpthresholds2(void);
 static void atk75_useitemonopponent(void);
+static u16 GetFlingBasePowerAndEffect(u16 item);
 static void atk76_various(void);
 static void atk77_setprotectlike(void);
 static void atk78_faintifabilitynotdamp(void);
@@ -8138,6 +8139,235 @@ static void atk75_useitemonopponent(void)
     gBattlescriptCurrInstr += 1;
 }
 
+static u16 GetFlingBasePowerAndEffect(u16 item)
+{
+    u16 effectandpower = 0; // most significant 8 bits are effect, bottom 8 bits are power
+
+    switch (item)
+    {
+    case ITEM_CHERI_BERRY ... ITEM_MARANGA_BERRY:
+    case ITEM_SEA_INCENSE ... ITEM_LAX_INCENSE:
+    case ITEM_ODD_INCENSE ... ITEM_PURE_INCENSE:
+    case ITEM_RED_SCARF ... ITEM_YELLOW_SCARF:
+    case ITEM_AIR_BALLOON:
+    case ITEM_BIG_ROOT:
+    case ITEM_BRIGHT_POWDER:
+    case ITEM_CHOICE_BAND:
+    case ITEM_CHOICE_SCARF:
+    case ITEM_CHOICE_SPECS:
+    case ITEM_DESTINY_KNOT:
+    case ITEM_DISCOUNT_COUPON:
+    case ITEM_ELECTRIC_SEED:
+    case ITEM_EXPERT_BELT:
+    case ITEM_FOCUS_BAND:
+    case ITEM_FOCUS_SASH:
+    case ITEM_GRASSY_SEED:
+    case ITEM_LAGGING_TAIL:
+    case ITEM_LEFTOVERS:
+    case ITEM_METAL_POWDER:
+    case ITEM_MISTY_SEED:
+    case ITEM_MUSCLE_BAND:
+    case ITEM_PINK_NECTAR:
+    case ITEM_POWER_HERB:
+    case ITEM_PSYCHIC_SEED:
+    case ITEM_PURPLE_NECTAR:
+    case ITEM_QUICK_POWDER:
+    case ITEM_REAPER_CLOTH:
+    case ITEM_RED_CARD:
+    case ITEM_RED_NECTAR:
+    case ITEM_RING_TARGET:
+    case ITEM_SHED_SHELL:
+    case ITEM_SILK_SCARF:
+    case ITEM_SILVER_POWDER:
+    case ITEM_SMOOTH_ROCK:
+    case ITEM_SOFT_SAND:
+    case ITEM_SOOTHE_BELL:
+    case ITEM_WIDE_LENS:
+    case ITEM_WISE_GLASSES:
+    case ITEM_YELLOW_NECTAR:
+    case ITEM_ZOOM_LENS:
+        effectandpower = 10;
+        break;
+    case ITEM_PRETTY_WING:
+    case ITEM_HEALTH_WING ... ITEM_SWIFT_WING:
+        effectandpower = 20;
+        break;
+    case ITEM_POTION ... ITEM_PP_MAX:
+    case ITEM_RED_SHARD ... ITEM_GREEN_SHARD:
+    case ITEM_GROWTH_MULCH ... ITEM_AMAZE_MULCH:
+    case ITEM_GUARD_SPEC ... ITEM_X_SP_DEF:
+    case ITEM_DIRE_HIT_2 ... ITEM_RESET_URGE:
+    case ITEM_BLUE_FLUTE ... ITEM_WHITE_FLUTE:
+    case ITEM_ABSORB_BULB:
+    case ITEM_ADRENALINE_ORB:
+    case ITEM_AMULET_COIN:
+    case ITEM_BALM_MUSHROOM:
+    case ITEM_BIG_MALASADA:
+    case ITEM_BIG_MUSHROOM:
+    case ITEM_BIG_NUGGET:
+    case ITEM_BIG_PEARL:
+    case ITEM_BINDING_BAND:
+    case ITEM_BLACK_BELT:
+    case ITEM_BLACK_GLASSES:
+    case ITEM_BLACK_SLUDGE:
+    case ITEM_BOTTLE_CAP:
+    case ITEM_CASTELIACONE:
+    case ITEM_CELL_BATTERY:
+    case ITEM_CHARCOAL:
+    case ITEM_CLEANSE_TAG:
+    case ITEM_COMET_SHARD:
+    case ITEM_DEEP_SEA_SCALE:
+    case ITEM_DRAGON_SCALE:
+    case ITEM_EJECT_BUTTON:
+    case ITEM_ESCAPE_ROPE:
+    case ITEM_EVERSTONE:
+    case ITEM_EXP_SHARE: // even though it's not really applicable in this specific base
+    case ITEM_FIRE_STONE:
+    case ITEM_FLOAT_STONE:
+    case ITEM_FLUFFY_TAIL:
+    case ITEM_GOLD_BOTTLE_CAP:
+    case ITEM_HEART_SCALE:
+    case ITEM_HONEY:
+    case ITEM_ICE_STONE:
+    case ITEM_LEAF_STONE:
+    case ITEM_LIFE_ORB:
+    case ITEM_LIGHT_CLAY:
+    case ITEM_LUCKY_EGG:
+    case ITEM_LUMINOUS_MOSS:
+    case ITEM_LUMIOSE_GALETTE:
+    case ITEM_MAGNET:
+    case ITEM_METAL_COAT:
+    case ITEM_METRONOME:
+    case ITEM_MIRACLE_SEED:
+    case ITEM_MOON_STONE:
+    case ITEM_MYSTIC_WATER:
+    case ITEM_NEVER_MELT_ICE:
+    case ITEM_NUGGET:
+    case ITEM_OLD_GATEAU:
+    case ITEM_PASS_ORB:
+    case ITEM_PEARL_STRING:
+    case ITEM_PEARL:
+    case ITEM_POKE_DOLL:
+    case ITEM_POKE_TOY:
+    case ITEM_PRISM_SCALE:
+    case ITEM_PROTECTIVE_PADS:
+    case ITEM_RELIC_BAND:
+    case ITEM_RELIC_COPPER:
+    case ITEM_RELIC_CROWN:
+    case ITEM_RELIC_GOLD:
+    case ITEM_RELIC_SILVER:
+    case ITEM_RELIC_STATUE:
+    case ITEM_RELIC_VASE:
+    case ITEM_SCOPE_LENS:
+    case ITEM_SHALOUR_SABLE:
+    case ITEM_SHELL_BELL:
+    case ITEM_SHOAL_SALT:
+    case ITEM_SHOAL_SHELL:
+    case ITEM_SMOKE_BALL:
+    case ITEM_SNOWBALL:
+    case ITEM_SOUL_DEW:
+    case ITEM_SPELL_TAG:
+    case ITEM_STAR_PIECE:
+    case ITEM_STRANGE_SOUVENIR:
+    case ITEM_STARDUST:
+    case ITEM_SUN_STONE:
+    case ITEM_SWEET_HEART:
+    case ITEM_THUNDER_STONE:
+    case ITEM_TINY_MUSHROOM:
+    case ITEM_TWISTED_SPOON:
+    case ITEM_UP_GRADE:
+    case ITEM_WATER_STONE:
+        effectandpower = 30;
+        break;
+    case ITEM_EVIOLITE:
+    case ITEM_ICY_ROCK:
+    case ITEM_LUCKY_PUNCH:
+        effectandpower = 40;
+        break;
+    case ITEM_FIGHTING_MEMORY ... ITEM_FAIRY_MEMORY:
+    case ITEM_DUBIOUS_DISC:
+    case ITEM_SHARP_BEAK:
+        effectandpower = 50;
+        break;
+    case ITEM_ADAMANT_ORB:
+    case ITEM_DAMP_ROCK:
+    case ITEM_GRISEOUS_ORB:
+    case ITEM_HEAT_ROCK:
+    case ITEM_STICK:
+    case ITEM_LUSTROUS_ORB:
+    case ITEM_MACHO_BRACE:
+    case ITEM_ROCKY_HELMET:
+    case ITEM_TERRAIN_EXTENDER:
+        effectandpower = 60;
+        break;
+    case ITEM_DOUSE_DRIVE ... ITEM_SHOCK_DRIVE:
+    case ITEM_DRAGON_FANG:
+    case ITEM_POWER_BRACER ... ITEM_POWER_WEIGHT:
+        effectandpower = 70;
+        break;
+    case ITEM_GENGARITE ... ITEM_BEEDRILLITE:
+    case ITEM_ASSAULT_VEST:
+    case ITEM_DAWN_STONE:
+    case ITEM_DUSK_STONE:
+    case ITEM_ELECTIRIZER:
+    case ITEM_MAGMARIZER:
+    case ITEM_ODD_KEYSTONE:
+    case ITEM_OVAL_STONE:
+    case ITEM_PROTECTOR:
+    case ITEM_QUICK_CLAW:
+    case ITEM_RAZOR_CLAW:
+    case ITEM_SACHET:
+    case ITEM_SAFETY_GOGGLES:
+    case ITEM_SHINY_STONE:
+    case ITEM_STICKY_BARB:
+    case ITEM_WEAKNESS_POLICY:
+    case ITEM_WHIPPED_DREAM:
+        effectandpower = 80;
+        break;
+    case ITEM_FLAME_PLATE ... ITEM_PIXIE_PLATE:
+    case ITEM_DEEP_SEA_TOOTH:
+    case ITEM_GRIP_CLAW:
+    case ITEM_THICK_CLUB:
+        effectandpower = 90;
+        break;
+    case ITEM_ROOT_FOSSIL ... ITEM_SAIL_FOSSIL:
+    case ITEM_HARD_STONE:
+    case ITEM_RARE_BONE:
+        effectandpower = 100;
+        break;
+    case ITEM_IRON_BALL:
+        effectandpower = 130;
+        break;
+    case ITEM_FLAME_ORB:
+        effectandpower = MOVE_EFFECT_BURN << 8 | 30;
+        break;
+    case ITEM_KINGS_ROCK:
+        effectandpower = MOVE_EFFECT_FLINCH << 8 | 30;
+        break;
+    case ITEM_LIGHT_BALL:
+    case ITEM_SHOCK_ORB:
+        effectandpower = MOVE_EFFECT_PARALYSIS << 8 | 30;
+        break;
+    case ITEM_MENTAL_HERB:
+        effectandpower = /*CURE_STATUS2 << 8 | */10; // todo
+        break;
+    case ITEM_POISON_BARB:
+        effectandpower = MOVE_EFFECT_POISON << 8 | 70;
+        break;
+    case ITEM_RAZOR_FANG:
+        effectandpower = MOVE_EFFECT_FLINCH << 8 | 30;
+        break;
+    case ITEM_TOXIC_ORB:
+        effectandpower = MOVE_EFFECT_TOXIC << 8 | 30;
+        break;
+    case ITEM_WHITE_HERB:
+        effectandpower = /*RESTORE_LOWERED_STATS << 8 | */10; // todo
+        break;
+    }
+
+    return effectandpower;
+}
+
 #define VARIOUS_CANCEL_MULTI_TURN_MOVES 0
 #define VARIOUS_SET_MAGIC_COAT_TARGET 1
 #define VARIOUS_IS_RUNNING_IMPOSSIBLE 2
@@ -8159,6 +8389,7 @@ static void atk75_useitemonopponent(void)
 #define VARIOUS_JUMP_TO_END_IF_BATTLE_OVER 34
 #define VARIOUS_DO_CLOSE_COMBAT_STAT_DROPS 35
 #define VARIOUS_SET_EMBARGO 36
+#define VARIOUS_SET_FLING 37
 
 static void atk76_various(void)
 {
@@ -8383,6 +8614,19 @@ static void atk76_various(void)
         {
             gStatuses3[gActiveBattler] |= STATUS3_EMBARGO;
             gDisableStructs[gActiveBattler].embargoTimer = 5;
+        }
+        break;
+    case VARIOUS_SET_FLING:
+        bits = GetFlingBasePowerAndEffect(gBattleMons[gActiveBattler].item); // bits here is used as a variable
+
+        if (bits != 0)
+        {
+            gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_CERTAIN | (bits & 0xFF00) >> 8;
+            gDynamicBasePower = bits & 0xFF;
+        }
+        else
+        {
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
         }
         break;
     }

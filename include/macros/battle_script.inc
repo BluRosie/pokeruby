@@ -1383,6 +1383,10 @@
 	various \bank, VARIOUS_SET_EMBARGO
 	.endm
 
+	.macro setfling bank
+	various \bank, VARIOUS_SET_FLING
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat, stages, down
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7

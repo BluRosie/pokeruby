@@ -2509,8 +2509,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
             {
                 gHitMarker &= ~(HITMARKER_SYNCHRONISE_EFFECT);
                 gBattleStruct->synchroniseEffect &= 0x3F;
-                if (gBattleStruct->synchroniseEffect == 6)
-                    gBattleStruct->synchroniseEffect = 2;
+                if (gBattleStruct->synchroniseEffect == MOVE_EFFECT_TOXIC) 
+                    gBattleStruct->synchroniseEffect = MOVE_EFFECT_POISON;
                 gBattleCommunication[MOVE_EFFECT_BYTE] = gBattleStruct->synchroniseEffect + 0x40;
                 gBattleStruct->scriptingActive = gBattlerTarget;
                 BattleScriptPushCursor();

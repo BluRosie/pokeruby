@@ -694,6 +694,36 @@ BattleScript_EmbargoEndTurn::
 	end2
 
 BattleScript_EffectFling:
+	attackcanceler
+	attackstring
+	ppreduce
+	@jumpifword COMMON_BITS, gFieldStatuses, STATUS_FIELD_MAGIC_ROOM, BattleScript_ButItFailed
+	jumpifability USER, ABILITY_KLUTZ, BattleScript_ButItFailed
+	jumpifstatus3 USER, STATUS3_EMBARGO, BattleScript_ButItFailed
+	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
+	setfling USER
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation TARGET
+	waitstate
+	healthbarupdate TARGET
+	datahpupdate TARGET
+	critmessage
+	waitmessage 0x40
+	resultmessage
+	waitmessage 0x40
+	seteffectwithchance
+	jumpifmovehadnoeffect BattleScript_EffectFlingEnd @ if for whatever reason the script failed, then don't remove the item
+	removeitem USER
+BattleScript_EffectFlingEnd:
+	tryfaintmon TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectPsychoShift:
 BattleScript_EffectTrumpCard:
 BattleScript_EffectHealBlock:
