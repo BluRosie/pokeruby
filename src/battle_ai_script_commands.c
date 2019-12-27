@@ -2,6 +2,7 @@
 #include "battle_ai_script_commands.h"
 #include "constants/abilities.h"
 #include "battle.h"
+#include "battle_util.h"
 #include "constants/battle_move_effects.h"
 #include "data2.h"
 #include "item.h"
@@ -1382,11 +1383,11 @@ static void BattleAICmd_get_ability(void)
         }
 
         // abilities that prevent fleeing.
-        if (gBattleMons[index].ability == ABILITY_SHADOW_TAG
-        || gBattleMons[index].ability == ABILITY_MAGNET_PULL
-        || gBattleMons[index].ability == ABILITY_ARENA_TRAP)
+        if (GetBattlerAbility(index) == ABILITY_SHADOW_TAG
+        || GetBattlerAbility(index) == ABILITY_MAGNET_PULL
+        || GetBattlerAbility(index) == ABILITY_ARENA_TRAP)
         {
-            AI_THINKING_STRUCT->funcResult = gBattleMons[index].ability;
+            AI_THINKING_STRUCT->funcResult = GetBattlerAbility(index);
             gAIScriptPtr += 2;
             return;
         }
@@ -1395,7 +1396,7 @@ static void BattleAICmd_get_ability(void)
         {
             if (gBaseStats[gBattleMons[index].species].ability2 != ABILITY_NONE)
             {
-                // AI has no knowledge of opponent, so it guesses which ability.
+                // AI has no knowledge of opponent, so it guesses which ability.  no hidden ability here
                 if (Random() % 2)
                 {
                     AI_THINKING_STRUCT->funcResult = gBaseStats[gBattleMons[index].species].ability1;
@@ -1418,7 +1419,7 @@ static void BattleAICmd_get_ability(void)
     else
     {
         // The AI knows its own ability.
-        AI_THINKING_STRUCT->funcResult = gBattleMons[index].ability;
+        AI_THINKING_STRUCT->funcResult = GetBattlerAbility(index);
     }
     gAIScriptPtr += 2;
 }
