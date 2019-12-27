@@ -5,6 +5,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/species.h"
+#include "battle_util.h"
 #include "battle.h"
 #include "berry.h"
 #include "data2.h"
@@ -94,6 +95,15 @@ const u8 gHoldGemToType[][2] =
     {HOLD_EFFECT_FAIRY_GEM,    TYPE_FAIRY}
 };
 
+const u8 gTrumpCardPowerTable[] = // pp corresponds with power
+{
+    200, 
+    80, 
+    60, 
+    50, 
+    40
+};
+
 u8 GetBattlerSide(u8 bank);
 
 #define APPLY_STAT_MOD(var, mon, stat, statIndex)                                   \
@@ -148,6 +158,16 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             gBattleMovePower = gBattleMoves[move].power;
             if (gProtectStructs[bankDef].specialDmg || gProtectStructs[bankDef].physicalDmg) // the mon has taken damage
                 gBattleMovePower *= 2;
+            break;
+        case EFFECT_TRUMP_CARD: // pp reduction occurs before damage calculation
+            i = GetBattleMonMoveSlot(&gBattleMons[bankAtk], move);
+            if (i != 4)
+            {
+                if (gBattleMons[bankAtk].pp[i] >= ARRAY_COUNT(gTrumpCardPowerTable))
+                    gBattleMovePower = gTrumpCardPowerTable[ARRAY_COUNT(gTrumpCardPowerTable) - 1];
+                else
+                    gBattleMovePower = gTrumpCardPowerTable[i];
+            }
             break;
         default:
             gBattleMovePower = gBattleMoves[move].power;

@@ -748,7 +748,6 @@ BattleScript_EffectPsychoShiftCanWork:
 	updatestatusicon USER
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectTrumpCard:
 BattleScript_EffectHealBlock:
 BattleScript_EffectWringOut:
 BattleScript_EffectPowerTrick:
@@ -908,6 +907,7 @@ BattleScript_EffectGyroBall: @ damage calculation handled in calculate_base_dama
 BattleScript_EffectPlaceholder: @ why the fuck did i leave the god damn placeholder
 BattleScript_EffectPayback: @ damage calculation handled in calculate_base_damage.c
 BattleScript_EffectAssurance: @ damage calculation handled in calculate_base_damage.c
+BattleScript_EffectTrumpCard: @ same as above
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
 	jumpifnostatus3 TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAtkCanceler
 	orword gHitMarker, HITMARKER_IGNORE_UNDERWATER

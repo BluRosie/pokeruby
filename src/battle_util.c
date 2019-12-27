@@ -615,6 +615,18 @@ u8 GetBattlerAbility(u8 bank) // putting this here for later messing
     return gBattleMons[bank].ability;
 }
 
+u8 GetBattleMonMoveSlot(struct BattlePokemon *battleMon, u16 move)
+{
+    u8 i;
+
+    for (i = 0; i < 4; i++)
+    {
+        if (battleMon->moves[i] == move)
+            break;
+    }
+    return i;
+}
+
 u8 IsImprisoned(u8 battlerId, u16 move)
 {
     s32 i;

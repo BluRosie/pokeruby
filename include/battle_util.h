@@ -68,5 +68,6 @@ u8 IsMonDisobedient(void);
 bool8 AreAllMovesUnusable(void);
 u8 TrySetCantSelectMoveBattleScript(void);
 u8 GetBattlerAbility(u8 bank);
+u8 GetBattleMonMoveSlot(struct BattlePokemon *battleMon, u16 move);
 
 #endif // GUARD_BATTLE_UTIL_H
