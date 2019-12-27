@@ -84,7 +84,6 @@ extern const u8 BattleText_Many[];
 extern const BattleCmdFunc gBattleScriptingCommandsTable[];
 
 u8 IsImprisoned(u8 bank, u16 move);
-//u8 GetBattlerAbility(u8 bank);
 u8 GetBattlerAtPosition(u8 ID);
 u8 GetBattlerPosition(u8 bank);
 u8 GetBattlerSide(u8 bank);

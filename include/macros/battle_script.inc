@@ -1387,6 +1387,14 @@
 	various \bank, VARIOUS_SET_FLING
 	.endm
 
+	.macro trypsychoshift
+	various USER, VARIOUS_TRY_PSYCHO_SHIFT
+	.endm
+
+	.macro curestatus bank
+	various \bank, VARIOUS_CURE_STATUS1
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat, stages, down
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7

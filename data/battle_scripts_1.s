@@ -701,9 +701,9 @@ BattleScript_EffectFling:
 	jumpifability USER, ABILITY_KLUTZ, BattleScript_ButItFailed
 	jumpifstatus3 USER, STATUS3_EMBARGO, BattleScript_ButItFailed
 	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
-	setfling USER
+	setfling USER @ this just sets the fling values to relevances
 	critcalc
-	damagecalc
+	damagecalc @ the base power part of fling is handled in here
 	typecalc
 	adjustnormaldamage
 	attackanimation
@@ -717,7 +717,7 @@ BattleScript_EffectFling:
 	waitmessage 0x40
 	resultmessage
 	waitmessage 0x40
-	seteffectwithchance
+	seteffectwithchance @ for the few items that have an effect, they are handled in here
 	jumpifmovehadnoeffect BattleScript_EffectFlingEnd @ if for whatever reason the script failed, then don't remove the item
 	removeitem USER
 BattleScript_EffectFlingEnd:
@@ -725,6 +725,29 @@ BattleScript_EffectFlingEnd:
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectPsychoShift:
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	jumpifstatus USER, SLP | PSN | BRN | FRZ | PAR | TOX, BattleScript_EffectPsychoShiftCanWork
+	goto BattleScript_ButItFailed
+BattleScript_EffectPsychoShiftCanWork:
+	jumpifstatus TARGET, SLP | PSN | BRN | FRZ | PAR | TOX, BattleScript_ButItFailed
+	jumpifsideaffecting TARGET, SIDE_STATUS_SAFEGUARD, BattleScript_SafeguardProtected
+	trypsychoshift
+	attackanimation
+	waitanimation
+	copybyte gEffectBattler, gBattlerTarget
+	printfromtable gStatusConditionsStringIds
+	waitmessage 0x40
+	statusanimation TARGET
+	updatestatusicon TARGET
+	curestatus USER
+	printstring BATTLE_TEXT_StatusNormal
+	waitmessage 0x40
+	updatestatusicon USER
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectTrumpCard:
 BattleScript_EffectHealBlock:
 BattleScript_EffectWringOut:

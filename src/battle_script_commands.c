@@ -8474,6 +8474,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_SET_EMBARGO 36
 #define VARIOUS_SET_FLING 37
 #define VARIOUS_TRY_PSYCHO_SHIFT 38
+#define VARIOUS_CURE_STATUS1 39
 
 static void atk76_various(void)
 {
@@ -8720,13 +8721,13 @@ static void atk76_various(void)
             if (GetBattlerAbility(gBattlerTarget) == ABILITY_LIMBER)
             {
                 //gBattlerAbility = gBattlerTarget;
-                BattleScriptPush(T1_READ_PTR(gBattlescriptCurrInstr + 3));
+                BattleScriptPush(BattleScript_MoveEnd);
                 gBattlescriptCurrInstr = BattleScript_PRLZPrevention;
                 i = FALSE;
             }
             else if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_ELECTRIC))
             {
-                BattleScriptPush(T1_READ_PTR(gBattlescriptCurrInstr + 3));
+                BattleScriptPush(BattleScript_MoveEnd);
                 gBattlescriptCurrInstr = BattleScript_PRLZPrevention;
                 i = FALSE;
             }
@@ -8740,13 +8741,13 @@ static void atk76_various(void)
             if (GetBattlerAbility(gBattlerTarget) == ABILITY_IMMUNITY)
             {
                 //gBattlerAbility = gBattlerTarget;
-                BattleScriptPush(T1_READ_PTR(gBattlescriptCurrInstr + 3));
+                BattleScriptPush(BattleScript_MoveEnd);
                 gBattlescriptCurrInstr = BattleScript_PSNPrevention;
                 i = FALSE;
             }
             else if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_POISON) || IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_STEEL))
             {
-                BattleScriptPush(T1_READ_PTR(gBattlescriptCurrInstr + 3));
+                BattleScriptPush(BattleScript_MoveEnd);
                 gBattlescriptCurrInstr = BattleScript_PSNPrevention;
                 i = FALSE;
             }
@@ -8763,13 +8764,13 @@ static void atk76_various(void)
             if (GetBattlerAbility(gBattlerTarget) == ABILITY_WATER_VEIL)
             {
                 //gBattlerAbility = gBattlerTarget;
-                BattleScriptPush(T1_READ_PTR(gBattlescriptCurrInstr + 3));
+                BattleScriptPush(BattleScript_MoveEnd);
                 gBattlescriptCurrInstr = BattleScript_BRNPrevention;
                 i = FALSE;
             }
             else if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_FIRE))
             {
-                BattleScriptPush(T1_READ_PTR(gBattlescriptCurrInstr + 3));
+                BattleScriptPush(BattleScript_MoveEnd);
                 gBattlescriptCurrInstr = BattleScript_BRNPrevention;
                 i = FALSE;
             }
@@ -8783,8 +8784,8 @@ static void atk76_various(void)
             if (GetBattlerAbility(gBattlerTarget) == ABILITY_INSOMNIA || GetBattlerAbility(gBattlerTarget) == ABILITY_VITAL_SPIRIT)
             {
                 gLastUsedAbility = gBattlerTarget;
-                // BattleScriptPush(T1_READ_PTR(gBattlescriptCurrInstr + 3));
-                // gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+                // BattleScriptPush(BattleScript_MoveEnd);
+                // gBattlescriptCurrInstr = BattleScript_MoveEnd;
                 i = FALSE;
             }
             else
@@ -8800,6 +8801,18 @@ static void atk76_various(void)
             BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
             MarkBattlerForControllerExec(gActiveBattler);
         }
+        break;
+    case VARIOUS_CURE_STATUS1:
+        if (gBattleMons[gActiveBattler].status1 & STATUS1_ANY)
+        {
+            gBattleMons[gActiveBattler].status1 = 0;
+            if (!GetBattlerSide(gActiveBattler)) // if is on player's team
+            {
+                BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
+                MarkBattlerForControllerExec(gActiveBattler);
+            }
+        }
+        break;
     }
 
     gBattlescriptCurrInstr += 3;

@@ -1697,3 +1697,12 @@ const u8 *const gUnknown_08401674[] =
     BattleText_Dark,
 	BattleText_Fairy,
 };
+
+const u16 gStatusConditionsStringIds[] =
+{
+    BATTLE_TEXT_Poisoned,
+    BATTLE_TEXT_BadlyPoisoned,
+    BATTLE_TEXT_Burned,
+    BATTLE_TEXT_Paralyzed,
+    BATTLE_TEXT_FellAsleep,
+};
