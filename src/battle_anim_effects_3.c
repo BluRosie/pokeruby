@@ -192,6 +192,17 @@ const struct SpriteTemplate gBattleAnimSpriteTemplate_84021B0 =
     .callback = sub_80794A8,
 };
 
+const struct SpriteTemplate gFlingTemplate =
+{
+    .tileTag = ANIM_TAG_ITEM_BAG,
+    .paletteTag = ANIM_TAG_ITEM_BAG,
+    .oam = &gOamData_837DF34,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = sub_80794A8,
+};
+
 const union AnimCmd gSpriteAnim_84021C8[] =
 {
     ANIMCMD_FRAME(0, 40),

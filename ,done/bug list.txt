@@ -35,7 +35,6 @@ go through each move description and edit for space as necessary
 
 move effects that need to be polished:
 gravity
- - needs a 5/3 accuracy boost
  - needs to cancel out bounce, fly, splash, high/jump kick, telekinesis, sky drop, & flying press
 
 Generation I introduced 165 moves; 

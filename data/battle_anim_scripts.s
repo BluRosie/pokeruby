@@ -10787,11 +10787,11 @@ Move_EMBARGO:
 
 Move_FLING:
 	loadspritegfx ANIM_TAG_IMPACT
-	loadspritegfx ANIM_TAG_BLACK_BALL
+	loadspritegfx ANIM_TAG_ITEM_BAG
 	monbg ANIM_BATTLER_DEF_PARTNER
 	monbgprio_28 ANIM_BATTLER_TARGET
 	setalpha 12, 8
-	createsprite gBattleAnimSpriteTemplate_84021B0, ANIM_BATTLER_TARGET, 2, 20, 0, 0, 0, 35, -25
+	createsprite gFlingTemplate, ANIM_BATTLER_TARGET, 2, 20, 0, 0, 0, 35, -25
 	playsewithpan SE_W207, SOUND_PAN_ATTACKER
 	waitforvisualfinish
 	createsprite gBasicHitSplatSpriteTemplate, ANIM_BATTLER_ATTACKER, 2, 0, 0, 1, 2

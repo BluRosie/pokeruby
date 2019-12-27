@@ -331,6 +331,15 @@ extern u8 BattleScript_AllStatsUp[];
 extern u8 BattleScript_AtkDefDown[];
 extern u8 BattleScript_DefSpDefDown[];
 extern u8 BattleScript_SAtkDown2[];
+extern u8 BattleScript_BerryCureChosenStatusRet[]; //berry cure any status return
+extern u8 BattleScript_WhiteHerbFling[];
+
+extern const u8 gStatusConditionString_LoveJpn[];
+extern const u8 BattleText_Taunt[];
+extern const u8 BattleText_Encore[];
+extern const u8 BattleText_Torment[];
+extern const u8 BattleText_Disable[];
+extern const u8 BattleText_Many[];
 
 extern u8 BattleScript_SpikesOnTarget[]; //spikes1
 extern u8 BattleScript_SpikesOnAttacker[]; //spikes2
@@ -1399,6 +1408,8 @@ static void atk01_accuracycheck(void)
 
         if (gBattleGlobalTimers.fog)
             calc = (calc * 60) / 100; // .6 fog multiplier
+        if (gBattleGlobalTimers.gravityTimer)
+            calc = (calc * 5) / 3; // 5/3 gravity multiplier
 
         if (gBattleMons[gBattlerAttacker].ability == ABILITY_COMPOUND_EYES)
             calc = (calc * 130) / 100; // 1.3 compound eyes boost
@@ -1410,6 +1421,7 @@ static void atk01_accuracycheck(void)
             calc = (calc * 80) / 100; // 1.2 snow cloak loss;
         if (gBattleMons[gBattlerTarget].ability == ABILITY_TANGLED_FEET && gBattleMons[gBattlerTarget].status2 & STATUS2_CONFUSION)
             calc = (calc * 50) / 100; // halve it for tangled feet
+
         for (i = 0; i <= 5; i++)
         {
             if (GetAbilityBySpecies(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL), GetMonData(&gPlayerParty[i], MON_DATA_ALT_ABILITY, NULL), GetMonData(&gPlayerParty[i], MON_DATA_HIDDEN_ABILITY, NULL)) == ABILITY_VICTORY_STAR)
@@ -3201,6 +3213,77 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 {
                     gBattlescriptCurrInstr++;
                 }
+                break;
+            case MOVE_EFFECT_HEAL_VARIOUS: // throwing a mental herb, will probably only display the last one applicable but hey
+                gBattleStruct->scriptingActive = gEffectBattler;
+                affectsUser = 0; // used here as the "effect" variable from ItemBattleEffects
+
+                if (gBattleMons[gEffectBattler].status2 & STATUS2_INFATUATION)
+                {
+                    gBattleMons[gEffectBattler].status2 &= ~(STATUS2_INFATUATION);
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_LoveJpn);
+                    affectsUser++;
+                }
+                if (gDisableStructs[gEffectBattler].tauntTimer1)
+                {
+                    gDisableStructs[gEffectBattler].tauntTimer1 = 0;
+                    gDisableStructs[gEffectBattler].tauntTimer2 = 0;
+                    StringCopy(gBattleTextBuff1, BattleText_Taunt);
+                    affectsUser++;
+                }
+                if (gDisableStructs[gEffectBattler].encoreTimer1)
+                {
+                    gDisableStructs[gEffectBattler].encoredMove = 0;
+                    gDisableStructs[gEffectBattler].encoreTimer1 = 0;
+                    StringCopy(gBattleTextBuff1, BattleText_Encore);
+                    affectsUser++;
+                }
+                if (gBattleMons[gEffectBattler].status2 & STATUS2_TORMENT)
+                {
+                    gBattleMons[gEffectBattler].status2 &= ~(STATUS2_TORMENT);
+                    StringCopy(gBattleTextBuff1, BattleText_Torment);
+                    affectsUser++;
+                }
+                if (gDisableStructs[gEffectBattler].disableTimer1)
+                {
+                    gDisableStructs[gEffectBattler].disabledMove = 0;
+                    gDisableStructs[gEffectBattler].disableTimer1 = 0;
+                    StringCopy(gBattleTextBuff1, BattleText_Disable);
+                    affectsUser++;
+                }
+                
+                if (affectsUser)
+                {
+                    if (affectsUser > 1)
+                       StringCopy(gBattleTextBuff1, BattleText_Many);
+                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+                    gBattlescriptCurrInstr = BattleScript_BerryCureChosenStatusRet;
+                }
+
+                affectsUser = 0;
+                break;
+            case MOVE_EFFECT_RESTORE_STATS:
+                gBattleStruct->scriptingActive = gEffectBattler;
+                statusChanged = FALSE;
+
+                for (affectsUser = 0; affectsUser < NUM_BATTLE_STATS; affectsUser++) // using affectsUser as an i okay?  suck my dick
+                {
+                    if (gBattleMons[gEffectBattler].statStages[affectsUser] < 6)
+                    {
+                        gBattleMons[gEffectBattler].statStages[affectsUser] = 6;
+                        statusChanged = TRUE; // used here to determine if the item needs used or not
+                    }
+                }
+
+                if (statusChanged)
+                {
+                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    gBattlescriptCurrInstr = BattleScript_WhiteHerbFling;
+                }
+
+                statusChanged = FALSE;
+                affectsUser = 0;
                 break;
             case MOVE_EFFECT_SP_ATK_TWO_DOWN: //overheat
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -8349,7 +8432,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
         effectandpower = MOVE_EFFECT_PARALYSIS << 8 | 30;
         break;
     case ITEM_MENTAL_HERB:
-        effectandpower = /*CURE_STATUS2 << 8 | */10; // todo
+        effectandpower = MOVE_EFFECT_HEAL_VARIOUS << 8 | 10;
         break;
     case ITEM_POISON_BARB:
         effectandpower = MOVE_EFFECT_POISON << 8 | 70;
@@ -8361,7 +8444,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
         effectandpower = MOVE_EFFECT_TOXIC << 8 | 30;
         break;
     case ITEM_WHITE_HERB:
-        effectandpower = /*RESTORE_LOWERED_STATS << 8 | */10; // todo
+        effectandpower = MOVE_EFFECT_RESTORE_STATS << 8 | 10; // todo
         break;
     }
 

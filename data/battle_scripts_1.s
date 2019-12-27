@@ -5101,6 +5101,12 @@ BattleScript_WhiteHerbRet:: @ 81D9A64
 	removeitem SCRIPTING_BANK
 	return
 
+BattleScript_WhiteHerbFling:: 
+	playanimation 10, B_ANIM_ITEM_EFFECT, NULL
+	printstring BATTLE_TEXT_RestoredStatus
+	waitmessage 64
+	return
+
 BattleScript_ItemHealHP_RemoveItem:: @ 81D9A74
 	playanimation USER, B_ANIM_ITEM_EFFECT, NULL
 	printstring BATTLE_TEXT_RestoredHealth

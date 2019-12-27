@@ -76,6 +76,11 @@ extern const u8 gStatusConditionString_BurnJpn[];
 extern const u8 gStatusConditionString_IceJpn[];
 extern const u8 gStatusConditionString_ConfusionJpn[];
 extern const u8 gStatusConditionString_LoveJpn[];
+extern const u8 BattleText_Taunt[];
+extern const u8 BattleText_Encore[];
+extern const u8 BattleText_Torment[];
+extern const u8 BattleText_Disable[];
+extern const u8 BattleText_Many[];
 extern const BattleCmdFunc gBattleScriptingCommandsTable[];
 
 u8 IsImprisoned(u8 bank, u16 move);
@@ -3115,13 +3120,48 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     effect = ITEM_STATUS_CHANGE;
                 }
                 break;
-            case HOLD_EFFECT_CURE_ATTRACT:
+            case HOLD_EFFECT_MENTAL_HERB:
+                // effect will always be zero at this point
                 if (gBattleMons[bank].status2 & STATUS2_INFATUATION)
                 {
                     gBattleMons[bank].status2 &= ~(STATUS2_INFATUATION);
                     StringCopy(gBattleTextBuff1, gStatusConditionString_LoveJpn);
-                    BattleScriptExecute(BattleScript_BerryCureChosenStatusEnd2);
+                    effect++;
+                }
+                if (gDisableStructs[bank].tauntTimer1)
+                {
+                    gDisableStructs[bank].tauntTimer1 = 0;
+                    gDisableStructs[bank].tauntTimer2 = 0;
+                    StringCopy(gBattleTextBuff1, BattleText_Taunt);
+                    effect++;
+                }
+                if (gDisableStructs[bank].encoreTimer1)
+                {
+                    gDisableStructs[gActiveBattler].encoredMove = 0;
+                    gDisableStructs[gActiveBattler].encoreTimer1 = 0;
+                    StringCopy(gBattleTextBuff1, BattleText_Encore);
+                    effect++;
+                }
+                if (gBattleMons[bank].status2 & STATUS2_TORMENT)
+                {
+                    gBattleMons[bank].status2 &= ~(STATUS2_TORMENT);
+                    StringCopy(gBattleTextBuff1, BattleText_Torment);
+                    effect++;
+                }
+                if (gDisableStructs[bank].disableTimer1)
+                {
+                    gDisableStructs[bank].disabledMove = 0;
+                    gDisableStructs[bank].disableTimer1 = 0;
+                    StringCopy(gBattleTextBuff1, BattleText_Disable);
+                    effect++;
+                }
+
+                if (effect)
+                {
+                    if (effect > 1) // if it's curing more than one status
+                        StringCopy(gBattleTextBuff1, BattleText_Many);
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+                    BattleScriptExecute(BattleScript_BerryCureChosenStatusEnd2);
                     effect = ITEM_EFFECT_OTHER;
                 }
                 break;
@@ -3286,11 +3326,46 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                     effect = ITEM_EFFECT_OTHER;
                 }
                 break;
-            case HOLD_EFFECT_CURE_ATTRACT:
+            case HOLD_EFFECT_MENTAL_HERB:
+                // effect will always be zero at this point
                 if (gBattleMons[bank].status2 & STATUS2_INFATUATION)
                 {
                     gBattleMons[bank].status2 &= ~(STATUS2_INFATUATION);
                     StringCopy(gBattleTextBuff1, gStatusConditionString_LoveJpn);
+                    effect++;
+                }
+                if (gDisableStructs[bank].tauntTimer1)
+                {
+                    gDisableStructs[bank].tauntTimer1 = 0;
+                    gDisableStructs[bank].tauntTimer2 = 0;
+                    StringCopy(gBattleTextBuff1, BattleText_Taunt);
+                    effect++;
+                }
+                if (gDisableStructs[bank].encoreTimer1)
+                {
+                    gDisableStructs[bank].encoredMove = 0;
+                    gDisableStructs[bank].encoreTimer1 = 0;
+                    StringCopy(gBattleTextBuff1, BattleText_Encore);
+                    effect++;
+                }
+                if (gBattleMons[bank].status2 & STATUS2_TORMENT)
+                {
+                    gBattleMons[bank].status2 &= ~(STATUS2_TORMENT);
+                    StringCopy(gBattleTextBuff1, BattleText_Torment);
+                    effect++;
+                }
+                if (gDisableStructs[bank].disableTimer1)
+                {
+                    gDisableStructs[bank].disabledMove = 0;
+                    gDisableStructs[bank].disableTimer1 = 0;
+                    StringCopy(gBattleTextBuff1, BattleText_Disable);
+                    effect++;
+                }
+
+                if (effect)
+                {
+                    if (effect > 1) // if it's curing more than one status
+                        StringCopy(gBattleTextBuff1, BattleText_Many);
                     BattleScriptPushCursor();
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;
                     gBattlescriptCurrInstr = BattleScript_BerryCureChosenStatusRet;
@@ -3334,7 +3409,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_RESTORE_STATS:
-                for (i = 0; i < 8; i++)
+                for (i = 0; i < NUM_BATTLE_STATS; i++)
                 {
                     if (gBattleMons[bank].statStages[i] < 6)
                     {
