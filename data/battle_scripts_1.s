@@ -789,6 +789,17 @@ BattleScript_MoveSelectionHealBlock::
 	endselectionscript
 
 BattleScript_EffectPowerTrick:
+	attackcanceler
+	@accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	setpowertrick USER
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_SwitchedAtkDef
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectGastroAcid:
 BattleScript_EffectLuckyChant:
 BattleScript_EffectMeFirst:

@@ -3778,11 +3778,11 @@ static void atk23_getexp(void)
                     if (IsTradedMon(&gPlayerParty[gBattleStruct->expGetterMonId]))
                     {
                         gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
-                        i = 0x14A;
+                        i = STRINGID_EMPTYSTRING4;
                     }
                     else
                     {
-                        i = 0x149;
+                        i = STRINGID_ABOOSTED;
                     }
 
                     // get exp getter bank
@@ -3844,6 +3844,7 @@ static void atk23_getexp(void)
             if (gBattleBufferB[gActiveBattler][0] == CONTROLLER_TWORETURNVALUES
              && gBattleBufferB[gActiveBattler][1] == RET_VALUE_LEVELLED_UP)
             {
+                u16 bank = 0xFF, temp = 0;
                 if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && gBattlerPartyIndexes[gActiveBattler] == gBattleStruct->expGetterMonId)
                     HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
 
@@ -3857,32 +3858,29 @@ static void atk23_getexp(void)
                 gBattleMoveDamage = (gBattleBufferB[gActiveBattler][2] | (gBattleBufferB[gActiveBattler][3] << 8));
                 AdjustFriendship(&gPlayerParty[gBattleStruct->expGetterMonId], FRIENDSHIP_EVENT_GROW_LEVEL);
 
-                // update battle mon structure after level up
                 if (gBattlerPartyIndexes[0] == gBattleStruct->expGetterMonId && gBattleMons[0].hp)
+                    bank = 0;
+                else if (gBattlerPartyIndexes[2] == gBattleStruct->expGetterMonId && gBattleMons[2].hp && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
+                    bank = 2;
+
+                // update battle mon structure after level up
+                if (bank != 0xFF)
                 {
-                    gBattleMons[0].level = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL);
-                    gBattleMons[0].hp = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP);
-                    gBattleMons[0].maxHP = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_MAX_HP);
-                    gBattleMons[0].attack = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_ATK);
-                    gBattleMons[0].defense = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_DEF);
-                    // Why is this duplicated?
-                    gBattleMons[0].speed = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPEED);
-                    gBattleMons[0].speed = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPEED);
-                    gBattleMons[0].spAttack = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPATK);
-                    gBattleMons[0].spDefense = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPDEF);
-                }
-                // What is else if?
-                if (gBattlerPartyIndexes[2] == gBattleStruct->expGetterMonId && gBattleMons[2].hp && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
-                {
-                    gBattleMons[2].level = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL);
-                    gBattleMons[2].hp = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP);
-                    gBattleMons[2].maxHP = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_MAX_HP);
-                    gBattleMons[2].attack = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_ATK);
-                    gBattleMons[2].defense = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_DEF);
-                    // Duplicated again, but this time there's no Sp Defense
-                    gBattleMons[2].speed = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPEED);
-                    gBattleMons[2].speed = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPEED);
-                    gBattleMons[2].spAttack = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPATK);
+                    gBattleMons[bank].level = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL);
+                    gBattleMons[bank].hp = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP);
+                    gBattleMons[bank].maxHP = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_MAX_HP);
+                    gBattleMons[bank].attack = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_ATK);
+                    gBattleMons[bank].defense = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_DEF);
+                    gBattleMons[bank].speed = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPEED);
+                    gBattleMons[bank].spAttack = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPATK);
+                    gBattleMons[bank].spDefense = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPDEF);
+                
+                    if (gStatuses3[bank] & STATUS3_POWER_TRICK)
+                    {
+                        temp = gBattleMons[bank].attack;
+                        gBattleMons[bank].attack = gBattleMons[bank].defense;
+                        gBattleMons[bank].defense = temp;
+                    }
                 }
             }
             else
@@ -8477,6 +8475,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_TRY_PSYCHO_SHIFT 38
 #define VARIOUS_CURE_STATUS1 39
 #define VARIOUS_SET_HEAL_BLOCK 40
+#define VARIOUS_SET_POWER_TRICK 41
 
 static void atk76_various(void)
 {
@@ -8823,6 +8822,12 @@ static void atk76_various(void)
             gStatuses3[gActiveBattler] |= STATUS3_HEAL_BLOCK;
             gDisableStructs[gActiveBattler].healBlockTimer = 5;
         }
+        break;
+    case VARIOUS_SET_POWER_TRICK:
+        gStatuses3[gActiveBattler] |= STATUS3_POWER_TRICK;
+        bits = gBattleMons[gActiveBattler].attack;
+        gBattleMons[gActiveBattler].attack = gBattleMons[gActiveBattler].defense;
+        gBattleMons[gActiveBattler].defense = bits;
         break;
     }
 

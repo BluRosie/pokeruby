@@ -381,3 +381,4 @@
 	enum BATTLE_TEXT_CantGetGoing
 	enum BATTLE_TEXT_GravityPrevents
 	enum BATTLE_TEXT_HealBlockEnds
+	enum BATTLE_TEXT_SwitchedAtkDef

@@ -388,6 +388,7 @@ enum
     BATTLE_TEXT_CantGetGoing,
     BATTLE_TEXT_GravityPrevents,
     BATTLE_TEXT_HealBlockEnds,
+    BATTLE_TEXT_SwitchedAtkDef,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -913,6 +914,7 @@ const u8 BattleText_MonFellFromSky[] = _("{STRING 16} fell\nfrom the sky!");
 const u8 BattleText_CantGetGoing[] = _("{STRING 16} can't get\nit going due to Slow Start!");
 const u8 BattleText_GravityPrevents[] = _("Gravity is too intense!\p");
 const u8 BattleText_HealBlockEnds[] =_("{STRING 16} can heal again!");
+const u8 BattleText_SwitchedAtkDef[] = _("{ATTACKING_MON} switched\nits Attack and Defense!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1319,6 +1321,7 @@ const u8 *const gBattleStringsTable[] =
     BattleText_CantGetGoing,
     BattleText_GravityPrevents,
     BattleText_HealBlockEnds,
+    BattleText_SwitchedAtkDef,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
