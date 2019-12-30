@@ -3435,8 +3435,8 @@ void sub_8010874(void)
     {
         gStatuses3[i] = 0;
 
-        MEMSET_ALT(&gDisableStructs[i], 0, 0x1C, j, r4);
-        gDisableStructs[i].isFirstTurn= 2;
+        MEMSET_ALT(&gDisableStructs[i], 0, 0x20, j, r4);
+        gDisableStructs[i].isFirstTurn = 2;
         gUnknown_02024C70[i] = 0;
         gLastMoves[i] = 0;
         gLastLandedMoves[i] = 0;
@@ -3451,14 +3451,15 @@ void sub_8010874(void)
     for (i = 0; i < 2; i++)
     {
         gSideStatuses[i] = 0;
-        MEMSET_ALT(&gSideTimers[i], 0, 12, j, r4);
+        MEMSET_ALT(&gSideTimers[i], 0, 0xC, j, r4);
         gSideTimers[i].tailwindTimer = 0;
     }
 
     gBattlerAttacker = 0;
     gBattlerTarget = 0;
     gBattleWeather = 0;
-    gBattleGlobalTimers.fog = 0;
+
+    MEMSET_ALT(&gBattleGlobalTimers, 0, 0x10, i, r4);
 
     MEMSET_ALT(&gWishFutureKnock, 0, 0x2C, i, r4);
 
@@ -4921,16 +4922,6 @@ static void TurnValuesCleanUp(bool8 var0)
         {
             gProtectStructs[gActiveBattler].protected = 0;
             gProtectStructs[gActiveBattler].endured = 0;
-
-            if (gDisableStructs[gActiveBattler].slowStartTimer)
-            {
-                gDisableStructs[gActiveBattler].slowStartTimer--;
-            }
-
-            if (gBattleGlobalTimers.gravityTimer) 
-            {
-                gBattleGlobalTimers.gravityTimer--;
-            }
         }
         else
         {
@@ -5476,8 +5467,6 @@ void HandleAction_Switch(void)
     ewram16003 = gBattlerAttacker;
     gBattlescriptCurrInstr = BattleScript_ActionSwitch;
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
-    
-    gDisableStructs[gBattlerAttacker].slowStartTimer = 5;
 
     if (gBattleResults.unk2 < 255)
         gBattleResults.unk2++;

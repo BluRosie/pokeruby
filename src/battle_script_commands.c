@@ -8476,6 +8476,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_SET_FLING 37
 #define VARIOUS_TRY_PSYCHO_SHIFT 38
 #define VARIOUS_CURE_STATUS1 39
+#define VARIOUS_SET_HEAL_BLOCK 40
 
 static void atk76_various(void)
 {
@@ -8571,7 +8572,7 @@ static void atk76_various(void)
         if (gBattleGlobalTimers.gravityTimer)
             gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
         else
-            gBattleGlobalTimers.gravityTimer = 7;
+            gBattleGlobalTimers.gravityTimer = 5;
         break;
     case VARIOUS_SET_MIRACLE_EYE:
         if (!(gStatuses3[gActiveBattler] & STATUS3_MIRACLE_EYED))
@@ -8812,6 +8813,15 @@ static void atk76_various(void)
                 BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
                 MarkBattlerForControllerExec(gActiveBattler);
             }
+        }
+        break;
+    case VARIOUS_SET_HEAL_BLOCK:
+        if (gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK)
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+        else
+        {
+            gStatuses3[gActiveBattler] |= STATUS3_HEAL_BLOCK;
+            gDisableStructs[gActiveBattler].healBlockTimer = 5;
         }
         break;
     }

@@ -24,6 +24,14 @@
         "strings2.h": "c",
         "weather.h": "c",
         "maps.h": "c",
-        "map_types.h": "c"
+        "map_types.h": "c",
+        "cstddef": "c",
+        "string": "c",
+        "optional": "c",
+        "limits": "c",
+        "memory": "c",
+        "new": "c",
+        "functional": "c",
+        "type_traits": "c"
     }
 }

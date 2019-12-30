@@ -380,6 +380,14 @@ enum
     BATTLE_TEXT_TailwindPetered,
     BATTLE_TEXT_TargetCantUseItems,
     BATTLE_TEXT_EmbargoEnds,
+    BATTLE_TEXT_PreventedHeal,
+    BATTLE_TEXT_HealBlockPrevents,
+    BATTLE_TEXT_MonGotGoing,
+    BATTLE_TEXT_GravityNormal,
+    BATTLE_TEXT_MonFellFromSky,
+    BATTLE_TEXT_CantGetGoing,
+    BATTLE_TEXT_GravityPrevents,
+    BATTLE_TEXT_HealBlockEnds,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -896,7 +904,15 @@ const u8 BattleText_LunarDanceSwitch[] = _("{STRING 2} became cloaked\nin mystic
 const u8 BattleText_TailwindBlew[] = _("The tailwind blew from\nbehind your team!");
 const u8 BattleText_TailwindPetered[] = _("The tailwind petered out.");
 const u8 BattleText_TargetCantUseItems[] = _("{DEFENDING_MON} can't use\nitems anymore!");
-const u8 BattleText_EmbargoEnds[] =("{ATTACKING_MON} can\nuse items again!");
+const u8 BattleText_EmbargoEnds[] = _("{STRING 16} can\nuse items again!");
+const u8 BattleText_PreventedHeal[] = _("{DEFENDING_MON} can no\nlonger heal!");
+const u8 BattleText_HealBlockPrevents[] = _("Heal Block prevents\n{STRING 17} from working!\p");
+const u8 BattleText_MonGotGoing[] = _("{STRING 16} finally\ngot its act together!");
+const u8 BattleText_GravityNormal[] = _("Gravity returned\nto normal.");
+const u8 BattleText_MonFellFromSky[] = _("{STRING 16} fell\nfrom the sky!");
+const u8 BattleText_CantGetGoing[] = _("{STRING 16} can't get\nit going due to Slow Start!");
+const u8 BattleText_GravityPrevents[] = _("Gravity is too intense!\p");
+const u8 BattleText_HealBlockEnds[] =_("{STRING 16} can heal again!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1295,6 +1311,14 @@ const u8 *const gBattleStringsTable[] =
     BattleText_TailwindPetered,
     BattleText_TargetCantUseItems,
     BattleText_EmbargoEnds,
+    BattleText_PreventedHeal,
+    BattleText_HealBlockPrevents,
+    BattleText_MonGotGoing,
+    BattleText_GravityNormal,
+    BattleText_MonFellFromSky,
+    BattleText_CantGetGoing,
+    BattleText_GravityPrevents,
+    BattleText_HealBlockEnds,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.

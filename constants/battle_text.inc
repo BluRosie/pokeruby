@@ -373,3 +373,11 @@
 	enum BATTLE_TEXT_TailwindPetered
 	enum BATTLE_TEXT_TargetCantUseItems
 	enum BATTLE_TEXT_EmbargoEnds
+	enum BATTLE_TEXT_PreventedHeal
+	enum BATTLE_TEXT_HealBlockPrevents
+	enum BATTLE_TEXT_MonGotGoing
+	enum BATTLE_TEXT_GravityNormal
+	enum BATTLE_TEXT_MonFellFromSky
+	enum BATTLE_TEXT_CantGetGoing
+	enum BATTLE_TEXT_GravityPrevents
+	enum BATTLE_TEXT_HealBlockEnds

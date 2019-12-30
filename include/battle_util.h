@@ -69,5 +69,7 @@ bool8 AreAllMovesUnusable(void);
 u8 TrySetCantSelectMoveBattleScript(void);
 u8 GetBattlerAbility(u8 bank);
 u8 GetBattleMonMoveSlot(struct BattlePokemon *battleMon, u16 move);
+bool32 IsGravityPreventingMove(u16 move);
+bool32 IsHealBlockPreventingMove(u32 battler, u16 move);
 
 #endif // GUARD_BATTLE_UTIL_H

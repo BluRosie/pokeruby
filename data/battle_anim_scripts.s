@@ -10342,15 +10342,21 @@ Move_GRAVITY:
 	waitbgfadein
 	playsewithpan SE_W036, SOUND_PAN_ATTACKER
 	createvisualtask AnimTask_ShakeAndSinkMon, 5, ANIM_BATTLER_ATTACKER, 2, 0, 96, 30
+	delay 0
 	createvisualtask AnimTask_ShakeAndSinkMon, 5, ANIM_BATTLER_DEF_PARTNER, 2, 0, 96, 30
+	delay 0
 	createvisualtask AnimTask_ShakeAndSinkMon, 5, ANIM_BATTLER_ATK_PARTNER, 2, 0, 96, 30
+	delay 0
 	createvisualtask AnimTask_ShakeAndSinkMon, 5, ANIM_BATTLER_TARGET, 2, 0, 96, 30
 	waitforvisualfinish
 	restorebg
 	waitbgfadeout
 	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_ATTACKER, 3, 0, 1, 1
+	delay 0
 	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_ATK_PARTNER, 3, 0, 1, 1
+	delay 0
 	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_DEF_PARTNER, 3, 0, 1, 1
+	delay 0
 	createvisualtask AnimTask_ShakeMon, 2, ANIM_BATTLER_TARGET, 3, 0, 1, 1
 	setarg ARG_RET_ID, -1
 	waitbgfadein
@@ -11929,7 +11935,7 @@ Move_FOCUS_BLAST:
 	monbgprio_28 ANIM_BATTLER_TARGET
 	setalpha 12, 8
 	call SetHighSpeedBg
-	createsprite gBattleAnimSpriteTemplate_83DA0FC, ANIM_BATTLER_TARGET, 2, 0
+	createsprite gBattleAnimSpriteTemplate_83DA0FC, ANIM_BATTLER_ATTACKER, 2, 0
 	playsewithpan SE_W025, SOUND_PAN_ATTACKER
 	waitforvisualfinish
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_BATTLER_TARGET, 8, 0, 16, 1

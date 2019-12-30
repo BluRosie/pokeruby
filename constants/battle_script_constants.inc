@@ -153,6 +153,7 @@
 	.set VARIOUS_SET_FLING, 37
 	.set VARIOUS_TRY_PSYCHO_SHIFT, 38
 	.set VARIOUS_CURE_STATUS1, 39
+	.set VARIOUS_SET_HEAL_BLOCK, 40
 	
 @ jumpifcant switch flag argument
 	.set ATK4F_DONT_CHECK_STATUSES, 0x80

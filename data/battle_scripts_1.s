@@ -394,7 +394,7 @@ BattleScript_GrowthAtk:
 	statbuffchange AFFECTS_USER | 1, BattleScript_GrowthTrySpAtk
 	jumpifbyte EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_GrowthTrySpAtk
 	printfromtable gStatUpStringIds
-	waitmessage 0x40
+	waitmessage 64
 BattleScript_GrowthTrySpAtk::
 	jumpifhalfword COMMON_BITS, gBattleWeather, WEATHER_SUN_ANY, BattleScript_GrowthSpAtk2
 	setstatchanger SP_ATTACK, 1, FALSE
@@ -405,7 +405,7 @@ BattleScript_GrowthSpAtk:
 	statbuffchange AFFECTS_USER | 1, BattleScript_GrowthEnd
 	jumpifbyte EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_GrowthEnd
 	printfromtable gStatUpStringIds
-	waitmessage 0x40
+	waitmessage 64
 BattleScript_GrowthEnd:
 	goto BattleScript_MoveEnd
 
@@ -439,6 +439,20 @@ BattleScript_EffectGravity:
 	printstring BATTLE_TEXT_GravityIntensified
 	waitmessage 64
 	goto BattleScript_MoveEnd
+
+BattleScript_GravityEndTurn::
+	printstring BATTLE_TEXT_GravityNormal
+	waitmessage 64
+	end2
+
+BattleScript_MoveUsedGravityPrevents::
+	printstring BATTLE_TEXT_MonFellFromSky
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
+BattleScript_MoveSelectionGravity::
+	printselectionstring BATTLE_TEXT_GravityPrevents
+	endselectionscript
 
 BattleScript_EffectMiracleEye:
 	attackcanceler
@@ -549,9 +563,9 @@ BattleScript_EffectNaturalGift:
 	healthbarupdate TARGET
 	datahpupdate TARGET
 	critmessage
-	waitmessage 0x40
+	waitmessage 64
 	resultmessage
-	waitmessage 0x40
+	waitmessage 64
 	seteffectwithchance
 	jumpifmovehadnoeffect BattleScript_EffectNaturalGiftEnd @ if for whatever reason the script failed, then don't remove the item
 	removeitem USER
@@ -571,7 +585,7 @@ BattleScript_EffectTailwind:
 	attackanimation
 	waitanimation
 	printstring BATTLE_TEXT_TailwindBlew
-	waitmessage 0x40
+	waitmessage 64
 	goto BattleScript_MoveEnd
 
 BattleScript_TailwindPetered::
@@ -593,7 +607,7 @@ BattleScript_EffectAcupressureTry:
 	playanimation TARGET, B_ANIM_STATS_CHANGE, sANIM_ARG1
 	statbuffchange CERTAIN, BattleScript_MoveEnd
 	printstring BATTLE_TEXT_StatChangedDefender
-	waitmessage 0x40
+	waitmessage 64
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectMetalBurst:
@@ -624,9 +638,9 @@ BattleScript_EffectHitEscape:
 	healthbarupdate TARGET
 	datahpupdate TARGET
 	critmessage
-	waitmessage 0x40
+	waitmessage 64
 	resultmessage
-	waitmessage 0x40
+	waitmessage 64
 	jumpifmovehadnoeffect BattleScript_MoveEnd
 	seteffectwithchance
 	tryfaintmon TARGET, FALSE, NULL
@@ -685,12 +699,12 @@ BattleScript_EffectEmbargo:
 	attackanimation
 	waitanimation
 	printstring BATTLE_TEXT_TargetCantUseItems
-	waitmessage 0x40
+	waitmessage 64
 	goto BattleScript_MoveEnd
 	
 BattleScript_EmbargoEndTurn::
 	printstring BATTLE_TEXT_EmbargoEnds
-	waitmessage 0x40
+	waitmessage 64
 	end2
 
 BattleScript_EffectFling:
@@ -714,9 +728,9 @@ BattleScript_EffectFling:
 	healthbarupdate TARGET
 	datahpupdate TARGET
 	critmessage
-	waitmessage 0x40
+	waitmessage 64
 	resultmessage
-	waitmessage 0x40
+	waitmessage 64
 	seteffectwithchance @ for the few items that have an effect, they are handled in here
 	jumpifmovehadnoeffect BattleScript_EffectFlingEnd @ if for whatever reason the script failed, then don't remove the item
 	removeitem USER
@@ -739,16 +753,41 @@ BattleScript_EffectPsychoShiftCanWork:
 	waitanimation
 	copybyte gEffectBattler, gBattlerTarget
 	printfromtable gStatusConditionsStringIds
-	waitmessage 0x40
+	waitmessage 64
 	statusanimation TARGET
 	updatestatusicon TARGET
 	curestatus USER
 	printstring BATTLE_TEXT_StatusNormal
-	waitmessage 0x40
+	waitmessage 64
 	updatestatusicon USER
 	goto BattleScript_MoveEnd
-
+	
 BattleScript_EffectHealBlock:
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	sethealblock TARGET
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_PreventedHeal
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
+BattleScript_HealBlockEnds::
+	printstring BATTLE_TEXT_HealBlockEnds
+	waitmessage 64
+	end2
+
+BattleScript_MoveUsedHealBlockPrevents::
+	printstring BATTLE_TEXT_HealBlockPrevents
+	waitmessage 64
+	goto BattleScript_MoveEnd
+	
+BattleScript_MoveSelectionHealBlock::
+	printselectionstring BATTLE_TEXT_HealBlockPrevents
+	endselectionscript
+
 BattleScript_EffectWringOut:
 BattleScript_EffectPowerTrick:
 BattleScript_EffectGastroAcid:
@@ -4161,6 +4200,11 @@ BattleScript_PerishSongTimerGoesDown:: @ 81D921D
 	waitmessage 64
 	end2
 
+BattleScript_SlowStartEnds::
+	printstring BATTLE_TEXT_MonGotGoing
+	waitmessage 64
+	end2
+
 BattleScript_AllStatsUp:: @ 81D9224
 	jumpifstat USER, LESS_THAN, ATTACK, 12, BattleScript_AllStatsUpAtk
 	jumpifstat USER, LESS_THAN, DEFENSE, 12, BattleScript_AllStatsUpAtk
@@ -4364,14 +4408,14 @@ BattleScript_DefSpDefDown::
 	statbuffchange AFFECTS_USER | CERTAIN | 1, BattleScript_DefSpDefDownTrySpDef
 	jumpifbyte EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_DefSpDefDownTrySpDef
 	printfromtable gStatDownStringIds
-	waitmessage 0x40
+	waitmessage 64
 BattleScript_DefSpDefDownTrySpDef::
 	playstatchangeanimation USER, BIT_SPDEF, 9
 	setstatchanger SP_DEFENSE, 1, TRUE
 	statbuffchange AFFECTS_USER | CERTAIN | 1, BattleScript_DefSpDefDownRet
 	jumpifbyte EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_DefSpDefDownRet
 	printfromtable gStatDownStringIds
-	waitmessage 0x40
+	waitmessage 64
 BattleScript_DefSpDefDownRet::
 	return
 
@@ -4772,6 +4816,15 @@ BattleScript_WeatherFormChangesLoop: @ 81D9767
 BattleScript_CastformChange:: @ 81D977D
 	call BattleScript_1D9783
 	end3
+
+BattleScript_SlowStartStartsEnd3::
+	call BattleScript_SlowStartStarts
+	end3
+
+BattleScript_SlowStartStarts::
+	printstring BATTLE_TEXT_CantGetGoing
+	waitmessage 64
+	return
 
 BattleScript_1D9783: @ 81D9783
 	docastformchangeanimation

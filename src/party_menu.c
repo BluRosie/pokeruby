@@ -478,7 +478,7 @@ static const u16 PartyMonOAMSettings_RightColumn[] = {
     PartyMonOAMSettings(56,  8, 15, ST_OAM_H_RECTANGLE, 1, 1, 12), // name part 2
     PartyMonOAMSettings( 1, 24, 15, ST_OAM_H_RECTANGLE, 1, 1, 16), // level
     PartyMonOAMSettings(44, 24, 15, ST_OAM_H_RECTANGLE, 1, 1, 24), // hp
-    PartyMonOAMSettings( 0,  0, 15, ST_OAM_H_RECTANGLE, 1, 3, 28), // the weird Black Dots
+    PartyMonOAMSettings(76, 24, 15, ST_OAM_H_RECTANGLE, 1, 1, 28), // hp number 2
     0xFFFF,
 };
 

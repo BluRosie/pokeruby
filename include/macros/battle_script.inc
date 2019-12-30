@@ -1395,6 +1395,10 @@
 	various \bank, VARIOUS_CURE_STATUS1
 	.endm
 
+	.macro sethealblock bank
+	various \bank, VARIOUS_SET_HEAL_BLOCK
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat, stages, down
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7

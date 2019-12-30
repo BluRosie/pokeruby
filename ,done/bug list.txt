@@ -6,6 +6,7 @@ meh whatever bugs:
 - fix up the font a bit more (Lv, PKMN, POKEBLOCK, parentheses, colon, semicolon, &, pp)
 - pokedex searching in general (fix up the order lists)
 - animation for sticky barb sticking doesn't work like thief's entirely, currently the animation is commented out
+- go through each move description and edit for space as necessary
 
 day/night bugs:
 - every blending thing needs to be adapted for the new dynamic palette system
@@ -30,12 +31,9 @@ move animations that i personally want to polish:
 gyro ball (new particle?)
 punishment is slash w a purple blend
 maybe toxic spikes?
-focus blast takes priority over textbox
-go through each move description and edit for space as necessary
+gravity doesn't make everyone go down
 
 move effects that need to be polished:
-gravity
- - needs to cancel out bounce, fly, splash, high/jump kick, telekinesis, sky drop, & flying press
 
 Generation I introduced 165 moves; 
 Generation II introduced 86 moves; 

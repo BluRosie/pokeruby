@@ -114,7 +114,7 @@
 #define STATUS2_DEFENSE_CURL          0x40000000
 #define STATUS2_TORMENT               0x80000000
 
-// Gives 4 bytes of status ailments per mon.  Currently the entire most significant bit is also free for each mon
+// Gives 4 bytes of status ailments per mon.  Currently the entire most significant byte is also free for each mon
 #define STATUS3_LEECHSEED_BATTLER       0x3
 #define STATUS3_LEECHSEED               0x4
 #define STATUS3_ALWAYS_HITS             0x18    // two bits
@@ -135,6 +135,7 @@
 #define STATUS3_TRACE                   0x100000
 #define STATUS3_MIRACLE_EYED            0x200000
 #define STATUS3_EMBARGO                 0x400000
+#define STATUS3_HEAL_BLOCK              0x800000
 #define STATUS3_SEMI_INVULNERABLE       (STATUS3_UNDERGROUND | STATUS3_ON_AIR | STATUS3_UNDERWATER)
 
 // Not really sure what a "hitmarker" is.
