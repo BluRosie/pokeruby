@@ -170,7 +170,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             }
             break;
         case EFFECT_WRING_OUT:
-            gBattleMovePower = 50 * gBattleMons[bankDef].hp / gBattleMons[bankDef].maxHP;
+            gBattleMovePower = 120 * gBattleMons[bankDef].hp / gBattleMons[bankDef].maxHP;
             if (gBattleMovePower == 0)
                 gBattleMovePower = 1;
             break;
