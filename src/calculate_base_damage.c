@@ -169,6 +169,11 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
                     gBattleMovePower = gTrumpCardPowerTable[i];
             }
             break;
+        case EFFECT_WRING_OUT:
+            gBattleMovePower = 50 * gBattleMons[bankDef].hp / gBattleMons[bankDef].maxHP;
+            if (gBattleMovePower == 0)
+                gBattleMovePower = 1;
+            break;
         default:
             gBattleMovePower = gBattleMoves[move].power;
             break;

@@ -788,7 +788,6 @@ BattleScript_MoveSelectionHealBlock::
 	printselectionstring BATTLE_TEXT_HealBlockPrevents
 	endselectionscript
 
-BattleScript_EffectWringOut:
 BattleScript_EffectPowerTrick:
 BattleScript_EffectGastroAcid:
 BattleScript_EffectLuckyChant:
@@ -947,6 +946,7 @@ BattleScript_EffectPlaceholder: @ why the fuck did i leave the god damn placehol
 BattleScript_EffectPayback: @ damage calculation handled in calculate_base_damage.c
 BattleScript_EffectAssurance: @ damage calculation handled in calculate_base_damage.c
 BattleScript_EffectTrumpCard: @ same as above
+BattleScript_EffectWringOut: @ you know the drill
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
 	jumpifnostatus3 TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAtkCanceler
 	orword gHitMarker, HITMARKER_IGNORE_UNDERWATER
