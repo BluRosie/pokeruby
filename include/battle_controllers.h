@@ -128,6 +128,8 @@ enum
     CONTROLLER_CMDS_COUNT
 };
 
+#define RET_VALUE_LEVELLED_UP 11
+
 struct HpAndStatus
 {
     u16 hp;

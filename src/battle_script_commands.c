@@ -30,10 +30,6 @@
 #include "util.h"
 #include "pokedex.h"
 
-// TODO: put this into battle_controllers.h
-
-#define RET_VALUE_LEVELLED_UP   11
-
 struct BerryTypeStruct
 {
     u16 berry; // while 16 bits technically wouldn't be necessary for the berries alone, i'm putting it out there now in case i get lazy
