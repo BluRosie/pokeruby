@@ -4461,8 +4461,8 @@ void sub_8012324(void)
                                     }
                                     else
                                     {
-                                        ewram1608Carr(gActiveBattler) = gBattleBufferB[gActiveBattler][2];
-                                        gChosenMovesByBanks[gActiveBattler] = gBattleMons[gActiveBattler].moves[ewram1608Carr(gActiveBattler)];
+                                        ewramChosenMoveIndex(gActiveBattler) = gBattleBufferB[gActiveBattler][2];
+                                        gChosenMovesByBanks[gActiveBattler] = gBattleMons[gActiveBattler].moves[ewramChosenMoveIndex(gActiveBattler)];
                                         ewram16010arr(gActiveBattler) = gBattleBufferB[gActiveBattler][3];
                                         gBattleCommunication[gActiveBattler]++;
                                     }
@@ -4762,7 +4762,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
             if (gProtectStructs[bank1].noValidMoves)
                 bank1Move = MOVE_STRUGGLE;
             else
-                bank1Move = gBattleMons[bank1].moves[ewram1608Carr(bank1)];
+                bank1Move = gBattleMons[bank1].moves[ewramChosenMoveIndex(bank1)];
         }
         else
             bank1Move = MOVE_NONE;
@@ -4772,7 +4772,7 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
             if (gProtectStructs[bank2].noValidMoves)
                 bank2Move = MOVE_STRUGGLE;
             else
-                bank2Move = gBattleMons[bank2].moves[ewram1608Carr(bank2)];
+                bank2Move = gBattleMons[bank2].moves[ewramChosenMoveIndex(bank2)];
         }
         else
             bank2Move = MOVE_NONE;
@@ -5284,7 +5284,7 @@ void HandleAction_UseMove(void)
     gMoveResultFlags = 0;
     gMultiHitCounter = 0;
     gBattleCommunication[6] = 0;
-    gCurrMovePos = gUnknown_02024BE5 = ewram1608Carr(gBattlerAttacker);
+    gCurrMovePos = gUnknown_02024BE5 = ewramChosenMoveIndex(gBattlerAttacker);
 
     // choose move
     if (gProtectStructs[gBattlerAttacker].noValidMoves)

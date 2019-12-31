@@ -363,7 +363,7 @@ struct BattleStruct /* 0x2000000 */
     /*0x16089*/ u8 unk16089;
     /*0x1608A*/ u8 unk1608A;
     /*0x1608B*/ u8 unk1608B;
-    /*0x1608C*/ u8 ChosenMoveID[4];
+    /*0x1608C*/ u8 chosenMoveIndices[4];
     /*0x16090*/ s32 bideDmg;
     /*0x16094*/ u8 unk16094;
     /*0x16095*/ u8 unk16095;

@@ -829,6 +829,15 @@ BattleScript_LuckyChantFades::
 	end2
 
 BattleScript_EffectMeFirst:
+	attackcanceler
+	attackstring
+	trymefirst
+	attackanimation
+	waitanimation
+	setbyte sANIM_TURN, 0
+	setbyte sANIM_TARGETS_HIT, 0
+	jumptorandomattack USER
+
 BattleScript_EffectCopyCat:
 BattleScript_EffectPowerSwap:
 BattleScript_EffectGuardSwap:
@@ -2899,7 +2908,7 @@ BattleScript_EffectFakeOut: @ 81D83C3
 BattleScript_ButItFailedAtkStringPpReduce:: @ 81D83D4
 	attackstring
 
-BattleScript_ButItFailedPpReduce: @ 81D83D5
+BattleScript_ButItFailedPpReduce:: @ 81D83D5
 	ppreduce
 
 BattleScript_ButItFailed:: @ 81D83D6

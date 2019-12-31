@@ -313,6 +313,7 @@ extern u8 BattleScript_LeechSeedFree[];
 extern u8 BattleScript_SpikesFree[];
 extern u8 BattleScript_ButItFailed[];
 extern u8 BattleScript_ButItFailedAtkStringPpReduce[];
+extern u8 BattleScript_ButItFailedPpReduce[];
 extern u8 BattleScript_HitEscapeEnd[];
 extern u8 BattleScript_ObliviousPreventsAttraction[];
 extern u8 BattleScript_DestinyKnotActivates[];
@@ -3437,7 +3438,7 @@ static void atk19_tryfaintmon(void)
              && gBattleMons[gBattlerAttacker].hp != 0
              && gCurrentMove != MOVE_STRUGGLE)
             {
-                u8 moveIndex = ewram1608Carr(gBattlerAttacker);
+                u8 moveIndex = ewramChosenMoveIndex(gBattlerAttacker);
 
                 gBattleMons[gBattlerAttacker].pp[moveIndex] = 0;
                 BattleScriptPush(gBattlescriptCurrInstr);
@@ -8475,6 +8476,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_SET_POWER_TRICK 41
 #define VARIOUS_SET_GASTRO_ACID 42
 #define VARIOUS_SET_LUCKY_CHANT 43
+#define VARIOUS_TRY_ME_FIRST 44
 
 static void atk76_various(void)
 {
@@ -8853,6 +8855,36 @@ static void atk76_various(void)
             gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
         else
             gSideTimers[sideTarget].luckyChantTimer = 5;
+        break;
+    case VARIOUS_TRY_ME_FIRST:
+        if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget))
+            gBattlescriptCurrInstr = BattleScript_ButItFailedPpReduce - 3;
+        else if (gBattleMoves[gBattleMons[gBattlerTarget].moves[gBattleStruct->chosenMoveIndices[gBattlerTarget]]].power == 0)
+            gBattlescriptCurrInstr = BattleScript_ButItFailedPpReduce - 3;
+        else
+        {
+            u16 move = gBattleMons[gBattlerTarget].moves[gBattleStruct->chosenMoveIndices[gBattlerTarget]];
+            switch (move)
+            {
+            case MOVE_STRUGGLE:
+            case MOVE_CHATTER:
+            case MOVE_FOCUS_PUNCH:
+            case MOVE_THIEF:
+            case MOVE_COVET:
+            case MOVE_COUNTER:
+            case MOVE_MIRROR_COAT:
+            case MOVE_METAL_BURST:
+            case MOVE_ME_FIRST:
+                gBattlescriptCurrInstr = BattleScript_ButItFailedPpReduce - 3;
+                break;
+            default:
+                gRandomMove = move;
+                gStatuses3[gBattlerAttacker] |= STATUS3_ME_FIRST | STATUS3_ALWAYS_HITS; // used to multiply the move by 1.5
+                gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
+                gBattlerTarget = GetMoveTarget(gRandomMove, 0);
+                break;
+            }
+        }
         break;
     }
 

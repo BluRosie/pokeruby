@@ -7,6 +7,7 @@
 #include "constants/species.h"
 #include "battle_util.h"
 #include "battle.h"
+#include "constants/battle.h"
 #include "berry.h"
 #include "data2.h"
 #include "event_data.h"
@@ -16,6 +17,7 @@
 
 extern u16 gBattleTypeFlags;
 extern struct BattlePokemon gBattleMons[4];
+extern u32 gStatuses3[MAX_BATTLERS_COUNT];
 extern u16 gCurrentMove;
 extern u8 gCritMultiplier;
 extern u16 gBattleWeather;
@@ -178,6 +180,12 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             gBattleMovePower = gBattleMoves[move].power;
             break;
         } 
+    }
+
+    if (gStatuses3[bankAtk] & STATUS3_ME_FIRST)
+    {
+        gBattleMovePower = gBattleMovePower * 150 / 100;
+        gStatuses3[bankAtk] &= ~(STATUS3_ME_FIRST);
     }
 
     if (!typeOverride)

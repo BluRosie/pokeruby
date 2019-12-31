@@ -130,7 +130,7 @@ extern u8 gSharedMem[];
 #define ewram1608A                      gSharedMem[0x1608A]
 #define ewram1608B                      gSharedMem[0x1608B]
 
-#define ewram1608Carr(battler)          (gSharedMem[0x1608C + battler])
+#define ewramChosenMoveIndex(battler)   (gSharedMem[0x1608C + battler])
 #define ewram16094arr(battler)          (gSharedMem[0x16094 + battler])
 #define EWRAM_1609D                     (gSharedMem[0x1609D])
 #define ewram1609e(flank)               (gSharedMem[0x1609E + (flank)])
