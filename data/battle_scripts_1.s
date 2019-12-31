@@ -839,6 +839,14 @@ BattleScript_EffectMeFirst:
 	jumptorandomattack USER
 
 BattleScript_EffectCopyCat:
+	attackcanceler
+	attackstring
+	pause 0x5
+	trycopycat
+	attackanimation
+	waitanimation
+	jumptorandomattack USER
+
 BattleScript_EffectPowerSwap:
 BattleScript_EffectGuardSwap:
 BattleScript_EffectPunishment:

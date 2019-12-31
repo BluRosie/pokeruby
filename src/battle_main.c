@@ -103,7 +103,7 @@ extern u32 gHitMarker;
 extern u8 gUnknown_02024C70[];
 extern u16 gSideStatuses[];
 extern u32 gStatuses3[];
-//extern u8 gDisableStructs[][0x1C];
+//extern u8 gDisableStructs[][0x20];
 extern u16 gPauseCounterBattle;
 extern u16 gPaydayMoney;
 extern u16 gRandomTurnNumber;
@@ -155,6 +155,7 @@ extern u8 gUnknown_02024BE5;
 extern u16 gChosenMove;
 extern u8* gBattleScriptsForMoveEffects[];
 extern u16 gLastUsedItem;
+extern u16 gLastUsedMove;
 extern u8 * const gBattlescriptsForBallThrow[];
 extern u8 * const gBattlescriptsForRunningByItem[];
 extern u8 * const gBattlescriptsForUsingItem[];
@@ -3458,6 +3459,8 @@ void sub_8010874(void)
     gBattlerAttacker = 0;
     gBattlerTarget = 0;
     gBattleWeather = 0;
+    gLastUsedMove = 0;
+    gLastUsedItem = 0;
 
     MEMSET_ALT(&gBattleGlobalTimers, 0, 0x10, i, r4);
 

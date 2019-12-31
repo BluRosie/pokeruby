@@ -111,6 +111,7 @@ struct DisableStruct
              u8 embargoTimer:3;
     /*0x1E*/ u8 roost:1;
              u8 healBlockTimer:3;
+             u8 usedMoves:4;
 };
 
 struct ProtectStruct

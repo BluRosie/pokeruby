@@ -663,6 +663,8 @@ static void atkF6_finishaction(void);
 static void atkF7_finishturn(void);
 static void atkF8_jumpifholdeffect(void);
 
+EWRAM_DATA u16 gLastUsedMove;
+
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
     atk00_attackcanceler,
@@ -5094,24 +5096,27 @@ extern u8 BattleScript_DefrostedViaFireMove[];
 extern u8 BattleScript_FlushMessageBox[];
 
 // atk49, moveend cases
-#define ATK49_RAGE                              0
-#define ATK49_DEFROST                           1
-#define ATK49_SYNCHRONIZE_TARGET                2
-#define ATK49_MOVE_END_ABILITIES                3
-#define ATK49_STATUS_IMMUNITY_ABILITIES         4
-#define ATK49_SYNCHRONIZE_ATTACKER              5
-#define ATK49_CHOICE_MOVE                       6
-#define ATK49_CHANGED_ITEMS                     7
-#define ATK49_ATTACKER_INVISIBLE                8
-#define ATK49_ATTACKER_VISIBLE                  9
-#define ATK49_TARGET_VISIBLE                    10
-#define ATK49_ITEM_EFFECTS_ALL                  11
-#define ATK49_KINGSROCK_SHELLBELL               12
-#define ATK49_SUBSTITUTE                        13
-#define ATK49_UPDATE_LAST_MOVES                 14
-#define ATK49_MIRROR_MOVE                       15
-#define ATK49_NEXT_TARGET                       16
-#define ATK49_COUNT                             17
+enum
+{
+    MOVEEND_RAGE,
+    MOVEEND_DEFROST,
+    MOVEEND_SYNCHRONIZE_TARGET,
+    MOVEEND_ABILITIES,
+    MOVEEND_STATUS_ABILITIES,
+    MOVEEND_SYNCHRONIZE_ATTACKER,
+    MOVEEND_CHOICE_MOVE,
+    MOVEEND_CHANGED_ITEMS,
+    MOVEEND_ATTACKER_INVISIBLE,
+    MOVEEND_ATTACKER_VISIBLE,
+    MOVEEND_TARGET_VISIBLE,
+    MOVEEND_ITEM_EFFECTS,
+    MOVEEND_KINGSROCK_SHELLBELL,
+    MOVEEND_SUBSTITUTE,
+    MOVEEND_UPDATE_LAST_MOVES,
+    MOVEEND_MIRROR_MOVE,
+    MOVEEND_NEXT_TARGET,
+    MOVEEND_COUNT,
+};
 
 void atk49_moveend(void)
 {
@@ -5137,7 +5142,7 @@ void atk49_moveend(void)
     {
         switch (gBattleStruct->cmd49StateTracker)
         {
-        case ATK49_RAGE: // rage check
+        case MOVEEND_RAGE: // rage check
             if (gBattleMons[gBattlerTarget].status2 & STATUS2_RAGE
                 && gBattleMons[gBattlerTarget].hp != 0 && gBattlerAttacker != gBattlerTarget
                 && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget)
@@ -5151,7 +5156,7 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_DEFROST: // defrosting check
+        case MOVEEND_DEFROST: // defrosting check
             if (gBattleMons[gBattlerTarget].status1 & STATUS1_FREEZE
                 && gBattleMons[gBattlerTarget].hp && gBattlerAttacker != gBattlerTarget
                 && gSpecialStatuses[gBattlerTarget].specialDmg
@@ -5167,28 +5172,28 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_SYNCHRONIZE_TARGET: // target synchronize
+        case MOVEEND_SYNCHRONIZE_TARGET: // target synchronize
             if (AbilityBattleEffects(ABILITYEFFECT_SYNCHRONIZE, gBattlerTarget, 0, 0, 0))
                 effect = TRUE;
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_MOVE_END_ABILITIES: // Such as abilities activating on contact(Poison Spore, Rough Skin, etc.).
+        case MOVEEND_ABILITIES: // Such as abilities activating on contact(Poison Spore, Rough Skin, etc.).
             if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, 0, 0, 0))
                 effect = TRUE;
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_STATUS_IMMUNITY_ABILITIES: //status immunities
+        case MOVEEND_STATUS_ABILITIES: //status immunities
             if (AbilityBattleEffects(ABILITYEFFECT_IMMUNITY, 0, 0, 0, 0))
                 effect = TRUE; //it loops through 4 banks, so we increment after its done with all banks
             else
                 gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_SYNCHRONIZE_ATTACKER: //attacker synchronize
+        case MOVEEND_SYNCHRONIZE_ATTACKER: //attacker synchronize
             if (AbilityBattleEffects(ABILITYEFFECT_ATK_SYNCHRONIZE, gBattlerAttacker, 0, 0, 0))
                 effect = TRUE;
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_CHOICE_MOVE: //update choice band move
+        case MOVEEND_CHOICE_MOVE: //update choice band move
             if (!(gHitMarker & HITMARKER_OBEYS) || holdEffectAtk != HOLD_EFFECT_CHOICE_ITEM
                 || gChosenMove == MOVE_STRUGGLE || (*choicedMoveAtk != 0 && *choicedMoveAtk != 0xFFFF))
                     goto LOOP;
@@ -5210,7 +5215,7 @@ void atk49_moveend(void)
                 gBattleStruct->cmd49StateTracker++;
             }
             break;
-        case ATK49_CHANGED_ITEMS: // changed held items
+        case MOVEEND_CHANGED_ITEMS: // changed held items
             for (i = 0; i < gBattlersCount; i++)
             {
                 #define CHANGED_ITEM ((u16 *)(gSharedMem + 0x160F0))
@@ -5223,18 +5228,18 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_ATTACKER_INVISIBLE: // make attacker sprite invisible
+        case MOVEEND_ATTACKER_INVISIBLE: // make attacker sprite invisible
             if (ItemBattleEffects(ITEMEFFECT_MOVE_END, 0, FALSE))
                 effect = TRUE;
             else
                 gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_ATTACKER_VISIBLE: // make attacker sprite visible
+        case MOVEEND_ATTACKER_VISIBLE: // make attacker sprite visible
             if (ItemBattleEffects(ITEMEFFECT_KINGSROCK_SHELLBELL, 0, FALSE))
                 effect = TRUE;
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_TARGET_VISIBLE: // make target sprite visible
+        case MOVEEND_TARGET_VISIBLE: // make target sprite visible
             if ((gStatuses3[gBattlerAttacker] & 0x400C0) && (gHitMarker & HITMARKER_NO_ANIMATIONS))
             {
                 gActiveBattler = gBattlerAttacker;
@@ -5243,7 +5248,7 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_ITEM_EFFECTS_ALL: // item effects for all battlers
+        case MOVEEND_ITEM_EFFECTS: // item effects for all battlers
             if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT
                 || !(gStatuses3[gBattlerAttacker] & (STATUS3_SEMI_INVULNERABLE))
                 || WasUnableToUseMove(gBattlerAttacker))
@@ -5256,7 +5261,7 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_KINGSROCK_SHELLBELL: // king's rock and shell bell
+        case MOVEEND_KINGSROCK_SHELLBELL: // king's rock and shell bell
             if (!gSpecialStatuses[gBattlerTarget].restoredBattlerSprite && gBattlerTarget < gBattlersCount
                 && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE))
             {
@@ -5267,7 +5272,7 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_SUBSTITUTE: // update substitute
+        case MOVEEND_SUBSTITUTE: // update substitute
             for (i = 0; i < gBattlersCount; i++)
             {
                 if (gDisableStructs[i].substituteHP == 0)
@@ -5275,7 +5280,7 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_UPDATE_LAST_MOVES:
+        case MOVEEND_UPDATE_LAST_MOVES:
             if (gHitMarker & HITMARKER_SWAP_ATTACKER_TARGET)
             {
                 gActiveBattler = gBattlerAttacker;
@@ -5284,12 +5289,25 @@ void atk49_moveend(void)
                 gHitMarker &= ~(HITMARKER_SWAP_ATTACKER_TARGET);
             }
 
-            if (gBattleMoves[gChosenMove].effect != 0x7F || (gMoveResultFlags & 0x29))
+            //if (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove)
+            {
+                gDisableStructs[gBattlerAttacker].usedMoves |= gBitTable[gCurrMovePos];
+                //gBattleStruct->lastMoveTarget[gBattlerAttacker] = gBattlerTarget;
+                if (gHitMarker & HITMARKER_ATTACKSTRING_PRINTED)
+                {
+                    gLastUsedMove = gCurrentMove;
+                }
+            }
+
+            if ((gBattleMoves[gChosenMove].effect != EFFECT_BATON_PASS && gBattleMoves[gChosenMove].effect != EFFECT_HEALING_WISH) || (gMoveResultFlags & 0x29))
+            {
                 gUnknown_02024C2C[gBattlerAttacker] = gChosenMove;
+            }
 
             if (!(gAbsentBattlerFlags & gBitTable[gBattlerAttacker])
                 && !(gSharedMem[0x160A6] & gBitTable[gBattlerAttacker])
-                && gBattleMoves[gChosenMove].effect != EFFECT_BATON_PASS)
+                && gBattleMoves[gChosenMove].effect != EFFECT_BATON_PASS
+                && gBattleMoves[gChosenMove].effect != EFFECT_HEALING_WISH)
             {
                 if (gHitMarker & HITMARKER_OBEYS)
                 {
@@ -5324,7 +5342,7 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_MIRROR_MOVE:
+        case MOVEEND_MIRROR_MOVE:
             if (!(gAbsentBattlerFlags & gBitTable[gBattlerAttacker]) && !(gSharedMem[0x160A6] & gBitTable[gBattlerAttacker]))
             {
                 if (gBattleMoves[gChosenMove].flags & 0x10 && gHitMarker & HITMARKER_OBEYS
@@ -5348,7 +5366,7 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_NEXT_TARGET:
+        case MOVEEND_NEXT_TARGET:
             if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE) && gBattleTypeFlags & BATTLE_TYPE_DOUBLE
                 && !gProtectStructs[gBattlerAttacker].chargingTurn && gBattleMoves[gCurrentMove].target == MOVE_TARGET_BOTH
                 && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
@@ -5371,18 +5389,18 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case ATK49_COUNT:
+        case MOVEEND_COUNT:
             break;
         }
 
         if (arg1 == 1 && effect == FALSE)
-            gBattleStruct->cmd49StateTracker = ATK49_COUNT;
+            gBattleStruct->cmd49StateTracker = MOVEEND_COUNT;
         if (arg1 == 2 && arg2 == gBattleStruct->cmd49StateTracker)
-            gBattleStruct->cmd49StateTracker = ATK49_COUNT;
+            gBattleStruct->cmd49StateTracker = MOVEEND_COUNT;
 
-    } while (gBattleStruct->cmd49StateTracker != ATK49_COUNT && effect == FALSE);
+    } while (gBattleStruct->cmd49StateTracker != MOVEEND_COUNT && effect == FALSE);
 
-    if (gBattleStruct->cmd49StateTracker == ATK49_COUNT && effect == FALSE)
+    if (gBattleStruct->cmd49StateTracker == MOVEEND_COUNT && effect == FALSE)
         gBattlescriptCurrInstr += 3;
 }
 
@@ -8477,6 +8495,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_SET_GASTRO_ACID 42
 #define VARIOUS_SET_LUCKY_CHANT 43
 #define VARIOUS_TRY_ME_FIRST 44
+#define VARIOUS_TRY_COPYCAT 45
 
 static void atk76_various(void)
 {
@@ -8884,6 +8903,23 @@ static void atk76_various(void)
                 gBattlerTarget = GetMoveTarget(gRandomMove, 0);
                 break;
             }
+        }
+        break;
+    case VARIOUS_TRY_COPYCAT:
+        for (i = 0; sMovesForbiddenToCopy[i] != 0xFFFF; i++)
+        {
+            if (sMovesForbiddenToCopy[i] == gLastUsedMove)
+                break;
+        }
+        if (gLastUsedMove == 0 || gLastUsedMove == 0xFFFF || sMovesForbiddenToCopy[i] != 0xFFFF)
+        {
+            gBattlescriptCurrInstr = BattleScript_ButItFailedPpReduce - 3;
+        }
+        else
+        {
+            gRandomMove = gLastUsedMove;
+            gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
+            gBattlerTarget = GetMoveTarget(gRandomMove, 0);
         }
         break;
     }

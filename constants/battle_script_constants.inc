@@ -158,6 +158,7 @@
 	.set VARIOUS_SET_GASTRO_ACID, 42
 	.set VARIOUS_SET_LUCKY_CHANT, 43
 	.set VARIOUS_TRY_ME_FIRST, 44
+	.set VARIOUS_TRY_COPYCAT, 45
 	
 @ jumpifcant switch flag argument
 	.set ATK4F_DONT_CHECK_STATUSES, 0x80

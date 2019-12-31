@@ -1415,6 +1415,10 @@
 	various USER, VARIOUS_TRY_ME_FIRST
 	.endm
 
+	.macro trycopycat
+	various USER, VARIOUS_TRY_COPYCAT
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat, stages, down
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7
