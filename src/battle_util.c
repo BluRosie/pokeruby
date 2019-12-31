@@ -43,6 +43,8 @@ extern u32 gStatuses3[4];
 extern u8 gBattlerAttacker;
 extern u8 gBattlerTarget;
 extern u8 gBattlerByTurnOrder[4];
+extern u8 gActionsByTurnOrder[4];
+extern u8 gCurrentTurnActionNumber;
 extern u16 gSideStatuses[2];
 extern u16 gBattleWeather;
 extern void (*gBattleMainFunc)(void);
@@ -236,6 +238,73 @@ extern u8 gUnknown_081D995F[]; //disobedient while asleep
 extern u8 BattleScript_IgnoresAndUsesRandomMove[]; //disobedient, uses a random move
 extern u8 BattleScript_IgnoresAndFallsAsleep[]; //disobedient, went to sleep
 extern u8 gUnknown_081D99A0[]; //disobedient, hits itself
+
+static const u8 sAbilitiesAffectedByMoldBreaker[] =
+{
+    [ABILITY_BATTLE_ARMOR] = 1,
+    [ABILITY_CLEAR_BODY] = 1,
+    [ABILITY_DAMP] = 1,
+    [ABILITY_DRY_SKIN] = 1,
+    [ABILITY_FILTER] = 1,
+    [ABILITY_FLASH_FIRE] = 1,
+    [ABILITY_FLOWER_GIFT] = 1,
+    [ABILITY_HEATPROOF] = 1,
+    [ABILITY_HYPER_CUTTER] = 1,
+    [ABILITY_IMMUNITY] = 1,
+    [ABILITY_INNER_FOCUS] = 1,
+    [ABILITY_INSOMNIA] = 1,
+    [ABILITY_KEEN_EYE] = 1,
+    [ABILITY_LEAF_GUARD] = 1,
+    [ABILITY_LEVITATE] = 1,
+    [ABILITY_LIGHTNING_ROD] = 1,
+    [ABILITY_LIMBER] = 1,
+    [ABILITY_MAGMA_ARMOR] = 1,
+    [ABILITY_MARVEL_SCALE] = 1,
+    [ABILITY_MOTOR_DRIVE] = 1,
+    [ABILITY_OBLIVIOUS] = 1,
+    [ABILITY_OWN_TEMPO] = 1,
+    [ABILITY_SAND_VEIL] = 1,
+    [ABILITY_SHELL_ARMOR] = 1,
+    [ABILITY_SHIELD_DUST] = 1,
+    [ABILITY_SIMPLE] = 1,
+    [ABILITY_SNOW_CLOAK] = 1,
+    [ABILITY_SOLID_ROCK] = 1,
+    [ABILITY_SOUNDPROOF] = 1,
+    [ABILITY_STICKY_HOLD] = 1,
+    [ABILITY_STORM_DRAIN] = 1,
+    [ABILITY_STURDY] = 1,
+    [ABILITY_SUCTION_CUPS] = 1,
+    [ABILITY_TANGLED_FEET] = 1,
+    [ABILITY_THICK_FAT] = 1,
+    [ABILITY_UNAWARE] = 1,
+    [ABILITY_VITAL_SPIRIT] = 1,
+    [ABILITY_VOLT_ABSORB] = 1,
+    [ABILITY_WATER_ABSORB] = 1,
+    [ABILITY_WATER_VEIL] = 1,
+    [ABILITY_WHITE_SMOKE] = 1,
+    [ABILITY_WONDER_GUARD] = 1,
+    [ABILITY_BIG_PECKS] = 1,
+    [ABILITY_CONTRARY] = 1,
+    [ABILITY_FRIEND_GUARD] = 1,
+    [ABILITY_HEAVY_METAL] = 1,
+    [ABILITY_LIGHT_METAL] = 1,
+    [ABILITY_MAGIC_BOUNCE] = 1,
+    [ABILITY_MULTISCALE] = 1,
+    [ABILITY_SAP_SIPPER] = 1,
+    [ABILITY_TELEPATHY] = 1,
+    [ABILITY_WONDER_SKIN] = 1,
+    [ABILITY_AROMA_VEIL] = 1,
+    [ABILITY_BULLETPROOF] = 1,
+    [ABILITY_FLOWER_VEIL] = 1,
+    [ABILITY_FUR_COAT] = 1,
+    [ABILITY_OVERCOAT] = 1,
+    [ABILITY_SWEET_VEIL] = 1,
+    [ABILITY_DAZZLING] = 1,
+    [ABILITY_DISGUISE] = 1,
+    [ABILITY_FLUFFY] = 1,
+    [ABILITY_QUEENLY_MAJESTY] = 1,
+    [ABILITY_WATER_BUBBLE] = 1,
+};
 
 //array entries for battle communication
 #define MOVE_EFFECT_BYTE    0x3
@@ -634,6 +703,28 @@ bool8 AreAllMovesUnusable(void)
 
 u8 GetBattlerAbility(u8 bank) // putting this here for later messing
 {
+    if (gStatuses3[bank] & STATUS3_GASTRO_ACID)
+        return ABILITY_NONE;
+    else if (
+             (
+               (
+                   gBattleMons[gBattlerAttacker].ability == ABILITY_MOLD_BREAKER
+                || gBattleMons[gBattlerAttacker].ability == ABILITY_TERAVOLT
+                || gBattleMons[gBattlerAttacker].ability == ABILITY_TURBOBLAZE
+               )
+               && !(gStatuses3[gBattlerAttacker] & STATUS3_GASTRO_ACID)
+               && sAbilitiesAffectedByMoldBreaker[gBattleMons[bank].ability]
+             )
+             || 
+             (
+                gBattleMoves[gCurrentMove].flags & FLAG_ABILITY_IGNORED
+             && gBattlerByTurnOrder[gCurrentTurnActionNumber] == gBattlerAttacker
+             && gActionsByTurnOrder[gBattlerByTurnOrder[gBattlerAttacker]] == B_ACTION_USE_MOVE
+             && gCurrentTurnActionNumber < gBattlersCount
+             )
+            )
+        return ABILITY_NONE;
+
     return gBattleMons[bank].ability;
 }
 

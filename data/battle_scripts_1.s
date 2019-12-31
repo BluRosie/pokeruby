@@ -801,6 +801,17 @@ BattleScript_EffectPowerTrick:
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectGastroAcid:
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	setgastroacid TARGET
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_AbilitySuppressed
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectLuckyChant:
 BattleScript_EffectMeFirst:
 BattleScript_EffectCopyCat:

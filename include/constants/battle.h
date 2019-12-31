@@ -137,6 +137,7 @@
 #define STATUS3_EMBARGO                 0x400000
 #define STATUS3_HEAL_BLOCK              0x800000
 #define STATUS3_POWER_TRICK             0x1000000
+#define STATUS3_GASTRO_ACID             0x2000000
 #define STATUS3_SEMI_INVULNERABLE       (STATUS3_UNDERGROUND | STATUS3_ON_AIR | STATUS3_UNDERWATER)
 
 // Not really sure what a "hitmarker" is.

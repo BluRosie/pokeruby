@@ -83,8 +83,8 @@ gAbilityDescription_LeafGuard:
 gAbilityDescription_Klutz:
 	.string "Can’t use hold items.$"
 
-gAbilityDescription_MoldBreaker:
-	.string "Moves hit through abilities.$"
+DONEgAbilityDescription_MoldBreaker:
+DONE.string "Moves hit through abilities.$"
 
 DONEgAbilityDescription_SuperLuck:
 DONE.string "Critical hits land often.$"

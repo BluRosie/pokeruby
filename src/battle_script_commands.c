@@ -3840,7 +3840,7 @@ static void atk23_getexp(void)
             if (gBattleBufferB[gActiveBattler][0] == CONTROLLER_TWORETURNVALUES
              && gBattleBufferB[gActiveBattler][1] == RET_VALUE_LEVELLED_UP)
             {
-                u16 bank = 0xFF, temp = 0;
+                u16 bank = 0xFF, temp;
                 if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && gBattlerPartyIndexes[gActiveBattler] == gBattleStruct->expGetterMonId)
                     HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
 
@@ -8472,6 +8472,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_CURE_STATUS1 39
 #define VARIOUS_SET_HEAL_BLOCK 40
 #define VARIOUS_SET_POWER_TRICK 41
+#define VARIOUS_SET_GASTRO_ACID 42
 
 static void atk76_various(void)
 {
@@ -8824,6 +8825,25 @@ static void atk76_various(void)
         bits = gBattleMons[gActiveBattler].attack;
         gBattleMons[gActiveBattler].attack = gBattleMons[gActiveBattler].defense;
         gBattleMons[gActiveBattler].defense = bits;
+        break;
+    case VARIOUS_SET_GASTRO_ACID:
+        switch (gBattleMons[gActiveBattler].ability)
+        {
+            case ABILITY_MULTITYPE:
+            case ABILITY_STANCE_CHANGE:
+            case ABILITY_SCHOOLING:
+            case ABILITY_COMATOSE:
+            case ABILITY_SHIELDS_DOWN:
+            case ABILITY_DISGUISE:
+            case ABILITY_RKS_SYSTEM:
+            case ABILITY_BATTLE_BOND:
+            case ABILITY_POWER_CONSTRUCT:
+                gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+                break;
+            default:
+                gStatuses3[gBattlerTarget] |= STATUS3_GASTRO_ACID;
+                break;
+        }
         break;
     }
 

@@ -382,3 +382,4 @@
 	enum BATTLE_TEXT_GravityPrevents
 	enum BATTLE_TEXT_HealBlockEnds
 	enum BATTLE_TEXT_SwitchedAtkDef
+	enum BATTLE_TEXT_AbilitySuppressed
