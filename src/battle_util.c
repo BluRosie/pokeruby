@@ -146,6 +146,7 @@ extern u8 BattleScript_EmbargoEndTurn[];
 extern u8 BattleScript_SlowStartEnds[];
 extern u8 BattleScript_GravityEndTurn[];
 extern u8 BattleScript_HealBlockEnds[];
+extern u8 BattleScript_LuckyChantFades[];
 
 extern u8 BattleScript_MoveUsedIsAsleep[];
 extern u8 BattleScript_MoveUsedWokeUp[];
@@ -701,7 +702,7 @@ bool8 AreAllMovesUnusable(void)
     return (unusable == 0xF);
 }
 
-u8 GetBattlerAbility(u8 bank) // putting this here for later messing
+u8 GetBattlerAbility(u8 bank)
 {
     if (gStatuses3[bank] & STATUS3_GASTRO_ACID)
         return ABILITY_NONE;
@@ -826,6 +827,7 @@ enum
     ENDTURN_SLOW_START,
     ENDTURN_GRAVITY,
     ENDTURN_HEAL_BLOCK,
+    ENDTURN_LUCKY_CHANT,
     ENDTURN_FIELD_COUNT,
 };
 
@@ -1151,6 +1153,22 @@ u8 DoFieldEndTurnEffects(void)
                         gStatuses3[i] &= ~(STATUS3_HEAL_BLOCK);
                         gBattleStruct->scriptingActive = i;
                         gBattlescriptCurrInstr = BattleScript_HealBlockEnds;
+                        BattleScriptExecute(gBattlescriptCurrInstr);
+                        effect++;
+                    }
+                }
+            }
+            gBattleStruct->turnCountersTracker++;
+            break;
+        case ENDTURN_LUCKY_CHANT:
+            for (i = 0; i < 2; i++)
+            {
+                if (gSideTimers[i].luckyChantTimer)
+                {
+                    if (--gSideTimers[i].luckyChantTimer == 0)
+                    {
+                        gBattleStruct->scriptingActive = i;
+                        gBattlescriptCurrInstr = BattleScript_LuckyChantFades;
                         BattleScriptExecute(gBattlescriptCurrInstr);
                         effect++;
                     }

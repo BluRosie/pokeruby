@@ -1566,6 +1566,7 @@ static void atk04_critcalc(void)
 
     if ((GetBattlerAbility(gBattlerTarget) != ABILITY_BATTLE_ARMOR && GetBattlerAbility(gBattlerTarget) != ABILITY_SHELL_ARMOR)
      && !(gStatuses3[gBattlerAttacker] & STATUS3_CANT_SCORE_A_CRIT)
+     && !(gSideTimers[gBattlerTarget].luckyChantTimer)
      && !(gBattleTypeFlags & (BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FIRST_BATTLE))
      && !(Random() % sCriticalHitChance[critChance]))
         if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SNIPER)
@@ -8473,6 +8474,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_SET_HEAL_BLOCK 40
 #define VARIOUS_SET_POWER_TRICK 41
 #define VARIOUS_SET_GASTRO_ACID 42
+#define VARIOUS_SET_LUCKY_CHANT 43
 
 static void atk76_various(void)
 {
@@ -8844,6 +8846,13 @@ static void atk76_various(void)
                 gStatuses3[gBattlerTarget] |= STATUS3_GASTRO_ACID;
                 break;
         }
+        break;
+    case VARIOUS_SET_LUCKY_CHANT:
+        sideTarget = GetBattlerSide(gActiveBattler);
+        if (gSideTimers[sideTarget].luckyChantTimer)
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+        else
+            gSideTimers[sideTarget].luckyChantTimer = 5;
         break;
     }
 

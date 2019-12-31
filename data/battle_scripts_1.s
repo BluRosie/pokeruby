@@ -813,6 +813,21 @@ BattleScript_EffectGastroAcid:
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectLuckyChant:
+	attackcanceler
+	attackstring
+	ppreduce
+	setluckychant USER
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_ShieldedFromCritical
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
+BattleScript_LuckyChantFades::
+	printstring BATTLE_TEXT_LuckyChantFades
+	waitmessage 64
+	end2
+
 BattleScript_EffectMeFirst:
 BattleScript_EffectCopyCat:
 BattleScript_EffectPowerSwap:

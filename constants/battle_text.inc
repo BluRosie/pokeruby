@@ -383,3 +383,5 @@
 	enum BATTLE_TEXT_HealBlockEnds
 	enum BATTLE_TEXT_SwitchedAtkDef
 	enum BATTLE_TEXT_AbilitySuppressed
+	enum BATTLE_TEXT_ShieldedFromCritical
+	enum BATTLE_TEXT_LuckyChantFades
