@@ -848,7 +848,31 @@ BattleScript_EffectCopyCat:
 	jumptorandomattack USER
 
 BattleScript_EffectPowerSwap:
+	attackcanceler
+	attackstring
+	ppreduce
+	accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
+	swapstatstages ATTACK
+	swapstatstages SP_ATTACK
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_SwitchedStatChanges
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectGuardSwap:
+	attackcanceler
+	attackstring
+	ppreduce
+	accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
+	swapstatstages DEFENSE
+	swapstatstages SP_DEFENSE
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_SwitchedStatChanges
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectPunishment:
 BattleScript_EffectLastResort:
 BattleScript_EffectWorrySeed:

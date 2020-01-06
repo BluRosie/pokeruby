@@ -8496,6 +8496,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_SET_LUCKY_CHANT 43
 #define VARIOUS_TRY_ME_FIRST 44
 #define VARIOUS_TRY_COPYCAT 45
+#define VARIOUS_SWAP_STAT_STAGES 46
 
 static void atk76_various(void)
 {
@@ -8922,6 +8923,11 @@ static void atk76_various(void)
             gBattlerTarget = GetMoveTarget(gRandomMove, 0);
         }
         break;
+    case VARIOUS_SWAP_STAT_STAGES:
+        i = T2_READ_8(gBattlescriptCurrInstr + 1);
+        bits = gBattleMons[gBattlerAttacker].statStages[i];
+        gBattleMons[gBattlerAttacker].statStages[i] = gBattleMons[gBattlerTarget].statStages[i];
+        gBattleMons[gBattlerTarget].statStages[i] = bits;
     }
 
     gBattlescriptCurrInstr += 3;

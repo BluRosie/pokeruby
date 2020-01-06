@@ -392,6 +392,7 @@ enum
     BATTLE_TEXT_AbilitySuppressed,
     BATTLE_TEXT_ShieldedFromCritical,
     BATTLE_TEXT_LuckyChantFades,
+    BATTLE_TEXT_SwitchedStatChanges,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -921,6 +922,7 @@ const u8 BattleText_SwitchedAtkDef[] = _("{ATTACKING_MON} switched\nits Attack a
 const u8 BattleText_AbilitySuppressed[] = _("{DEFENDING_MON}'s ability\nwas suppressed!");
 const u8 BattleText_ShieldedFromCritical[] = _("The {STRING 38} team is shielded\nfrom critical hits!");
 const u8 BattleText_LuckyChantFades[] = _("The Pokémon stopped\nchanting.");
+const u8 BattleText_SwitchedStatChanges[] = _("{ATTACKING_MON} switched stat changes\nwith the target!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1331,6 +1333,7 @@ const u8 *const gBattleStringsTable[] =
     BattleText_AbilitySuppressed,
     BattleText_ShieldedFromCritical,
     BattleText_LuckyChantFades,
+    BattleText_SwitchedStatChanges,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.

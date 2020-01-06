@@ -1419,6 +1419,10 @@
 	various USER, VARIOUS_TRY_COPYCAT
 	.endm
 
+	.macro swapstatstages stat
+	various \stat, VARIOUS_SWAP_STAT_STAGES
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat, stages, down
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7
