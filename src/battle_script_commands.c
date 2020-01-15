@@ -1459,7 +1459,7 @@ static void atk01_accuracycheck(void)
             calc = (calc * (100 - defQuality)) / 100;
         if (atkHoldEffect == HOLD_EFFECT_BOOST_ACCURACY)
             calc *= (110 / 100);
-        if (atkHoldEffect == HOLD_EFFECT_ZOOM_LENS && GetWhoStrikesFirst(gBattlerAttacker, gBattlerTarget, FALSE) == 1) // the opponent mon would go first (not because of random roll)
+        if (atkHoldEffect == HOLD_EFFECT_ZOOM_LENS && GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget)) // the opponent mon went first
             calc *= (120 / 100); 
 
         // final calculation
@@ -8499,6 +8499,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_SWAP_STAT_STAGES 46
 #define VARIOUS_FAIL_IF_CANT_USE_LAST_RESORT 47
 #define VARIOUS_TRY_WORRY_SEED 48
+#define VARIOUS_TRY_SUCKER_PUNCH 49
 
 static void atk76_various(void)
 {
@@ -8948,6 +8949,11 @@ static void atk76_various(void)
             gBattleMons[gActiveBattler].ability = ABILITY_INSOMNIA;
             break;
         }
+        break;
+    case VARIOUS_TRY_SUCKER_PUNCH:
+        if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget)
+         || gBattleMoves[gBattleMons[gBattlerTarget].moves[gBattleStruct->chosenMoveIndices[gBattlerTarget]]].power == 0)
+            gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce - 3;
         break;
     }
 

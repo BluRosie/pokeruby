@@ -1431,6 +1431,10 @@
 	various \bank, VARIOUS_TRY_WORRY_SEED
 	.endm
 
+	.macro trysuckerpunch bank
+	various \bank, VARIOUS_TRY_SUCKER_PUNCH
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat, stages, down
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7

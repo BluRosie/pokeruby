@@ -894,6 +894,11 @@ BattleScript_EffectWorrySeed:
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectSuckerPunch:
+	attackcanceler
+	trysuckerpunch TARGET
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	goto BattleScript_HitFromAtkString
+
 BattleScript_EffectToxicSpikes:
 BattleScript_EffectHeartSwap:
 BattleScript_EffectAquaRing:
