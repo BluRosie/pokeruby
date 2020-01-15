@@ -386,3 +386,4 @@
 	enum BATTLE_TEXT_ShieldedFromCritical
 	enum BATTLE_TEXT_LuckyChantFades
 	enum BATTLE_TEXT_SwitchedStatChanges
+	enum BATTLE_TEXT_AcquiredAbility

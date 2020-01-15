@@ -8497,6 +8497,8 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_TRY_ME_FIRST 44
 #define VARIOUS_TRY_COPYCAT 45
 #define VARIOUS_SWAP_STAT_STAGES 46
+#define VARIOUS_FAIL_IF_CANT_USE_LAST_RESORT 47
+#define VARIOUS_TRY_WORRY_SEED 48
 
 static void atk76_various(void)
 {
@@ -8928,6 +8930,25 @@ static void atk76_various(void)
         bits = gBattleMons[gBattlerAttacker].statStages[i];
         gBattleMons[gBattlerAttacker].statStages[i] = gBattleMons[gBattlerTarget].statStages[i];
         gBattleMons[gBattlerTarget].statStages[i] = bits;
+        break;
+    case VARIOUS_FAIL_IF_CANT_USE_LAST_RESORT:
+        if (!CanUseLastResort(gActiveBattler))
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+        break;
+    case VARIOUS_TRY_WORRY_SEED:
+        switch (gBattleMons[gActiveBattler].ability)
+        {
+        case ABILITY_INSOMNIA:
+        case ABILITY_MULTITYPE:
+        case ABILITY_TRUANT:
+        case ABILITY_STANCE_CHANGE:
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+            break;
+        default:
+            gBattleMons[gActiveBattler].ability = ABILITY_INSOMNIA;
+            break;
+        }
+        break;
     }
 
     gBattlescriptCurrInstr += 3;
@@ -10409,6 +10430,7 @@ static void atk9B_transformdataexecution(void)
         gDisableStructs[gBattlerAttacker].disableTimer1 = 0;
         gDisableStructs[gBattlerAttacker].transformedMonPersonality = gBattleMons[gBattlerTarget].personality;
         gDisableStructs[gBattlerAttacker].mimickedMoves = 0;
+        gDisableStructs[gBattlerAttacker].usedMoves = 0;
 
         gBattleTextBuff1[0] = 0xFD;
         gBattleTextBuff1[1] = 6;

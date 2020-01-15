@@ -873,9 +873,26 @@ BattleScript_EffectGuardSwap:
 	waitmessage 64
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectPunishment:
 BattleScript_EffectLastResort:
+	attackcanceler
+	attackstring
+	ppreduce
+	failifcantuselastresort USER
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	goto BattleScript_HitFromCritCalc
+
 BattleScript_EffectWorrySeed:
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	tryworryseed TARGET
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_AcquiredAbility
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectSuckerPunch:
 BattleScript_EffectToxicSpikes:
 BattleScript_EffectHeartSwap:
@@ -1025,6 +1042,7 @@ BattleScript_EffectPayback: @ damage calculation handled in calculate_base_damag
 BattleScript_EffectAssurance: @ damage calculation handled in calculate_base_damage.c
 BattleScript_EffectTrumpCard: @ same as above
 BattleScript_EffectWringOut: @ you know the drill
+BattleScript_EffectPunishment: @ once again
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
 	jumpifnostatus3 TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAtkCanceler
 	orword gHitMarker, HITMARKER_IGNORE_UNDERWATER

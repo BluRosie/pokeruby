@@ -1423,6 +1423,14 @@
 	various \stat, VARIOUS_SWAP_STAT_STAGES
 	.endm
 
+	.macro failifcantuselastresort bank
+	various \bank, VARIOUS_FAIL_IF_CANT_USE_LAST_RESORT
+	.endm
+
+	.macro tryworryseed bank
+	various \bank, VARIOUS_TRY_WORRY_SEED
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat, stages, down
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7

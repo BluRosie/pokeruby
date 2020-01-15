@@ -785,6 +785,25 @@ bool32 IsHealBlockPreventingMove(u32 bank, u16 move)
     }
 }
 
+bool32 CanUseLastResort(u8 bank)
+{
+    u32 i;
+    u32 knownMovesCount = 0, usedMovesCount = 0;
+
+    for (i = 0; i < 4; i++)
+    {
+        if (gBattleMons[bank].moves[i] != MOVE_NONE)
+            knownMovesCount++;
+        if (gDisableStructs[bank].usedMoves & gBitTable[i])
+            usedMovesCount++;
+    }
+
+    if (knownMovesCount >= 2 && usedMovesCount >= knownMovesCount - 1)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 u8 IsImprisoned(u8 battlerId, u16 move)
 {
     s32 i;

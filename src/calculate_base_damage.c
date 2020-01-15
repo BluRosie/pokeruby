@@ -176,6 +176,16 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             if (gBattleMovePower == 0)
                 gBattleMovePower = 1;
             break;
+        case EFFECT_PUNISHMENT:
+            attack = 0; // attack here is used to keep track of how many positive stat boosts the opponent has
+            for (i = 0; i < NUM_BATTLE_STATS; i++)
+            {
+                if (gBattleMons[bankDef].statStages[i] > 6)
+                    attack += gBattleMons[bankDef].statStages[i] - 6;
+            }
+
+            gBattleMovePower = 60 + (20 * attack);
+            break;
         default:
             gBattleMovePower = gBattleMoves[move].power;
             break;
