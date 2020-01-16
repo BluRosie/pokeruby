@@ -394,6 +394,14 @@ enum
     BATTLE_TEXT_LuckyChantFades,
     BATTLE_TEXT_SwitchedStatChanges,
     BATTLE_TEXT_AcquiredAbility,
+    BATTLE_TEXT_PoisonSpikesScattered,
+    BATTLE_TEXT_ToxicSpikesAbsorbed,
+    BATTLE_TEXT_ToxicSpikesPoisoned,
+    BATTLE_TEXT_ToxicSpikesBadlyPoisoned,
+    BATTLE_TEXT_PointedStonesHurt,
+    BATTLE_TEXT_ToxicSpikesBlownAway,
+    BATTLE_TEXT_RocksBlownAway,
+    BATTLE_TEXT_PointedStonesScattered,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -925,6 +933,14 @@ const u8 BattleText_ShieldedFromCritical[] = _("The {STRING 38} team is shielded
 const u8 BattleText_LuckyChantFades[] = _("The Pokémon stopped\nchanting.");
 const u8 BattleText_SwitchedStatChanges[] = _("{ATTACKING_MON} switched stat changes\nwith the target!");
 const u8 BattleText_AcquiredAbility[] = _("{DEFENDING_MON} acquired\n{STRING 22}!");
+const u8 BattleText_PoisonSpikesScattered[] = _("Poison spikes were scattered\nall around!");
+const u8 BattleText_ToxicSpikesAbsorbed[] = _("The poison spikes disappeared!");
+const u8 BattleText_ToxicSpikesPoisoned[] = _("{STRING 16} was poisoned!");
+const u8 BattleText_ToxicSpikesBadlyPoisoned[] = _("{STRING 16} was badly\npoisoned!");
+const u8 BattleText_PointedStonesHurt[] = _("Pointed stones dug into\n{STRING 16}!");
+const u8 BattleText_ToxicSpikesBlownAway[] = _("{ATTACKING_MON} blew away\nthe Toxic Spikes!");
+const u8 BattleText_RocksBlownAway[] = _("{ATTACKING_MON} blew away\nall the rocks!");
+const u8 BattleText_PointedStonesScattered[] = _("Pointed stones were\nscattered all around!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1337,6 +1353,14 @@ const u8 *const gBattleStringsTable[] =
     BattleText_LuckyChantFades,
     BattleText_SwitchedStatChanges,
     BattleText_AcquiredAbility,
+    BattleText_PoisonSpikesScattered,
+    BattleText_ToxicSpikesAbsorbed,
+    BattleText_ToxicSpikesPoisoned,
+    BattleText_ToxicSpikesBadlyPoisoned,
+    BattleText_PointedStonesHurt,
+    BattleText_ToxicSpikesBlownAway,
+    BattleText_RocksBlownAway,
+    BattleText_PointedStonesScattered,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
@@ -1694,6 +1718,12 @@ const u16 gFlashFireStringIds[] =
 {
     BATTLE_TEXT_RaisedFirePower,
     BATTLE_TEXT_MadeIneffective,
+};
+
+const u16 gToxicSpikesStringIds[] =
+{
+    BATTLE_TEXT_ToxicSpikesPoisoned,
+    BATTLE_TEXT_ToxicSpikesBadlyPoisoned,
 };
 
 const u16 gTrappingMoves[] =

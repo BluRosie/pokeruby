@@ -170,14 +170,18 @@
 #define HITMARKER_UNK(battler)          (0x10000000 << battler)
 
 // Per-side statuses that affect an entire party
-#define SIDE_STATUS_REFLECT          (1 << 0)
-#define SIDE_STATUS_LIGHTSCREEN      (1 << 1)
-#define SIDE_STATUS_X4               (1 << 2)
-#define SIDE_STATUS_SPIKES           (1 << 4)
-#define SIDE_STATUS_SAFEGUARD        (1 << 5)
-#define SIDE_STATUS_FUTUREATTACK     (1 << 6)
-#define SIDE_STATUS_MIST             (1 << 8)
-#define SIDE_STATUS_SPIKES_DAMAGED   (1 << 9)
+#define SIDE_STATUS_REFLECT              (1 << 0)
+#define SIDE_STATUS_LIGHTSCREEN          (1 << 1)
+#define SIDE_STATUS_X4                   (1 << 2)
+#define SIDE_STATUS_SPIKES               (1 << 4)
+#define SIDE_STATUS_SAFEGUARD            (1 << 5)
+#define SIDE_STATUS_FUTUREATTACK         (1 << 6)
+#define SIDE_STATUS_MIST                 (1 << 8)
+#define SIDE_STATUS_SPIKES_DAMAGED       (1 << 9)
+#define SIDE_STATUS_TOXIC_SPIKES         (1 << 10)
+#define SIDE_STATUS_TOXIC_SPIKES_DAMAGED (1 << 11)
+#define SIDE_STATUS_STEALTH_ROCK         (1 << 12)
+#define SIDE_STATUS_STEALTH_ROCK_DAMAGED (1 << 13)
 
 // Flags describing move's result
 #define MOVE_RESULT_MISSED             (1 << 0)

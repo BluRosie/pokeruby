@@ -895,11 +895,39 @@ BattleScript_EffectWorrySeed:
 
 BattleScript_EffectSuckerPunch:
 	attackcanceler
-	trysuckerpunch TARGET
+	trysuckerpunch
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	goto BattleScript_HitFromAtkString
 
 BattleScript_EffectToxicSpikes:
+	attackcanceler
+	attackstring
+	ppreduce
+	settoxicspikes TARGET
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_PoisonSpikesScattered
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
+BattleScript_ToxicSpikesAbsorbed::
+	printstring BATTLE_TEXT_ToxicSpikesAbsorbed
+	waitmessage 64
+	return
+
+BattleScript_ToxicSpikesPoisoned::
+	printfromtable gToxicSpikesStringIds
+	waitmessage 64
+	statusanimation SCRIPTING_BANK
+	updatestatusicon SCRIPTING_BANK
+	waitstate
+	return
+
+BattleScript_ToxicSpikesFree::
+	printstring BATTLE_TEXT_ToxicSpikesBlownAway
+	waitmessage 64
+	return
+
 BattleScript_EffectHeartSwap:
 BattleScript_EffectAquaRing:
 BattleScript_EffectRecoil33Status:
@@ -909,6 +937,53 @@ BattleScript_EffectDefog:
 BattleScript_EffectTrickRoom:
 BattleScript_EffectCaptivate:
 BattleScript_EffectStealthRock:
+	attackcanceler
+	attackstring
+	ppreduce
+	setstealthrock TARGET
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_PointedStonesScattered
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
+BattleScript_StealthRockOnAttacker::
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
+	healthbarupdate USER
+	datahpupdate USER
+	call BattleScript_PrintHurtByStealthRock
+	tryfaintmon USER, FALSE, NULL
+	tryfaintmon USER, TRUE, BattleScript_SpikesOnAttackerFainted
+	return
+
+BattleScript_StealthRockOnTarget::
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
+	healthbarupdate TARGET
+	datahpupdate TARGET
+	call BattleScript_PrintHurtByStealthRock
+	tryfaintmon TARGET, FALSE, NULL
+	tryfaintmon TARGET, TRUE, BattleScript_SpikesOnTargetFainted
+	return
+
+BattleScript_StealthRockOngBank1::
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
+	healthbarupdate 3
+	datahpupdate 3
+	call BattleScript_PrintHurtByStealthRock
+	tryfaintmon GBANK_1, FALSE, NULL
+	tryfaintmon GBANK_1, TRUE, BattleScript_SpikesOngBank1Fainted
+	return
+
+BattleScript_PrintHurtByStealthRock:
+	printstring BATTLE_TEXT_PointedStonesHurt
+	waitmessage 64
+	return
+
+BattleScript_RocksFree::
+	printstring BATTLE_TEXT_RocksBlownAway
+	waitmessage 64
+	return
+
 BattleScript_EffectJudgment:
 BattleScript_EffectSpecialAttackUpHit:
 BattleScript_EffectRecoil50:

@@ -182,7 +182,8 @@ struct SideTimer
     u8 followmeTimer;       //0x8
     u8 followmeTarget;      //0x9
     u8 luckyChantTimer:3;   //0xA
-    u8 fieldA:5;
+    u8 toxicSpikesAmount:2;
+    u8 fieldA:3;
     u8 fieldB;              //0xB
     u8 fieldC;
 };

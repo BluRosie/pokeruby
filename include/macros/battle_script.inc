@@ -1431,8 +1431,16 @@
 	various \bank, VARIOUS_TRY_WORRY_SEED
 	.endm
 
-	.macro trysuckerpunch bank
-	various \bank, VARIOUS_TRY_SUCKER_PUNCH
+	.macro trysuckerpunch
+	various TARGET, VARIOUS_TRY_SUCKER_PUNCH
+	.endm
+
+	.macro settoxicspikes bank
+	various \bank, VARIOUS_SET_TOXIC_SPIKES
+	.endm
+
+	.macro setstealthrock bank
+	various \bank, VARIOUS_SET_STEALTH_ROCK
 	.endm
 
 @ helpful macros

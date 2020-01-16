@@ -72,5 +72,7 @@ u8 GetBattleMonMoveSlot(struct BattlePokemon *battleMon, u16 move);
 bool32 IsGravityPreventingMove(u16 move);
 bool32 IsHealBlockPreventingMove(u32 battler, u16 move);
 bool32 CanUseLastResort(u8 bank);
+bool8 ReturnTypeEffectiveness(u8 atkType, u8 defType);
+s32 GetStealthHazardDamage(u8 hazardType, u8 bank);
 
 #endif // GUARD_BATTLE_UTIL_H

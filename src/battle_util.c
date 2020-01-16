@@ -804,6 +804,62 @@ bool32 CanUseLastResort(u8 bank)
         return FALSE;
 }
 
+extern const u8 gTypeEffectiveness[];
+
+u8 ReturnTypeEffectiveness(u8 atkType, u8 defType)
+{
+    int i;
+    u8 modifier = 50;
+
+    while (gTypeEffectiveness[i] != TYPE_ENDTABLE)
+    {
+        if (gTypeEffectiveness[i] == TYPE_FORESIGHT)
+        {
+            if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT)
+                break;
+            i += 3;
+            continue;
+        }
+        else if ((gTypeEffectiveness[i + 1] == TYPE_FLYING && (gDisableStructs[gBattlerTarget].roost || gBattleGlobalTimers.gravityTimer)) // effectively eliminate flying type from the pool
+                 || (gTypeEffectiveness[i] == TYPE_PSYCHIC && gTypeEffectiveness[i + 1] == TYPE_DARK && (gStatuses3[gBattlerTarget] & STATUS3_MIRACLE_EYED))) // moves ineffective against dark may be used
+        {
+            i += 3;
+            continue;
+        }
+        else if (gTypeEffectiveness[i] == atkType && gTypeEffectiveness[i + 1] == defType)
+        {
+            modifier = gTypeEffectiveness[i + 2];
+        }
+
+        i += 3;
+    }
+
+    if (modifier == 50)
+        return 10;
+    return modifier;
+}
+
+s32 GetStealthHazardDamage(u8 hazardType, u8 bank)
+{
+    u8 type1 = gBattleMons[bank].type1;
+    u8 type2 = gBattleMons[bank].type2;
+    u32 maxHp = gBattleMons[bank].maxHP;
+    s32 dmg = 0;
+    u16 modifier1 = ReturnTypeEffectiveness(hazardType, type1), modifier2 = ReturnTypeEffectiveness(hazardType, type2);
+
+    if (type1 == type2)
+    {
+        dmg = modifier1 * maxHp / 80;
+    }
+    else
+    {
+        dmg = modifier1 * modifier2 * maxHp / 800;
+    }
+    
+
+    return dmg;
+}
+
 u8 IsImprisoned(u8 battlerId, u16 move)
 {
     s32 i;

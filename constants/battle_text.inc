@@ -387,3 +387,11 @@
 	enum BATTLE_TEXT_LuckyChantFades
 	enum BATTLE_TEXT_SwitchedStatChanges
 	enum BATTLE_TEXT_AcquiredAbility
+	enum BATTLE_TEXT_PoisonSpikesScattered
+	enum BATTLE_TEXT_ToxicSpikesAbsorbed
+	enum BATTLE_TEXT_ToxicSpikesPoisoned
+	enum BATTLE_TEXT_ToxicSpikesBadlyPoisoned
+	enum BATTLE_TEXT_PointedStonesHurt
+	enum BATTLE_TEXT_ToxicSpikesBlownAway
+	enum BATTLE_TEXT_RocksBlownAway
+	enum BATTLE_TEXT_PointedStonesScattered
