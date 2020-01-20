@@ -809,55 +809,75 @@ extern const u8 gTypeEffectiveness[];
 u8 ReturnTypeEffectiveness(u8 atkType, u8 defType)
 {
     int i;
-    u8 modifier = 50;
 
-    while (gTypeEffectiveness[i] != TYPE_ENDTABLE)
+    for (i = 0; gTypeEffectiveness[i] != TYPE_ENDTABLE; i += 3)
     {
         if (gTypeEffectiveness[i] == TYPE_FORESIGHT)
         {
             if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT)
                 break;
-            i += 3;
             continue;
         }
         else if ((gTypeEffectiveness[i + 1] == TYPE_FLYING && (gDisableStructs[gBattlerTarget].roost || gBattleGlobalTimers.gravityTimer)) // effectively eliminate flying type from the pool
                  || (gTypeEffectiveness[i] == TYPE_PSYCHIC && gTypeEffectiveness[i + 1] == TYPE_DARK && (gStatuses3[gBattlerTarget] & STATUS3_MIRACLE_EYED))) // moves ineffective against dark may be used
         {
-            i += 3;
             continue;
         }
         else if (gTypeEffectiveness[i] == atkType && gTypeEffectiveness[i + 1] == defType)
         {
-            modifier = gTypeEffectiveness[i + 2];
+            return gTypeEffectiveness[i + 2];
         }
-
-        i += 3;
     }
 
-    if (modifier == 50)
-        return 10;
-    return modifier;
+    return 10;
 }
 
-s32 GetStealthHazardDamage(u8 hazardType, u8 bank)
+u8 CalcStealthRockDenominator(u8 type1effectiveness, u8 type2effectiveness)
 {
-    u8 type1 = gBattleMons[bank].type1;
-    u8 type2 = gBattleMons[bank].type2;
-    u32 maxHp = gBattleMons[bank].maxHP;
-    s32 dmg = 0;
-    u16 modifier1 = ReturnTypeEffectiveness(hazardType, type1), modifier2 = ReturnTypeEffectiveness(hazardType, type2);
-
-    if (type1 == type2)
+    switch (type1effectiveness)
     {
-        dmg = modifier1 * maxHp / 80;
+    case 0:
+        return 0;
+    case 5:
+        switch (type2effectiveness)
+        {
+        case 0:
+            return 0;
+        case 5:
+            return 32;
+        case 10:
+            return 16;
+        case 20:
+            return 8;
+        }
+        break;
+    case 10:
+        switch (type2effectiveness)
+        {
+        case 0:
+            return 0;
+        case 5:
+            return 16;
+        case 10:
+            return 8;
+        case 20:
+            return 4;
+        }
+        break;
+    case 20:
+        switch (type2effectiveness)
+        {
+        case 0:
+            return 0;
+        case 5:
+            return 8;
+        case 10:
+            return 4;
+        case 20:
+            return 2;
+        }
+        break;
     }
-    else
-    {
-        dmg = modifier1 * modifier2 * maxHp / 800;
-    }
-    
-
-    return dmg;
 }
 
 u8 IsImprisoned(u8 battlerId, u16 move)

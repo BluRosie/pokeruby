@@ -6815,10 +6815,23 @@ static void atk52_switchineffects(void)
     else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK_DAMAGED)
           && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK))
     {
-        gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_STEALTH_ROCK_DAMAGED;
-        gBattleMoveDamage = GetStealthHazardDamage(TYPE_ROCK, gActiveBattler);
+        u8 denominator, mod1 = ReturnTypeEffectiveness(gBattleMoves[MOVE_STEALTH_ROCK].type, gBattleMons[gActiveBattler].type1), mod2;
+        
+        if (gBattleMons[gActiveBattler].type1 == gBattleMons[gActiveBattler].type2)
+            mod2 = 10;
+        else
+            mod2 = ReturnTypeEffectiveness(gBattleMoves[MOVE_STEALTH_ROCK].type, gBattleMons[gActiveBattler].type2);
+        
+        denominator = CalcStealthRockDenominator(mod1, mod2);;
 
-        //if (gBattleMoveDamage != 0)
+        gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_STEALTH_ROCK_DAMAGED;
+
+        if (denominator)        
+            gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / denominator;
+        else
+            gBattleMoveDamage = 0;
+
+        if (gBattleMoveDamage)
         {
             gBattleMons[gActiveBattler].status2 &= ~(STATUS2_DESTINY_BOND);
             gHitMarker &= ~(HITMARKER_DESTINYBOND);
