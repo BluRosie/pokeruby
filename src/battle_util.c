@@ -2770,9 +2770,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
              && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != 0xFF
              && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != 0xFF)
             {
-            gBattleMons[gBattlerAttacker].status2 |= (gBitTable[gBattlerTarget] << 0x10);
+            gBattleMons[gBattlerAttacker].status2 |= (gBitTable[gBattlerTarget] << 16);
             if (ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) == HOLD_EFFECT_DESTINY_KNOT)
-                gBattleMons[gBattlerTarget].status2 |= (gBitTable[gBattlerAttacker] << 0x10);
+                gBattleMons[gBattlerTarget].status2 |= (gBitTable[gBattlerAttacker] << 16);
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_CuteCharmActivates;
             effect++;

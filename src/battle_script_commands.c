@@ -10448,9 +10448,9 @@ static void atk97_tryinfatuating(void)
             }
         else
         {
-            gBattleMons[gBattlerTarget].status2 |=  (gBitTable[gBattlerAttacker] << 16);
+            gBattleMons[gBattlerTarget].status2 |= (gBitTable[gBattlerAttacker] << 16);
             if (ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) == HOLD_EFFECT_DESTINY_KNOT && GetBattlerAbility(gBattlerAttacker) != ABILITY_OBLIVIOUS && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION))
-                gBattleMons[gBattlerAttacker].status2 |=  (gBitTable[gBattlerAttacker] << 16);
+                gBattleMons[gBattlerAttacker].status2 |= (gBitTable[gBattlerTarget] << 16);
             gBattlescriptCurrInstr += 5;
         }
     }
