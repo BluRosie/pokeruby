@@ -1443,6 +1443,10 @@
 	various \bank, VARIOUS_SET_STEALTH_ROCK
 	.endm
 
+	.macro setaquaring
+	various USER, VARIOUS_SET_AQUA_RING
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat, stages, down
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7

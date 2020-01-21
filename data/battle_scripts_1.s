@@ -929,7 +929,39 @@ BattleScript_ToxicSpikesFree::
 	return
 
 BattleScript_EffectHeartSwap:
+	attackcanceler
+	attackstring
+	ppreduce
+	accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
+	swapstatstages ATTACK
+	swapstatstages DEFENSE
+	swapstatstages SPEED
+	swapstatstages SP_ATTACK
+	swapstatstages SP_DEFENSE
+	swapstatstages EVASION
+	swapstatstages ACCURACY
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_SwitchedStatChanges
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectAquaRing:
+	attackcanceler
+	attackstring
+	ppreduce
+	setaquaring
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_SurroundedByVeilOfWater
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
+BattleScript_AquaRingHeal::
+	playanimation USER, B_ANIM_INGRAIN_HEAL, NULL
+	printstring BATTLE_TEXT_AquaRingRestores
+	goto BattleScript_TurnHeal
+
 BattleScript_EffectRecoil33Status:
 BattleScript_EffectMagnetRise:
 BattleScript_EffectFlinchStatus:
@@ -4543,6 +4575,7 @@ BattleScript_WishButFullHp: @ 81D93C1
 BattleScript_IngrainTurnHeal:: @ 81D93D1
 	playanimation USER, B_ANIM_INGRAIN_HEAL, NULL
 	printstring BATTLE_TEXT_AbsorbNutrients
+BattleScript_TurnHeal:
 	waitmessage 64
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate USER

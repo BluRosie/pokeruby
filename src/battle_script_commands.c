@@ -8592,6 +8592,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_TRY_SUCKER_PUNCH 49
 #define VARIOUS_SET_TOXIC_SPIKES 50
 #define VARIOUS_SET_STEALTH_ROCK 51
+#define VARIOUS_SET_AQUA_RING 52
 
 static void atk76_various(void)
 {
@@ -9068,6 +9069,16 @@ static void atk76_various(void)
         else
         {
             gSideStatuses[sideTarget] |= SIDE_STATUS_STEALTH_ROCK;
+        }
+        break;
+    case VARIOUS_SET_AQUA_RING:
+        if (gStatuses3[gActiveBattler] & STATUS3_AQUA_RING)
+        {
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+        }
+        else
+        {
+            gStatuses3[gActiveBattler] |= STATUS3_AQUA_RING;
         }
         break;
     }

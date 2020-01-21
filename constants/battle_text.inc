@@ -395,3 +395,5 @@
 	enum BATTLE_TEXT_ToxicSpikesBlownAway
 	enum BATTLE_TEXT_RocksBlownAway
 	enum BATTLE_TEXT_PointedStonesScattered
+	enum BATTLE_TEXT_SurroundedByVeilOfWater
+	enum BATTLE_TEXT_AquaRingRestores

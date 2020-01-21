@@ -113,6 +113,7 @@ extern u8 BattleScript_MoveSelectionNoPP[];
 extern u8 BattleScript_NoMovesLeft[];
 extern u8 BattleScript_WishComesTrue[];
 extern u8 BattleScript_IngrainTurnHeal[];
+extern u8 BattleScript_AquaRingHeal[];
 extern u8 BattleScript_LeechSeedTurnDrain[];
 extern u8 BattleScript_PoisonTurnDmg[];
 extern u8 BattleScript_PoisonTurnHeal[];
@@ -1284,6 +1285,7 @@ u8 DoFieldEndTurnEffects(void)
 enum
 {
     ENDTURN_INGRAIN,
+    ENDTURN_AQUA_RING,
     ENDTURN_ABILITIES,
     ENDTURN_ITEMS1,
     ENDTURN_LEECH_SEED,
@@ -1332,6 +1334,21 @@ u8 TurnBasedEffects(void)
                         gBattleMoveDamage = 1;
                     gBattleMoveDamage *= -1;
                     BattleScriptExecute(BattleScript_IngrainTurnHeal);
+                    effect++;
+                }
+                gBattleStruct->turnEffectsTracker++;
+                break;
+            case ENDTURN_AQUA_RING:  // aqua ring
+                if ((gStatuses3[gActiveBattler] & STATUS3_AQUA_RING)
+                && (gBattleMons[gActiveBattler].hp != gBattleMons[gActiveBattler].maxHP)
+                && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK)
+                && gBattleMons[gActiveBattler].hp != 0)
+                {
+                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    gBattleMoveDamage *= -1;
+                    BattleScriptExecute(BattleScript_AquaRingHeal);
                     effect++;
                 }
                 gBattleStruct->turnEffectsTracker++;

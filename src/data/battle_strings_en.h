@@ -402,6 +402,8 @@ enum
     BATTLE_TEXT_ToxicSpikesBlownAway,
     BATTLE_TEXT_RocksBlownAway,
     BATTLE_TEXT_PointedStonesScattered,
+    BATTLE_TEXT_SurroundedByVeilOfWater,
+    BATTLE_TEXT_AquaRingRestores,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -941,6 +943,8 @@ const u8 BattleText_PointedStonesHurt[] = _("Pointed stones dug into\n{STRING 16
 const u8 BattleText_ToxicSpikesBlownAway[] = _("{ATTACKING_MON} blew away\nthe Toxic Spikes!");
 const u8 BattleText_RocksBlownAway[] = _("{ATTACKING_MON} blew away\nall the rocks!");
 const u8 BattleText_PointedStonesScattered[] = _("Pointed stones were\nscattered all around!");
+const u8 BattleText_SurroundedByVeilOfWater[] = _("{ATTACKING_MON} surrounded itself\nwith a veil of water!");
+const u8 BattleText_AquaRingRestores[] = _("Aqua Ring restored\n{ATTACKING_MON}'s HP!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1361,6 +1365,8 @@ const u8 *const gBattleStringsTable[] =
     BattleText_ToxicSpikesBlownAway,
     BattleText_RocksBlownAway,
     BattleText_PointedStonesScattered,
+    BattleText_SurroundedByVeilOfWater,
+    BattleText_AquaRingRestores,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
