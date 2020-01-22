@@ -1008,7 +1008,7 @@ void sub_807EC40(struct Sprite *sprite)
 
 void sub_807ECEC(struct Sprite *sprite)
 {
-    if (gWeatherPtr->unknown_6E2 > 18)
+    if (gWeatherPtr->unknown_6E2++ > 18)
     {
         sprite->invisible = FALSE;
         sprite->callback = sub_807ED48;
@@ -1020,7 +1020,9 @@ void sub_807ECEC(struct Sprite *sprite)
 
 void sub_807ED48(struct Sprite *sprite)
 {
+
     s16 r3;
+    s16 r2;
 
     sprite->data[0] += sprite->data[1];
     sprite->pos1.y = sprite->data[0] >> 7;
@@ -1034,6 +1036,33 @@ void sub_807ED48(struct Sprite *sprite)
         sprite->pos1.x = 242 - (gSpriteCoordOffsetX + sprite->centerToCornerVecX);
     else if (r3 > 242)
         sprite->pos1.x = -3 - (gSpriteCoordOffsetX + sprite->centerToCornerVecX);
+
+    r2 = (sprite->pos1.y + sprite->centerToCornerVecY + gSpriteCoordOffsetY) & 0xFF;
+    if (r2 > 163 && r2 < 171)
+    {
+        sprite->pos1.y = 250 - (gSpriteCoordOffsetY + sprite->centerToCornerVecY);
+        sprite->data[0] = sprite->pos1.y * 128;
+        sprite->data[5] = 0;
+        sprite->data[6] = 220;
+    }
+    else if (r2 > 242 && r2 < 250)
+    {
+        sprite->pos1.y = 163;
+        sprite->data[0] = sprite->pos1.y * 128;
+        sprite->data[5] = 0;
+        sprite->data[6] = 220;
+        sprite->invisible = TRUE;
+        sprite->callback = sub_807ECEC;
+    }
+
+    sprite->data[5]++;
+    if (sprite->data[5] == sprite->data[6])
+    {
+        sub_807EC40(sprite);
+        sprite->pos1.y = 250;
+        sprite->invisible = TRUE;
+        sprite->callback = sub_807ECEC;
+    }
 }
 
 //------------------------------------------------------------------------------
