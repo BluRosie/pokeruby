@@ -332,6 +332,8 @@ extern u8 BattleScript_DefSpDefDown[];
 extern u8 BattleScript_SAtkDown2[];
 extern u8 BattleScript_BerryCureChosenStatusRet[]; //berry cure any status return
 extern u8 BattleScript_WhiteHerbFling[];
+extern u8 BattleScript_MoveEffectRecoilWithStatus[];
+extern u8 BattleScript_EffectWithChance[];
 
 extern const u8 gStatusConditionString_LoveJpn[];
 extern const u8 BattleText_Taunt[];
@@ -3292,6 +3294,14 @@ void SetMoveEffect(bool8 primary, u8 certain)
 
                 statusChanged = FALSE;
                 affectsUser = 0;
+                break;
+            case MOVE_EFFECT_RECOIL_33_STATUS:
+                gBattleMoveDamage = gHpDealt / 3;
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_MoveEffectRecoilWithStatus;
                 break;
             case MOVE_EFFECT_SP_ATK_TWO_DOWN: //overheat
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -8593,6 +8603,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_SET_TOXIC_SPIKES 50
 #define VARIOUS_SET_STEALTH_ROCK 51
 #define VARIOUS_SET_AQUA_RING 52
+#define VARIOUS_ARGUMENT_STATUS_EFFECT 53
 
 static void atk76_various(void)
 {
@@ -9079,6 +9090,35 @@ static void atk76_various(void)
         else
         {
             gStatuses3[gActiveBattler] |= STATUS3_AQUA_RING;
+        }
+        break;
+    case VARIOUS_ARGUMENT_STATUS_EFFECT:
+        switch (gBattleMoves[gCurrentMove].argument)
+        {
+        case STATUS1_BURN:
+            gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_BURN;
+            break;
+        case STATUS1_FREEZE:
+            gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_FREEZE;
+            break;
+        case STATUS1_PARALYSIS:
+            gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_PARALYSIS;
+            break;
+        case STATUS1_POISON:
+            gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_POISON;
+            break;
+        case STATUS1_TOXIC_POISON:
+            gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_TOXIC;
+            break;
+        default:
+            gBattleCommunication[MOVE_EFFECT_BYTE] = 0;
+            break;
+        }
+        if (gBattleCommunication[MOVE_EFFECT_BYTE] != 0)
+        {
+            BattleScriptPush(gBattlescriptCurrInstr + 3);
+            gBattlescriptCurrInstr = BattleScript_EffectWithChance;
+            return; // not gonna mess with incrementing here
         }
         break;
     }
@@ -9719,7 +9759,7 @@ static void atk8B_setbide(void)
 static void atk8C_confuseifrepeatingattackends(void)
 {
     if (!(gBattleMons[gBattlerAttacker].status2 & STATUS2_LOCK_CONFUSE))
-        gBattleCommunication[MOVE_EFFECT_BYTE] = 0x75;
+        gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_THRASH | MOVE_EFFECT_AFFECTS_USER;
     gBattlescriptCurrInstr++;
 }
 

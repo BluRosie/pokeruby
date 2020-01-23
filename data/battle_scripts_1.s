@@ -963,6 +963,9 @@ BattleScript_AquaRingHeal::
 	goto BattleScript_TurnHeal
 
 BattleScript_EffectRecoil33Status:
+	setmoveeffect EFFECT_RECOIL_33_STATUS | AFFECTS_USER | CERTAIN
+	goto BattleScript_EffectHit
+
 BattleScript_EffectMagnetRise:
 BattleScript_EffectFlinchStatus:
 BattleScript_EffectDefog:
@@ -4935,10 +4938,12 @@ BattleScript_MoveEffectConfusion:: @ 81D96BA
 	waitmessage 64
 	return
 
+BattleScript_MoveEffectRecoilWithStatus::
+	argumentstatuseffect
+	@copyword gBattleMoveDamage, sSAVED_DMG
 BattleScript_MoveEffectRecoil33:: @ 81D96C8
 	jumpifmove MOVE_STRUGGLE, BattleScript_DoRecoil33
 	jumpifability USER, ABILITY_ROCK_HEAD, BattleScript_Recoil33End
-
 BattleScript_DoRecoil33: @ 81D96DB
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
 	healthbarupdate USER
@@ -4946,8 +4951,11 @@ BattleScript_DoRecoil33: @ 81D96DB
 	printstring BATTLE_TEXT_HitRecoil
 	waitmessage 64
 	tryfaintmon USER, FALSE, NULL
-
 BattleScript_Recoil33End: @ 81D96F5
+	return
+	
+BattleScript_EffectWithChance::
+	seteffectwithchance
 	return
 
 BattleScript_ItemSteal:: @ 81D96F6

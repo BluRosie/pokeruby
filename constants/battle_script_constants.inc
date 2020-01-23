@@ -91,20 +91,20 @@
 	.set EFFECT_EVS_MINUS_2, 0x34
 	.set EFFECT_THRASH, 0x35
 	.set EFFECT_KNOCK_OFF, 0x36
-	.set EFFECT_NOTHING_37, 0x37
-	.set EFFECT_NOTHING_38, 0x38
-	.set EFFECT_NOTHING_39, 0x39
+	.set EFFECT_HEAL_VARIOUS, 0x37
+	.set EFFECT_RESTORE_STATS, 0x38
+	.set EFFECT_RECOIL_33_STATUS, 0x39
 	.set EFFECT_NOTHING_3A, 0x3A
 	.set EFFECT_SP_ATK_TWO_DOWN, 0x3B
 	.set EFFECT_NOTHING_3C, 0x3C
 	.set EFFECT_NOTHING_3D, 0x3D
 	.set EFFECT_NOTHING_3E, 0x3E
 	.set EFFECT_NOTHING_3F, 0x3F
-@ aight bitch niggas did a dumb & i am pissed.  need more effect numbers, maybe a setmoveeffect2 eventually
+
 	.set AFFECTS_USER, 0x40
 	.set CERTAIN, 0x80
 
-@ various (atk76) effect enumerations
+@ various (atk76) effect enumerations @ used literally once here
 	.set RESTORE_PP, 7
 	
 @ accuracy calc
@@ -166,6 +166,7 @@
 	.set VARIOUS_SET_TOXIC_SPIKES, 50
 	.set VARIOUS_SET_STEALTH_ROCK, 51
 	.set VARIOUS_SET_AQUA_RING, 52
+	.set VARIOUS_ARGUMENT_STATUS_EFFECT, 53
 	
 @ jumpifcant switch flag argument
 	.set ATK4F_DONT_CHECK_STATUSES, 0x80

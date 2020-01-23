@@ -620,7 +620,7 @@ struct Struct20238C8
 #define MOVE_EFFECT_KNOCK_OFF           0x36
 #define MOVE_EFFECT_HEAL_VARIOUS        0x37
 #define MOVE_EFFECT_RESTORE_STATS       0x38
-#define MOVE_EFFECT_NOTHING_39          0x39
+#define MOVE_EFFECT_RECOIL_33_STATUS    0x39
 #define MOVE_EFFECT_NOTHING_3A          0x3A
 #define MOVE_EFFECT_SP_ATK_TWO_DOWN     0x3B
 #define MOVE_EFFECT_NOTHING_3C          0x3C

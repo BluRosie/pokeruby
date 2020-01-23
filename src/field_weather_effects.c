@@ -1020,7 +1020,6 @@ void sub_807ECEC(struct Sprite *sprite)
 
 void sub_807ED48(struct Sprite *sprite)
 {
-
     s16 r3;
     s16 r2;
 
