@@ -1014,6 +1014,44 @@ BattleScript_EffectFlinchStatus:
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectDefog:
+	setstatchanger EVASION, 1, TRUE
+	attackcanceler
+	jumpifstatus2 TARGET, STATUS2_SUBSTITUTE, BattleScript_DefogIfCanClearHazards
+	jumpifstat TARGET, NOT_EQUAL, EVASION, 0, BattleScript_DefogWorks
+BattleScript_DefogIfCanClearHazards:
+	defogclear USER, FALSE, BattleScript_ButItFailedAtkStringPpReduce
+BattleScript_DefogWorks:
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	statbuffchange 1, BattleScript_DefogTryHazardsWithAnim
+	jumpifbyte LESS_THAN, cMULTISTRING_CHOOSER, 0x2, BattleScript_DefogDoAnim
+	jumpifbyte EQUAL, cMULTISTRING_CHOOSER, 0x3, BattleScript_DefogTryHazardsWithAnim
+	pause 32
+	goto BattleScript_DefogPrintString
+BattleScript_DefogDoAnim:
+	attackanimation
+	waitanimation
+	setgraphicalstatchangevalues
+	playanimation TARGET, B_ANIM_STATS_CHANGE, sANIM_ARG1
+BattleScript_DefogPrintString:
+	printfromtable gStatDownStringIds
+	waitmessage 64
+BattleScript_DefogTryHazards:
+	copybyte gEffectBattler, gBattlerAttacker
+	defogclear USER, TRUE, NULL
+	copybyte gBattlerAttacker, gEffectBattler
+	goto BattleScript_MoveEnd
+BattleScript_DefogTryHazardsWithAnim:
+	attackanimation
+	waitanimation
+	goto BattleScript_DefogTryHazards
+
+BattleScript_SideStatusWoreOffReturn::
+	printstring BATTLE_TEXT_WoreOff
+	waitmessage 64
+	return
+
 BattleScript_EffectTrickRoom:
 BattleScript_EffectCaptivate:
 BattleScript_EffectStealthRock:

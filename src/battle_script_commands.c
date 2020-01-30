@@ -313,6 +313,7 @@ extern u8 BattleScript_LeechSeedFree[];
 extern u8 BattleScript_SpikesFree[];
 extern u8 BattleScript_ToxicSpikesFree[];
 extern u8 BattleScript_RocksFree[];
+extern u8 BattleScript_SideStatusWoreOffReturn[];
 extern u8 BattleScript_ButItFailed[];
 extern u8 BattleScript_ButItFailedAtkStringPpReduce[];
 extern u8 BattleScript_ButItFailedPpReduce[];
@@ -539,6 +540,7 @@ static void atk73_hpthresholds(void);
 static void atk74_hpthresholds2(void);
 static void atk75_useitemonopponent(void);
 static u16 GetFlingBasePowerAndEffect(u16 item);
+static bool32 ClearDefogHazards(u8 bank, bool32 clear);
 static void atk76_various(void);
 static void atk77_setprotectlike(void);
 static void atk78_faintifabilitynotdamp(void);
@@ -8613,6 +8615,49 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
     return effectandpower;
 }
 
+#define DEFOG_CLEAR(status, structField, battlescript, move)\
+{                                                           \
+    if (*sideStatuses & status)                             \
+    {                                                       \
+        if (clear)                                          \
+        {                                                   \
+            if (move)                                       \
+                PREPARE_MOVE_BUFFER(gBattleTextBuff1, move);\
+            *sideStatuses &= ~(status);                     \
+            sideTimer->structField = 0;                     \
+            BattleScriptPushCursor();                       \
+            gBattlescriptCurrInstr = battlescript;          \
+        }                                                   \
+        return TRUE;                                        \
+    }                                                       \
+}
+
+static bool32 ClearDefogHazards(u8 bank, bool32 clear)
+{
+    s32 i;
+    for (i = 0; i < 2; i++)
+    {
+        struct SideTimer *sideTimer = &gSideTimers[i];
+        u16 *sideStatuses = &gSideStatuses[i];
+
+        gBattlerAttacker = i;
+        if (GetBattlerSide(bank) != i)
+        {
+            DEFOG_CLEAR(SIDE_STATUS_REFLECT, reflectTimer, BattleScript_SideStatusWoreOffReturn, MOVE_REFLECT);
+            DEFOG_CLEAR(SIDE_STATUS_LIGHTSCREEN, lightscreenTimer, BattleScript_SideStatusWoreOffReturn, MOVE_LIGHT_SCREEN);
+            DEFOG_CLEAR(SIDE_STATUS_MIST, mistTimer, BattleScript_SideStatusWoreOffReturn, MOVE_MIST);
+            //DEFOG_CLEAR(SIDE_STATUS_AURORA_VEIL, auroraVeilTimer, BattleScript_SideStatusWoreOffReturn, MOVE_AURORA_VEIL);
+            DEFOG_CLEAR(SIDE_STATUS_SAFEGUARD, safeguardTimer, BattleScript_SideStatusWoreOffReturn, MOVE_SAFEGUARD);
+        }
+        DEFOG_CLEAR(SIDE_STATUS_SPIKES, spikesAmount, BattleScript_SpikesFree, 0);
+        DEFOG_CLEAR(SIDE_STATUS_STEALTH_ROCK, field4, BattleScript_RocksFree, 0); // because field4 is never really used
+        DEFOG_CLEAR(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, BattleScript_ToxicSpikesFree, 0);
+        //DEFOG_CLEAR(SIDE_STATUS_STICKY_WEB, stickyWebAmount, BattleScript_StickyWebFree, 0);
+    }
+
+    return FALSE;
+}
+
 #define VARIOUS_CANCEL_MULTI_TURN_MOVES 0
 #define VARIOUS_SET_MAGIC_COAT_TARGET 1
 #define VARIOUS_IS_RUNNING_IMPOSSIBLE 2
@@ -8652,6 +8697,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_SET_AQUA_RING 52
 #define VARIOUS_ARGUMENT_STATUS_EFFECT 53
 #define VARIOUS_SET_MAGNET_RISE 54
+#define VARIOUS_DEFOG 55
 
 static void atk76_various(void)
 {
@@ -9179,6 +9225,22 @@ static void atk76_various(void)
             gDisableStructs[gActiveBattler].magnetRiseTimer = 5;
         }
         break;
+    case VARIOUS_DEFOG: // decided to break my convention here w importing dizzy's things, all script augmentation occurs in this block
+        if (T1_READ_8(gBattlescriptCurrInstr + 3)) // Clear
+        {
+            if (ClearDefogHazards(gEffectBattler, TRUE))
+                return;
+            else
+                gBattlescriptCurrInstr += 8;
+        }
+        else
+        {
+            if (ClearDefogHazards(gActiveBattler, FALSE))
+                gBattlescriptCurrInstr += 8;
+            else
+                gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);
+        }
+        return;
     }
 
     gBattlescriptCurrInstr += 3;
