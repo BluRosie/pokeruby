@@ -147,6 +147,7 @@ extern u8 BattleScript_EmbargoEndTurn[];
 extern u8 BattleScript_SlowStartEnds[];
 extern u8 BattleScript_GravityEndTurn[];
 extern u8 BattleScript_HealBlockEnds[];
+extern u8 BattleScript_MagnetRiseEnds[];
 extern u8 BattleScript_LuckyChantFades[];
 
 extern u8 BattleScript_MoveUsedIsAsleep[];
@@ -922,6 +923,7 @@ enum
     ENDTURN_EMBARGO,
     ENDTURN_SLOW_START,
     ENDTURN_GRAVITY,
+    ENDTURN_MAGNET_RISE,
     ENDTURN_HEAL_BLOCK,
     ENDTURN_LUCKY_CHANT,
     ENDTURN_FIELD_COUNT,
@@ -1235,6 +1237,22 @@ u8 DoFieldEndTurnEffects(void)
                     gBattlescriptCurrInstr = BattleScript_GravityEndTurn;
                     BattleScriptExecute(gBattlescriptCurrInstr);
                     effect++;
+                }
+            }
+            gBattleStruct->turnCountersTracker++;
+            break;
+        case ENDTURN_MAGNET_RISE:
+            for (i = 0; i < gBattlersCount; i++)
+            {
+                if (gDisableStructs[i].magnetRiseTimer)
+                {
+                    if (--gDisableStructs[i].magnetRiseTimer == 0)
+                    {
+                        gBattleStruct->scriptingActive = i;
+                        gBattlescriptCurrInstr = BattleScript_MagnetRiseEnds;
+                        BattleScriptExecute(gBattlescriptCurrInstr);
+                        effect++;
+                    }
                 }
             }
             gBattleStruct->turnCountersTracker++;

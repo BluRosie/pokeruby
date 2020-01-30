@@ -445,6 +445,11 @@ BattleScript_GravityEndTurn::
 	waitmessage 64
 	end2
 
+BattleScript_GravityGrounded::
+	printstring BATTLE_TEXT_GravityGrounded
+	waitmessage 64
+	return
+
 BattleScript_MoveUsedGravityPrevents::
 	printstring BATTLE_TEXT_MonFellFromSky
 	waitmessage 64
@@ -967,7 +972,47 @@ BattleScript_EffectRecoil33Status:
 	goto BattleScript_EffectHit
 
 BattleScript_EffectMagnetRise:
+	attackcanceler
+	attackstring
+	ppreduce
+	setmagnetrise USER
+	attackanimation
+	waitanimation
+	printstring BATTLE_TEXT_FloatedOnElectromagnetism
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
+BattleScript_MagnetRiseEnds::
+	printstring BATTLE_TEXT_MagnetRiseEnds
+	waitmessage 64
+	end2
+
 BattleScript_EffectFlinchStatus:
+	setmoveeffect EFFECT_FLINCH
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation TARGET
+	waitstate
+	healthbarupdate TARGET
+	datahpupdate TARGET
+	critmessage
+	waitmessage 64
+	resultmessage
+	waitmessage 64
+	seteffectwithchance
+	argumentstatuseffect
+	tryfaintmon TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectDefog:
 BattleScript_EffectTrickRoom:
 BattleScript_EffectCaptivate:
@@ -4940,7 +4985,6 @@ BattleScript_MoveEffectConfusion:: @ 81D96BA
 
 BattleScript_MoveEffectRecoilWithStatus::
 	argumentstatuseffect
-	@copyword gBattleMoveDamage, sSAVED_DMG
 BattleScript_MoveEffectRecoil33:: @ 81D96C8
 	jumpifmove MOVE_STRUGGLE, BattleScript_DoRecoil33
 	jumpifability USER, ABILITY_ROCK_HEAD, BattleScript_Recoil33End

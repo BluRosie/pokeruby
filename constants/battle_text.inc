@@ -397,3 +397,6 @@
 	enum BATTLE_TEXT_PointedStonesScattered
 	enum BATTLE_TEXT_SurroundedByVeilOfWater
 	enum BATTLE_TEXT_AquaRingRestores
+	enum BATTLE_TEXT_FloatedOnElectromagnetism
+	enum BATTLE_TEXT_GravityGrounded
+	enum BATTLE_TEXT_MagnetRiseEnds

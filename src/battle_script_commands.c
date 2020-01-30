@@ -1718,7 +1718,10 @@ static void atk06_typecalc(void)
             gBattleMoveDamage = gBattleMoveDamage / 10;
         }
 
-        if (GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE && moveType == TYPE_GROUND && ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) != HOLD_EFFECT_IRON_BALL && !gBattleGlobalTimers.gravityTimer)
+        if ((GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE || gDisableStructs[gBattlerTarget].magnetRiseTimer)
+         && moveType == TYPE_GROUND 
+         && ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) != HOLD_EFFECT_IRON_BALL 
+         && !gBattleGlobalTimers.gravityTimer)
         {
             gLastUsedAbility = GetBattlerAbility(gBattlerTarget);
             gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
@@ -1785,7 +1788,10 @@ static void CheckWonderGuardAndLevitate(void)
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
 
-    if (GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE && moveType == TYPE_GROUND && ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) != HOLD_EFFECT_IRON_BALL && !gBattleGlobalTimers.gravityTimer)
+    if (GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE // magnet rise here as well? 
+     && moveType == TYPE_GROUND 
+     && ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) != HOLD_EFFECT_IRON_BALL 
+     && !gBattleGlobalTimers.gravityTimer)
     {
         RecordAbilitySetField6(ABILITY_LEVITATE, moveType);
         return;
@@ -1915,7 +1921,10 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
         gBattleMoveDamage = gBattleMoveDamage / 10;
     }
 
-    if (GetBattlerAbility(defender) == ABILITY_LEVITATE && moveType == TYPE_GROUND && ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) != HOLD_EFFECT_IRON_BALL && !gBattleGlobalTimers.gravityTimer)
+    if ((GetBattlerAbility(defender) == ABILITY_LEVITATE || gDisableStructs[defender].magnetRiseTimer) 
+     && moveType == TYPE_GROUND 
+     && ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) != HOLD_EFFECT_IRON_BALL 
+     && !gBattleGlobalTimers.gravityTimer)
     {
         flags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
     }
@@ -1934,7 +1943,7 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
             if (moveType == TYPE_GROUND
                 && (gBattleMons[defender].type1 == TYPE_FLYING || gBattleMons[defender].type2 == TYPE_FLYING)
                 && (ItemId_GetHoldEffect(gBattleMons[defender].item) == HOLD_EFFECT_IRON_BALL
-                || gBattleGlobalTimers.gravityTimer))
+                 || gBattleGlobalTimers.gravityTimer))
             { // if attacking with ground and the other pokemon is flying but grounded by the iron ball
                 i += 3;
                 continue;
@@ -1974,7 +1983,10 @@ u8 AI_TypeCalc(u16 move, u16 targetSpecies, u8 targetAbility)
 
     moveType = gBattleMoves[move].type;
 
-    if (targetAbility == ABILITY_LEVITATE && moveType == TYPE_GROUND && ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) != HOLD_EFFECT_IRON_BALL && !gBattleGlobalTimers.gravityTimer) {
+    if (targetAbility == ABILITY_LEVITATE // how do we do magnet rise here without banks?  will have to look into how ai_typecalc receives its arguments
+     && moveType == TYPE_GROUND 
+     && ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) != HOLD_EFFECT_IRON_BALL 
+     && !gBattleGlobalTimers.gravityTimer) {
         flags = MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE;
     }
     else
@@ -3160,7 +3172,6 @@ void SetMoveEffect(bool8 primary, u8 certain)
                         gBattlescriptCurrInstr = BattleScript_TargetSleepHeal;
                     else if (gBattleMoves[gCurrentMove].argument == STATUS1_PARALYSIS)
                         gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
-
                 }
                 else
                 {
@@ -5110,6 +5121,7 @@ _080217E6:\n\
 
 extern u8 BattleScript_RageIsBuilding[];
 extern u8 BattleScript_DefrostedViaFireMove[];
+extern u8 BattleScript_GravityGrounded[];
 extern u8 BattleScript_FlushMessageBox[];
 
 // atk49, moveend cases
@@ -5117,6 +5129,7 @@ enum
 {
     MOVEEND_RAGE,
     MOVEEND_DEFROST,
+    MOVEEND_GRAVITY,
     MOVEEND_SYNCHRONIZE_TARGET,
     MOVEEND_ABILITIES,
     MOVEEND_STATUS_ABILITIES,
@@ -5189,6 +5202,30 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
+        case MOVEEND_GRAVITY: // make the mons fall if gravity is active
+            if (gBattleGlobalTimers.gravityTimer)
+            {
+                for (i = 0; i < gBattlersCount; i++)
+                {
+                    if (gStatuses3[i] & STATUS3_ON_AIR/* | STATUS3_TELEKINESIS*/ 
+                     || gDisableStructs[i].magnetRiseTimer)
+                    {
+                        if (gStatuses3[i] & STATUS3_ON_AIR)
+                            CancelMultiTurnMoves(i);
+                        gStatuses3[i] &= ~(/*STATUS3_TELEKINESIS | */STATUS3_ON_AIR);
+                        gDisableStructs[i].magnetRiseTimer = 0;
+                        gActiveBattler = i;
+                        BtlController_EmitSpriteInvisibility(0, 0);
+                        MarkBattlerForControllerExec(i);
+                        BattleScriptPushCursor();
+                        gBattleStruct->scriptingActive = i;
+                        gBattlescriptCurrInstr = BattleScript_GravityGrounded;
+                        effect = TRUE;
+                    }
+                }
+            }
+            gBattleStruct->cmd49StateTracker++;
+            break;
         case MOVEEND_SYNCHRONIZE_TARGET: // target synchronize
             if (AbilityBattleEffects(ABILITYEFFECT_SYNCHRONIZE, gBattlerTarget, 0, 0, 0))
                 effect = TRUE;
@@ -5257,7 +5294,7 @@ void atk49_moveend(void)
             gBattleStruct->cmd49StateTracker++;
             break;
         case MOVEEND_TARGET_VISIBLE: // make target sprite visible
-            if ((gStatuses3[gBattlerAttacker] & 0x400C0) && (gHitMarker & HITMARKER_NO_ANIMATIONS))
+            if ((gStatuses3[gBattlerAttacker] & STATUS3_SEMI_INVULNERABLE) && (gHitMarker & HITMARKER_NO_ANIMATIONS))
             {
                 gActiveBattler = gBattlerAttacker;
                 BtlController_EmitSpriteInvisibility(0, 1);
@@ -5427,7 +5464,10 @@ static void atk4A_typecalc2(void)
     int i = 0;
     u8 moveType = gBattleMoves[gCurrentMove].type;
 
-    if (GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE && moveType == TYPE_GROUND && ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) != HOLD_EFFECT_IRON_BALL && !gBattleGlobalTimers.gravityTimer)
+    if ((GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE || gDisableStructs[gBattlerTarget].magnetRiseTimer)
+     && moveType == TYPE_GROUND 
+     && ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) != HOLD_EFFECT_IRON_BALL 
+     && !gBattleGlobalTimers.gravityTimer )
     {
         gLastUsedAbility = GetBattlerAbility(gBattlerTarget);
         gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
@@ -6794,10 +6834,14 @@ static void atk52_switchineffects(void)
     gSpecialStatuses[gActiveBattler].flag40 = 0;
 
     // first handle spikes
-    if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES_DAMAGED) && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES)
-        && ((gBattleMons[gActiveBattler].type1 != TYPE_FLYING && gBattleMons[gActiveBattler].type2 != TYPE_FLYING && GetBattlerAbility(gActiveBattler) != ABILITY_LEVITATE)
-        || ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) == HOLD_EFFECT_IRON_BALL 
-        || gBattleGlobalTimers.gravityTimer))
+    if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES_DAMAGED) 
+     && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES)
+     && ((gBattleMons[gActiveBattler].type1 != TYPE_FLYING 
+       && gBattleMons[gActiveBattler].type2 != TYPE_FLYING 
+       && GetBattlerAbility(gActiveBattler) != ABILITY_LEVITATE
+       && !gDisableStructs[gActiveBattler].magnetRiseTimer)
+      || ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) == HOLD_EFFECT_IRON_BALL 
+      || gBattleGlobalTimers.gravityTimer))
     {
         u8 spikesDmg;
 
@@ -6860,7 +6904,10 @@ static void atk52_switchineffects(void)
     // then toxic spikes
     else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_TOXIC_SPIKES_DAMAGED)
         && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_TOXIC_SPIKES)
-        && ((gBattleMons[gActiveBattler].type1 != TYPE_FLYING && gBattleMons[gActiveBattler].type2 != TYPE_FLYING && GetBattlerAbility(gActiveBattler) != ABILITY_LEVITATE)
+        && ((gBattleMons[gActiveBattler].type1 != TYPE_FLYING 
+          && gBattleMons[gActiveBattler].type2 != TYPE_FLYING 
+          && GetBattlerAbility(gActiveBattler) != ABILITY_LEVITATE
+          && !gDisableStructs[gActiveBattler].magnetRiseTimer)
         || ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) == HOLD_EFFECT_IRON_BALL 
         || gBattleGlobalTimers.gravityTimer))
     {
@@ -8604,6 +8651,7 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 #define VARIOUS_SET_STEALTH_ROCK 51
 #define VARIOUS_SET_AQUA_RING 52
 #define VARIOUS_ARGUMENT_STATUS_EFFECT 53
+#define VARIOUS_SET_MAGNET_RISE 54
 
 static void atk76_various(void)
 {
@@ -9119,6 +9167,16 @@ static void atk76_various(void)
             BattleScriptPush(gBattlescriptCurrInstr + 3);
             gBattlescriptCurrInstr = BattleScript_EffectWithChance;
             return; // not gonna mess with incrementing here
+        }
+        break;
+    case VARIOUS_SET_MAGNET_RISE:
+        if (gDisableStructs[gActiveBattler].magnetRiseTimer)
+        {
+            gBattlescriptCurrInstr = BattleScript_ButItFailed - 3;
+        }
+        else
+        {
+            gDisableStructs[gActiveBattler].magnetRiseTimer = 5;
         }
         break;
     }

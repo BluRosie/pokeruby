@@ -404,6 +404,9 @@ enum
     BATTLE_TEXT_PointedStonesScattered,
     BATTLE_TEXT_SurroundedByVeilOfWater,
     BATTLE_TEXT_AquaRingRestores,
+    BATTLE_TEXT_FloatedOnElectromagnetism,
+    BATTLE_TEXT_GravityGrounded,
+    BATTLE_TEXT_MagnetRiseEnds,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -945,6 +948,9 @@ const u8 BattleText_RocksBlownAway[] = _("{ATTACKING_MON} blew away\nall the roc
 const u8 BattleText_PointedStonesScattered[] = _("Pointed stones were\nscattered all around!");
 const u8 BattleText_SurroundedByVeilOfWater[] = _("{ATTACKING_MON} surrounded itself\nwith a veil of water!");
 const u8 BattleText_AquaRingRestores[] = _("Aqua Ring restored\n{ATTACKING_MON}'s HP!");
+const u8 BattleText_FloatedOnElectromagnetism[] = _("{ATTACKING_MON} levitated on\nelectromagnetism!");
+const u8 BattleText_GravityGrounded[] = _("The Gravity grounded\n{STRING 16}!");
+const u8 BattleText_MagnetRiseEnds[] = _("The electromagnetism keeping\n{STRING 16} afloat faded!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1367,6 +1373,9 @@ const u8 *const gBattleStringsTable[] =
     BattleText_PointedStonesScattered,
     BattleText_SurroundedByVeilOfWater,
     BattleText_AquaRingRestores,
+    BattleText_FloatedOnElectromagnetism,
+    BattleText_GravityGrounded,
+    BattleText_MagnetRiseEnds,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.

@@ -21,9 +21,6 @@ TODO:
 - daycare effects for destiny knot & power items
 
 BATTLE BUGS:
-MOVE_TARGET_USER & MOVE_TARGET_SELECTED bring up a selection even when in single battles
-experience broke
-
 
 consider erasing the hp boxes when battle is happening as opposed to just letting the move animation take place
 
