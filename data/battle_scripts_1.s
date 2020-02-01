@@ -1021,7 +1021,7 @@ BattleScript_EffectDefog:
 BattleScript_DefogIfCanClearHazards:
 	defogclear USER, FALSE, BattleScript_ButItFailedAtkStringPpReduce
 BattleScript_DefogWorks:
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	@accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	ppreduce
 	statbuffchange 1, BattleScript_DefogTryHazardsWithAnim
@@ -1038,9 +1038,7 @@ BattleScript_DefogPrintString:
 	printfromtable gStatDownStringIds
 	waitmessage 64
 BattleScript_DefogTryHazards:
-	copybyte gEffectBattler, gBattlerAttacker
 	defogclear USER, TRUE, NULL
-	copybyte gBattlerAttacker, gEffectBattler
 	goto BattleScript_MoveEnd
 BattleScript_DefogTryHazardsWithAnim:
 	attackanimation

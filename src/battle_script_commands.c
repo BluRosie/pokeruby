@@ -8635,12 +8635,18 @@ static u16 GetFlingBasePowerAndEffect(u16 item)
 static bool32 ClearDefogHazards(u8 bank, bool32 clear)
 {
     s32 i;
+
+    if (clear)
+    {
+        gBattleGlobalTimers.fog = 0;
+    }
+
     for (i = 0; i < 2; i++)
     {
         struct SideTimer *sideTimer = &gSideTimers[i];
         u16 *sideStatuses = &gSideStatuses[i];
 
-        gBattlerAttacker = i;
+        //gBattlerAttacker = i;
         if (GetBattlerSide(bank) != i)
         {
             DEFOG_CLEAR(SIDE_STATUS_REFLECT, reflectTimer, BattleScript_SideStatusWoreOffReturn, MOVE_REFLECT);
@@ -9228,7 +9234,7 @@ static void atk76_various(void)
     case VARIOUS_DEFOG: // decided to break my convention here w importing dizzy's things, all script augmentation occurs in this block
         if (T1_READ_8(gBattlescriptCurrInstr + 3)) // Clear
         {
-            if (ClearDefogHazards(gEffectBattler, TRUE))
+            if (ClearDefogHazards(gActiveBattler, TRUE))
                 return;
             else
                 gBattlescriptCurrInstr += 8;

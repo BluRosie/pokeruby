@@ -1494,6 +1494,12 @@
 	copyarray \dst, \src, 0x1
 	.endm
 	
+	.macro switchtargetandattacker
+	copybyte gEffectBattler, gBattlerAttacker
+	copybyte gBattlerAttacker, gBattlerTarget
+	copybyte gBattlerTarget, gEffectBattler
+	.endm
+
 	.macro copyhword dst, src
 	copyarray \dst, \src, 0x2
 	.endm
