@@ -335,6 +335,7 @@ extern u8 BattleScript_BerryCureChosenStatusRet[]; //berry cure any status retur
 extern u8 BattleScript_WhiteHerbFling[];
 extern u8 BattleScript_MoveEffectRecoilWithStatus[];
 extern u8 BattleScript_EffectWithChance[];
+extern u8 BattleScript_CaptivateCheckAcc[];
 
 extern const u8 gStatusConditionString_LoveJpn[];
 extern const u8 BattleText_Taunt[];
@@ -8704,6 +8705,8 @@ static bool32 ClearDefogHazards(u8 bank, bool32 clear)
 #define VARIOUS_ARGUMENT_STATUS_EFFECT 53
 #define VARIOUS_SET_MAGNET_RISE 54
 #define VARIOUS_DEFOG 55
+#define VARIOUS_SET_ROOM 56
+#define VARIOUS_PASS_IF_OPPOSITE_GENDERS 57
 
 static void atk76_various(void)
 {
@@ -9247,6 +9250,57 @@ static void atk76_various(void)
                 gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 4);
         }
         return;
+    case VARIOUS_SET_ROOM:
+        switch (gBattleMoves[gCurrentMove].effect)
+        {
+        case EFFECT_TRICK_ROOM:
+            if (gBattleGlobalTimers.trickRoomTimer)
+            {
+                gBattleGlobalTimers.trickRoomTimer = 0;
+                gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+            }
+            else
+            {
+                gBattleGlobalTimers.trickRoomTimer = 5;
+                gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+            }
+            break;
+        case EFFECT_WONDER_ROOM:
+            if (gBattleGlobalTimers.wonderRoomTimer)
+            {
+                gBattleGlobalTimers.wonderRoomTimer = 0;
+                gBattleCommunication[MULTISTRING_CHOOSER] = 3;
+            }
+            else
+            {
+                gBattleGlobalTimers.wonderRoomTimer = 5;
+                gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+            }
+            break;
+        case EFFECT_MAGIC_ROOM:
+            if (gBattleGlobalTimers.magicRoomTimer)
+            {
+                gBattleGlobalTimers.magicRoomTimer = 0;
+                gBattleCommunication[MULTISTRING_CHOOSER] = 5;
+            }
+            else
+            {
+                gBattleGlobalTimers.magicRoomTimer = 5;
+                gBattleCommunication[MULTISTRING_CHOOSER] = 4;
+            }
+            break;
+        default:
+            gBattleCommunication[MULTISTRING_CHOOSER] = 6;
+            break;
+        }
+        break;
+    case VARIOUS_PASS_IF_OPPOSITE_GENDERS: // hi i reuse variables nice to meet you
+        sideAttacker = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerAttacker].species, gBattleMons[gBattlerAttacker].personality);
+        sideTarget = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerTarget].species, gBattleMons[gBattlerTarget].personality);
+
+        if ((sideAttacker == MON_MALE && sideTarget == MON_FEMALE) || (sideAttacker == MON_FEMALE && sideTarget == MON_MALE))
+            gBattlescriptCurrInstr = BattleScript_CaptivateCheckAcc - 3;
+        break;
     }
 
     gBattlescriptCurrInstr += 3;

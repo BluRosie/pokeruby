@@ -130,6 +130,7 @@ extern u8 BattleScript_RainContinuesOrEnds[];
 extern u8 BattleScript_SandStormHailEnds[];
 extern u8 BattleScript_DamagingWeatherContinues[];
 extern u8 BattleScript_FogIsDeep[];
+extern u8 BattleScript_TrickRoomEnds[];
 extern u8 BattleScript_SunlightFaded[];
 extern u8 BattleScript_SunlightContinues[];
 extern u8 BattleScript_SafeguardEnds[];
@@ -919,6 +920,7 @@ enum
     ENDTURN_SUN,
     ENDTURN_HAIL,
     ENDTURN_FOG,
+    ENDTURN_TRICK_ROOM,
     ENDTURN_TAILWIND,
     ENDTURN_EMBARGO,
     ENDTURN_SLOW_START,
@@ -1175,6 +1177,17 @@ u8 DoFieldEndTurnEffects(void)
                 gBattlescriptCurrInstr = BattleScript_FogFaded*/
                 BattleScriptExecute(gBattlescriptCurrInstr);
                 effect++;
+            }
+            gBattleStruct->turnCountersTracker++;
+            break;
+        case ENDTURN_TRICK_ROOM:
+            if (gBattleGlobalTimers.trickRoomTimer)
+            {
+                if (--gBattleGlobalTimers.trickRoomTimer == 0)
+                {
+                    BattleScriptExecute(BattleScript_TrickRoomEnds);
+                    effect++;
+                }
             }
             gBattleStruct->turnCountersTracker++;
             break;

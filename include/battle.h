@@ -203,9 +203,12 @@ struct WishFutureKnock
 
 struct BattleGlobalTimers // currently have 0x10 of space for this
 {
-    u32 hailPermanent:1;
+    u32 hailPermanent:1;   // 0x0
     u32 fog:1;
     u32 gravityTimer:3;
+    u32 trickRoomTimer:3;
+    u32 wonderRoomTimer:3; // 0x1
+    u32 magicRoomTimer:3;
 };
 
 struct AI_ThinkingStruct /* 0x2016800 */

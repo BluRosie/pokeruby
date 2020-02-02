@@ -4620,8 +4620,8 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
     u16 bank1Move;
     u16 bank2Move;
     u8 strikesFirst = 0;
-    u8 priority1;
-    u8 priority2;
+    s8 priority1;
+    s8 priority2;
 
     // Check for abilities that boost speed in weather.
     if (WEATHER_HAS_EFFECT)
@@ -4801,7 +4801,19 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
             if (bank1AdjustedSpeed == bank2AdjustedSpeed && (Random() & 1))
                 strikesFirst = 2;
             else if (bank1AdjustedSpeed < bank2AdjustedSpeed)
-                strikesFirst = 1;
+            {
+                if (gBattleGlobalTimers.trickRoomTimer)
+                    strikesFirst = 0;
+                else
+                    strikesFirst = 1;
+            }
+            else
+            {
+                if (gBattleGlobalTimers.trickRoomTimer)
+                    strikesFirst = 1;
+                else
+                    strikesFirst = 0;
+            }
         }
         else if (priority1 < priority2)
             strikesFirst = 1;
@@ -4811,7 +4823,19 @@ u8 GetWhoStrikesFirst(u8 bank1, u8 bank2, bool8 ignoreMovePriorities)
         if (bank1AdjustedSpeed == bank2AdjustedSpeed && (Random() & 1))
             strikesFirst = 2;
         else if (bank1AdjustedSpeed < bank2AdjustedSpeed)
-            strikesFirst = 1;
+        {
+            if (gBattleGlobalTimers.trickRoomTimer)
+                strikesFirst = 0;
+            else
+                strikesFirst = 1;
+        }
+        else
+        {
+            if (gBattleGlobalTimers.trickRoomTimer)
+                strikesFirst = 1;
+            else
+                strikesFirst = 0;
+        }
     }
 
     return strikesFirst;

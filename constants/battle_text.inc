@@ -400,3 +400,9 @@
 	enum BATTLE_TEXT_FloatedOnElectromagnetism
 	enum BATTLE_TEXT_GravityGrounded
 	enum BATTLE_TEXT_MagnetRiseEnds
+	enum BATTLE_TEXT_TwistedDimensions
+	enum BATTLE_TEXT_TrickRoomEnds
+	enum BATTLE_TEXT_SwapDefenses
+	enum BATTLE_TEXT_WonderRoomEnds
+	enum BATTLE_TEXT_ItemsAreUseless
+	enum BATTLE_TEXT_MagicRoomEnds

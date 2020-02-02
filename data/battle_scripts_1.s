@@ -1021,7 +1021,6 @@ BattleScript_EffectDefog:
 BattleScript_DefogIfCanClearHazards:
 	defogclear USER, FALSE, BattleScript_ButItFailedAtkStringPpReduce
 BattleScript_DefogWorks:
-	@accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	ppreduce
 	statbuffchange 1, BattleScript_DefogTryHazardsWithAnim
@@ -1051,7 +1050,31 @@ BattleScript_SideStatusWoreOffReturn::
 	return
 
 BattleScript_EffectTrickRoom:
+	attackcanceler
+	attackstring
+	ppreduce
+	setroom
+	attackanimation
+	waitanimation
+	printfromtable gRoomStringIds
+	waitmessage 64
+	goto BattleScript_MoveEnd
+	
+BattleScript_TrickRoomEnds::
+	printstring BATTLE_TEXT_TrickRoomEnds
+	waitmessage 64
+	end2
+
 BattleScript_EffectCaptivate:
+	setstatchanger SP_ATTACK, 2, TRUE
+	attackcanceler
+	jumpifstatus2 TARGET, STATUS2_SUBSTITUTE, BattleScript_ButItFailedAtkStringPpReduce
+	passifoppositegenders
+	goto BattleScript_ButItFailedAtkStringPpReduce
+BattleScript_CaptivateCheckAcc::
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	goto BattleScript_StatDownFromAttackString
+
 BattleScript_EffectStealthRock:
 	attackcanceler
 	attackstring
@@ -1568,6 +1591,7 @@ BattleScript_EffectStatDown: @ 81D7227
 	attackcanceler
 	jumpifstatus2 TARGET, STATUS2_SUBSTITUTE, BattleScript_ButItFailedAtkStringPpReduce
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+BattleScript_StatDownFromAttackString:
 	attackstring
 	ppreduce
 	statbuffchange 1, BattleScript_StatDownEnd

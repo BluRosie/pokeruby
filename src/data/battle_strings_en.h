@@ -407,6 +407,12 @@ enum
     BATTLE_TEXT_FloatedOnElectromagnetism,
     BATTLE_TEXT_GravityGrounded,
     BATTLE_TEXT_MagnetRiseEnds,
+    BATTLE_TEXT_TwistedDimensions,
+    BATTLE_TEXT_TrickRoomEnds,
+    BATTLE_TEXT_SwapDefenses,
+    BATTLE_TEXT_WonderRoomEnds,
+    BATTLE_TEXT_ItemsAreUseless,
+    BATTLE_TEXT_MagicRoomEnds,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -951,6 +957,12 @@ const u8 BattleText_AquaRingRestores[] = _("Aqua Ring restored\n{ATTACKING_MON}'
 const u8 BattleText_FloatedOnElectromagnetism[] = _("{ATTACKING_MON} levitated on\nelectromagnetism!");
 const u8 BattleText_GravityGrounded[] = _("The Gravity grounded\n{STRING 16}!");
 const u8 BattleText_MagnetRiseEnds[] = _("The electromagnetism keeping\n{STRING 16} afloat faded!");
+const u8 BattleText_TwistedDimensions[] = _("{ATTACKING_MON} twisted\nthe dimensions!");
+const u8 BattleText_TrickRoomEnds[] = _("The dimensions returned\nto normal!");
+const u8 BattleText_SwapDefenses[] = _("{ATTACKING_MON} switched\neveryone's defenses!");
+const u8 BattleText_WonderRoomEnds[] = _("Everyone's defenses\nreturned to normal!");
+const u8 BattleText_ItemsAreUseless[] = _("{ATTACKING_MON} made held\nitems useless!");
+const u8 BattleText_MagicRoomEnds[] = _("Items can be used\nagain!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1376,6 +1388,12 @@ const u8 *const gBattleStringsTable[] =
     BattleText_FloatedOnElectromagnetism,
     BattleText_GravityGrounded,
     BattleText_MagnetRiseEnds,
+    BattleText_TwistedDimensions,
+    BattleText_TrickRoomEnds,
+    BattleText_SwapDefenses,
+    BattleText_WonderRoomEnds,
+    BattleText_ItemsAreUseless,
+    BattleText_MagicRoomEnds,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
@@ -1792,4 +1810,12 @@ const u16 gStatusConditionsStringIds[] =
     BATTLE_TEXT_Burned,
     BATTLE_TEXT_Paralyzed,
     BATTLE_TEXT_FellAsleep,
+};
+
+const u16 gRoomStringIds[] =
+{
+    BATTLE_TEXT_TwistedDimensions, BATTLE_TEXT_TrickRoomEnds,
+    BATTLE_TEXT_SwapDefenses, BATTLE_TEXT_WonderRoomEnds,
+    BATTLE_TEXT_ItemsAreUseless, BATTLE_TEXT_MagicRoomEnds,
+    BATTLE_TEXT_Terminator2,
 };

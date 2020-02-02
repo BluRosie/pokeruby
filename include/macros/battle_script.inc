@@ -1461,6 +1461,14 @@
 	.4byte \ptr
 	.endm
 
+	.macro setroom
+	various USER, VARIOUS_SET_ROOM
+	.endm
+
+	.macro passifoppositegenders
+	various USER, VARIOUS_PASS_IF_OPPOSITE_GENDERS
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat, stages, down
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7
