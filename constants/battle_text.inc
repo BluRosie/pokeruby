@@ -406,3 +406,4 @@
 	enum BATTLE_TEXT_WonderRoomEnds
 	enum BATTLE_TEXT_ItemsAreUseless
 	enum BATTLE_TEXT_MagicRoomEnds
+	enum BATTLE_TEXT_BugBite

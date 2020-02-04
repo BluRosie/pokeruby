@@ -1,6 +1,5 @@
 urgent bugs:
 - messing around with too much in the start menu stuff causes the camera to stop panning
-- i broke leveling up
 
 meh whatever bugs:
 - fix up the font a bit more (Lv, PKMN, POKEBLOCK, parentheses, colon, semicolon, &, pp)
@@ -14,11 +13,12 @@ day/night bugs:
 - when a battle starts, the black covering is still blended
 
 TODO:
-- 33 MOVE EFFECTS
 - load different icons based on major gender difference
 - meowstic/wormadam gender difference
 - giratina/arceus formes, form(e)s in general
 - daycare effects for destiny knot & power items
+- 47 gen v effects?
+- 23 gen vi effects?
 
 BATTLE BUGS:
 

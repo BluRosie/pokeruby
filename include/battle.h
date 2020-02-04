@@ -101,7 +101,7 @@ struct DisableStruct
     /*0x18*/ u8 unk18_a : 3;
     /*0x18*/ u8 mimickedMoves : 4;
     /*0x19*/ u8 rechargeCounter;
-    /*0x1A*/ u8 unk1A[2];
+    /*0x1A*/ u16 heldItemForBugBite;
     /*0x1C*/ u8 slowStartTimer:3;
              u8 metronomeCounter:3;
              u8 wasLastMoveSuperEffective:1;
@@ -625,9 +625,9 @@ struct Struct20238C8
 #define MOVE_EFFECT_HEAL_VARIOUS        0x37
 #define MOVE_EFFECT_RESTORE_STATS       0x38
 #define MOVE_EFFECT_RECOIL_33_STATUS    0x39
-#define MOVE_EFFECT_NOTHING_3A          0x3A
+#define MOVE_EFFECT_RECOIL_50           0x3A
 #define MOVE_EFFECT_SP_ATK_TWO_DOWN     0x3B
-#define MOVE_EFFECT_NOTHING_3C          0x3C
+#define MOVE_EFFECT_BUG_BITE            0x3C
 #define MOVE_EFFECT_NOTHING_3D          0x3D
 #define MOVE_EFFECT_NOTHING_3E          0x3E
 #define MOVE_EFFECT_NOTHING_3F          0x3F
@@ -814,8 +814,8 @@ u8 TurnBasedEffects(void);
 u8 HandleFaintedMonActions();
 u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 move);
 u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn);
-void ConfuseBerry(u8 bank, u8 bankQuality, u8 flavor, bool8 moveTurn);
-u8 StatChangeBerry(u8 bank, u8 bankQuality, u8 stat, bool8 moveTurn, u8 effect, bool8 passChecks);
+void ConfuseBerry(u8 bank, u8 bankQuality, u8 flavor, bool8 moveTurn, bool8 passChecks, bool8 shouldReturn);
+u8 StatChangeBerry(u8 bank, u8 bankQuality, u8 stat, bool8 moveTurn, u8 effect, bool8 passChecks, bool8 shouldReturn);
 u8 GetMoveTarget(u16 move, u8 useMoveTarget);
 
 // asm/battle_4.o

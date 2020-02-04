@@ -336,6 +336,7 @@ extern u8 BattleScript_WhiteHerbFling[];
 extern u8 BattleScript_MoveEffectRecoilWithStatus[];
 extern u8 BattleScript_EffectWithChance[];
 extern u8 BattleScript_CaptivateCheckAcc[];
+extern u8 BattleScript_MoveEffectBugBite[];
 
 extern const u8 gStatusConditionString_LoveJpn[];
 extern const u8 BattleText_Taunt[];
@@ -3291,7 +3292,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 gBattleStruct->scriptingActive = gEffectBattler;
                 statusChanged = FALSE;
 
-                for (affectsUser = 0; affectsUser < NUM_BATTLE_STATS; affectsUser++) // using affectsUser as an i okay?  suck my dick
+                for (affectsUser = 0; affectsUser < NUM_BATTLE_STATS; affectsUser++) // using affectsUser as an i okay?
                 {
                     if (gBattleMons[gEffectBattler].statStages[affectsUser] < 6)
                     {
@@ -3317,9 +3318,33 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_MoveEffectRecoilWithStatus;
                 break;
+            case MOVE_EFFECT_RECOIL_50:
+                gBattleMoveDamage = gHpDealt / 2;
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil33;
+                break;
             case MOVE_EFFECT_SP_ATK_TWO_DOWN: //overheat
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_SAtkDown2;
+                break;
+            case MOVE_EFFECT_BUG_BITE:
+                if ((ITEM_IS_BERRY(gBattleMons[gEffectBattler].item))
+                    && GetBattlerAbility(gEffectBattler) != ABILITY_STICKY_HOLD)
+                {
+                    gLastUsedItem = gBattleMons[gEffectBattler].item;
+                    gDisableStructs[gBattlerAttacker].heldItemForBugBite = gBattleMons[gBattlerAttacker].item;
+                    gBattleMons[gBattlerAttacker].item = gBattleMons[gEffectBattler].item;
+                    gBattleMons[gEffectBattler].item = 0;
+                    gActiveBattler = gEffectBattler;
+                    gBattleStruct->scriptingActive = gEffectBattler;
+                    BtlController_EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gEffectBattler].item);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    gBattlescriptCurrInstr = BattleScript_MoveEffectBugBite;
+                }
                 break;
             }
         }
@@ -5130,6 +5155,7 @@ extern u8 BattleScript_FlushMessageBox[];
 // atk49, moveend cases
 enum
 {
+    MOVEEND_EAT_BERRY,
     MOVEEND_RAGE,
     MOVEEND_DEFROST,
     MOVEEND_GRAVITY,
@@ -5139,11 +5165,12 @@ enum
     MOVEEND_SYNCHRONIZE_ATTACKER,
     MOVEEND_CHOICE_MOVE,
     MOVEEND_CHANGED_ITEMS,
+    MOVEEND_ITEM_EFFECTS,
+    MOVEEND_KINGSROCK_SHELLBELL,
+    MOVEEND_RESTORE_ITEM,
     MOVEEND_ATTACKER_INVISIBLE,
     MOVEEND_ATTACKER_VISIBLE,
     MOVEEND_TARGET_VISIBLE,
-    MOVEEND_ITEM_EFFECTS,
-    MOVEEND_KINGSROCK_SHELLBELL,
     MOVEEND_SUBSTITUTE,
     MOVEEND_UPDATE_LAST_MOVES,
     MOVEEND_MIRROR_MOVE,
@@ -5175,6 +5202,14 @@ void atk49_moveend(void)
     {
         switch (gBattleStruct->cmd49StateTracker)
         {
+        case MOVEEND_EAT_BERRY: // for bug bite
+            if (gBattleMoves[gCurrentMove].effect == EFFECT_EAT_BERRY)
+            {
+                if (ItemBattleEffects(ITEMEFFECT_BUGBITE_BERRIES, gBattlerAttacker, FALSE))
+                    effect = TRUE;
+            }
+            gBattleStruct->cmd49StateTracker++;
+            break;
         case MOVEEND_RAGE: // rage check
             if (gBattleMons[gBattlerTarget].status2 & STATUS2_RAGE
                 && gBattleMons[gBattlerTarget].hp != 0 && gBattlerAttacker != gBattlerTarget
@@ -5285,18 +5320,32 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case MOVEEND_ATTACKER_INVISIBLE: // make attacker sprite invisible
+        case MOVEEND_ITEM_EFFECTS: // item effects for all battlers
             if (ItemBattleEffects(ITEMEFFECT_MOVE_END, 0, FALSE))
                 effect = TRUE;
             else
                 gBattleStruct->cmd49StateTracker++;
             break;
-        case MOVEEND_ATTACKER_VISIBLE: // make attacker sprite visible
+        case MOVEEND_KINGSROCK_SHELLBELL: // king's rock and shell bell
             if (ItemBattleEffects(ITEMEFFECT_KINGSROCK_SHELLBELL, 0, FALSE))
                 effect = TRUE;
             gBattleStruct->cmd49StateTracker++;
             break;
-        case MOVEEND_TARGET_VISIBLE: // make target sprite visible
+        case MOVEEND_RESTORE_ITEM: // restore original held item after eating the new one
+            if (gDisableStructs[gBattlerAttacker].heldItemForBugBite != 0)
+            {
+                gBattleMons[gBattlerAttacker].item = gDisableStructs[gBattlerAttacker].heldItemForBugBite;
+                if (gBattleMons[gBattlerAttacker].item == gDisableStructs[gBattlerAttacker].heldItemForBugBite)
+                    gDisableStructs[gBattlerAttacker].heldItemForBugBite = 0;
+                gActiveBattler = gBattlerAttacker;
+                BtlController_EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);
+                MarkBattlerForControllerExec(gActiveBattler);
+                effect = TRUE;
+            }
+            else 
+                gBattleStruct->cmd49StateTracker++;
+            break;
+        case MOVEEND_ATTACKER_INVISIBLE: // make attacker sprite invisible
             if ((gStatuses3[gBattlerAttacker] & STATUS3_SEMI_INVULNERABLE) && (gHitMarker & HITMARKER_NO_ANIMATIONS))
             {
                 gActiveBattler = gBattlerAttacker;
@@ -5305,7 +5354,7 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case MOVEEND_ITEM_EFFECTS: // item effects for all battlers
+        case MOVEEND_ATTACKER_VISIBLE: // make attacker sprite visible
             if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT
                 || !(gStatuses3[gBattlerAttacker] & (STATUS3_SEMI_INVULNERABLE))
                 || WasUnableToUseMove(gBattlerAttacker))
@@ -5318,7 +5367,7 @@ void atk49_moveend(void)
             }
             gBattleStruct->cmd49StateTracker++;
             break;
-        case MOVEEND_KINGSROCK_SHELLBELL: // king's rock and shell bell
+        case MOVEEND_TARGET_VISIBLE: // make target sprite visible
             if (!gSpecialStatuses[gBattlerTarget].restoredBattlerSprite && gBattlerTarget < gBattlersCount
                 && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE))
             {

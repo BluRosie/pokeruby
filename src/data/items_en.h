@@ -2419,7 +2419,7 @@ const struct Item gItems[] =
         .itemId = ITEM_SITRUS_BERRY,
         .price = 20,
         .holdEffect = HOLD_EFFECT_RESTORE_HP,
-        .holdEffectParam = 30,
+        .holdEffectParam = 4,
         .description = gItemDescription_SitrusBerry,
         .importance = IMPORTANCE_CAN_BE_HELD,
         .exitsBagOnUse = 0,
@@ -5165,7 +5165,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_FIRE,
         .effect = NULL,
     },
     {
@@ -5182,7 +5182,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_WATER,
         .effect = NULL,
     },
     {
@@ -5199,7 +5199,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_ELECTRIC,
         .effect = NULL,
     },
     {
@@ -5216,7 +5216,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_GRASS,
         .effect = NULL,
     },
     {
@@ -5233,7 +5233,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_ICE,
         .effect = NULL,
     },
     {
@@ -5250,7 +5250,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_FIGHTING,
         .effect = NULL,
     },
     {
@@ -5267,7 +5267,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_POISON,
         .effect = NULL,
     },
     {
@@ -5284,7 +5284,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_GROUND,
         .effect = NULL,
     },
     {
@@ -5301,7 +5301,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_FLYING,
         .effect = NULL,
     },
     {
@@ -5318,7 +5318,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_PSYCHIC,
         .effect = NULL,
     },
     {
@@ -5335,7 +5335,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_BUG,
         .effect = NULL,
     },
     {
@@ -5352,7 +5352,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_ROCK,
         .effect = NULL,
     },
     {
@@ -5369,7 +5369,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_GHOST,
         .effect = NULL,
     },
     {
@@ -5386,7 +5386,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_DRAGON,
         .effect = NULL,
     },
     {
@@ -5403,7 +5403,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_DARK,
         .effect = NULL,
     },
     {
@@ -5420,7 +5420,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_STEEL,
         .effect = NULL,
     },
     {
@@ -5437,7 +5437,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = 0,
         .battleUseFunc = NULL,
-        .secondaryId = 0,
+        .secondaryId = TYPE_FAIRY,
         .effect = NULL,
     },
     {

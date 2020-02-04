@@ -3626,7 +3626,7 @@ void UndoEffectsAfterFainting(void)
     s32 i;
     u8 *ptr;
 
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < NUM_BATTLE_STATS; i++)
         gBattleMons[gActiveBattler].statStages[i] = 6;
     gBattleMons[gActiveBattler].status2 = 0;
     gStatuses3[gActiveBattler] = 0;

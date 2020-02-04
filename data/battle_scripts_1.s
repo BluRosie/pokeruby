@@ -1123,10 +1123,26 @@ BattleScript_RocksFree::
 	waitmessage 64
 	return
 
-BattleScript_EffectJudgment:
 BattleScript_EffectSpecialAttackUpHit:
+	setmoveeffect EFFECT_SP_ATK_PLUS_1 | AFFECTS_USER
+	goto BattleScript_EffectHit
+
 BattleScript_EffectRecoil50:
+	setmoveeffect EFFECT_RECOIL_50 | AFFECTS_USER | CERTAIN
+	goto BattleScript_EffectHit
+
 BattleScript_EffectSpecialDefenseDownHit2:
+	setmoveeffect MOVE_EFFECT_SP_DEF_MINUS_2
+	goto BattleScript_EffectHit
+
+BattleScript_EffectEatBerry:
+	setmoveeffect EFFECT_BUG_BITE | CERTAIN
+	goto BattleScript_EffectHit
+	
+BattleScript_MoveEffectBugBite::
+	printstring BATTLE_TEXT_BugBite
+	waitmessage 64
+	return
 
 BattleScript_EffectAttackAccuracyUp:
 BattleScript_EffectGuardSplit:
@@ -1215,8 +1231,6 @@ BattleScript_EffectAuroraVeil:
 BattleScript_EffectStompingTantrum:
 BattleScript_EffectSpectralThief:
 
-BattleScript_EffectEatBerry:
-
 BattleScript_EffectAllySwitch:
 BattleScript_EffectSkyDrop:
 
@@ -1262,6 +1276,7 @@ BattleScript_EffectAssurance: @ damage calculation handled in calculate_base_dam
 BattleScript_EffectTrumpCard: @ same as above
 BattleScript_EffectWringOut: @ you know the drill
 BattleScript_EffectPunishment: @ once again
+BattleScript_EffectJudgment: @ also handles the whole dynamic typing
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
 	jumpifnostatus3 TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAtkCanceler
 	orword gHitMarker, HITMARKER_IGNORE_UNDERWATER
@@ -1446,7 +1461,7 @@ BattleScript_1D70A7: @ 81D70A7
 	waitmessage 64
 	tryfaintmon TARGET, FALSE, NULL
 	setbyte sMOVEEND_STATE, 0
-	moveend 2, 16
+	moveend 2, 19
 	jumpifnexttargetvalid BattleScript_1D70A7
 	tryfaintmon USER, FALSE, NULL
 	end
@@ -1456,7 +1471,7 @@ BattleScript_1D70E0: @ 81D70E0
 	resultmessage
 	waitmessage 64
 	setbyte sMOVEEND_STATE, 0
-	moveend 2, 16
+	moveend 2, 19
 	jumpifnexttargetvalid BattleScript_1D70A7
 	tryfaintmon USER, FALSE, NULL
 	end
@@ -1697,7 +1712,7 @@ BattleScript_DoMultiHit: @ 81D7322
 	waitmessage 1
 	addbyte sMULTIHIT_STRING + 4, 1
 	setbyte sMOVEEND_STATE, 0
-	moveend 2, 16
+	moveend 2, 19
 	jumpifbyte COMMON_BITS, gMoveResultFlags, MOVE_RESULT_FOE_ENDURED, BattleScript_MultiHitPrintStrings
 	decrementmultihit BattleScript_MultiHitLoop
 	goto BattleScript_MultiHitPrintStrings
@@ -2502,7 +2517,7 @@ BattleScript_DoTripleKickAttack: @ 81D7C2E
 	printstring BATTLE_TEXT_Terminator2
 	waitmessage 1
 	setbyte sMOVEEND_STATE, 0
-	moveend 2, 16
+	moveend 2, 19
 	jumpifbyte COMMON_BITS, gMoveResultFlags, MOVE_RESULT_FOE_ENDURED, BattleScript_TripleKickPrintStrings
 	decrementmultihit BattleScript_TripleKickLoop
 	goto BattleScript_TripleKickPrintStrings
@@ -2868,15 +2883,15 @@ BattleScript_EffectSunnyDay: @ 81D800E
 	goto BattleScript_MoveWeatherChange
 
 BattleScript_EffectDefenseUpHit: @ 81D8017
-	setmoveeffect 80
+	setmoveeffect EFFECT_DEF_PLUS_1 | AFFECTS_USER
 	goto BattleScript_EffectHit
 
 BattleScript_EffectAttackUpHit: @ 81D8022
-	setmoveeffect 79
+	setmoveeffect EFFECT_ATK_PLUS_1 | AFFECTS_USER
 	goto BattleScript_EffectHit
 
 BattleScript_EffectAllStatsUpHit: @ 81D802D
-	setmoveeffect 98
+	setmoveeffect EFFECT_ALL_STATS_UP | AFFECTS_USER
 	goto BattleScript_EffectHit
 
 BattleScript_EffectBellyDrum: @ 81D8038
@@ -2977,7 +2992,7 @@ BattleScript_DoHitAllWithUndergroundBonus: @ 81D812C
 	waitmessage 1
 	tryfaintmon TARGET, FALSE, NULL
 	setbyte sMOVEEND_STATE, 0
-	moveend 2, 16
+	moveend 2, 19
 	jumpifnexttargetvalid BattleScript_HitsAllWithUndergroundBonusLoop
 	end
 
@@ -2988,7 +3003,7 @@ BattleScript_HitAllWithUndergroundBonusMissed: @ 81D8165
 	resultmessage
 	waitmessage 64
 	setbyte sMOVEEND_STATE, 0
-	moveend 2, 16
+	moveend 2, 19
 	jumpifnexttargetvalid BattleScript_HitsAllWithUndergroundBonusLoop
 	end
 
@@ -3084,7 +3099,7 @@ BattleScript_BeatUpAttack: @ 81D829C
 	waitmessage 64
 	tryfaintmon TARGET, FALSE, NULL
 	setbyte sMOVEEND_STATE, 0
-	moveend 2, 16
+	moveend 2, 19
 	goto BattleScript_BeatUpLoop
 
 BattleScript_BeatUpEnd: @ 81D82C4
@@ -3726,7 +3741,7 @@ BattleScript_TeeterDanceLoop: @ 81D8932
 
 BattleScript_TeeterDanceDoMoveEndIncrement: @ 81D8978
 	setbyte sMOVEEND_STATE, 0
-	moveend 2, 16
+	moveend 2, 19
 	addbyte gBattlerTarget, 1
 	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_TeeterDanceLoop
 	end
@@ -4204,7 +4219,7 @@ BattleScript_PursuitDmgOnSwitchOut: @ 81D8EAD
 	waitmessage 64
 	tryfaintmon TARGET, FALSE, NULL
 	setbyte sMOVEEND_STATE, 3
-	moveend 2, 6
+	moveend 2, 8
 	various TARGET, 4
 	jumpifbyte EQUAL, gBattleCommunication, 0, BattleScript_PursuitDmgOnSwitchOutRet
 	setbyte sGIVEEXP_STATE, 0
@@ -4616,7 +4631,7 @@ BattleScript_FutureAttackEnd: @ 81D9332
 	setbyte sMOVEEND_STATE, 0
 	moveend 1, 0
 	setbyte sMOVEEND_STATE, 8
-	moveend 2, 14
+	moveend 2, 17
 	setbyte gMoveResultFlags, 0
 	end2
 
@@ -5370,7 +5385,7 @@ gUnknown_081D995F:: @ 81D995F
 	printstring BATTLE_TEXT_IgnoredOrdersSLP
 	waitmessage 64
 	setbyte sMOVEEND_STATE, 0
-	moveend 2, 16
+	moveend 2, 19
 	end
 
 BattleScript_IgnoresAndUsesRandomMove:: @ 81D996F
@@ -5382,7 +5397,7 @@ BattleScript_MoveUsedLoafingAround:: @ 81D9977
 	printfromtable gInobedientStringIds
 	waitmessage 64
 	setbyte sMOVEEND_STATE, 0
-	moveend 2, 16
+	moveend 2, 19
 	end
 
 BattleScript_IgnoresAndFallsAsleep:: @ 81D9989
@@ -5391,7 +5406,7 @@ BattleScript_IgnoresAndFallsAsleep:: @ 81D9989
 	setmoveeffect EFFECT_SLEEP | AFFECTS_USER
 	seteffectprimary
 	setbyte sMOVEEND_STATE, 0
-	moveend 2, 16
+	moveend 2, 19
 	end
 
 gUnknown_081D99A0:: @ 81D99A0
@@ -5505,6 +5520,10 @@ BattleScript_WhiteHerbFling::
 	return
 
 BattleScript_ItemHealHP_RemoveItem:: @ 81D9A74
+	call BattleScript_ItemHealHP_RemoveItemRet
+	end2
+
+BattleScript_ItemHealHP_RemoveItemRet::
 	playanimation USER, B_ANIM_ITEM_EFFECT, NULL
 	printstring BATTLE_TEXT_RestoredHealth
 	waitmessage 64
@@ -5512,14 +5531,18 @@ BattleScript_ItemHealHP_RemoveItem:: @ 81D9A74
 	healthbarupdate USER
 	datahpupdate USER
 	removeitem USER
-	end2
+	return
 
 BattleScript_BerryPPHealEnd2:: @ 81D9A91
+	call BattleScript_BerryPPHealRet
+	end2
+
+BattleScript_BerryPPHealRet::
 	playanimation USER, B_ANIM_ITEM_EFFECT, NULL
 	printstring BATTLE_TEXT_RestoredPP
 	waitmessage 64
 	removeitem USER
-	end2
+	return
 
 BattleScript_ItemHealHP_End2:: @ 81D9AA1
 	call BattleScript_ItemHealHP_Ret
@@ -5608,6 +5631,10 @@ BattleScript_ShockOrb::
 	end2
 
 BattleScript_BerryConfuseHealEnd2:: @ 81D9AD4
+	call BattleScript_BerryConfuseHealRet
+	end2
+
+BattleScript_BerryConfuseHealRet::
 	playanimation USER, B_ANIM_ITEM_EFFECT, NULL
 	printstring BATTLE_TEXT_RestoredHealth
 	waitmessage 64
@@ -5619,7 +5646,15 @@ BattleScript_BerryConfuseHealEnd2:: @ 81D9AD4
 	setmoveeffect EFFECT_CONFUSION | AFFECTS_USER
 	seteffectprimary
 	removeitem USER
-	end2
+	return
+
+BattleScript_BerryStatRaiseRet::
+	playanimation SCRIPTING_BANK, B_ANIM_ITEM_EFFECT, NULL
+	statbuffchange AFFECTS_USER | 0x1, BattleScript_1D9B0B
+	setbyte cMULTISTRING_CHOOSER, 0x4
+	call BattleScript_StatUp
+	removeitem USER
+	return
 
 BattleScript_BerryStatRaiseEnd2:: @ 81D9AFE
 	playanimation SCRIPTING_BANK, B_ANIM_ITEM_EFFECT, NULL
@@ -5640,11 +5675,15 @@ BattleScript_AbilityItems::
 	removeitem USER
 	end3
 
-BattleScript_BerryFocusEnergyEnd2:: @ 81D9B19
+BattleScript_BerryFocusEnergyRet::
 	playanimation USER, B_ANIM_ITEM_EFFECT, NULL
 	printstring BATTLE_TEXT_HustleUse
 	waitmessage 64
 	removeitem USER
+	return
+
+BattleScript_BerryFocusEnergyEnd2:: @ 81D9B19
+	call BattleScript_BerryFocusEnergyRet
 	end2
 
 BattleScript_ActionSelectionItemsCantBeUsed:: @ 81D9B29

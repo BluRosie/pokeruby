@@ -325,6 +325,7 @@
 #define ITEM_SHED_SHELL             300
 #define ITEM_BIG_ROOT               301
 #define ITEM_CHOICE_SPECS           302
+
 #define ITEM_FLAME_PLATE            303
 #define ITEM_SPLASH_PLATE           304
 #define ITEM_ZAP_PLATE              305
@@ -342,6 +343,10 @@
 #define ITEM_DREAD_PLATE            317
 #define ITEM_IRON_PLATE             318
 #define ITEM_PIXIE_PLATE            319
+
+#define ITEM_FIRST_PLATE            ITEM_FLAME_PLATE
+#define ITEM_IS_PLATE(item)         (item >= ITEM_FLAME_PLATE && item <= ITEM_PIXIE_PLATE)
+
 #define ITEM_ASSAULT_VEST           320
 #define ITEM_ODD_INCENSE            321
 #define ITEM_ROCK_INCENSE           322

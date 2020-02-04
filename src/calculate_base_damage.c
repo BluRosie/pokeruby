@@ -186,6 +186,13 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
 
             gBattleMovePower = 60 + (20 * attack);
             break;
+        case EFFECT_JUDGMENT:
+            if (ITEM_IS_PLATE(gBattleMons[bankAtk].item))
+                gBattleStruct->dynamicMoveType = ItemId_GetSecondaryId(gBattleMons[bankAtk].item);
+            else
+                gBattleStruct->dynamicMoveType = TYPE_NORMAL;
+            gBattleMovePower = gBattleMoves[move].power;
+            break;
         default:
             gBattleMovePower = gBattleMoves[move].power;
             break;
