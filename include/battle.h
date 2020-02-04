@@ -153,7 +153,6 @@ struct SpecialStatus
 {
     u8 statLowered:1;
     u8 lightningRodRedirected:1;
-    u8 stormDrainRedirected : 1;
     u8 restoredBattlerSprite: 1;
     u8 intimidatedMon:1;
     u8 traced:1;
@@ -161,7 +160,8 @@ struct SpecialStatus
     u8 flag40:1;
     u8 focusBanded:1;
     u8 focusSashed:1;
-    u8 field1[3];
+    u8 field1:7;
+    u8 field2[2];
     s32 dmg;
     s32 physicalDmg;
     s32 specialDmg;

@@ -5430,8 +5430,6 @@ void HandleAction_UseMove(void)
             RecordAbilityBattle(gActiveBattler, GetBattlerAbility(gActiveBattler));
             if (gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
                 gSpecialStatuses[gActiveBattler].lightningRodRedirected = 1;
-            else if (gBattleMoves[gCurrentMove].type == TYPE_WATER)
-                gSpecialStatuses[gActiveBattler].stormDrainRedirected = 1;
             gBattlerTarget = gActiveBattler;
         }
     }

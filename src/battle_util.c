@@ -2605,7 +2605,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                     }
                     break;
                 }
-                if (effect == 1)
+                if (effect == 1) // drain hp
                 {
                     if (gBattleMons[bank].maxHP == gBattleMons[bank].hp)
                     {
@@ -4375,14 +4375,6 @@ u8 GetMoveTarget(u16 move, u8 useMoveTarget) //get move target
                 targetBank ^= 2;
                 RecordAbilityBattle(targetBank, GetBattlerAbility(targetBank));
                 gSpecialStatuses[targetBank].lightningRodRedirected = 1;
-            }
-            else if (gBattleMoves[move].type == TYPE_WATER
-                && AbilityBattleEffects(ABILITYEFFECT_COUNT_OTHER_SIZE, gBattlerAttacker, ABILITY_STORM_DRAIN, 0, 0)
-                && GetBattlerAbility(targetBank) != ABILITY_STORM_DRAIN)
-            {
-                targetBank ^= 2;
-                RecordAbilityBattle(targetBank, GetBattlerAbility(targetBank));
-                gSpecialStatuses[targetBank].stormDrainRedirected = 1;
             }
         }
         break;
