@@ -10,18 +10,22 @@ Current implemented features:
 * hidden abilities
 * gen 4 bike (toggle between acro and mach using the r button)
 * run toggle using the r button
-* fix snow
+* fix snow (an even better way because of BigAngryDev)
 * add fog (replaces weather_fog_3)
 * add snow and fog corresponding to in-battle
 * gender differences
 * redesigned party menus
 * fairy type
+* day/night system 100% based on the rtc
+* support for up to 128 TM's
+* move expansion through gen 4 (with dummy data for all else)
+* pokémon expansion through gen 4 (with dummy data for all else)
+* item expansion through gen 4 (with dummy data for all else)
+* an option to fully control the opposing trainer's party, including randomizing every aspect
 
 In Progress:
 * ability expansion (thanks znogyrop and dizzy for ability descriptions)
 * item expansion - maybe item pictures too? (all battle items in gen iv have been implemented)
-* move expansion (thanks dizzy for a lot of things move-related which i based my things on)
-* pokémon expansion (huge thanks to dizzy & everyone there.  the ds-style 64x64 sprite projects as well)
 
 This ROM will build with a lot of unused data:
 * abilities/moves/items/pokemon from gen v and up.  these are actually just entirely incomplete and placeholders for if i decide to complete them in the future.

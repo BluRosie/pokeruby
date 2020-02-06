@@ -407,3 +407,4 @@
 	enum BATTLE_TEXT_ItemsAreUseless
 	enum BATTLE_TEXT_MagicRoomEnds
 	enum BATTLE_TEXT_BugBite
+	enum BATTLE_TEXT_ElectricityRaisedSpeed

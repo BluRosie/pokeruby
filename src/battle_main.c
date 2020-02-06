@@ -1177,9 +1177,9 @@ u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                 if (hasAMove)
                     for (j = 0; j < 4; j++)
                     {
-                        if (partyData[i].moves[j] > MOVES_GEN_3)
+                        if (partyData[i].moves[j] > MOVES_GEN_4)
                         {
-                            moves[j] = Random() % MOVES_GEN_3/*NUM_MOVES*/;
+                            moves[j] = Random() % MOVES_GEN_4/*NUM_MOVES*/;
                             if (!moves[j])
                                 moves[j]++;
                         }

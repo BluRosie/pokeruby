@@ -189,6 +189,10 @@ extern u8 BattleScript_MoveHPDrain[];
 extern u8 BattleScript_MoveHPDrain_PPLoss[];
 extern u8 BattleScript_FlashFireBoost[];
 extern u8 BattleScript_FlashFireBoost_PPLoss[];
+extern u8 BattleScript_MotorDriveBoost[];
+extern u8 BattleScript_MotorDriveBoost_PPLoss[];
+extern u8 BattleScript_MotorDriveBoost_NoAnim[];
+extern u8 BattleScript_MotorDriveBoost_PPLoss_NoAnim[];
 extern u8 BattleScript_MoveHPDrain_FullHP[];
 extern u8 BattleScript_MoveHPDrain_FullHP_PPLoss[];
 extern u8 BattleScript_ColorChangeActivates[];
@@ -2604,6 +2608,34 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                         }
                     }
                     break;
+                case ABILITY_MOTOR_DRIVE:
+                    if (moveType == TYPE_ELECTRIC)
+                    {
+                        if (gBattleMons[bank].statStages[STAT_STAGE_SPEED] < 0xC)
+                        {
+                            gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+                            gBattleMons[bank].statStages[STAT_STAGE_SPEED]++;
+                            gBattleStruct->statChanger = 0x10 + STAT_STAGE_SPEED;
+                            gBattleStruct->animArg1 = 0xE + STAT_STAGE_SPEED;
+                            gBattleStruct->animArg2 = 0;
+                            if (gProtectStructs[gBattlerAttacker].notFirstStrike)
+                                gBattlescriptCurrInstr = BattleScript_MotorDriveBoost;
+                            else
+                                gBattlescriptCurrInstr = BattleScript_MotorDriveBoost_PPLoss;
+                        }
+                        else
+                        {
+                            gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                            if (gProtectStructs[gBattlerAttacker].notFirstStrike)
+                                gBattlescriptCurrInstr = BattleScript_MotorDriveBoost_NoAnim;
+                            else
+                                gBattlescriptCurrInstr = BattleScript_MotorDriveBoost_PPLoss_NoAnim;
+                        }
+                        gEffectBattler = bank;
+                        gBattleStruct->scriptingActive = bank;
+                        effect = 2;
+                    }
+                    break;
                 }
                 if (effect == 1) // drain hp
                 {
@@ -2621,6 +2653,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                             gBattleMoveDamage = 1;
                         gBattleMoveDamage *= -1;
                     }
+                }
+                else if (effect == 2)
+                {
+                    gBattleMoveDamage = 0;
                 }
             }
             break;

@@ -5,8 +5,8 @@
 DONEgAbilityDescription_TangledFeet:
 DONE.string "Ups evasion if confused.$"
 
-gAbilityDescription_MotorDrive:
-	.string "Electricity raises Speed.$"
+DONEgAbilityDescription_MotorDrive:
+DONE.string "Electricity raises Speed.$"
 
 DONEgAbilityDescription_Rivalry:
 DONE.string "Powers up against rivals.$"
@@ -66,7 +66,7 @@ DONEgAbilityDescription_Sniper:
 DONE.string "Boosts critical hits.$"
 
 gAbilityDescription_MagicGuard:
-	.string "Onlh damaged by attacks.$"
+	.string "Only damaged by attacks.$"
 
 gAbilityDescription_NoGuard:
 	.string "Ensures that all moves hit.$"

@@ -5269,6 +5269,30 @@ BattleScript_FlashFireBoost:: @ 81D987C
 	waitmessage 64
 	goto BattleScript_MoveEnd
 
+BattleScript_MotorDriveBoost_PPLoss::
+	ppreduce
+
+BattleScript_MotorDriveBoost::
+	attackstring
+	pause 32
+	setgraphicalstatchangevalues
+	playanimation TARGET, B_ANIM_STATS_CHANGE, sANIM_ARG1
+	waitanimation
+	printfromtable gMotorDriveStringIds
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
+BattleScript_MotorDriveBoost_PPLoss_NoAnim::
+	ppreduce
+
+BattleScript_MotorDriveBoost_NoAnim::
+	attackstring
+	pause 32
+	setgraphicalstatchangevalues
+	printfromtable gMotorDriveStringIds
+	waitmessage 64
+	goto BattleScript_MoveEnd
+
 BattleScript_AbilityPreventsPhasingOut: @ 81D988D
 	pause 32
 	printstring BATTLE_TEXT_AnchorsItself

@@ -13,10 +13,13 @@ day/night bugs:
 - when a battle starts, the black covering is still blended
 
 TODO:
+- 31 gen iv abilities
 - load different icons based on major gender difference
 - meowstic/wormadam gender difference
 - giratina/arceus formes, form(e)s in general
 - daycare effects for destiny knot & power items
+way later
+- gen iv moves ai?
 - 47 gen v effects?
 - 23 gen vi effects?
 
@@ -28,7 +31,7 @@ move animations that i personally want to polish:
 gyro ball (new particle?)
 punishment is slash w a purple blend
 maybe toxic spikes?
-gravity doesn't make everyone go down
+gravity doesn't make everyone go down (the animation)
 
 move effects that need to be polished:
 

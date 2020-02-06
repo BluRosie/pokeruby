@@ -371,8 +371,6 @@
 #define MOVE_DOOM_DESIRE 353
 #define MOVE_PSYCHO_BOOST 354
 
-#define MOVES_GEN_3 355
-
 /*****************
  * GENERATION IV *
  *****************/ 
@@ -490,6 +488,8 @@
 #define MOVE_SEED_FLARE 465
 #define MOVE_OMINOUS_WIND 466
 #define MOVE_SHADOW_FORCE 467
+
+#define MOVES_GEN_4 467
 
 /****************
  * GENERATION V *
