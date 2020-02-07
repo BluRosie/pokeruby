@@ -184,6 +184,7 @@ extern u8 BattleScript_MoveEnd[];
 extern u8 BattleScript_RainDishActivates[];
 extern u8 BattleScript_ShedSkinActivates[];
 extern u8 BattleScript_SpeedBoostActivates[];
+extern u8 BattleScript_SteadfastActivates[];
 extern u8 BattleScript_SoundproofProtected[];
 extern u8 BattleScript_MoveHPDrain[];
 extern u8 BattleScript_MoveHPDrain_PPLoss[];
@@ -2947,6 +2948,25 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                             effect = 3;
                         }
                         break;
+                    case ABILITY_STEADFAST:
+                        if (gProtectStructs[bank].flinchImmobility
+                         && !gDisableStructs[bank].abilityHasBoosted)
+                        {
+                            if (gBattleMons[bank].statStages[STAT_STAGE_SPEED] < 0xC)
+                            {
+                                gDisableStructs[bank].abilityHasBoosted = TRUE;
+                                gBattleMons[bank].statStages[STAT_STAGE_SPEED]++;
+
+                                gBattleStruct->animArg1 = 0x11;
+                                gBattleStruct->animArg2 = 0;
+
+                                gActiveBattler = gEffectBattler = bank;
+                                BattleScriptPushCursor();
+                                gBattlescriptCurrInstr = BattleScript_SteadfastActivates;
+                                gBattleStruct->scriptingActive = bank;
+                                return 4;
+                            }
+                        }
                     }
                     if (effect)
                     {

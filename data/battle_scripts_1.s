@@ -5103,6 +5103,13 @@ BattleScript_SpeedBoostActivates:: @ 81D9718
 	waitmessage 64
 	end3
 
+BattleScript_SteadfastActivates:: @ 81D9718
+	setgraphicalstatchangevalues
+	playanimation USER, B_ANIM_STATS_CHANGE, sANIM_ARG1
+	printstring BATTLE_TEXT_SpeedRisen
+	waitmessage 64
+	return
+
 BattleScript_TraceActivates:: @ 81D9726
 	pause 32
 	printstring BATTLE_TEXT_Traced

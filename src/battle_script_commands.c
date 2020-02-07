@@ -5438,6 +5438,10 @@ void atk49_moveend(void)
                     gLastLandedMoves[gBattlerTarget] = 0xFFFF;
                 }
             }
+
+            gDisableStructs[gBattlerAttacker].abilityHasBoosted = FALSE;
+            gDisableStructs[gBattlerTarget].abilityHasBoosted = FALSE;
+
             gBattleStruct->cmd49StateTracker++;
             break;
         case MOVEEND_MIRROR_MOVE:
