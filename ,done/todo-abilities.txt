@@ -11,8 +11,8 @@ DONE.string "Electricity raises Speed.$"
 DONEgAbilityDescription_Rivalry:
 DONE.string "Powers up against rivals.$"
 
-gAbilityDescription_Steadfast:
-	.string "Flinching raises Speed.$"
+DONEgAbilityDescription_Steadfast:
+DONE.string "Flinching raises Speed.$"
 
 DONEgAbilityDescription_SnowCloak:
 DONE.string "Ups evasion in Hail.$"
@@ -20,8 +20,8 @@ DONE.string "Ups evasion in Hail.$"
 DONEgAbilityDescription_Gluttony:
 DONE.string "Eats Berries early.$"
 
-gAbilityDescription_AngerPoint:
-	.string "Critical hits raise Attack.$"
+DONEgAbilityDescription_AngerPoint:
+DONE.string "Critical hits raise Attack.$"
 
 gAbilityDescription_Unburden:
 	.string "Using a hold item ups Speed.$"

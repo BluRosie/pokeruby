@@ -31,6 +31,7 @@ extern u8 gActiveBattler;
 extern u8 gBattleBufferB[4][0x200];
 extern u8* gSelectionBattleScripts[4]; //battlescript location when you try to choose a move you're not allowed to
 extern u16 gLastMoves[4];
+extern u8 gCritMultiplier;
 extern struct BattlePokemon gBattleMons[4];
 extern struct BattleEnigmaBerry gEnigmaBerries[4];
 extern u8 gPotentialItemEffectBattler;
@@ -185,6 +186,7 @@ extern u8 BattleScript_RainDishActivates[];
 extern u8 BattleScript_ShedSkinActivates[];
 extern u8 BattleScript_SpeedBoostActivates[];
 extern u8 BattleScript_SteadfastActivates[];
+extern u8 BattleScript_AngerPointActivates[];
 extern u8 BattleScript_SoundproofProtected[];
 extern u8 BattleScript_MoveHPDrain[];
 extern u8 BattleScript_MoveHPDrain_PPLoss[];
@@ -2898,7 +2900,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                     switch (GetBattlerAbility(bank))
                     {
                     case ABILITY_IMMUNITY:
-                        if (gBattleMons[bank].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON | 0xF00))  // TODO: what is 0xF00?
+                        if (gBattleMons[bank].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON | STATUS1_TOXIC_COUNTER))
                         {
                             StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
                             effect = 1;
@@ -2957,7 +2959,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                                 gDisableStructs[bank].abilityHasBoosted = TRUE;
                                 gBattleMons[bank].statStages[STAT_STAGE_SPEED]++;
 
-                                gBattleStruct->animArg1 = 0x11;
+                                gBattleStruct->animArg1 = 0xE + STAT_STAGE_SPEED;
                                 gBattleStruct->animArg2 = 0;
 
                                 gActiveBattler = gEffectBattler = bank;
@@ -2967,6 +2969,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                                 return 4;
                             }
                         }
+                        break;
+                    case ABILITY_ANGER_POINT:
+                        if (gCritMultiplier >= 2 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                         && !gDisableStructs[bank].abilityHasBoosted)
+                        {
+                            if (gBattleMons[bank].statStages[STAT_STAGE_ATK] < 0xC)
+                            {
+                                gDisableStructs[bank].abilityHasBoosted = TRUE;
+                                gBattleMons[bank].statStages[STAT_STAGE_ATK]++;
+
+                                gBattleStruct->animArg1 = 0xE + STAT_STAGE_ATK;
+                                gBattleStruct->animArg2 = 0;
+
+                                gActiveBattler = gEffectBattler = bank;
+                                BattleScriptPushCursor();
+                                gBattlescriptCurrInstr = BattleScript_AngerPointActivates;
+                                gBattleStruct->scriptingActive = bank;
+                                return 4;
+                            }
+                        }
+                        break;
                     }
                     if (effect)
                     {

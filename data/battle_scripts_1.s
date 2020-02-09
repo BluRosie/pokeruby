@@ -5103,10 +5103,15 @@ BattleScript_SpeedBoostActivates:: @ 81D9718
 	waitmessage 64
 	end3
 
-BattleScript_SteadfastActivates:: @ 81D9718
-	setgraphicalstatchangevalues
-	playanimation USER, B_ANIM_STATS_CHANGE, sANIM_ARG1
+BattleScript_SteadfastActivates::
+	playanimation SCRIPTING_BANK, B_ANIM_STATS_CHANGE, sANIM_ARG1
 	printstring BATTLE_TEXT_SpeedRisen
+	waitmessage 64
+	return
+
+BattleScript_AngerPointActivates::
+	playanimation SCRIPTING_BANK, B_ANIM_STATS_CHANGE, sANIM_ARG1
+	printstring BATTLE_TEXT_AttackRisen
 	waitmessage 64
 	return
 

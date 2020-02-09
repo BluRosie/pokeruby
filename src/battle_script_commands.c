@@ -1558,7 +1558,7 @@ static void atk04_critcalc(void)
 
     critChance  = 2 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
                 + (GetBattlerAbility(gBattlerAttacker) == ABILITY_SUPER_LUCK)
-                + (gBattleMoves[gCurrentMove].effect == EFFECT_HIGH_CRITICAL)
+                + ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) == FLAG_HIGH_CRIT)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_SKY_ATTACK)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_BLAZE_KICK)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_POISON_TAIL)
@@ -1566,8 +1566,8 @@ static void atk04_critcalc(void)
                 + 2 * (holdEffect == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
                 + 2 * (holdEffect == HOLD_EFFECT_STICK && gBattleMons[gBattlerAttacker].species == SPECIES_FARFETCHD);
 
-    if (critChance >= ARRAY_COUNT(sCriticalHitChance))
-        critChance = ARRAY_COUNT(sCriticalHitChance) - 1;
+    if (critChance >= ARRAY_COUNT(sCriticalHitChance) - 1)
+        critChance = ARRAY_COUNT(sCriticalHitChance) - 2;
 
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_MERCILESS && gBattleMons[gBattlerTarget].status1 & STATUS1_PSN_ANY)
         critChance = 5;
@@ -1577,10 +1577,12 @@ static void atk04_critcalc(void)
      && !(gSideTimers[gBattlerTarget].luckyChantTimer)
      && !(gBattleTypeFlags & (BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FIRST_BATTLE))
      && !(Random() % sCriticalHitChance[critChance]))
+    {
         if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SNIPER)
             gCritMultiplier = 3;
         else
             gCritMultiplier = 2;
+    }
     else
         gCritMultiplier = 1;
 
@@ -2366,9 +2368,9 @@ static void atk0D_critmessage(void)
 {
     if (gBattleControllerExecFlags == 0)
     {
-        if (gCritMultiplier == 2 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
+        if (gCritMultiplier >= 2 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
         {
-            PrepareStringBattle(0xD9, gBattlerAttacker);
+            PrepareStringBattle(STRINGID_CRITICALHIT, gBattlerAttacker);
             gBattleCommunication[MSG_DISPLAY] = 1;
         }
         gBattlescriptCurrInstr++;

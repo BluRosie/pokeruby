@@ -13211,7 +13211,7 @@ Move_CHARGE_BEAM:
 	createsprite gBattleAnimSpriteTemplate_83D98A0, 132, 7, 10, 0, 8, 30, 160, 40, 0  
 	createsprite gBattleAnimSpriteTemplate_83D98A0, 132, 7, 10, 0, 8, 30, 224, 40, 2  
 	waitforvisualfinish 
-	createvisualtask AnimTask_ShakeMon2, 2, 5, 1, 4, 0, 5, 1  
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_BATTLER_TARGET, 1, 4, 0, 5, 1  
 	delay 15 
 	waitplaysewithpan SE_W085B, SOUND_PAN_TARGET 19 
 	call ElectricityEffect 

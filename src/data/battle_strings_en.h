@@ -415,6 +415,7 @@ enum
     BATTLE_TEXT_MagicRoomEnds,
     BATTLE_TEXT_BugBite,
     BATTLE_TEXT_ElectricityRaisedSpeed,
+    BATTLE_TEXT_AttackRisen,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -967,6 +968,7 @@ const u8 BattleText_ItemsAreUseless[] = _("{ATTACKING_MON} made held\nitems usel
 const u8 BattleText_MagicRoomEnds[] = _("Items can be used\nagain!");
 const u8 BattleText_BugBite[] = _("{ATTACKING_MON} stole and ate\n{STRING 16}'s {STRING 19}!");
 const u8 BattleText_ElectricityRaisedSpeed[] = _("{DEFENDING_MON}'s {STRING 22}\nraised its Speed!");
+const u8 BattleText_AttackRisen[] = _("{STRING 16}'s {STRING 23}\nraised its Attack!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1400,6 +1402,7 @@ const u8 *const gBattleStringsTable[] =
     BattleText_MagicRoomEnds,
     BattleText_BugBite,
     BattleText_ElectricityRaisedSpeed,
+    BattleText_AttackRisen,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
