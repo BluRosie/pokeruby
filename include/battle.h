@@ -98,8 +98,9 @@ struct DisableStruct
     /*0x16*/ u8 isFirstTurn;
     /*0x17*/ u8 unk17;
     /*0x18*/ u8 truantCounter : 1;
-    /*0X18*/ u8 abilityHasBoosted : 1;
-    /*0x18*/ u8 unk18_a : 2;
+    /*0x18*/ u8 abilityHasBoosted : 1;
+    /*0x18*/ u8 unburden : 1;
+    /*0x18*/ u8 unk18_a : 1;
     /*0x18*/ u8 mimickedMoves : 4;
     /*0x19*/ u8 rechargeCounter;
     /*0x1A*/ u16 heldItemForBugBite;

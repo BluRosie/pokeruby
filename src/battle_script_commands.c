@@ -7879,7 +7879,12 @@ static void atk69_adjustsetdamage(void) //literally a copy of atk07 except there
 void atk6A_removeitem(void)
 {
     gActiveBattler = GetBattlerForBattleScript(T2_READ_8(gBattlescriptCurrInstr + 1));
-    USED_HELD_ITEMS(gActiveBattler) = gBattleMons[gActiveBattler].item;
+
+    //if (ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item) == HOLD_EFFECT_AIR_BALLOON)
+        USED_HELD_ITEMS(gActiveBattler) = gBattleMons[gActiveBattler].item;
+
+    if (gBattleMons[gActiveBattler].item)
+        gDisableStructs[gActiveBattler].unburden = TRUE;
 
     gBattleMons[gActiveBattler].item = 0;
     BtlController_EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);

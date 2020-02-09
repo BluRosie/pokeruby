@@ -1406,11 +1406,6 @@ u8 TurnBasedEffects(void)
                     effect++;
                 gBattleStruct->turnEffectsTracker++;
                 break;
-            case ENDTURN_ITEMS2:  // item effects again
-                if (ItemBattleEffects(1, gActiveBattler, TRUE))
-                    effect++;
-                gBattleStruct->turnEffectsTracker++;
-                break;
             case ENDTURN_LEECH_SEED:  // leech seed
                 if ((gStatuses3[gActiveBattler] & STATUS3_LEECHSEED)
                  && gBattleMons[gStatuses3[gActiveBattler] & STATUS3_LEECHSEED_BATTLER].hp != 0
@@ -1673,6 +1668,12 @@ u8 TurnBasedEffects(void)
                         effect++;
                     }
                 }
+                gBattleStruct->turnEffectsTracker++;
+                break;
+            case ENDTURN_ITEMS2:  // item effects again
+                if (ItemBattleEffects(1, gActiveBattler, TRUE))
+                    effect++;
+                gBattleMons[gActiveBattler].item = ITEM_SITRUS_BERRY;
                 gBattleStruct->turnEffectsTracker++;
                 break;
             case ENDTURN_BATTLER_COUNT:  // done
