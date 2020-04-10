@@ -409,3 +409,6 @@
 	enum BATTLE_TEXT_BugBite
 	enum BATTLE_TEXT_ElectricityRaisedSpeed
 	enum BATTLE_TEXT_AttackRisen
+	enum BATTLE_TEXT_AbilityRoseBankStat
+	enum BATTLE_TEXT_DrySkinHurtAttacker
+	

@@ -485,6 +485,7 @@ BattleScript_EffectHammerArm:
 	
 BattleScript_EffectHealingWish:
 	attackcanceler
+	jumpifcantswitch ATK4F_DONT_CHECK_STATUSES | USER, BattleScript_ButItFailedAtkStringPpReduce
 	attackstring
 	ppreduce
 	manipulatedamage 3
@@ -495,7 +496,6 @@ BattleScript_EffectHealingWish:
 	datahpupdate USER
 	waitstate
 	tryfaintmon USER, FALSE, NULL
-	jumpifcantswitch ATK4F_DONT_CHECK_STATUSES | USER, _HealingWishEnd
 	openpartyscreen 1, _HealingWishEnd
 	switchoutabilities USER
 	waitstate
@@ -5116,6 +5116,18 @@ BattleScript_AngerPointActivates::
 	waitmessage 64
 	return
 
+BattleScript_BankAbilityStatRaise::
+	setgraphicalstatchangevalues
+	playanimation SCRIPTING_BANK, B_ANIM_STATS_CHANGE, sANIM_ARG1
+	waitanimation
+	printstring BATTLE_TEXT_AbilityRoseBankStat
+	waitmessage 64
+	return
+
+BattleScript_BankAbilityStatRaiseEnd3::
+	call BattleScript_BankAbilityStatRaise
+	end3
+
 BattleScript_TraceActivates:: @ 81D9726
 	pause 32
 	printstring BATTLE_TEXT_Traced
@@ -5125,6 +5137,14 @@ BattleScript_TraceActivates:: @ 81D9726
 BattleScript_RainDishActivates:: @ 81D9730
 	playanimation USER, B_ANIM_HEAL, sANIM_ARG1 
 	printstring BATTLE_TEXT_RestoredHPByItem
+	waitmessage 64
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate USER
+	datahpupdate USER
+	end3
+
+BattleScript_DrySkinActivates::
+	printstring BATTLE_TEXT_DrySkinHurtAttacker
 	waitmessage 64
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate USER

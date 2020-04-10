@@ -32,11 +32,11 @@ DONE.string "Heat and burn protection.$"
 DONEgAbilityDescription_Simple:
 DONE.string "Prone to wild stat changes.$"
 
-gAbilityDescription_DrySkin:
-	.string "Prefers moisture to heat.$"
+DONEgAbilityDescription_DrySkin:
+DONE.string "Prefers moisture to heat.$"
 
-gAbilityDescription_Download:
-	.string "Adjusts power favorably.$"
+DONEgAbilityDescription_Download:
+DONE.string "Adjusts power favorably.$"
 
 gAbilityDescription_IronFist:
 	.string "Boosts punching moves.$"
