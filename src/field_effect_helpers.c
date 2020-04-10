@@ -13,7 +13,7 @@
 #include "constants/songs.h"
 
 static void UpdateObjectReflectionSprite(struct Sprite *);
-void LoadObjectReflectionPalette(struct ObjectEvent *objectEvent, struct Sprite *sprite);
+static void LoadObjectReflectionPalette(struct ObjectEvent *objectEvent, struct Sprite *sprite);
 static void LoadObjectHighBridgeReflectionPalette(struct ObjectEvent *, u8);
 static void LoadObjectRegularReflectionPalette(struct ObjectEvent *, u8);
 static void FadeFootprintsTireTracks_Step0(struct Sprite *);
@@ -23,8 +23,8 @@ static void UpdateAshFieldEffect_Step1(struct Sprite *);
 static void UpdateAshFieldEffect_Step2(struct Sprite *);
 static void sub_812882C(struct Sprite *, u8, u8);
 static void UpdateFeetInFlowingWaterFieldEffect(struct Sprite *);
-void SynchroniseSurfAnim(struct ObjectEvent *, struct Sprite *);
-void sub_812800C(struct ObjectEvent *, struct Sprite *);
+static void SynchroniseSurfAnim(struct ObjectEvent *, struct Sprite *);
+static void sub_812800C(struct ObjectEvent *, struct Sprite *);
 static void CreateBobbingEffect(struct ObjectEvent *, struct Sprite *, struct Sprite *);
 static void sub_8128174(struct Sprite *);
 static u32 ShowDisguiseFieldEffect(u8, u8);

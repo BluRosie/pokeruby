@@ -96,6 +96,8 @@ static void DoRippleFieldEffect(struct ObjectEvent *objEvent, struct Sprite *spr
 
 const struct SpriteTemplate gCameraSpriteTemplate = {0, 0xFFFF, &gDummyOamData, gDummySpriteAnimTable, NULL, gDummySpriteAffineAnimTable, ObjectCB_CameraObject};
 
+const u8 gReflectionEffectPaletteMap[] = {1, 1, 6, 7, 8, 9, 6, 7, 8, 9, 11, 11, 0, 0, 0, 0};
+
 void (*const gCameraObjectFuncs[])(struct Sprite *) = {
     CameraObject_0,
     CameraObject_1,
@@ -376,6 +378,37 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_26 0x111A
 
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
+
+static const u16 sBerryPalSlotToPalTag[] =
+{
+    [3] = OBJ_EVENT_PAL_TAG_0,
+    [4] = OBJ_EVENT_PAL_TAG_1,
+    [5] = OBJ_EVENT_PAL_TAG_2,
+    [6] = OBJ_EVENT_PAL_TAG_3,
+    [7] = OBJ_EVENT_PAL_TAG_4,
+    [8] = OBJ_EVENT_PAL_TAG_5,
+    [9] = OBJ_EVENT_PAL_TAG_6,
+    [10] = OBJ_EVENT_PAL_TAG_7,
+    [11] = OBJ_EVENT_PAL_TAG_8,
+    [12] = OBJ_EVENT_PAL_TAG_9,
+    [13] = OBJ_EVENT_PAL_TAG_10,
+    [14] = OBJ_EVENT_PAL_TAG_11,
+    [15] = OBJ_EVENT_PAL_TAG_12,
+    [16] = OBJ_EVENT_PAL_TAG_13,
+    [17] = OBJ_EVENT_PAL_TAG_14,
+    [18] = OBJ_EVENT_PAL_TAG_15,
+    [19] = OBJ_EVENT_PAL_TAG_16,
+    [20] = OBJ_EVENT_PAL_TAG_17,
+    [21] = OBJ_EVENT_PAL_TAG_18,
+    [22] = OBJ_EVENT_PAL_TAG_19,
+    [23] = OBJ_EVENT_PAL_TAG_20,
+    [24] = OBJ_EVENT_PAL_TAG_21,
+    [25] = OBJ_EVENT_PAL_TAG_22,
+    [26] = OBJ_EVENT_PAL_TAG_23,
+    [27] = OBJ_EVENT_PAL_TAG_24,
+    [28] = OBJ_EVENT_PAL_TAG_25,
+    [29] = OBJ_EVENT_PAL_TAG_26,
+};
 
 #include "data/object_events/object_event_graphics_info_pointers.h"
 #include "data/field_effects/field_effect_object_template_pointers.h"
@@ -1286,7 +1319,7 @@ static u8 TrySetupObjectEventSprite(struct ObjectEventTemplate *objectEventTempl
         return OBJECT_EVENTS_COUNT;
 
     objectEvent = &gObjectEvents[objectEventId];
-    graphicsInfo = GetEventObjectGraphicsInfo(eventObject->graphicsId);
+    graphicsInfo = GetObjectEventGraphicsInfo(objectEvent->graphicsId);
     
     if (spriteTemplate->paletteTag != 0xFFFF)
     {
