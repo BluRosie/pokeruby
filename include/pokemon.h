@@ -258,6 +258,8 @@ enum
     STAT_SPD,    // 3
     STAT_SPATK,  // 4
     STAT_SPDEF,  // 5
+    STAT_ACC,
+    STAT_EVASION,
 };
 
 #define NUM_BATTLE_STATS 8

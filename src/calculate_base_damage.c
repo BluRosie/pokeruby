@@ -158,7 +158,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             break;
         case EFFECT_ASSURANCE:
             gBattleMovePower = gBattleMoves[move].power;
-            if (gProtectStructs[bankDef].specialDmg || gProtectStructs[bankDef].physicalDmg) // the mon has taken damage
+            if (gProtectStructs[bankDef].specialDmg || gProtectStructs[bankDef].physicalDmg || gProtectStructs[bankDef].confusionSelfDmg) // the mon has taken damage
                 gBattleMovePower *= 2;
             break;
         case EFFECT_TRUMP_CARD: // pp reduction occurs before damage calculation

@@ -23,14 +23,14 @@ DONE.string "Eats Berries early.$"
 DONEgAbilityDescription_AngerPoint:
 DONE.string "Critical hits raise Attack.$"
 
-gAbilityDescription_Unburden:
-	.string "Using a hold item ups Speed.$"
+DONEgAbilityDescription_Unburden:
+DONE.string "Using a hold item ups Speed.$"
 
 DONEgAbilityDescription_Heatproof:
 DONE.string "Heat and burn protection.$"
 
-gAbilityDescription_Simple:
-	.string "Prone to wild stat changes.$"
+DONEgAbilityDescription_Simple:
+DONE.string "Prone to wild stat changes.$"
 
 gAbilityDescription_DrySkin:
 	.string "Prefers moisture to heat.$"
@@ -153,8 +153,8 @@ gAbilityDescription_Pickpocket:
 gAbilityDescription_SheerForce:
 	.string "Trades effects for power.$"
 
-gAbilityDescription_Contrary:
-	.string "Inverts stat changes.$"
+DONEgAbilityDescription_Contrary:
+DONE.string "Inverts stat changes.$"
 
 gAbilityDescription_Unnerve:
 	.string "Fies can’t eat Berries.$"
