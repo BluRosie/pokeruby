@@ -74,14 +74,14 @@ DONE.string "Ensures that all moves hit.$"
 DONEgAbilityDescription_Stall:
 DONE.string "Always moves last.$"
 
-gAbilityDescription_Technician:
-	.string "Boosts weaker moves.$"
+DONEgAbilityDescription_Technician:
+DONE.string "Boosts weaker moves.$"
 
-gAbilityDescription_LeafGuard:
-	.string "Blocks status in sunshine.$"
+DONEgAbilityDescription_LeafGuard:
+DONE.string "Blocks status in sunshine.$"
 
-gAbilityDescription_Klutz:
-	.string "Can’t use hold items.$"
+DONEgAbilityDescription_Klutz:
+DONE.string "Can’t use hold items.$"
 
 DONEgAbilityDescription_MoldBreaker:
 DONE.string "Moves hit through abilities.$"
@@ -156,8 +156,8 @@ gAbilityDescription_SheerForce:
 DONEgAbilityDescription_Contrary:
 DONE.string "Inverts stat changes.$"
 
-gAbilityDescription_Unnerve:
-	.string "Fies can’t eat Berries.$"
+DONEgAbilityDescription_Unnerve:
+DONE.string "Fies can’t eat Berries.$"
 
 gAbilityDescription_Defiant:
 	.string "Lowered stats up Attack.$"

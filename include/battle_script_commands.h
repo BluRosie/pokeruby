@@ -60,6 +60,7 @@ void BattleCreateYesNoCursorAt(u8 cursorPosition);
 void BufferMoveToLearnIntoBattleTextBuff2(void);
 void HandleBattleWindow(u8 xStart, u8 yStart, u8 xEnd, u8 yEnd, u8 flags);
 bool8 UproarWakeUpCheck(u8 bank);
+bool32 DoesLeafGuardProtect(u32 bank);
 
 extern void (* const gBattleScriptingCommandsTable[])(void);
 

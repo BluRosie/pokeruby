@@ -298,6 +298,7 @@ extern u8 BattleScript_EnduredMsg[];
 extern u8 BattleScript_PSNPrevention[];
 extern u8 BattleScript_BRNPrevention[];
 extern u8 BattleScript_PRLZPrevention[];
+extern u8 BattleScript_SLPPrevention[];
 extern u8 BattleScript_FlinchPrevention[];
 extern u8 BattleScript_StatUp[];
 extern u8 BattleScript_StatDown[];
@@ -2675,24 +2676,46 @@ void SetMoveEffect(bool8 primary, u8 certain)
             else
                 gActiveBattler = gBattlersCount;
 
-            if (gBattleMons[gEffectBattler].status1)
-                break;
-            if (gActiveBattler != gBattlersCount)
-                break;
-            if (GetBattlerAbility(gEffectBattler) == ABILITY_VITAL_SPIRIT)
-                break;
-            if (GetBattlerAbility(gEffectBattler) == ABILITY_INSOMNIA)
+            if (DoesLeafGuardProtect(gEffectBattler)
+                && 
+                (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
+            {
+                gLastUsedAbility = GetBattlerAbility(gEffectBattler);
+                RecordAbilityBattle(gEffectBattler, GetBattlerAbility(gEffectBattler));
+
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_SLPPrevention;
+
+                if (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+                {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                    gHitMarker &= ~(HITMARKER_IGNORE_SAFEGUARD);
+                }
+                else
+                {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+                }
+                RESET_RETURN
+            }
+
+            if (gBattleMons[gEffectBattler].status1
+             || gActiveBattler != gBattlersCount
+             || GetBattlerAbility(gEffectBattler) == ABILITY_VITAL_SPIRIT
+             || GetBattlerAbility(gEffectBattler) == ABILITY_INSOMNIA
+             || DoesLeafGuardProtect(gEffectBattler))
                 break;
 
             CancelMultiTurnMoves(gEffectBattler);
             statusChanged = TRUE;
             break;
         case STATUS1_POISON:
-            if (GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY 
-                && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
+            if ((GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY 
+              || DoesLeafGuardProtect(gEffectBattler))
+                && 
+                (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
             {
-                gLastUsedAbility = ABILITY_IMMUNITY;
-                RecordAbilityBattle(gEffectBattler, ABILITY_IMMUNITY);
+                gLastUsedAbility = GetBattlerAbility(gEffectBattler);
+                RecordAbilityBattle(gEffectBattler, GetBattlerAbility(gEffectBattler));
 
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_PSNPrevention;
@@ -2718,23 +2741,22 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 2;
                 RESET_RETURN
             }
-            if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_POISON))
-                break;
-            if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_STEEL))
-                break;
-            if (gBattleMons[gEffectBattler].status1) 
-                break;
-            if (GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY)
+            if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_POISON)
+             || IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_STEEL)
+             || gBattleMons[gEffectBattler].status1
+             || GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY
+             || DoesLeafGuardProtect(gEffectBattler))
                 break;
 
             statusChanged = TRUE;
             break;
         case STATUS1_BURN:
-            if (GetBattlerAbility(gEffectBattler) == ABILITY_WATER_VEIL 
+            if ((GetBattlerAbility(gEffectBattler) == ABILITY_WATER_VEIL 
+              || DoesLeafGuardProtect(gEffectBattler))
                 && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
             {
-                gLastUsedAbility = ABILITY_WATER_VEIL;
-                RecordAbilityBattle(gEffectBattler, ABILITY_WATER_VEIL);
+                gLastUsedAbility = GetBattlerAbility(gEffectBattler);
+                RecordAbilityBattle(gEffectBattler, GetBattlerAbility(gEffectBattler));
 
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_BRNPrevention;
@@ -2759,11 +2781,10 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 2;
                 return;
             }
-            if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_FIRE))
-                break;
-            if (GetBattlerAbility(gEffectBattler) == ABILITY_WATER_VEIL)
-                break;
-            if (gBattleMons[gEffectBattler].status1)
+            if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_FIRE)
+             || GetBattlerAbility(gEffectBattler) == ABILITY_WATER_VEIL
+             || DoesLeafGuardProtect(gEffectBattler)
+             || gBattleMons[gEffectBattler].status1)
                 break;
 
             statusChanged = TRUE;
@@ -2771,25 +2792,25 @@ void SetMoveEffect(bool8 primary, u8 certain)
         case STATUS1_FREEZE:
             if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY)
                 noSunCanFreeze = FALSE;
-            if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_ICE))
-                break;
-            if (gBattleMons[gEffectBattler].status1)
-                break;
-            if (noSunCanFreeze == 0)
-                break;
-            if (GetBattlerAbility(gEffectBattler) == ABILITY_MAGMA_ARMOR)
+
+            if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_ICE)
+             || gBattleMons[gEffectBattler].status1
+             || noSunCanFreeze == 0
+             || DoesLeafGuardProtect(gEffectBattler)
+             || GetBattlerAbility(gEffectBattler) == ABILITY_MAGMA_ARMOR)
                 break;
 
             CancelMultiTurnMoves(gEffectBattler);
             statusChanged = TRUE;
             break;
         case STATUS1_PARALYSIS:
-            if (GetBattlerAbility(gEffectBattler) == ABILITY_LIMBER)
+            if (GetBattlerAbility(gEffectBattler) == ABILITY_LIMBER
+             || DoesLeafGuardProtect(gEffectBattler))
             {
                 if ((primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
                 {
-                    gLastUsedAbility = ABILITY_LIMBER;
-                    RecordAbilityBattle(gEffectBattler, ABILITY_LIMBER);
+                    gLastUsedAbility = GetBattlerAbility(gEffectBattler);
+                    RecordAbilityBattle(gEffectBattler, GetBattlerAbility(gEffectBattler));
 
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_PRLZPrevention;
@@ -2814,10 +2835,10 @@ void SetMoveEffect(bool8 primary, u8 certain)
             statusChanged = TRUE;
             break;
         case STATUS1_TOXIC_POISON:
-            if (GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
+            if ((GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY || DoesLeafGuardProtect(gEffectBattler)) && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
             {
-                gLastUsedAbility = ABILITY_IMMUNITY;
-                RecordAbilityBattle(gEffectBattler, ABILITY_IMMUNITY);
+                gLastUsedAbility = GetBattlerAbility(gEffectBattler);
+                RecordAbilityBattle(gEffectBattler, GetBattlerAbility(gEffectBattler));
 
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_PSNPrevention;
@@ -13615,4 +13636,12 @@ static void atkF8_jumpifholdeffect(void)
     }
     else
         gBattlescriptCurrInstr += 7;
+}
+
+bool32 DoesLeafGuardProtect(u32 bank)
+{
+    if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY))
+        return GetBattlerAbility(bank) == ABILITY_LEAF_GUARD;
+    else
+        return 0;
 }

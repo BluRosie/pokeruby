@@ -3,6 +3,7 @@
 #include "battle_util.h"
 #include "battle_controllers.h"
 #include "battle_message.h"
+#include "battle_script_commands.h"
 #include "data2.h"
 #include "event_data.h"
 #include "ewram.h"
@@ -190,6 +191,8 @@ extern u8 BattleScript_SteadfastActivates[];
 extern u8 BattleScript_AngerPointActivates[];
 extern u8 BattleScript_BankAbilityStatRaiseEnd3[];
 extern u8 BattleScript_BankAbilityStatRaise[];
+extern u8 BattleScript_SwitchInAbilityMsgEnd3[];
+extern u8 BattleScript_SwitchInAbilityMsg[];
 extern u8 BattleScript_SoundproofProtected[];
 extern u8 BattleScript_MoveHPDrain[];
 extern u8 BattleScript_MoveHPDrain_PPLoss[];
@@ -1659,7 +1662,8 @@ u8 TurnBasedEffects(void)
                     gStatuses3[gActiveBattler] -= 0x800;
                     if (!(gStatuses3[gActiveBattler] & STATUS3_YAWN) && !(gBattleMons[gActiveBattler].status1 & STATUS1_ANY)
                      && GetBattlerAbility(gActiveBattler) != ABILITY_VITAL_SPIRIT
-                     && GetBattlerAbility(gActiveBattler) != ABILITY_INSOMNIA && !UproarWakeUpCheck(gActiveBattler))
+                     && GetBattlerAbility(gActiveBattler) != ABILITY_INSOMNIA && !UproarWakeUpCheck(gActiveBattler)
+                     && !DoesLeafGuardProtect(gActiveBattler))
                     {
                         CancelMultiTurnMoves(gActiveBattler);
                         gBattleMons[gActiveBattler].status1 |= (Random() & 3) + 2;
@@ -2498,6 +2502,28 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                     }
                 }
                 break;
+            case ABILITY_MOLD_BREAKER:
+            case ABILITY_TERAVOLT:
+            case ABILITY_TURBOBLAZE:
+            case ABILITY_UNNERVE:
+                if (gLastUsedAbility == ABILITY_MOLD_BREAKER)
+                    gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+                else if (gLastUsedAbility == ABILITY_TERAVOLT)
+                    gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                else if (gLastUsedAbility == ABILITY_TURBOBLAZE)
+                    gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+                else if (gLastUsedAbility == ABILITY_UNNERVE)
+                    gBattleCommunication[MULTISTRING_CHOOSER] = 3;
+                
+                if (gCurrentActionFuncId == B_ACTION_EXEC_SCRIPT) // if switching in, this handling is lowkey fucked but hey
+                {
+                    BattleScriptPush(BattleScript_MoveEnd);
+                    BattleScriptExecute(BattleScript_SwitchInAbilityMsg);
+                }
+                else
+                    BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsgEnd3);
+                effect++;
+                break;
             case ABILITY_CLOUD_NINE:
             case ABILITY_AIR_LOCK:
                 {
@@ -2613,6 +2639,28 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                     break;
                 case ABILITY_HYDRATION:
                     if ((gBattleMons[bank].status1 & STATUS1_ANY) && (gBattleWeather & WEATHER_RAIN_ANY))
+                    {
+                        if (gBattleMons[bank].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
+                            StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+                        if (gBattleMons[bank].status1 & STATUS1_SLEEP)
+                            StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+                        if (gBattleMons[bank].status1 & STATUS1_PARALYSIS)
+                            StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+                        if (gBattleMons[bank].status1 & STATUS1_BURN)
+                            StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+                        if (gBattleMons[bank].status1 & STATUS1_FREEZE)
+                            StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+                        gBattleMons[bank].status1 = 0;
+                        gBattleMons[bank].status2 &= ~(STATUS2_NIGHTMARE);
+                        gBattleStruct->scriptingActive = gActiveBattler = bank;
+                        BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
+                        BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[bank].status1);
+                        MarkBattlerForControllerExec(gActiveBattler);
+                        effect++;
+                    }
+                    break;
+                case ABILITY_LEAF_GUARD:
+                    if (DoesLeafGuardProtect(bank) && (gBattleMons[bank].status1 & STATUS1_ANY))
                     {
                         if (gBattleMons[bank].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
                             StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
@@ -2823,7 +2871,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
             && (gSpecialStatuses[gBattlerTarget].physicalDmg || gSpecialStatuses[gBattlerTarget].specialDmg)
             && (gBattleMoves[move].flags & F_MAKES_CONTACT)
-            && (Random() % 10) == 0)
+            && (Random() % 10) == 0
+            && !DoesLeafGuardProtect(gBattlerTarget))
             {
             do
             {
@@ -2862,7 +2911,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && (gSpecialStatuses[gBattlerTarget].physicalDmg || gSpecialStatuses[gBattlerTarget].specialDmg)
              && (gBattleMoves[move].flags & F_MAKES_CONTACT)
-             && (Random() % 3) == 0)
+             && (Random() % 3) == 0
+             && !DoesLeafGuardProtect(gBattlerTarget))
             {
             gBattleCommunication[MOVE_EFFECT_BYTE] = 0x42;
             BattleScriptPushCursor();
@@ -2895,7 +2945,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && (gSpecialStatuses[gBattlerTarget].physicalDmg || gSpecialStatuses[gBattlerTarget].specialDmg)
              && (gBattleMoves[move].flags & F_MAKES_CONTACT)
-             && (Random() % 3) == 0)
+             && (Random() % 3) == 0
+             && !DoesLeafGuardProtect(gBattlerTarget))
             {
             gBattleCommunication[MOVE_EFFECT_BYTE] = 0x45;
             BattleScriptPushCursor();
@@ -2928,7 +2979,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && (gBattleMoves[move].flags & F_MAKES_CONTACT)
              && (gSpecialStatuses[gBattlerTarget].physicalDmg || gSpecialStatuses[gBattlerTarget].specialDmg)
-             && (Random() % 3) == 0)
+             && (Random() % 3) == 0
+             && !DoesLeafGuardProtect(gBattlerTarget))
             {
             gBattleCommunication[MOVE_EFFECT_BYTE] = 0x43;
             BattleScriptPushCursor();
@@ -3405,11 +3457,6 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
     u8 bankQuality, atkQuality, defQuality;
     u16 atkItem, defItem;
 
-    if (gStatuses3[bank] & STATUS3_EMBARGO)
-        return ITEM_NO_EFFECT;
-    if (GetBattlerAbility(bank) == ABILITY_KLUTZ)
-        return ITEM_NO_EFFECT;
-
     gLastUsedItem = gBattleMons[bank].item;
     if (gLastUsedItem == ITEM_ENIGMA_BERRY)
     {
@@ -3446,6 +3493,11 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
         defQuality = ItemId_GetHoldEffectParam(defItem);
     }
 
+    if (gStatuses3[bank] & STATUS3_EMBARGO)
+        return ITEM_NO_EFFECT;
+    if (GetBattlerAbility(bank) == ABILITY_KLUTZ)
+        return ITEM_NO_EFFECT;
+
     switch (caseID)
     {
     case ITEMEFFECT_ON_SWITCH_IN: // whenever the white herb is activated
@@ -3474,6 +3526,10 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
         }
         break;
     case 1: // after attacking, bankHoldEffect means it's whichever pokemon
+        if ((GetBattlerAbility(GET_BATTLER_OPPOSITE(bank)) == ABILITY_UNNERVE || GetBattlerAbility(GET_BATTLER_PARTNER(GET_BATTLER_OPPOSITE(bank))) == ABILITY_UNNERVE)
+         && ITEM_IS_BERRY(gLastUsedItem))
+            return ITEM_NO_EFFECT;
+            
         if (gBattleMons[bank].hp)
         {
             switch (bankHoldEffect)
@@ -3879,6 +3935,11 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
         for (bank = 0; bank < gBattlersCount; bank++)
         {
             gLastUsedItem = gBattleMons[bank].item;
+
+            if ((GetBattlerAbility(GET_BATTLER_OPPOSITE(bank)) == ABILITY_UNNERVE || GetBattlerAbility(GET_BATTLER_PARTNER(GET_BATTLER_OPPOSITE(bank))) == ABILITY_UNNERVE)
+             && ITEM_IS_BERRY(gLastUsedItem))
+                break;
+            
             if (gBattleMons[bank].item == ITEM_ENIGMA_BERRY)
             {
                 bankHoldEffect = gEnigmaBerries[bank].holdEffect;
@@ -4096,6 +4157,8 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             }
             break;
         case HOLD_EFFECT_CUSTAP_BERRY:
+            if (GetBattlerAbility(GET_BATTLER_OPPOSITE(gBattlerAttacker)) == ABILITY_UNNERVE || GetBattlerAbility(GET_BATTLER_PARTNER(GET_BATTLER_OPPOSITE(gBattlerAttacker))))
+                break;
             gDisableStructs[gBattlerAttacker].berryActivates = TRUE;
         case HOLD_EFFECT_QUICK_CLAW:
             if (gBattleMons[gBattlerAttacker].hp && gDisableStructs[gBattlerAttacker].quickClaw)
@@ -4137,6 +4200,8 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
         switch (defHoldEffect)
         {
         case HOLD_EFFECT_HALVE_BERRIES:
+            if (GetBattlerAbility(GET_BATTLER_OPPOSITE(gBattlerTarget)) == ABILITY_UNNERVE || GetBattlerAbility(GET_BATTLER_PARTNER(GET_BATTLER_OPPOSITE(gBattlerTarget))))
+                break;
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && gSpecialStatuses[gBattlerTarget].dmg != 0
                 && gSpecialStatuses[gBattlerTarget].dmg != 0xFFFF
@@ -4154,6 +4219,8 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             }
             break;
         case HOLD_EFFECT_HURT_BERRIES:
+            if (GetBattlerAbility(GET_BATTLER_OPPOSITE(gBattlerTarget)) == ABILITY_UNNERVE || GetBattlerAbility(GET_BATTLER_PARTNER(GET_BATTLER_OPPOSITE(gBattlerTarget))))
+                break;
             gDisableStructs[gBattlerTarget].berryActivates = TRUE;
         case HOLD_EFFECT_HURT_IF_DAMAGED:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -4182,6 +4249,8 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             gDisableStructs[gBattlerTarget].berryActivates = FALSE;
             break;
         case HOLD_EFFECT_ATTACK_UP:
+            if (GetBattlerAbility(GET_BATTLER_OPPOSITE(gBattlerTarget)) == ABILITY_UNNERVE || GetBattlerAbility(GET_BATTLER_PARTNER(GET_BATTLER_OPPOSITE(gBattlerTarget))))
+                break;
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && gSpecialStatuses[gBattlerTarget].dmg != 0
                 && gSpecialStatuses[gBattlerTarget].dmg != 0xFFFF
@@ -4195,6 +4264,8 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             }
             break;
         case HOLD_EFFECT_DEFENSE_UP:
+            if (GetBattlerAbility(GET_BATTLER_OPPOSITE(gBattlerTarget)) == ABILITY_UNNERVE || GetBattlerAbility(GET_BATTLER_PARTNER(GET_BATTLER_OPPOSITE(gBattlerTarget))))
+                break;
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && gSpecialStatuses[gBattlerTarget].dmg != 0
                 && gSpecialStatuses[gBattlerTarget].dmg != 0xFFFF
@@ -4208,6 +4279,8 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
             }
             break;
         case HOLD_EFFECT_SP_DEFENSE_UP:
+            if (GetBattlerAbility(GET_BATTLER_OPPOSITE(gBattlerTarget)) == ABILITY_UNNERVE || GetBattlerAbility(GET_BATTLER_PARTNER(GET_BATTLER_OPPOSITE(gBattlerTarget))))
+                break;
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && gSpecialStatuses[gBattlerTarget].dmg != 0
                 && gSpecialStatuses[gBattlerTarget].dmg != 0xFFFF

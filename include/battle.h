@@ -8,6 +8,8 @@
 #define GET_BATTLER_POSITION(battler)     (gBattlerPositions[battler])
 #define GET_BATTLER_SIDE(battler)         (GetBattlerPosition(battler) & BIT_SIDE)
 #define GET_BATTLER_SIDE2(battler)        (GET_BATTLER_POSITION(battler) & BIT_SIDE)
+#define GET_BATTLER_OPPOSITE(battler)     (GetBattlerPosition(battler) ^ BIT_SIDE)
+#define GET_BATTLER_PARTNER(battler)      (GetBattlerPosition(battler) ^ 2)
 
 // Battle Actions
 // These determine what each battler will do in a turn

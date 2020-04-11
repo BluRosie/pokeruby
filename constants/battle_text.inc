@@ -411,4 +411,8 @@
 	enum BATTLE_TEXT_AttackRisen
 	enum BATTLE_TEXT_AbilityRoseBankStat
 	enum BATTLE_TEXT_DrySkinHurtAttacker
-	
+	enum BATTLE_TEXT_PreventedSleep
+	enum BATTLE_TEXT_MoldBreaker
+	enum BATTLE_TEXT_Teravolt
+	enum BATTLE_TEXT_Turboblaze
+	enum BATTLE_TEXT_Unnerve

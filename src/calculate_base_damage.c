@@ -205,6 +205,11 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         gStatuses3[bankAtk] &= ~(STATUS3_ME_FIRST);
     }
 
+    if (GetBattlerAbility(bankAtk) == ABILITY_TECHNICIAN && gBattleMoves[move].power <= 60)
+    {
+        gBattleMovePower = gBattleMovePower * 150 / 100;
+    }
+
     if (!typeOverride)
         type = gBattleMoves[move].type;
     else
@@ -237,7 +242,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         defenderHoldEffectParam = ItemId_GetHoldEffectParam(defender->item);
     }
 
-    if (attacker->ability == ABILITY_HUGE_POWER || attacker->ability == ABILITY_PURE_POWER)
+    if (GetBattlerAbility(bankAtk) == ABILITY_HUGE_POWER || GetBattlerAbility(bankAtk) == ABILITY_PURE_POWER)
         attack *= 2;
 
     //BADGE_BOOST(1, attack, bankAtk);
@@ -313,42 +318,42 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         spAttack *= 120 / 100;
     }
 
-    if (defender->ability == ABILITY_THICK_FAT && (type == TYPE_FIRE || type == TYPE_ICE))
+    if (GetBattlerAbility(bankDef) == ABILITY_THICK_FAT && (type == TYPE_FIRE || type == TYPE_ICE))
     {
         spAttack /= 2;
         attack /= 2;
     }
-    if (attacker->ability == ABILITY_HUSTLE)
+    if (GetBattlerAbility(bankAtk) == ABILITY_HUSTLE)
         attack = (150 * attack) / 100;
-    if (attacker->ability == ABILITY_PLUS && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, ABILITY_MINUS, 0, 0))
+    if (GetBattlerAbility(bankAtk) == ABILITY_PLUS && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, ABILITY_MINUS, 0, 0))
         spAttack = (150 * spAttack) / 100;
-    if (attacker->ability == ABILITY_MINUS && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, ABILITY_PLUS, 0, 0))
+    if (GetBattlerAbility(bankAtk) == ABILITY_MINUS && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, ABILITY_PLUS, 0, 0))
         spAttack = (150 * spAttack) / 100;
-    if (attacker->ability == ABILITY_GUTS && attacker->status1)
+    if (GetBattlerAbility(bankAtk) == ABILITY_GUTS && attacker->status1)
         attack = (150 * attack) / 100;
-    if (defender->ability == ABILITY_MARVEL_SCALE && defender->status1)
+    if (GetBattlerAbility(bankDef) == ABILITY_MARVEL_SCALE && defender->status1)
         defense = (150 * defense) / 100;
-    if (attacker->ability == ABILITY_SLOW_START && gDisableStructs[bankAtk].slowStartTimer)
+    if (GetBattlerAbility(bankAtk) == ABILITY_SLOW_START && gDisableStructs[bankAtk].slowStartTimer)
         attack /= 2;
-    if (attacker->ability == ABILITY_DEFEATIST && attacker->hp <= (attacker->maxHP / 2))
+    if (GetBattlerAbility(bankAtk) == ABILITY_DEFEATIST && attacker->hp <= (attacker->maxHP / 2))
     {
         spAttack /= 2;
         attack /= 2;
     }
-    if (attacker->ability == ABILITY_BERSERK && attacker->hp <= (attacker->maxHP / 2))
+    if (GetBattlerAbility(bankAtk) == ABILITY_BERSERK && attacker->hp <= (attacker->maxHP / 2))
         spAttack *= 2;
-    if (attacker->ability == ABILITY_FLARE_BOOST && attacker->status1 & STATUS1_BURN)
+    if (GetBattlerAbility(bankAtk) == ABILITY_FLARE_BOOST && attacker->status1 & STATUS1_BURN)
         spAttack *= 2;
-    if (attacker->ability == ABILITY_TOXIC_BOOST && attacker->status1 & STATUS1_PSN_ANY)
+    if (GetBattlerAbility(bankAtk) == ABILITY_TOXIC_BOOST && attacker->status1 & STATUS1_PSN_ANY)
         attack *= 2;
-    if (attacker->ability == ABILITY_SOLAR_POWER && gBattleWeather & WEATHER_SUN_ANY)
+    if (GetBattlerAbility(bankAtk) == ABILITY_SOLAR_POWER && gBattleWeather & WEATHER_SUN_ANY)
         spAttack = (150 * spAttack) / 100;
-    if (attacker->ability == ABILITY_IRON_FIST && gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
+    if (GetBattlerAbility(bankAtk) == ABILITY_IRON_FIST && gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
     {
         spAttack = (120 * spAttack) / 100;
         attack = (120 * attack) / 100;
     }
-    if (attacker->ability == ABILITY_RIVALRY)
+    if (GetBattlerAbility(bankAtk) == ABILITY_RIVALRY)
     {
         if (GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) == GetGenderFromSpeciesAndPersonality(defender->species, defender->personality)
             && GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) != 0xFF
@@ -364,12 +369,12 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             spAttack = (75 * spAttack) / 100;
         }
     }
-    if (defender->ability == ABILITY_HEATPROOF && type == TYPE_FIRE)
+    if (GetBattlerAbility(bankDef) == ABILITY_HEATPROOF && type == TYPE_FIRE)
     {
         spAttack /= 2;
         attack /= 2;
     }
-    if (defender->ability == ABILITY_DRY_SKIN && type == TYPE_FIRE)
+    if (GetBattlerAbility(bankDef) == ABILITY_DRY_SKIN && type == TYPE_FIRE)
     {
         spAttack *= 125 / 100;
         attack *= 125 / 100;
@@ -378,13 +383,13 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         gBattleMovePower /= 2;
     if (type == TYPE_FIRE && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFE, 0))
         gBattleMovePower /= 2;
-    if (type == TYPE_GRASS && attacker->ability == ABILITY_OVERGROW && attacker->hp <= (attacker->maxHP / 3))
+    if (type == TYPE_GRASS && GetBattlerAbility(bankAtk) == ABILITY_OVERGROW && attacker->hp <= (attacker->maxHP / 3))
         gBattleMovePower = (150 * gBattleMovePower) / 100;
-    if (type == TYPE_FIRE && attacker->ability == ABILITY_BLAZE && attacker->hp <= (attacker->maxHP / 3))
+    if (type == TYPE_FIRE && GetBattlerAbility(bankAtk) == ABILITY_BLAZE && attacker->hp <= (attacker->maxHP / 3))
         gBattleMovePower = (150 * gBattleMovePower) / 100;
-    if (type == TYPE_WATER && attacker->ability == ABILITY_TORRENT && attacker->hp <= (attacker->maxHP / 3))
+    if (type == TYPE_WATER && GetBattlerAbility(bankAtk) == ABILITY_TORRENT && attacker->hp <= (attacker->maxHP / 3))
         gBattleMovePower = (150 * gBattleMovePower) / 100;
-    if (type == TYPE_BUG && attacker->ability == ABILITY_SWARM && attacker->hp <= (attacker->maxHP / 3))
+    if (type == TYPE_BUG && GetBattlerAbility(bankAtk) == ABILITY_SWARM && attacker->hp <= (attacker->maxHP / 3))
         gBattleMovePower = (150 * gBattleMovePower) / 100;
     if (gBattleMoves[move].effect == EFFECT_EXPLOSION)
         defense /= 2;
@@ -417,7 +422,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         damage = damage / damageHelper;
         damage /= 50;
 
-        if ((attacker->status1 & STATUS1_BURN) && attacker->ability != ABILITY_GUTS)
+        if ((attacker->status1 & STATUS1_BURN) && GetBattlerAbility(bankAtk) != ABILITY_GUTS)
             damage /= 2;
 
         if ((sideStatus & SIDE_STATUS_REFLECT) && gCritMultiplier == 1)

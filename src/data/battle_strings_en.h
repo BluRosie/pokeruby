@@ -418,6 +418,11 @@ enum
     BATTLE_TEXT_AttackRisen,
     BATTLE_TEXT_AbilityRoseBankStat,
     BATTLE_TEXT_DrySkinHurtAttacker,
+    BATTLE_TEXT_PreventedSleep,
+    BATTLE_TEXT_MoldBreaker,
+    BATTLE_TEXT_Teravolt,
+    BATTLE_TEXT_Turboblaze,
+    BATTLE_TEXT_Unnerve,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -973,6 +978,11 @@ const u8 BattleText_ElectricityRaisedSpeed[] = _("{DEFENDING_MON}'s {STRING 22}\
 const u8 BattleText_AttackRisen[] = _("{STRING 16}'s {STRING 23}\nraised its Attack!");
 const u8 BattleText_AbilityRoseBankStat[] = _("{STRING 16}'s {STRING 23}\nraised its {STRING 0}!");
 const u8 BattleText_DrySkinHurtAttacker[] = _("The sun hurt {ATTACKING_MON}\ndue to its {STRING 21}!");
+const u8 BattleText_PreventedSleep[] = _("{STRING 14}'s {STRING 22}\nprevents sleep!");
+const u8 BattleText_MoldBreaker[] = _("{ATTACKING_MON} breaks the mold!");
+const u8 BattleText_Teravolt[] = _("{ATTACKING_MON} radiates a\nbursting aura!");
+const u8 BattleText_Turboblaze[] = _("{ATTACKING_MON} radiates a\nblazing aura!");
+const u8 BattleText_Unnerve[] = _("The opposing team is too nervous\nto eat Berries!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1409,6 +1419,11 @@ const u8 *const gBattleStringsTable[] =
     BattleText_AttackRisen,
     BattleText_AbilityRoseBankStat,
     BattleText_DrySkinHurtAttacker,
+    BattleText_PreventedSleep,
+    BattleText_MoldBreaker,
+    BattleText_Teravolt,
+    BattleText_Turboblaze,
+    BattleText_Unnerve,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
@@ -1749,6 +1764,13 @@ const u16 gPSNPreventionStringIds[] =
     BATTLE_TEXT_NoEffectOn,
 };
 
+const u16 gSLPPreventionStringIds[] =
+{
+    BATTLE_TEXT_PreventedSleep,
+    BATTLE_TEXT_PreventedOther2,
+    BATTLE_TEXT_NoEffectOn,
+};
+
 const u16 gItemSwapStringIds[] =
 {
     BATTLE_TEXT_Obtained1,
@@ -1839,4 +1861,12 @@ const u16 gRoomStringIds[] =
     BATTLE_TEXT_SwapDefenses, BATTLE_TEXT_WonderRoomEnds,
     BATTLE_TEXT_ItemsAreUseless, BATTLE_TEXT_MagicRoomEnds,
     BATTLE_TEXT_Terminator2,
+};
+
+const u16 gSwitchInAbilityStringIds[] =
+{
+    BATTLE_TEXT_MoldBreaker,
+    BATTLE_TEXT_Teravolt,
+    BATTLE_TEXT_Turboblaze,
+    BATTLE_TEXT_Unnerve,
 };

@@ -5129,6 +5129,15 @@ BattleScript_BankAbilityStatRaiseEnd3::
 	call BattleScript_BankAbilityStatRaise
 	end3
 
+BattleScript_SwitchInAbilityMsg::
+	printfromtable gSwitchInAbilityStringIds
+	waitmessage 64
+	return
+
+BattleScript_SwitchInAbilityMsgEnd3::
+	call BattleScript_SwitchInAbilityMsg
+	end3
+
 BattleScript_TraceActivates:: @ 81D9726
 	pause 32
 	printstring BATTLE_TEXT_Traced
@@ -5354,6 +5363,12 @@ BattleScript_PRLZPrevention:: @ 81D98B1
 BattleScript_PSNPrevention:: @ 81D98BD
 	pause 32
 	printfromtable gPSNPreventionStringIds
+	waitmessage 64
+	return
+
+BattleScript_SLPPrevention::
+	pause 32
+	printfromtable gSLPPreventionStringIds
 	waitmessage 64
 	return
 
