@@ -38,20 +38,20 @@ DONE.string "Prefers moisture to heat.$"
 DONEgAbilityDescription_Download:
 DONE.string "Adjusts power favorably.$"
 
-gAbilityDescription_IronFist:
-	.string "Boosts punching moves.$"
+DONEgAbilityDescription_IronFist:
+DONE.string "Boosts punching moves.$"
 
 DONEgAbilityDescription_PoisonHeal:
 DONE.string "Restores HP if poisoned.$"
 
-gAbilityDescription_Adaptability:
-	.string "Boosts same type attacks.$"
+DONEgAbilityDescription_Adaptability:
+DONE.string "Boosts same type attacks.$"
 
-gAbilityDescription_SkillLink:
-	.string "Mult-hit moves hit 5 times.$"
+DONEgAbilityDescription_SkillLink:
+DONE.string "Mult-hit moves hit 5 times.$"
 
-gAbilityDescription_Hydration:
-	.string "Cures status in rain.$"
+DONEgAbilityDescription_Hydration:
+DONE.string "Cures status in rain.$"
 
 DONEgAbilityDescription_SolarPower:
 DONE.string "Powers up in sunshine.$" @sorta
@@ -59,17 +59,17 @@ DONE.string "Powers up in sunshine.$" @sorta
 DONEgAbilityDescription_QuickFeet:
 DONE.string "Ups Speed if suffering.$"
 
-gAbilityDescription_Normalize:
-	.string "Moves become Normal-type.$"
+DONEgAbilityDescription_Normalize:
+DONE.string "Moves become Normal-type.$"
 
 DONEgAbilityDescription_Sniper:
 DONE.string "Boosts critical hits.$"
 
-gAbilityDescription_MagicGuard:
-	.string "Only damaged by attacks.$"
+DONEgAbilityDescription_MagicGuard:
+DONE.string "Only damaged by attacks.$"
 
-gAbilityDescription_NoGuard:
-	.string "Ensures that all moves hit.$"
+DONEgAbilityDescription_NoGuard:
+DONE.string "Ensures that all moves hit.$"
 
 DONEgAbilityDescription_Stall:
 DONE.string "Always moves last.$"

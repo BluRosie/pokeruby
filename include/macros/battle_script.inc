@@ -1531,6 +1531,10 @@
 	.macro jumpifnotmove move, jumpptr
 	jumpifhalfword NOT_EQUAL, gCurrentMove, \move, \jumpptr
 	.endm
+
+	.macro jumpifnotchosenmove move, jumpptr
+	jumpifhalfword NOT_EQUAL, gChosenMove, \move, \jumpptr
+	.endm
 	
 	.macro jumpifstatus3 bank, status, jumpptr
 	jumpifstatus3condition \bank, \status, 0x0, \jumpptr

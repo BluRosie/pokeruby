@@ -260,7 +260,6 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             && type == gHoldEffectToType[i][1]) {
             attack *= 2;
             spAttack *= 2;
-
         }
     }
 
@@ -344,6 +343,11 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack *= 2;
     if (attacker->ability == ABILITY_SOLAR_POWER && gBattleWeather & WEATHER_SUN_ANY)
         spAttack = (150 * spAttack) / 100;
+    if (attacker->ability == ABILITY_IRON_FIST && gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
+    {
+        spAttack = (120 * spAttack) / 100;
+        attack = (120 * attack) / 100;
+    }
     if (attacker->ability == ABILITY_RIVALRY)
     {
         if (GetGenderFromSpeciesAndPersonality(attacker->species, attacker->personality) == GetGenderFromSpeciesAndPersonality(defender->species, defender->personality)
@@ -505,11 +509,11 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
                 }
             }
         }
-
-        // flash fire triggered
-        if ((eFlashFireArr.arr[bankAtk] & 1) && type == TYPE_FIRE)
-            damage = (15 * damage) / 10;
     }
+
+    // flash fire triggered
+    if ((eFlashFireArr.arr[bankAtk] & 1) && type == TYPE_FIRE)
+        damage = (15 * damage) / 10;
 
     return damage + 2;
 }

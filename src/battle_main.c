@@ -5361,6 +5361,10 @@ void HandleAction_UseMove(void)
         gBattleResults.lastUsedMove = gCurrentMove;
     else
         gBattleResults.opponentMove = gCurrentMove;
+    
+    // change type here
+    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NORMALIZE)
+        gBattleStruct->dynamicMoveType = 0x80 | TYPE_NORMAL;
 
     // choose target
     side = GetBattlerSide(gBattlerAttacker) ^ BIT_SIDE;

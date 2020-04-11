@@ -508,7 +508,7 @@ BattleScript_EffectHealingWish:
 	switchinanim USER, 1
 	waitstate
 	setbyte cMULTISTRING_CHOOSER, 0
-	jumpifnotmove MOVE_LUNAR_DANCE, _HealingWishNewMon
+	jumpifnotchosenmove MOVE_LUNAR_DANCE, _HealingWishNewMon
 	setbyte cMULTISTRING_CHOOSER, 1
 	restorepp USER
 _HealingWishNewMon:
@@ -5064,6 +5064,7 @@ BattleScript_MoveEffectRecoilWithStatus::
 BattleScript_MoveEffectRecoil33:: @ 81D96C8
 	jumpifmove MOVE_STRUGGLE, BattleScript_DoRecoil33
 	jumpifability USER, ABILITY_ROCK_HEAD, BattleScript_Recoil33End
+	jumpifability USER, ABILITY_MAGIC_GUARD, BattleScript_Recoil33End
 BattleScript_DoRecoil33: @ 81D96DB
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
 	healthbarupdate USER

@@ -221,6 +221,7 @@ extern u8 BattleScript_MoveEffectUproar[];
 extern u8 BattleScript_MoveEffectWrap[];
 extern u8 BattleScript_MoveEffectPayDay[];
 extern u8 BattleScript_MoveEffectRecoil33[];
+extern u8 BattleScript_SturdyPreventsOHKO[];
 
 //extern functions
 u8 AtkCanceller_UnableToUseMove(void);
@@ -1317,6 +1318,18 @@ static bool8 AccuracyCalcHelper(u16 move)
         JumpIfMoveFailed(7, move);
         return TRUE;
     }
+    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD)
+    {
+        JumpIfMoveFailed(7, move);
+        RecordAbilityBattle(gBattlerAttacker, ABILITY_NO_GUARD);
+        return TRUE;
+    }
+    if (GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD)
+    {
+        JumpIfMoveFailed(7, move);
+        RecordAbilityBattle(gBattlerTarget, ABILITY_NO_GUARD);
+        return TRUE;
+    }
 
     if (!(gHitMarker & HITMARKER_IGNORE_ON_AIR) && gStatuses3[gBattlerTarget] & STATUS3_ON_AIR)
     {
@@ -1712,8 +1725,14 @@ static void atk06_typecalc(void)
         //check stab
         if (gBattleMons[gBattlerAttacker].type1 == moveType || gBattleMons[gBattlerAttacker].type2 == moveType)
         {
-            gBattleMoveDamage = gBattleMoveDamage * 15;
-            gBattleMoveDamage = gBattleMoveDamage / 10;
+            if (gBattleMons[gBattlerAttacker].ability == ABILITY_ADAPTABILITY)
+            {
+                gBattleMoveDamage *= 2;
+            }
+            else
+            {
+                gBattleMoveDamage = gBattleMoveDamage * 15 / 10;
+            }
         }
 
         if ((GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE || gDisableStructs[gBattlerTarget].magnetRiseTimer)
@@ -3423,7 +3442,7 @@ static void atk19_tryfaintmon(void)
 
             BattleScriptPop();
             gBattlescriptCurrInstr = BS_ptr;
-            gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_SPIKES_DAMAGED);
+            gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_TOXIC_SPIKES_DAMAGED | SIDE_STATUS_STEALTH_ROCK_DAMAGED);
         }
         else
         {
@@ -5264,6 +5283,11 @@ static void atk4A_typecalc2(void)
     u8 flags = 0;
     int i = 0;
     u8 moveType = gBattleMoves[gCurrentMove].type;
+
+    if (GetBattlerAbility(gBattlerTarget) == ABILITY_NORMALIZE)
+    {
+        moveType = TYPE_NORMAL;
+    }
 
     if ((GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE || gDisableStructs[gBattlerTarget].magnetRiseTimer)
      && moveType == TYPE_GROUND 
@@ -8585,7 +8609,7 @@ static void atk76_various(void)
             data[i] = gBattleMons[gActiveBattler].pp[i];
         }
         data[i] = gBattleMons[gActiveBattler].ppBonuses;
-        BtlController_EmitSetMonData(0, REQUEST_MOVES_PP_BATTLE, 0, 5, data);
+        BtlController_EmitSetMonData(0, REQUEST_PP_DATA_BATTLE, 0, 5, data);
         MarkBattlerForControllerExec(gActiveBattler);
         break;
     case VARIOUS_RESTORE_ALL_HEALTH:
@@ -9762,11 +9786,16 @@ static void atk8D_setmultihitcounter(void)
         gMultiHitCounter = T2_READ_8(gBattlescriptCurrInstr + 1);
     else
     {
-        gMultiHitCounter = Random() & 3;
-        if (gMultiHitCounter > 1)
-            gMultiHitCounter = (Random() & 3) + 2;
+        if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SKILL_LINK)
+            gMultiHitCounter = 5;
         else
-            gMultiHitCounter += 2;
+        {
+            gMultiHitCounter = Random() & 3;
+            if (gMultiHitCounter > 1)
+                gMultiHitCounter = (Random() & 3) + 2;
+            else
+                gMultiHitCounter += 2;
+        }
     }
     gBattlescriptCurrInstr += 2;
 }
@@ -9992,412 +10021,78 @@ static void atk92_setlightscreen(void)
     gBattlescriptCurrInstr++;
 }
 
-#ifdef NOTMATCHING
 static void atk93_tryKO(void)
 {
-   if (gBattleMons[gBattlerTarget].item == ITEM_ENIGMA_BERRY)
-        holdEffect = gEnigmaBerries[gBattlerTarget].holdEffect, param = gEnigmaBerries[gBattlerTarget].holdEffectParam;
-    else
-    {
-        holdEffect = ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item);
-        param = ItemId_GetHoldEffectParam(gBattleMons[gBattlerTarget].item);
-    }
+    bool32 lands = FALSE;
+    u32 holdEffect = ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item);
 
     gPotentialItemEffectBattler = gBattlerTarget;
-
-    if ((holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < quality)
-        || (holdEffect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP && !gSpecialStatuses[gBattlerTarget].focusSashed))
+    if (holdEffect == HOLD_EFFECT_FOCUS_BAND
+        && (Random() % 100) < ItemId_GetHoldEffectParam(gBattleMons[gBattlerTarget].item))
     {
-        RecordItemEffectBattle(gBattlerTarget, holdEffect);
         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
+        RecordItemEffectBattle(gBattlerTarget, holdEffect);
+    }
+    else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBattlerTarget].maxHP)
+    {
+        gSpecialStatuses[gBattlerTarget].focusSashed = 1;
+        RecordItemEffectBattle(gBattlerTarget, holdEffect);
     }
 
     if (GetBattlerAbility(gBattlerTarget) == ABILITY_STURDY)
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         gLastUsedAbility = ABILITY_STURDY;
-        gBattlescriptCurrInstr = x;
-        RecordAbilityBattle(gBattlerTarget, ABILITY_STURDY);
-        return;
-    }
-
-    if (!(gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS))
-    {
-        u16 to_cmp = gBattleMons[gBattlerAttacker].level - gBattleMons[gBattlerTarget].level + gBattleMoves[gCurrentMove].accuracy;
-        if (Random() % 0x64 + 1 < to_cmp || gBattleMons[gBattlerAttacker].level < gBattleMons[gBattlerTarget].level)
-        {
-            goto MOVE_RESULT_MISSED_LABEL;
-        }
+        gBattlescriptCurrInstr = BattleScript_SturdyPreventsOHKO;
     }
     else
     {
-        if (gDisableStructs[gBattlerTarget].battlerWithSureHit != gBattlerAttacker || gBattleMons[gBattlerAttacker].level < gBattleMons[gBattlerTarget].level)
+        if ((((gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS)
+                && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+            || GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD
+            || GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD)
+            && gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
         {
+            lands = TRUE;
+        }
+        else
+        {
+            u16 odds = gBattleMoves[gCurrentMove].accuracy + (gBattleMons[gBattlerAttacker].level - gBattleMons[gBattlerTarget].level);
+            if (Random() % 100 + 1 < odds && gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
+                lands = TRUE;
+        }
 
+        if (lands)
+        {
+            if (gProtectStructs[gBattlerTarget].endured)
+            {
+                gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+                gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
+            }
+            else if (gSpecialStatuses[gBattlerTarget].focusBanded || gSpecialStatuses[gBattlerTarget].focusSashed)
+            {
+                gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+                gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
+                gLastUsedItem = gBattleMons[gBattlerTarget].item;
+            }
+            else
+            {
+                gBattleMoveDamage = gBattleMons[gBattlerTarget].hp;
+                gMoveResultFlags |= MOVE_RESULT_ONE_HIT_KO;
+            }
+            gBattlescriptCurrInstr += 5;
+        }
+        else
+        {
+            gMoveResultFlags |= MOVE_RESULT_MISSED;
+            if (gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
+                gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+            else
+                gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         }
     }
-
-MOVE_RESULT_MISSED_LABEL:
-    gBattleTypeFlags |= MOVE_RESULT_MISSED;
-    if (gBattleMons[gBattlerAttacker].level < gBattleMons[gBattlerTarget].level)
-        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
-    else
-        gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-    gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 }
-
-#else
-__attribute((naked))
-static void atk93_tryKO(void)
-{
-    asm(".syntax unified\n\
-        push {r4-r7,lr}\n\
-    mov r7, r10\n\
-    mov r6, r9\n\
-    mov r5, r8\n\
-    push {r5-r7}\n\
-    ldr r7, _08026BA8 @ =gBattleMons\n\
-    ldr r6, _08026BAC @ =gBattlerTarget\n\
-    ldrb r2, [r6]\n\
-    movs r5, 0x58\n\
-    adds r0, r2, 0\n\
-    muls r0, r5\n\
-    adds r1, r0, r7\n\
-    ldrh r0, [r1, 0x2E]\n\
-    cmp r0, 0xAF\n\
-    bne _08026BB4\n\
-    ldr r1, _08026BB0 @ =gEnigmaBerries\n\
-    lsls r0, r2, 3\n\
-    subs r0, r2\n\
-    lsls r0, 2\n\
-    adds r0, r1\n\
-    ldrb r4, [r0, 0x7]\n\
-    ldrb r6, [r0, 0x1A]\n\
-    b _08026BCE\n\
-    .align 2, 0\n\
-_08026BA8: .4byte gBattleMons\n\
-_08026BAC: .4byte gBattlerTarget\n\
-_08026BB0: .4byte gEnigmaBerries\n\
-_08026BB4:\n\
-    ldrh r0, [r1, 0x2E]\n\
-    bl ItemId_GetHoldEffect\n\
-    lsls r0, 24\n\
-    lsrs r4, r0, 24\n\
-    ldrb r0, [r6]\n\
-    muls r0, r5\n\
-    adds r0, r7\n\
-    ldrh r0, [r0, 0x2E]\n\
-    bl ItemId_GetHoldEffectParam\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-_08026BCE:\n\
-    ldr r1, _08026C4C @ =gPotentialItemEffectBattler\n\
-    ldr r5, _08026C50 @ =gBattlerTarget\n\
-    ldrb r0, [r5]\n\
-    strb r0, [r1]\n\
-    cmp r4, 0x27\n\
-    bne _08026C0C\n\
-    bl Random\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    movs r1, 0x64\n\
-    bl __umodsi3\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    cmp r0, r6\n\
-    bcs _08026C0C\n\
-    ldrb r0, [r5]\n\
-    movs r1, 0x27\n\
-    bl RecordItemEffectBattle\n\
-    ldr r2, _08026C54 @ =gSpecialStatuses\n\
-    ldrb r1, [r5]\n\
-    lsls r0, r1, 2\n\
-    adds r0, r1\n\
-    lsls r0, 2\n\
-    adds r0, r2\n\
-    ldrb r1, [r0]\n\
-    movs r2, 0x80\n\
-    orrs r1, r2\n\
-    strb r1, [r0]\n\
-_08026C0C:\n\
-    ldr r0, _08026C58 @ =gBattleMons\n\
-    mov r8, r0\n\
-    ldr r1, _08026C50 @ =gBattlerTarget\n\
-    ldrb r2, [r1]\n\
-    movs r6, 0x58\n\
-    adds r0, r2, 0\n\
-    muls r0, r6\n\
-    mov r3, r8\n\
-    adds r5, r0, r3\n\
-    adds r0, r5, 0\n\
-    adds r0, 0x20\n\
-    ldrb r3, [r0]\n\
-    mov r10, r8\n\
-    cmp r3, 0x5\n\
-    bne _08026C6C\n\
-    ldr r2, _08026C5C @ =gMoveResultFlags\n\
-    ldrb r0, [r2]\n\
-    movs r1, 0x1\n\
-    orrs r0, r1\n\
-    strb r0, [r2]\n\
-    ldr r0, _08026C60 @ =gLastUsedAbility\n\
-    strb r3, [r0]\n\
-    ldr r1, _08026C64 @ =gBattlescriptCurrInstr\n\
-    ldr r0, _08026C68 @ =BattleScript_SturdyPreventsOHKO\n\
-    str r0, [r1]\n\
-    ldr r1, _08026C50 @ =gBattlerTarget\n\
-    ldrb r0, [r1]\n\
-    movs r1, 0x5\n\
-    bl RecordAbilityBattle\n\
-    b _08026E40\n\
-    .align 2, 0\n\
-_08026C4C: .4byte gPotentialItemEffectBattler\n\
-_08026C50: .4byte gBattlerTarget\n\
-_08026C54: .4byte gSpecialStatuses\n\
-_08026C58: .4byte gBattleMons\n\
-_08026C5C: .4byte gMoveResultFlags\n\
-_08026C60: .4byte gLastUsedAbility\n\
-_08026C64: .4byte gBattlescriptCurrInstr\n\
-_08026C68: .4byte BattleScript_SturdyPreventsOHKO\n\
-_08026C6C:\n\
-    ldr r1, _08026CE0 @ =gStatuses3\n\
-    lsls r0, r2, 2\n\
-    adds r0, r1\n\
-    ldr r0, [r0]\n\
-    movs r1, 0x18\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    bne _08026CF4\n\
-    ldr r1, _08026CE4 @ =gBattleMoves\n\
-    ldr r0, _08026CE8 @ =gCurrentMove\n\
-    ldrh r0, [r0]\n\
-    lsls r2, r0, 1\n\
-    adds r2, r0\n\
-    lsls r2, 2\n\
-    adds r2, r1\n\
-    ldr r7, _08026CEC @ =gBattlerAttacker\n\
-    ldrb r0, [r7]\n\
-    muls r0, r6\n\
-    add r0, r10\n\
-    adds r0, 0x2A\n\
-    ldrb r0, [r0]\n\
-    adds r1, r5, 0\n\
-    adds r1, 0x2A\n\
-    ldrb r1, [r1]\n\
-    subs r0, r1\n\
-    ldrb r2, [r2, 0x3]\n\
-    adds r0, r2\n\
-    lsls r0, 16\n\
-    lsrs r4, r0, 16\n\
-    bl Random\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    movs r1, 0x64\n\
-    bl __umodsi3\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    adds r0, 0x1\n\
-    cmp r0, r4\n\
-    bge _08026CDC\n\
-    ldrb r0, [r7]\n\
-    adds r1, r0, 0\n\
-    muls r1, r6\n\
-    add r1, r10\n\
-    adds r1, 0x2A\n\
-    ldr r2, _08026CF0 @ =gBattlerTarget\n\
-    ldrb r0, [r2]\n\
-    muls r0, r6\n\
-    add r0, r10\n\
-    adds r0, 0x2A\n\
-    ldrb r1, [r1]\n\
-    movs r4, 0x1\n\
-    ldrb r0, [r0]\n\
-    cmp r1, r0\n\
-    bcs _08026D20\n\
-_08026CDC:\n\
-    mov r10, r8\n\
-    b _08026DE0\n\
-    .align 2, 0\n\
-_08026CE0: .4byte gStatuses3\n\
-_08026CE4: .4byte gBattleMoves\n\
-_08026CE8: .4byte gCurrentMove\n\
-_08026CEC: .4byte gBattlerAttacker\n\
-_08026CF0: .4byte gBattlerTarget\n\
-_08026CF4:\n\
-    ldr r0, _08026D4C @ =gDisableStructs\n\
-    lsls r1, r2, 3\n\
-    subs r1, r2\n\
-    lsls r1, 2\n\
-    adds r1, r0\n\
-    ldr r2, _08026D50 @ =gBattlerAttacker\n\
-    ldrb r0, [r1, 0x15]\n\
-    movs r4, 0\n\
-    ldrb r3, [r2]\n\
-    cmp r0, r3\n\
-    bne _08026D20\n\
-    ldrb r0, [r2]\n\
-    muls r0, r6\n\
-    add r0, r10\n\
-    adds r0, 0x2A\n\
-    adds r1, r5, 0\n\
-    adds r1, 0x2A\n\
-    ldrb r0, [r0]\n\
-    ldrb r1, [r1]\n\
-    cmp r0, r1\n\
-    bcc _08026D20\n\
-    movs r4, 0x1\n\
-_08026D20:\n\
-    cmp r4, 0\n\
-    beq _08026DE0\n\
-    ldr r0, _08026D54 @ =gProtectStructs\n\
-    ldr r1, _08026D58 @ =gBattlerTarget\n\
-    ldrb r2, [r1]\n\
-    lsls r1, r2, 4\n\
-    adds r1, r0\n\
-    ldrb r0, [r1]\n\
-    lsls r0, 30\n\
-    cmp r0, 0\n\
-    bge _08026D64\n\
-    ldr r1, _08026D5C @ =gBattleMoveDamage\n\
-    movs r0, 0x58\n\
-    muls r0, r2\n\
-    add r0, r10\n\
-    ldrh r0, [r0, 0x28]\n\
-    subs r0, 0x1\n\
-    str r0, [r1]\n\
-    ldr r2, _08026D60 @ =gMoveResultFlags\n\
-    ldrb r0, [r2]\n\
-    movs r1, 0x40\n\
-    b _08026DC6\n\
-    .align 2, 0\n\
-_08026D4C: .4byte gDisableStructs\n\
-_08026D50: .4byte gBattlerAttacker\n\
-_08026D54: .4byte gProtectStructs\n\
-_08026D58: .4byte gBattlerTarget\n\
-_08026D5C: .4byte gBattleMoveDamage\n\
-_08026D60: .4byte gMoveResultFlags\n\
-_08026D64:\n\
-    ldr r0, _08026DA0 @ =gSpecialStatuses\n\
-    lsls r1, r2, 2\n\
-    adds r1, r2\n\
-    lsls r1, 2\n\
-    adds r1, r0\n\
-    ldrb r0, [r1]\n\
-    lsrs r0, 7\n\
-    cmp r0, 0\n\
-    beq _08026DB4\n\
-    ldr r1, _08026DA4 @ =gBattleMoveDamage\n\
-    movs r3, 0x58\n\
-    adds r0, r2, 0\n\
-    muls r0, r3\n\
-    add r0, r10\n\
-    ldrh r0, [r0, 0x28]\n\
-    subs r0, 0x1\n\
-    str r0, [r1]\n\
-    ldr r2, _08026DA8 @ =gMoveResultFlags\n\
-    ldrb r0, [r2]\n\
-    movs r1, 0x80\n\
-    orrs r0, r1\n\
-    strb r0, [r2]\n\
-    ldr r1, _08026DAC @ =gLastUsedItem\n\
-    ldr r2, _08026DB0 @ =gBattlerTarget\n\
-    ldrb r0, [r2]\n\
-    muls r0, r3\n\
-    add r0, r10\n\
-    ldrh r0, [r0, 0x2E]\n\
-    strh r0, [r1]\n\
-    b _08026DCA\n\
-    .align 2, 0\n\
-_08026DA0: .4byte gSpecialStatuses\n\
-_08026DA4: .4byte gBattleMoveDamage\n\
-_08026DA8: .4byte gMoveResultFlags\n\
-_08026DAC: .4byte gLastUsedItem\n\
-_08026DB0: .4byte gBattlerTarget\n\
-_08026DB4:\n\
-    ldr r1, _08026DD4 @ =gBattleMoveDamage\n\
-    movs r0, 0x58\n\
-    muls r0, r2\n\
-    add r0, r10\n\
-    ldrh r0, [r0, 0x28]\n\
-    str r0, [r1]\n\
-    ldr r2, _08026DD8 @ =gMoveResultFlags\n\
-    ldrb r0, [r2]\n\
-    movs r1, 0x10\n\
-_08026DC6:\n\
-    orrs r0, r1\n\
-    strb r0, [r2]\n\
-_08026DCA:\n\
-    ldr r1, _08026DDC @ =gBattlescriptCurrInstr\n\
-    ldr r0, [r1]\n\
-    adds r0, 0x5\n\
-    str r0, [r1]\n\
-    b _08026E40\n\
-    .align 2, 0\n\
-_08026DD4: .4byte gBattleMoveDamage\n\
-_08026DD8: .4byte gMoveResultFlags\n\
-_08026DDC: .4byte gBattlescriptCurrInstr\n\
-_08026DE0:\n\
-    ldr r2, _08026E10 @ =gMoveResultFlags\n\
-    ldrb r0, [r2]\n\
-    movs r1, 0x1\n\
-    orrs r0, r1\n\
-    strb r0, [r2]\n\
-    ldr r0, _08026E14 @ =gBattlerAttacker\n\
-    ldrb r0, [r0]\n\
-    movs r2, 0x58\n\
-    adds r1, r0, 0\n\
-    muls r1, r2\n\
-    add r1, r10\n\
-    adds r1, 0x2A\n\
-    ldr r3, _08026E18 @ =gBattlerTarget\n\
-    ldrb r0, [r3]\n\
-    muls r0, r2\n\
-    add r0, r10\n\
-    adds r0, 0x2A\n\
-    ldrb r1, [r1]\n\
-    ldrb r0, [r0]\n\
-    cmp r1, r0\n\
-    bcc _08026E20\n\
-    ldr r1, _08026E1C @ =gBattleCommunication\n\
-    movs r0, 0\n\
-    b _08026E24\n\
-    .align 2, 0\n\
-_08026E10: .4byte gMoveResultFlags\n\
-_08026E14: .4byte gBattlerAttacker\n\
-_08026E18: .4byte gBattlerTarget\n\
-_08026E1C: .4byte gBattleCommunication\n\
-_08026E20:\n\
-    ldr r1, _08026E50 @ =gBattleCommunication\n\
-    movs r0, 0x1\n\
-_08026E24:\n\
-    strb r0, [r1, 0x5]\n\
-    ldr r3, _08026E54 @ =gBattlescriptCurrInstr\n\
-    ldr r2, [r3]\n\
-    ldrb r1, [r2, 0x1]\n\
-    ldrb r0, [r2, 0x2]\n\
-    lsls r0, 8\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x3]\n\
-    lsls r0, 16\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x4]\n\
-    lsls r0, 24\n\
-    orrs r1, r0\n\
-    str r1, [r3]\n\
-_08026E40:\n\
-    pop {r3-r5}\n\
-    mov r8, r3\n\
-    mov r9, r4\n\
-    mov r10, r5\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_08026E50: .4byte gBattleCommunication\n\
-_08026E54: .4byte gBattlescriptCurrInstr\n\
-        .syntax divided");
-}
-#endif // NOTMATCHING
 
 static void atk94_damagetohalftargethp(void) //super fang
 {
@@ -10434,7 +10129,7 @@ static void atk96_weatherdamage(void)
         {
             if (gBattleMons[gBattlerAttacker].type1 != TYPE_ROCK && gBattleMons[gBattlerAttacker].type1 != TYPE_STEEL && gBattleMons[gBattlerAttacker].type1 != TYPE_GROUND
              && gBattleMons[gBattlerAttacker].type2 != TYPE_ROCK && gBattleMons[gBattlerAttacker].type2 != TYPE_STEEL && gBattleMons[gBattlerAttacker].type2 != TYPE_GROUND
-             && GetBattlerAbility(gBattlerAttacker) != ABILITY_SAND_VEIL && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND) && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))
+             && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD && GetBattlerAbility(gBattlerAttacker) != ABILITY_SAND_VEIL && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND) && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))
             {
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
                 if (gBattleMoveDamage == 0)
@@ -10447,7 +10142,8 @@ static void atk96_weatherdamage(void)
         }
         if (gBattleWeather & WEATHER_HAIL)
         {
-            if (gBattleMons[gBattlerAttacker].type1 != TYPE_ICE && gBattleMons[gBattlerAttacker].type2 != TYPE_ICE && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND) && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))
+            if (gBattleMons[gBattlerAttacker].type1 != TYPE_ICE && gBattleMons[gBattlerAttacker].type2 != TYPE_ICE
+             && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND) && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))
             {
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
                 if (gBattleMoveDamage == 0)
