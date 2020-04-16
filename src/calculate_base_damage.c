@@ -403,6 +403,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             else
                 damage = attack;
         }
+        else if (GetBattlerAbility(bankAtk) == ABILITY_UNAWARE)
+            damage = attack;
         else
             APPLY_STAT_MOD(damage, attacker, attack, STAT_STAGE_ATK)
 
@@ -416,6 +418,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             else
                 damageHelper = defense;
         }
+        else if (GetBattlerAbility(bankAtk) == ABILITY_UNAWARE)
+            damageHelper = defense;
         else
             APPLY_STAT_MOD(damageHelper, defender, defense, STAT_STAGE_DEF)
 
@@ -449,6 +453,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             else
                 damage = spAttack;
         }
+        else if (GetBattlerAbility(bankAtk) == ABILITY_UNAWARE)
+            damage = spAttack;
         else
             APPLY_STAT_MOD(damage, attacker, spAttack, STAT_STAGE_SPATK)
 
@@ -462,6 +468,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             else
                 damageHelper = spDefense;
         }
+        else if (GetBattlerAbility(bankAtk) == ABILITY_UNAWARE)
+            damageHelper = spDefense;
         else
             APPLY_STAT_MOD(damageHelper, defender, spDefense, STAT_STAGE_SPDEF)
 

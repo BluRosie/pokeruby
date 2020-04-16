@@ -1415,6 +1415,9 @@ static void atk01_accuracycheck(void)
             buff = 0;
         if (buff > 0xC)
             buff = 0xC;
+        
+        if (GetBattlerAbility(gBattlerAttacker) == ABILITY_UNAWARE) // bam that's all
+            buff = 6;
 
         moveAcc = gBattleMoves[move].accuracy;
 

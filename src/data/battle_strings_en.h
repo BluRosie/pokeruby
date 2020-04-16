@@ -423,6 +423,9 @@ enum
     BATTLE_TEXT_Teravolt,
     BATTLE_TEXT_Turboblaze,
     BATTLE_TEXT_Unnerve,
+    BATTLE_TEXT_AftermathDmg,
+    BATTLE_TEXT_AnticipationActivates,
+    BATTLE_TEXT_ForewarnActivates,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -983,6 +986,9 @@ const u8 BattleText_MoldBreaker[] = _("{ATTACKING_MON} breaks the mold!");
 const u8 BattleText_Teravolt[] = _("{ATTACKING_MON} radiates a\nbursting aura!");
 const u8 BattleText_Turboblaze[] = _("{ATTACKING_MON} radiates a\nblazing aura!");
 const u8 BattleText_Unnerve[] = _("The opposing team is too nervous\nto eat Berries!");
+const u8 BattleText_AftermathDmg[] = _("{ATTACKING_MON} is hurt by\nAftermath!");
+const u8 BattleText_AnticipationActivates[] = _("{ATTACKING_MON} shuddered\nin anticipation!");
+const u8 BattleText_ForewarnActivates[] = _("{ATTACKING_MON}'s Forewarn\nmade it wary of {STRING 0}!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1424,6 +1430,9 @@ const u8 *const gBattleStringsTable[] =
     BattleText_Teravolt,
     BattleText_Turboblaze,
     BattleText_Unnerve,
+    BattleText_AftermathDmg,
+    BattleText_AnticipationActivates,
+    BattleText_ForewarnActivates,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.

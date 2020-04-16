@@ -89,17 +89,17 @@ DONE.string "Moves hit through abilities.$"
 DONEgAbilityDescription_SuperLuck:
 DONE.string "Critical hits land often.$"
 
-gAbilityDescription_Aftermath:
-	.string "Fainting damages the foe.$"
+DONEgAbilityDescription_Aftermath:
+DONE.string "Fainting damages the foe.$"
 
-gAbilityDescription_Anticipation:
-	.string "Senses dangerous moves.$"
+DONEgAbilityDescription_Anticipation:
+DONE.string "Senses dangerous moves.$"
 
-gAbilityDescription_Forewarn:
-	.string "Determines a foe’s move.$"
+DONEgAbilityDescription_Forewarn:
+DONE.string "Determines a foe’s move.$"
 
-gAbilityDescription_Unaware:
-	.string "Ignores stat changes.$"
+DONEgAbilityDescription_Unaware:
+DONE.string "Ignores stat changes.$"
 
 gAbilityDescription_TintedLens:
 	.string "Ups “not very effective“.$"

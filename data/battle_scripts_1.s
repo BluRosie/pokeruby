@@ -5425,6 +5425,33 @@ BattleScript_RoughSkinActivates:: @ 81D9928
 	tryfaintmon USER, FALSE, NULL
 	return
 
+BattleScript_AftermathDmg::
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
+	healthbarupdate USER
+	datahpupdate USER
+	printstring BATTLE_TEXT_AftermathDmg
+	waitmessage 64
+	tryfaintmon USER, FALSE, NULL
+	return
+
+BattleScript_AnticipationActivates::
+	printstring BATTLE_TEXT_AnticipationActivates
+	waitmessage 64
+	return
+
+BattleScript_AnticipationActivatesEnd3::
+	call BattleScript_AnticipationActivates
+	end3
+
+BattleScript_ForewarnActivates::
+	printstring BATTLE_TEXT_ForewarnActivates
+	waitmessage 64
+	return
+
+BattleScript_ForewarnActivatesEnd3::
+	call BattleScript_ForewarnActivates
+	end3
+
 BattleScript_CuteCharmActivates:: @ 81D9943
 	status2animation USER, STATUS2_INFATUATION
 	printstring BATTLE_TEXT_InfatuatedPoke  @ target's ability infatuated user

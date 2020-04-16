@@ -193,6 +193,12 @@ extern u8 BattleScript_BankAbilityStatRaiseEnd3[];
 extern u8 BattleScript_BankAbilityStatRaise[];
 extern u8 BattleScript_SwitchInAbilityMsgEnd3[];
 extern u8 BattleScript_SwitchInAbilityMsg[];
+extern u8 BattleScript_AftermathDmg[];
+extern u8 BattleScript_AnticipationActivates[];
+extern u8 BattleScript_AnticipationActivatesEnd3[];
+extern u8 BattleScript_ForewarnActivates[];
+extern u8 BattleScript_ForewarnActivatesEnd3[];
+
 extern u8 BattleScript_SoundproofProtected[];
 extern u8 BattleScript_MoveHPDrain[];
 extern u8 BattleScript_MoveHPDrain_PPLoss[];
@@ -2524,6 +2530,139 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                     BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsgEnd3);
                 effect++;
                 break;
+            case ABILITY_ANTICIPATION:
+                {
+                    u8 mod1, mod2, side = GetBattlerSide(bank);
+                    int j;
+
+                    for (i = 0; i < gBattlersCount; i++)
+                    {
+                        if (gBattleMons[i].hp && GetBattlerSide(i) != side)
+                        {
+                            for (j = 0; j < MAX_MON_MOVES; j++)
+                            {
+                                move = gBattleMons[i].moves[j];
+
+                                GET_MOVE_TYPE(move, moveType); // would this be necessary?
+                                mod1 = ReturnTypeEffectiveness(moveType, gBattleMons[gActiveBattler].type1);
+        
+                                if (gBattleMons[gActiveBattler].type1 == gBattleMons[gActiveBattler].type2)
+                                    mod2 = 10;
+                                else
+                                    mod2 = ReturnTypeEffectiveness(moveType, gBattleMons[gActiveBattler].type2);
+
+                                if (mod1 * mod2 > 100)
+                                {
+                                    gBattlerAttacker = bank;
+                                    if (gCurrentActionFuncId == B_ACTION_EXEC_SCRIPT) // if switching in, this handling is lowkey fucked but hey
+                                    {
+                                        BattleScriptPush(BattleScript_MoveEnd);
+                                        BattleScriptExecute(BattleScript_AnticipationActivates);
+                                    }
+                                    else
+                                        BattleScriptPushCursorAndCallback(BattleScript_AnticipationActivatesEnd3);
+                                    
+                                    effect++;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                break;
+            case ABILITY_FOREWARN:
+                {
+                    u16 maxPower = 0, power, side = GetBattlerSide(bank);
+                    int j;
+
+                    for (i = 0; i < gBattlersCount; i++)
+                    {
+                        if (gBattleMons[i].hp && GetBattlerSide(i) != side)
+                        {
+                            for (j = 0; j < MAX_MON_MOVES; j++)
+                            {
+                                switch (gBattleMons[i].moves[j])
+                                {
+                                    case MOVE_ERUPTION:
+                                    case MOVE_WATER_SPOUT:
+                                    case MOVE_FISSURE:
+                                    case MOVE_GUILLOTINE:
+                                    case MOVE_HORN_DRILL:
+                                    case MOVE_SHEER_COLD:
+                                        power = 150;
+                                        break;
+                                    case MOVE_COUNTER:
+                                    case MOVE_METAL_BURST:
+                                    case MOVE_MIRROR_COAT:
+                                        power = 120;
+                                        break;
+                                    case MOVE_CRUSH_GRIP:
+                                    case MOVE_DRAGON_RAGE:
+                                    case MOVE_ELECTRO_BALL:
+                                    case MOVE_ENDEAVOR:
+                                    case MOVE_FINAL_GAMBIT:
+                                    case MOVE_FLAIL:
+                                    case MOVE_FLING:
+                                    case MOVE_FRUSTRATION:
+                                    case MOVE_GRASS_KNOT:
+                                    case MOVE_GUARDIAN_OF_ALOLA:
+                                    case MOVE_GYRO_BALL:
+                                    case MOVE_HEAT_CRASH:
+                                    case MOVE_HEAVY_SLAM:
+                                    case MOVE_HIDDEN_POWER:
+                                    case MOVE_LOW_KICK:
+                                    case MOVE_NATURAL_GIFT:
+                                    case MOVE_NATURES_MADNESS:
+                                    case MOVE_NIGHT_SHADE:
+                                    case MOVE_PRESENT:
+                                    case MOVE_PSYWAVE:
+                                    case MOVE_PUNISHMENT:
+                                    case MOVE_RETURN:
+                                    case MOVE_REVERSAL:
+                                    case MOVE_SEISMIC_TOSS:
+                                    case MOVE_SONIC_BOOM:
+                                    case MOVE_SPIT_UP:
+                                    case MOVE_SUPER_FANG:
+                                    case MOVE_TRUMP_CARD:
+                                    case MOVE_WRING_OUT:
+                                    // z-moves too
+                                        power = 80;
+                                        break;
+                                    case MOVE_STORED_POWER:
+                                    case MOVE_POWER_TRIP:
+                                        power = 20;
+                                        break;
+                                    case MOVE_NONE: // what?
+                                        power = 0;
+                                        break;
+                                    default:
+                                        power = gBattleMoves[gBattleMons[i].moves[j]].power;
+                                        break;
+                                }
+
+                                if (power > maxPower) // for the love of god i am not implementing the part where it randomly chooses between moves with equal power
+                                {
+                                    maxPower = power;
+                                    move = gBattleMons[i].moves[j];
+                                }
+                            }
+                        }
+                    }
+                }
+                PREPARE_MOVE_BUFFER(gBattleTextBuff1, move);
+
+                gBattlerAttacker = bank;
+                if (gCurrentActionFuncId == B_ACTION_EXEC_SCRIPT) // if switching in, this handling is lowkey fucked but hey
+                {
+                    BattleScriptPush(BattleScript_MoveEnd);
+                    BattleScriptExecute(BattleScript_ForewarnActivates);
+                }
+                else
+                    BattleScriptPushCursorAndCallback(BattleScript_ForewarnActivatesEnd3);
+
+                effect++;
+
+                break;
             case ABILITY_CLOUD_NINE:
             case ABILITY_AIR_LOCK:
                 {
@@ -2839,6 +2978,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                         gBattleMoveDamage = 1;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_RoughSkinActivates;
+                    effect++;
+                }
+                break;
+            case ABILITY_AFTERMATH:
+                if (!IsAbilityOnField(ABILITY_DAMP)
+                 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                 && gBattleMons[gBattlerTarget].hp == 0
+                 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                 && (gSpecialStatuses[gBattlerTarget].physicalDmg || gSpecialStatuses[gBattlerTarget].specialDmg)
+                 && (gBattleMoves[move].flags & F_MAKES_CONTACT))
+                {
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_AftermathDmg;
                     effect++;
                 }
                 break;
@@ -4773,4 +4928,30 @@ u8 IsMonDisobedient(void)
             return 1;
         }
     }
+}
+
+u32 IsAbilityOnField(u32 ability)
+{
+    u32 i;
+
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        if (gBattleMons[i].hp != 0 && GetBattlerAbility(i) == ability)
+            return i + 1;
+    }
+
+    return 0;
+}
+
+u32 IsAbilityOnFieldExcept(u32 battlerId, u32 ability)
+{
+    u32 i;
+
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        if (i != battlerId && gBattleMons[i].hp != 0 && GetBattlerAbility(i) == ability)
+            return i + 1;
+    }
+
+    return 0;
 }

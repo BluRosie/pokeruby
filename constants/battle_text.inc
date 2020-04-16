@@ -416,3 +416,6 @@
 	enum BATTLE_TEXT_Teravolt
 	enum BATTLE_TEXT_Turboblaze
 	enum BATTLE_TEXT_Unnerve
+	enum BATTLE_TEXT_AftermathDmg
+	enum BATTLE_TEXT_AnticipationActivates
+	ENUM BATTLE_TEXT_ForewarnActivates

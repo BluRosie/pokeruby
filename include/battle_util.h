@@ -75,5 +75,7 @@ bool32 IsHealBlockPreventingMove(u32 battler, u16 move);
 bool32 CanUseLastResort(u8 bank);
 bool8 ReturnTypeEffectiveness(u8 atkType, u8 defType);
 u8 CalcStealthRockDenominator(u8 type1effectiveness, u8 type2effectiveness);
+u32 IsAbilityOnField(u32 ability);
+u32 IsAbilityOnFieldExcept(u32 battlerId, u32 ability);
 
 #endif // GUARD_BATTLE_UTIL_H
