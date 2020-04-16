@@ -5379,15 +5379,18 @@ void HandleAction_UseMove(void)
              && gSideTimers[side].followmeTimer == 0
              && (gBattleMoves[gCurrentMove].power != 0
                  || gBattleMoves[gCurrentMove].target != MOVE_TARGET_USER)
-             && GetBattlerAbility(ewram16010arr(gBattlerAttacker)) != ABILITY_LIGHTNING_ROD
-             && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
+             && ((GetBattlerAbility(ewram16010arr(gBattlerAttacker)) != ABILITY_LIGHTNING_ROD
+                  && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
+              || (GetBattlerAbility(ewram16010arr(gBattlerAttacker)) != ABILITY_STORM_DRAIN
+                  && gBattleMoves[gCurrentMove].type == TYPE_WATER))
+            )
     {
         side = GetBattlerSide(gBattlerAttacker);
         for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
         {
             if (side != GetBattlerSide(gActiveBattler)
                 && ewram16010arr(gBattlerAttacker) != gActiveBattler
-                && GetBattlerAbility(gActiveBattler) == ABILITY_LIGHTNING_ROD
+                && (GetBattlerAbility(gActiveBattler) == ABILITY_LIGHTNING_ROD || GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN)
                 && GetBattlerTurnOrderNum(gActiveBattler) < var)
             {
                 var = GetBattlerTurnOrderNum(gActiveBattler);
@@ -5437,6 +5440,8 @@ void HandleAction_UseMove(void)
             RecordAbilityBattle(gActiveBattler, GetBattlerAbility(gActiveBattler));
             if (gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
                 gSpecialStatuses[gActiveBattler].lightningRodRedirected = 1;
+            if (gBattleMoves[gCurrentMove].type == TYPE_WATER)
+                gSpecialStatuses[gActiveBattler].stormDrainRedirected = 1;
             gBattlerTarget = gActiveBattler;
         }
     }

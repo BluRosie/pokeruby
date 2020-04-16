@@ -164,7 +164,8 @@ struct SpecialStatus
     u8 flag40:1;
     u8 focusBanded:1;
     u8 focusSashed:1;
-    u8 field1:7;
+    u8 stormDrainRedirected:1;
+    u8 field1:6;
     u8 field2[2];
     s32 dmg;
     s32 physicalDmg;

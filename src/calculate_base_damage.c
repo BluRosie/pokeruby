@@ -369,6 +369,17 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             spAttack = (75 * spAttack) / 100;
         }
     }
+    if (GetBattlerAbility(bankAtk) == ABILITY_RECKLESS 
+     && (gBattleMoves[move].effect == EFFECT_RECOIL_50
+      || gBattleMoves[move].effect == EFFECT_RECOIL
+      || gBattleMoves[move].effect == EFFECT_RECOIL_33_STATUS
+    //  || gBattleMoves[move].effect == EFFECT_RECOIL_IF_MISS
+      || gBattleMoves[move].effect == EFFECT_DOUBLE_EDGE)
+     )
+    {
+        attack = (attack * 120) / 100;
+        spAttack = (spAttack * 120) / 100;
+    }
     if (GetBattlerAbility(bankDef) == ABILITY_HEATPROOF && type == TYPE_FIRE)
     {
         spAttack /= 2;

@@ -407,7 +407,7 @@
 	enum BATTLE_TEXT_ItemsAreUseless
 	enum BATTLE_TEXT_MagicRoomEnds
 	enum BATTLE_TEXT_BugBite
-	enum BATTLE_TEXT_ElectricityRaisedSpeed
+	enum BATTLE_TEXT_Frisk
 	enum BATTLE_TEXT_AttackRisen
 	enum BATTLE_TEXT_AbilityRoseBankStat
 	enum BATTLE_TEXT_DrySkinHurtAttacker
@@ -418,4 +418,5 @@
 	enum BATTLE_TEXT_Unnerve
 	enum BATTLE_TEXT_AftermathDmg
 	enum BATTLE_TEXT_AnticipationActivates
-	ENUM BATTLE_TEXT_ForewarnActivates
+	enum BATTLE_TEXT_ForewarnActivates
+	enum BATTLE_TEXT_BadDreamsActivates

@@ -101,26 +101,26 @@ DONE.string "Determines a foe’s move.$"
 DONEgAbilityDescription_Unaware:
 DONE.string "Ignores stat changes.$"
 
-gAbilityDescription_TintedLens:
-	.string "Ups “not very effective“.$"
+DONEgAbilityDescription_TintedLens:
+DONE.string "Ups “not very effective“.$"
 
-gAbilityDescription_Filter:
-	.string "Weakens “super effective.“$"
+DONEgAbilityDescription_Filter:
+DONE.string "Weakens “super effective.“$"
 
 DONEgAbilityDescription_SlowStart:
 DONE.string "Takes a while to get going.$"
 
-gAbilityDescription_Scrappy:
-	.string "Hits Ghost-type Pokémon.$"
+DONEgAbilityDescription_Scrappy:
+DONE.string "Hits Ghost-type Pokémon.$"
 
-gAbilityDescription_StormDrain:
-	.string "Draws in Water moves.$"
+DONEgAbilityDescription_StormDrain:
+DONE.string "Draws in Water moves.$"
 
-gAbilityDescription_IceBody:
-	.string "Slight HP recovery in Hail.$"
+DONEgAbilityDescription_IceBody:
+DONE.string "Slight HP recovery in Hail.$"
 
-@gAbilityDescription_SolidRock:
-@	.string ".$"
+DONEgAbilityDescription_SolidRock:
+DONE.string ".$"
 
 DONEgAbilityDescription_SnowWarning:
 DONE.string "Summons a hailstorm.$"
@@ -128,11 +128,11 @@ DONE.string "Summons a hailstorm.$"
 DONEgAbilityDescription_HoneyGather:
 DONE.string "May gather Honey.$"
 
-gAbilityDescription_Frisk:
-	.string "Checks a foe’s item.$"
+DONEgAbilityDescription_Frisk:
+DONE.string "Checks a foe’s item.$"
 
-gAbilityDescription_Reckless:
-	.string "Boosts moves with recoil.$"
+DONEgAbilityDescription_Reckless:
+DONE.string "Boosts moves with recoil.$"
 
 gAbilityDescription_Multitype:
 	.string "Changes type to its Plate.$"
@@ -140,8 +140,8 @@ gAbilityDescription_Multitype:
 gAbilityDescription_FlowerGift:
 	.string "Transforms in sunshine.$"
 
-gAbilityDescription_BadDreams:
-	.string "Damages sleeping Pokémon.$"
+DONEgAbilityDescription_BadDreams:
+DONE.string "Damages sleeping Pokémon.$"
 
 @@@@@@@@@
 @ GEN V @
@@ -246,8 +246,8 @@ gAbilityDescription_Rattled:
 gAbilityDescription_MagicBounce:
 	.string "Reflects status moves.$"
 
-gAbilityDescription_SapSipper:
-	.string "Turns grass into Attack.$"
+DONEgAbilityDescription_SapSipper:
+DONE.string "Turns grass into Attack.$"
 
 gAbilityDescription_Prankster:
 	.string "Status moves go first.$"

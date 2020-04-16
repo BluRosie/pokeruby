@@ -5183,6 +5183,23 @@ BattleScript_ShedSkinActivates:: @ 81D9758
 	updatestatusicon USER
 	end3
 
+BattleScript_BadDreamsActivates::
+	setbyte gBattlerTarget, 0
+BattleScript_BadDreamsLoop:
+	trygetbaddreamstarget BattleScript_BadDreamsEnd
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
+	printstring BATTLE_TEXT_BadDreamsActivates
+	waitmessage 64
+	healthbarupdate TARGET
+	datahpupdate TARGET
+	tryfaintmon TARGET, FALSE, NULL
+	atk24 BattleScript_BadDreamsIncrement
+BattleScript_BadDreamsIncrement:
+	addbyte gBattlerTarget, 1
+	goto BattleScript_BadDreamsLoop
+BattleScript_BadDreamsEnd:
+	end3
+
 BattleScript_WeatherFormChanges: @ 81D9761
 	setbyte sBANK, 0
 
@@ -5312,27 +5329,28 @@ BattleScript_FlashFireBoost:: @ 81D987C
 	waitmessage 64
 	goto BattleScript_MoveEnd
 
-BattleScript_MotorDriveBoost_PPLoss::
+BattleScript_AbsorbingAbilityBoost_PPLoss::
 	ppreduce
 
-BattleScript_MotorDriveBoost::
+BattleScript_AbsorbingAbilityBoost::
 	attackstring
 	pause 32
+	copyword gBattleTextBuff1, gTextBufferToDisplayForAbsorbingAbilities
 	setgraphicalstatchangevalues
 	playanimation TARGET, B_ANIM_STATS_CHANGE, sANIM_ARG1
 	waitanimation
-	printfromtable gMotorDriveStringIds
+	printfromtable gAbsorbingAbilityStringIds
 	waitmessage 64
 	goto BattleScript_MoveEnd
 
-BattleScript_MotorDriveBoost_PPLoss_NoAnim::
+BattleScript_AbsorbingAbilityBoost_PPLoss_NoAnim::
 	ppreduce
 
-BattleScript_MotorDriveBoost_NoAnim::
+BattleScript_AbsorbingAbilityBoost_NoAnim::
 	attackstring
 	pause 32
-	setgraphicalstatchangevalues
-	printfromtable gMotorDriveStringIds
+	copyword gBattleTextBuff1, gTextBufferToDisplayForAbsorbingAbilities
+	printfromtable gAbsorbingAbilityStringIds
 	waitmessage 64
 	goto BattleScript_MoveEnd
 

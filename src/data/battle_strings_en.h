@@ -414,7 +414,7 @@ enum
     BATTLE_TEXT_ItemsAreUseless,
     BATTLE_TEXT_MagicRoomEnds,
     BATTLE_TEXT_BugBite,
-    BATTLE_TEXT_ElectricityRaisedSpeed,
+    BATTLE_TEXT_Frisk,
     BATTLE_TEXT_AttackRisen,
     BATTLE_TEXT_AbilityRoseBankStat,
     BATTLE_TEXT_DrySkinHurtAttacker,
@@ -426,6 +426,7 @@ enum
     BATTLE_TEXT_AftermathDmg,
     BATTLE_TEXT_AnticipationActivates,
     BATTLE_TEXT_ForewarnActivates,
+    BATTLE_TEXT_BadDreamsActivates,
 };
 
 const u8 BattleText_UnknownString[] = _("{STRING 33}");
@@ -977,7 +978,7 @@ const u8 BattleText_WonderRoomEnds[] = _("Everyone's defenses\nreturned to norma
 const u8 BattleText_ItemsAreUseless[] = _("{ATTACKING_MON} made held\nitems useless!");
 const u8 BattleText_MagicRoomEnds[] = _("Items can be used\nagain!");
 const u8 BattleText_BugBite[] = _("{ATTACKING_MON} stole and ate\n{STRING 16}'s {STRING 19}!");
-const u8 BattleText_ElectricityRaisedSpeed[] = _("{DEFENDING_MON}'s {STRING 22}\nraised its Speed!");
+const u8 BattleText_Frisk[] = _("{STRING 16} frisked {DEFENDING_MON}\nand found its {STRING 0}!");
 const u8 BattleText_AttackRisen[] = _("{STRING 16}'s {STRING 23}\nraised its Attack!");
 const u8 BattleText_AbilityRoseBankStat[] = _("{STRING 16}'s {STRING 23}\nraised its {STRING 0}!");
 const u8 BattleText_DrySkinHurtAttacker[] = _("The sun hurt {ATTACKING_MON}\ndue to its {STRING 21}!");
@@ -989,6 +990,7 @@ const u8 BattleText_Unnerve[] = _("The opposing team is too nervous\nto eat Berr
 const u8 BattleText_AftermathDmg[] = _("{ATTACKING_MON} is hurt by\nAftermath!");
 const u8 BattleText_AnticipationActivates[] = _("{ATTACKING_MON} shuddered\nin anticipation!");
 const u8 BattleText_ForewarnActivates[] = _("{ATTACKING_MON}'s Forewarn\nmade it wary of {STRING 0}!");
+const u8 BattleText_BadDreamsActivates[] = _("{DEFENDING_MON} is tormented\nby {STRING 21}!");
 
 const u8 *const gStatStrings[] =
 {
@@ -1421,7 +1423,7 @@ const u8 *const gBattleStringsTable[] =
     BattleText_ItemsAreUseless,
     BattleText_MagicRoomEnds,
     BattleText_BugBite,
-    BattleText_ElectricityRaisedSpeed,
+    BattleText_Frisk,
     BattleText_AttackRisen,
     BattleText_AbilityRoseBankStat,
     BattleText_DrySkinHurtAttacker,
@@ -1433,6 +1435,7 @@ const u8 *const gBattleStringsTable[] =
     BattleText_AftermathDmg,
     BattleText_AnticipationActivates,
     BattleText_ForewarnActivates,
+    BattleText_BadDreamsActivates,
 };
 
 // below are lists of battle string enums and NOT pointers to the strings.
@@ -1799,9 +1802,9 @@ const u16 gFlashFireStringIds[] =
     BATTLE_TEXT_MadeIneffective,
 };
 
-const u16 gMotorDriveStringIds[] =
+const u16 gAbsorbingAbilityStringIds[] =
 {
-    BATTLE_TEXT_ElectricityRaisedSpeed,
+    BATTLE_TEXT_AbilityRoseBankStat,
     BATTLE_TEXT_MadeIneffective,
 };
 
@@ -1878,4 +1881,5 @@ const u16 gSwitchInAbilityStringIds[] =
     BATTLE_TEXT_Teravolt,
     BATTLE_TEXT_Turboblaze,
     BATTLE_TEXT_Unnerve,
+    BATTLE_TEXT_Frisk
 };
