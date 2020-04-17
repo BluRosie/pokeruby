@@ -274,7 +274,7 @@ u8 CountAliveMons(u8 caseID);
 void PokemonUseItemEffects(struct Pokemon*, u16 item, u8 partyID, u8 r3, u8 sp);
 u8 CanRunFromBattle(void);
 u8 GetMoveTarget(u16 move, u8 targetbyte); //get target of move
-u8 CastformDataTypeChange(u8 bank);
+u8 TryWeatherFormChange(u8 bank);
 u8 Overworld_GetMapTypeOfSaveblockLocation(void);
 u8 CalculatePlayerPartyCount(void);
 u16 Sqrt(u32 num);
@@ -13038,7 +13038,7 @@ static void atkE7_trycastformdatachange(void)
 {
     u8 form;
     gBattlescriptCurrInstr++;
-    form = CastformDataTypeChange(gBattleStruct->scriptingActive);
+    form = TryWeatherFormChange(gBattleStruct->scriptingActive);
     if (form)
     {
         BattleScriptPushCursorAndCallback(BattleScript_CastformChange);

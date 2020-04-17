@@ -632,6 +632,8 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 | (substruct3->giftRibbon7 << 26);
         }
         break;
+    case MON_DATA_FORM:
+        retVal = substruct2->form;
     default:
         break;
     }
@@ -949,6 +951,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const u8 *data)
     }
     case MON_DATA_HIDDEN_ABILITY:
         SET8(substruct3->hiddenAbility);
+        break;
+    case MON_DATA_FORM:
+        SET8(substruct2->form);
     default:
         break;
     }

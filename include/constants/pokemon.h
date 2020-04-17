@@ -91,6 +91,7 @@
 #define MON_DATA_SPATK2            87
 #define MON_DATA_SPDEF2            88
 #define MON_DATA_HIDDEN_ABILITY    89
+#define MON_DATA_FORM              90
 
 #define MIN_LEVEL 1
 #define MAX_LEVEL 100

@@ -1324,6 +1324,8 @@ void ZeroMonData(struct Pokemon *mon)
     SetMonData(mon, MON_DATA_SPEED, &arg);
     SetMonData(mon, MON_DATA_SPATK, &arg);
     SetMonData(mon, MON_DATA_SPDEF, &arg);
+    SetMonData(mon, MON_DATA_HIDDEN_ABILITY, &arg);
+    SetMonData(mon, MON_DATA_FORM, &arg);
     arg = 255;
     SetMonData(mon, MON_DATA_MAIL, &arg);
 }

@@ -79,7 +79,8 @@ struct PokemonSubstruct2 // size: 0xC
     u8 cute;
     u8 smart;
     u8 tough;
-    u8 sheen;
+    u8 sheen:3;
+    u8 form:5;
 };
 
 struct PokemonSubstruct3 // size: 0xB
@@ -219,7 +220,8 @@ struct BattlePokemon
     /*0x21*/ u8 type1;
     /*0x22*/ u8 type2;
 	/*0x23*/ u8 hiddenAbility:1;
-    /*0x23*/ u8 unknown:7;
+             u8 form:5;
+             u8 unknown:2;
     /*0x24*/ u8 pp[4];
     /*0x28*/ u16 hp;
     /*0x2A*/ u8 level;

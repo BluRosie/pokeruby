@@ -107,6 +107,7 @@ const u8 gTrumpCardPowerTable[] = // pp corresponds with power
 };
 
 u8 GetBattlerSide(u8 bank);
+u8 GetBattlerPosition(u8 slot);
 
 #define APPLY_STAT_MOD(var, mon, stat, statIndex)                                   \
 {                                                                                   \
@@ -379,6 +380,22 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     {
         attack = (attack * 120) / 100;
         spAttack = (spAttack * 120) / 100;
+    }
+    if (GetBattlerAbility(bankAtk) == ABILITY_FLOWER_GIFT
+     && gBattleMons[bankAtk].species == SPECIES_CHERRIM
+     && WEATHER_HAS_EFFECT
+     && gBattleWeather & WEATHER_SUN_ANY)
+    {
+        attack = (attack * 150) / 100;
+        spAttack = (spAttack * 150) / 100;
+    }
+    if (GetBattlerAbility(GET_BATTLER_PARTNER(bankAtk)) == ABILITY_FLOWER_GIFT // if the partner is cherrim and sun is active
+     && gBattleMons[GET_BATTLER_PARTNER(bankAtk)].species == SPECIES_CHERRIM
+     && WEATHER_HAS_EFFECT
+     && gBattleWeather & WEATHER_SUN_ANY)
+    {
+        attack = (attack * 150) / 100;
+        spAttack = (spAttack * 150) / 100;
     }
     if (GetBattlerAbility(bankDef) == ABILITY_HEATPROOF && type == TYPE_FIRE)
     {
