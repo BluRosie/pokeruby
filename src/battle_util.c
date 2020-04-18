@@ -74,6 +74,7 @@ extern s32 gBattleMoveDamage;
 extern u16 gDynamicBasePower;
 extern u32 gBattleControllerExecFlags;
 extern u8 gSentPokesToOpponent[2];
+extern u8 gBattleMonForms[];
 extern const u16 gSoundMovesTable[];
 extern const u8 gStatusConditionString_PoisonJpn[];
 extern const u8 gStatusConditionString_SleepJpn[];
@@ -2281,9 +2282,9 @@ u8 TryWeatherFormChange(u8 bank)
     {
         if (gBattleMons[bank].ability != ABILITY_FLOWER_GIFT || gBattleMons[bank].hp == 0)
             formChange = 0; // no change
-        else if (gBattleMons[bank].form == 0 && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY)
+        else if (gBattleMonForms[bank] == 0 && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY)
             formChange = 2; // to sunny form
-        else if (gBattleMons[bank].form != 0 && (!WEATHER_HAS_EFFECT || !(gBattleWeather & WEATHER_SUN_ANY)))
+        else if (gBattleMonForms[bank] != 0 && (!WEATHER_HAS_EFFECT || !(gBattleWeather & WEATHER_SUN_ANY)))
             formChange = 1; // to normal form
     }
     return formChange;
@@ -3402,7 +3403,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
                     if (GetBattlerAbility(bank) == ABILITY_FORECAST || GetBattlerAbility(bank) == ABILITY_FLOWER_GIFT)
                     {
                         effect = TryWeatherFormChange(bank);
-                        if (effect)
+                        if (effect != 0)
                         {
                             BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
                             gBattleStruct->scriptingActive = bank;

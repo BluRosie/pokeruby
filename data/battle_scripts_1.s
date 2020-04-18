@@ -5210,8 +5210,15 @@ BattleScript_WeatherFormChangesLoop: @ 81D9767
 	return
 
 BattleScript_CastformChange:: @ 81D977D
-	call BattleScript_1D9783
+	call BattleScript_CastformChangeReturn
 	end3
+
+BattleScript_CastformChangeReturn:
+	docastformchangeanimation
+	waitstate
+	printstring BATTLE_TEXT_Transformed2
+	waitmessage 64
+	return
 
 BattleScript_SlowStartStartsEnd3::
 	call BattleScript_SlowStartStarts
@@ -5219,13 +5226,6 @@ BattleScript_SlowStartStartsEnd3::
 
 BattleScript_SlowStartStarts::
 	printstring BATTLE_TEXT_CantGetGoing
-	waitmessage 64
-	return
-
-BattleScript_1D9783: @ 81D9783
-	docastformchangeanimation
-	waitstate
-	printstring BATTLE_TEXT_Transformed2
 	waitmessage 64
 	return
 

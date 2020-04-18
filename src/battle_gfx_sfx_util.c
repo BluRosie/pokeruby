@@ -334,7 +334,7 @@ void BattleLoadOpponentMonSprite(struct Pokemon *pkmn, u8 b)
     LZDecompressWram(lzPaletteData, gSharedMem);
     LoadPalette(gSharedMem, paletteOffset, 0x20);
     LoadPalette(gSharedMem, 0x80 + b * 16, 0x20);
-    if (species == SPECIES_CASTFORM)
+    if (species == SPECIES_CASTFORM || species == SPECIES_CHERRIM)
     {
         paletteOffset = 0x100 + b * 16;
         LZDecompressWram(lzPaletteData, ewram16400);
@@ -396,7 +396,7 @@ void BattleLoadPlayerMonSprite(struct Pokemon *pkmn, u8 b)
     LZDecompressWram(lzPaletteData, gSharedMem);
     LoadPalette(gSharedMem, paletteOffset, 0x20);
     LoadPalette(gSharedMem, 0x80 + b * 16, 0x20);
-    if (species == SPECIES_CASTFORM)
+    if (species == SPECIES_CASTFORM || species == SPECIES_CHERRIM)
     {
         paletteOffset = 0x100 + b * 16;
         LZDecompressWram(lzPaletteData, ewram16400);
@@ -735,7 +735,7 @@ void sub_8031FC4(u8 a, u8 b, bool8 c)
         lzPaletteData = GetMonSpritePalFromOtIdPersonality(species, otId, personalityValue);
         LZDecompressWram(lzPaletteData, gSharedMem);
         LoadPalette(gSharedMem, paletteOffset, 32);
-        if (species == SPECIES_CASTFORM)
+        if (species == SPECIES_CASTFORM || species == SPECIES_CHERRIM)
         {
             u16 *paletteSrc = (u16 *)ewram16400; // TODO: avoid casting?
 

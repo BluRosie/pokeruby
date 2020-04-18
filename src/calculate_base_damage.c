@@ -381,21 +381,37 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack = (attack * 120) / 100;
         spAttack = (spAttack * 120) / 100;
     }
-    if (GetBattlerAbility(bankAtk) == ABILITY_FLOWER_GIFT
-     && gBattleMons[bankAtk].species == SPECIES_CHERRIM
+    if (
+        (
+           (
+           GetBattlerAbility(bankAtk) == ABILITY_FLOWER_GIFT // if the attacker or their partner is cherrim
+        && attacker->species == SPECIES_CHERRIM
+           )
+       ||  (
+           GetBattlerAbility(GET_BATTLER_PARTNER(bankAtk)) == ABILITY_FLOWER_GIFT
+        && gBattleMons[GET_BATTLER_PARTNER(bankAtk)].species == SPECIES_CHERRIM
+           )
+        )
      && WEATHER_HAS_EFFECT
      && gBattleWeather & WEATHER_SUN_ANY)
     {
         attack = (attack * 150) / 100;
-        spAttack = (spAttack * 150) / 100;
     }
-    if (GetBattlerAbility(GET_BATTLER_PARTNER(bankAtk)) == ABILITY_FLOWER_GIFT // if the partner is cherrim and sun is active
-     && gBattleMons[GET_BATTLER_PARTNER(bankAtk)].species == SPECIES_CHERRIM
+    if (
+        (
+           (
+           GetBattlerAbility(bankDef) == ABILITY_FLOWER_GIFT // if the target or their partner is cherrim
+        && defender->species == SPECIES_CHERRIM
+           )
+       ||  (
+           GetBattlerAbility(GET_BATTLER_PARTNER(bankDef)) == ABILITY_FLOWER_GIFT
+        && gBattleMons[GET_BATTLER_PARTNER(bankDef)].species == SPECIES_CHERRIM
+           )
+        )
      && WEATHER_HAS_EFFECT
      && gBattleWeather & WEATHER_SUN_ANY)
     {
-        attack = (attack * 150) / 100;
-        spAttack = (spAttack * 150) / 100;
+        spDefense = (spDefense * 150) / 100;
     }
     if (GetBattlerAbility(bankDef) == ABILITY_HEATPROOF && type == TYPE_FIRE)
     {
