@@ -9,7 +9,7 @@
 // Dimensions (in tiles) of a field dialogue frame
 #define STD_DLG_FRAME_LEFT    0
 #define STD_DLG_FRAME_TOP    14
-#define STD_DLG_FRAME_WIDTH  28
+#define STD_DLG_FRAME_WIDTH  29
 #define STD_DLG_FRAME_HEIGHT  5
 
 static void LoadTextWindowTiles(u8, void *);
