@@ -545,7 +545,7 @@ u16 SpeciesToCryId(u16 species)
 
 void unref_sub_803F938(u16 species, u32 personality, u8 *dest)
 {
-    if (species == SPECIES_SPINDA && dest != gUnknown_081FAF4C[0] && dest != gUnknown_081FAF4C[2])
+    if (species == SPECIES_SPINDA && dest != gMonSpriteGfx_Sprite_ptr[0] && dest != gMonSpriteGfx_Sprite_ptr[2])
     {
         int i;
         for (i = 0; i < 4; i++)
@@ -1208,38 +1208,38 @@ void ClearBattleMonForms(void)
 u16 GetMUS_ForBattle(void)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_KYOGRE_GROUDON)
-        return MUS_BATTLE34;
+        return MUS_VS_KYOGRE_GROUDON;
     if (gBattleTypeFlags & BATTLE_TYPE_REGI)
-        return MUS_BATTLE36;
+        return MUS_VS_REGI;
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-        return MUS_BATTLE20;
+        return MUS_VS_TRAINER;
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         switch (gTrainers[gTrainerBattleOpponent].trainerClass)
         {
         case 2:
         case 0x31:
-            return MUS_BATTLE30;
+            return MUS_VS_AQUA_MAGMA_LEADER;
         case 3:
         case 4:
         case 0x32:
         case 0x33:
-            return MUS_BATTLE31;
+            return MUS_VS_AQUA_MAGMA;
         case 0x19:
-            return MUS_BATTLE32;
+            return MUS_VS_GYM_LEADER;
         case 0x20:
-            return MUS_BATTLE33;
+            return MUS_VS_CHAMPION;
         case 0x2E:
             if (!StringCompare(gTrainers[gTrainerBattleOpponent].trainerName, BattleText_Wally))
-                return MUS_BATTLE20;
-            return MUS_BATTLE35;
+                return MUS_VS_TRAINER;
+            return MUS_VS_RIVAL;
         case 0x18:
-            return MUS_BATTLE38;
+            return MUS_VS_ELITE_FOUR;
         default:
-            return MUS_BATTLE20;
+            return MUS_VS_TRAINER;
         }
     }
-    return MUS_BATTLE27;
+    return MUS_VS_WILD;
 }
 
 void sub_80408BC(void)
@@ -1394,22 +1394,22 @@ void BoxMonRestorePP(struct BoxPokemon *boxMon)
     }
 }
 
-void sub_8040B8C(void)
+void SetMonPreventsSwitchingString(void)
 {
-    gLastUsedAbility = gBattleStruct->unk160C0;;
-    gBattleTextBuff1[0] = 0xFD;
-    gBattleTextBuff1[1] = 4;
-    gBattleTextBuff1[2] = gBattleStruct->unk16054;
-    gBattleTextBuff1[4] = EOS;
-    if (!GetBattlerSide(gBattleStruct->unk16054))
-        gBattleTextBuff1[3] = pokemon_order_func(gBattlerPartyIndexes[gBattleStruct->unk16054]);
+    gLastUsedAbility = gBattleStruct->abilityPreventingSwitchout;;
+    gBattleTextBuff1[0] = B_BUFF_PLACEHOLDER_BEGIN;
+    gBattleTextBuff1[1] = B_BUFF_MON_NICK_WITH_PREFIX;
+    gBattleTextBuff1[2] = gBattleStruct->battlerPreventingSwitchout;
+    gBattleTextBuff1[4] = B_BUFF_EOS;
+    if (GetBattlerSide(gBattleStruct->battlerPreventingSwitchout) == B_SIDE_PLAYER)
+        gBattleTextBuff1[3] = pokemon_order_func(gBattlerPartyIndexes[gBattleStruct->battlerPreventingSwitchout]);
     else
-        gBattleTextBuff1[3] = gBattlerPartyIndexes[gBattleStruct->unk16054];
-    gBattleTextBuff2[0] = 0xFD;
-    gBattleTextBuff2[1] = 4;
+        gBattleTextBuff1[3] = gBattlerPartyIndexes[gBattleStruct->battlerPreventingSwitchout];
+    gBattleTextBuff2[0] = B_BUFF_PLACEHOLDER_BEGIN;
+    gBattleTextBuff2[1] = B_BUFF_MON_NICK_WITH_PREFIX;
     gBattleTextBuff2[2] = gBankInMenu;
     gBattleTextBuff2[3] = pokemon_order_func(gBattlerPartyIndexes[gBankInMenu]);
-    gBattleTextBuff2[4] = EOS;
+    gBattleTextBuff2[4] = B_BUFF_EOS;
     BattleStringExpandPlaceholders(BattleText_PreventedSwitch, gStringVar4);
 }
 

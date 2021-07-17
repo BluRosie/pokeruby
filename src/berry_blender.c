@@ -802,7 +802,7 @@ static bool8 sub_804E2EC(void)
     switch (gBerryBlenderData->field_1)
     {
     case 0:
-        LZDecompressWram(gUnknown_08E6C100, ewram10000);
+        LZDecompressWram(gUnknown_08E6C100, eBerryBlenderGfxBuffer);
         gBerryBlenderData->field_1++;
         break;
     case 1:
@@ -811,35 +811,35 @@ static bool8 sub_804E2EC(void)
         gBerryBlenderData->field_1++;
         break;
     case 2:
-        DmaCopyLarge16(3, ewram10000, (void *)(VRAM + 0x0), 0x2000, 0x1000);
+        DmaCopyLarge16(3, eBerryBlenderGfxBuffer, (void *)(VRAM + 0x0), 0x2000, 0x1000);
         gBerryBlenderData->field_1++;
         break;
     case 3:
-        LZDecompressWram(gUnknown_08E6C920, ewram10000);
+        LZDecompressWram(gUnknown_08E6C920, eBerryBlenderGfxBuffer);
         gBerryBlenderData->field_1++;
         break;
     case 4:
-        LZDecompressWram(gUnknown_08E6D354, ewram13000);
+        LZDecompressWram(gUnknown_08E6D354, eBerryBlenderGfxBuffer + 0x3000);
         gBerryBlenderData->field_1++;
         break;
     case 5:
-        DmaCopy16Defvars(3, ewram10000, (void *)(VRAM + 0xE000), 0x1000);
+        DmaCopy16Defvars(3, eBerryBlenderGfxBuffer + 0x0000, (void *)(VRAM + 0xE000), 0x1000);
         gBerryBlenderData->field_1++;
         break;
     case 6:
-		DmaCopy16Defvars(3, ewram11000, (void *)(VRAM + 0xF000), 0x1000);
+		DmaCopy16Defvars(3, eBerryBlenderGfxBuffer + 0x1000, (void *)(VRAM + 0xF000), 0x1000);
         gBerryBlenderData->field_1++;
         break;
     case 7:
         {
             u16 i;
-            u16* palStore = (u16*)(ewram13000);
+            u16* palStore = (u16*)(eBerryBlenderGfxBuffer + 0x3000);
 
             for (i = 0; i < 640; i++)
             {
                 *(palStore + i) |= 0x100;
             }
-            DmaCopy16Defvars(3, ewram13000, (void *)(VRAM + 0x6000), 0x500);
+            DmaCopy16Defvars(3, eBerryBlenderGfxBuffer + 0x3000, (void *)(VRAM + 0x6000), 0x500);
             LoadPalette(sBlenderOuterPal, 0x80, 0x20);
             gBerryBlenderData->field_1++;
         }
@@ -970,10 +970,10 @@ void sub_804E738(struct Sprite* sprite)
         if (++sprite->data[5] > 3)
             DestroySprite(sprite);
         else
-            PlaySE(SE_TB_KARA);
+            PlaySE(SE_BALL_TRAY_EXIT);
     }
-    sprite->pos1.x = sprite->data[1];
-    sprite->pos1.y = sprite->data[2];
+    sprite->x = sprite->data[1];
+    sprite->y = sprite->data[2];
 }
 
 void sub_804E794(struct Sprite* sprite, s16 a2, s16 a3, s16 a4, s16 a5, s16 a6)
@@ -1451,7 +1451,7 @@ static void sub_804F378(void)
     case 13:
         gBerryBlenderData->field_0++;
         sub_804F238();
-        PlaySE(SE_RU_HYUU);
+        PlaySE(SE_FALL);
         sub_8051414(&gBerryBlenderData->field_168);
         break;
     case 14:
@@ -1465,7 +1465,7 @@ static void sub_804F378(void)
             gBerryBlenderData->arrowPos = gUnknown_082162F8[gUnknown_08216300[gBerryBlenderData->playersNo - 2]];
             REG_BG2CNT = 0x4882;
             gBerryBlenderData->framesToWait = 0;
-            PlaySE(SE_TRACK_DOOR);;
+            PlaySE(SE_TRUCK_DOOR);;
             sub_804F2A8();
         }
         sub_8051414(&gBerryBlenderData->field_168);
@@ -1508,7 +1508,7 @@ static void sub_804F378(void)
             gBerryBlenderData->field_178 = GetCurrentMapMusic();
         }
         PlayBGM(MUS_CYCLING);
-        PlaySE(SE_MOTER);
+        PlaySE(SE_BERRY_BLENDER);
         Blender_ControlHitPitch();
         break;
     }
@@ -1699,17 +1699,17 @@ static void sub_804FC48(u16 a0, u8 a1)
     {
         StartSpriteAnim(&gSprites[spriteID], 2);
         gSprites[spriteID].callback = sub_8051684;
-        PlaySE(SE_RU_GASHIN);
+        PlaySE(SE_ICE_STAIRS);
     }
     else if (a0 == 0x5432)
     {
         StartSpriteAnim(&gSprites[spriteID], 0);
-        PlaySE(SE_SEIKAI);
+        PlaySE(SE_SUCCESS);
     }
     else if (a0 == 0x2345)
     {
         StartSpriteAnim(&gSprites[spriteID], 1);
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
     }
     sub_805156C();
 }
@@ -1888,7 +1888,12 @@ u32 Blender_GetPokeblockColor(struct BlenderBerry* berries, s16* a1, u8 playersN
     s32 r6;
     u8 r2;
 
-    for (i = 0; i <= 5; i++) // bug, writing one index too far
+    // bug, writing one index too far
+#ifdef UBFIX
+    for (i = 0; i < 5; i++)
+#else
+    for (i = 0; i <= 5; i++)
+#endif //UBFIX
         vars[i] = a1[i];
     r6 = 0;
     for (i = 0; i < 5; i++)
@@ -2474,7 +2479,7 @@ static void sub_8050E30(void)
     case 11:
         if (++gBerryBlenderData->framesToWait > 30)
         {
-            sub_800832C();
+            SetCloseLinkCallback();
             gBerryBlenderData->field_6F++;
         }
         break;
@@ -2661,8 +2666,8 @@ void sub_8051524(struct Sprite* sprite)
 {
     sprite->data[2] += sprite->data[0];
     sprite->data[3] += sprite->data[1];
-    sprite->pos2.x = sprite->data[2] / 8;
-    sprite->pos2.y = sprite->data[3] / 8;
+    sprite->x2 = sprite->data[2] / 8;
+    sprite->y2 = sprite->data[3] / 8;
     if (sprite->animEnded)
         DestroySprite(sprite);
 }
@@ -2694,7 +2699,7 @@ static void sub_805156C(void)
 static void sub_8051650(struct Sprite* sprite)
 {
     sprite->data[0]++;
-    sprite->pos2.y = -(sprite->data[0] / 3);
+    sprite->y2 = -(sprite->data[0] / 3);
     if (sprite->animEnded)
         DestroySprite(sprite);
 }
@@ -2702,9 +2707,9 @@ static void sub_8051650(struct Sprite* sprite)
 void sub_8051684(struct Sprite* sprite)
 {
     sprite->data[0]++;
-    sprite->pos2.y = -(sprite->data[0] * 2);
-    if (sprite->pos2.y < -12)
-        sprite->pos2.y = -12;
+    sprite->y2 = -(sprite->data[0] * 2);
+    if (sprite->y2 < -12)
+        sprite->y2 = -12;
     if (sprite->animEnded)
         DestroySprite(sprite);
 }
@@ -2765,7 +2770,7 @@ static void sub_805181C(struct Sprite* sprite)
         {
             sprite->data[1] = 88;
             sprite->data[0]++;
-            PlaySE(SE_KON);
+            PlaySE(SE_BALL_BOUNCE_1);
         }
         break;
     case 1:
@@ -2794,7 +2799,7 @@ static void sub_805181C(struct Sprite* sprite)
         }
         break;
     }
-    sprite->pos2.y = sprite->data[1];
+    sprite->y2 = sprite->data[1];
 }
 
 static void sub_80518CC(struct Sprite* sprite)
@@ -2824,7 +2829,7 @@ static void sub_80518CC(struct Sprite* sprite)
         }
         break;
     }
-    sprite->pos2.y = sprite->data[1];
+    sprite->y2 = sprite->data[1];
 }
 
 static void sub_805194C(u16 a0, u16 a1)
@@ -2948,8 +2953,8 @@ static bool8 sub_8051B8C(void)
 
 static void sub_8051C04(struct Sprite* sprite)
 {
-   sprite->pos2.x = -(gBerryBlenderData->field_144);
-   sprite->pos2.y = -(gBerryBlenderData->field_146);
+   sprite->x2 = -(gBerryBlenderData->field_144);
+   sprite->y2 = -(gBerryBlenderData->field_146);
 }
 
 /*static*/ void Blender_TrySettingRecord(void)
@@ -3272,7 +3277,7 @@ void debug_sub_80524BC(void)
 }
 
 // Partially fixes the clipping on longer names.
-#if DEBUG_TRANSLATE && DEBUG
+#if DEBUG_FIX
 #  define BLENDER_DEBUG_BERRY_LEN 12
 #else
 #  define BLENDER_DEBUG_BERRY_LEN 6
@@ -3532,7 +3537,7 @@ static void sub_8052BD0(u8 taskID)
 {
     if (gTasks[taskID].data[0] == 0)
     {
-        PlayFanfare(MUS_FANFA1);
+        PlayFanfare(MUS_LEVEL_UP);
         gTasks[taskID].data[0]++;
     }
     if (IsFanfareTaskInactive())

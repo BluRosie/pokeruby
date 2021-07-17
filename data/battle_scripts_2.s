@@ -127,7 +127,7 @@ BattleScript_PlayerUsesItem: @ 81D9F45
 
 BattleScript_OpponentUsesHealItem: @ 81D9F4F
 	pause 48
-	playse SE_KAIFUKU
+	playse SE_USE_ITEM
 	printstring BATTLE_TEXT_Used2
 	waitmessage 64
 	useitemonopponent
@@ -143,7 +143,7 @@ BattleScript_OpponentUsesHealItem: @ 81D9F4F
 
 BattleScript_OpponentUsesStatusCureItem: @ 81D9F7B
 	pause 48
-	playse SE_KAIFUKU
+	playse SE_USE_ITEM
 	printstring BATTLE_TEXT_Used2
 	waitmessage 64
 	useitemonopponent
@@ -156,7 +156,7 @@ BattleScript_OpponentUsesStatusCureItem: @ 81D9F7B
 
 BattleScript_OpponentUsesXItem: @ 81D9F9C
 	pause 48
-	playse SE_KAIFUKU
+	playse SE_USE_ITEM
 	printstring BATTLE_TEXT_Used2
 	waitmessage 64
 	useitemonopponent
@@ -168,7 +168,7 @@ BattleScript_OpponentUsesXItem: @ 81D9F9C
 
 BattleScript_OpponentUsesGuardSpecs: @ 81D9FBB
 	pause 48
-	playse SE_KAIFUKU
+	playse SE_USE_ITEM
 	printstring BATTLE_TEXT_Used2
 	waitmessage 64
 	useitemonopponent
@@ -179,7 +179,7 @@ BattleScript_OpponentUsesGuardSpecs: @ 81D9FBB
 	finishaction
 
 BattleScript_RunByUsingItem: @ 81D9FDA
-	playse SE_NIGERU
+	playse SE_FLEE
 	setbyte gBattleOutcome, B_OUTCOME_RAN
 	finishturn
 

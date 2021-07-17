@@ -16,6 +16,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/species.h"
+#include "constants/item_effects.h"
 
 extern u8 gUnknown_02023A14_50;
 
@@ -42,7 +43,7 @@ static bool8 ShouldSwitchIfPerishSong(void)
     if (gStatuses3[gActiveBattler] & STATUS3_PERISH_SONG
         && gDisableStructs[gActiveBattler].perishSongTimer1 == 0)
     {
-        ewram160C8arr(GetBattlerPosition(gActiveBattler)) = 6; // gBattleStruct->AI_monToSwitchIntoId[GetBattlerPosition(gActiveBattler)] = 6;
+        gSharedMem[BSTRUCT_OFF(AI_monToSwitchIntoId) + (GetBattlerPosition(gActiveBattler)) / 2] = 6;
         BtlController_EmitTwoReturnValues(1, 2, 0);
         return TRUE;
     }
@@ -50,263 +51,60 @@ static bool8 ShouldSwitchIfPerishSong(void)
     return FALSE;
 }
 
-#ifdef NONMATCHING
 static bool8 ShouldSwitchIfWonderGuard(void)
 {
     u8 opposingBattler;
     u8 moveFlags;
     s32 i, j;
+    u16 move;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
         return FALSE;
 
-    if (GetBattlerAbility(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)) != ABILITY_WONDER_GUARD)
-        return FALSE;
-
-    // check if pokemon has a super effective move
-    opposingBattler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
-    for (i = 0; i < 4; i++)
+    if (gBattleMons[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)].ability == ABILITY_WONDER_GUARD)
     {
-        u16 move = gBattleMons[gActiveBattler].moves[i];
-        if (move == MOVE_NONE)
-            continue;
-
-        moveFlags = AI_TypeCalc(move, gBattleMons[opposingBattler].species, GetBattlerAbility(opposingBattler));
-        if (moveFlags & MOVE_RESULT_SUPER_EFFECTIVE)
-            return FALSE;
-    }
-
-    // find a pokemon in the party that has a super effective move
-    for (i = 0; i < 6; i++)
-    {
-        if (GetMonData(&gEnemyParty[i], MON_DATA_HP) == 0
-            || GetMonData(&gEnemyParty[i], MON_DATA_SPECIES2) == SPECIES_NONE
-            || GetMonData(&gEnemyParty[i], MON_DATA_SPECIES2) == SPECIES_EGG
-            || i == gBattlerPartyIndexes[gActiveBattler])
-            continue;
-
-        GetMonData(&gEnemyParty[i], MON_DATA_SPECIES); // unused return value
-        GetMonData(&gEnemyParty[i], MON_DATA_ALT_ABILITY); // unused return value
-
-        opposingBattler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
-        for (j = 0; j < 4; j++)
+        // Check if Pokemon has a super effective move.
+        for (opposingBattler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT), i = 0; i < MAX_MON_MOVES; ++i)
         {
-            u16 move = GetMonData(&gEnemyParty[i], MON_DATA_MOVE1 + j);
+            move = gBattleMons[gActiveBattler].moves[i];
             if (move == MOVE_NONE)
                 continue;
+            moveFlags = AI_TypeCalc(move, gBattleMons[opposingBattler].species, gBattleMons[opposingBattler].ability);
+            if (moveFlags & MOVE_RESULT_SUPER_EFFECTIVE)
+                return FALSE;
+        }
+        // Find a Pokemon in the party that has a super effective move.
+        for (i = 0; i < PARTY_SIZE; ++i)
+        {
+            if (GetMonData(&gEnemyParty[i], MON_DATA_HP) == 0)
+                continue;
+            if (GetMonData(&gEnemyParty[i], MON_DATA_SPECIES2) == SPECIES_NONE)
+                continue;
+            if (GetMonData(&gEnemyParty[i], MON_DATA_SPECIES2) == SPECIES_EGG)
+                continue;
+            if (i == gBattlerPartyIndexes[gActiveBattler])
+                continue;
+            GetMonData(&gEnemyParty[i], MON_DATA_SPECIES); // Unused return value.
+            GetMonData(&gEnemyParty[i], MON_DATA_ALT_ABILITY); // Unused return value.
 
-            moveFlags = AI_TypeCalc(move, gBattleMons[opposingBattler].species, GetBattlerAbility(opposingBattler));
-            if (moveFlags & MOVE_RESULT_SUPER_EFFECTIVE && (Random() % 3) < 2)
+            for (opposingBattler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT), j = 0; j < MAX_MON_MOVES; ++j)
             {
-                // we found a mon
-                ewram160C8arr(GetBattlerPosition(gActiveBattler)) = i; // gBattleStruct->AI_monToSwitchIntoId[GetBattlerPosition(gActiveBattler)] = i;
-                BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
-                return TRUE;
+                move = GetMonData(&gEnemyParty[i], MON_DATA_MOVE1 + j);
+                if (move == MOVE_NONE)
+                    continue;
+                moveFlags = AI_TypeCalc(move, gBattleMons[opposingBattler].species, gBattleMons[opposingBattler].ability);
+                if (moveFlags & MOVE_RESULT_SUPER_EFFECTIVE && Random() % 3 < 2)
+                {
+                    // We found a mon.
+                    gSharedMem[BSTRUCT_OFF(AI_monToSwitchIntoId) + (GetBattlerPosition(gActiveBattler) / 2)] = i;
+                    BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+                    return TRUE;
+                }
             }
         }
     }
-
-    return FALSE; // at this point there is not a single pokemon in the party that has a super effective move against a pokemon with wonder guard
+    return FALSE; // There is not a single Pokemon in the party that has a super effective move against a mon with Wonder Guard.
 }
-#else
-NAKED
-static bool8 ShouldSwitchIfWonderGuard(void)
-{
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r9\n\
-    mov r6, r8\n\
-    push {r6,r7}\n\
-    ldr r0, _0803606C @ =gBattleTypeFlags\n\
-    ldrh r1, [r0]\n\
-    movs r0, 0x1\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    beq _080360A0\n\
-    b _080361C8\n\
-    .align 2, 0\n\
-_0803606C: .4byte gBattleTypeFlags\n\
-_08036070:\n\
-    ldr r0, _08036094 @ =gActiveBattler\n\
-    ldrb r0, [r0]\n\
-    bl GetBattlerPosition\n\
-    ldr r1, _08036098 @ =gSharedMem\n\
-    lsls r0, 24\n\
-    lsrs r0, 25\n\
-    ldr r2, _0803609C @ =0x000160c8\n\
-    adds r0, r2\n\
-    adds r0, r1\n\
-    strb r6, [r0]\n\
-    movs r0, 0x1\n\
-    movs r1, 0x2\n\
-    movs r2, 0\n\
-    bl BtlController_EmitTwoReturnValues\n\
-    movs r0, 0x1\n\
-    b _080361CA\n\
-    .align 2, 0\n\
-_08036094: .4byte gActiveBattler\n\
-_08036098: .4byte gSharedMem\n\
-_0803609C: .4byte 0x000160c8\n\
-_080360A0:\n\
-    ldr r4, _080361D8 @ =gBattleMons\n\
-    movs r0, 0\n\
-    bl GetBattlerAtPosition\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    movs r1, 0x58\n\
-    muls r0, r1\n\
-    adds r0, r4\n\
-    adds r0, 0x20\n\
-    ldrb r0, [r0]\n\
-    cmp r0, 0x19\n\
-    beq _080360BC\n\
-    b _080361C8\n\
-_080360BC:\n\
-    movs r0, 0\n\
-    bl GetBattlerAtPosition\n\
-    lsls r0, 24\n\
-    lsrs r2, r0, 24\n\
-    movs r6, 0\n\
-    adds r7, r4, 0\n\
-    movs r5, 0x58\n\
-    adds r0, r2, 0\n\
-    muls r0, r5\n\
-    adds r4, r0, r7\n\
-    movs r3, 0x20\n\
-    adds r3, r4\n\
-    mov r8, r3\n\
-_080360D8:\n\
-    lsls r1, r6, 1\n\
-    ldr r0, _080361DC @ =gActiveBattler\n\
-    ldrb r0, [r0]\n\
-    muls r0, r5\n\
-    adds r1, r0\n\
-    adds r0, r7, 0\n\
-    adds r0, 0xC\n\
-    adds r1, r0\n\
-    ldrh r0, [r1]\n\
-    cmp r0, 0\n\
-    beq _08036104\n\
-    ldrh r1, [r4]\n\
-    mov r3, r8\n\
-    ldrb r2, [r3]\n\
-    bl AI_TypeCalc\n\
-    lsls r0, 24\n\
-    lsrs r1, r0, 24\n\
-    movs r0, 0x2\n\
-    ands r1, r0\n\
-    cmp r1, 0\n\
-    bne _080361C8\n\
-_08036104:\n\
-    adds r6, 0x1\n\
-    cmp r6, 0x3\n\
-    ble _080360D8\n\
-    movs r6, 0\n\
-    ldr r0, _080361E0 @ =gEnemyParty\n\
-    mov r9, r0\n\
-_08036110:\n\
-    movs r0, 0x64\n\
-    adds r5, r6, 0\n\
-    muls r5, r0\n\
-    mov r2, r9\n\
-    adds r4, r5, r2\n\
-    adds r0, r4, 0\n\
-    movs r1, 0x39\n\
-    bl GetMonData\n\
-    cmp r0, 0\n\
-    beq _080361C2\n\
-    adds r0, r4, 0\n\
-    movs r1, 0x41\n\
-    bl GetMonData\n\
-    cmp r0, 0\n\
-    beq _080361C2\n\
-    adds r0, r4, 0\n\
-    movs r1, 0x41\n\
-    bl GetMonData\n\
-    movs r1, 0xCE\n\
-    lsls r1, 1\n\
-    cmp r0, r1\n\
-    beq _080361C2\n\
-    ldr r1, _080361E4 @ =gBattlerPartyIndexes\n\
-    ldr r0, _080361DC @ =gActiveBattler\n\
-    ldrb r0, [r0]\n\
-    lsls r0, 1\n\
-    adds r0, r1\n\
-    ldrh r0, [r0]\n\
-    cmp r6, r0\n\
-    beq _080361C2\n\
-    adds r0, r4, 0\n\
-    movs r1, 0xB\n\
-    bl GetMonData\n\
-    adds r0, r4, 0\n\
-    movs r1, 0x2E\n\
-    bl GetMonData\n\
-    movs r0, 0\n\
-    bl GetBattlerAtPosition\n\
-    lsls r0, 24\n\
-    lsrs r2, r0, 24\n\
-    movs r4, 0\n\
-    mov r8, r5\n\
-    ldr r1, _080361D8 @ =gBattleMons\n\
-    movs r0, 0x58\n\
-    muls r0, r2\n\
-    adds r5, r0, r1\n\
-    adds r7, r5, 0\n\
-    adds r7, 0x20\n\
-_0803617C:\n\
-    adds r1, r4, 0\n\
-    adds r1, 0xD\n\
-    mov r0, r8\n\
-    add r0, r9\n\
-    bl GetMonData\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    cmp r0, 0\n\
-    beq _080361BC\n\
-    ldrh r1, [r5]\n\
-    ldrb r2, [r7]\n\
-    bl AI_TypeCalc\n\
-    lsls r0, 24\n\
-    lsrs r1, r0, 24\n\
-    movs r0, 0x2\n\
-    ands r1, r0\n\
-    cmp r1, 0\n\
-    beq _080361BC\n\
-    bl Random\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    movs r1, 0x3\n\
-    bl __umodsi3\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    cmp r0, 0x1\n\
-    bhi _080361BC\n\
-    b _08036070\n\
-_080361BC:\n\
-    adds r4, 0x1\n\
-    cmp r4, 0x3\n\
-    ble _0803617C\n\
-_080361C2:\n\
-    adds r6, 0x1\n\
-    cmp r6, 0x5\n\
-    ble _08036110\n\
-_080361C8:\n\
-    movs r0, 0\n\
-_080361CA:\n\
-    pop {r3,r4}\n\
-    mov r8, r3\n\
-    mov r9, r4\n\
-    pop {r4-r7}\n\
-    pop {r1}\n\
-    bx r1\n\
-    .align 2, 0\n\
-_080361D8: .4byte gBattleMons\n\
-_080361DC: .4byte gActiveBattler\n\
-_080361E0: .4byte gEnemyParty\n\
-_080361E4: .4byte gBattlerPartyIndexes\n\
-    .syntax divided\n");
-}
-#endif // NONMATCHING
 
 static bool8 FindMonThatAbsorbsOpponentsMove(void)
 {
@@ -364,9 +162,9 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
             continue;
         if (i == gBattlerPartyIndexes[battlerIn2])
             continue;
-        if (i == ewram16068arr(battlerIn1))
+        if (i == gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + battlerIn1])
             continue;
-        if (i == ewram16068arr(battlerIn2))
+        if (i == gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + battlerIn2])
             continue;
 
         species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES);
@@ -380,7 +178,7 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
         if (absorbingTypeAbility == monAbility && Random() & 1)
         {
             // we found a mon
-            ewram160C8arr(GetBattlerPosition(gActiveBattler)) = i;
+            gSharedMem[BSTRUCT_OFF(AI_monToSwitchIntoId) + (GetBattlerPosition(gActiveBattler) / 2)] = i;
             BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
             return TRUE;
         }
@@ -400,13 +198,13 @@ static bool8 ShouldSwitchIfNaturalCure(void)
 
     if ((gLastLandedMoves[gActiveBattler] == 0 || gLastLandedMoves[gActiveBattler] == 0xFFFF) && Random() & 1)
     {
-        ewram160C8arr(GetBattlerPosition(gActiveBattler)) = 6;
+        gSharedMem[BSTRUCT_OFF(AI_monToSwitchIntoId) + (GetBattlerPosition(gActiveBattler) / 2)] = 6;
         BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
         return TRUE;
     }
     else if (gBattleMoves[gLastLandedMoves[gActiveBattler]].power == 0 && Random() & 1)
     {
-        ewram160C8arr(GetBattlerPosition(gActiveBattler)) = 6;
+        gSharedMem[BSTRUCT_OFF(AI_monToSwitchIntoId) + (GetBattlerPosition(gActiveBattler) / 2)] = 6;
         BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
         return TRUE;
     }
@@ -417,7 +215,7 @@ static bool8 ShouldSwitchIfNaturalCure(void)
         return TRUE;
     if (Random() & 1)
     {
-        ewram160C8arr(GetBattlerPosition(gActiveBattler)) = 6;
+        gSharedMem[BSTRUCT_OFF(AI_monToSwitchIntoId) + (GetBattlerPosition(gActiveBattler) / 2)] = 6;
         BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
         return TRUE;
     }
@@ -536,9 +334,9 @@ static bool8 FindMonWithFlagsAndSuperEffective(u8 flags, u8 moduloPercent)
             continue;
         if (i == gBattlerPartyIndexes[battlerIn2])
             continue;
-        if (i == ewram16068arr(battlerIn1))
+        if (i == gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + battlerIn1])
             continue;
-        if (i == ewram16068arr(battlerIn2))
+        if (i == gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + battlerIn2])
             continue;
 
         species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES);
@@ -563,7 +361,7 @@ static bool8 FindMonWithFlagsAndSuperEffective(u8 flags, u8 moduloPercent)
                 moveFlags = AI_TypeCalc(move, gBattleMons[battlerIn1].species, GetBattlerAbility(battlerIn1));
                 if (moveFlags & MOVE_RESULT_SUPER_EFFECTIVE && Random() % moduloPercent == 0)
                 {
-                    ewram160C8arr(GetBattlerPosition(gActiveBattler)) = i;
+                    gSharedMem[BSTRUCT_OFF(AI_monToSwitchIntoId) + (GetBattlerPosition(gActiveBattler) / 2)] = i;
                     BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
                     return TRUE;
                 }
@@ -623,9 +421,9 @@ static bool8 ShouldSwitch(void)
             continue;
         if (i == gBattlerPartyIndexes[battlerIn2])
             continue;
-        if (i == ewram16068arr(battlerIn1))
+        if (i == gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + battlerIn1])
             continue;
-        if (i == ewram16068arr(battlerIn2))
+        if (i == gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + battlerIn2])
             continue;
 
         availableToSwitch++;
@@ -660,7 +458,7 @@ void AI_TrySwitchOrUseItem(void)
     {
         if (ShouldSwitch())
         {
-            if (ewram160C8arr(GetBattlerPosition(gActiveBattler)) == 6)
+            if (gSharedMem[BSTRUCT_OFF(AI_monToSwitchIntoId) + (GetBattlerPosition(gActiveBattler) / 2)] == 6)
             {
                 s32 monToSwitchId = GetMostSuitableMonToSwitchInto();
                 if (monToSwitchId == 6)
@@ -684,19 +482,19 @@ void AI_TrySwitchOrUseItem(void)
                             continue;
                         if (monToSwitchId == gBattlerPartyIndexes[battlerIn2])
                             continue;
-                        if (monToSwitchId == ewram16068arr(battlerIn1))
+                        if (monToSwitchId == gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + battlerIn1])
                             continue;
-                        if (monToSwitchId == ewram16068arr(battlerIn2))
+                        if (monToSwitchId == gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + battlerIn2])
                             continue;
 
                         break;
                     }
                 }
 
-                ewram160C8arr(GetBattlerPosition(gActiveBattler)) = monToSwitchId;
+                gSharedMem[BSTRUCT_OFF(AI_monToSwitchIntoId) + (GetBattlerPosition(gActiveBattler) / 2)] = monToSwitchId;
             }
 
-            ewram16068arr(gActiveBattler) = ewram160C8arr(GetBattlerPosition(gActiveBattler));
+            gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + gActiveBattler] = gSharedMem[BSTRUCT_OFF(AI_monToSwitchIntoId) + (GetBattlerPosition(gActiveBattler) / 2)];
             return;
         }
         else
@@ -783,8 +581,8 @@ u8 GetMostSuitableMonToSwitchInto(void)
                 && !(gBitTable[i] & invalidMons)
                 && gBattlerPartyIndexes[battlerIn1] != i
                 && gBattlerPartyIndexes[battlerIn2] != i
-                && i != ewram16068arr(battlerIn1)
-                && i != ewram16068arr(battlerIn2))
+                && i != gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + battlerIn1]
+                && i != gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + battlerIn2])
             {
                 u8 type1 = gBaseStats[species].type1;
                 u8 type2 = gBaseStats[species].type2;
@@ -843,9 +641,9 @@ u8 GetMostSuitableMonToSwitchInto(void)
             continue;
         if (gBattlerPartyIndexes[battlerIn2] == i)
             continue;
-        if (i == ewram16068arr(battlerIn1))
+        if (i == gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + battlerIn1])
             continue;
-        if (i == ewram16068arr(battlerIn2))
+        if (i == gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + battlerIn2])
             continue;
 
         for (j = 0; j < 4; j++)
@@ -921,9 +719,9 @@ static bool8 ShouldUseItem(void)
         else
             itemEffects = ItemId_GetEffect(item);
 
-        ewram160D8(gActiveBattler) = GetAI_ItemType(item, itemEffects);
+        gSharedMem[BSTRUCT_OFF(AI_usedItemType) + (gActiveBattler / 2)] = GetAI_ItemType(item, itemEffects);
 
-        switch (ewram160D8(gActiveBattler))
+        switch (gSharedMem[BSTRUCT_OFF(AI_usedItemType) + (gActiveBattler / 2)])
         {
         case AI_ITEM_FULL_RESTORE:
             if (gBattleMons[gActiveBattler].hp >= gBattleMons[gActiveBattler].maxHP / 4)
@@ -942,61 +740,56 @@ static bool8 ShouldUseItem(void)
                 shouldUse = TRUE;
             break;
         case AI_ITEM_CURE_CONDITION:
-            ewram160DA(gActiveBattler) = 0;
-            if (itemEffects[STATUS_HEALING] & CURE_INFATUATION && gBattleMons[gActiveBattler].status2 & STATUS2_INFATUATION)
+            gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] = 0;
+            if (itemEffects[3] & ITEM3_SLEEP && gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP)
             {
-               ewram160DA(gActiveBattler) |= CURE_INFATUATION;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x20;
                 shouldUse = TRUE;
             }
-            if (itemEffects[STATUS_HEALING] & CURE_SLEEP && gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP)
+            if (itemEffects[3] & ITEM3_POISON && (gBattleMons[gActiveBattler].status1 & STATUS1_POISON || gBattleMons[gActiveBattler].status1 & STATUS1_TOXIC_POISON))
             {
-               ewram160DA(gActiveBattler) |= CURE_SLEEP;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x10;
                 shouldUse = TRUE;
             }
-            if (itemEffects[STATUS_HEALING] & CURE_POISON && (gBattleMons[gActiveBattler].status1 & STATUS1_POISON || gBattleMons[gActiveBattler].status1 & STATUS1_TOXIC_POISON))
+            if (itemEffects[3] & ITEM3_BURN && gBattleMons[gActiveBattler].status1 & STATUS1_BURN)
             {
-               ewram160DA(gActiveBattler) |= CURE_POISON;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x8;
                 shouldUse = TRUE;
             }
-            if (itemEffects[STATUS_HEALING] & CURE_BURN && gBattleMons[gActiveBattler].status1 & STATUS1_BURN)
+            if (itemEffects[3] & ITEM3_FREEZE && gBattleMons[gActiveBattler].status1 & STATUS1_FREEZE)
             {
-               ewram160DA(gActiveBattler) |= CURE_BURN;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x4;
                 shouldUse = TRUE;
             }
-            if (itemEffects[STATUS_HEALING] & CURE_ICE && gBattleMons[gActiveBattler].status1 & STATUS1_FREEZE)
+            if (itemEffects[3] & ITEM3_PARALYSIS && gBattleMons[gActiveBattler].status1 & STATUS1_PARALYSIS)
             {
-               ewram160DA(gActiveBattler) |= CURE_ICE;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x2;
                 shouldUse = TRUE;
             }
-            if (itemEffects[STATUS_HEALING] & CURE_PARALYSIS && gBattleMons[gActiveBattler].status1 & STATUS1_PARALYSIS)
+            if (itemEffects[3] & ITEM3_CONFUSION && gBattleMons[gActiveBattler].status2 & STATUS2_CONFUSION)
             {
-               ewram160DA(gActiveBattler) |= CURE_PARALYSIS;
-                shouldUse = TRUE;
-            }
-            if (itemEffects[STATUS_HEALING] & CURE_CONFUSION && gBattleMons[gActiveBattler].status2 & STATUS2_CONFUSION)
-            {
-               ewram160DA(gActiveBattler) |= CURE_CONFUSION;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x1;
                 shouldUse = TRUE;
             }
             break;
         case AI_ITEM_X_STAT:
-           ewram160DA(gActiveBattler) = 0;
+           gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] = 0;
             if (gDisableStructs[gActiveBattler].isFirstTurn == 0)
                 break;
             if (itemEffects[X_ITEMS] & RAISE_ATTACK) // x attack
-               ewram160DA(gActiveBattler) |= 0x1;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x1;
             if (itemEffects[X_ITEMS] & RAISE_DEFENSE) // x defend
-               ewram160DA(gActiveBattler) |= 0x2;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x2;
             if (itemEffects[X_ITEMS] & RAISE_SPEED) // x speed
-               ewram160DA(gActiveBattler) |= 0x4;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x4;
             if (itemEffects[X_ITEMS] & RAISE_SP_ATK) // x special
-               ewram160DA(gActiveBattler) |= 0x8;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x8;
             if (itemEffects[X_ITEMS] & RAISE_SP_DEF) // x sp. def
-               ewram160DA(gActiveBattler) |= 0x10;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x10;
             if (itemEffects[X_ITEMS] & RAISE_ACCURACY) // x accuracy
-               ewram160DA(gActiveBattler) |= 0x20;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x20;
             if (itemEffects[X_ITEMS] & RAISE_CRITICAL) // dire hit
-               ewram160DA(gActiveBattler) |= 0x80;
+               gSharedMem[BSTRUCT_OFF(AI_usedItemEffect) + (gActiveBattler / 2)] |= 0x80;
             shouldUse = TRUE;
             break;
         case AI_ITEM_GUARD_SPECS:
@@ -1011,7 +804,11 @@ static bool8 ShouldUseItem(void)
         if (shouldUse)
         {
             BtlController_EmitTwoReturnValues(1, B_ACTION_USE_ITEM, 0);
-            ewram160D4(gActiveBattler) = item;
+            // The AI will only ever use an item whose ID fits in 8 bits.
+            // If you want the AI to use an item with a higher ID, uncomment the line below.
+            // See also: battle_controller_opponent.c:OpponentHandleOpenBag
+            gSharedMem[BSTRUCT_OFF(AI_usedItemId) + (gActiveBattler / 2) * 2] = item;
+//            gSharedMem[BSTRUCT_OFF(AI_usedItemId) + (gActiveBattler / 2) * 2 + 1] = item >> 8;
             AI_BATTLE_HISTORY->trainerItems[i] = 0;
             return shouldUse;
         }

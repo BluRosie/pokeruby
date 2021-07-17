@@ -6,12 +6,17 @@
 #include "blend_palette.h"
 #include "cable_club.h"
 #include "clock.h"
+#include "constants/map_types.h"
+#include "constants/maps.h"
+#include "constants/songs.h"
+#include "constants/species.h"
+#include "contest_util.h"
 #include "event_data.h"
+#include "event_object_movement.h"
 #include "field_camera.h"
 #include "field_control_avatar.h"
 #include "field_effect.h"
 #include "field_fadetransition.h"
-#include "event_object_movement.h"
 #include "field_message_box.h"
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
@@ -24,8 +29,8 @@
 #include "heal_location.h"
 #include "link.h"
 #include "load_save.h"
-#include "main.h"
 #include "m4a.h"
+#include "main.h"
 #include "map_name_popup.h"
 #include "menu.h"
 #include "metatile_behavior.h"
@@ -37,8 +42,8 @@
 #include "rotating_gate.h"
 #include "rtc.h"
 #include "safari_zone.h"
+#include "scanline_effect.h"
 #include "script.h"
-#include "script_pokemon_80C4.h"
 #include "secret_base.h"
 #include "sound.h"
 #include "start_menu.h"
@@ -46,25 +51,20 @@
 #include "tileset_anim.h"
 #include "time_events.h"
 #include "tv.h"
-#include "scanline_effect.h"
 #include "wild_encounter.h"
-#include "constants/map_types.h"
-#include "constants/maps.h"
-#include "constants/songs.h"
-#include "constants/species.h"
 
 #ifdef SAPPHIRE
-#define LEGENDARY_MUSIC MUS_OOAME  // Heavy Rain
+#define LEGENDARY_MUSIC MUS_WEATHER_KYOGRE  // Heavy Rain
 #else
-#define LEGENDARY_MUSIC MUS_HIDERI // Drought
+#define LEGENDARY_MUSIC MUS_WEATHER_GROUDON // Drought
 #endif
 
 extern u8 gUnknown_020297ED;
 extern u16 gTotalCameraPixelOffsetY;
 extern u16 gTotalCameraPixelOffsetX;
 
-extern u8 S_WhiteOut[];
-extern u8 gUnknown_0819FC9F[];
+extern u8 EventScript_WhiteOut[];
+extern u8 EventScript_ResetMrBriney[];
 extern u8 SingleBattleColosseum_EventScript_1A436F[];
 extern u8 SingleBattleColosseum_EventScript_1A4379[];
 extern u8 DoubleBattleColosseum_EventScript_1A4383[];
@@ -211,7 +211,7 @@ static void (*const gUnknown_082166D8[])(struct LinkPlayerObjectEvent *, struct 
 
 static void DoWhiteOut(void)
 {
-    ScriptContext2_RunNewScript(S_WhiteOut);
+    ScriptContext2_RunNewScript(EventScript_WhiteOut);
     gSaveBlock1.money /= 2;
     ScrSpecial_HealPlayerParty();
     Overworld_ResetStateAfterWhiteOut();
@@ -237,7 +237,7 @@ void Overworld_ResetStateAfterTeleport(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
-    ScriptContext2_RunNewScript(gUnknown_0819FC9F);
+    ScriptContext2_RunNewScript(EventScript_ResetMrBriney);
 }
 
 void Overworld_ResetStateAfterDigEscRope(void)
@@ -598,7 +598,7 @@ static bool8 SetDiveWarp(u8 direction, u16 x, u16 y)
     }
     else
     {
-        mapheader_run_script_with_tag_x6();
+        RunOnDiveWarpMapScript();
         if (IsDummyWarp(&gFixedDiveWarp))
             return FALSE;
 
@@ -636,7 +636,7 @@ void sub_80538F0(u8 mapGroup, u8 mapNum)
     ChooseAmbientCrySpecies();
     SetDefaultFlashLevel();
     Overworld_ClearSavedMusic();
-    mapheader_run_script_with_tag_x3();
+    RunOnTransitionMapScript();
     not_trainer_hill_battle_pyramid();
     sub_8056D38(gMapHeader.mapLayout);
     apply_map_tileset2_palette(gMapHeader.mapLayout);
@@ -658,7 +658,7 @@ void sub_80538F0(u8 mapGroup, u8 mapNum)
     RoamerMove();
     DoCurrentWeather();
     ResetFieldTasksArgs();
-    mapheader_run_script_with_tag_x5();
+    RunOnResumeMapScript();
     ShowMapNamePopup();
 }
 
@@ -683,13 +683,13 @@ void sub_8053994(u32 a1)
         FlagClear(FLAG_SYS_USE_FLASH);
     SetDefaultFlashLevel();
     Overworld_ClearSavedMusic();
-    mapheader_run_script_with_tag_x3();
+    RunOnTransitionMapScript();
     UpdateLocationHistoryForRoamer();
     RoamerMoveToOtherLocationSet();
     not_trainer_hill_battle_pyramid();
     if (a1 != 1 && v3)
     {
-        UpdateTVScreensOnMap(gUnknown_03004870.width, gUnknown_03004870.height);
+        UpdateTVScreensOnMap(gBackupMapLayout.width, gBackupMapLayout.height);
         sub_80BBCCC(1);
     }
 }
@@ -870,7 +870,7 @@ static u16 GetLocationMusic(struct WarpData *warp)
     if (ShouldLegendaryMusicPlayAtLocation(warp) == TRUE)
         return LEGENDARY_MUSIC;
     else if (IsInfiltratedWeatherInstitute(warp) == TRUE)
-        return MUS_TOZAN;
+        return MUS_MT_CHIMNEY;
     else
         return Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum)->music;
 }
@@ -883,7 +883,7 @@ u16 GetCurrLocationDefaultMusic(void)
     if (gSaveBlock1.location.mapGroup == MAP_GROUP(ROUTE111)
      && gSaveBlock1.location.mapNum == MAP_NUM(ROUTE111)
      && GetSav1Weather() == 8)
-        return MUS_ASHROAD;
+        return MUS_ROUTE111;
 
     music = GetLocationMusic(&gSaveBlock1.location);
     if (music != 0x7FFF)
@@ -893,9 +893,9 @@ u16 GetCurrLocationDefaultMusic(void)
     else
     {
         if (gSaveBlock1.pos.x < 24)
-            return MUS_DOORO_X1;
+            return MUS_ROUTE110;
         else
-            return MUS_GRANROAD;
+            return MUS_ROUTE119;
     }
 }
 
@@ -910,9 +910,9 @@ u16 GetWarpDestinationMusic(void)
     {
         if (gSaveBlock1.location.mapGroup == MAP_GROUP(MAUVILLE_CITY)
          && gSaveBlock1.location.mapNum == MAP_NUM(MAUVILLE_CITY))
-            return MUS_DOORO_X1;
+            return MUS_ROUTE110;
         else
-            return MUS_GRANROAD;
+            return MUS_ROUTE119;
     }
 }
 
@@ -930,9 +930,9 @@ void Overworld_PlaySpecialMapMusic(void)
         if (gSaveBlock1.savedMusic)
             music = gSaveBlock1.savedMusic;
         else if (Overworld_GetMapTypeOfSaveblockLocation() == MAP_TYPE_UNDERWATER)
-            music = MUS_DEEPDEEP;
+            music = MUS_UNDERWATER;
         else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
-            music = MUS_NAMINORI;
+            music = MUS_SURF;
     }
 
     if (music != GetCurrentMapMusic())
@@ -951,16 +951,16 @@ void Overworld_ClearSavedMusic(void)
 
 void sub_8053F0C(void)
 {
-    if (FlagGet(FLAG_SPECIAL_FLAG_1) != TRUE)
+    if (FlagGet(FLAG_DONT_TRANSITION_MUSIC) != TRUE)
     {
         u16 newMusic = GetWarpDestinationMusic();
         u16 currentMusic = GetCurrentMapMusic();
         if (newMusic != LEGENDARY_MUSIC)
         {
-            if (currentMusic == MUS_DEEPDEEP || currentMusic == MUS_NAMINORI)
+            if (currentMusic == MUS_UNDERWATER || currentMusic == MUS_SURF)
                 return;
             if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
-                newMusic = MUS_NAMINORI;
+                newMusic = MUS_SURF;
         }
         if (newMusic != currentMusic)
         {
@@ -998,7 +998,7 @@ u8 GetMapMusicFadeoutSpeed(void)
 void TryFadeOutOldMapMusic(void)
 {
     u16 music = GetWarpDestinationMusic();
-    if (FlagGet(FLAG_SPECIAL_FLAG_1) != TRUE && music != GetCurrentMapMusic())
+    if (FlagGet(FLAG_DONT_TRANSITION_MUSIC) != TRUE && music != GetCurrentMapMusic())
     {
         u8 speed = GetMapMusicFadeoutSpeed();
         FadeOutMapMusic(speed);
@@ -1981,7 +1981,7 @@ void sub_8054D4C(u32 a1)
     sub_8080750();
     if (!a1)
         SetUpFieldTasks();
-    mapheader_run_script_with_tag_x5();
+    RunOnResumeMapScript();
 }
 
 void sub_8054D90(void)
@@ -1990,7 +1990,7 @@ void sub_8054D90(void)
     gTotalCameraPixelOffsetY = 0;
     ResetObjectEvents();
     TrySpawnObjectEvents(0, 0);
-    mapheader_run_first_tag4_script_list_match();
+    TryRunOnWarpIntoMapScript();
 }
 
 void mli4_mapscripts_and_other(void)
@@ -2007,7 +2007,7 @@ void mli4_mapscripts_and_other(void)
     ResetInitialPlayerAvatarState();
     TrySpawnObjectEvents(0, 0);
     ResetBerryTreeSparkleFlags();
-    mapheader_run_first_tag4_script_list_match();
+    TryRunOnWarpIntoMapScript();
 }
 
 void sub_8054E20(void)
@@ -2897,8 +2897,8 @@ static void SpriteCB_LinkPlayer(struct Sprite *sprite)
 {
     struct LinkPlayerObjectEvent *linkPlayerObjEvent = &gLinkPlayerObjectEvents[sprite->data[0]];
     struct ObjectEvent *objEvent = &gObjectEvents[linkPlayerObjEvent->objEventId];
-    sprite->pos1.x = objEvent->initialCoords.x;
-    sprite->pos1.y = objEvent->initialCoords.y;
+    sprite->x = objEvent->initialCoords.x;
+    sprite->y = objEvent->initialCoords.y;
     SetObjectSubpriorityByZCoord(objEvent->previousElevation, sprite, 1);
     sprite->oam.priority = ZCoordToPriority(objEvent->previousElevation);
     if (!linkPlayerObjEvent->mode)

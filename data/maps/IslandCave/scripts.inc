@@ -1,7 +1,7 @@
 IslandCave_MapScripts:: @ 815EEB6
-	map_script 5, IslandCave_MapScript1_15EEC6
-	map_script 1, IslandCave_MapScript1_15EED4
-	map_script 3, IslandCave_MapScript1_15EF15
+	map_script MAP_SCRIPT_ON_RESUME, IslandCave_MapScript1_15EEC6
+	map_script MAP_SCRIPT_ON_LOAD, IslandCave_MapScript1_15EED4
+	map_script MAP_SCRIPT_ON_TRANSITION, IslandCave_MapScript1_15EF15
 	.byte 0
 
 IslandCave_MapScript1_15EEC6:: @ 815EEC6
@@ -37,7 +37,7 @@ S_OpenRegiceChamber:: @ 815EF19
 	setmetatile 8, 20, METATILE_Cave_SealedChamberEntrance_BottomMid, 0
 	setmetatile 9, 20, METATILE_Cave_SealedChamberEntrance_BottomRight, 1
 	special DrawWholeMapView
-	playse SE_BAN
+	playse SE_BANG
 	setflag FLAG_SYS_BRAILLE_WAIT
 	end
 
@@ -51,7 +51,7 @@ IslandCave_EventScript_15EF59:: @ 815EF59
 	end
 
 IslandCave_EventScript_15EF72:: @ 815EF72
-	msgbox IslandCave_Text_1A13BE, 4
+	msgbox IslandCave_Text_1A13BE, MSGBOX_DEFAULT
 	releaseall
 	end
 

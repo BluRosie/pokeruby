@@ -765,7 +765,7 @@ static u8 RotatingGate_CreateGate(u8 gateId, s16 deltaX, s16 deltaY)
     sprite->data[0] = gateId;
     sprite->coordOffsetEnabled = 1;
 
-    sub_8060388(x + deltaX, y + deltaY, &sprite->pos1.x, &sprite->pos1.y);
+    sub_8060388(x + deltaX, y + deltaY, &sprite->x, &sprite->y);
     RotatingGate_HideGatesOutsideViewport(sprite);
     StartSpriteAffineAnim(sprite, RotatingGate_GetGateOrientation(gateId));
 
@@ -790,7 +790,7 @@ static void SpriteCallback_RotatingGate(struct Sprite *sprite)
         if (GetPlayerSpeed() != 1)
             affineAnimation += 8;
 
-        PlaySE(SE_HI_TURUN);
+        PlaySE(SE_ROTATING_GATE);
         StartSpriteAffineAnim(sprite, affineAnimation);
     }
     else if (rotationDirection == ROTATE_CLOCKWISE)
@@ -800,7 +800,7 @@ static void SpriteCallback_RotatingGate(struct Sprite *sprite)
         if (GetPlayerSpeed() != 1)
             affineAnimation += 8;
 
-        PlaySE(SE_HI_TURUN);
+        PlaySE(SE_ROTATING_GATE);
         StartSpriteAffineAnim(sprite, affineAnimation);
     }
 
@@ -815,8 +815,8 @@ static void RotatingGate_HideGatesOutsideViewport(struct Sprite *sprite)
     s16 y2;
 
     sprite->invisible = FALSE;
-    x = sprite->pos1.x + sprite->pos2.x + sprite->centerToCornerVecX + gSpriteCoordOffsetX;
-    y = sprite->pos1.y + sprite->pos2.y + sprite->centerToCornerVecY + gSpriteCoordOffsetY;
+    x = sprite->x + sprite->x2 + sprite->centerToCornerVecX + gSpriteCoordOffsetX;
+    y = sprite->y + sprite->y2 + sprite->centerToCornerVecY + gSpriteCoordOffsetY;
 
     x2 = x + 0x40; // Dimensions of the rotating gate
     y2 = y + 0x40;

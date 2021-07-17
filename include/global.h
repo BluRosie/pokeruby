@@ -6,6 +6,7 @@
 #include <limits.h>
 #include "config.h" // we need to define config before gba headers as print stuff needs the functions nulled before defines.
 #include "gba/gba.h"
+#include "constants/global.h"
 
 // IDE support
 #if defined(__APPLE__) || defined(__CYGWIN__)
@@ -21,18 +22,25 @@
 #endif
 
 // For debug menu translations.
-// DTR("こんにちは", "Hello") will expand to "Hello" with DEBUG_TRANSLATE,
+// DTR("こんにちは", "Hello") will expand to "Hello" with DEBUG_FIX,
 // or "こんにちは" if not.
 // The KANA macro will wrap Japanese text with encoding markers to
 // prevent mojibake while they are being translated.
 
-#if DEBUG_TRANSLATE
+// TODO: Support multiple languages.
+#if DEBUG_FIX
 #define DTR(japanese, english) _(english)
 #define KANA(txt) _("{JPN}" txt "{ENG}")
 #else
 #define DTR(japanese, english) _(japanese)
 #define KANA(txt) _(txt)
 #endif
+
+#define SWAP(x,y,t) {\
+    t = x;           \
+    x = y;           \
+    y = t;           \
+}
 
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");
@@ -87,6 +95,24 @@ enum
     (ptr)[3] = ((value) >> 24) & 0xFF;\
 })
 
+// Converts a number to Q8.8 fixed-point format
+#define Q_8_8(n)         ((s16)((n) * 256))
+
+// Converts a number from Q8.8 fixed-point format to integer
+#define Q_8_8_TO_INT(n)  ((s16)((n) >> 8))
+
+// Converts a number to Q4.12 fixed-point format
+#define Q_4_12(n)        ((s16)((n) * 4096))
+
+// Converts a number from Q4.12 fixed-point format to integer
+#define Q_4_12_TO_INT(n) ((s16)((n) >> 12))
+
+// Converts a number to Q24.8 fixed-point format
+#define Q_24_8(n)        ((s32)((n) * 256))
+
+// Converts a number from Q24.8 fixed-point format to integer
+#define Q_24_8_TO_INT(x) ((s32)((x) >> 8))
+
 // Credits to Made (dolphin emoji)
 #define S16TOPOSFLOAT(val)   \
 ({                           \
@@ -96,90 +122,10 @@ enum
     f;                       \
 })
 
-enum
-{
-    VERSION_SAPPHIRE = 1,
-    VERSION_RUBY = 2,
-    VERSION_EMERALD = 3,
-};
-
-enum LanguageId
-{
-    LANGUAGE_JAPANESE = 1,
-    LANGUAGE_ENGLISH = 2,
-    LANGUAGE_GERMAN = 5,
-};
-
-#if defined(ENGLISH)
-#define GAME_LANGUAGE (LANGUAGE_ENGLISH)
-#elif defined(GERMAN)
-#define GAME_LANGUAGE (LANGUAGE_GERMAN)
-#endif
-
-// capacities of various saveblock objects
-#define DAYCARE_MON_COUNT   2
-#define POKEBLOCKS_COUNT    40
-#define PARTY_SIZE          6
-#define OBJECT_EVENTS_COUNT 16
-#define BERRY_TREES_COUNT   128
-#define FLAGS_COUNT         288
-#define VARS_COUNT          256
-#define MAIL_COUNT          16
-#define SECRET_BASES_COUNT  20
-#define TV_SHOWS_COUNT      25
-#define POKE_NEWS_COUNT     16
-#define PC_ITEMS_COUNT      50
-#define BAG_ITEMS_COUNT     20
-#define BAG_KEYITEMS_COUNT  20
-#define BAG_POKEBALLS_COUNT 16
-#define BAG_TMHM_COUNT      64
-#define BAG_BERRIES_COUNT   46
-
 #define TEST_BUTTON(value, button) ({(value) & (button);})
 #define JOY_NEW(button) (TEST_BUTTON(gMain.newKeys, button))
 #define JOY_HELD(button) (TEST_BUTTON(gMain.heldKeys, button))
 #define JOY_REPT(button) (TEST_BUTTON(gMain.newAndRepeatedKeys, button))
-
-enum
-{
-    MALE,
-    FEMALE
-};
-
-enum
-{
-    OPTIONS_BUTTON_MODE_NORMAL,
-    OPTIONS_BUTTON_MODE_LR,
-    OPTIONS_BUTTON_MODE_L_EQUALS_A
-};
-
-enum
-{
-    OPTIONS_TEXT_SPEED_SLOW,
-    OPTIONS_TEXT_SPEED_MID,
-    OPTIONS_TEXT_SPEED_FAST
-};
-
-enum
-{
-    OPTIONS_SOUND_MONO,
-    OPTIONS_SOUND_STEREO
-};
-
-enum
-{
-    OPTIONS_BATTLE_STYLE_SHIFT,
-    OPTIONS_BATTLE_STYLE_SET
-};
-
-enum
-{
-    BAG_ITEMS = 1,
-    BAG_POKEBALLS,
-    BAG_TMsHMs,
-    BAG_BERRIES,
-    BAG_KEYITEMS
-};
 
 struct Coords16
 {
@@ -193,26 +139,31 @@ struct UCoords16
     u16 y;
 };
 
+struct SecretBaseParty
+{
+    /*0x1A3C*/ u32 personality[PARTY_SIZE];
+    /*0x1A54*/ u16 moves[PARTY_SIZE * MAX_MON_MOVES];
+    /*0x1A84*/ u16 species[PARTY_SIZE];
+    /*0x1A90*/ u16 heldItems[PARTY_SIZE];
+    /*0x1A9C*/ u8 levels[PARTY_SIZE];
+    /*0x1AA2*/ u8 EVs[PARTY_SIZE];
+};
+
 struct SecretBaseRecord
 {
     /*0x1A08*/ u8 secretBaseId;
-    /*0x1A09*/ u8 sbr_field_1_0:4;
+    /*0x1A09*/ u8 toRegister:4;
     /*0x1A09*/ u8 gender:1;
-    /*0x1A09*/ u8 sbr_field_1_5:1;
-    /*0x1A09*/ u8 sbr_field_1_6:2;
+    /*0x1A09*/ u8 battledOwnerToday:1;
+    /*0x1A09*/ u8 registryStatus:2;
     /*0x1A0A*/ u8 playerName[OT_NAME_LENGTH];
     /*0x1A11*/ u8 trainerId[4]; // byte 0 is used for determining trainer class
-    /*0x1A16*/ u16 sbr_field_e;
-    /*0x1A18*/ u8 sbr_field_10;
-    /*0x1A19*/ u8 sbr_field_11;
-    /*0x1A1A*/ u8 decorations[16];
-    /*0x1A2A*/ u8 decorationPos[16];
-    /*0x1A3A*/ u32 partyPersonality[6];
-    /*0x1A54*/ u16 partyMoves[6 * 4];
-    /*0x1A84*/ u16 partySpecies[6];
-    /*0x1A90*/ u16 partyHeldItems[6];
-    /*0x1A9C*/ u8 partyLevels[6];
-    /*0x1AA2*/ u8 partyEVs[6];
+    /*0x1A16*/ u16 numSecretBasesReceived;
+    /*0x1A18*/ u8 numTimesEntered;
+    /*0x1A19*/ u8 unused;
+    /*0x1A1A*/ u8 decorations[DECOR_MAX_SECRET_BASE];
+    /*0x1A2A*/ u8 decorationPos[DECOR_MAX_SECRET_BASE];
+    /*0x1A3C*/ struct SecretBaseParty party;
 };
 
 #include "constants/game_stat.h"
@@ -663,6 +614,50 @@ struct ContestWinner
     /*0x16*/ u8 trainerName[8];
 };
 
+// For external event data storage. The majority of these may have never been used.
+struct ExternalEventData
+{
+    u8 unknownExternalDataFields1[7]; // if actually used, may be broken up into different fields.
+    u32 unknownExternalDataFields2:8;
+    u32 currentPokeCoupons:24; // PokéCoupons stored by Pokémon Colosseum and XD from Mt. Battle runs. Earned PokéCoupons are also added to totalEarnedPokeCoupons. Colosseum/XD caps this at 9,999,999, but will read up to 16,777,215.
+    u32 gotGoldPokeCouponTitleReward:1; // Master Ball from Jp Colosseum Bonus Disc; for reaching 30,000 totalEarnedPokeCoupons
+    u32 gotSilverPokeCouponTitleReward:1; // Light Ball Pikachu from JP Colosseum Bonus Disc; for reaching 5000 totalEarnedPokeCoupons
+    u32 gotBronzePokeCouponTitleReward:1; // PP Max from JP Colosseum Bonus Disc; for reaching 2500 totalEarnedPokeCoupons
+    u32 receivedAgetoCelebi:1; // from JP Colosseum Bonus Disc
+    u32 unknownExternalDataFields3:4;
+    u32 totalEarnedPokeCoupons:24; // Used by the JP Colosseum bonus disc. Determines PokéCoupon rank to distribute rewards. Unread in International games. Colosseum/XD caps this at 9,999,999.
+    u8 unknownExternalDataFields4[5]; // if actually used, may be broken up into different fields.
+} __attribute__((packed)); /*size = 0x14*/
+
+// For external event flags. The majority of these may have never been used.
+struct ExternalEventFlags
+{
+    u8 usedBoxRS:1; // Set by Pokémon Box: Ruby & Sapphire; denotes whether this save has connected to it and triggered the free False Swipe Swablu Egg giveaway.
+    u8 boxRSEggsUnlocked:2; // Set by Pokémon Box: Ruby & Sapphire; denotes the number of Eggs unlocked from deposits; 1 for ExtremeSpeed Zigzagoon (at 100 deposited), 2 for Pay Day Skitty (at 500 deposited), 3 for Surf Pichu (at 1500 deposited)
+    u8 padding:5;
+    u8 unknownFlag1;
+    u8 receivedGCNJirachi; // Both the US Colosseum Bonus Disc and PAL/AUS Pokémon Channel use this field. One cannot receive a WISHMKR Jirachi and CHANNEL Jirachi with the same savefile.
+    u8 unknownFlag3;
+    u8 unknownFlag4;
+    u8 unknownFlag5;
+    u8 unknownFlag6;
+    u8 unknownFlag7;
+    u8 unknownFlag8;
+    u8 unknownFlag9;
+    u8 unknownFlag10;
+    u8 unknownFlag11;
+    u8 unknownFlag12;
+    u8 unknownFlag13;
+    u8 unknownFlag14;
+    u8 unknownFlag15;
+    u8 unknownFlag16;
+    u8 unknownFlag17;
+    u8 unknownFlag18;
+    u8 unknownFlag19;
+    u8 unknownFlag20;
+
+} __attribute__((packed));/*size = 0x15*/
+
 // there should be enough flags for all 412 slots
 // each slot takes up 8 flags
 // if the value is not divisible by 8, we need to account for the reminder as well
@@ -698,16 +693,16 @@ struct SaveBlock1 /* 0x02025734 */
     /*0x96C*/ u16 berryBlenderRecords[3];
     /*0x972*/ u8 filler_972[0x6];
     /*0x978*/ u16 trainerRematchStepCounter;
-    /*0x97A*/ u8 trainerRematches[100];
+    /*0x97A*/ u8 trainerRematches[MAX_REMATCH_ENTRIES];
     /*0x9E0*/ struct ObjectEvent objectEvents[OBJECT_EVENTS_COUNT];
-    /*0xC20*/ struct ObjectEventTemplate objectEventTemplates[64];
+    /*0xC20*/ struct ObjectEventTemplate objectEventTemplates[OBJECT_EVENT_TEMPLATES_COUNT];
     /*0x1220*/ u8 flags[FLAGS_COUNT];
     /*0x1340*/ u16 vars[VARS_COUNT];
     /*0x1540*/ u32 gameStats[NUM_GAME_STATS];
     /*0x1608*/ struct BerryTree berryTrees[BERRY_TREES_COUNT];
     /*0x1A08*/ struct SecretBaseRecord secretBases[SECRET_BASES_COUNT];
-    /*0x2688*/ u8 playerRoomDecor[12];
-    /*0x2694*/ u8 playerRoomDecorPos[12];
+    /*0x2688*/ u8 playerRoomDecor[DECOR_MAX_PLAYERS_HOUSE];
+    /*0x2694*/ u8 playerRoomDecorPos[DECOR_MAX_PLAYERS_HOUSE];
     /*0x26A0*/ u8 decorDesk[10];
     /*0x26AA*/ u8 decorChair[10];
     /*0x26B4*/ u8 decorPlant[10];
@@ -745,16 +740,10 @@ struct SaveBlock1 /* 0x02025734 */
     /*0x2EFC*/ struct ContestWinner museumPortraits[5];
     /*0x2F9C*/ struct DayCare daycare;
     /*0x30B8*/ struct LinkBattleRecord linkBattleRecords[5];
-    struct {
-        /*0x3108*/ u8 unknown1[8];
-        /*0x3110*/ u8 giftRibbons[11];
-        /*0x311B*/ u8 unknown2[8];
-        /*0x3123*/ u32 currentPokeCoupons;
-        /*0x3127*/ u32 totalEarnedPokeCoupons;
-        /*0x312B*/ u8 unknown3[6];
-        /*0x3131*/ u8 receivedWishmakerJirachi;
-        /*0x3132*/ u8 unknown4[18];
-    } __attribute__((packed)) externalReservedData;
+    /*0x3108*/ u8 filler_3108[8];
+    /*0x3110*/ u8 giftRibbons[11];
+    /*0x311B*/ struct ExternalEventData externalEventData;
+    /*0x312F*/ struct ExternalEventFlags externalEventFlags;
     /*0x3144*/ struct Roamer roamer;
     /*0x3160*/ struct EnigmaBerry enigmaBerry;
     /*0x3690*/ struct RamScript ramScript;
@@ -774,7 +763,7 @@ struct Time
 struct Pokedex
 {
     /*0x00*/ u8 order;
-    /*0x01*/ u8 unknown1;
+    /*0x01*/ u8 mode;
     /*0x02*/ u8 nationalMagic; // must equal 0xDA in order to have National mode
     /*0x03*/ u8 unknown2;
     /*0x04*/ u32 unownPersonality; // set when you first see Unown
@@ -888,12 +877,6 @@ struct UnkStruct_8054FF8
     u8 d;
     struct MapPosition sub;
     u16 field_C;
-};
-
-// wasnt defined so I had to define it
-struct HallOfFame
-{
-    u8 filler[0x1F00];
 };
 
 extern struct SaveBlock2 gSaveBlock2;

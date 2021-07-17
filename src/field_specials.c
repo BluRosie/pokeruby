@@ -218,7 +218,7 @@ void UpdateCyclingRoadState(void) {
     if (VarGet(VAR_CYCLING_CHALLENGE_STATE) == 2 || VarGet(VAR_CYCLING_CHALLENGE_STATE) == 3)
     {
         VarSet(VAR_CYCLING_CHALLENGE_STATE, 0);
-        Overworld_SetSavedMusic(SE_STOP);
+        Overworld_SetSavedMusic(MUS_DUMMY);
     }
 }
 
@@ -571,7 +571,7 @@ void PetalburgGymSlideOpenDoors(void)
 {
     gUnknown_02039258 = 0;
     gPetalburgGymSlidingDoorIndex = 0;
-    PlaySE(SE_KI_GASYAN);
+    PlaySE(SE_UNLOCK);
     CreateTask(Task_SlideOpenPetalburgGymDoors, 8);
 }
 
@@ -722,7 +722,7 @@ void CableCarWarp(void)
     }
 }
 
-void SetFlagInVar(void)
+void SetHiddenItemFlag(void)
 {
     FlagSet(gSpecialVar_0x8004);
 }
@@ -1228,7 +1228,7 @@ void ShakeScreenInElevator(void)
     gTasks[taskId].data[5] = 3;
     SetCameraPanningCallback(NULL);
     sub_810ECFC();
-    PlaySE(SE_ELEBETA);
+    PlaySE(SE_ELEVATOR);
 }
 
 void sub_810EC34(u8 taskId)
@@ -1245,7 +1245,7 @@ void sub_810EC34(u8 taskId)
             SetCameraPanning(0, task->data[4]);
             if (task->data[2] == 23)
             {
-                PlaySE(SE_PINPON);
+                PlaySE(SE_DING_DONG);
                 sub_810EC9C(taskId);
                 InstallCameraPanAheadCallback();
             }
@@ -1596,7 +1596,7 @@ void GlassWorkshopUpdateScrollIndicators(u8 newPos, u8 maxItems)
 void SpawnCameraDummy(void)
 {
     u8 objectEventId = SpawnSpecialObjectEventParametrized(7, MOVEMENT_TYPE_FACE_DOWN, 0x7f, gSaveBlock1.pos.x + 7, gSaveBlock1.pos.y + 7, 3);
-    gObjectEvents[objectEventId].invisible = 1;
+    gObjectEvents[objectEventId].invisible = TRUE;
     CameraObjectSetFollowedObjectId(gObjectEvents[objectEventId].spriteId);
 }
 
@@ -1791,7 +1791,7 @@ bool8 IsPokerusInParty(void)
 static void sub_810F7A8(u8);
 static void sub_810F814(u8);
 
-void sub_810F758(void)
+void ShakeCamera(void)
 {
     u8 taskId = CreateTask(sub_810F7A8, 9);
     gTasks[taskId].data[0] = gSpecialVar_0x8005;
@@ -1801,7 +1801,7 @@ void sub_810F758(void)
     gTasks[taskId].data[4] = gSpecialVar_0x8004;
     gTasks[taskId].data[5] = 5;
     SetCameraPanningCallback(NULL);
-    PlaySE(SE_W070);
+    PlaySE(SE_M_STRENGTH);
 }
 
 static void sub_810F7A8(u8 taskId)
@@ -1966,7 +1966,7 @@ void sub_810FA74(void)
     }
 }
 
-void sub_810FAA0(void)
+void UpdateTrainerFanClubGameClear(void)
 {
     if (!((gSaveBlock1.vars[VAR_FANCLUB_UNKNOWN_1 - VARS_START] >> 7) & 1))
     {

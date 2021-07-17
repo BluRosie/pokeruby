@@ -7,7 +7,15 @@ const u16 gBattleTextboxTiles[] = INCBIN_U16("graphics/interface/menu.4bpp.lz");
 const u16 gBattleTextboxPalette[] = INCBIN_U16("graphics/interface/menu.gbapal.lz");
 const u16 gBattleTextboxTilemap[] = INCBIN_U16("graphics/interface/menu_map.bin");
 
-#if DEBUG_TRANSLATE || GERMAN
+const u8 gMonFrontPic_CircledQuestionMark[] = INCBIN_U8("graphics/pokemon/circled_question_mark/front.4bpp.lz");
+const u8 gMonBackPic_CircledQuestionMark[] = INCBIN_U8("graphics/pokemon/circled_question_mark/back.4bpp.lz");
+const u16 gMonPalette_CircledQuestionMark[] = INCBIN_U16("graphics/pokemon/circled_question_mark/normal.gbapal.lz");
+const u16 gMonShinyPalette_CircledQuestionMark[] = INCBIN_U16("graphics/pokemon/circled_question_mark/shiny.gbapal.lz");
+
+// The test menu debug battle tileset. This uses the old Crystal
+// charmap and rendering method (it uses tiles instead of text).
+// The non-English releases use translated graphics.
+#if DEBUG_FIX || !ENGLISH
 const u8 gDebugBattleCharmap_Gfx_lz[] = INCBIN_U8("graphics/debug/debug_battle_charmap_en.4bpp.lz");
 const u8 gDebugBattleCharmap_Tilemap_lz[] = INCBIN_U8("graphics/debug/debug_battle_charmap_en.bin.lz");
 const u8 gDebugBattleCharmap_Pal_lz[] = INCBIN_U8("graphics/debug/debug_battle_charmap_en.gbapal.lz");
@@ -382,11 +390,11 @@ const u8 gContestNumbers_UnusedGfx[] = INCBIN_U8("graphics/unused/numbers.4bpp.l
 const u8 gContestNumbers_UnusedPal[] = INCBIN_U8("graphics/unused/numbers.gbapal.lz");
 const u8 unused_old_contest_2_4bpp[] = INCBIN_U8("graphics/unused/old_contest_2.4bpp.lz");
 // the tilemap and palette for unused contest assets are used. however, these two files aren't old
-const u8 gUnknown_08D17144[] = INCBIN_U8("graphics/unused/old_contest_2.gbapal.lz");
+const u8 gContestPalette[] = INCBIN_U8("graphics/unused/old_contest_2.gbapal.lz");
 
-const u8 gUnknown_08D1725C[] = INCBIN_U8("graphics/unused/old_contest_2.bin.lz");
+const u8 gContestGfx[] = INCBIN_U8("graphics/unused/old_contest_2.bin.lz");
 
-const u8 gUnknown_08D17424[] = INCBIN_U8("graphics/unknown/unknown_D17424.bin.lz");
+const u8 gContestBgmap[] = INCBIN_U8("graphics/unknown/unknown_D17424.bin.lz");
 const u8 unused_unknown_D176CC[] = INCBIN_U8("graphics/unknown/unknown_D176CC.bin.lz");
 const u8 unused_unknown_D177D8[] = INCBIN_U8("graphics/unknown/unknown_D177D8.bin.lz");
 
@@ -1503,7 +1511,7 @@ const u16 gTilesetPalettes_Shop[][16] =
 };
 
 const u8 gTilesetTiles_Shop[] = INCBIN_U8("data/tilesets/secondary/shop/tiles.4bpp.lz");
-const u16 gUnknown_083FAF1C[] = INCBIN_U16("graphics/pokedex/cry_meter.gbapal");
-const u8 gUnknown_083FAF3C[] = INCBIN_U8("graphics/pokedex/cry_meter.4bpp.lz");
-const u8 gUnknown_083FAE7C[] = INCBIN_U8("graphics/pokedex/cry_meter_map.bin");
+const u16 gCryMeter_Pal[] = INCBIN_U16("graphics/pokedex/cry_meter.gbapal");
+const u8 gCryMeter_Gfx[] = INCBIN_U8("graphics/pokedex/cry_meter.4bpp.lz");
+const u8 gCryMeter_Tilemap[] = INCBIN_U8("graphics/pokedex/cry_meter_map.bin");
 #endif // GERMAN

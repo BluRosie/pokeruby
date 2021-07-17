@@ -147,7 +147,7 @@ extern u16 word_3002910[];
 extern bool8 gReceivedRemoteLinkPlayers;
 extern bool8 gLinkOpen;
 extern bool8 gLinkPlayerPending[MAX_LINK_PLAYERS];
-void (*gLinkCallback)(void);
+extern void (*gLinkCallback)(void);
 extern u8 gUnknown_Debug_30030E0;
 
 void Task_DestroySelf(u8);
@@ -185,7 +185,7 @@ void sub_800826C(void);
 void sub_80082EC(void);
 u8 GetLinkPlayerCount_2(void);
 bool8 IsLinkMaster(void);
-void sub_800832C(void);
+void SetCloseLinkCallback(void);
 void sub_8008480(void);
 void sub_80084A4(void);
 void CB2_LinkError(void);

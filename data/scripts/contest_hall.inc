@@ -11,7 +11,7 @@ VerdanturfTown_ContestLobby_EventScript_1A4E92:: @ 81A4E92
 	goto_if_ne FallarborTown_ContestLobby_EventScript_1A4F4E
 	goto_if_set FLAG_TEMP_1, FallarborTown_ContestLobby_EventScript_1A4F8F
 	bufferstdstring 0, VAR_0x800B
-	msgbox FallarborTown_ContestLobby_Text_1A5DFC, 4
+	msgbox FallarborTown_ContestLobby_Text_1A5DFC, MSGBOX_DEFAULT
 	checkitem ITEM_CONTEST_PASS, 1
 	compare VAR_RESULT, 0
 	goto_if_eq FallarborTown_ContestLobby_EventScript_1A4EE1
@@ -26,7 +26,7 @@ FallarborTown_ContestLobby_EventScript_1A4EDD:: @ 81A4EDD
 FallarborTown_ContestLobby_EventScript_1A4EE1:: @ 81A4EE1
 	compare VAR_CONTEST_RANK, 0
 	goto_if_eq FallarborTown_ContestLobby_EventScript_1A4EF6
-	msgbox FallarborTown_ContestLobby_Text_1A6340, 4
+	msgbox FallarborTown_ContestLobby_Text_1A6340, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -34,33 +34,33 @@ FallarborTown_ContestLobby_EventScript_1A4EF6:: @ 81A4EF6
 	msgbox FallarborTown_ContestLobby_Text_1A64F4, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq FallarborTown_ContestLobby_EventScript_1A4F13
-	msgbox FallarborTown_ContestLobby_Text_1A65EA, 4
+	msgbox FallarborTown_ContestLobby_Text_1A65EA, MSGBOX_DEFAULT
 	releaseall
 	end
 
 FallarborTown_ContestLobby_EventScript_1A4F13:: @ 81A4F13
 	goto_if_set FLAG_RECEIVED_CONTEST_PASS, FallarborTown_ContestLobby_EventScript_1A4F44
-	msgbox FallarborTown_ContestLobby_Text_1A6583, 4
-	giveitem_std ITEM_CONTEST_PASS
+	msgbox FallarborTown_ContestLobby_Text_1A6583, MSGBOX_DEFAULT
+	giveitem ITEM_CONTEST_PASS
 	setflag FLAG_RECEIVED_CONTEST_PASS
 	setflag FLAG_TEMP_1
-	msgbox FallarborTown_ContestLobby_Text_1A5E98, 4
+	msgbox FallarborTown_ContestLobby_Text_1A5E98, MSGBOX_DEFAULT
 	goto FallarborTown_ContestLobby_EventScript_1A4F8F
 	end
 
 FallarborTown_ContestLobby_EventScript_1A4F44:: @ 81A4F44
-	msgbox FallarborTown_ContestLobby_Text_1A6590, 4
+	msgbox FallarborTown_ContestLobby_Text_1A6590, MSGBOX_DEFAULT
 	releaseall
 	end
 
 FallarborTown_ContestLobby_EventScript_1A4F4E:: @ 81A4F4E
-	msgbox FallarborTown_ContestLobby_Text_1A685A, 4
+	msgbox FallarborTown_ContestLobby_Text_1A685A, MSGBOX_DEFAULT
 	switch VAR_CONTEST_PRIZE_PICKUP
 	case 4, FallarborTown_ContestLobby_EventScript_1A4F67
 	end
 
 FallarborTown_ContestLobby_EventScript_1A4F67:: @ 81A4F67
-	giveitem_std ITEM_LUXURY_BALL
+	giveitem ITEM_LUXURY_BALL
 	compare VAR_RESULT, 0
 	goto_if_eq FallarborTown_ContestLobby_EventScript_1A4F86
 	setvar VAR_CONTEST_PRIZE_PICKUP, 0
@@ -69,7 +69,7 @@ FallarborTown_ContestLobby_EventScript_1A4F67:: @ 81A4F67
 	end
 
 FallarborTown_ContestLobby_EventScript_1A4F86:: @ 81A4F86
-	msgbox FallarborTown_ContestLobby_Text_1A68C6, 2
+	msgbox FallarborTown_ContestLobby_Text_1A68C6, MSGBOX_NPC
 	end
 
 FallarborTown_ContestLobby_EventScript_1A4F8F:: @ 81A4F8F
@@ -96,27 +96,27 @@ FallarborTown_ContestLobby_EventScript_1A4FCC:: @ 81A4FCC
 	end
 
 FallarborTown_ContestLobby_EventScript_1A5014:: @ 81A5014
-	msgbox FallarborTown_ContestLobby_Text_1A5E98, 4
+	msgbox FallarborTown_ContestLobby_Text_1A5E98, MSGBOX_DEFAULT
 	goto FallarborTown_ContestLobby_EventScript_1A4FCC
 	end
 
 FallarborTown_ContestLobby_EventScript_1A5022:: @ 81A5022
-	msgbox FallarborTown_ContestLobby_Text_1A609B, 4
+	msgbox FallarborTown_ContestLobby_Text_1A609B, MSGBOX_DEFAULT
 	goto FallarborTown_ContestLobby_EventScript_1A4FCC
 	end
 
 FallarborTown_ContestLobby_EventScript_1A5030:: @ 81A5030
-	msgbox FallarborTown_ContestLobby_Text_1A613F, 4
+	msgbox FallarborTown_ContestLobby_Text_1A613F, MSGBOX_DEFAULT
 	goto FallarborTown_ContestLobby_EventScript_1A4FCC
 	end
 
 FallarborTown_ContestLobby_EventScript_1A503E:: @ 81A503E
-	msgbox FallarborTown_ContestLobby_Text_188559, 4
+	msgbox FallarborTown_ContestLobby_Text_188559, MSGBOX_DEFAULT
 	release
 	end
 
 FallarborTown_ContestLobby_EventScript_1A5048:: @ 81A5048
-	msgbox FallarborTown_ContestLobby_Text_1A6319, 4
+	msgbox FallarborTown_ContestLobby_Text_1A6319, MSGBOX_DEFAULT
 	choosecontestmon
 	compare VAR_0x8004, 255
 	goto_if_eq FallarborTown_ContestLobby_EventScript_1A5097
@@ -145,7 +145,7 @@ FallarborTown_ContestLobby_EventScript_1A5097:: @ 81A5097
 	end
 
 FallarborTown_ContestLobby_EventScript_1A50C8:: @ 81A50C8
-	msgbox FallarborTown_ContestLobby_Text_1A664A, 4
+	msgbox FallarborTown_ContestLobby_Text_1A664A, MSGBOX_DEFAULT
 	goto FallarborTown_ContestLobby_EventScript_1A5048
 	release
 	end
@@ -165,19 +165,19 @@ FallarborTown_ContestLobby_EventScript_1A50FB:: @ 81A50FB
 	end
 
 FallarborTown_ContestLobby_EventScript_1A511F:: @ 81A511F
-	msgbox FallarborTown_ContestLobby_Text_1A669F, 4
+	msgbox FallarborTown_ContestLobby_Text_1A669F, MSGBOX_DEFAULT
 	goto FallarborTown_ContestLobby_EventScript_1A5048
 	release
 	end
 
 FallarborTown_ContestLobby_EventScript_1A512E:: @ 81A512E
-	msgbox FallarborTown_ContestLobby_Text_1A66DC, 4
+	msgbox FallarborTown_ContestLobby_Text_1A66DC, MSGBOX_DEFAULT
 	goto FallarborTown_ContestLobby_EventScript_1A5048
 	release
 	end
 
 FallarborTown_ContestLobby_EventScript_1A513D:: @ 81A513D
-	msgbox FallarborTown_ContestLobby_Text_1A67C1, 4
+	msgbox FallarborTown_ContestLobby_Text_1A67C1, MSGBOX_DEFAULT
 	closemessage
 	releaseall
 	setvar VAR_LINK_CONTEST_ROOM_STATE, 1
@@ -270,7 +270,7 @@ LinkContestRoom1_EventScript_1A5245:: @ 81A5245
 LinkContestRoom1_EventScript_1A525F:: @ 81A525F
 	compare VAR_CONTEST_LOCATION, 5
 	goto_if_eq LinkContestRoom1_EventScript_1A5273
-	msgbox LinkContestRoom1_Text_1A68F0, 3
+	msgbox LinkContestRoom1_Text_1A68F0, MSGBOX_SIGN
 	return
 
 LinkContestRoom1_EventScript_1A5273:: @ 81A5273
@@ -335,7 +335,7 @@ LinkContestRoom1_EventScript_1A5311:: @ 81A5311
 	return
 
 LinkContestRoom1_EventScript_1A5323:: @ 81A5323
-	special sub_80C4C64
+	special BufferContestTrainerAndMonNames
 	addvar VAR_0x8006, 1
 	buffernumberstring 1, VAR_0x8006
 	lockall
@@ -343,13 +343,13 @@ LinkContestRoom1_EventScript_1A5323:: @ 81A5323
 	waitmovement 0
 	releaseall
 	addobject 13
-	playse SE_DANSA
+	playse SE_LEDGE
 	lockall
 	applymovement VAR_0x800B, LinkContestRoom1_Movement_1A5D9C
 	waitmovement 0
 	releaseall
 	addvar VAR_0x8006, -1
-	playse SE_BOWA2
+	playse SE_BALL_OPEN
 	special ShowContestEntryMonPic
 	call LinkContestRoom1_EventScript_1A535E
 	return
@@ -369,7 +369,7 @@ LinkContestRoom1_EventScript_1A5370:: @ 81A5370
 LinkContestRoom1_EventScript_1A5377:: @ 81A5377
 	call LinkContestRoom1_EventScript_1A53B3
 	call LinkContestRoom1_EventScript_1A53CE
-	playse SE_W227B
+	playse SE_M_ENCORE2
 	waitmessage
 	call LinkContestRoom1_EventScript_1A5A90
 	applymovement 1, LinkContestRoom1_Movement_1A5D9F
@@ -385,7 +385,7 @@ LinkContestRoom1_EventScript_1A5377:: @ 81A5377
 LinkContestRoom1_EventScript_1A53B3:: @ 81A53B3
 	compare VAR_CONTEST_LOCATION, 5
 	goto_if_eq LinkContestRoom1_EventScript_1A53C7
-	msgbox LinkContestRoom1_Text_1A6A1F, 4
+	msgbox LinkContestRoom1_Text_1A6A1F, MSGBOX_DEFAULT
 	return
 
 LinkContestRoom1_EventScript_1A53C7:: @ 81A53C7
@@ -406,7 +406,7 @@ LinkContestRoom1_EventScript_1A53DF:: @ 81A53DF
 LinkContestRoom1_EventScript_1A53E5:: @ 81A53E5
 	applymovement 1, LinkContestRoom1_Movement_1A5DAF
 	waitmovement 0
-	playse SE_W227B
+	playse SE_M_ENCORE2
 	call LinkContestRoom1_EventScript_1A5AE4
 	applymovement 9, LinkContestRoom1_Movement_1A5DB7
 	applymovement 12, LinkContestRoom1_Movement_1A5DBB
@@ -782,7 +782,7 @@ LinkContestRoom1_EventScript_1A58EE:: @ 81A58EE
 LinkContestRoom1_EventScript_1A5930:: @ 81A5930
 	compare VAR_CONTEST_LOCATION, 5
 	goto_if_eq LinkContestRoom1_EventScript_1A5944
-	msgbox LinkContestRoom1_Text_1A6AF5, 3
+	msgbox LinkContestRoom1_Text_1A6AF5, MSGBOX_SIGN
 	return
 
 LinkContestRoom1_EventScript_1A5944:: @ 81A5944
@@ -803,13 +803,13 @@ LinkContestRoom1_EventScript_1A594A:: @ 81A594A
 	setvar VAR_TEMP_9, 1
 	showcontestresults
 	setvar VAR_TEMP_9, 0
-	playbgm MUS_CON_FAN, FALSE
+	playbgm MUS_CONTEST_WINNER, FALSE
 	return
 
 LinkContestRoom1_EventScript_1A5984:: @ 81A5984
 	compare VAR_CONTEST_LOCATION, 5
 	goto_if_eq LinkContestRoom1_EventScript_1A5998
-	msgbox LinkContestRoom1_Text_1A6C06, 4
+	msgbox LinkContestRoom1_Text_1A6C06, MSGBOX_DEFAULT
 	return
 
 LinkContestRoom1_EventScript_1A5998:: @ 81A5998
@@ -821,7 +821,7 @@ LinkContestRoom1_EventScript_1A5998:: @ 81A5998
 LinkContestRoom1_EventScript_1A59A2:: @ 81A59A2
 	compare VAR_CONTEST_LOCATION, 5
 	goto_if_eq LinkContestRoom1_EventScript_1A59B6
-	msgbox LinkContestRoom1_Text_1A6C21, 4
+	msgbox LinkContestRoom1_Text_1A6C21, MSGBOX_DEFAULT
 	return
 
 LinkContestRoom1_EventScript_1A59B6:: @ 81A59B6
@@ -833,7 +833,7 @@ LinkContestRoom1_EventScript_1A59B6:: @ 81A59B6
 LinkContestRoom1_EventScript_1A59C0:: @ 81A59C0
 	compare VAR_CONTEST_LOCATION, 5
 	goto_if_eq LinkContestRoom1_EventScript_1A59D4
-	msgbox LinkContestRoom1_Text_1A6C9D, 4
+	msgbox LinkContestRoom1_Text_1A6C9D, MSGBOX_DEFAULT
 	return
 
 LinkContestRoom1_EventScript_1A59D4:: @ 81A59D4
@@ -845,7 +845,7 @@ LinkContestRoom1_EventScript_1A59D4:: @ 81A59D4
 LinkContestRoom1_EventScript_1A59DE:: @ 81A59DE
 	compare VAR_CONTEST_LOCATION, 5
 	goto_if_eq LinkContestRoom1_EventScript_1A59F2
-	msgbox LinkContestRoom1_Text_1A6D16, 4
+	msgbox LinkContestRoom1_Text_1A6D16, MSGBOX_DEFAULT
 	return
 
 LinkContestRoom1_EventScript_1A59F2:: @ 81A59F2
@@ -888,14 +888,14 @@ LinkContestRoom1_EventScript_1A5A49:: @ 81A5A49
 	call LinkContestRoom1_EventScript_1A5A75
 	applymovement VAR_TEMP_3, LinkContestRoom1_Movement_1A5D99
 	waitmovement 0
-	playse SE_W227B
+	playse SE_M_ENCORE2
 	setvar VAR_TEMP_1, 0
 	return
 
 LinkContestRoom1_EventScript_1A5A75:: @ 81A5A75
 	compare VAR_CONTEST_LOCATION, 5
 	goto_if_eq LinkContestRoom1_EventScript_1A5A89
-	msgbox LinkContestRoom1_Text_1A6D3C, 4
+	msgbox LinkContestRoom1_Text_1A6D3C, MSGBOX_DEFAULT
 	return
 
 LinkContestRoom1_EventScript_1A5A89:: @ 81A5A89
@@ -995,24 +995,24 @@ LinkContestRoom1_EventScript_1A5BAB:: @ 81A5BAB
 	goto_if_eq LinkContestRoom1_EventScript_1A5C4C
 	call LinkContestRoom1_EventScript_1A5C12
 	goto_if_set FLAG_TEMP_2, LinkContestRoom1_EventScript_1A5BF6
-	msgbox LinkContestRoom1_Text_1A6DC5, 3
+	msgbox LinkContestRoom1_Text_1A6DC5, MSGBOX_SIGN
 	waitmessage
 	call LinkContestRoom1_EventScript_1A5C7F
 	call LinkContestRoom1_EventScript_1A5CE5
-	playse SE_W227B
+	playse SE_M_ENCORE2
 	setvar VAR_TEMP_1, 0
 	call LinkContestRoom1_EventScript_1A5A90
 	delay 30
-	special sub_80C4CF8
+	special ShouldReadyContestArtist
 	compare VAR_0x8004, 1
 	goto_if_eq LinkContestRoom1_EventScript_1A5C46
 	return
 
 LinkContestRoom1_EventScript_1A5BF6:: @ 81A5BF6
 	incrementgamestat GAME_STAT_WON_CONTEST
-	msgbox LinkContestRoom1_Text_1A6DF1, 3
+	msgbox LinkContestRoom1_Text_1A6DF1, MSGBOX_SIGN
 	delay 90
-	special sub_80C4CF8
+	special ShouldReadyContestArtist
 	compare VAR_0x8004, 1
 	goto_if_eq LinkContestRoom1_EventScript_1A5C46
 	return
@@ -1049,7 +1049,7 @@ LinkContestRoom1_EventScript_1A5C46:: @ 81A5C46
 LinkContestRoom1_EventScript_1A5C4C:: @ 81A5C4C
 	delay 60
 	call LinkContestRoom1_EventScript_1A5C6A
-	special sub_80C4CF8
+	special ShouldReadyContestArtist
 	compare VAR_0x8004, 1
 	goto_if_eq LinkContestRoom1_EventScript_1A5C64
 	closemessage
@@ -1110,7 +1110,7 @@ LinkContestRoom1_EventScript_1A5CE5:: @ 81A5CE5
 	special ScrSpecial_GetContestWinnerIdx
 	compare VAR_0x8005, 3
 	goto_if_eq LinkContestRoom1_EventScript_1A5CFC
-	msgbox LinkContestRoom1_Text_1A6DF1, 3
+	msgbox LinkContestRoom1_Text_1A6DF1, MSGBOX_SIGN
 	return
 
 LinkContestRoom1_EventScript_1A5CFC:: @ 81A5CFC
@@ -1122,19 +1122,19 @@ LinkContestRoom1_EventScript_1A5CFC:: @ 81A5CFC
 	goto_if_eq LinkContestRoom1_EventScript_1A5D5B
 	compare VAR_CONTEST_RANK, 3
 	goto_if_eq LinkContestRoom1_EventScript_1A5D3B
-	msgbox LinkContestRoom1_Text_1A6DF1, 3
+	msgbox LinkContestRoom1_Text_1A6DF1, MSGBOX_SIGN
 	return
 
 LinkContestRoom1_EventScript_1A5D2D:: @ 81A5D2D
-	msgbox LinkContestRoom1_Text_1A6E1F, 3
+	msgbox LinkContestRoom1_Text_1A6E1F, MSGBOX_SIGN
 	setvar VAR_CONTEST_PRIZE_PICKUP, 4
 	return
 
 LinkContestRoom1_EventScript_1A5D3B:: @ 81A5D3B
-	giveitem_std ITEM_LUXURY_BALL
+	giveitem ITEM_LUXURY_BALL
 	compare VAR_RESULT, 0
 	goto_if_eq LinkContestRoom1_EventScript_1A5D2D
-	msgbox LinkContestRoom1_Text_1A6DF1, 3
+	msgbox LinkContestRoom1_Text_1A6DF1, MSGBOX_SIGN
 	return
 
 LinkContestRoom1_EventScript_1A5D5B:: @ 81A5D5B
@@ -1142,76 +1142,76 @@ LinkContestRoom1_EventScript_1A5D5B:: @ 81A5D5B
 	incrementgamestat GAME_STAT_RECEIVED_RIBBONS
 	setflag FLAG_SYS_RIBBON_GET
 	lockall
-	msgbox LinkContestRoom1_Text_1A6D6A, 4
-	playfanfare MUS_FANFA4
-	msgbox LinkContestRoom1_Text_1A6D96, 4
+	msgbox LinkContestRoom1_Text_1A6D6A, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox LinkContestRoom1_Text_1A6D96, MSGBOX_DEFAULT
 	waitfanfare
 	special ScrSpecial_GetContestWinnerNick
-	msgbox LinkContestRoom1_Text_1A6DAC, 4
+	msgbox LinkContestRoom1_Text_1A6DAC, MSGBOX_DEFAULT
 	releaseall
 	return
 
 LinkContestRoom1_Movement_1A5D85:: @ 81A5D85
 	walk_down
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5D87:: @ 81A5D87
 	lock_facing_direction
 	walk_up
 	unlock_facing_direction
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5D8B:: @ 81A5D8B
 	walk_in_place_fastest_right
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5D8D:: @ 81A5D8D
 	emote_heart
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5D8F:: @ 81A5D8F
 	walk_in_place_fastest_down
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5D91:: @ 81A5D91
 	walk_left
 	walk_left
 	walk_in_place_fastest_down
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5D95:: @ 81A5D95
 	walk_right
 	walk_right
 	walk_in_place_fastest_down
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5D99:: @ 81A5D99
 	walk_up
 	walk_in_place_fastest_down
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5D9C:: @ 81A5D9C
 	delay_16
 	delay_16
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5D9F:: @ 81A5D9F
 	walk_in_place_fastest_right
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DA1:: @ 81A5DA1
 	walk_in_place_fastest_left
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DA3:: @ 81A5DA3
 	walk_in_place_fastest_down
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DA5:: @ 81A5DA5
 	walk_left
 	walk_left
 	walk_up
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DA9:: @ 81A5DA9
 	walk_left
@@ -1219,54 +1219,54 @@ LinkContestRoom1_Movement_1A5DA9:: @ 81A5DA9
 	walk_left
 	walk_left
 	walk_up
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DAF:: @ 81A5DAF
 	face_left
 	delay_16
 	face_original_direction
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DB3:: @ 81A5DB3
 	face_up
 	delay_16
 	face_original_direction
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DB7:: @ 81A5DB7
 	face_right
 	delay_16
 	face_original_direction
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DBB:: @ 81A5DBB
 	face_down
 	delay_16
 	face_original_direction
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DBF:: @ 81A5DBF
 	face_up
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DC1:: @ 81A5DC1
 	face_up
 	delay_16
 	walk_in_place_fastest_right
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DC5:: @ 81A5DC5
 	walk_in_place_fastest_left
 	delay_16
 	delay_16
 	walk_in_place_fastest_down
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DCA:: @ 81A5DCA
 	delay_16
 	delay_16
 	walk_in_place_fastest_down
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DCE:: @ 81A5DCE
 	walk_up
@@ -1274,7 +1274,7 @@ LinkContestRoom1_Movement_1A5DCE:: @ 81A5DCE
 	walk_right
 	walk_right
 	walk_in_place_fastest_up
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DD4:: @ 81A5DD4
 	walk_fast_left
@@ -1282,31 +1282,31 @@ LinkContestRoom1_Movement_1A5DD4:: @ 81A5DD4
 	walk_fast_left
 	walk_fast_down
 	walk_in_place_fastest_up
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DDA:: @ 81A5DDA
 	walk_up
 	walk_right
 	walk_in_place_fastest_up
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DDE:: @ 81A5DDE
 	walk_fast_left
 	walk_fast_down
 	walk_in_place_fastest_up
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DE2:: @ 81A5DE2
 	walk_up
 	walk_left
 	walk_in_place_fastest_up
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DE6:: @ 81A5DE6
 	walk_fast_right
 	walk_fast_down
 	walk_in_place_fastest_up
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DEA:: @ 81A5DEA
 	walk_up
@@ -1314,7 +1314,7 @@ LinkContestRoom1_Movement_1A5DEA:: @ 81A5DEA
 	walk_left
 	walk_left
 	walk_in_place_fastest_up
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DF0:: @ 81A5DF0
 	walk_fast_right
@@ -1322,14 +1322,14 @@ LinkContestRoom1_Movement_1A5DF0:: @ 81A5DF0
 	walk_fast_right
 	walk_fast_down
 	walk_in_place_fastest_up
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DF6:: @ 81A5DF6
 	walk_right
 	walk_right
 	walk_up
-	end_movement
+	step_end
 
 LinkContestRoom1_Movement_1A5DFA:: @ 81A5DFA
 	walk_up
-	end_movement
+	step_end

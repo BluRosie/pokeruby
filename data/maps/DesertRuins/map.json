@@ -2,7 +2,7 @@
   "id": "MAP_DESERT_RUINS",
   "name": "DesertRuins",
   "layout": "LAYOUT_DESERT_RUINS",
-  "music": "MUS_MABOROSI",
+  "music": "MUS_SEALED_CHAMBER",
   "region_map_section": "MAPSEC_DESERT_RUINS",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -19,7 +19,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "0",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "DesertRuins_EventScript_15CB85",
       "flag": "FLAG_HIDE_REGIROCK"

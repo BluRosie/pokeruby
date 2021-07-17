@@ -2,7 +2,7 @@
   "id": "MAP_FALLARBOR_TOWN_HOUSE1",
   "name": "FallarborTown_House1",
   "layout": "LAYOUT_HOUSE1",
-  "music": "MUS_TONEKUSA",
+  "music": "MUS_FALLARBOR",
   "region_map_section": "MAPSEC_FALLARBOR_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -19,7 +19,7 @@
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "0",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "FallarborTown_House1_EventScript_153BB5",
       "flag": "FLAG_HIDE_PROF_COSMO_FALLARBOR"
@@ -32,7 +32,7 @@
       "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
       "movement_range_x": 1,
       "movement_range_y": 0,
-      "trainer_type": "0",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "FallarborTown_House1_EventScript_153C5E",
       "flag": "0"

@@ -1,0 +1,155 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GAME_VERSION: RUBY
+      GAME_REVISION: 0
+      GAME_LANGUAGE: ENGLISH
+      DEBUG: 0
+      MODERN: 0
+      COMPARE: 1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Checkout DE
+        uses: actions/checkout@master
+        with:
+          path: 'build_de'
+
+      - name: Checkout Symbols
+        uses: actions/checkout@master
+        with:
+          path: 'symbols'
+          ref: symbols
+
+      - name: Checkout agbcc
+        uses: actions/checkout@master
+        with:
+          repository: 'pret/agbcc'
+          path: 'agbcc'
+
+      - name: Install binutils
+        run: sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi
+        # build-essential, git, and libpng-dev are already installed
+        # gcc-arm-none-eabi is only needed for the modern build
+        # as an alternative to dkP
+
+      - name: Install agbcc
+        run: |
+          ./build.sh
+          ./install.sh ../
+          ./install.sh ../build_de
+        working-directory: ./agbcc
+
+      - name: Compare
+        run: make -j${nproc} all syms
+
+      - name: Compare rev1
+        env:
+          GAME_REVISION: 1
+        run: make -j${nproc} all syms
+
+      - name: Compare rev2
+        env:
+          GAME_REVISION: 2
+        run: make -j${nproc} all syms
+
+      - name: Compare Sapphire
+        env:
+          GAME_VERSION: SAPPHIRE
+        run: make -j${nproc} all syms
+
+      - name: Compare Sapphire rev1
+        env:
+          GAME_VERSION: SAPPHIRE
+          GAME_REVISION: 1
+        run: make -j${nproc} all syms
+
+      - name: Compare Sapphire rev2
+        env:
+          GAME_VERSION: SAPPHIRE
+          GAME_REVISION: 2
+        run: make -j${nproc} all syms
+
+      - name: Nonmatching
+        env:
+          NONMATCHING: 1
+          COMPARE: 0
+        run: make -j${nproc} $(git grep -wl NONMATCHING src | sed -r 'i-W')
+
+      - name: Setup German
+        run: sh de_before.sh
+        working-directory: ./build_de
+
+      - name: German Ruby
+        env:
+          GAME_LANGUAGE: GERMAN
+        run: make -j${nproc} all syms
+        working-directory: ./build_de
+
+      - name: German Ruby Debug
+        env:
+          GAME_LANGUAGE: GERMAN
+          DEBUG: 1
+        run: make -j${nproc} all syms
+        working-directory: ./build_de
+
+      - name: German Ruby rev1
+        env:
+          GAME_LANGUAGE: GERMAN
+          GAME_REVISION: 1
+        run: make -j${nproc} all syms
+        working-directory: ./build_de
+
+      - name: German Sapphire
+        env:
+          GAME_LANGUAGE: GERMAN
+          GAME_VERSION: SAPPHIRE
+        run: make -j${nproc} all syms
+        working-directory: ./build_de
+
+      - name: German Sapphire rev1
+        env:
+          GAME_LANGUAGE: GERMAN
+          GAME_VERSION: SAPPHIRE
+          GAME_REVISION: 1
+        run: make -j${nproc} all syms
+        working-directory: ./build_de
+
+      - name: Modern
+        env:
+          MODERN: 1
+          COMPARE: 0
+        run: make -j${nproc} all
+
+      - name: Webhook
+        if: ${{ github.event_name == 'push' }}
+        env:
+          CALCROM_DISCORD_WEBHOOK_USERNAME: OK
+          CALCROM_DISCORD_WEBHOOK_AVATAR_URL: https://i.imgur.com/38BQHdd.png
+          CALCROM_DISCORD_WEBHOOK_URL: ${{ secrets.CALCROM_DISCORD_WEBHOOK_URL }}
+        run: sh .github/calcrom/webhook.sh pokeruby
+
+      - name: Move symfiles
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          cp *.sym symbols/
+          cp build_de/*.sym symbols/
+          export GITHUB_COMMIT_MSG="$(git log --format=%s -n1 $GITHUB_SHA)"
+
+      - name: Update symfiles
+        if: ${{ github.event_name == 'push' }}
+        uses: EndBug/add-and-commit@v7
+        with:
+          branch: symbols
+          cwd: "./symbols"
+          add: "*.sym"
+          message: $GITHUB_COMMIT_MSG

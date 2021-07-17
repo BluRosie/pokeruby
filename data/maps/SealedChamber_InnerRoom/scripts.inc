@@ -11,7 +11,7 @@ SealedChamber_InnerRoom_EventScript_15F1E8:: @ 815F1E8
 	compare VAR_RESULT, 0
 	goto_if_eq SealedChamber_InnerRoom_EventScript_15F247
 	fadeoutbgm 0
-	playse SE_TRACK_MOVE
+	playse SE_TRUCK_MOVE
 	special DoSealedChamberShakingEffect1
 	waitstate
 	delay 40
@@ -27,7 +27,7 @@ SealedChamber_InnerRoom_EventScript_15F1E8:: @ 815F1E8
 	waitstate
 	playse SE_DOOR
 	delay 40
-	msgbox SealedChamber_InnerRoom_Text_1A138B, 4
+	msgbox SealedChamber_InnerRoom_Text_1A138B, MSGBOX_DEFAULT
 	closemessage
 	fadeinbgm 0
 	setflag FLAG_REGI_DOORS_OPENED

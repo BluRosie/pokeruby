@@ -207,7 +207,7 @@ void sub_8080B78(void)
 {
     Overworld_PlaySpecialMapMusic();
     pal_fill_for_map_transition();
-    PlaySE(SE_TK_WARPOUT);
+    PlaySE(SE_WARP_OUT);
     CreateTask(task_map_chg_seq_0807E2CC, 10);
     ScriptContext2_Enable();
 }
@@ -379,7 +379,7 @@ void sub_8080E88(void)
     TryFadeOutOldMapMusic();
     WarpFadeScreen();
     PlayRainSoundEffect();
-    PlaySE(SE_KAIDAN);
+    PlaySE(SE_EXIT);
     gFieldCallback = mapldr_default;
     CreateTask(task0A_fade_n_map_maybe, 10);
 }
@@ -401,7 +401,7 @@ void sub_8080EF0(void)
     CreateTask(sub_808115C, 10);
 }
 
-void sp13F_fall_to_last_warp(void)
+void DoFallWarp(void)
 {
     sp13E_warp_to_last_warp();
     gFieldCallback = sub_8086748;
@@ -430,7 +430,7 @@ void sub_8080F68(void)
     ScriptContext2_Enable();
     TryFadeOutOldMapMusic();
     WarpFadeScreen();
-    PlaySE(SE_TK_WARPIN);
+    PlaySE(SE_WARP_IN);
     CreateTask(task0A_fade_n_map_maybe, 10);
     gFieldCallback = sub_8080B78;
 }
@@ -470,7 +470,7 @@ void DoCableClubWarp(void)
     ScriptContext2_Enable();
     TryFadeOutOldMapMusic();
     WarpFadeScreen();
-    PlaySE(SE_KAIDAN);
+    PlaySE(SE_EXIT);
     CreateTask(WaitCableClubWarp, 10);
 }
 
@@ -484,13 +484,13 @@ void sub_8081050(u8 taskId)
         ClearLinkCallback_2();
         FadeScreen(FADE_TO_BLACK, 0);
         TryFadeOutOldMapMusic();
-        PlaySE(SE_KAIDAN);
+        PlaySE(SE_EXIT);
         data[0]++;
         break;
     case 1:
         if (!PaletteFadeActive() && BGMusicStopped())
         {
-            sub_800832C();
+            SetCloseLinkCallback();
             data[0]++;
         }
         break;
@@ -637,7 +637,7 @@ void sub_8081334(void)
     TryFadeOutOldMapMusic();
     WarpFadeScreen();
     PlayRainSoundEffect();
-    PlaySE(SE_KAIDAN);
+    PlaySE(SE_EXIT);
     gFieldCallback = sub_8080B60;
     CreateTask(sub_80812C8, 10);
 }

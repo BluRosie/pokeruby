@@ -24,7 +24,7 @@
 #include "trig.h"
 #include "trade.h"
 
-extern struct SpriteTemplate gUnknown_02024E8C;
+extern struct SpriteTemplate gCreatingSpriteTemplate;
 
 struct EggHatchData
 {
@@ -242,6 +242,7 @@ static void CreatedHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     gameMet = GetMonData(egg, MON_DATA_MET_GAME);
     markings = GetMonData(egg, MON_DATA_MARKINGS);
     pokerus = GetMonData(egg, MON_DATA_POKERUS);
+    //FRLGE also copy the eventLegal field to the hatched Pokemon. PCNY Wish Eggs traded to RS and hatched will not have their eventLegal bit set and will not be Fateful Encounters in future games.
 
     CreateMon(temp, species, EGG_HATCH_LEVEL, 32, TRUE, personality, 0, 0);
 
@@ -357,16 +358,16 @@ static u8 EggHatchCreateMonSprite(u8 a0, u8 switchID, u8 pokeID)
             u16 species = GetMonData(mon, MON_DATA_SPECIES);
             u32 pid = GetMonData(mon, MON_DATA_PERSONALITY);
             if (GetGenderFromSpeciesAndPersonality(species, pid) == MON_FEMALE)
-                HandleLoadSpecialPokePic(&gMonFrontPicTableFemale[species], gMonFrontPicCoords[species].coords, gMonFrontPicCoords[species].y_offset, ewram0_6, gUnknown_081FAF4C[2 * a0 + 1], species, pid);
+                HandleLoadSpecialPokePic(&gMonFrontPicTableFemale[species], gMonFrontPicCoords[species].coords, gMonFrontPicCoords[species].y_offset, gSharedMem, gMonSpriteGfx_Sprite_ptr[2 * a0 + 1], species, pid);
             else
-                HandleLoadSpecialPokePic(&gMonFrontPicTable[species], gMonFrontPicCoords[species].coords, gMonFrontPicCoords[species].y_offset, ewram0_6, gUnknown_081FAF4C[2 * a0 + 1], species, pid);
+                HandleLoadSpecialPokePic(&gMonFrontPicTable[species], gMonFrontPicCoords[species].coords, gMonFrontPicCoords[species].y_offset, gSharedMem, gMonSpriteGfx_Sprite_ptr[2 * a0 + 1], species, pid);
             LoadCompressedObjectPalette(GetMonSpritePalStruct(mon));
         }
         break;
     case 1:
         GetMonSpriteTemplate_803C56C(GetMonSpritePalStruct(mon)->tag, r5);
-        spriteID = CreateSprite(&gUnknown_02024E8C, 120, 70, 6);
-        gSprites[spriteID].invisible = 1;
+        spriteID = CreateSprite(&gCreatingSpriteTemplate, 120, 70, 6);
+        gSprites[spriteID].invisible = TRUE;
         gSprites[spriteID].callback = SpriteCallbackDummy;
         break;
     }
@@ -422,8 +423,8 @@ static void CB2_EggHatch_0(void)
         break;
     case 2:
         LZDecompressVram(&gBattleTextboxTiles, (void*)(VRAM));
-        CpuSet(&gBattleTextboxTilemap, ewram0_7, 0x800);
-        DmaCopy16(3, ewram0_7, (void*)(VRAM + 0x2800), 0x500);
+        CpuSet(&gBattleTextboxTilemap, gSharedMem, 0x800);
+        DmaCopy16(3, gSharedMem, (void*)(VRAM + 0x2800), 0x500);
         LoadCompressedPalette(&gBattleTextboxPalette, 0, 0x20);
         gMain.state++;
         break;
@@ -596,10 +597,10 @@ static void SpriteCB_Egg_0(struct Sprite* sprite)
     else
     {
         sprite->data[1] = (sprite->data[1] + 20) & 0xFF;
-        sprite->pos2.x = Sin(sprite->data[1], 1);
+        sprite->x2 = Sin(sprite->data[1], 1);
         if (sprite->data[0] == 15)
         {
-            PlaySE(SE_BOWA);
+            PlaySE(SE_BALL);
             StartSpriteAnim(sprite, 1);
             CreateRandomEggShardSprite();
         }
@@ -619,10 +620,10 @@ static void SpriteCB_Egg_1(struct Sprite* sprite)
         else
         {
             sprite->data[1] = (sprite->data[1] + 20) & 0xFF;
-            sprite->pos2.x = Sin(sprite->data[1], 2);
+            sprite->x2 = Sin(sprite->data[1], 2);
             if (sprite->data[0] == 15)
             {
-                PlaySE(SE_BOWA);
+                PlaySE(SE_BALL);
                 StartSpriteAnim(sprite, 2);
             }
         }
@@ -640,22 +641,22 @@ static void SpriteCB_Egg_2(struct Sprite* sprite)
             sprite->callback = SpriteCB_Egg_3;
             sprite->data[0] = 0;
             species = GetMonData(&gPlayerParty[gEggHatchData->eggPartyID], MON_DATA_SPECIES);
-            gSprites[gEggHatchData->pokeSpriteID].pos2.x = 0;
-            gSprites[gEggHatchData->pokeSpriteID].pos2.y = gMonFrontPicCoords[species].y_offset;
+            gSprites[gEggHatchData->pokeSpriteID].x2 = 0;
+            gSprites[gEggHatchData->pokeSpriteID].y2 = gMonFrontPicCoords[species].y_offset;
         }
         else
         {
             sprite->data[1] = (sprite->data[1] + 20) & 0xFF;
-            sprite->pos2.x = Sin(sprite->data[1], 2);
+            sprite->x2 = Sin(sprite->data[1], 2);
             if (sprite->data[0] == 15)
             {
-                PlaySE(SE_BOWA);
+                PlaySE(SE_BALL);
                 StartSpriteAnim(sprite, 2);
                 CreateRandomEggShardSprite();
                 CreateRandomEggShardSprite();
             }
             if (sprite->data[0] == 30)
-                PlaySE(SE_BOWA);
+                PlaySE(SE_BALL);
         }
     }
 }
@@ -682,8 +683,8 @@ static void SpriteCB_Egg_4(struct Sprite* sprite)
     sprite->data[0]++;
     if (!gPaletteFade.active)
     {
-        PlaySE(SE_TAMAGO);
-        sprite->invisible = 1;
+        PlaySE(SE_EGG_HATCH);
+        sprite->invisible = TRUE;
         sprite->callback = SpriteCB_Egg_5;
         sprite->data[0] = 0;
     }
@@ -693,13 +694,13 @@ static void SpriteCB_Egg_5(struct Sprite* sprite)
 {
     if (sprite->data[0] == 0)
     {
-        gSprites[gEggHatchData->pokeSpriteID].invisible = 0;
+        gSprites[gEggHatchData->pokeSpriteID].invisible = FALSE;
         StartSpriteAffineAnim(&gSprites[gEggHatchData->pokeSpriteID], 1);
     }
     if (sprite->data[0] == 8)
         BeginNormalPaletteFade(0xFFFFFFFF, -1, 16, 0, FADE_COLOR_WHITE);
     if (sprite->data[0] <= 9)
-        gSprites[gEggHatchData->pokeSpriteID].pos1.y -= 1;
+        gSprites[gEggHatchData->pokeSpriteID].y -= 1;
     if (sprite->data[0] > 40)
         sprite->callback = SpriteCallbackDummy;
     sprite->data[0]++;
@@ -710,17 +711,14 @@ static void SpriteCB_EggShard(struct Sprite* sprite)
     sprite->data[4] += sprite->data[1];
     sprite->data[5] += sprite->data[2];
 
-    sprite->pos2.x = sprite->data[4] / 256;
-    sprite->pos2.y = sprite->data[5] / 256;
+    sprite->x2 = sprite->data[4] / 256;
+    sprite->y2 = sprite->data[5] / 256;
 
     sprite->data[2] += sprite->data[3];
 
-    if (sprite->pos1.y + sprite->pos2.y > sprite->pos1.y + 20 && sprite->data[2] > 0)
+    if (sprite->y + sprite->y2 > sprite->y + 20 && sprite->data[2] > 0)
         DestroySprite(sprite);
 }
-
-// Converts a number to Q8.8 fixed-point format
-#define Q_8_8(n) ((s16)((n) * 256))
 
 static const s16 sEggShardVelocities[][2] =
 {
@@ -767,7 +765,7 @@ static void CreateEggShardSprite(u8 x, u8 y, s16 data1, s16 data2, s16 data3, u8
 
 static void EggHatchPrintMessage1(u8* src)
 {
-    Text_InitWindow8002EB0(&gEggHatchData->window, src, gEggHatchData->tileDataStartOffset, 3, 15);
+    Contest_StartTextPrinter(&gEggHatchData->window, src, gEggHatchData->tileDataStartOffset, 3, 15);
 }
 
 static void EggHatchPrintMessage2(u8* src)

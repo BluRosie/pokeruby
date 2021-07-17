@@ -369,7 +369,7 @@ void SpriteCallback_VersionBannerLeft(struct Sprite *sprite)
     if (task->data[1] != 0)
     {
         sprite->oam.objMode = 0;
-        sprite->pos1.y = VERSION_BANNER_Y_GOAL;
+        sprite->y = VERSION_BANNER_Y_GOAL;
         sprite->invisible = FALSE;
     }
     else
@@ -379,8 +379,8 @@ void SpriteCallback_VersionBannerLeft(struct Sprite *sprite)
         if (task->data[5] < 64)
         {
             sprite->invisible = FALSE;
-            if (sprite->pos1.y != VERSION_BANNER_Y_GOAL)
-                sprite->pos1.y++;
+            if (sprite->y != VERSION_BANNER_Y_GOAL)
+                sprite->y++;
             REG_BLDALPHA = gUnknown_08393E64[task->data[5] / 2];
         }
     }
@@ -393,7 +393,7 @@ void SpriteCallback_VersionBannerRight(struct Sprite *sprite)
     if (task->data[1] != 0)
     {
         sprite->oam.objMode = 0;
-        sprite->pos1.y = VERSION_BANNER_Y_GOAL;
+        sprite->y = VERSION_BANNER_Y_GOAL;
         sprite->invisible = FALSE;
     }
     else
@@ -401,8 +401,8 @@ void SpriteCallback_VersionBannerRight(struct Sprite *sprite)
         if (task->data[5] < 64)
         {
             sprite->invisible = FALSE;
-            if (sprite->pos1.y != VERSION_BANNER_Y_GOAL)
-                sprite->pos1.y++;
+            if (sprite->y != VERSION_BANNER_Y_GOAL)
+                sprite->y++;
         }
     }
 }
@@ -422,7 +422,6 @@ void SpriteCallback_PressStartCopyrightBanner(struct Sprite *sprite)
         sprite->invisible = FALSE;
 }
 
-#if ENGLISH
 static void CreatePressStartBanner(s16 x, s16 y)
 {
     u8 i;
@@ -435,111 +434,15 @@ static void CreatePressStartBanner(s16 x, s16 y)
         StartSpriteAnim(&gSprites[spriteId], i);
         gSprites[spriteId].data[0] = 1;
     }
-}
-#elif GERMAN
-NAKED
-static void CreatePressStartBanner(s16 x, s16 y)
-{
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r10\n\
-    mov r6, r9\n\
-    mov r5, r8\n\
-    push {r5-r7}\n\
-    lsls r0, 16\n\
-    ldr r2, _0807C3AC @ =0xffe00000\n\
-    adds r0, r2\n\
-    lsrs r0, 16\n\
-    movs r6, 0\n\
-    lsls r1, 16\n\
-    mov r10, r1\n\
-    mov r8, r10\n\
-_0807C302:\n\
-    lsls r5, r0, 16\n\
-    asrs r5, 16\n\
-    ldr r0, _0807C3B0 @ =sStartCopyrightBannerSpriteTemplate\n\
-    adds r1, r5, 0\n\
-    mov r3, r8\n\
-    asrs r2, r3, 16\n\
-    movs r3, 0\n\
-    bl CreateSprite\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    lsls r4, r0, 4\n\
-    adds r4, r0\n\
-    lsls r4, 2\n\
-    ldr r0, _0807C3B4 @ =gSprites\n\
-    mov r9, r0\n\
-    add r4, r9\n\
-    adds r0, r4, 0\n\
-    adds r1, r6, 0\n\
-    bl StartSpriteAnim\n\
-    movs r7, 0x1\n\
-    strh r7, [r4, 0x2E]\n\
-    adds r0, r6, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-    adds r5, 0x20\n\
-    lsls r5, 16\n\
-    lsrs r0, r5, 16\n\
-    cmp r6, 0x2\n\
-    bls _0807C302\n\
-    ldr r1, _0807C3B0 @ =sStartCopyrightBannerSpriteTemplate\n\
-    mov r8, r1\n\
-    lsls r5, r0, 16\n\
-    asrs r5, 16\n\
-    mov r2, r10\n\
-    asrs r6, r2, 16\n\
-    mov r0, r8\n\
-    adds r1, r5, 0\n\
-    adds r2, r6, 0\n\
-    movs r3, 0\n\
-    bl CreateSprite\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    lsls r4, r0, 4\n\
-    adds r4, r0\n\
-    lsls r4, 2\n\
-    add r4, r9\n\
-    adds r0, r4, 0\n\
-    movs r1, 0x8\n\
-    bl StartSpriteAnim\n\
-    strh r7, [r4, 0x2E]\n\
-    subs r5, 0x60\n\
-    lsls r5, 16\n\
-    asrs r5, 16\n\
-    subs r6, 0x8\n\
-    lsls r6, 16\n\
-    asrs r6, 16\n\
-    mov r0, r8\n\
-    adds r1, r5, 0\n\
-    adds r2, r6, 0\n\
-    movs r3, 0\n\
-    bl CreateSprite\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    lsls r4, r0, 4\n\
-    adds r4, r0\n\
-    lsls r4, 2\n\
-    add r4, r9\n\
-    adds r0, r4, 0\n\
-    movs r1, 0x9\n\
-    bl StartSpriteAnim\n\
-    strh r7, [r4, 0x2E]\n\
-    pop {r3-r5}\n\
-    mov r8, r3\n\
-    mov r9, r4\n\
-    mov r10, r5\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_0807C3AC: .4byte 0xffe00000\n\
-_0807C3B0: .4byte sStartCopyrightBannerSpriteTemplate\n\
-_0807C3B4: .4byte gSprites\n\
-    .syntax divided\n");
-}
+#if GERMAN
+    spriteId = CreateSprite(&sStartCopyrightBannerSpriteTemplate, x, y, 0);
+    StartSpriteAnim(&gSprites[spriteId], 8);
+    gSprites[spriteId].data[0] = 1;
+    spriteId = CreateSprite(&sStartCopyrightBannerSpriteTemplate, x - 0x60, y - 0x8, 0);
+    StartSpriteAnim(&gSprites[spriteId], 9);
+    gSprites[spriteId].data[0] = 1;
 #endif
+}
 
 static void CreateCopyrightBanner(s16 x, s16 y)
 {
@@ -556,13 +459,13 @@ static void CreateCopyrightBanner(s16 x, s16 y)
 
 void SpriteCallback_PokemonLogoShine(struct Sprite *sprite)
 {
-    if (gTasks[gUnknown_0202F7E4].data[1] == 0 && sprite->pos1.x < 272)
+    if (gTasks[gUnknown_0202F7E4].data[1] == 0 && sprite->x < 272)
     {
         if (sprite->data[0]) //Flash background
         {
             u16 backgroundColor;
 
-            if (sprite->pos1.x < DISPLAY_WIDTH / 2)
+            if (sprite->x < DISPLAY_WIDTH / 2)
             {
                 //Brighten background color
                 if (sprite->data[1] < 31)
@@ -582,7 +485,7 @@ void SpriteCallback_PokemonLogoShine(struct Sprite *sprite)
             gPlttBufferFaded[0] = backgroundColor;
             gPlttBufferFaded[PLTT_BUFFER_INDEX] = backgroundColor;
         }
-        sprite->pos1.x += 4;
+        sprite->x += 4;
     }
     else
     {

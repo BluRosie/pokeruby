@@ -33,26 +33,6 @@ struct Item
 extern u8 gCurSelectedItemSlotIndex;
 extern struct BagPocket gBagPockets[NUM_BAG_POCKETS];
 
-// These constants are used in gItems
-enum
-{
-    POCKET_NONE,
-    POCKET_ITEMS,
-    POCKET_POKE_BALLS,
-    POCKET_TM_HM,
-    POCKET_BERRIES,
-    POCKET_KEY_ITEMS,
-};
-
-enum
-{
-    ITEMS_POCKET,
-    BALLS_POCKET,
-    TMHM_POCKET,
-    BERRIES_POCKET,
-    KEYITEMS_POCKET
-};
-
 #if ENGLISH
 #include "data/item_descriptions_en.h"
 #include "data/items_en.h"
@@ -67,7 +47,7 @@ void CopyItemName(u16 itemId, u8 *string)
 {
     if (itemId == ITEM_ENIGMA_BERRY)
     {
-        StringCopy(string, GetBerryInfo(GETBERRYID(ITEM_ENIGMA_BERRY))->name);
+        StringCopy(string, GetBerryInfo(ITEM_TO_BERRY(ITEM_ENIGMA_BERRY))->name);
         StringAppend(string, gOtherText_Berry2);
     }
     else
@@ -135,7 +115,7 @@ bool8 CheckBagHasSpace(u16 itemId, u16 count)
     if (ItemId_GetPocket(itemId) == 0)
         return FALSE;
     pocket = ItemId_GetPocket(itemId) - 1;
-    if (pocket != BERRIES_POCKET)
+    if (pocket != POCKET_BERRIES - 1)
         slotCapacity = 99;
     else
         slotCapacity = 999;
@@ -147,7 +127,7 @@ bool8 CheckBagHasSpace(u16 itemId, u16 count)
         {
             if (gBagPockets[pocket].itemSlots[i].quantity + count <= slotCapacity)
                 return TRUE;
-            if (pocket == TMHM_POCKET || pocket == BERRIES_POCKET)
+            if (pocket == POCKET_TM_HM - 1 || pocket == POCKET_BERRIES - 1)
                 return FALSE;
             count -= slotCapacity - gBagPockets[pocket].itemSlots[i].quantity;
             if (count == 0)
@@ -189,7 +169,7 @@ bool8 AddBagItem(u16 itemId, u16 count)
     pocket = ItemId_GetPocket(itemId) - 1;
     //Copy the bag pocket
     memcpy(newItems, gBagPockets[pocket].itemSlots, gBagPockets[pocket].capacity * sizeof(struct ItemSlot));
-    if (pocket != BERRIES_POCKET)
+    if (pocket != POCKET_BERRIES - 1)
         slotCapacity = 99;
     else
         slotCapacity = 999;
@@ -206,7 +186,7 @@ bool8 AddBagItem(u16 itemId, u16 count)
                 memcpy(gBagPockets[pocket].itemSlots, newItems, gBagPockets[pocket].capacity * sizeof(struct ItemSlot));
                 return TRUE;
             }
-            if (pocket == TMHM_POCKET || pocket == BERRIES_POCKET)
+            if (pocket == POCKET_TM_HM - 1 || pocket == POCKET_BERRIES - 1)
                 return FALSE;
             count -= slotCapacity - newItems[i].quantity;
             newItems[i].quantity = slotCapacity;

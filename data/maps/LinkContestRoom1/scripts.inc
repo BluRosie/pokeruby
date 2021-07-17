@@ -1,8 +1,8 @@
 LinkContestRoom1_MapScripts:: @ 815F580
-	map_script 4, LinkContestRoom1_MapScript2_15F610
-	map_script 2, LinkContestRoom1_MapScript2_15F606
-	map_script 3, LinkContestRoom1_MapScript1_15F595
-	map_script 5, LinkContestRoom1_MapScript1_15F5F4
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LinkContestRoom1_MapScript2_15F610
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, LinkContestRoom1_MapScript2_15F606
+	map_script MAP_SCRIPT_ON_TRANSITION, LinkContestRoom1_MapScript1_15F595
+	map_script MAP_SCRIPT_ON_RESUME, LinkContestRoom1_MapScript1_15F5F4
 	.byte 0
 
 LinkContestRoom1_MapScript1_15F595:: @ 815F595
@@ -26,23 +26,23 @@ LinkContestRoom1_EventScript_15F5A5:: @ 815F5A5
 	return
 
 LinkContestRoom1_EventScript_15F5E0:: @ 815F5E0
-	savebgm MUS_TEST1
+	savebgm MUS_LINK_CONTEST_P1
 	return
 
 LinkContestRoom1_EventScript_15F5E4:: @ 815F5E4
-	savebgm MUS_TEST2
+	savebgm MUS_LINK_CONTEST_P2
 	return
 
 LinkContestRoom1_EventScript_15F5E8:: @ 815F5E8
-	savebgm MUS_TEST3
+	savebgm MUS_LINK_CONTEST_P3
 	return
 
 LinkContestRoom1_EventScript_15F5EC:: @ 815F5EC
-	savebgm MUS_TEST4
+	savebgm MUS_LINK_CONTEST_P4
 	return
 
 LinkContestRoom1_EventScript_15F5F0:: @ 815F5F0
-	savebgm MUS_CONTEST0
+	savebgm MUS_CONTEST
 	return
 
 LinkContestRoom1_MapScript1_15F5F4:: @ 815F5F4
@@ -68,7 +68,7 @@ LinkContestRoom1_EventScript_15F61A:: @ 815F61A
 	end
 
 LinkContestRoom1_EventScript_15F625:: @ 815F625
-	hideobjectat 255, MAP_LITTLEROOT_TOWN
+	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_LITTLEROOT_TOWN
 	call LinkContestRoom1_EventScript_15F919
 	end
 

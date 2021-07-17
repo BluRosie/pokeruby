@@ -1430,7 +1430,7 @@ const struct YesNoFuncTable gUnknown_083EC634[] = {
 
 // text
 
-extern u8 gUnknown_0815F399[];
+extern u8 SecretBase_EventScript_PCCancel[];
 
 void sub_80FE1DC(void)
 {
@@ -1457,19 +1457,19 @@ void DecorationPC(u8 taskId)
 void Task_SecretBasePC_Decoration(u8 taskId)
 {
     DecorationPC(taskId);
-    ewram_1f000.items = gSaveBlock1.secretBases[0].decorations;
-    ewram_1f000.pos = gSaveBlock1.secretBases[0].decorationPos;
-    ewram_1f000.size = sizeof gSaveBlock1.secretBases[0].decorations;
-    ewram_1f000.isPlayerRoom = 0;
+    sDecorationContext.items = gSaveBlock1.secretBases[0].decorations;
+    sDecorationContext.pos = gSaveBlock1.secretBases[0].decorationPos;
+    sDecorationContext.size = sizeof gSaveBlock1.secretBases[0].decorations;
+    sDecorationContext.isPlayerRoom = 0;
 }
 
 void DoPlayerPCDecoration(u8 taskId)
 {
     DecorationPC(taskId);
-    ewram_1f000.items = gSaveBlock1.playerRoomDecor;
-    ewram_1f000.pos = gSaveBlock1.playerRoomDecorPos;
-    ewram_1f000.size = sizeof gSaveBlock1.playerRoomDecor;
-    ewram_1f000.isPlayerRoom = 1;
+    sDecorationContext.items = gSaveBlock1.playerRoomDecor;
+    sDecorationContext.pos = gSaveBlock1.playerRoomDecorPos;
+    sDecorationContext.size = sizeof gSaveBlock1.playerRoomDecor;
+    sDecorationContext.isPlayerRoom = 1;
 }
 
 void sub_80FE2B4(void)
@@ -1522,9 +1522,9 @@ void gpu_pal_decompress_alloc_tag_and_upload(u8 taskId)
     Menu_EraseWindowRect(0, 0, 10, 9);
     Menu_BlankWindowRect(2, 15, 27, 18);
     FreeSpritePaletteByTag(6);
-    if (ewram_1f000.isPlayerRoom == 0)
+    if (sDecorationContext.isPlayerRoom == 0)
     {
-        ScriptContext1_SetupScript(gUnknown_0815F399);
+        ScriptContext1_SetupScript(SecretBase_EventScript_PCCancel);
         DestroyTask(taskId);
     } else
     {
@@ -1572,7 +1572,7 @@ void sub_80FE528(u8 taskId) // PrintDecorationCategorySelectionMenuStrings
     Menu_DrawStdWindowFrame(0, 0, 14, 19);
     for (decoCat=0; decoCat<8; decoCat++)
     {
-        if (ewram_1f000.isPlayerRoom == 1 && gTasks[taskId].data[11] == 0 && decoCat != DECORCAT_DOLL && decoCat != DECORCAT_CUSHION)
+        if (sDecorationContext.isPlayerRoom == 1 && gTasks[taskId].data[11] == 0 && decoCat != DECORCAT_DOLL && decoCat != DECORCAT_CUSHION)
         {
             sub_80FE470(decoCat, 1, 2 * decoCat + 1, 13); // Selectable
         } else
@@ -1811,7 +1811,7 @@ void sub_80FEABC(u8 taskId, u8 dummy1)
         }
         if (gUnknown_020388D0[i])
         {
-            if (ewram_1f000.isPlayerRoom == 1 && gUnknown_020388F6 != DECORCAT_DOLL && gUnknown_020388F6 != DECORCAT_CUSHION && gTasks[taskId].data[11] == 0)
+            if (sDecorationContext.isPlayerRoom == 1 && gUnknown_020388F6 != DECORCAT_DOLL && gUnknown_020388F6 != DECORCAT_CUSHION && gTasks[taskId].data[11] == 0)
             {
                 StringCopy(gStringVar1, gDecorations[gUnknown_020388D0[i]].name);
                 sub_8072A18(gUnknown_083EC65A, 0x08, 8 * ni, 0x68, 1);
@@ -2180,9 +2180,9 @@ void sub_80FF474(void)
 bool8 sub_80FF58C/*IsThereRoomForMoreDecorations*/(void)
 {
     u16 i;
-    for (i=0; i<ewram_1f000.size; i++)
+    for (i=0; i<sDecorationContext.size; i++)
     {
-        if (ewram_1f000.items[i] == 0)
+        if (sDecorationContext.items[i] == 0)
         {
             return TRUE;
         }
@@ -2192,7 +2192,7 @@ bool8 sub_80FF58C/*IsThereRoomForMoreDecorations*/(void)
 
 void sub_80FF5BC(u8 taskId)
 {
-    if (ewram_1f000.isPlayerRoom == 1 && gUnknown_020388F6 != DECORCAT_DOLL && gUnknown_020388F6 != DECORCAT_CUSHION)
+    if (sDecorationContext.isPlayerRoom == 1 && gUnknown_020388F6 != DECORCAT_DOLL && gUnknown_020388F6 != DECORCAT_CUSHION)
     {
         sub_80FEF74();
         sub_80FED1C();
@@ -2208,8 +2208,8 @@ void sub_80FF5BC(u8 taskId)
         {
             sub_80FEF74();
             sub_80FED1C();
-            ConvertIntToDecimalStringN(gStringVar1, ewram_1f000.size, STR_CONV_MODE_RIGHT_ALIGN, 2);
-            if (!ewram_1f000.isPlayerRoom)
+            ConvertIntToDecimalStringN(gStringVar1, sDecorationContext.size, STR_CONV_MODE_RIGHT_ALIGN, 2);
+            if (!sDecorationContext.isPlayerRoom)
             {
                 StringExpandPlaceholders(gStringVar4, gSecretBaseText_NoMoreDecor);
             } else
@@ -2403,8 +2403,6 @@ bool8 sub_80FFBDC(u16 metatileBehavior, const struct Decoration *decoration)
     return FALSE;
 }
 
-// When behaviorBy is set, it is masked by 0xf000.  This is the step that fails to match when built.
-#ifdef NONMATCHING
 bool8 sub_80FFC24(u8 taskId, const struct Decoration *decoration)
 {
     u8 i;
@@ -2536,540 +2534,6 @@ bool8 sub_80FFC24(u8 taskId, const struct Decoration *decoration)
     }
     return TRUE;
 }
-#else
-NAKED
-bool8 sub_80FFC24(u8 taskId, const struct Decoration *decoration)
-{
-    asm(".syntax unified\n"
-    "\tpush {r4-r7,lr}\n"
-    "\tmov r7, r10\n"
-    "\tmov r6, r9\n"
-    "\tmov r5, r8\n"
-    "\tpush {r5-r7}\n"
-    "\tsub sp, 0x24\n"
-    "\tstr r1, [sp]\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r0, 24\n"
-    "\tmov r10, r0\n"
-    "\tldr r1, _080FFC60 @ =gTasks\n"
-    "\tlsls r0, 2\n"
-    "\tadd r0, r10\n"
-    "\tlsls r0, 3\n"
-    "\tadds r0, r1\n"
-    "\tldrb r2, [r0, 0x14]\n"
-    "\tstr r2, [sp, 0x4]\n"
-    "\tldrb r0, [r0, 0x12]\n"
-    "\tstr r0, [sp, 0x8]\n"
-    "\tldr r3, [sp]\n"
-    "\tldrb r0, [r3, 0x11]\n"
-    "\tadds r2, r1, 0\n"
-    "\tcmp r0, 0x4\n"
-    "\tbls _080FFC56\n"
-    "\tb _08100024\n"
-    "_080FFC56:\n"
-    "\tlsls r0, 2\n"
-    "\tldr r1, _080FFC64 @ =_080FFC68\n"
-    "\tadds r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmov pc, r0\n"
-    "\t.align 2, 0\n"
-    "_080FFC60: .4byte gTasks\n"
-    "_080FFC64: .4byte _080FFC68\n"
-    "\t.align 2, 0\n"
-    "_080FFC68:\n"
-    "\t.4byte _080FFC7C\n"
-    "\t.4byte _080FFC7C\n"
-    "\t.4byte _080FFD68\n"
-    "\t.4byte _080FFF1C\n"
-    "\t.4byte _080FFFA0\n"
-    "_080FFC7C:\n"
-    "\tmovs r6, 0\n"
-    "\tldr r0, [sp, 0x4]\n"
-    "\tcmp r6, r0\n"
-    "\tbcc _080FFC86\n"
-    "\tb _08100024\n"
-    "_080FFC86:\n"
-    "\tmov r1, r10\n"
-    "\tlsls r1, 2\n"
-    "\tstr r1, [sp, 0x1C]\n"
-    "_080FFC8C:\n"
-    "\tmov r2, r10\n"
-    "\tlsls r0, r2, 2\n"
-    "\tadd r0, r10\n"
-    "\tlsls r0, 3\n"
-    "\tldr r3, _080FFD64 @ =gTasks\n"
-    "\tadds r0, r3\n"
-    "\tldrh r0, [r0, 0xA]\n"
-    "\tsubs r0, r6\n"
-    "\tlsls r0, 16\n"
-    "\tlsrs r0, 16\n"
-    "\tmov r9, r0\n"
-    "\tmovs r7, 0\n"
-    "\tadds r6, 0x1\n"
-    "\tstr r6, [sp, 0x14]\n"
-    "\tldr r0, [sp, 0x8]\n"
-    "\tcmp r7, r0\n"
-    "\tbcs _080FFD56\n"
-    "\tmov r1, r9\n"
-    "\tlsls r1, 16\n"
-    "\tstr r1, [sp, 0xC]\n"
-    "\tasrs r1, 16\n"
-    "\tmov r9, r1\n"
-    "_080FFCB8:\n"
-    "\tldr r0, [sp, 0x1C]\n"
-    "\tadd r0, r10\n"
-    "\tlsls r0, 3\n"
-    "\tldr r2, _080FFD64 @ =gTasks\n"
-    "\tadds r0, r2\n"
-    "\tldrh r0, [r0, 0x8]\n"
-    "\tadds r0, r7\n"
-    "\tlsls r0, 16\n"
-    "\tmov r8, r0\n"
-    "\tasrs r6, r0, 16\n"
-    "\tadds r0, r6, 0\n"
-    "\tmov r1, r9\n"
-    "\tbl MapGridGetMetatileBehaviorAt\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r4, r0, 24\n"
-    "\tldr r3, [sp, 0x4]\n"
-    "\tldr r1, [sp, 0x14]\n"
-    "\tsubs r0, r3, r1\n"
-    "\tldr r2, [sp, 0x8]\n"
-    "\tadds r1, r0, 0\n"
-    "\tmuls r1, r2\n"
-    "\tadds r1, r7\n"
-    "\tldr r3, [sp]\n"
-    "\tldr r0, [r3, 0x1C]\n"
-    "\tlsls r1, 1\n"
-    "\tadds r1, r0\n"
-    "\tmovs r2, 0x80\n"
-    "\tlsls r2, 2\n"
-    "\tadds r0, r2, 0\n"
-    "\tldrh r1, [r1]\n"
-    "\tadds r0, r1\n"
-    "\tlsls r0, 16\n"
-    "\tlsrs r0, 16\n"
-    "\tbl GetBehaviorByMetatileId\n"
-    "\tmovs r3, 0xF0\n"
-    "\tlsls r3, 8\n"
-    "\tadds r1, r3, 0\n"
-    "\tadds r5, r1, 0\n"
-    "\tands r5, r0\n"
-    "\tadds r0, r4, 0\n"
-    "\tldr r1, [sp]\n"
-    "\tbl sub_80FFBDC\n"
-    "\tlsls r0, 24\n"
-    "\tcmp r0, 0\n"
-    "\tbne _080FFD1A\n"
-    "\tb _080FFFF4\n"
-    "_080FFD1A:\n"
-    "\tmov r0, r10\n"
-    "\tadds r1, r6, 0\n"
-    "\tmov r2, r9\n"
-    "\tadds r3, r5, 0\n"
-    "\tbl sub_80FFB94\n"
-    "\tlsls r0, 24\n"
-    "\tcmp r0, 0\n"
-    "\tbne _080FFD2E\n"
-    "\tb _080FFFF4\n"
-    "_080FFD2E:\n"
-    "\tmov r1, r8\n"
-    "\tlsrs r0, r1, 16\n"
-    "\tldr r2, [sp, 0xC]\n"
-    "\tlsrs r1, r2, 16\n"
-    "\tmovs r2, 0\n"
-    "\tbl GetObjectEventIdByXYZ\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r4, r0, 24\n"
-    "\tcmp r4, 0\n"
-    "\tbeq _080FFD4A\n"
-    "\tcmp r4, 0x10\n"
-    "\tbeq _080FFD4A\n"
-    "\tb _080FFFF4\n"
-    "_080FFD4A:\n"
-    "\tadds r0, r7, 0x1\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r7, r0, 24\n"
-    "\tldr r3, [sp, 0x8]\n"
-    "\tcmp r7, r3\n"
-    "\tbcc _080FFCB8\n"
-    "_080FFD56:\n"
-    "\tldr r1, [sp, 0x14]\n"
-    "\tlsls r0, r1, 24\n"
-    "\tlsrs r6, r0, 24\n"
-    "\tldr r2, [sp, 0x4]\n"
-    "\tcmp r6, r2\n"
-    "\tbcc _080FFC8C\n"
-    "\tb _08100024\n"
-    "\t.align 2, 0\n"
-    "_080FFD64: .4byte gTasks\n"
-    "_080FFD68:\n"
-    "\tmovs r6, 0\n"
-    "\tmov r3, r10\n"
-    "\tlsls r3, 2\n"
-    "\tstr r3, [sp, 0x1C]\n"
-    "\tldr r0, [sp, 0x4]\n"
-    "\tsubs r0, 0x1\n"
-    "\tstr r0, [sp, 0x18]\n"
-    "\tcmp r6, r0\n"
-    "\tbge _080FFE54\n"
-    "\tadds r0, r3, 0\n"
-    "\tadd r0, r10\n"
-    "\tlsls r0, 3\n"
-    "\tstr r0, [sp, 0x10]\n"
-    "_080FFD82:\n"
-    "\tldr r1, [sp, 0x10]\n"
-    "\tadds r0, r1, r2\n"
-    "\tldrh r0, [r0, 0xA]\n"
-    "\tsubs r0, r6\n"
-    "\tlsls r0, 16\n"
-    "\tlsrs r0, 16\n"
-    "\tmov r9, r0\n"
-    "\tmovs r7, 0\n"
-    "\tadds r6, 0x1\n"
-    "\tstr r6, [sp, 0x14]\n"
-    "\tldr r3, [sp, 0x8]\n"
-    "\tcmp r7, r3\n"
-    "\tbcs _080FFE48\n"
-    "\tlsls r0, 16\n"
-    "\tstr r0, [sp, 0x20]\n"
-    "_080FFDA0:\n"
-    "\tldr r1, [sp, 0x10]\n"
-    "\tadds r0, r1, r2\n"
-    "\tldrh r0, [r0, 0x8]\n"
-    "\tadds r0, r7\n"
-    "\tlsls r0, 16\n"
-    "\tmov r8, r0\n"
-    "\tasrs r6, r0, 16\n"
-    "\tmov r2, r9\n"
-    "\tlsls r1, r2, 16\n"
-    "\tadds r0, r6, 0\n"
-    "\tasrs r1, 16\n"
-    "\tbl MapGridGetMetatileBehaviorAt\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r4, r0, 24\n"
-    "\tldr r3, [sp, 0x4]\n"
-    "\tldr r1, [sp, 0x14]\n"
-    "\tsubs r0, r3, r1\n"
-    "\tldr r2, [sp, 0x8]\n"
-    "\tadds r1, r0, 0\n"
-    "\tmuls r1, r2\n"
-    "\tadds r1, r7\n"
-    "\tldr r3, [sp]\n"
-    "\tldr r0, [r3, 0x1C]\n"
-    "\tlsls r1, 1\n"
-    "\tadds r1, r0\n"
-    "\tmovs r2, 0x80\n"
-    "\tlsls r2, 2\n"
-    "\tadds r0, r2, 0\n"
-    "\tldrh r1, [r1]\n"
-    "\tadds r0, r1\n"
-    "\tlsls r0, 16\n"
-    "\tlsrs r0, 16\n"
-    "\tbl GetBehaviorByMetatileId\n"
-    "\tmovs r3, 0xF0\n"
-    "\tlsls r3, 8\n"
-    "\tadds r1, r3, 0\n"
-    "\tadds r5, r1, 0\n"
-    "\tands r5, r0\n"
-    "\tadds r0, r4, 0\n"
-    "\tbl MetatileBehavior_IsNormal\n"
-    "\tlsls r0, 24\n"
-    "\tcmp r0, 0\n"
-    "\tbne _080FFE0C\n"
-    "\tadds r0, r4, 0\n"
-    "\tadds r1, r5, 0\n"
-    "\tbl sub_80FFB6C\n"
-    "\tlsls r0, 24\n"
-    "\tcmp r0, 0\n"
-    "\tbne _080FFE0C\n"
-    "\tb _080FFFF4\n"
-    "_080FFE0C:\n"
-    "\tmov r0, r10\n"
-    "\tadds r1, r6, 0\n"
-    "\tldr r3, [sp, 0x20]\n"
-    "\tasrs r2, r3, 16\n"
-    "\tadds r3, r5, 0\n"
-    "\tbl sub_80FFB94\n"
-    "\tlsls r0, 24\n"
-    "\tcmp r0, 0\n"
-    "\tbne _080FFE22\n"
-    "\tb _080FFFF4\n"
-    "_080FFE22:\n"
-    "\tmov r1, r8\n"
-    "\tlsrs r0, r1, 16\n"
-    "\tldr r2, [sp, 0x20]\n"
-    "\tlsrs r1, r2, 16\n"
-    "\tmovs r2, 0\n"
-    "\tbl GetObjectEventIdByXYZ\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r0, 24\n"
-    "\tcmp r0, 0x10\n"
-    "\tbeq _080FFE3A\n"
-    "\tb _080FFFF4\n"
-    "_080FFE3A:\n"
-    "\tadds r0, r7, 0x1\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r7, r0, 24\n"
-    "\tldr r2, _080FFF18 @ =gTasks\n"
-    "\tldr r3, [sp, 0x8]\n"
-    "\tcmp r7, r3\n"
-    "\tbcc _080FFDA0\n"
-    "_080FFE48:\n"
-    "\tldr r1, [sp, 0x14]\n"
-    "\tlsls r0, r1, 24\n"
-    "\tlsrs r6, r0, 24\n"
-    "\tldr r3, [sp, 0x18]\n"
-    "\tcmp r6, r3\n"
-    "\tblt _080FFD82\n"
-    "_080FFE54:\n"
-    "\tldr r0, [sp, 0x1C]\n"
-    "\tadd r0, r10\n"
-    "\tlsls r0, 3\n"
-    "\tadds r0, r2\n"
-    "\tldrh r0, [r0, 0xA]\n"
-    "\tldr r1, [sp, 0x4]\n"
-    "\tsubs r0, r1\n"
-    "\tadds r0, 0x1\n"
-    "\tlsls r0, 16\n"
-    "\tlsrs r0, 16\n"
-    "\tmov r9, r0\n"
-    "\tmovs r7, 0\n"
-    "\tldr r3, [sp, 0x8]\n"
-    "\tcmp r7, r3\n"
-    "\tbcc _080FFE74\n"
-    "\tb _08100024\n"
-    "_080FFE74:\n"
-    "\tlsls r0, 16\n"
-    "\tstr r0, [sp, 0x20]\n"
-    "_080FFE78:\n"
-    "\tldr r0, [sp, 0x1C]\n"
-    "\tadd r0, r10\n"
-    "\tlsls r0, 3\n"
-    "\tldr r1, _080FFF18 @ =gTasks\n"
-    "\tadds r0, r1\n"
-    "\tldrh r0, [r0, 0x8]\n"
-    "\tadds r0, r7\n"
-    "\tlsls r0, 16\n"
-    "\tmov r8, r0\n"
-    "\tasrs r6, r0, 16\n"
-    "\tmov r2, r9\n"
-    "\tlsls r1, r2, 16\n"
-    "\tadds r0, r6, 0\n"
-    "\tasrs r1, 16\n"
-    "\tbl MapGridGetMetatileBehaviorAt\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r4, r0, 24\n"
-    "\tldr r3, [sp]\n"
-    "\tldr r0, [r3, 0x1C]\n"
-    "\tlsls r1, r7, 1\n"
-    "\tadds r1, r0\n"
-    "\tmovs r2, 0x80\n"
-    "\tlsls r2, 2\n"
-    "\tadds r0, r2, 0\n"
-    "\tldrh r1, [r1]\n"
-    "\tadds r0, r1\n"
-    "\tlsls r0, 16\n"
-    "\tlsrs r0, 16\n"
-    "\tbl GetBehaviorByMetatileId\n"
-    "\tmovs r3, 0xF0\n"
-    "\tlsls r3, 8\n"
-    "\tadds r1, r3, 0\n"
-    "\tadds r5, r1, 0\n"
-    "\tands r5, r0\n"
-    "\tadds r0, r4, 0\n"
-    "\tbl MetatileBehavior_IsNormal\n"
-    "\tlsls r0, 24\n"
-    "\tcmp r0, 0\n"
-    "\tbne _080FFEDA\n"
-    "\tadds r0, r4, 0\n"
-    "\tbl MetatileBehavior_IsSecretBaseNorthWall\n"
-    "\tlsls r0, 24\n"
-    "\tcmp r0, 0\n"
-    "\tbne _080FFEDA\n"
-    "\tb _080FFFF4\n"
-    "_080FFEDA:\n"
-    "\tmov r0, r10\n"
-    "\tadds r1, r6, 0\n"
-    "\tldr r3, [sp, 0x20]\n"
-    "\tasrs r2, r3, 16\n"
-    "\tadds r3, r5, 0\n"
-    "\tbl sub_80FFB94\n"
-    "\tlsls r0, 24\n"
-    "\tcmp r0, 0\n"
-    "\tbne _080FFEF0\n"
-    "\tb _080FFFF4\n"
-    "_080FFEF0:\n"
-    "\tmov r1, r8\n"
-    "\tlsrs r0, r1, 16\n"
-    "\tldr r2, [sp, 0x20]\n"
-    "\tlsrs r1, r2, 16\n"
-    "\tmovs r2, 0\n"
-    "\tbl GetObjectEventIdByXYZ\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r4, r0, 24\n"
-    "\tcmp r4, 0\n"
-    "\tbeq _080FFF0A\n"
-    "\tcmp r4, 0x10\n"
-    "\tbne _080FFFF4\n"
-    "_080FFF0A:\n"
-    "\tadds r0, r7, 0x1\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r7, r0, 24\n"
-    "\tldr r3, [sp, 0x8]\n"
-    "\tcmp r7, r3\n"
-    "\tbcc _080FFE78\n"
-    "\tb _08100024\n"
-    "\t.align 2, 0\n"
-    "_080FFF18: .4byte gTasks\n"
-    "_080FFF1C:\n"
-    "\tmovs r6, 0\n"
-    "\tldr r0, [sp, 0x4]\n"
-    "\tcmp r6, r0\n"
-    "\tbcc _080FFF26\n"
-    "\tb _08100024\n"
-    "_080FFF26:\n"
-    "\tmov r1, r10\n"
-    "\tlsls r0, r1, 2\n"
-    "\tadd r0, r10\n"
-    "\tlsls r1, r0, 3\n"
-    "\tldr r2, _080FFF9C @ =gTasks\n"
-    "\tadds r0, r1, r2\n"
-    "\tldrh r0, [r0, 0xA]\n"
-    "\tsubs r0, r6\n"
-    "\tlsls r0, 16\n"
-    "\tlsrs r0, 16\n"
-    "\tmov r9, r0\n"
-    "\tmovs r7, 0\n"
-    "\tldr r3, [sp, 0x8]\n"
-    "\tcmp r7, r3\n"
-    "\tbcs _080FFF8C\n"
-    "\tadds r0, r2, 0\n"
-    "\tadds r1, r0\n"
-    "\tmov r8, r1\n"
-    "\tmov r1, r9\n"
-    "\tlsls r0, r1, 16\n"
-    "\tasrs r5, r0, 16\n"
-    "_080FFF50:\n"
-    "\tmov r2, r8\n"
-    "\tldrh r0, [r2, 0x8]\n"
-    "\tadds r0, r7\n"
-    "\tlsls r0, 16\n"
-    "\tasrs r4, r0, 16\n"
-    "\tadds r0, r4, 0\n"
-    "\tadds r1, r5, 0\n"
-    "\tbl MapGridGetMetatileBehaviorAt\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r0, 24\n"
-    "\tbl MetatileBehavior_IsSecretBaseNorthWall\n"
-    "\tlsls r0, 24\n"
-    "\tcmp r0, 0\n"
-    "\tbeq _080FFFF4\n"
-    "\tadds r0, r4, 0\n"
-    "\tadds r1, r5, 0x1\n"
-    "\tbl MapGridGetMetatileIdAt\n"
-    "\tmovs r1, 0xA3\n"
-    "\tlsls r1, 2\n"
-    "\tcmp r0, r1\n"
-    "\tbeq _080FFFF4\n"
-    "\tadds r0, r7, 0x1\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r7, r0, 24\n"
-    "\tldr r3, [sp, 0x8]\n"
-    "\tcmp r7, r3\n"
-    "\tbcc _080FFF50\n"
-    "_080FFF8C:\n"
-    "\tadds r0, r6, 0x1\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r6, r0, 24\n"
-    "\tldr r0, [sp, 0x4]\n"
-    "\tcmp r6, r0\n"
-    "\tbcc _080FFF26\n"
-    "\tb _08100024\n"
-    "\t.align 2, 0\n"
-    "_080FFF9C: .4byte gTasks\n"
-    "_080FFFA0:\n"
-    "\tmov r3, r10\n"
-    "\tlsls r1, r3, 2\n"
-    "\tadds r0, r1, r3\n"
-    "\tlsls r0, 3\n"
-    "\tadds r0, r2\n"
-    "\tldrh r0, [r0, 0xA]\n"
-    "\tmov r9, r0\n"
-    "\tmovs r7, 0\n"
-    "\tstr r1, [sp, 0x1C]\n"
-    "\tldr r0, [sp, 0x8]\n"
-    "\tcmp r7, r0\n"
-    "\tbcs _08100024\n"
-    "\tadds r6, r2, 0\n"
-    "\tmov r1, r9\n"
-    "\tlsls r1, 16\n"
-    "\tstr r1, [sp, 0x20]\n"
-    "_080FFFC0:\n"
-    "\tldr r0, [sp, 0x1C]\n"
-    "\tadd r0, r10\n"
-    "\tlsls r0, 3\n"
-    "\tadds r0, r6\n"
-    "\tldrh r0, [r0, 0x8]\n"
-    "\tadds r0, r7\n"
-    "\tlsls r0, 16\n"
-    "\tlsrs r5, r0, 16\n"
-    "\tasrs r0, 16\n"
-    "\tmov r2, r9\n"
-    "\tlsls r1, r2, 16\n"
-    "\tasrs r1, 16\n"
-    "\tbl MapGridGetMetatileBehaviorAt\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r4, r0, 24\n"
-    "\tldr r3, [sp]\n"
-    "\tldrb r0, [r3, 0x12]\n"
-    "\tcmp r0, 0x5\n"
-    "\tbne _080FFFF8\n"
-    "_080FFFE8:\n"
-    "\tadds r0, r4, 0\n"
-    "\tbl MetatileBehavior_IsLargeMatCenter\n"
-    "\tlsls r0, 24\n"
-    "\tcmp r0, 0\n"
-    "\tbne _08100004\n"
-    "_080FFFF4:\n"
-    "\tmovs r0, 0\n"
-    "\tb _08100026\n"
-    "_080FFFF8:\n"
-    "\tadds r0, r4, 0\n"
-    "\tbl MetatileBehavior_IsSecretBaseLargeMatEdge\n"
-    "\tlsls r0, 24\n"
-    "\tcmp r0, 0\n"
-    "\tbeq _080FFFE8\n"
-    "_08100004:\n"
-    "\tadds r0, r5, 0\n"
-    "\tldr r2, [sp, 0x20]\n"
-    "\tlsrs r1, r2, 16\n"
-    "\tmovs r2, 0\n"
-    "\tbl GetObjectEventIdByXYZ\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r0, 24\n"
-    "\tcmp r0, 0x10\n"
-    "\tbne _080FFFF4\n"
-    "\tadds r0, r7, 0x1\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r7, r0, 24\n"
-    "\tldr r3, [sp, 0x8]\n"
-    "\tcmp r7, r3\n"
-    "\tbcc _080FFFC0\n"
-    "_08100024:\n"
-    "\tmovs r0, 0x1\n"
-    "_08100026:\n"
-    "\tadd sp, 0x24\n"
-    "\tpop {r3-r5}\n"
-    "\tmov r8, r3\n"
-    "\tmov r9, r4\n"
-    "\tmov r10, r5\n"
-    "\tpop {r4-r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    ".syntax divided\n");
-}
-#endif
 
 void sub_8100038(u8 taskId)
 {
@@ -3078,7 +2542,7 @@ void sub_8100038(u8 taskId)
         DisplayItemMessageOnField(taskId, gSecretBaseText_PlaceItHere, sub_81000A0, 0);
     } else
     {
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         DisplayItemMessageOnField(taskId, gSecretBaseText_CantBePlacedHere, sub_81006A8, 0);
     }
 }
@@ -3102,23 +2566,23 @@ void sub_81000C4(u8 taskId)
         gUnknown_020391A6 = gTasks[taskId].data[1] - 7;
         ScriptContext1_SetupScript(gUnknown_081A2F7B);
     }
-    gSprites[gUnknown_020391A8].pos1.y += 2;
+    gSprites[gUnknown_020391A8].y += 2;
     sub_810028C(taskId);
 }
 
 void sub_8100174(u8 taskId)
 {
     u16 i;
-    for (i=0; i<ewram_1f000.size; i++)
+    for (i=0; i<sDecorationContext.size; i++)
     {
-        if (ewram_1f000.items[i] == 0)
+        if (sDecorationContext.items[i] == 0)
         {
-            ewram_1f000.items[i] = gUnknown_020388D0[gUnknown_020388F5];
-            ewram_1f000.pos[i] = ((gTasks[taskId].data[0] - 7) << 4) + (gTasks[taskId].data[1] - 7);
+            sDecorationContext.items[i] = gUnknown_020388D0[gUnknown_020388F5];
+            sDecorationContext.pos[i] = ((gTasks[taskId].data[0] - 7) << 4) + (gTasks[taskId].data[1] - 7);
             break;
         }
     }
-    if (!ewram_1f000.isPlayerRoom)
+    if (!sDecorationContext.isPlayerRoom)
     {
         for (i=0; i<16; i++)
         {
@@ -3529,8 +2993,6 @@ const struct SpriteTemplate gSpriteTemplate_83ECA88 = {
 
 const struct YesNoFuncTable gUnknown_083ECAA0 = {.yesFunc = sub_8101848, .noFunc = sub_80FED3C};
 
-u8 *const unref_label_083ECAA8[] = {gSharedMem};
-
 void sub_81008BC(struct UnkStruct_02038900 *unk_02038900)
 {
     u8 i;
@@ -3575,15 +3037,15 @@ void sub_81009C0(struct Sprite *sprite)
     {
         if (sprite->data[6] < 15)
         {
-            sprite->invisible = 0;
+            sprite->invisible = FALSE;
         } else
         {
-            sprite->invisible = 1;
+            sprite->invisible = TRUE;
         }
         sprite->data[6] = (sprite->data[6] + 1) & 0x1f;
     } else
     {
-        sprite->invisible = 0;
+        sprite->invisible = FALSE;
     }
 }
 
@@ -3602,8 +3064,8 @@ void sub_8100A0C(u8 taskId)
 
 void sub_8100A60(u8 a0)
 {
-    ewram_1f000.items[a0] = 0;
-    ewram_1f000.pos[a0] = 0;
+    sDecorationContext.items[a0] = 0;
+    sDecorationContext.pos[a0] = 0;
 }
 
 void sub_8100A7C(void)
@@ -3614,7 +3076,7 @@ void sub_8100A7C(void)
     if (gSpecialVar_0x8004 == gUnknown_02039234)
     {
         gSpecialVar_Result = 1;
-    } else if (gDecorations[ewram_1f000.items[gUnknown_020391B4[gSpecialVar_0x8004].decorId]].permission == DECORPERM_SOLID_MAT)
+    } else if (gDecorations[sDecorationContext.items[gUnknown_020391B4[gSpecialVar_0x8004].decorId]].permission == DECORPERM_SOLID_MAT)
     {
         gSpecialVar_0x8005 = gUnknown_020391B4[gSpecialVar_0x8004].flagId;
         sub_8100A60(gUnknown_020391B4[gSpecialVar_0x8004].decorId);
@@ -3652,12 +3114,12 @@ void sub_8100B6C(void)
     u8 permission;
     for (i=0; i<gUnknown_02039234; i++)
     {
-        permission = gDecorations[ewram_1f000.items[gUnknown_020391B4[i].decorId]].permission;
-        x = ewram_1f000.pos[gUnknown_020391B4[i].decorId] >> 4;
-        y = ewram_1f000.pos[gUnknown_020391B4[i].decorId] & 0xf;
+        permission = gDecorations[sDecorationContext.items[gUnknown_020391B4[i].decorId]].permission;
+        x = sDecorationContext.pos[gUnknown_020391B4[i].decorId] >> 4;
+        y = sDecorationContext.pos[gUnknown_020391B4[i].decorId] & 0xf;
         if (permission != DECORPERM_SOLID_MAT)
         {
-            if (ewram_1f000.items[gUnknown_020391B4[i].decorId] == DECOR_SAND_ORNAMENT && MapGridGetMetatileIdAt(x + 7, y + 7) == 0x28c)
+            if (sDecorationContext.items[gUnknown_020391B4[i].decorId] == DECOR_SAND_ORNAMENT && MapGridGetMetatileIdAt(x + 7, y + 7) == 0x28c)
             {
                 gUnknown_020391B4[i].height++;
             }
@@ -3709,9 +3171,9 @@ void sub_8100C88(u8 taskId)
 bool8 sub_8100D38(u8 taskId)
 {
     u16 i;
-    for (i=0; i<ewram_1f000.size; i++)
+    for (i=0; i<sDecorationContext.size; i++)
     {
-        if (ewram_1f000.items[i] != 0)
+        if (sDecorationContext.items[i] != 0)
         {
             gTasks[taskId].data[13] = i;
             return TRUE;
@@ -3775,10 +3237,10 @@ void sub_8100EEC(u8 taskId)
 {
     Menu_EraseWindowRect(0, 0, 29, 19);
     gSprites[gUnknown_020391A8].data[7] = 0;
-    gSprites[gUnknown_020391A8].invisible = 0;
+    gSprites[gUnknown_020391A8].invisible = FALSE;
     gSprites[gUnknown_020391A8].callback = sub_8101698;
-    gSprites[gUnknown_020391A9].pos1.x = 0x88;
-    gSprites[gUnknown_020391A9].pos1.y = 0x48;
+    gSprites[gUnknown_020391A9].x = 0x88;
+    gSprites[gUnknown_020391A9].y = 0x48;
     gTasks[taskId].data[10] = 0;
     gTasks[taskId].func = sub_8100494;
 }
@@ -3794,7 +3256,7 @@ void sub_8100FB4(u8 taskId)
 {
     gTasks[taskId].data[10] = 0;
     sub_810045C();
-    gSprites[gUnknown_020391A8].invisible = 0;
+    gSprites[gUnknown_020391A8].invisible = FALSE;
     gSprites[gUnknown_020391A8].callback = SpriteCallbackDummy;
     DisplayItemMessageOnField(taskId, gSecretBaseText_StopPuttingAwayDecor, sub_810156C, 0);
 }
@@ -3814,7 +3276,7 @@ void sub_8101024(u8 taskId)
         if (MetatileBehavior_IsSecretBasePC(metatileBehavior) == TRUE
          || MetatileBehavior_IsPlayerRoomPCOn(metatileBehavior) == TRUE)
         {
-            gSprites[gUnknown_020391A8].invisible = 0;
+            gSprites[gUnknown_020391A8].invisible = FALSE;
             gSprites[gUnknown_020391A8].callback = SpriteCallbackDummy;
             DisplayItemMessageOnField(taskId, gSecretBaseText_StopPuttingAwayDecor, sub_810156C, 0);
         } else
@@ -3879,10 +3341,10 @@ void sub_8101118(u8 decorIdx, struct UnkStruct_020391B4 *unk_020391B4)
 
 void sub_8101198(u8 x, u8 y)
 {
-    gSprites[gUnknown_020391A8].invisible = 1;
+    gSprites[gUnknown_020391A8].invisible = TRUE;
     gSprites[gUnknown_020391A8].callback = SpriteCallbackDummy;
-    gSprites[gUnknown_020391A9].pos1.x = 0x88 + x * 16;
-    gSprites[gUnknown_020391A9].pos1.y = 0x48 + y * 16;
+    gSprites[gUnknown_020391A9].x = 0x88 + x * 16;
+    gSprites[gUnknown_020391A9].y = 0x48 + y * 16;
 }
 
 bool8 sub_8101200(u8 taskId, u8 decorIdx, struct UnkStruct_020391B4 *unk_020391B4)
@@ -3893,9 +3355,9 @@ bool8 sub_8101200(u8 taskId, u8 decorIdx, struct UnkStruct_020391B4 *unk_020391B
     u8 yOff;
     x = gTasks[taskId].data[0] - 7;
     y = gTasks[taskId].data[1] - 7;
-    xOff = ewram_1f000.pos[decorIdx] >> 4;
-    yOff = ewram_1f000.pos[decorIdx] & 0xf;
-    if (ewram_1f000.items[decorIdx] == DECOR_SAND_ORNAMENT && MapGridGetMetatileIdAt(xOff + 7, yOff + 7) == 0x28c)
+    xOff = sDecorationContext.pos[decorIdx] >> 4;
+    yOff = sDecorationContext.pos[decorIdx] & 0xf;
+    if (sDecorationContext.items[decorIdx] == DECOR_SAND_ORNAMENT && MapGridGetMetatileIdAt(xOff + 7, yOff + 7) == 0x28c)
     {
         unk_020391B4->height--;
     }
@@ -3912,8 +3374,8 @@ void sub_81012A0(void)
     u8 xOff;
     u8 yOff;
     u16 i;
-    xOff = ewram_1f000.pos[gUnknown_020391B4[gUnknown_02039234].decorId] >> 4;
-    yOff = ewram_1f000.pos[gUnknown_020391B4[gUnknown_02039234].decorId] & 0xf;
+    xOff = sDecorationContext.pos[gUnknown_020391B4[gUnknown_02039234].decorId] >> 4;
+    yOff = sDecorationContext.pos[gUnknown_020391B4[gUnknown_02039234].decorId] & 0xf;
     for (i=0; i<0x40; i++)
     {
         if (gSaveBlock1.objectEventTemplates[i].x == xOff && gSaveBlock1.objectEventTemplates[i].y == yOff && !FlagGet(gSaveBlock1.objectEventTemplates[i].flagId))
@@ -3927,13 +3389,13 @@ void sub_81012A0(void)
 bool8 sub_8101340(u8 taskId)
 {
     u16 i;
-    for (i=0; i<ewram_1f000.size; i++)
+    for (i=0; i<sDecorationContext.size; i++)
     {
-        if (ewram_1f000.items[i] != 0)
+        if (sDecorationContext.items[i] != 0)
         {
-            if (gDecorations[ewram_1f000.items[i]].permission == DECORPERM_SOLID_MAT)
+            if (gDecorations[sDecorationContext.items[i]].permission == DECORPERM_SOLID_MAT)
             {
-                sub_8101118(ewram_1f000.items[i], gUnknown_020391B4);
+                sub_8101118(sDecorationContext.items[i], gUnknown_020391B4);
                 if (sub_8101200(taskId, i, gUnknown_020391B4) == TRUE)
                 {
                     gUnknown_020391B4->decorId = i;
@@ -3953,11 +3415,11 @@ void sub_81013B8(u8 a0, u8 a1, u8 a2, u8 a3)
     u8 xOff;
     u8 yOff;
     u8 decorIdx;
-    for (i=0; i<ewram_1f000.size; i++)
+    for (i=0; i<sDecorationContext.size; i++)
     {
-        decorIdx = ewram_1f000.items[i];
-        xOff = ewram_1f000.pos[i] >> 4;
-        yOff = ewram_1f000.pos[i] & 0xf;
+        decorIdx = sDecorationContext.items[i];
+        xOff = sDecorationContext.pos[i] >> 4;
+        yOff = sDecorationContext.pos[i] & 0xf;
         if (decorIdx != 0 && gDecorations[decorIdx].permission == DECORPERM_SOLID_MAT && a0 <= xOff && a1 <= yOff && a2 >= xOff && a3 >= yOff)
         {
             gUnknown_020391B4[gUnknown_02039234].decorId = i;
@@ -3967,131 +3429,42 @@ void sub_81013B8(u8 a0, u8 a1, u8 a2, u8 a3)
     }
 }
 
-#ifdef NONMATCHING
 void sub_8101460(u8 taskId)
 {
     u8 i;
     u8 xOff;
     u8 yOff;
+    u8 var1;
+    u32 var2;
+
     gUnknown_02039234 = 0;
     if (sub_8101340(taskId) != TRUE)
     {
-        for (i=0; i<ewram_1f000.size; i++)
+        for (i = 0; i < sDecorationContext.size; i++)
         {
-            if (ewram_1f000.items[i] == 0) // This is using the wrong register!
+            var1 = sDecorationContext.items[i];
+            if (var1 != 0)
             {
-                continue;
-            }
-            sub_8101118(ewram_1f000.items[i], gUnknown_020391B4);
-            if (sub_8101200(taskId, i, gUnknown_020391B4) == TRUE)
-            {
-                gUnknown_020391B4[0].decorId = i;
-                gUnknown_02039234++;
-                break;
+                sub_8101118(var1, gUnknown_020391B4);
+                if (sub_8101200(taskId, i, gUnknown_020391B4) == TRUE)
+                {
+                    gUnknown_020391B4[0].decorId = i;
+                    gUnknown_02039234++;
+                    break;
+                }
             }
         }
         if (gUnknown_02039234 != 0)
         {
-            xOff = ewram_1f000.pos[gUnknown_020391B4[0].decorId] >> 4;
-            yOff = ewram_1f000.pos[gUnknown_020391B4[0].decorId] & 0xf;
-            sub_81013B8(xOff, yOff - gUnknown_020391B4[0].height + 1, xOff + gUnknown_020391B4[0].width - 1, yOff);
+            xOff = sDecorationContext.pos[gUnknown_020391B4[0].decorId] >> 4;
+            yOff = sDecorationContext.pos[gUnknown_020391B4[0].decorId] & 0xf;
+            var1 = yOff - gUnknown_020391B4[0].height + 1;
+            var2 = gUnknown_020391B4[0].width + xOff - 1;
+
+            sub_81013B8(xOff, var1, var2, yOff);
         }
     }
 }
-#else
-NAKED
-void sub_8101460(u8 taskId)
-{
-    asm(".syntax unified\n"
-    "\tpush {r4-r7,lr}\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r6, r0, 24\n"
-    "\tldr r4, _081014B8 @ =gUnknown_02039234\n"
-    "\tmovs r0, 0\n"
-    "\tstrb r0, [r4]\n"
-    "\tadds r0, r6, 0\n"
-    "\tbl sub_8101340\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r0, 24\n"
-    "\tcmp r0, 0x1\n"
-    "\tbeq _08101504\n"
-    "\tmovs r5, 0\n"
-    "\tldr r0, _081014BC @ =ewram_1f000\n"
-    "\tldrb r1, [r0, 0x8]\n"
-    "\tcmp r5, r1\n"
-    "\tbcs _081014D2\n"
-    "\tadds r7, r4, 0\n"
-    "_08101486:\n"
-    "\tldr r0, [r0]\n"
-    "\tadds r0, r5\n"
-    "\tldrb r1, [r0] @ compiler incorrectly uses r0 for this and the next instruction\n"
-    "\tcmp r1, 0\n"
-    "\tbeq _081014C4\n"
-    "\tldr r4, _081014C0 @ =gUnknown_020391B4\n"
-    "\tadds r0, r1, 0\n"
-    "\tadds r1, r4, 0\n"
-    "\tbl sub_8101118\n"
-    "\tadds r0, r6, 0\n"
-    "\tadds r1, r5, 0\n"
-    "\tadds r2, r4, 0\n"
-    "\tbl sub_8101200\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r0, 24\n"
-    "\tcmp r0, 0x1\n"
-    "\tbne _081014C4\n"
-    "\tstrb r5, [r4]\n"
-    "\tldrb r0, [r7]\n"
-    "\tadds r0, 0x1\n"
-    "\tstrb r0, [r7]\n"
-    "\tb _081014D2\n"
-    "\t.align 2, 0\n"
-    "_081014B8: .4byte gUnknown_02039234\n"
-    "_081014BC: .4byte 0x201f000\n"
-    "_081014C0: .4byte gUnknown_020391B4\n"
-    "_081014C4:\n"
-    "\tadds r0, r5, 0x1\n"
-    "\tlsls r0, 24\n"
-    "\tlsrs r5, r0, 24\n"
-    "\tldr r0, _0810150C @ =ewram_1f000\n"
-    "\tldrb r1, [r0, 0x8]\n"
-    "\tcmp r5, r1\n"
-    "\tbcc _08101486\n"
-    "_081014D2:\n"
-    "\tldr r0, _08101510 @ =gUnknown_02039234\n"
-    "\tldrb r0, [r0]\n"
-    "\tcmp r0, 0\n"
-    "\tbeq _08101504\n"
-    "\tldr r0, _0810150C @ =ewram_1f000\n"
-    "\tldr r2, _08101514 @ =gUnknown_020391B4\n"
-    "\tldrb r1, [r2]\n"
-    "\tldr r0, [r0, 0x4]\n"
-    "\tadds r0, r1\n"
-    "\tldrb r1, [r0]\n"
-    "\tlsrs r0, r1, 4\n"
-    "\tmovs r3, 0xF\n"
-    "\tands r3, r1\n"
-    "\tldrb r1, [r2, 0x2]\n"
-    "\tsubs r1, r3, r1\n"
-    "\tadds r1, 0x1\n"
-    "\tlsls r1, 24\n"
-    "\tlsrs r1, 24\n"
-    "\tldrb r2, [r2, 0x1]\n"
-    "\tadds r2, r0\n"
-    "\tsubs r2, 0x1\n"
-    "\tlsls r2, 24\n"
-    "\tlsrs r2, 24\n"
-    "\tbl sub_81013B8\n"
-    "_08101504:\n"
-    "\tpop {r4-r7}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    "_0810150C: .4byte 0x201f000\n"
-    "_08101510: .4byte gUnknown_02039234\n"
-    "_08101514: .4byte gUnknown_020391B4\n"
-    ".syntax divided\n");
-}
-#endif
 
 void sub_8101518(u8 taskId)
 {

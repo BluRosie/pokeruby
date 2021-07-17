@@ -602,20 +602,20 @@ void sub_81157D0(u8 r0)
     case 4:
         temp0 = (r0 * 3 + 14);
         sub_8124DDC(&gBGTilemapBuffers[2][0], 0, 14, 7, 16, 13);
-        sub_8124E2C(&gBGTilemapBuffers[2][0], ewram18a32, temp0, 7, 3, 13);
+        sub_8124E2C(&gBGTilemapBuffers[2][0], ewram18800 + 0x119, temp0, 7, 3, 13);
         break;
     case 5:
     case 10:
     case 15:
         temp1 = ((r0 - 1) / 5 * 3 + 10);
         sub_8124DDC(&gBGTilemapBuffers[2][0], 0, 14, 7, 16, 13);
-        sub_8124E2C(&gBGTilemapBuffers[2][0], ewram18a80, 14, temp1, 16, 3);
+        sub_8124E2C(&gBGTilemapBuffers[2][0], ewram18800 + 0x140, 14, temp1, 16, 3);
         break;
     default:
         temp0 = ((r0 % 5) * 3 + 14);
         temp1 = ((r0 - 1) / 5 * 3 + 7);
         sub_8124DDC(&gBGTilemapBuffers[2][0], 0, 14, 7, 16, 13);
-        sub_8124E2C(&gBGTilemapBuffers[2][0], ewram18a20, temp0, temp1, 3, 3);
+        sub_8124E2C(&gBGTilemapBuffers[2][0], ewram18800 + 0x110, temp0, temp1, 3, 3);
         break;
     }
 }
@@ -801,7 +801,7 @@ void sub_8115E14(u8 taskid)
             PlaySE(SE_BOO);
         else
         {
-            m4aSongNumStart(SE_REGI);
+            m4aSongNumStart(SE_SHOP);
             gTasks[taskid].func = sub_8115DA0;
         }
     }
@@ -983,7 +983,7 @@ void sub_8116308(u8 taskid)
     gTasks[taskid].data[6]++;
     gTasks[taskid].data[8]++;
     sub_81182F8(6 - gTasks[taskid].data[6]);
-    m4aSongNumStart(SE_TAMAKORO);
+    m4aSongNumStart(SE_ROULETTE_BALL);
     gTasks[taskid].func = sub_811637C;
 }
 
@@ -1100,20 +1100,20 @@ void sub_8116638(u8 taskid)
     case 2:
         if (gTasks[taskid].data[2] == 12)
         {
-            PlayFanfare(MUS_ME_B_BIG);
+            PlayFanfare(MUS_SLOTS_JACKPOT);
             Menu_DrawStdWindowFrame(0, 14, 29, 19);
             Menu_PrintText(&gUnknown_081C41A5, 1, 15);
         }
         else
         {
-            PlayFanfare(MUS_ME_B_SMALL);
+            PlayFanfare(MUS_SLOTS_WIN);
             Menu_DrawStdWindowFrame(0, 14, 29, 19);
             Menu_PrintText(&gUnknown_081C4199, 1, 15);
         }
         break;
     case 0:
     default:
-        m4aSongNumStart(SE_HAZURE);
+        m4aSongNumStart(SE_FAILURE);
         Menu_DrawStdWindowFrame(0, 14, 29, 19);
         Menu_PrintText(&gUnknown_081C41AE, 1, 15);
     }
@@ -1502,9 +1502,9 @@ void sub_8117158(u8 r0)
         for (z = 0; z < 3; z++)
         {
             var2 = (gUnknown_083F8C00[v[i]].var04 + z) * 32;
-            gBGTilemapBuffers[1][var1 + var2 + 0] = ewram189a0[(var0 + z) * 3 + 0];
-            gBGTilemapBuffers[1][var1 + var2 + 1] = ewram189a0[(var0 + z) * 3 + 1];
-            gBGTilemapBuffers[1][var1 + var2 + 2] = ewram189a0[(var0 + z) * 3 + 2];
+            gBGTilemapBuffers[1][var1 + var2 + 0] = ewram18800[0xD0 + (var0 + z) * 3 + 0];
+            gBGTilemapBuffers[1][var1 + var2 + 1] = ewram18800[0xD0 + (var0 + z) * 3 + 1];
+            gBGTilemapBuffers[1][var1 + var2 + 2] = ewram18800[0xD0 + (var0 + z) * 3 + 2];
         }
     }
 }
@@ -1661,16 +1661,31 @@ void Task_Roulette_0(u8 taskid)
 
 #if DEBUG
 
+#if (ENGLISH && REVISION == 0)
+    static const u8 gUnknown_Debug_0842510D[] = _("コインの かず STARTで きめて\nAーp1　Bーm1　R:Lー×10");
+#else
+    static const u8 gUnknown_Debug_0842510D[] = _("Set　COIN　and　Press　START\nAーp1　Bーm1　R:Lー×10");
+#endif
+
 void debug_sub_812CDE4(u8 taskId)
 {
+#if (ENGLISH && REVISION == 0)
+    u8 coinText[] = {0xFD, 0x02, 0xFF};
+#endif
+
     if (gMain.newKeys & A_BUTTON)
     {
         gTasks[taskId].data[13]++;
         if (gTasks[taskId].data[13] == 10000)
             gTasks[taskId].data[13] = 0;
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[13], 1, 4);
+#if (ENGLISH && REVISION == 0)
+        StringExpandPlaceholders(gStringVar4, coinText);
+        Menu_PrintText(gStringVar4, 2, 1);
+#else
         StringExpandPlaceholders(gStringVar4, gOtherText_Coins);
         MenuPrint_RightAligned(gStringVar4, 9, 1);
+#endif
     }
     else if (gMain.newKeys & B_BUTTON)
     {
@@ -1678,8 +1693,13 @@ void debug_sub_812CDE4(u8 taskId)
         if (gTasks[taskId].data[13] == -1)
             gTasks[taskId].data[13] = 9999;
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[13], 1, 4);
+#if (ENGLISH && REVISION == 0)
+        StringExpandPlaceholders(gStringVar4, coinText);
+        Menu_PrintText(gStringVar4, 2, 1);
+#else
         StringExpandPlaceholders(gStringVar4, gOtherText_Coins);
         MenuPrint_RightAligned(gStringVar4, 9, 1);
+#endif
     }
     else if (gMain.newKeys & R_BUTTON)
     {
@@ -1687,8 +1707,13 @@ void debug_sub_812CDE4(u8 taskId)
         if (gTasks[taskId].data[13] > 9999)
             gTasks[taskId].data[13] -= 9999;
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[13], 1, 4);
+#if (ENGLISH && REVISION == 0)
+        StringExpandPlaceholders(gStringVar4, coinText);
+        Menu_PrintText(gStringVar4, 2, 1);
+#else
         StringExpandPlaceholders(gStringVar4, gOtherText_Coins);
         MenuPrint_RightAligned(gStringVar4, 9, 1);
+#endif
     }
     else if (gMain.newKeys & L_BUTTON)
     {
@@ -1696,16 +1721,26 @@ void debug_sub_812CDE4(u8 taskId)
         if (gTasks[taskId].data[13] < 0)
             gTasks[taskId].data[13] += 9999;
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[13], 1, 4);
+#if (ENGLISH && REVISION == 0)
+        StringExpandPlaceholders(gStringVar4, coinText);
+        Menu_PrintText(gStringVar4, 2, 1);
+#else
         StringExpandPlaceholders(gStringVar4, gOtherText_Coins);
         MenuPrint_RightAligned(gStringVar4, 9, 1);
+#endif
     }
     else if (gMain.newKeys & START_BUTTON)
     {
         gSaveBlock1.coins = gTasks[taskId].data[13];
         gTasks[taskId].func = Task_Roulette_0;
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[13], 1, 4);
+#if (ENGLISH && REVISION == 0)
+        StringExpandPlaceholders(gStringVar4, coinText);
+        Menu_PrintText(gStringVar4, 2, 1);
+#else
         StringExpandPlaceholders(gStringVar4, gOtherText_Coins);
         MenuPrint_RightAligned(gStringVar4, 9, 1);
+#endif
         unk_2039560 = 0;
     }
     else if (gMain.newKeys & SELECT_BUTTON)
@@ -1713,22 +1748,30 @@ void debug_sub_812CDE4(u8 taskId)
         gSaveBlock1.coins = gTasks[taskId].data[13];
         gTasks[taskId].func = Task_Roulette_0;
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[13], 1, 4);
+#if (ENGLISH && REVISION == 0)
+        StringExpandPlaceholders(gStringVar4, coinText);
+        Menu_PrintText(gStringVar4, 2, 1);
+#else
         StringExpandPlaceholders(gStringVar4, gOtherText_Coins);
         MenuPrint_RightAligned(gStringVar4, 9, 1);
+#endif
         unk_2039560 = 1;
     }
 }
 
 void debug_sub_812CFE8(u8 taskId)
 {
-    static const u8 gUnknown_Debug_0842510D[] = _("Set　COIN　and　Press　START\nAーp1　Bーm1　R:Lー×10");
     gTasks[taskId].data[13] = gSaveBlock1.coins;
     if (Random() & 1)
         gSpecialVar_0x8004 |= 128;
     ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[13], 1, 4);
     StringExpandPlaceholders(gStringVar4, gOtherText_Coins);
     Menu_DrawStdWindowFrame(0, 0, 9, 3);
+#if (ENGLISH && REVISION == 0)
+    Menu_PrintText(gStringVar4, 2, 1);
+#else
     MenuPrint_RightAligned(gStringVar4, 9, 1);
+#endif
     Menu_DrawStdWindowFrame(0, 14, 29, 19);
     Menu_PrintText(gUnknown_Debug_0842510D, 1, 15);
     gTasks[taskId].func = debug_sub_812CDE4;

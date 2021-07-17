@@ -114,14 +114,14 @@ struct PokemonSubstruct3 // size: 0xB
     /*0x0A*/ u32 victoryRibbon:1;
     /*0x0A*/ u32 artistRibbon:1;
     /*0x0A*/ u32 effortRibbon:1;
-    /*0x0A*/ u32 giftRibbon1:1;
-    /*0x0A*/ u32 giftRibbon2:1;
-    /*0x0A*/ u32 giftRibbon3:1;
-    /*0x0A*/ u32 giftRibbon4:1;
-    /*0x0B*/ u32 giftRibbon5:1;
-    /*0x0B*/ u32 giftRibbon6:1;
-    /*0x0B*/ u32 giftRibbon7:1;
-    /*0x0B*/ u32 fatefulEncounter:1; // unused in Ruby/Sapphire, but the high bit must be set for Mew/Deoxys to obey in FR/LG/Emerald
+    /*0x0A*/ u32 marineRibbon:1; // never distributed
+    /*0x0A*/ u32 landRibbon:1; // never distributed
+    /*0x0A*/ u32 skyRibbon:1; // never distributed
+    /*0x0A*/ u32 countryRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
+    /*0x0B*/ u32 nationalRibbon:1;
+    /*0x0B*/ u32 earthRibbon:1;
+    /*0x0B*/ u32 worldRibbon:1; // distributed during Pokémon Festa '04 and '05 to tournament winners
+    /*0x0B*/ u32 eventLegal:5; // high bit controls Mew & Deoxys obedience in FRLGE; if set, Pokémon is a fateful encounter in FRLG & Gen 4+ summary screens; set for in-game event island legendaries, some distributed events, and Pokémon from XD: Gale of Darkness.
 };
 
 union PokemonSubstruct // EACH IS PADDED SO THE NEXT IS ALIGNED BY 4
@@ -196,6 +196,20 @@ struct UnknownPokemonStruct
     /*0x2B*/u8 friendship;
 };
 
+struct MultiBattlePokemonTx
+{
+    /*0x00*/ u16 species;
+    /*0x02*/ u16 heldItem;
+    /*0x04*/ u8 nickname[11];
+    /*0x0F*/ u8 level;
+    /*0x10*/ u16 hp;
+    /*0x12*/ u16 maxhp;
+    /*0x14*/ u32 status;
+    /*0x18*/ u32 personality;
+    /*0x1C*/ u8 gender;
+    /*0x1D*/ u8 language;
+};
+
 #define BATTLE_STATS_NO 8
 
 struct BattlePokemon
@@ -260,9 +274,11 @@ enum
     STAT_SPD,    // 3
     STAT_SPATK,  // 4
     STAT_SPDEF,  // 5
-    STAT_ACC,
-    STAT_EVASION,
+    STAT_ACC,    // 6
+    STAT_EVA,    // 7
 };
+
+#define STAT_EVASION 7
 
 #define NUM_BATTLE_STATS 8
 
@@ -472,7 +488,7 @@ u8 GiveMonToPlayer(struct Pokemon *mon);
 u8 SendMonToPC(struct Pokemon *mon);
 u8 CalculatePlayerPartyCount(void);
 u8 CalculateEnemyPartyCount(void);
-u8 sub_803DAA0(void);
+u8 GetMonsStateToDoubles(void);
 u8 GetAbilityBySpecies(u16 species, bool8 altAbility, bool8 hiddenAbility);
 u8 GetMonAbility(struct Pokemon *mon);
 void CreateSecretBaseEnemyParty(struct SecretBaseRecord *secretBaseRecord);
@@ -519,7 +535,7 @@ const u8 *GetMonSpritePal(struct Pokemon *mon);
 const u8 *GetMonSpritePalFromOtIdPersonality(u16 species, u32 otId, u32 personality);
 const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u16, u32, u32);
 bool8 IsOtherTrainer(u32, u8 *);
-void sub_8040B8C(void);
+void SetMonPreventsSwitchingString(void);
 void SetWildMonHeldItem(void);
 u8 *sub_8040D08();
 bool32 ShouldHideGenderIconForLanguage(u16 species, u8 *name, u8 language);
@@ -541,8 +557,8 @@ void BoxMonRestorePP(struct BoxPokemon *);
 bool8 HealStatusConditions(struct Pokemon *mon, u32 unused, u32 healMask, u8 battleId);
 u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit);
 
-#if DEBUG
+#if DEBUG && !(ENGLISH && REVISION == 0)
 void Nakamura_NakaGenderTest_RecalcStats(struct Pokemon *);
-#endif // DEBUG
+#endif
 
 #endif // GUARD_POKEMON_H

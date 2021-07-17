@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_anim.h"
 #include "battle_message.h"
 #include "battle_string_ids.h"
 #include "battle_script_commands.h"
@@ -195,18 +196,25 @@ extern u8 gBattleTextBuff2[];
 extern u8 gBattleTextBuff3[];
 extern u8 gLeveledUpInBattle;
 extern void (*gBattleMainFunc)(void);
-extern struct Window gUnknown_03004210;
+extern struct Window gWindowTemplate_Contest_MoveDescription;
 extern const u8 BattleText_YesNo[];
 extern u8 gPlayerPartyCount;
 extern u16 gMoveToLearn; //move to learn
-extern const u8 gTrainerMoney[];
+
+struct TrainerReward
+{
+    u8 trainerClass;
+    u8 baseMoney;
+};
+
+extern const struct TrainerReward gTrainerMoney[];
 extern u16 gRandomMove;
 extern u8* gBattleScriptsForMoveEffects[];
 extern u16 gChosenMove; //last used move in battle
 extern u8 gBankInMenu;
 extern u8 gActionForBanks[4];
-extern u16 gUnknown_02024C2C[4]; //last used moves 2, used by sketch
-extern u16 gUnknown_02024C4C[4]; //last used moves by banks, another one
+extern u16 gLastPrintedMoves[4]; //last used moves 2, used by sketch
+extern u16 gLastResultingMoves[4]; //last used moves by banks, another one
 extern u8 gCurrentTurnActionNumber;
 extern u16 gTrappingMoves[];
 
@@ -419,8 +427,6 @@ extern u8 BattleScript_GrudgeTakesPp[];
 
 #define RecordAbilitySetField6(ability, fieldValue) \
 (gLastUsedAbility = ability, gBattleCommunication[6] = fieldValue, RecordAbilityBattle(gBattlerTarget, ability))
-
-#define HP_ON_SWITCHOUT (((u16*)(ewram_addr + 0x160BC)))
 
 static void atk00_attackcanceler(void);
 static void atk01_accuracycheck(void);
@@ -2439,11 +2445,11 @@ static void atk0E_effectivenesssound(void)
         switch (gMoveResultFlags & (u8)(~(MOVE_RESULT_MISSED)))
         {
         case MOVE_RESULT_SUPER_EFFECTIVE:
-            BtlController_EmitPlaySE(0, SE_KOUKA_H);
+            BtlController_EmitPlaySE(0, SE_SUPER_EFFECTIVE);
             MarkBattlerForControllerExec(gActiveBattler);
             break;
         case MOVE_RESULT_NOT_VERY_EFFECTIVE:
-            BtlController_EmitPlaySE(0, SE_KOUKA_L);
+            BtlController_EmitPlaySE(0, SE_NOT_EFFECTIVE);
             MarkBattlerForControllerExec(gActiveBattler);
             break;
         case MOVE_RESULT_DOESNT_AFFECT_FOE:
@@ -2456,17 +2462,17 @@ static void atk0E_effectivenesssound(void)
         default:
             if (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
             {
-                BtlController_EmitPlaySE(0, SE_KOUKA_H);
+                BtlController_EmitPlaySE(0, SE_SUPER_EFFECTIVE);
                 MarkBattlerForControllerExec(gActiveBattler);
             }
             else if (gMoveResultFlags & MOVE_RESULT_NOT_VERY_EFFECTIVE)
             {
-                BtlController_EmitPlaySE(0, SE_KOUKA_L);
+                BtlController_EmitPlaySE(0, SE_NOT_EFFECTIVE);
                 MarkBattlerForControllerExec(gActiveBattler);
             }
             else if (!(gMoveResultFlags & (MOVE_RESULT_DOESNT_AFFECT_FOE | MOVE_RESULT_FAILED)))
             {
-                BtlController_EmitPlaySE(0, SE_KOUKA_M);
+                BtlController_EmitPlaySE(0, SE_EFFECTIVE);
                 MarkBattlerForControllerExec(gActiveBattler);
             }
             break;
@@ -2691,7 +2697,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
     if (gBattleMons[gEffectBattler].status2 & STATUS2_SUBSTITUTE && affectsUser != MOVE_EFFECT_AFFECTS_USER)
         INCREMENT_RESET_RETURN
 
-    if (gBattleCommunication[MOVE_EFFECT_BYTE] <= 6) //status change
+    if (gBattleCommunication[MOVE_EFFECT_BYTE] <= PRIMARY_STATUS_MOVE_EFFECT)
     {
         switch (sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]])
         {
@@ -2753,7 +2759,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
 
                 if (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
                 {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ABILITY_PREVENTS_ABILITY_STATUS;
                     gHitMarker &= ~(HITMARKER_IGNORE_SAFEGUARD);
                 }
                 else
@@ -2793,7 +2799,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 gBattlescriptCurrInstr = BattleScript_BRNPrevention;
                 if (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
                 {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ABILITY_PREVENTS_ABILITY_STATUS;
                     gHitMarker &= ~(HITMARKER_IGNORE_SAFEGUARD);
                 }
                 else
@@ -2848,7 +2854,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
 
                     if (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
                     {
-                        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ABILITY_PREVENTS_ABILITY_STATUS;
                         gHitMarker &= ~(HITMARKER_IGNORE_SAFEGUARD);
                     }
                     else
@@ -2876,7 +2882,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
 
                 if (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
                 {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ABILITY_PREVENTS_ABILITY_STATUS;
                     gHitMarker &= ~(HITMARKER_IGNORE_SAFEGUARD);
                 }
                 else
@@ -2916,7 +2922,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
             BattleScriptPush(gBattlescriptCurrInstr + 1);
 
             if (sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]] == STATUS1_SLEEP)
-                gBattleMons[gEffectBattler].status1 |= ((Random() & 3) + 2);
+                gBattleMons[gEffectBattler].status1 |= STATUS1_SLEEP_TURN((Random() & 3) + 2); // 2-5 turns
             else
                 gBattleMons[gEffectBattler].status1 |= sStatusFlagsForMoveEffects[gBattleCommunication[MOVE_EFFECT_BYTE]];
             
@@ -2928,7 +2934,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
 
             if (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
             {
-                gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STATUSED_BY_ABILITY;
                 gHitMarker &= ~(HITMARKER_IGNORE_SAFEGUARD);
             }
             else
@@ -3465,7 +3471,7 @@ static void atk15_seteffectwithchance(void)
     }
 
     gBattleCommunication[MOVE_EFFECT_BYTE] = 0;
-    gBattleStruct->unk16112 = 0;
+    gBattleStruct->multihitMoveEffect = 0;
 }
 
 static void atk16_seteffectprimary(void)
@@ -3489,7 +3495,7 @@ static void atk18_clearstatusfromeffect(void)
 
     gBattleCommunication[MOVE_EFFECT_BYTE] = 0;
     gBattlescriptCurrInstr += 2;
-    gBattleStruct->unk16112 = 0;
+    gBattleStruct->multihitMoveEffect = 0;
 }
 
 static void atk19_tryfaintmon(void)
@@ -3531,12 +3537,12 @@ static void atk19_tryfaintmon(void)
         if (!(gAbsentBattlerFlags & gBitTable[gActiveBattler])
          && gBattleMons[gActiveBattler].hp == 0)
         {
-            ewram160ACarr2(0, battlerId) = 0;
-            ewram160ACarr2(1, battlerId) = 0;
-            ewram16100arr2(0, battlerId) = 0;
-            ewram16100arr2(1, battlerId) = 0;
-            ewram16100arr2(2, battlerId) = 0;
-            ewram16100arr2(3, battlerId) = 0;
+            gSharedMem[BSTRUCT_OFF(lastTakenMove) + 2 * battlerId + 0] = 0;
+            gSharedMem[BSTRUCT_OFF(lastTakenMove) + 2 * battlerId + 1] = 0;
+            gSharedMem[BSTRUCT_OFF(lastTakenMoveFrom) + 4 * battlerId + 0] = 0;
+            gSharedMem[BSTRUCT_OFF(lastTakenMoveFrom) + 4 * battlerId + 1] = 0;
+            gSharedMem[BSTRUCT_OFF(lastTakenMoveFrom) + 4 * battlerId + 2] = 0;
+            gSharedMem[BSTRUCT_OFF(lastTakenMoveFrom) + 4 * battlerId + 3] = 0;
 
             gHitMarker |= HITMARKER_FAINTED(gActiveBattler);
             BattleScriptPush(gBattlescriptCurrInstr + 7);
@@ -3655,7 +3661,7 @@ static void atk1E_jumpifability(void)
             gLastUsedAbility = ability;
             gBattlescriptCurrInstr = jumpPtr;
             RecordAbilityBattle(battlerId -1, gLastUsedAbility);
-            ewram160F8 = battlerId - 1;
+            gBattleStruct->unk160F8 = battlerId - 1;
         }
         else
             gBattlescriptCurrInstr += 7;
@@ -3668,7 +3674,7 @@ static void atk1E_jumpifability(void)
             gLastUsedAbility = ability;
             gBattlescriptCurrInstr = jumpPtr;
             RecordAbilityBattle(battlerId - 1, gLastUsedAbility);
-            ewram160F8 = battlerId - 1;
+            gBattleStruct->unk160F8 = battlerId - 1;
         }
         else
             gBattlescriptCurrInstr += 7;
@@ -3681,7 +3687,7 @@ static void atk1E_jumpifability(void)
             gLastUsedAbility = ability;
             gBattlescriptCurrInstr = jumpPtr;
             RecordAbilityBattle(battlerId, gLastUsedAbility);
-            ewram160F8 = battlerId;
+            gBattleStruct->unk160F8 = battlerId;
         }
         else
             gBattlescriptCurrInstr += 7;
@@ -3808,16 +3814,15 @@ static void atk23_getexp(void)
         else
         {
             gBattleStruct->getexpStateTracker++;
-            gBattleStruct->unk16113 |= gBitTable[gBattlerPartyIndexes[gBank1]];
+            gBattleStruct->givenExpMons |= gBitTable[gBattlerPartyIndexes[gBank1]];
         }
         break;
     case 1: // calculate experience points to redistribute
         {
             u16 calculatedExp;
             s32 viaSentIn;
-            
 
-            for (viaSentIn = 0, i = 0; i < 6; i++)
+            for (viaSentIn = 0, i = 0; i < PARTY_SIZE; i++)
             {
                 if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) == SPECIES_NONE || GetMonData(&gPlayerParty[i], MON_DATA_HP) == 0)
                     continue;
@@ -3889,7 +3894,7 @@ static void atk23_getexp(void)
                 if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) && gBattleMons[0].hp && !gBattleStruct->wildVictorySong)
                 {
                     BattleStopLowHpSound();
-                    PlayBGM(MUS_KACHI2);
+                    PlayBGM(MUS_VICTORY_WILD);
                     gBattleStruct->wildVictorySong++;
                 }
 
@@ -4575,7 +4580,6 @@ static void atk2E_setbyte(void)
 {
     u8* mem = T2_READ_PTR(gBattlescriptCurrInstr + 1);
     *mem = T2_READ_8(gBattlescriptCurrInstr + 5);
-
     gBattlescriptCurrInstr += 6;
 }
 
@@ -4758,7 +4762,7 @@ static void atk43_jumpifabilitypresent(void)
 
 static void atk44_endselectionscript(void)
 {
-    ewram16060(gBattlerAttacker) = 1;
+    gSharedMem[BSTRUCT_OFF(selectionScriptFinished) + gBattlerAttacker] = 1;
 }
 
 static void atk45_playanimation(void)
@@ -5245,12 +5249,12 @@ void atk49_moveend(void)
                 if (gHitMarker & HITMARKER_OBEYS)
                 {
                     gLastMoves[gBattlerAttacker] = gChosenMove;
-                    gUnknown_02024C4C[gBattlerAttacker] = gCurrentMove;
+                    gLastResultingMoves[gBattlerAttacker] = gCurrentMove;
                 }
                 else
                 {
                     gLastMoves[gBattlerAttacker] = 0xFFFF;
-                    gUnknown_02024C4C[gBattlerAttacker] = 0xFFFF;
+                    gLastResultingMoves[gBattlerAttacker] = 0xFFFF;
                 }
 
                 if (!(gHitMarker & HITMARKER_FAINTED(gBattlerTarget)))
@@ -5347,15 +5351,15 @@ static void atk4A_typecalc2(void)
     int i = 0;
     u8 moveType = gBattleMoves[gCurrentMove].type;
 
-    if (GetBattlerAbility(gBattlerTarget) == ABILITY_NORMALIZE)
-    {
+    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NORMALIZE)
++   {
         moveType = TYPE_NORMAL;
     }
 
     if ((GetBattlerAbility(gBattlerTarget) == ABILITY_LEVITATE || gDisableStructs[gBattlerTarget].magnetRiseTimer)
      && moveType == TYPE_GROUND 
      && ItemId_GetHoldEffect(gBattleMons[gBattlerTarget].item) != HOLD_EFFECT_IRON_BALL 
-     && !gBattleGlobalTimers.gravityTimer )
+     && !gBattleGlobalTimers.gravityTimer)
     {
         gLastUsedAbility = GetBattlerAbility(gBattlerTarget);
         gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
@@ -5450,7 +5454,7 @@ static void atk4C_getswitchedmondata(void)
 
     gActiveBattler = GetBattlerForBattleScript(T2_READ_8(gBattlescriptCurrInstr + 1));
 
-    gBattlerPartyIndexes[gActiveBattler] = ewram16068arr(gActiveBattler);
+    gBattlerPartyIndexes[gActiveBattler] = gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + gActiveBattler];
 
     BtlController_EmitGetMonData(0, 0, gBitTable[gBattlerPartyIndexes[gActiveBattler]]);
     MarkBattlerForControllerExec(gActiveBattler);
@@ -5576,7 +5580,7 @@ static void atk4F_jumpifcantswitch(void)
                 to_cmp = r7;
             party = gPlayerParty;
         }
-        for (val = 0; val < 6; val++)
+        for (val = 0; val < PARTY_SIZE; val++)
         {
             if (GetMonData(&party[val], MON_DATA_HP) != 0
              && GetMonData(&party[val], MON_DATA_SPECIES) != SPECIES_NONE
@@ -5593,39 +5597,47 @@ static void atk4F_jumpifcantswitch(void)
 
 void sub_8022A3C(u8 unkown)
 {
-    BATTLE_PARTY_ID(gActiveBattler) = gBattlerPartyIndexes[gActiveBattler];
+    gSharedMem[BSTRUCT_OFF(unk16064) + gActiveBattler] = gBattlerPartyIndexes[gActiveBattler];
     BtlController_EmitChoosePokemon(0, 1, unkown, 0, gBattleStruct->unk1606C[gActiveBattler]);
     MarkBattlerForControllerExec(gActiveBattler);
 }
 
-/*
+bool8 sub_8018018(u8 bank, u8, u8);
+
 static void atk50_openpartyscreen(void)
 {
-    int i = 0;
-    int r9 = 0;
-    u8* fail_loc = T1_READ_PTR(gBattlescriptCurrInstr + 2);
+    u32 flags;
+    u8 hitmarkerFaintBits;
+    u8 battlerId;
+    const u8 *jumpPtr;
 
-    if (T2_READ_8(gBattlescriptCurrInstr + 1) == 5)
+    battlerId = 0;
+    flags = 0;
+    jumpPtr = T1_READ_PTR(gBattlescriptCurrInstr + 2);
+
+    if (gBattlescriptCurrInstr[1] == 5)
     {
         if ((gBattleTypeFlags & (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_MULTI)) != BATTLE_TYPE_DOUBLE)
         {
-            for (gActiveBattler = i; gActiveBattler < gBattlersCount; gActiveBattler++)
+            for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
             {
-                if (!(gHitMarker & HITMARKER_FAINTED(gActiveBattler)))
+                if (gHitMarker & HITMARKER_FAINTED(gActiveBattler))
                 {
-                    BtlController_EmitLinkStandbyMsg(0, 2);
-                    MarkBattlerForControllerExec(gActiveBattler);
-                }
-                else if (sub_8018018(gActiveBattler, 6, 6) == 0
-                         && !gSpecialStatuses[gActiveBattler].flag40)
-                {
-                    sub_8022A3C(6);
-                    gSpecialStatuses[gActiveBattler].flag40 = 1;
+                    if (sub_8018018(gActiveBattler, PARTY_SIZE, PARTY_SIZE))
+                    {
+                        gAbsentBattlerFlags |= gBitTable[gActiveBattler];
+                        gHitMarker &= ~(HITMARKER_FAINTED(gActiveBattler));
+                        BtlController_EmitLinkStandbyMsg(0, 2);
+                        MarkBattlerForControllerExec(gActiveBattler);
+                    }
+                    else if (!gSpecialStatuses[gActiveBattler].flag40)
+                    {
+                        sub_8022A3C(PARTY_SIZE);
+                        gSpecialStatuses[gActiveBattler].flag40 = 1;
+                    }
                 }
                 else
                 {
-                    gAbsentBattlerFlags |= gBitTable[gActiveBattler];
-                    gHitMarker &= (~HITMARKER_FAINTED(gActiveBattler));
                     BtlController_EmitLinkStandbyMsg(0, 2);
                     MarkBattlerForControllerExec(gActiveBattler);
                 }
@@ -5633,1039 +5645,245 @@ static void atk50_openpartyscreen(void)
         }
         else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
         {
-            if (!(gHitMarker >> 0x1C & gBitTable[0]))
+            u8 flag40_0, flag40_1, flag40_2, flag40_3;
+
+            hitmarkerFaintBits = gHitMarker >> 28;
+
+            if (gBitTable[0] & hitmarkerFaintBits)
             {
+                gActiveBattler = 0;
+                if (sub_8018018(0, PARTY_SIZE, PARTY_SIZE))
+                {
+                    gAbsentBattlerFlags |= gBitTable[gActiveBattler];
+                    gHitMarker &= ~(HITMARKER_FAINTED(gActiveBattler));
+                    BtlController_EmitCmd42(0);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                }
+                else if (!gSpecialStatuses[gActiveBattler].flag40)
+                {
+                    sub_8022A3C(gBattleStruct->monToSwitchIntoId[2]);
+                    gSpecialStatuses[gActiveBattler].flag40 = 1;
+                }
+                else
+                {
+                    BtlController_EmitLinkStandbyMsg(0, 2);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                    flags |= 1;
+                }
+            }
+            if (gBitTable[2] & hitmarkerFaintBits && !(gBitTable[0] & hitmarkerFaintBits))
+            {
+                gActiveBattler = 2;
+                if (sub_8018018(2, PARTY_SIZE, PARTY_SIZE))
+                {
+                    gAbsentBattlerFlags |= gBitTable[gActiveBattler];
+                    gHitMarker &= ~(HITMARKER_FAINTED(gActiveBattler));
+                    BtlController_EmitCmd42(0);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                }
+                else if (!gSpecialStatuses[gActiveBattler].flag40)
+                {
+                    sub_8022A3C(gBattleStruct->monToSwitchIntoId[0]);
+                    gSpecialStatuses[gActiveBattler].flag40 = 1;
+                }
+                else if (!(flags & 1))
+                {
+                    BtlController_EmitLinkStandbyMsg(0, 2);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                }
+            }
+            if (gBitTable[1] & hitmarkerFaintBits)
+            {
+                gActiveBattler = 1;
+                if (sub_8018018(1, PARTY_SIZE, PARTY_SIZE))
+                {
+                    gAbsentBattlerFlags |= gBitTable[gActiveBattler];
+                    gHitMarker &= ~(HITMARKER_FAINTED(gActiveBattler));
+                    BtlController_EmitCmd42(0);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                }
+                else if (!gSpecialStatuses[gActiveBattler].flag40)
+                {
+                    sub_8022A3C(gBattleStruct->monToSwitchIntoId[3]);
+                    gSpecialStatuses[gActiveBattler].flag40 = 1;
+                }
+                else
+                {
+                    BtlController_EmitLinkStandbyMsg(0, 2);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                    flags |= 2;
+                }
+            }
+            if (gBitTable[3] & hitmarkerFaintBits && !(gBitTable[1] & hitmarkerFaintBits))
+            {
+                gActiveBattler = 3;
+                if (sub_8018018(3, PARTY_SIZE, PARTY_SIZE))
+                {
+                    gAbsentBattlerFlags |= gBitTable[gActiveBattler];
+                    gHitMarker &= ~(HITMARKER_FAINTED(gActiveBattler));
+                    BtlController_EmitCmd42(0);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                }
+                else if (!gSpecialStatuses[gActiveBattler].flag40)
+                {
+                    sub_8022A3C(gBattleStruct->monToSwitchIntoId[1]);
+                    gSpecialStatuses[gActiveBattler].flag40 = 1;
+                }
+                else if (!(flags & 2))
+                {
+                    BtlController_EmitLinkStandbyMsg(0, 2);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                }
+            }
+
+            flag40_0 = gSpecialStatuses[0].flag40;
+            if (!flag40_0)
+            {
+                flag40_2 = gSpecialStatuses[2].flag40;
+                if (!flag40_2 && hitmarkerFaintBits != 0)
+                {
+                    if (gAbsentBattlerFlags & gBitTable[0])
+                        gActiveBattler = 2;
+                    else
+                        gActiveBattler = 0;
+
+                    BtlController_EmitLinkStandbyMsg(0, 2);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                }
 
             }
-            else if (sub_8018018(gActiveBattler, 6, 6) == 0
-                     && !gSpecialStatuses[gActiveBattler].flag40)
+            flag40_1 = gSpecialStatuses[1].flag40;
+            if (!flag40_1)
             {
+                flag40_3 = gSpecialStatuses[3].flag40;
+                if (!flag40_3 && hitmarkerFaintBits != 0)
+                {
+                    if (gAbsentBattlerFlags & gBitTable[1])
+                        gActiveBattler = 3;
+                    else
+                        gActiveBattler = 1;
 
+                    BtlController_EmitLinkStandbyMsg(0, 2);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                }
+            }
+        }
+        gBattlescriptCurrInstr += 6;
+    }
+    else if (gBattlescriptCurrInstr[1] == 6)
+    {
+        if (!(gBattleTypeFlags & BATTLE_TYPE_MULTI))
+        {
+            if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+            {
+                hitmarkerFaintBits = gHitMarker >> 28;
+                if (gBitTable[2] & hitmarkerFaintBits && gBitTable[0] & hitmarkerFaintBits)
+                {
+                    gActiveBattler = 2;
+                    if (sub_8018018(2, gBattleBufferB[0][1], PARTY_SIZE))
+                    {
+                        gAbsentBattlerFlags |= gBitTable[gActiveBattler];
+                        gHitMarker &= ~(HITMARKER_FAINTED(gActiveBattler));
+                        BtlController_EmitCmd42(0);
+                        MarkBattlerForControllerExec(gActiveBattler);
+                    }
+                    else if (!gSpecialStatuses[gActiveBattler].flag40)
+                    {
+                        sub_8022A3C(gBattleStruct->monToSwitchIntoId[0]);
+                        gSpecialStatuses[gActiveBattler].flag40 = 1;
+                    }
+                }
+                if (gBitTable[3] & hitmarkerFaintBits && hitmarkerFaintBits & gBitTable[1])
+                {
+                    gActiveBattler = 3;
+                    if (sub_8018018(3, gBattleBufferB[1][1], PARTY_SIZE))
+                    {
+                        gAbsentBattlerFlags |= gBitTable[gActiveBattler];
+                        gHitMarker &= ~(HITMARKER_FAINTED(gActiveBattler));
+                        BtlController_EmitCmd42(0);
+                        MarkBattlerForControllerExec(gActiveBattler);
+                    }
+                    else if (!gSpecialStatuses[gActiveBattler].flag40)
+                    {
+                        sub_8022A3C(gBattleStruct->monToSwitchIntoId[1]);
+                        gSpecialStatuses[gActiveBattler].flag40 = 1;
+                    }
+                }
+                gBattlescriptCurrInstr += 6;
             }
             else
             {
+                gBattlescriptCurrInstr += 6;
+            }
+        }
+        else
+        {
+            gBattlescriptCurrInstr += 6;
+        }
 
+        hitmarkerFaintBits = gHitMarker >> 28;
+
+        gBank1 = 0;
+        while (!(gBitTable[gBank1] & hitmarkerFaintBits)
+               && gBank1 < gBattlersCount)
+            gBank1++;
+
+        if (gBank1 == gBattlersCount)
+            gBattlescriptCurrInstr = jumpPtr;
+    }
+    else
+    {
+        if (gBattlescriptCurrInstr[1] & 0x80)
+            hitmarkerFaintBits = 0; // Used here as the caseId for the EmitChoose function.
+        else
+            hitmarkerFaintBits = 1;
+
+        battlerId = GetBattlerForBattleScript(gBattlescriptCurrInstr[1] & ~(0x80));
+        if (gSpecialStatuses[battlerId].flag40)
+        {
+            gBattlescriptCurrInstr += 6;
+        }
+        else if (sub_8018018(battlerId, PARTY_SIZE, PARTY_SIZE))
+        {
+            gActiveBattler = battlerId;
+            gAbsentBattlerFlags |= gBitTable[gActiveBattler];
+            gHitMarker &= ~(HITMARKER_FAINTED(gActiveBattler));
+            gBattlescriptCurrInstr = jumpPtr;
+        }
+        else
+        {
+            gActiveBattler = battlerId;
+            gSharedMem[BSTRUCT_OFF(unk16064) + gActiveBattler] = gBattlerPartyIndexes[gActiveBattler];
+            BtlController_EmitChoosePokemon(0, hitmarkerFaintBits, gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + (gActiveBattler ^ 2)], ABILITY_NONE, gBattleStruct->unk1606C[gActiveBattler]);
+            MarkBattlerForControllerExec(gActiveBattler);
+
+            gBattlescriptCurrInstr += 6;
+
+            if (GetBattlerPosition(gActiveBattler) == 0 && gBattleResults.totalMonSwitchCounter < 0xFF)
+                gBattleResults.totalMonSwitchCounter++;
+
+            if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
+            {
+                for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
+                {
+                    if (gActiveBattler != battlerId)
+                    {
+                        BtlController_EmitLinkStandbyMsg(0, 2);
+                        MarkBattlerForControllerExec(gActiveBattler);
+                    }
+                }
+            }
+            else
+            {
+                gActiveBattler = GetBattlerAtPosition(GetBattlerPosition(battlerId) ^ BIT_SIDE);
+                if (gAbsentBattlerFlags & gBitTable[gActiveBattler])
+                    gActiveBattler ^= BIT_FLANK;
+
+                BtlController_EmitLinkStandbyMsg(0, 2);
+                MarkBattlerForControllerExec(gActiveBattler);
             }
         }
     }
-}
-*/
-
-NAKED
-static void atk50_openpartyscreen(void)
-{
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r9\n\
-    mov r6, r8\n\
-    push {r6,r7}\n\
-    sub sp, 0x4\n\
-    movs r7, 0\n\
-    movs r0, 0\n\
-    mov r9, r0\n\
-    ldr r6, _08022B44 @ =gBattlescriptCurrInstr\n\
-    ldr r1, [r6]\n\
-    ldrb r2, [r1, 0x2]\n\
-    ldrb r0, [r1, 0x3]\n\
-    lsls r0, 8\n\
-    orrs r2, r0\n\
-    ldrb r0, [r1, 0x4]\n\
-    lsls r0, 16\n\
-    orrs r2, r0\n\
-    ldrb r0, [r1, 0x5]\n\
-    lsls r0, 24\n\
-    orrs r2, r0\n\
-    mov r8, r2\n\
-    ldrb r2, [r1, 0x1]\n\
-    adds r0, r2, 0\n\
-    mov r12, r6\n\
-    cmp r0, 0x5\n\
-    beq _08022ACE\n\
-    b _08022F74\n\
-_08022ACE:\n\
-    ldr r0, _08022B48 @ =gBattleTypeFlags\n\
-    ldrh r0, [r0]\n\
-    movs r1, 0x41\n\
-    ands r1, r0\n\
-    cmp r1, 0x1\n\
-    beq _08022BBC\n\
-    ldr r1, _08022B4C @ =gActiveBattler\n\
-    strb r7, [r1]\n\
-    ldr r0, _08022B50 @ =gBattlersCount\n\
-    ldrb r0, [r0]\n\
-    cmp r7, r0\n\
-    bcc _08022AE8\n\
-    b _08022F62\n\
-_08022AE8:\n\
-    ldr r7, _08022B54 @ =gHitMarker\n\
-    ldr r6, _08022B58 @ =gBitTable\n\
-    adds r4, r1, 0\n\
-    ldr r0, _08022B5C @ =gAbsentBattlerFlags\n\
-    mov r8, r0\n\
-_08022AF2:\n\
-    ldrb r2, [r4]\n\
-    lsls r0, r2, 2\n\
-    adds r0, r6\n\
-    ldr r1, [r0]\n\
-    lsls r1, 28\n\
-    ldr r0, [r7]\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    beq _08022B94\n\
-    adds r0, r2, 0\n\
-    movs r1, 0x6\n\
-    movs r2, 0x6\n\
-    bl sub_8018018\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _08022B60\n\
-    ldrb r0, [r4]\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldr r0, [r0]\n\
-    mov r2, r8\n\
-    ldrb r1, [r2]\n\
-    orrs r0, r1\n\
-    strb r0, [r2]\n\
-    ldrb r0, [r4]\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldr r1, [r0]\n\
-    lsls r1, 28\n\
-    ldr r0, [r7]\n\
-    bics r0, r1\n\
-    str r0, [r7]\n\
-    movs r0, 0\n\
-    movs r1, 0x2\n\
-    bl BtlController_EmitLinkStandbyMsg\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-    b _08022BA2\n\
-    .align 2, 0\n\
-_08022B44: .4byte gBattlescriptCurrInstr\n\
-_08022B48: .4byte gBattleTypeFlags\n\
-_08022B4C: .4byte gActiveBattler\n\
-_08022B50: .4byte gBattlersCount\n\
-_08022B54: .4byte gHitMarker\n\
-_08022B58: .4byte gBitTable\n\
-_08022B5C: .4byte gAbsentBattlerFlags\n\
-_08022B60:\n\
-    ldr r5, _08022B90 @ =gSpecialStatuses\n\
-    ldrb r0, [r4]\n\
-    lsls r1, r0, 2\n\
-    adds r1, r0\n\
-    lsls r1, 2\n\
-    adds r1, r5\n\
-    ldrb r0, [r1]\n\
-    lsls r0, 25\n\
-    cmp r0, 0\n\
-    blt _08022BA2\n\
-    movs r0, 0x6\n\
-    bl sub_8022A3C\n\
-    ldrb r1, [r4]\n\
-    lsls r0, r1, 2\n\
-    adds r0, r1\n\
-    lsls r0, 2\n\
-    adds r0, r5\n\
-    ldrb r1, [r0]\n\
-    movs r2, 0x40\n\
-    orrs r1, r2\n\
-    strb r1, [r0]\n\
-    b _08022BA2\n\
-    .align 2, 0\n\
-_08022B90: .4byte gSpecialStatuses\n\
-_08022B94:\n\
-    movs r0, 0\n\
-    movs r1, 0x2\n\
-    bl BtlController_EmitLinkStandbyMsg\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-_08022BA2:\n\
-    ldrb r0, [r4]\n\
-    adds r0, 0x1\n\
-    strb r0, [r4]\n\
-    ldr r1, _08022BB8 @ =gBattlersCount\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    ldrb r1, [r1]\n\
-    cmp r0, r1\n\
-    bcc _08022AF2\n\
-    b _08022F62\n\
-    .align 2, 0\n\
-_08022BB8: .4byte gBattlersCount\n\
-_08022BBC:\n\
-    ands r1, r0\n\
-    cmp r1, 0\n\
-    bne _08022BC4\n\
-    b _08022F62\n\
-_08022BC4:\n\
-    ldr r0, _08022C1C @ =gHitMarker\n\
-    mov r8, r0\n\
-    ldr r0, [r0]\n\
-    lsrs r5, r0, 28\n\
-    ldr r6, _08022C20 @ =gBitTable\n\
-    ldr r0, [r6]\n\
-    ands r0, r5\n\
-    cmp r0, 0\n\
-    beq _08022C7E\n\
-    ldr r4, _08022C24 @ =gActiveBattler\n\
-    strb r7, [r4]\n\
-    movs r0, 0\n\
-    movs r1, 0x6\n\
-    movs r2, 0x6\n\
-    bl sub_8018018\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _08022C2C\n\
-    ldr r2, _08022C28 @ =gAbsentBattlerFlags\n\
-    ldrb r0, [r4]\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldr r0, [r0]\n\
-    ldrb r1, [r2]\n\
-    orrs r0, r1\n\
-    strb r0, [r2]\n\
-    ldrb r0, [r4]\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldr r1, [r0]\n\
-    lsls r1, 28\n\
-    mov r2, r8\n\
-    ldr r0, [r2]\n\
-    bics r0, r1\n\
-    str r0, [r2]\n\
-    movs r0, 0\n\
-    bl BtlController_EmitCmd42\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-    b _08022C7E\n\
-    .align 2, 0\n\
-_08022C1C: .4byte gHitMarker\n\
-_08022C20: .4byte gBitTable\n\
-_08022C24: .4byte gActiveBattler\n\
-_08022C28: .4byte gAbsentBattlerFlags\n\
-_08022C2C:\n\
-    ldr r6, _08022C60 @ =gSpecialStatuses\n\
-    ldrb r0, [r4]\n\
-    lsls r1, r0, 2\n\
-    adds r1, r0\n\
-    lsls r1, 2\n\
-    adds r1, r6\n\
-    ldrb r0, [r1]\n\
-    lsls r0, 25\n\
-    cmp r0, 0\n\
-    blt _08022C6C\n\
-    ldr r0, _08022C64 @ =gSharedMem\n\
-    ldr r1, _08022C68 @ =0x0001606a\n\
-    adds r0, r1\n\
-    ldrb r0, [r0]\n\
-    bl sub_8022A3C\n\
-    ldrb r1, [r4]\n\
-    lsls r0, r1, 2\n\
-    adds r0, r1\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldrb r1, [r0]\n\
-    movs r2, 0x40\n\
-    orrs r1, r2\n\
-    strb r1, [r0]\n\
-    b _08022C7E\n\
-    .align 2, 0\n\
-_08022C60: .4byte gSpecialStatuses\n\
-_08022C64: .4byte gSharedMem\n\
-_08022C68: .4byte 0x0001606a\n\
-_08022C6C:\n\
-    movs r0, 0\n\
-    movs r1, 0x2\n\
-    bl BtlController_EmitLinkStandbyMsg\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-    movs r2, 0x1\n\
-    mov r9, r2\n\
-_08022C7E:\n\
-    ldr r6, _08022CD8 @ =gBitTable\n\
-    ldr r0, [r6, 0x8]\n\
-    ands r0, r5\n\
-    cmp r0, 0\n\
-    beq _08022D40\n\
-    ldr r0, [r6]\n\
-    ands r0, r5\n\
-    cmp r0, 0\n\
-    bne _08022D40\n\
-    ldr r4, _08022CDC @ =gActiveBattler\n\
-    movs r0, 0x2\n\
-    strb r0, [r4]\n\
-    movs r0, 0x2\n\
-    movs r1, 0x6\n\
-    movs r2, 0x6\n\
-    bl sub_8018018\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _08022CE8\n\
-    ldr r2, _08022CE0 @ =gAbsentBattlerFlags\n\
-    ldrb r0, [r4]\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldr r0, [r0]\n\
-    ldrb r1, [r2]\n\
-    orrs r0, r1\n\
-    strb r0, [r2]\n\
-    ldr r2, _08022CE4 @ =gHitMarker\n\
-    ldrb r0, [r4]\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldr r1, [r0]\n\
-    lsls r1, 28\n\
-    ldr r0, [r2]\n\
-    bics r0, r1\n\
-    str r0, [r2]\n\
-    movs r0, 0\n\
-    bl BtlController_EmitCmd42\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-    b _08022D40\n\
-    .align 2, 0\n\
-_08022CD8: .4byte gBitTable\n\
-_08022CDC: .4byte gActiveBattler\n\
-_08022CE0: .4byte gAbsentBattlerFlags\n\
-_08022CE4: .4byte gHitMarker\n\
-_08022CE8:\n\
-    ldr r6, _08022D1C @ =gSpecialStatuses\n\
-    ldrb r0, [r4]\n\
-    lsls r1, r0, 2\n\
-    adds r1, r0\n\
-    lsls r1, 2\n\
-    adds r1, r6\n\
-    ldrb r0, [r1]\n\
-    lsls r0, 25\n\
-    cmp r0, 0\n\
-    blt _08022D28\n\
-    ldr r0, _08022D20 @ =gSharedMem\n\
-    ldr r1, _08022D24 @ =0x00016068\n\
-    adds r0, r1\n\
-    ldrb r0, [r0]\n\
-    bl sub_8022A3C\n\
-    ldrb r1, [r4]\n\
-    lsls r0, r1, 2\n\
-    adds r0, r1\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldrb r1, [r0]\n\
-    movs r2, 0x40\n\
-    orrs r1, r2\n\
-    strb r1, [r0]\n\
-    b _08022D40\n\
-    .align 2, 0\n\
-_08022D1C: .4byte gSpecialStatuses\n\
-_08022D20: .4byte gSharedMem\n\
-_08022D24: .4byte 0x00016068\n\
-_08022D28:\n\
-    movs r0, 0x1\n\
-    mov r2, r9\n\
-    ands r0, r2\n\
-    cmp r0, 0\n\
-    bne _08022D40\n\
-    movs r0, 0\n\
-    movs r1, 0x2\n\
-    bl BtlController_EmitLinkStandbyMsg\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-_08022D40:\n\
-    ldr r6, _08022D90 @ =gBitTable\n\
-    ldr r0, [r6, 0x4]\n\
-    ands r0, r5\n\
-    cmp r0, 0\n\
-    beq _08022DF6\n\
-    ldr r4, _08022D94 @ =gActiveBattler\n\
-    movs r0, 0x1\n\
-    strb r0, [r4]\n\
-    movs r0, 0x1\n\
-    movs r1, 0x6\n\
-    movs r2, 0x6\n\
-    bl sub_8018018\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _08022DA0\n\
-    ldr r2, _08022D98 @ =gAbsentBattlerFlags\n\
-    ldrb r0, [r4]\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldr r0, [r0]\n\
-    ldrb r1, [r2]\n\
-    orrs r0, r1\n\
-    strb r0, [r2]\n\
-    ldr r2, _08022D9C @ =gHitMarker\n\
-    ldrb r0, [r4]\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldr r1, [r0]\n\
-    lsls r1, 28\n\
-    ldr r0, [r2]\n\
-    bics r0, r1\n\
-    str r0, [r2]\n\
-    movs r0, 0\n\
-    bl BtlController_EmitCmd42\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-    b _08022DF6\n\
-    .align 2, 0\n\
-_08022D90: .4byte gBitTable\n\
-_08022D94: .4byte gActiveBattler\n\
-_08022D98: .4byte gAbsentBattlerFlags\n\
-_08022D9C: .4byte gHitMarker\n\
-_08022DA0:\n\
-    ldr r6, _08022DD4 @ =gSpecialStatuses\n\
-    ldrb r0, [r4]\n\
-    lsls r1, r0, 2\n\
-    adds r1, r0\n\
-    lsls r1, 2\n\
-    adds r1, r6\n\
-    ldrb r0, [r1]\n\
-    lsls r0, 25\n\
-    cmp r0, 0\n\
-    blt _08022DE0\n\
-    ldr r0, _08022DD8 @ =gSharedMem\n\
-    ldr r1, _08022DDC @ =0x0001606b\n\
-    adds r0, r1\n\
-    ldrb r0, [r0]\n\
-    bl sub_8022A3C\n\
-    ldrb r1, [r4]\n\
-    lsls r0, r1, 2\n\
-    adds r0, r1\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldrb r1, [r0]\n\
-    movs r2, 0x40\n\
-    orrs r1, r2\n\
-    strb r1, [r0]\n\
-    b _08022DF6\n\
-    .align 2, 0\n\
-_08022DD4: .4byte gSpecialStatuses\n\
-_08022DD8: .4byte gSharedMem\n\
-_08022DDC: .4byte 0x0001606b\n\
-_08022DE0:\n\
-    movs r0, 0\n\
-    movs r1, 0x2\n\
-    bl BtlController_EmitLinkStandbyMsg\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-    movs r0, 0x2\n\
-    mov r2, r9\n\
-    orrs r2, r0\n\
-    mov r9, r2\n\
-_08022DF6:\n\
-    ldr r6, _08022E50 @ =gBitTable\n\
-    ldr r0, [r6, 0xC]\n\
-    ands r0, r5\n\
-    cmp r0, 0\n\
-    beq _08022EB8\n\
-    ldr r0, [r6, 0x4]\n\
-    ands r0, r5\n\
-    cmp r0, 0\n\
-    bne _08022EB8\n\
-    ldr r4, _08022E54 @ =gActiveBattler\n\
-    movs r0, 0x3\n\
-    strb r0, [r4]\n\
-    movs r0, 0x3\n\
-    movs r1, 0x6\n\
-    movs r2, 0x6\n\
-    bl sub_8018018\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _08022E60\n\
-    ldr r2, _08022E58 @ =gAbsentBattlerFlags\n\
-    ldrb r0, [r4]\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldr r0, [r0]\n\
-    ldrb r1, [r2]\n\
-    orrs r0, r1\n\
-    strb r0, [r2]\n\
-    ldr r2, _08022E5C @ =gHitMarker\n\
-    ldrb r0, [r4]\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldr r1, [r0]\n\
-    lsls r1, 28\n\
-    ldr r0, [r2]\n\
-    bics r0, r1\n\
-    str r0, [r2]\n\
-    movs r0, 0\n\
-    bl BtlController_EmitCmd42\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-    b _08022EB8\n\
-    .align 2, 0\n\
-_08022E50: .4byte gBitTable\n\
-_08022E54: .4byte gActiveBattler\n\
-_08022E58: .4byte gAbsentBattlerFlags\n\
-_08022E5C: .4byte gHitMarker\n\
-_08022E60:\n\
-    ldr r6, _08022E94 @ =gSpecialStatuses\n\
-    ldrb r0, [r4]\n\
-    lsls r1, r0, 2\n\
-    adds r1, r0\n\
-    lsls r1, 2\n\
-    adds r1, r6\n\
-    ldrb r0, [r1]\n\
-    lsls r0, 25\n\
-    cmp r0, 0\n\
-    blt _08022EA0\n\
-    ldr r0, _08022E98 @ =gSharedMem\n\
-    ldr r1, _08022E9C @ =0x00016069\n\
-    adds r0, r1\n\
-    ldrb r0, [r0]\n\
-    bl sub_8022A3C\n\
-    ldrb r1, [r4]\n\
-    lsls r0, r1, 2\n\
-    adds r0, r1\n\
-    lsls r0, 2\n\
-    adds r0, r6\n\
-    ldrb r1, [r0]\n\
-    movs r2, 0x40\n\
-    orrs r1, r2\n\
-    strb r1, [r0]\n\
-    b _08022EB8\n\
-    .align 2, 0\n\
-_08022E94: .4byte gSpecialStatuses\n\
-_08022E98: .4byte gSharedMem\n\
-_08022E9C: .4byte 0x00016069\n\
-_08022EA0:\n\
-    movs r0, 0x2\n\
-    mov r2, r9\n\
-    ands r2, r0\n\
-    cmp r2, 0\n\
-    bne _08022EB8\n\
-    movs r0, 0\n\
-    movs r1, 0x2\n\
-    bl BtlController_EmitLinkStandbyMsg\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-_08022EB8:\n\
-    ldr r1, _08022EE8 @ =gSpecialStatuses\n\
-    ldrb r0, [r1]\n\
-    lsls r0, 25\n\
-    cmp r0, 0\n\
-    blt _08022F0C\n\
-    adds r0, r1, 0\n\
-    adds r0, 0x28\n\
-    ldrb r0, [r0]\n\
-    lsls r0, 25\n\
-    cmp r0, 0\n\
-    blt _08022F0C\n\
-    cmp r5, 0\n\
-    beq _08022F0C\n\
-    ldr r0, _08022EEC @ =gAbsentBattlerFlags\n\
-    ldrb r1, [r0]\n\
-    ldr r0, _08022EF0 @ =gBitTable\n\
-    ldr r0, [r0]\n\
-    ands r1, r0\n\
-    cmp r1, 0\n\
-    beq _08022EF8\n\
-    ldr r1, _08022EF4 @ =gActiveBattler\n\
-    movs r0, 0x2\n\
-    strb r0, [r1]\n\
-    b _08022EFC\n\
-    .align 2, 0\n\
-_08022EE8: .4byte gSpecialStatuses\n\
-_08022EEC: .4byte gAbsentBattlerFlags\n\
-_08022EF0: .4byte gBitTable\n\
-_08022EF4: .4byte gActiveBattler\n\
-_08022EF8:\n\
-    ldr r0, _08022F3C @ =gActiveBattler\n\
-    strb r1, [r0]\n\
-_08022EFC:\n\
-    movs r0, 0\n\
-    movs r1, 0x2\n\
-    bl BtlController_EmitLinkStandbyMsg\n\
-    ldr r0, _08022F3C @ =gActiveBattler\n\
-    ldrb r0, [r0]\n\
-    bl MarkBattlerForControllerExec\n\
-_08022F0C:\n\
-    ldr r1, _08022F40 @ =gSpecialStatuses\n\
-    ldrb r0, [r1, 0x14]\n\
-    lsls r0, 25\n\
-    cmp r0, 0\n\
-    blt _08022F62\n\
-    adds r0, r1, 0\n\
-    adds r0, 0x3C\n\
-    ldrb r0, [r0]\n\
-    lsls r0, 25\n\
-    cmp r0, 0\n\
-    blt _08022F62\n\
-    cmp r5, 0\n\
-    beq _08022F62\n\
-    ldr r0, _08022F44 @ =gAbsentBattlerFlags\n\
-    ldrb r0, [r0]\n\
-    ldr r1, _08022F48 @ =gBitTable\n\
-    ldr r1, [r1, 0x4]\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    beq _08022F4C\n\
-    ldr r1, _08022F3C @ =gActiveBattler\n\
-    movs r0, 0x3\n\
-    b _08022F50\n\
-    .align 2, 0\n\
-_08022F3C: .4byte gActiveBattler\n\
-_08022F40: .4byte gSpecialStatuses\n\
-_08022F44: .4byte gAbsentBattlerFlags\n\
-_08022F48: .4byte gBitTable\n\
-_08022F4C:\n\
-    ldr r1, _08022F6C @ =gActiveBattler\n\
-    movs r0, 0x1\n\
-_08022F50:\n\
-    strb r0, [r1]\n\
-    movs r0, 0\n\
-    movs r1, 0x2\n\
-    bl BtlController_EmitLinkStandbyMsg\n\
-    ldr r0, _08022F6C @ =gActiveBattler\n\
-    ldrb r0, [r0]\n\
-    bl MarkBattlerForControllerExec\n\
-_08022F62:\n\
-    ldr r1, _08022F70 @ =gBattlescriptCurrInstr\n\
-    ldr r0, [r1]\n\
-    adds r0, 0x6\n\
-    str r0, [r1]\n\
-    b _08023302\n\
-    .align 2, 0\n\
-_08022F6C: .4byte gActiveBattler\n\
-_08022F70: .4byte gBattlescriptCurrInstr\n\
-_08022F74:\n\
-    cmp r0, 0x6\n\
-    beq _08022F7A\n\
-    b _08023170\n\
-_08022F7A:\n\
-    ldr r0, _08022FF0 @ =gBattleTypeFlags\n\
-    ldrh r2, [r0]\n\
-    movs r0, 0x40\n\
-    ands r0, r2\n\
-    cmp r0, 0\n\
-    beq _08022F88\n\
-    b _0802310C\n\
-_08022F88:\n\
-    movs r0, 0x1\n\
-    ands r0, r2\n\
-    cmp r0, 0\n\
-    bne _08022F92\n\
-    b _0802310C\n\
-_08022F92:\n\
-    ldr r7, _08022FF4 @ =gHitMarker\n\
-    ldr r0, [r7]\n\
-    lsrs r5, r0, 28\n\
-    ldr r4, _08022FF8 @ =gBitTable\n\
-    ldr r0, [r4, 0x8]\n\
-    ands r0, r5\n\
-    cmp r0, 0\n\
-    beq _0802303A\n\
-    ldr r0, [r4]\n\
-    ands r0, r5\n\
-    cmp r0, 0\n\
-    beq _0802303A\n\
-    ldr r6, _08022FFC @ =gActiveBattler\n\
-    movs r0, 0x2\n\
-    strb r0, [r6]\n\
-    ldr r0, _08023000 @ =gBattleBufferB\n\
-    ldrb r1, [r0, 0x1]\n\
-    movs r0, 0x2\n\
-    movs r2, 0x6\n\
-    bl sub_8018018\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _08023008\n\
-    ldr r2, _08023004 @ =gAbsentBattlerFlags\n\
-    ldrb r0, [r6]\n\
-    lsls r0, 2\n\
-    adds r0, r4\n\
-    ldr r0, [r0]\n\
-    ldrb r1, [r2]\n\
-    orrs r0, r1\n\
-    strb r0, [r2]\n\
-    ldrb r0, [r6]\n\
-    lsls r0, 2\n\
-    adds r0, r4\n\
-    ldr r1, [r0]\n\
-    lsls r1, 28\n\
-    ldr r0, [r7]\n\
-    bics r0, r1\n\
-    str r0, [r7]\n\
-    movs r0, 0\n\
-    bl BtlController_EmitCmd42\n\
-    ldrb r0, [r6]\n\
-    bl MarkBattlerForControllerExec\n\
-    b _0802303A\n\
-    .align 2, 0\n\
-_08022FF0: .4byte gBattleTypeFlags\n\
-_08022FF4: .4byte gHitMarker\n\
-_08022FF8: .4byte gBitTable\n\
-_08022FFC: .4byte gActiveBattler\n\
-_08023000: .4byte gBattleBufferB\n\
-_08023004: .4byte gAbsentBattlerFlags\n\
-_08023008:\n\
-    ldr r4, _08023098 @ =gSpecialStatuses\n\
-    ldrb r0, [r6]\n\
-    lsls r1, r0, 2\n\
-    adds r1, r0\n\
-    lsls r1, 2\n\
-    adds r1, r4\n\
-    ldrb r0, [r1]\n\
-    lsls r0, 25\n\
-    cmp r0, 0\n\
-    blt _0802303A\n\
-    ldr r0, _0802309C @ =gSharedMem\n\
-    ldr r1, _080230A0 @ =0x00016068\n\
-    adds r0, r1\n\
-    ldrb r0, [r0]\n\
-    bl sub_8022A3C\n\
-    ldrb r1, [r6]\n\
-    lsls r0, r1, 2\n\
-    adds r0, r1\n\
-    lsls r0, 2\n\
-    adds r0, r4\n\
-    ldrb r1, [r0]\n\
-    movs r2, 0x40\n\
-    orrs r1, r2\n\
-    strb r1, [r0]\n\
-_0802303A:\n\
-    ldr r4, _080230A4 @ =gBitTable\n\
-    ldr r0, [r4, 0xC]\n\
-    ands r0, r5\n\
-    cmp r0, 0\n\
-    beq _080230EE\n\
-    ldr r0, [r4, 0x4]\n\
-    ands r5, r0\n\
-    cmp r5, 0\n\
-    beq _080230EE\n\
-    ldr r5, _080230A8 @ =gActiveBattler\n\
-    movs r0, 0x3\n\
-    strb r0, [r5]\n\
-    ldr r0, _080230AC @ =gBattleBufferB\n\
-    ldr r2, _080230B0 @ =0x00000201\n\
-    adds r0, r2\n\
-    ldrb r1, [r0]\n\
-    movs r0, 0x3\n\
-    movs r2, 0x6\n\
-    bl sub_8018018\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _080230BC\n\
-    ldr r2, _080230B4 @ =gAbsentBattlerFlags\n\
-    ldrb r0, [r5]\n\
-    lsls r0, 2\n\
-    adds r0, r4\n\
-    ldr r0, [r0]\n\
-    ldrb r1, [r2]\n\
-    orrs r0, r1\n\
-    strb r0, [r2]\n\
-    ldr r2, _080230B8 @ =gHitMarker\n\
-    ldrb r0, [r5]\n\
-    lsls r0, 2\n\
-    adds r0, r4\n\
-    ldr r1, [r0]\n\
-    lsls r1, 28\n\
-    ldr r0, [r2]\n\
-    bics r0, r1\n\
-    str r0, [r2]\n\
-    movs r0, 0\n\
-    bl BtlController_EmitCmd42\n\
-    ldrb r0, [r5]\n\
-    bl MarkBattlerForControllerExec\n\
-    b _080230EE\n\
-    .align 2, 0\n\
-_08023098: .4byte gSpecialStatuses\n\
-_0802309C: .4byte gSharedMem\n\
-_080230A0: .4byte 0x00016068\n\
-_080230A4: .4byte gBitTable\n\
-_080230A8: .4byte gActiveBattler\n\
-_080230AC: .4byte gBattleBufferB\n\
-_080230B0: .4byte 0x00000201\n\
-_080230B4: .4byte gAbsentBattlerFlags\n\
-_080230B8: .4byte gHitMarker\n\
-_080230BC:\n\
-    ldr r4, _080230FC @ =gSpecialStatuses\n\
-    ldrb r0, [r5]\n\
-    lsls r1, r0, 2\n\
-    adds r1, r0\n\
-    lsls r1, 2\n\
-    adds r1, r4\n\
-    ldrb r0, [r1]\n\
-    lsls r0, 25\n\
-    cmp r0, 0\n\
-    blt _080230EE\n\
-    ldr r0, _08023100 @ =gSharedMem\n\
-    ldr r1, _08023104 @ =0x00016069\n\
-    adds r0, r1\n\
-    ldrb r0, [r0]\n\
-    bl sub_8022A3C\n\
-    ldrb r1, [r5]\n\
-    lsls r0, r1, 2\n\
-    adds r0, r1\n\
-    lsls r0, 2\n\
-    adds r0, r4\n\
-    ldrb r1, [r0]\n\
-    movs r2, 0x40\n\
-    orrs r1, r2\n\
-    strb r1, [r0]\n\
-_080230EE:\n\
-    ldr r1, _08023108 @ =gBattlescriptCurrInstr\n\
-    ldr r0, [r1]\n\
-    adds r0, 0x6\n\
-    str r0, [r1]\n\
-    mov r12, r1\n\
-    b _08023110\n\
-    .align 2, 0\n\
-_080230FC: .4byte gSpecialStatuses\n\
-_08023100: .4byte gSharedMem\n\
-_08023104: .4byte 0x00016069\n\
-_08023108: .4byte gBattlescriptCurrInstr\n\
-_0802310C:\n\
-    adds r0, r1, 0x6\n\
-    str r0, [r6]\n\
-_08023110:\n\
-    ldr r0, _08023160 @ =gHitMarker\n\
-    ldr r0, [r0]\n\
-    lsrs r5, r0, 28\n\
-    ldr r1, _08023164 @ =gBank1\n\
-    movs r0, 0\n\
-    strb r0, [r1]\n\
-    ldr r4, _08023168 @ =gBitTable\n\
-    ldr r2, [r4]\n\
-    ands r2, r5\n\
-    ldr r6, _0802316C @ =gBattlersCount\n\
-    cmp r2, 0\n\
-    bne _0802314C\n\
-    adds r7, r6, 0\n\
-    ldrb r0, [r6]\n\
-    cmp r2, r0\n\
-    bcs _0802314C\n\
-    adds r3, r1, 0\n\
-_08023132:\n\
-    ldrb r0, [r3]\n\
-    adds r0, 0x1\n\
-    strb r0, [r3]\n\
-    ldrb r2, [r3]\n\
-    lsls r0, r2, 2\n\
-    adds r0, r4\n\
-    ldr r0, [r0]\n\
-    ands r0, r5\n\
-    cmp r0, 0\n\
-    bne _0802314C\n\
-    ldrb r0, [r7]\n\
-    cmp r2, r0\n\
-    bcc _08023132\n\
-_0802314C:\n\
-    ldrb r0, [r1]\n\
-    ldrb r6, [r6]\n\
-    cmp r0, r6\n\
-    beq _08023156\n\
-    b _08023302\n\
-_08023156:\n\
-    mov r1, r8\n\
-    mov r2, r12\n\
-    str r1, [r2]\n\
-    b _08023302\n\
-    .align 2, 0\n\
-_08023160: .4byte gHitMarker\n\
-_08023164: .4byte gBank1\n\
-_08023168: .4byte gBitTable\n\
-_0802316C: .4byte gBattlersCount\n\
-_08023170:\n\
-    movs r0, 0x80\n\
-    ands r0, r2\n\
-    movs r5, 0x1\n\
-    cmp r0, 0\n\
-    beq _0802317C\n\
-    movs r5, 0\n\
-_0802317C:\n\
-    movs r0, 0x7F\n\
-    ands r0, r2\n\
-    bl GetBattlerForBattleScript\n\
-    lsls r0, 24\n\
-    lsrs r7, r0, 24\n\
-    ldr r1, _080231A4 @ =gSpecialStatuses\n\
-    lsls r0, r7, 2\n\
-    adds r0, r7\n\
-    lsls r0, 2\n\
-    adds r0, r1\n\
-    ldrb r0, [r0]\n\
-    lsls r0, 25\n\
-    cmp r0, 0\n\
-    bge _080231A8\n\
-    ldr r0, [r6]\n\
-    adds r0, 0x6\n\
-    str r0, [r6]\n\
-    b _08023302\n\
-    .align 2, 0\n\
-_080231A4: .4byte gSpecialStatuses\n\
-_080231A8:\n\
-    adds r0, r7, 0\n\
-    movs r1, 0x6\n\
-    movs r2, 0x6\n\
-    bl sub_8018018\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _080231F8\n\
-    ldr r2, _080231E8 @ =gActiveBattler\n\
-    strb r7, [r2]\n\
-    ldr r3, _080231EC @ =gAbsentBattlerFlags\n\
-    ldr r4, _080231F0 @ =gBitTable\n\
-    ldrb r0, [r2]\n\
-    lsls r0, 2\n\
-    adds r0, r4\n\
-    ldr r0, [r0]\n\
-    ldrb r1, [r3]\n\
-    orrs r0, r1\n\
-    strb r0, [r3]\n\
-    ldr r3, _080231F4 @ =gHitMarker\n\
-    ldrb r0, [r2]\n\
-    lsls r0, 2\n\
-    adds r0, r4\n\
-    ldr r1, [r0]\n\
-    lsls r1, 28\n\
-    ldr r0, [r3]\n\
-    bics r0, r1\n\
-    str r0, [r3]\n\
-    mov r0, r8\n\
-    str r0, [r6]\n\
-    b _08023302\n\
-    .align 2, 0\n\
-_080231E8: .4byte gActiveBattler\n\
-_080231EC: .4byte gAbsentBattlerFlags\n\
-_080231F0: .4byte gBitTable\n\
-_080231F4: .4byte gHitMarker\n\
-_080231F8:\n\
-    ldr r4, _080232A0 @ =gActiveBattler\n\
-    strb r7, [r4]\n\
-    ldr r3, _080232A4 @ =gSharedMem\n\
-    ldrb r0, [r4]\n\
-    ldr r2, _080232A8 @ =0x00016064\n\
-    adds r1, r0, r2\n\
-    adds r1, r3\n\
-    ldr r2, _080232AC @ =gBattlerPartyIndexes\n\
-    lsls r0, 1\n\
-    adds r0, r2\n\
-    ldrh r0, [r0]\n\
-    strb r0, [r1]\n\
-    ldrb r1, [r4]\n\
-    movs r0, 0x2\n\
-    eors r0, r1\n\
-    ldr r1, _080232B0 @ =0x00016068\n\
-    adds r0, r1\n\
-    adds r0, r3\n\
-    ldrb r2, [r0]\n\
-    ldrb r1, [r4]\n\
-    lsls r0, r1, 1\n\
-    adds r0, r1\n\
-    ldr r1, _080232B4 @ =0x0001606c\n\
-    adds r3, r1\n\
-    adds r0, r3\n\
-    str r0, [sp]\n\
-    movs r0, 0\n\
-    adds r1, r5, 0\n\
-    movs r3, 0\n\
-    bl BtlController_EmitChoosePokemon\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-    ldr r0, [r6]\n\
-    adds r0, 0x6\n\
-    str r0, [r6]\n\
-    ldrb r0, [r4]\n\
-    bl GetBattlerPosition\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    bne _0802325A\n\
-    ldr r1, _080232B8 @ =gBattleResults\n\
-    ldrb r0, [r1, 0x2]\n\
-    cmp r0, 0xFE\n\
-    bhi _0802325A\n\
-    adds r0, 0x1\n\
-    strb r0, [r1, 0x2]\n\
-_0802325A:\n\
-    ldr r0, _080232BC @ =gBattleTypeFlags\n\
-    ldrh r1, [r0]\n\
-    movs r0, 0x40\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    beq _080232C4\n\
-    ldr r1, _080232A0 @ =gActiveBattler\n\
-    movs r0, 0\n\
-    strb r0, [r1]\n\
-    ldr r0, _080232C0 @ =gBattlersCount\n\
-    ldrb r0, [r0]\n\
-    cmp r0, 0\n\
-    beq _08023302\n\
-    adds r4, r1, 0\n\
-_08023276:\n\
-    ldrb r0, [r4]\n\
-    cmp r0, r7\n\
-    beq _0802328A\n\
-    movs r0, 0\n\
-    movs r1, 0x2\n\
-    bl BtlController_EmitLinkStandbyMsg\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-_0802328A:\n\
-    ldrb r0, [r4]\n\
-    adds r0, 0x1\n\
-    strb r0, [r4]\n\
-    ldr r1, _080232C0 @ =gBattlersCount\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    ldrb r1, [r1]\n\
-    cmp r0, r1\n\
-    bcc _08023276\n\
-    b _08023302\n\
-    .align 2, 0\n\
-_080232A0: .4byte gActiveBattler\n\
-_080232A4: .4byte gSharedMem\n\
-_080232A8: .4byte 0x00016064\n\
-_080232AC: .4byte gBattlerPartyIndexes\n\
-_080232B0: .4byte 0x00016068\n\
-_080232B4: .4byte 0x0001606c\n\
-_080232B8: .4byte gBattleResults\n\
-_080232BC: .4byte gBattleTypeFlags\n\
-_080232C0: .4byte gBattlersCount\n\
-_080232C4:\n\
-    adds r0, r7, 0\n\
-    bl GetBattlerPosition\n\
-    movs r1, 0x1\n\
-    eors r0, r1\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    bl GetBattlerAtPosition\n\
-    ldr r4, _08023310 @ =gActiveBattler\n\
-    strb r0, [r4]\n\
-    ldr r0, _08023314 @ =gAbsentBattlerFlags\n\
-    ldrb r1, [r0]\n\
-    ldr r2, _08023318 @ =gBitTable\n\
-    ldrb r3, [r4]\n\
-    lsls r0, r3, 2\n\
-    adds r0, r2\n\
-    ldr r0, [r0]\n\
-    ands r1, r0\n\
-    cmp r1, 0\n\
-    beq _080232F4\n\
-    movs r0, 0x2\n\
-    eors r3, r0\n\
-    strb r3, [r4]\n\
-_080232F4:\n\
-    movs r0, 0\n\
-    movs r1, 0x2\n\
-    bl BtlController_EmitLinkStandbyMsg\n\
-    ldrb r0, [r4]\n\
-    bl MarkBattlerForControllerExec\n\
-_08023302:\n\
-    add sp, 0x4\n\
-    pop {r3,r4}\n\
-    mov r8, r3\n\
-    mov r9, r4\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_08023310: .4byte gActiveBattler\n\
-_08023314: .4byte gAbsentBattlerFlags\n\
-_08023318: .4byte gBitTable\n\
-        .syntax divided");
 }
 
 static void atk51_switchhandleorder(void)
@@ -6681,7 +5899,7 @@ static void atk51_switchhandleorder(void)
         for (i = 0; i < gBattlersCount; i++)
         {
             if (gBattleBufferB[i][0] == 0x22)
-                ewram16068arr(i) = gBattleBufferB[i][1];
+                gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + i] = gBattleBufferB[i][1];
         }
         break;
     case 1:
@@ -6690,15 +5908,15 @@ static void atk51_switchhandleorder(void)
         break;
     case 2:
         gBattleCommunication[0] = gBattleBufferB[gActiveBattler][1];
-        ewram16068arr(gActiveBattler) = gBattleBufferB[gActiveBattler][1];
+        gSharedMem[BSTRUCT_OFF(monToSwitchIntoId) + gActiveBattler] = gBattleBufferB[gActiveBattler][1];
         if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
         {
-            ewram1606Carr(0, gActiveBattler) &= 0xF;
-            ewram1606Carr(0, gActiveBattler) |= (gBattleBufferB[gActiveBattler][2] & 0xF0);
-            ewram1606Carr(1, gActiveBattler) = gBattleBufferB[gActiveBattler][3];
-            ewram1606Carr(0, (gActiveBattler ^ 2)) &= (0xF0);
-            ewram1606Carr(0, (gActiveBattler ^ 2)) |= (gBattleBufferB[gActiveBattler][2] & 0xF0) >> 4;
-            ewram1606Carr(2, (gActiveBattler ^ 2)) = gBattleBufferB[gActiveBattler][3];
+            gSharedMem[BSTRUCT_OFF(unk1606C) + 3 * gActiveBattler + 0] &= 0xF;
+            gSharedMem[BSTRUCT_OFF(unk1606C) + 3 * gActiveBattler + 0] |= (gBattleBufferB[gActiveBattler][2] & 0xF0);
+            gSharedMem[BSTRUCT_OFF(unk1606C) + 3 * gActiveBattler + 1] = gBattleBufferB[gActiveBattler][3];
+            gSharedMem[BSTRUCT_OFF(unk1606C) + 3 * (gActiveBattler ^ BIT_FLANK) + 0] &= (0xF0);
+            gSharedMem[BSTRUCT_OFF(unk1606C) + 3 * (gActiveBattler ^ BIT_FLANK) + 0] |= (gBattleBufferB[gActiveBattler][2] & 0xF0) >> 4;
+            gSharedMem[BSTRUCT_OFF(unk1606C) + 3 * (gActiveBattler ^ BIT_FLANK) + 2] = gBattleBufferB[gActiveBattler][3];
         }
         else
             sub_8012258(gActiveBattler);
@@ -6864,7 +6082,7 @@ static void atk52_switchineffects(void)
 
             for (i = 0; i < gBattlersCount; i++)
             {
-                *(HP_ON_SWITCHOUT + GetBattlerSide(i)) = gBattleMons[i].hp;
+                *((u16 *)&gSharedMem[BSTRUCT_OFF(HP_OnSwitchout) + 2 * GetBattlerSide(i)]) = gBattleMons[i].hp;
             }
 
             if (T2_READ_8(gBattlescriptCurrInstr + 1) == 5)
@@ -6972,8 +6190,8 @@ void atk59_handlelearnnewmove(void)
 void sub_8023A80(void)
 {
     sub_802BBD4(0x18, 8, 0x1D, 0xD, 0);
-    Text_InitWindow(&gUnknown_03004210, BattleText_YesNo, 0x100, 0x19, 0x9);
-    Text_PrintWindow8002F44(&gUnknown_03004210);
+    Text_InitWindow(&gWindowTemplate_Contest_MoveDescription, BattleText_YesNo, 0x100, 0x19, 0x9);
+    Text_PrintWindow8002F44(&gWindowTemplate_Contest_MoveDescription);
     MenuCursor_Create814A5C0(0, 0xFFFF, 0xC, 0x2D9F, 0x20);
 }
 
@@ -7154,330 +6372,62 @@ static void atk5C_hitanimation(void)
         gBattlescriptCurrInstr += 2;
 }
 
-#define MONEY_UNKNOWN ((*(u8*)(ewram_addr + 0x17000 + 0x94)))
-
-#ifdef NONMATCHING
 static void atk5D_getmoneyreward(void)
 {
-    int i = 0;
-    u8 r5 = 0;
+    u32 i = 0;
+    u8 lvl = 0;
     u32 money_to_give;
+
+    const struct TrainerMonNoItemDefaultMoves * party1;
+    const struct TrainerMonNoItemCustomMoves * party2;
+    const struct TrainerMonItemDefaultMoves * party3;
+    const struct TrainerMonItemCustomMoves * party4;
+
     if (gTrainerBattleOpponent == SECRET_BASE_OPPONENT)
     {
-        money_to_give = 2 * gBattleStruct->moneyMultiplier * MONEY_UNKNOWN;
+        money_to_give = 20 * eSecretBaseRecord->party.levels[0] * gBattleStruct->moneyMultiplier;
     }
     else
     {
         switch(gTrainers[gTrainerBattleOpponent].partyFlags)
         {
         case 0:
-            {
-                const struct TrainerMonNoItemDefaultMoves *data = gTrainers[gTrainerBattleOpponent].party.NoItemDefaultMoves;
-                r5 = data[gTrainers[gTrainerBattleOpponent].partySize - 1].level;
-            }
-            break;
-        case 2:
-            {
-                const struct TrainerMonItemDefaultMoves *data = gTrainers[gTrainerBattleOpponent].party.ItemDefaultMoves;
-                r5 = data[gTrainers[gTrainerBattleOpponent].partySize - 1].level;
-            }
+        {
+            party1 = gTrainers[gTrainerBattleOpponent].party.NoItemDefaultMoves;
+            lvl = party1[gTrainers[gTrainerBattleOpponent].partySize - 1].level;
+        }
             break;
         case 1:
+        {
+            party2 = gTrainers[gTrainerBattleOpponent].party.NoItemCustomMoves;
+            lvl = party2[gTrainers[gTrainerBattleOpponent].partySize - 1].level;
+        }
+            break;
+        case 2:
+        {
+            party3 = gTrainers[gTrainerBattleOpponent].party.ItemDefaultMoves;
+            lvl = party3[gTrainers[gTrainerBattleOpponent].partySize - 1].level;
+        }
+            break;
         case 3:
-            {
-                const struct TrainerMonItemCustomMoves *data = gTrainers[gTrainerBattleOpponent].party.ItemCustomMoves;
-                r5 = data[gTrainers[gTrainerBattleOpponent].partySize - 1].level;
-            }
+        {
+            party4 = gTrainers[gTrainerBattleOpponent].party.ItemCustomMoves;
+            lvl = party4[gTrainers[gTrainerBattleOpponent].partySize - 1].level;
+        }
             break;
         }
-        for (; gTrainerMoney[i * 4] != 0xFF && gTrainerMoney[i * 4 + 1] != gTrainers[gTrainerBattleOpponent].trainerClass ; i++) {}
-
-        money_to_give = (r5 << 2) * gBattleStruct->moneyMultiplier;
-        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-            money_to_give = 2 * gTrainerMoney[i * 4 + 1] * money_to_give;
-        else
-            money_to_give = 1 * gTrainerMoney[i * 4 + 1] * money_to_give;
+        for (; gTrainerMoney[i].trainerClass != 0xFF; i++) {
+            if (gTrainerMoney[i].trainerClass == gTrainers[gTrainerBattleOpponent].trainerClass)
+                break;
+        }
+        party4 = gTrainers[gTrainerBattleOpponent].party.ItemCustomMoves; // Needed to match. Has no effect.
+        money_to_give = 4 * lvl * gBattleStruct->moneyMultiplier * (gBattleTypeFlags & BATTLE_TYPE_DOUBLE ? 2 : 1) * gTrainerMoney[i].baseMoney;
     }
 
     AddMoney(&gSaveBlock1.money, money_to_give);
-    gBattleTextBuff1[0] = 0xFD;
-    gBattleTextBuff1[1] = 1;
-    gBattleTextBuff1[2] = 4;
-    gBattleTextBuff1[3] = 5;
-    T2_WRITE_32(&gBattleTextBuff1[4], money_to_give);
-    gBattleTextBuff1[8] = 0xFF;
-
+    PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 5, money_to_give);
     gBattlescriptCurrInstr += 1;
 }
-#else
-NAKED
-static void atk5D_getmoneyreward(void)
-{
-    asm(".syntax unified\n\
-        push {r4-r7,lr}\n\
-    mov r7, r8\n\
-    push {r7}\n\
-    movs r6, 0\n\
-    movs r5, 0\n\
-    ldr r0, _08024048 @ =gTrainerBattleOpponent\n\
-    ldrh r2, [r0]\n\
-    movs r1, 0x80\n\
-    lsls r1, 3\n\
-    cmp r2, r1\n\
-    bne _08024058\n\
-    ldr r0, _0802404C @ =gSharedMem + 0x17000\n\
-    adds r1, r0, 0\n\
-    adds r1, 0x94\n\
-    ldrb r2, [r1]\n\
-    ldr r1, _08024050 @ =0xfffff056\n\
-    adds r0, r1\n\
-    ldrb r1, [r0]\n\
-    lsls r0, r1, 2\n\
-    adds r0, r1\n\
-    lsls r0, 2\n\
-    adds r4, r2, 0\n\
-    muls r4, r0\n\
-    ldr r0, _08024054 @ =gSaveBlock1 + 0x490\n\
-    mov r8, r0\n\
-    b _08024140\n\
-    .align 2, 0\n\
-_08024048: .4byte gTrainerBattleOpponent\n\
-_0802404C: .4byte gSharedMem + 0x17000\n\
-_08024050: .4byte 0xfffff056\n\
-_08024054: .4byte gSaveBlock1 + 0x490\n\
-_08024058:\n\
-    ldr r2, _08024074 @ =gTrainers\n\
-    ldrh r1, [r0]\n\
-    lsls r0, r1, 2\n\
-    adds r0, r1\n\
-    lsls r3, r0, 3\n\
-    adds r4, r3, r2\n\
-    ldrb r1, [r4]\n\
-    cmp r1, 0x1\n\
-    beq _080240AE\n\
-    cmp r1, 0x1\n\
-    bgt _08024078\n\
-    cmp r1, 0\n\
-    beq _08024082\n\
-    b _080240C4\n\
-    .align 2, 0\n\
-_08024074: .4byte gTrainers\n\
-_08024078:\n\
-    cmp r1, 0x2\n\
-    beq _08024098\n\
-    cmp r1, 0x3\n\
-    beq _080240AE\n\
-    b _080240C4\n\
-_08024082:\n\
-    adds r0, r2, 0\n\
-    adds r0, 0x24\n\
-    adds r0, r3, r0\n\
-    ldr r1, [r0]\n\
-    adds r0, r4, 0\n\
-    adds r0, 0x20\n\
-    ldrb r0, [r0]\n\
-    lsls r0, 3\n\
-    adds r0, r1\n\
-    subs r0, 0x8\n\
-    b _080240C2\n\
-_08024098:\n\
-    adds r0, r2, 0\n\
-    adds r0, 0x24\n\
-    adds r0, r3, r0\n\
-    ldr r1, [r0]\n\
-    adds r0, r4, 0\n\
-    adds r0, 0x20\n\
-    ldrb r0, [r0]\n\
-    lsls r0, 3\n\
-    adds r0, r1\n\
-    subs r0, 0x8\n\
-    b _080240C2\n\
-_080240AE:\n\
-    adds r0, r2, 0\n\
-    adds r0, 0x24\n\
-    adds r0, r3, r0\n\
-    ldr r1, [r0]\n\
-    adds r0, r4, 0\n\
-    adds r0, 0x20\n\
-    ldrb r0, [r0]\n\
-    lsls r0, 4\n\
-    adds r0, r1\n\
-    subs r0, 0x10\n\
-_080240C2:\n\
-    ldrb r5, [r0, 0x2]\n\
-_080240C4:\n\
-    ldr r0, _08024120 @ =gTrainerMoney\n\
-    lsls r1, r6, 2\n\
-    adds r3, r1, r0\n\
-    ldrb r1, [r3]\n\
-    mov r12, r0\n\
-    lsls r4, r5, 2\n\
-    ldr r5, _08024124 @ =gSharedMem\n\
-    ldr r7, _08024128 @ =gBattleTypeFlags\n\
-    ldr r0, _0802412C @ =gSaveBlock1 + 0x490\n\
-    mov r8, r0\n\
-    cmp r1, 0xFF\n\
-    beq _080240FE\n\
-    ldr r2, _08024130 @ =gTrainers\n\
-    ldr r0, _08024134 @ =gTrainerBattleOpponent\n\
-    ldrh r1, [r0]\n\
-    lsls r0, r1, 2\n\
-    adds r0, r1\n\
-    lsls r0, 3\n\
-    adds r0, r2\n\
-    ldrb r2, [r0, 0x1]\n\
-    adds r1, r3, 0\n\
-_080240EE:\n\
-    ldrb r0, [r1]\n\
-    cmp r0, r2\n\
-    beq _080240FE\n\
-    adds r1, 0x4\n\
-    adds r6, 0x1\n\
-    ldrb r0, [r1]\n\
-    cmp r0, 0xFF\n\
-    bne _080240EE\n\
-_080240FE:\n\
-    ldr r1, _08024138 @ =0x00016056\n\
-    adds r0, r5, r1\n\
-    ldrb r0, [r0]\n\
-    adds r3, r4, 0\n\
-    muls r3, r0\n\
-    lsls r0, r6, 2\n\
-    add r0, r12\n\
-    ldrb r2, [r0, 0x1]\n\
-    ldrh r1, [r7]\n\
-    movs r0, 0x1\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    beq _0802413C\n\
-    lsls r0, r2, 1\n\
-    adds r4, r3, 0\n\
-    muls r4, r0\n\
-    b _08024140\n\
-    .align 2, 0\n\
-_08024120: .4byte gTrainerMoney\n\
-_08024124: .4byte gSharedMem\n\
-_08024128: .4byte gBattleTypeFlags\n\
-_0802412C: .4byte gSaveBlock1 + 0x490\n\
-_08024130: .4byte gTrainers\n\
-_08024134: .4byte gTrainerBattleOpponent\n\
-_08024138: .4byte 0x00016056\n\
-_0802413C:\n\
-    adds r4, r3, 0\n\
-    muls r4, r2\n\
-_08024140:\n\
-    mov r0, r8\n\
-    adds r1, r4, 0\n\
-    bl AddMoney\n\
-    ldr r1, _0802418C @ =gBattleTextBuff1\n\
-    movs r0, 0xFD\n\
-    strb r0, [r1]\n\
-    movs r0, 0x1\n\
-    strb r0, [r1, 0x1]\n\
-    movs r0, 0x4\n\
-    strb r0, [r1, 0x2]\n\
-    movs r0, 0x5\n\
-    strb r0, [r1, 0x3]\n\
-    strb r4, [r1, 0x4]\n\
-    movs r0, 0xFF\n\
-    lsls r0, 8\n\
-    ands r0, r4\n\
-    lsrs r0, 8\n\
-    strb r0, [r1, 0x5]\n\
-    movs r0, 0xFF\n\
-    lsls r0, 16\n\
-    ands r0, r4\n\
-    lsrs r0, 16\n\
-    strb r0, [r1, 0x6]\n\
-    lsrs r0, r4, 24\n\
-    strb r0, [r1, 0x7]\n\
-    movs r0, 0xFF\n\
-    strb r0, [r1, 0x8]\n\
-    ldr r1, _08024190 @ =gBattlescriptCurrInstr\n\
-    ldr r0, [r1]\n\
-    adds r0, 0x1\n\
-    str r0, [r1]\n\
-    pop {r3}\n\
-    mov r8, r3\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_0802418C: .4byte gBattleTextBuff1\n\
-_08024190: .4byte gBattlescriptCurrInstr\n\
-        .syntax divided");
-}
-#endif //NONMATCHING
-
-/*
-static u32 GetTrainerMoneyToGive(u16 trainerId)
-{
-    u32 i = 0;
-    u32 lastMonLevel = 0;
-    u32 moneyReward = 0;
-
-    if (trainerId == SECRET_BASE_OPPONENT)
-    {
-        moneyReward = 20 * eSecretBaseRecord->partyLevels[0] * gBattleStruct->moneyMultiplier;
-    }
-    else
-    {
-        switch (gTrainers[trainerId].partyFlags)
-        {
-        case 0:
-            {
-                const struct TrainerMonNoItemDefaultMoves *party = gTrainers[trainerId].party.NoItemDefaultMoves;
-                lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
-            }
-            break;
-        case F_TRAINER_PARTY_CUSTOM_MOVESET:
-            {
-                const struct TrainerMonNoItemCustomMoves *party = gTrainers[trainerId].party.NoItemCustomMoves;
-                lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
-            }
-            break;
-        case F_TRAINER_PARTY_HELD_ITEM:
-            {
-                const struct TrainerMonItemDefaultMoves *party = gTrainers[trainerId].party.ItemDefaultMoves;
-                lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
-            }
-            break;
-        case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
-            {
-                const struct TrainerMonItemCustomMoves *party = gTrainers[trainerId].party.ItemCustomMoves;
-                lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
-            }
-            break;
-        }
-
-        for (; gTrainerMoneyTable[i].classId != 0xFF; i++)
-        {
-            if (gTrainerMoneyTable[i].classId == gTrainers[trainerId].trainerClass)
-                break;
-        }
-
-        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * 2 * gTrainerMoneyTable[i].value;
-        else
-            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * gTrainerMoneyTable[i].value;
-    }
-
-    return moneyReward;
-}
-
-static void atk5D_getmoneyreward(void)
-{
-    u32 moneyReward = GetTrainerMoneyToGive(gTrainerBattleOpponent_A);
-    if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
-        moneyReward += GetTrainerMoneyToGive(gTrainerBattleOpponent_B);
-
-    AddMoney(&gSaveBlock1Ptr->money, moneyReward);
-
-    PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 5, moneyReward)
-
-    gBattlescriptCurrInstr++;
-}
-*/
 
 static void atk5E(void)
 {
@@ -7541,7 +6491,7 @@ static void atk61_drawpartystatussummary(void)
     else
         party = gEnemyParty;
 
-    for (i = 0; i < 6; i++)
+    for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&party[i], MON_DATA_SPECIES2) == 0 || GetMonData(&party[i], MON_DATA_SPECIES2) == SPECIES_EGG)
         {
@@ -7714,7 +6664,6 @@ static void atk69_adjustsetdamage(void) //literally a copy of atk07 except there
         gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
         goto END;
     }
-
     if (gSpecialStatuses[gBattlerTarget].focusBanded)
     {
         gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
@@ -7730,7 +6679,7 @@ void atk6A_removeitem(void)
     gActiveBattler = GetBattlerForBattleScript(T2_READ_8(gBattlescriptCurrInstr + 1));
 
     //if (ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item) == HOLD_EFFECT_AIR_BALLOON)
-        USED_HELD_ITEMS(gActiveBattler) = gBattleMons[gActiveBattler].item;
+        *((u16 *)&gSharedMem[BSTRUCT_OFF(usedHeldItems) + gActiveBattler * 2]) = gBattleMons[gActiveBattler].item;
 
     if (gBattleMons[gActiveBattler].item)
         gDisableStructs[gActiveBattler].unburden = TRUE;
@@ -7751,434 +6700,146 @@ static void atk6B_atknameinbuff1(void)
     gBattlescriptCurrInstr++;
 }
 
-#ifdef NONMATCHING
 extern const u8 BattleText_Format2[];
+extern const u8 BattleText_Dash[];
+extern const u8 BattleText_Plus[];
+extern const u8 *const gUnknown_0840165C[];
 
-// TODO: finish
 static void atk6C_drawlvlupbox(void)
 {
-    UNUSED u8 r1 = 0;
-    UNUSED u8 r7 = 0;
+    s16 r1 = 0;
+    s16 r7 = 0;
+    int i;
+    u8 * r5;
+    bool32 sign;
     switch (gBattleStruct->atk6C_statetracker)
     {
     case 0:
-        sub_802BBD4(0xB, 0, 0x1D, 0x7, r1);
-        StringCopy(gStringVar4, BattleText_Format2);
-
+        sub_802BBD4(0xB, 0, 0x1D, 0x7, 0);
+        r5 = StringCopy(gStringVar4, BattleText_Format2);
+        for (i = 0; i < 6; i++)
+        {
+            sign = FALSE;
+            r5 = StringAppend(r5, gUnknown_0840165C[i]);
+            r1 = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], gLevelUpStatBoxStats[i]);
+            switch (i)
+            {
+            case 0:
+                r7 = r1 - gBattleResources_statsBeforeLvlUp->hp;
+                break;
+            case 1:
+                r7 = r1 - gBattleResources_statsBeforeLvlUp->spAtk;
+                break;
+            case 2:
+                r7 = r1 - gBattleResources_statsBeforeLvlUp->atk;
+                break;
+            case 3:
+                r7 = r1 - gBattleResources_statsBeforeLvlUp->spDef;
+                break;
+            case 4:
+                r7 = r1 - gBattleResources_statsBeforeLvlUp->def;
+                break;
+            case 5:
+                r7 = r1 - gBattleResources_statsBeforeLvlUp->spd;
+                break;
+            }
+            if (r7 < 0)
+            {
+                r7 = -r7;
+                sign++;
+            }
+            r5[0] = EXT_CTRL_CODE_BEGIN;
+            r5[1] = EXT_CTRL_CODE_CLEAR_TO;
+            r5[2] = ((i & 1) * 9 + 5) * 8 + 6;
+            r5 += 3;
+            if (sign)
+                r5 = StringCopy(r5, BattleText_Dash);
+            else
+                r5 = StringCopy(r5, BattleText_Plus);
+            r5[0] = EXT_CTRL_CODE_BEGIN;
+            r5[1] = EXT_CTRL_CODE_MIN_LETTER_SPACING;
+            r5[2] = 6;
+            r5 += 3;
+            r5 = ConvertIntToDecimalStringN(r5, r7, STR_CONV_MODE_RIGHT_ALIGN, 2);
+            r5[0] = EXT_CTRL_CODE_BEGIN;
+            r5[1] = EXT_CTRL_CODE_MIN_LETTER_SPACING;
+            r5[2] = 0;
+            r5 += 3;
+            if (i & 1)
+            {
+                r5[0] = CHAR_NEWLINE;
+                r5[1] = EOS;
+                r5 += 1;
+            }
+            else
+            {
+                r5[0] = EXT_CTRL_CODE_BEGIN;
+                r5[1] = EXT_CTRL_CODE_CLEAR;
+                r5[2] = 8;
+                r5 += 3;
+                *r5 = EOS;
+            }
+        }
+        Text_InitWindow(&gWindowTemplate_Contest_MoveDescription, gStringVar4, 0x100, 12, 1);
+        Text_PrintWindow8002F44(&gWindowTemplate_Contest_MoveDescription);
+        gBattleStruct->atk6C_statetracker++;
+        break;
+    case 1:
+        if (gMain.newKeys != 0)
+        {
+            PlaySE(SE_SELECT);
+            r5 = StringCopy(gStringVar4, BattleText_Format2);
+            for (i = 0; i < 6; i++)
+            {
+                sign = FALSE;
+                r5 = StringAppend(r5, gUnknown_0840165C[i]);
+                r1 = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], gLevelUpStatBoxStats[i]);
+                r5[0] = EXT_CTRL_CODE_BEGIN;
+                r5[1] = EXT_CTRL_CODE_CLEAR_TO;
+                r5[2] = ((i & 1) * 9 + 5) * 8 + 6;
+                r5 += 3;
+                r5[0] = EXT_CTRL_CODE_BEGIN;
+                r5[1] = EXT_CTRL_CODE_MIN_LETTER_SPACING;
+                r5[2] = 6;
+                r5 += 3;
+                r5 = ConvertIntToDecimalStringN(r5, r1, STR_CONV_MODE_RIGHT_ALIGN, 3);
+                r5[0] = EXT_CTRL_CODE_BEGIN;
+                r5[1] = EXT_CTRL_CODE_MIN_LETTER_SPACING;
+                r5[2] = 0;
+                r5 += 3;
+                if (i & 1)
+                {
+                    r5[0] = CHAR_NEWLINE;
+                    r5[1] = EOS;
+                    r5 += 1;
+                }
+                else
+                {
+                    r5[0] = EXT_CTRL_CODE_BEGIN;
+                    r5[1] = EXT_CTRL_CODE_CLEAR;
+                    r5[2] = 8;
+                    r5 += 3;
+                    *r5 = EOS;
+                }
+            }
+            Text_InitWindow(&gWindowTemplate_Contest_MoveDescription, gStringVar4, 0x100, 12, 1);
+            Text_PrintWindow8002F44(&gWindowTemplate_Contest_MoveDescription);
+            gBattleStruct->atk6C_statetracker++;
+        }
+        break;
+    case 2:
+        if (gMain.newKeys != 0)
+        {
+            PlaySE(SE_SELECT);
+            sub_802BBD4(11, 0, 29, 7, TRUE);
+            gBattleStruct->atk6C_statetracker++;
+        }
+        break;
+    case 3:
+        gBattlescriptCurrInstr++;
+        break;
     }
 }
-
-#else
-NAKED
-static void atk6C_drawlvlupbox(void)
-{
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r10\n\
-    mov r6, r9\n\
-    mov r5, r8\n\
-    push {r5-r7}\n\
-    sub sp, 0x4\n\
-    movs r1, 0\n\
-    movs r7, 0\n\
-    ldr r0, _08024928 @ =gSharedMem\n\
-    mov r10, r0\n\
-    ldr r4, _0802492C @ =0x0001609c\n\
-    add r4, r10\n\
-    ldrb r0, [r4]\n\
-    cmp r0, 0x1\n\
-    bne _0802491C\n\
-    b _08024AF4\n\
-_0802491C:\n\
-    cmp r0, 0x1\n\
-    bgt _08024930\n\
-    cmp r0, 0\n\
-    beq _0802493E\n\
-    b _08024C38\n\
-    .align 2, 0\n\
-_08024928: .4byte gSharedMem\n\
-_0802492C: .4byte 0x0001609c\n\
-_08024930:\n\
-    cmp r0, 0x2\n\
-    bne _08024936\n\
-    b _08024C04\n\
-_08024936:\n\
-    cmp r0, 0x3\n\
-    bne _0802493C\n\
-    b _08024C30\n\
-_0802493C:\n\
-    b _08024C38\n\
-_0802493E:\n\
-    str r1, [sp]\n\
-    movs r0, 0xB\n\
-    movs r1, 0\n\
-    movs r2, 0x1D\n\
-    movs r3, 0x7\n\
-    bl sub_802BBD4\n\
-    ldr r0, _0802499C @ =gStringVar4\n\
-    ldr r1, _080249A0 @ =BattleText_Format2\n\
-    bl StringCopy\n\
-    adds r5, r0, 0\n\
-    movs r1, 0\n\
-    mov r8, r1\n\
-_0802495A:\n\
-    movs r2, 0\n\
-    mov r9, r2\n\
-    ldr r0, _080249A4 @ =gUnknown_0840165C\n\
-    mov r1, r8\n\
-    lsls r4, r1, 2\n\
-    adds r0, r4, r0\n\
-    ldr r1, [r0]\n\
-    adds r0, r5, 0\n\
-    bl StringAppend\n\
-    adds r5, r0, 0\n\
-    ldr r0, _080249A8 @ =gSharedMem\n\
-    ldr r2, _080249AC @ =0x00016018\n\
-    adds r0, r2\n\
-    ldrb r1, [r0]\n\
-    movs r0, 0x64\n\
-    muls r0, r1\n\
-    ldr r1, _080249B0 @ =gPlayerParty\n\
-    adds r0, r1\n\
-    ldr r1, _080249B4 @ =gLevelUpStatBoxStats\n\
-    add r1, r8\n\
-    ldrb r1, [r1]\n\
-    bl GetMonData\n\
-    lsls r0, 16\n\
-    lsrs r1, r0, 16\n\
-    mov r0, r8\n\
-    cmp r0, 0x5\n\
-    bhi _08024A1A\n\
-    ldr r0, _080249B8 @ =_080249BC\n\
-    adds r0, r4, r0\n\
-    ldr r0, [r0]\n\
-    mov pc, r0\n\
-    .align 2, 0\n\
-_0802499C: .4byte gStringVar4\n\
-_080249A0: .4byte BattleText_Format2\n\
-_080249A4: .4byte gUnknown_0840165C\n\
-_080249A8: .4byte gSharedMem\n\
-_080249AC: .4byte 0x00016018\n\
-_080249B0: .4byte gPlayerParty\n\
-_080249B4: .4byte gLevelUpStatBoxStats\n\
-_080249B8: .4byte _080249BC\n\
-    .align 2, 0\n\
-_080249BC:\n\
-    .4byte _080249D4\n\
-    .4byte _080249E0\n\
-    .4byte _080249EC\n\
-    .4byte _080249F8\n\
-    .4byte _08024A04\n\
-    .4byte _08024A10\n\
-_080249D4:\n\
-    ldr r0, _080249DC @ =gSharedMem + 0x17180\n\
-    ldrh r0, [r0]\n\
-    b _08024A14\n\
-    .align 2, 0\n\
-_080249DC: .4byte gSharedMem + 0x17180\n\
-_080249E0:\n\
-    ldr r0, _080249E8 @ =gSharedMem + 0x17180\n\
-    ldrh r0, [r0, 0x8]\n\
-    b _08024A14\n\
-    .align 2, 0\n\
-_080249E8: .4byte gSharedMem + 0x17180\n\
-_080249EC:\n\
-    ldr r0, _080249F4 @ =gSharedMem + 0x17180\n\
-    ldrh r0, [r0, 0x2]\n\
-    b _08024A14\n\
-    .align 2, 0\n\
-_080249F4: .4byte gSharedMem + 0x17180\n\
-_080249F8:\n\
-    ldr r0, _08024A00 @ =gSharedMem + 0x17180\n\
-    ldrh r0, [r0, 0xA]\n\
-    b _08024A14\n\
-    .align 2, 0\n\
-_08024A00: .4byte gSharedMem + 0x17180\n\
-_08024A04:\n\
-    ldr r0, _08024A0C @ =gSharedMem + 0x17180\n\
-    ldrh r0, [r0, 0x4]\n\
-    b _08024A14\n\
-    .align 2, 0\n\
-_08024A0C: .4byte gSharedMem + 0x17180\n\
-_08024A10:\n\
-    ldr r0, _08024A54 @ =gSharedMem + 0x17180\n\
-    ldrh r0, [r0, 0x6]\n\
-_08024A14:\n\
-    subs r0, r1, r0\n\
-    lsls r0, 16\n\
-    lsrs r7, r0, 16\n\
-_08024A1A:\n\
-    lsls r0, r7, 16\n\
-    asrs r0, 16\n\
-    cmp r0, 0\n\
-    bge _08024A2C\n\
-    negs r0, r0\n\
-    lsls r0, 16\n\
-    lsrs r7, r0, 16\n\
-    movs r1, 0x1\n\
-    add r9, r1\n\
-_08024A2C:\n\
-    movs r0, 0xFC\n\
-    strb r0, [r5]\n\
-    movs r0, 0x13\n\
-    strb r0, [r5, 0x1]\n\
-    movs r1, 0x1\n\
-    mov r2, r8\n\
-    ands r1, r2\n\
-    lsls r0, r1, 3\n\
-    adds r0, r1\n\
-    adds r0, 0x5\n\
-    lsls r0, 3\n\
-    adds r0, 0x6\n\
-    strb r0, [r5, 0x2]\n\
-    adds r5, 0x3\n\
-    mov r0, r9\n\
-    cmp r0, 0\n\
-    beq _08024A5C\n\
-    ldr r1, _08024A58 @ =BattleText_Dash\n\
-    b _08024A5E\n\
-    .align 2, 0\n\
-_08024A54: .4byte gSharedMem + 0x17180\n\
-_08024A58: .4byte BattleText_Dash\n\
-_08024A5C:\n\
-    ldr r1, _08024AA4 @ =BattleText_Plus\n\
-_08024A5E:\n\
-    adds r0, r5, 0\n\
-    bl StringCopy\n\
-    adds r5, r0, 0\n\
-    movs r6, 0xFC\n\
-    strb r6, [r5]\n\
-    movs r4, 0x14\n\
-    strb r4, [r5, 0x1]\n\
-    movs r0, 0x6\n\
-    strb r0, [r5, 0x2]\n\
-    adds r5, 0x3\n\
-    lsls r1, r7, 16\n\
-    asrs r1, 16\n\
-    adds r0, r5, 0\n\
-    movs r2, 0x1\n\
-    movs r3, 0x2\n\
-    bl ConvertIntToDecimalStringN\n\
-    adds r5, r0, 0\n\
-    strb r6, [r5]\n\
-    strb r4, [r5, 0x1]\n\
-    movs r0, 0\n\
-    strb r0, [r5, 0x2]\n\
-    adds r5, 0x3\n\
-    movs r0, 0x1\n\
-    mov r1, r8\n\
-    ands r0, r1\n\
-    cmp r0, 0\n\
-    beq _08024AA8\n\
-    movs r0, 0xFE\n\
-    strb r0, [r5]\n\
-    movs r0, 0xFF\n\
-    strb r0, [r5, 0x1]\n\
-    adds r5, 0x1\n\
-    b _08024AB8\n\
-    .align 2, 0\n\
-_08024AA4: .4byte BattleText_Plus\n\
-_08024AA8:\n\
-    strb r6, [r5]\n\
-    movs r0, 0x11\n\
-    strb r0, [r5, 0x1]\n\
-    movs r0, 0x8\n\
-    strb r0, [r5, 0x2]\n\
-    adds r5, 0x3\n\
-    movs r0, 0xFF\n\
-    strb r0, [r5]\n\
-_08024AB8:\n\
-    movs r2, 0x1\n\
-    add r8, r2\n\
-    mov r0, r8\n\
-    cmp r0, 0x5\n\
-    bgt _08024AC4\n\
-    b _0802495A\n\
-_08024AC4:\n\
-    ldr r4, _08024AE4 @ =gUnknown_03004210\n\
-    ldr r1, _08024AE8 @ =gStringVar4\n\
-    adds r2, 0xFF\n\
-    movs r0, 0x1\n\
-    str r0, [sp]\n\
-    adds r0, r4, 0\n\
-    movs r3, 0xC\n\
-    bl Text_InitWindow\n\
-    adds r0, r4, 0\n\
-    bl Text_PrintWindow8002F44\n\
-    ldr r1, _08024AEC @ =gSharedMem\n\
-    ldr r2, _08024AF0 @ =0x0001609c\n\
-    adds r1, r2\n\
-    b _08024BEA\n\
-    .align 2, 0\n\
-_08024AE4: .4byte gUnknown_03004210\n\
-_08024AE8: .4byte gStringVar4\n\
-_08024AEC: .4byte gSharedMem\n\
-_08024AF0: .4byte 0x0001609c\n\
-_08024AF4:\n\
-    ldr r0, _08024B94 @ =gMain\n\
-    ldrh r0, [r0, 0x2E]\n\
-    cmp r0, 0\n\
-    bne _08024AFE\n\
-    b _08024C38\n\
-_08024AFE:\n\
-    movs r0, 0x5\n\
-    bl PlaySE\n\
-    ldr r0, _08024B98 @ =gStringVar4\n\
-    ldr r1, _08024B9C @ =BattleText_Format2\n\
-    bl StringCopy\n\
-    adds r5, r0, 0\n\
-    movs r0, 0\n\
-    mov r8, r0\n\
-    mov r9, r0\n\
-    movs r6, 0xFC\n\
-    movs r7, 0x14\n\
-    ldr r1, _08024BA0 @ =0x00016018\n\
-    add r10, r1\n\
-_08024B1C:\n\
-    ldr r1, _08024BA4 @ =gUnknown_0840165C\n\
-    mov r2, r8\n\
-    lsls r0, r2, 2\n\
-    adds r0, r1\n\
-    ldr r1, [r0]\n\
-    adds r0, r5, 0\n\
-    bl StringAppend\n\
-    adds r5, r0, 0\n\
-    mov r0, r10\n\
-    ldrb r1, [r0]\n\
-    movs r0, 0x64\n\
-    muls r0, r1\n\
-    ldr r1, _08024BA8 @ =gPlayerParty\n\
-    adds r0, r1\n\
-    ldr r1, _08024BAC @ =gLevelUpStatBoxStats\n\
-    add r1, r8\n\
-    ldrb r1, [r1]\n\
-    bl GetMonData\n\
-    adds r1, r0, 0\n\
-    strb r6, [r5]\n\
-    movs r0, 0x13\n\
-    strb r0, [r5, 0x1]\n\
-    movs r4, 0x1\n\
-    mov r2, r8\n\
-    ands r4, r2\n\
-    lsls r0, r4, 3\n\
-    adds r0, r4\n\
-    adds r0, 0x5\n\
-    lsls r0, 3\n\
-    adds r0, 0x6\n\
-    strb r0, [r5, 0x2]\n\
-    adds r5, 0x3\n\
-    strb r6, [r5]\n\
-    strb r7, [r5, 0x1]\n\
-    movs r0, 0x6\n\
-    strb r0, [r5, 0x2]\n\
-    adds r5, 0x3\n\
-    lsls r1, 16\n\
-    asrs r1, 16\n\
-    adds r0, r5, 0\n\
-    movs r2, 0x1\n\
-    movs r3, 0x3\n\
-    bl ConvertIntToDecimalStringN\n\
-    adds r5, r0, 0\n\
-    strb r6, [r5]\n\
-    strb r7, [r5, 0x1]\n\
-    mov r0, r9\n\
-    strb r0, [r5, 0x2]\n\
-    adds r5, 0x3\n\
-    cmp r4, 0\n\
-    beq _08024BB0\n\
-    movs r0, 0xFE\n\
-    strb r0, [r5]\n\
-    movs r0, 0xFF\n\
-    strb r0, [r5, 0x1]\n\
-    adds r5, 0x1\n\
-    b _08024BC0\n\
-    .align 2, 0\n\
-_08024B94: .4byte gMain\n\
-_08024B98: .4byte gStringVar4\n\
-_08024B9C: .4byte BattleText_Format2\n\
-_08024BA0: .4byte 0x00016018\n\
-_08024BA4: .4byte gUnknown_0840165C\n\
-_08024BA8: .4byte gPlayerParty\n\
-_08024BAC: .4byte gLevelUpStatBoxStats\n\
-_08024BB0:\n\
-    strb r6, [r5]\n\
-    movs r0, 0x11\n\
-    strb r0, [r5, 0x1]\n\
-    movs r0, 0x8\n\
-    strb r0, [r5, 0x2]\n\
-    adds r5, 0x3\n\
-    movs r0, 0xFF\n\
-    strb r0, [r5]\n\
-_08024BC0:\n\
-    movs r1, 0x1\n\
-    add r8, r1\n\
-    mov r2, r8\n\
-    cmp r2, 0x5\n\
-    ble _08024B1C\n\
-    ldr r4, _08024BF4 @ =gUnknown_03004210\n\
-    ldr r1, _08024BF8 @ =gStringVar4\n\
-    movs r2, 0x80\n\
-    lsls r2, 1\n\
-    movs r0, 0x1\n\
-    str r0, [sp]\n\
-    adds r0, r4, 0\n\
-    movs r3, 0xC\n\
-    bl Text_InitWindow\n\
-    adds r0, r4, 0\n\
-    bl Text_PrintWindow8002F44\n\
-    ldr r1, _08024BFC @ =gSharedMem\n\
-    ldr r0, _08024C00 @ =0x0001609c\n\
-    adds r1, r0\n\
-_08024BEA:\n\
-    ldrb r0, [r1]\n\
-    adds r0, 0x1\n\
-    strb r0, [r1]\n\
-    b _08024C38\n\
-    .align 2, 0\n\
-_08024BF4: .4byte gUnknown_03004210\n\
-_08024BF8: .4byte gStringVar4\n\
-_08024BFC: .4byte gSharedMem\n\
-_08024C00: .4byte 0x0001609c\n\
-_08024C04:\n\
-    ldr r0, _08024C2C @ =gMain\n\
-    ldrh r0, [r0, 0x2E]\n\
-    cmp r0, 0\n\
-    beq _08024C38\n\
-    movs r0, 0x5\n\
-    bl PlaySE\n\
-    movs r0, 0x1\n\
-    str r0, [sp]\n\
-    movs r0, 0xB\n\
-    movs r1, 0\n\
-    movs r2, 0x1D\n\
-    movs r3, 0x7\n\
-    bl sub_802BBD4\n\
-    ldrb r0, [r4]\n\
-    adds r0, 0x1\n\
-    strb r0, [r4]\n\
-    b _08024C38\n\
-    .align 2, 0\n\
-_08024C2C: .4byte gMain\n\
-_08024C30:\n\
-    ldr r1, _08024C48 @ =gBattlescriptCurrInstr\n\
-    ldr r0, [r1]\n\
-    adds r0, 0x1\n\
-    str r0, [r1]\n\
-_08024C38:\n\
-    add sp, 0x4\n\
-    pop {r3-r5}\n\
-    mov r8, r3\n\
-    mov r9, r4\n\
-    mov r10, r5\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_08024C48: .4byte gBattlescriptCurrInstr\n\
-        .syntax divided");
-}
-
-#endif // NONMATCHING
 
 static void atk6D_resetsentmonsvalue(void)
 {
@@ -8265,7 +6926,7 @@ static void atk74_hpthresholds2(void)
     {
         gActiveBattler = GetBattlerForBattleScript(T2_READ_8(gBattlescriptCurrInstr + 1));
         opposing_bank = gActiveBattler ^ 1;
-        hp_switchout = ewram160BCarr(GetBattlerSide(opposing_bank)); //gBattleStruct->HP_OnSwitchout[GetBattlerSide(opposing_bank)];
+        hp_switchout = gSharedMem[BSTRUCT_OFF(HP_OnSwitchout) + GetBattlerSide(opposing_bank) * 2];
         result = (hp_switchout - gBattleMons[opposing_bank].hp) * 100 / hp_switchout;
 
         if (gBattleMons[opposing_bank].hp >= hp_switchout)
@@ -9210,7 +7871,7 @@ static void atk76_various(void)
 static void atk77_setprotectlike(void) //protect and endure
 {
     bool8 not_last_turn = 1;
-    u16 last_move = gUnknown_02024C4C[gBattlerAttacker];
+    u16 last_move = gLastResultingMoves[gBattlerAttacker];
 
     if (last_move != MOVE_PROTECT && last_move != MOVE_DETECT && last_move != MOVE_ENDURE)
         gDisableStructs[gBattlerAttacker].protectUses = 0;
@@ -9333,9 +7994,9 @@ static void atk7B_tryhealhalfhealth(void)
 
 static void atk7C_trymirrormove(void)
 {
-    u16 r7 = ewram160ACarr2(0, gBattlerAttacker) | (ewram160ACarr2(1, gBattlerAttacker) << 8);
-    u16 r6 = ewram16100arr2(0, gBattlerAttacker) | (ewram16100arr2(1, gBattlerAttacker) << 8);
-    u16 r5 = ewram16100arr2(2, gBattlerAttacker) | (ewram16100arr2(3, gBattlerAttacker) << 8);
+    u16 r7 = gSharedMem[BSTRUCT_OFF(lastTakenMove) + 2 * gBattlerAttacker + 0] | (gSharedMem[BSTRUCT_OFF(lastTakenMove) + 2 * gBattlerAttacker + 1] << 8);
+    u16 r6 = gSharedMem[BSTRUCT_OFF(lastTakenMoveFrom) + 4 * gBattlerAttacker + 0] | (gSharedMem[BSTRUCT_OFF(lastTakenMoveFrom) + 4 * gBattlerAttacker + 1] << 8);
+    u16 r5 = gSharedMem[BSTRUCT_OFF(lastTakenMoveFrom) + 4 * gBattlerAttacker + 2] | (gSharedMem[BSTRUCT_OFF(lastTakenMoveFrom) + 4 * gBattlerAttacker + 3] << 8);
 
     if (r7 != 0 && r7 != 0xFFFF)
     {
@@ -9876,12 +8537,7 @@ static void atk8D_setmultihitcounter(void)
 
 static void atk8E_initmultihitstring(void)
 {
-    ewram160E0(0) = 0xFD;
-    ewram160E0(1) = 1;
-    ewram160E0(2) = 1;
-    ewram160E0(3) = 1;
-    ewram160E0(4) = 0;
-    ewram160E0(5) = 0xFF;
+    PREPARE_BYTE_NUMBER_BUFFER(gBattleStruct->unk160E0, 1, 0);
     gBattlescriptCurrInstr++;
 }
 
@@ -9889,7 +8545,7 @@ static bool8 sub_80264C0(void)
 {
     if (gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
     {
-        ewram16064arr(gBattlerTarget) = gBattlerPartyIndexes[gBattlerTarget];
+        gSharedMem[BSTRUCT_OFF(unk16064) + gBattlerTarget] = gBattlerPartyIndexes[gBattlerTarget];
     }
     else
     {
@@ -9899,7 +8555,7 @@ static bool8 sub_80264C0(void)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
             return 0;
         }
-        ewram16064arr(gBattlerTarget) = gBattlerPartyIndexes[gBattlerTarget];
+        gSharedMem[BSTRUCT_OFF(unk16064) + gBattlerTarget] = gBattlerPartyIndexes[gBattlerTarget];
     }
     gBattlescriptCurrInstr = BattleScript_SuccessForceOut;
     return 1;
@@ -10465,295 +9121,70 @@ static void atk9D_mimicattackcopy(void)
     }
 }
 
+void atk9E_metronome(void)
+{
 #if DEBUG
-NAKED
-static void atk9E_metronome(void)
-{
-    asm("\
-    push    {r4, r5, r6, r7, lr}\n\
-    mov r7, r8\n\
-    push    {r7}\n\
-    ldr r6, ._3076      @ gBattlerAttacker\n\
-    ldrb    r2, [r6]\n\
-    lsl r1, r2, #0x1\n\
-    ldr r0, ._3076 + 4  @ \n\
-    add r3, r1, r0\n\
-    ldr r5, ._3076 + 8  @ \n\
-    mov r4, #0x58\n\
-    add r0, r2, #0\n\
-    mul r0, r0, r4\n\
-    add r1, r0, r5\n\
-    ldrh    r0, [r1, #0xe]\n\
-    cmp r0, #0\n\
-    bne ._3071  @cond_branch\n\
-    ldrh    r2, [r1, #0x10]\n\
-    cmp r2, #0\n\
-    beq ._3071  @cond_branch\n\
-    ldrh    r0, [r1, #0x12]\n\
-    cmp r0, #0\n\
-    beq ._3071  @cond_branch\n\
-    ldrh    r0, [r3]\n\
-    cmp r0, #0\n\
-    bne ._3072  @cond_branch\n\
-    strh    r2, [r3]\n\
-._3072:\n\
-    ldr r1, ._3076 + 12 @ \n\
-    ldrh    r0, [r3]\n\
-    strh    r0, [r1]\n\
-    ldrb    r0, [r6]\n\
-    mul r0, r0, r4\n\
-    add r0, r0, r5\n\
-    ldrh    r5, [r0, #0x10]\n\
-    ldrh    r2, [r0, #0x12]\n\
-    add r7, r1, #0\n\
-    cmp r5, r2\n\
-    bcs ._3073  @cond_branch\n\
-    ldrh    r0, [r3]\n\
-    cmp r0, r2\n\
-    beq ._3074  @cond_branch\n\
-    add r0, r0, #0x1\n\
-    b   ._3079\n\
-._3077:\n\
-    .align  2, 0\n\
-._3076:\n\
-    .word   gBattlerAttacker\n\
-    .word   +0x20160b4\n\
-    .word   gBattleMons\n\
-    .word   gCurrentMove\n\
-._3073:\n\
-    ldrh    r4, [r3]\n\
-    add r1, r4, #0\n\
-    mov r0, #0xb1\n\
-    lsl r0, r0, #0x1\n\
-    cmp r1, r0\n\
-    bne ._3078  @cond_branch\n\
-    mov r0, #0x1\n\
-    b   ._3079\n\
-._3078:\n\
-    cmp r1, r2\n\
-    bne ._3080  @cond_branch\n\
-._3074:\n\
-    strh    r5, [r3]\n\
-    b   ._3081\n\
-._3080:\n\
-    add r0, r4, #1\n\
-._3079:\n\
-    strh    r0, [r3]\n\
-._3081:\n\
-    ldr r4, ._3083      @ gHitMarker\n\
-    ldr r2, [r4]\n\
-    ldr r0, ._3083 + 4  @ 0xfffffbff\n\
-    and r2, r2, r0\n\
-    str r2, [r4]\n\
-    ldr r6, ._3083 + 8  @ gBattlescriptCurrInstr\n\
-    ldr r5, ._3083 + 12 @ gBattleScriptsForMoveEffects\n\
-    ldr r3, ._3083 + 16 @ gBattleMoves\n\
-    ldrh    r1, [r7]\n\
-    lsl r0, r1, #0x1\n\
-    add r0, r0, r1\n\
-    lsl r0, r0, #0x2\n\
-    add r0, r0, r3\n\
-    ldrb    r0, [r0]\n\
-    lsl r0, r0, #0x2\n\
-    add r0, r0, r5\n\
-    ldr r0, [r0]\n\
-    str r0, [r6]\n\
-    mov r0, #0x80\n\
-    lsl r0, r0, #0x4\n\
-    orr r2, r2, r0\n\
-    str r2, [r4]\n\
-    ldrh    r0, [r7]\n\
-    b   ._3082\n\
-._3084:\n\
-    .align  2, 0\n\
-._3083:\n\
-    .word   gHitMarker\n\
-    .word   0xfffffbff\n\
-    .word   gBattlescriptCurrInstr\n\
-    .word   gBattleScriptsForMoveEffects\n\
-    .word   gBattleMoves\n\
-._3071:\n\
-    ldr r7, ._3090      @ gCurrentMove\n\
-    mov r6, #0xb1\n\
-    lsl r6, r6, #0x1\n\
-    ldr r5, ._3090 + 4  @ sMovesForbiddenToCopy\n\
-    ldr r0, ._3090 + 8  @ gBattlescriptCurrInstr\n\
-    mov r8, r0\n\
-._3089:\n\
-    bl  Random\n\
-    ldr r2, ._3090 + 12 @ 0x1ff\n\
-    add r1, r2, #0\n\
-    and r0, r0, r1\n\
-    add r0, r0, #0x1\n\
-    strh    r0, [r7]\n\
-    cmp r0, r6\n\
-    bhi ._3089  @cond_branch\n\
-    mov r0, #0x3\n\
-._3086:\n\
-    sub r0, r0, #0x1\n\
-    cmp r0, #0\n\
-    bge ._3086  @cond_branch\n\
-    ldr r4, ._3090      @ gCurrentMove\n\
-    ldrh    r2, [r4]\n\
-    ldr r3, ._3090 + 16 @ 0xffff\n\
-    sub r0, r5, #2\n\
-._3088:\n\
-    add r0, r0, #0x2\n\
-    ldrh    r1, [r0]\n\
-    cmp r1, r2\n\
-    beq ._3087  @cond_branch\n\
-    cmp r1, r3\n\
-    bne ._3088  @cond_branch\n\
-._3087:\n\
-    ldr r0, ._3090 + 16 @ 0xffff\n\
-    cmp r1, r0\n\
-    bne ._3089  @cond_branch\n\
-    ldr r2, ._3090 + 20 @ gHitMarker\n\
-    ldr r0, [r2]\n\
-    ldr r1, ._3090 + 24 @ 0xfffffbff\n\
-    and r0, r0, r1\n\
-    str r0, [r2]\n\
-    ldr r3, ._3090 + 28 @ gBattleScriptsForMoveEffects\n\
-    ldr r2, ._3090 + 32 @ gBattleMoves\n\
-    ldrh    r1, [r4]\n\
-    lsl r0, r1, #0x1\n\
-    add r0, r0, r1\n\
-    lsl r0, r0, #0x2\n\
-    add r0, r0, r2\n\
-    ldrb    r0, [r0]\n\
-    lsl r0, r0, #0x2\n\
-    add r0, r0, r3\n\
-    ldr r0, [r0]\n\
-    mov r1, r8\n\
-    str r0, [r1]\n\
-    ldrh    r0, [r4]\n\
-._3082:\n\
-    mov r1, #0x0\n\
-    bl  GetMoveTarget\n\
-    ldr r1, ._3090 + 36 @ gBattlerTarget\n\
-    strb    r0, [r1]\n\
-    pop {r3}\n\
-    mov r8, r3\n\
-    pop {r4, r5, r6, r7}\n\
-    pop {r0}\n\
-    bx  r0\n\
-._3091:\n\
-    .align  2, 0\n\
-._3090:\n\
-    .word   gCurrentMove\n\
-    .word   sMovesForbiddenToCopy\n\
-    .word   gBattlescriptCurrInstr\n\
-    .word   0x1ff\n\
-    .word   0xffff\n\
-    .word   gHitMarker\n\
-    .word   0xfffffbff\n\
-    .word   gBattleScriptsForMoveEffects\n\
-    .word   gBattleMoves\n\
-    .word   gBattlerTarget");
-}
-#else
-#ifdef NONMATCHING
-static void atk9E_metronome(void)
-{
-    // sMovesForbiddenToCopy
-    int i;
-    do
+    u16 * r3 = (u16 *)&gSharedMem[BSTRUCT_OFF(lastTakenMove) + 8 + (2 * gBattlerAttacker)];
+    if (
+        gBattleMons[gBattlerAttacker].moves[1] == MOVE_NONE
+     && gBattleMons[gBattlerAttacker].moves[2] != MOVE_NONE
+     && gBattleMons[gBattlerAttacker].moves[3] != MOVE_NONE
+    )
     {
-        while ((gCurrentMove = (Random() & 0x1FF) + 1) > 0x162);
-        for (i = 0; sMovesForbiddenToCopy[i] != gCurrentMove && sMovesForbiddenToCopy[i] != 0xFFFF; i++);
-    } while (sMovesForbiddenToCopy[i] != 0xFFFF);
+        if (*r3 == MOVE_NONE)
+            *r3 = gBattleMons[gBattlerAttacker].moves[2];
+        gCurrentMove = *r3;
+        if (gBattleMons[gBattlerAttacker].moves[2] < gBattleMons[gBattlerAttacker].moves[3])
+        {
+            if (*r3 == gBattleMons[gBattlerAttacker].moves[3])
+                *r3 = gBattleMons[gBattlerAttacker].moves[2];
+            else
+                (*r3)++;
+        }
+        else
+        {
+            asm("":::"r4"); // Force correct register use
+            if (*r3 == NUM_MOVES - 1)
+                *r3 = 1;
+            else if (*r3 == gBattleMons[gBattlerAttacker].moves[3])
+                *r3 = gBattleMons[gBattlerAttacker].moves[2];
+            else
+                (*r3)++;
+        }
+        gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
+        asm("":::"r5"); // Force correct register use
+        gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
+        gHitMarker |= HITMARKER_NO_PPDEDUCT;
+        gBattlerTarget = GetMoveTarget(gCurrentMove, 0);
+        return;
+    }
+#endif //DEBUG
+    while (1)
+    {
+        s32 i;
 
-    gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
-    gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
-    gBattlerTarget = GetMoveTarget(gCurrentMove, 0);
+        gCurrentMove = (Random() & 0x1FF) + 1;
+        if (gCurrentMove >= NUM_MOVES)
+            continue;
+        for (i = 0; i < MAX_MON_MOVES; ++i); // redundant
+        i = -1;
+        while (1)
+        {
+            ++i;
+            if (sMovesForbiddenToCopy[i] == gCurrentMove)
+                break;
+            if (sMovesForbiddenToCopy[i] == METRONOME_FORBIDDEN_END)
+                break;
+        }
+        if (sMovesForbiddenToCopy[i] == METRONOME_FORBIDDEN_END)
+        {
+            gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
+            gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
+            gBattlerTarget = GetMoveTarget(gCurrentMove, 0);
+            return;
+        }
+    }
 }
-
-#else
-NAKED
-static void atk9E_metronome(void)
-{
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r8\n\
-    push {r7}\n\
-    ldr r7, _08027938 @ =gCurrentMove\n\
-    movs r6, 0xB1\n\
-    lsls r6, 1\n\
-    ldr r5, _0802793C @ =sMovesForbiddenToCopy\n\
-    ldr r0, _08027940 @ =gBattlescriptCurrInstr\n\
-    mov r8, r0\n\
-_080278CA:\n\
-    bl Random\n\
-    ldr r2, _08027944 @ =0x000001ff\n\
-    adds r1, r2, 0\n\
-    ands r0, r1\n\
-    adds r0, 0x1\n\
-    strh r0, [r7]\n\
-    cmp r0, r6\n\
-    bhi _080278CA\n\
-    movs r0, 0x3\n\
-_080278DE:\n\
-    subs r0, 0x1\n\
-    cmp r0, 0\n\
-    bge _080278DE\n\
-    ldr r4, _08027938 @ =gCurrentMove\n\
-    ldrh r2, [r4]\n\
-    ldr r3, _08027948 @ =0x0000ffff\n\
-    subs r0, r5, 0x2\n\
-_080278EC:\n\
-    adds r0, 0x2\n\
-    ldrh r1, [r0]\n\
-    cmp r1, r2\n\
-    beq _080278F8\n\
-    cmp r1, r3\n\
-    bne _080278EC\n\
-_080278F8:\n\
-    ldr r0, _08027948 @ =0x0000ffff\n\
-    cmp r1, r0\n\
-    bne _080278CA\n\
-    ldr r2, _0802794C @ =gHitMarker\n\
-    ldr r0, [r2]\n\
-    ldr r1, _08027950 @ =0xfffffbff\n\
-    ands r0, r1\n\
-    str r0, [r2]\n\
-    ldr r3, _08027954 @ =gBattleScriptsForMoveEffects\n\
-    ldr r2, _08027958 @ =gBattleMoves\n\
-    ldrh r1, [r4]\n\
-    lsls r0, r1, 1\n\
-    adds r0, r1\n\
-    lsls r0, 2\n\
-    adds r0, r2\n\
-    ldrb r0, [r0]\n\
-    lsls r0, 2\n\
-    adds r0, r3\n\
-    ldr r0, [r0]\n\
-    mov r1, r8\n\
-    str r0, [r1]\n\
-    ldrh r0, [r4]\n\
-    movs r1, 0\n\
-    bl GetMoveTarget\n\
-    ldr r1, _0802795C @ =gBattlerTarget\n\
-    strb r0, [r1]\n\
-    pop {r3}\n\
-    mov r8, r3\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_08027938: .4byte gCurrentMove\n\
-_0802793C: .4byte sMovesForbiddenToCopy\n\
-_08027940: .4byte gBattlescriptCurrInstr\n\
-_08027944: .4byte 0x000001ff\n\
-_08027948: .4byte 0x0000ffff\n\
-_0802794C: .4byte gHitMarker\n\
-_08027950: .4byte 0xfffffbff\n\
-_08027954: .4byte gBattleScriptsForMoveEffects\n\
-_08027958: .4byte gBattleMoves\n\
-_0802795C: .4byte gBattlerTarget\n\
-        .syntax divided");
-}
-#endif // NONMATCHING
-#endif
 
 static void atk9F_dmgtolevel(void)
 {
@@ -10867,10 +9298,11 @@ static void atkA5_painsplitdmgcalc(void)
     {
         s32 hp_diff = (gBattleMons[gBattlerAttacker].hp + gBattleMons[gBattlerTarget].hp) / 2;
         s32 to_store = gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - hp_diff;
-        gBattleStruct->unk16014 = sBYTE0_32(to_store);
-        gBattleStruct->unk16015 = sBYTE1_32(to_store);
-        gBattleStruct->unk16016 = sBYTE2_32(to_store);
-        gBattleStruct->unk16017 = sBYTE3_32(to_store);
+
+        gSharedMem[BSTRUCT_OFF(painSplitHP) + 0] = sBYTE0_32(to_store);
+        gSharedMem[BSTRUCT_OFF(painSplitHP) + 1] = sBYTE1_32(to_store);
+        gSharedMem[BSTRUCT_OFF(painSplitHP) + 2] = sBYTE2_32(to_store);
+        gSharedMem[BSTRUCT_OFF(painSplitHP) + 3] = sBYTE3_32(to_store);
 
         gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp - hp_diff;
         gSpecialStatuses[gBattlerTarget].dmg = 0xFFFF;
@@ -10881,311 +9313,70 @@ static void atkA5_painsplitdmgcalc(void)
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 }
 
-#ifdef NONMATCHING
 static void atkA6_settypetorandomresistance(void)
 {
-    if (gLastLandedMoves[gBattlerAttacker] == 0 || gLastLandedMoves[gBattlerAttacker] == 0xFFFF || (IsTwoTurnsMove(gLastLandedMoves[gBattlerAttacker]) && !gProtectStructs[gBattlerAttacker].physicalDmg && !gProtectStructs[gBattlerAttacker].specialDmg))
+    if (gLastLandedMoves[gBattlerAttacker] == 0
+        || gLastLandedMoves[gBattlerAttacker] == 0xFFFF)
+    {
+        // The attacker has not yet been hit with a move
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+    }
+    else if (IsTwoTurnsMove(gLastLandedMoves[gBattlerAttacker])
+             && !(gProtectStructs[gBattlerAttacker].physicalDmg != 0 || gProtectStructs[gBattlerAttacker].specialDmg != 0))
+    {
+        // The attacker is about to be hit with the effects of a two-turn move
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+    }
     else
     {
-        int type = 0, rands = 0;
-        do
+        s32 i, j, rands;
+
+        // Try up to 1000 times
+        for (rands = 0; rands < 1000; rands++)
         {
-            while (((type = (Random() & 0x7F)) > 0x70));
-            type *= 3;
-            if (gTypeEffectiveness[type] == gLastHitByType[gBattlerAttacker] && gTypeEffectiveness[type + 2] <= 5 && gBattleMons[gBattlerAttacker].type1 != gTypeEffectiveness[type + 1] && gBattleMons[gBattlerAttacker].type2 != gTypeEffectiveness[type + 1])
+            while (((i = (Random() & 0x7F)) > 0x150u / 3));
+
+            i *= 3;
+
+            if (TYPE_EFFECT_ATK_TYPE(i) == gLastHitByType[gBattlerAttacker]
+                && TYPE_EFFECT_MULTIPLIER(i) <= TYPE_MUL_NOT_EFFECTIVE
+                && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_EFFECT_DEF_TYPE(i)))
             {
-                gBattleMons[gBattlerAttacker].type1 = type;
-                gBattleMons[gBattlerAttacker].type2 = type;
-                gBattleTextBuff1[0] = 0xFD;
-                gBattleTextBuff1[1] = 3;
-                gBattleTextBuff1[2] = type;
-                gBattleTextBuff1[3] = 0xFF;
+                // Success
+                SET_BATTLER_TYPE(gBattlerAttacker, TYPE_EFFECT_DEF_TYPE(i));
+                PREPARE_TYPE_BUFFER(gBattleTextBuff1, TYPE_EFFECT_DEF_TYPE(i));
+
                 gBattlescriptCurrInstr += 5;
                 return;
             }
-            rands++;
-        } while (rands <= 999);
+        }
 
-        type = 0, rands = 0;
-        do
+        // Random selection failed, so go through linearly
+        for (j = 0, rands = 0; rands < 0x150u; j += 3, rands += 3)
         {
-            if (gTypeEffectiveness[type] == 0xFE || gTypeEffectiveness[type] != 0xFF)
+            switch (TYPE_EFFECT_ATK_TYPE(j))
             {
-                if (gTypeEffectiveness[type] == gLastHitByType[gBattlerAttacker] && gTypeEffectiveness[type + 2] <= 5 && gBattleMons[gBattlerAttacker].type1 != gTypeEffectiveness[type + 1] && gBattleMons[gBattlerAttacker].type2 != gTypeEffectiveness[type + 1])
+            case TYPE_ENDTABLE:
+            case TYPE_FORESIGHT:
+                break;
+            default:
+                if (TYPE_EFFECT_ATK_TYPE(j) == gLastHitByType[gBattlerAttacker]
+                    && TYPE_EFFECT_MULTIPLIER(j) <= TYPE_MUL_NOT_EFFECTIVE
+                    && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_EFFECT_DEF_TYPE(i)))
                 {
-                    gBattleMons[gBattlerAttacker].type1 = gTypeEffectiveness[rands + 1];
-                    gBattleMons[gBattlerAttacker].type2 = gTypeEffectiveness[rands + 1];
-                    gBattleTextBuff1[0] = 0xFD;
-                    gBattleTextBuff1[1] = 3;
-                    gBattleTextBuff1[2] = gTypeEffectiveness[rands + 1];
-                    gBattleTextBuff1[3] = 0xFF;
+                    SET_BATTLER_TYPE(gBattlerAttacker, TYPE_EFFECT_DEF_TYPE(rands));
+                    PREPARE_TYPE_BUFFER(gBattleTextBuff1, TYPE_EFFECT_DEF_TYPE(rands))
+
                     gBattlescriptCurrInstr += 5;
                     return;
                 }
+                break;
             }
-            type += 3, rands += 3;
-        } while (rands < 336);
+        }
 
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
     }
 }
-
-#else
-NAKED
-static void atkA6_settypetorandomresistance(void)
-{
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r10\n\
-    mov r6, r9\n\
-    mov r5, r8\n\
-    push {r5-r7}\n\
-    ldr r1, _08027FA8 @ =gLastLandedMoves\n\
-    ldr r4, _08027FAC @ =gBattlerAttacker\n\
-    ldrb r0, [r4]\n\
-    lsls r0, 1\n\
-    adds r2, r0, r1\n\
-    ldrh r1, [r2]\n\
-    cmp r1, 0\n\
-    beq _08027F8C\n\
-    ldr r0, _08027FB0 @ =0x0000ffff\n\
-    cmp r1, r0\n\
-    beq _08027F8C\n\
-    ldrh r0, [r2]\n\
-    bl IsTwoTurnsMove\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _08028024\n\
-    ldr r2, _08027FB4 @ =gProtectStructs\n\
-    ldrb r0, [r4]\n\
-    lsls r1, r0, 4\n\
-    adds r0, r2, 0x4\n\
-    adds r0, r1, r0\n\
-    ldr r0, [r0]\n\
-    cmp r0, 0\n\
-    bne _08028024\n\
-    adds r0, r2, 0\n\
-    adds r0, 0x8\n\
-    adds r0, r1, r0\n\
-    ldr r0, [r0]\n\
-    cmp r0, 0\n\
-    bne _08028024\n\
-_08027F8C:\n\
-    ldr r3, _08027FB8 @ =gBattlescriptCurrInstr\n\
-    ldr r2, [r3]\n\
-    ldrb r1, [r2, 0x1]\n\
-    ldrb r0, [r2, 0x2]\n\
-    lsls r0, 8\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x3]\n\
-    lsls r0, 16\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x4]\n\
-    lsls r0, 24\n\
-    orrs r1, r0\n\
-    str r1, [r3]\n\
-    b _08028110\n\
-    .align 2, 0\n\
-_08027FA8: .4byte gLastLandedMoves\n\
-_08027FAC: .4byte gBattlerAttacker\n\
-_08027FB0: .4byte 0x0000ffff\n\
-_08027FB4: .4byte gProtectStructs\n\
-_08027FB8: .4byte gBattlescriptCurrInstr\n\
-_08027FBC:\n\
-    mov r0, r12\n\
-    strb r5, [r0]\n\
-    mov r1, r10\n\
-    ldrb r0, [r1]\n\
-    muls r0, r2\n\
-    adds r0, r7\n\
-    adds r0, 0x22\n\
-    strb r5, [r0]\n\
-    ldr r1, _08027FE0 @ =gBattleTextBuff1\n\
-    movs r0, 0xFD\n\
-    strb r0, [r1]\n\
-    movs r0, 0x3\n\
-    strb r0, [r1, 0x1]\n\
-    strb r5, [r1, 0x2]\n\
-    movs r0, 0xFF\n\
-    strb r0, [r1, 0x3]\n\
-    ldr r1, _08027FE4 @ =gBattlescriptCurrInstr\n\
-    b _08028012\n\
-    .align 2, 0\n\
-_08027FE0: .4byte gBattleTextBuff1\n\
-_08027FE4: .4byte gBattlescriptCurrInstr\n\
-_08027FE8:\n\
-    mov r0, r8\n\
-    adds r0, 0x1\n\
-    adds r0, r3\n\
-    ldrb r2, [r0]\n\
-    strb r2, [r4]\n\
-    mov r4, r10\n\
-    ldrb r0, [r4]\n\
-    muls r0, r6\n\
-    ldr r7, _0802801C @ =gBattleMons\n\
-    adds r0, r7\n\
-    adds r0, 0x22\n\
-    strb r2, [r0]\n\
-    ldr r1, _08028020 @ =gBattleTextBuff1\n\
-    movs r0, 0xFD\n\
-    strb r0, [r1]\n\
-    movs r0, 0x3\n\
-    strb r0, [r1, 0x1]\n\
-    strb r2, [r1, 0x2]\n\
-    movs r0, 0xFF\n\
-    strb r0, [r1, 0x3]\n\
-    mov r1, r12\n\
-_08028012:\n\
-    ldr r0, [r1]\n\
-    adds r0, 0x5\n\
-    str r0, [r1]\n\
-    b _08028110\n\
-    .align 2, 0\n\
-_0802801C: .4byte gBattleMons\n\
-_08028020: .4byte gBattleTextBuff1\n\
-_08028024:\n\
-    movs r4, 0\n\
-    mov r8, r4\n\
-    movs r7, 0x7F\n\
-    mov r9, r7\n\
-_0802802C:\n\
-    bl Random\n\
-    mov r4, r9\n\
-    ands r4, r0\n\
-    cmp r4, 0x70\n\
-    bhi _0802802C\n\
-    lsls r0, r4, 1\n\
-    adds r4, r0, r4\n\
-    ldr r6, _08028120 @ =gTypeEffectiveness\n\
-    adds r3, r4, r6\n\
-    ldr r1, _08028124 @ =gLastHitByType\n\
-    ldr r2, _08028128 @ =gBattlerAttacker\n\
-    ldrb r5, [r2]\n\
-    lsls r0, r5, 1\n\
-    adds r0, r1\n\
-    ldrb r1, [r3]\n\
-    mov r10, r2\n\
-    ldrh r0, [r0]\n\
-    cmp r1, r0\n\
-    bne _08028088\n\
-    adds r0, r4, 0x2\n\
-    adds r0, r6\n\
-    ldrb r0, [r0]\n\
-    cmp r0, 0x5\n\
-    bhi _08028088\n\
-    ldr r7, _0802812C @ =gBattleMons\n\
-    movs r2, 0x58\n\
-    adds r0, r5, 0\n\
-    muls r0, r2\n\
-    adds r3, r0, r7\n\
-    movs r0, 0x21\n\
-    adds r0, r3\n\
-    mov r12, r0\n\
-    adds r0, r4, 0x1\n\
-    adds r0, r6\n\
-    ldrb r5, [r0]\n\
-    mov r1, r12\n\
-    ldrb r0, [r1]\n\
-    adds r1, r5, 0\n\
-    cmp r0, r1\n\
-    beq _08028088\n\
-    adds r0, r3, 0\n\
-    adds r0, 0x22\n\
-    ldrb r0, [r0]\n\
-    cmp r0, r1\n\
-    bne _08027FBC\n\
-_08028088:\n\
-    movs r7, 0x1\n\
-    add r8, r7\n\
-    ldr r0, _08028130 @ =0x000003e7\n\
-    cmp r8, r0\n\
-    ble _0802802C\n\
-    movs r0, 0\n\
-    mov r8, r0\n\
-    ldr r1, _08028134 @ =gBattlescriptCurrInstr\n\
-    mov r12, r1\n\
-    ldr r3, _08028120 @ =gTypeEffectiveness\n\
-    adds r0, r4, 0x1\n\
-    adds r0, r3\n\
-    mov r9, r0\n\
-    adds r5, r3, 0\n\
-_080280A4:\n\
-    ldrb r1, [r5]\n\
-    cmp r1, 0xFF\n\
-    bgt _080280AE\n\
-    cmp r1, 0xFE\n\
-    bge _080280E8\n\
-_080280AE:\n\
-    mov r4, r10\n\
-    ldrb r2, [r4]\n\
-    lsls r0, r2, 1\n\
-    ldr r7, _08028124 @ =gLastHitByType\n\
-    adds r0, r7\n\
-    ldrh r0, [r0]\n\
-    cmp r1, r0\n\
-    bne _080280E8\n\
-    ldrb r0, [r5, 0x2]\n\
-    cmp r0, 0x5\n\
-    bhi _080280E8\n\
-    movs r6, 0x58\n\
-    adds r0, r2, 0\n\
-    muls r0, r6\n\
-    ldr r1, _0802812C @ =gBattleMons\n\
-    adds r2, r0, r1\n\
-    adds r4, r2, 0\n\
-    adds r4, 0x21\n\
-    ldrb r0, [r4]\n\
-    mov r7, r9\n\
-    ldrb r1, [r7]\n\
-    cmp r0, r1\n\
-    beq _080280E8\n\
-    adds r0, r2, 0\n\
-    adds r0, 0x22\n\
-    ldrb r0, [r0]\n\
-    cmp r0, r1\n\
-    beq _080280E8\n\
-    b _08027FE8\n\
-_080280E8:\n\
-    adds r5, 0x3\n\
-    movs r0, 0x3\n\
-    add r8, r0\n\
-    ldr r0, _08028138 @ =0x0000014f\n\
-    cmp r8, r0\n\
-    bls _080280A4\n\
-    mov r1, r12\n\
-    ldr r2, [r1]\n\
-    ldrb r1, [r2, 0x1]\n\
-    ldrb r0, [r2, 0x2]\n\
-    lsls r0, 8\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x3]\n\
-    lsls r0, 16\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x4]\n\
-    lsls r0, 24\n\
-    orrs r1, r0\n\
-    mov r4, r12\n\
-    str r1, [r4]\n\
-_08028110:\n\
-    pop {r3-r5}\n\
-    mov r8, r3\n\
-    mov r9, r4\n\
-    mov r10, r5\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_08028120: .4byte gTypeEffectiveness\n\
-_08028124: .4byte gLastHitByType\n\
-_08028128: .4byte gBattlerAttacker\n\
-_0802812C: .4byte gBattleMons\n\
-_08028130: .4byte 0x000003e7\n\
-_08028134: .4byte gBattlescriptCurrInstr\n\
-_08028138: .4byte 0x0000014f\n\
-        .syntax divided");
-}
-#endif // NONMATCHING
 
 static void atkA7_setalwayshitflag(void)
 {
@@ -11205,14 +9396,14 @@ struct move_pp
 static void atkA8_copymovepermanently(void)
 {
     gChosenMove = 0xFFFF;
-    if (!(gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED) && gUnknown_02024C2C[gBattlerTarget] != MOVE_STRUGGLE && gUnknown_02024C2C[gBattlerTarget] != 0 && gUnknown_02024C2C[gBattlerTarget] != 0xFFFF && gUnknown_02024C2C[gBattlerTarget] != MOVE_SKETCH)
+    if (!(gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED) && gLastPrintedMoves[gBattlerTarget] != MOVE_STRUGGLE && gLastPrintedMoves[gBattlerTarget] != 0 && gLastPrintedMoves[gBattlerTarget] != 0xFFFF && gLastPrintedMoves[gBattlerTarget] != MOVE_SKETCH)
     {
         int i;
         for (i = 0; i < 4; i++)
         {
             if (gBattleMons[gBattlerAttacker].moves[i] == MOVE_SKETCH)
                 continue;
-            if (gBattleMons[gBattlerAttacker].moves[i] == gUnknown_02024C2C[gBattlerTarget])
+            if (gBattleMons[gBattlerAttacker].moves[i] == gLastPrintedMoves[gBattlerTarget])
                 break;
         }
         if (i != 4) //sketch fail
@@ -11220,8 +9411,8 @@ static void atkA8_copymovepermanently(void)
         else //sketch worked
         {
             struct move_pp moves_data;
-            gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = gUnknown_02024C2C[gBattlerTarget];
-            gBattleMons[gBattlerAttacker].pp[gCurrMovePos] = gBattleMoves[gUnknown_02024C2C[gBattlerTarget]].pp;
+            gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = gLastPrintedMoves[gBattlerTarget];
+            gBattleMons[gBattlerAttacker].pp[gCurrMovePos] = gBattleMoves[gLastPrintedMoves[gBattlerTarget]].pp;
             gActiveBattler = gBattlerAttacker;
             for (i = 0; i < 4; i++)
             {
@@ -11233,8 +9424,8 @@ static void atkA8_copymovepermanently(void)
             MarkBattlerForControllerExec(gActiveBattler);
             gBattleTextBuff1[0] = 0xFD;
             gBattleTextBuff1[1] = 2;
-            gBattleTextBuff1[2] = gUnknown_02024C2C[gBattlerTarget];
-            gBattleTextBuff1[3] = gUnknown_02024C2C[gBattlerTarget] >> 8;
+            gBattleTextBuff1[2] = gLastPrintedMoves[gBattlerTarget];
+            gBattleTextBuff1[3] = gLastPrintedMoves[gBattlerTarget] >> 8;
             gBattleTextBuff1[4] = 0xFF;
             gBattlescriptCurrInstr += 5;
         }
@@ -11424,7 +9615,7 @@ static void atkAE_healpartystatus(void)
             }
         }
 
-        for (i = 0; i < 6; i++)
+        for (i = 0; i < PARTY_SIZE; i++)
         {
             u16 species = GetMonData(&party[i], MON_DATA_SPECIES2);
             u8 abilityBit = GetMonData(&party[i], MON_DATA_ALT_ABILITY);
@@ -11710,7 +9901,7 @@ static void atkBA_jumpifnopursuitswitchdmg(void)
             gBattlerTarget = GetBattlerAtPosition(2);
     }
 
-    if (gActionForBanks[gBattlerTarget] == 0 && gBattlerAttacker == ewram16010arr(gBattlerTarget) && !(gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
+    if (gActionForBanks[gBattlerTarget] == 0 && gBattlerAttacker == gSharedMem[BSTRUCT_OFF(moveTarget) + gBattlerTarget] && !(gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
         && gBattleMons[gBattlerAttacker].hp && !gDisableStructs[gBattlerTarget].truantCounter && gChosenMovesByBanks[gBattlerTarget] == MOVE_PURSUIT)
     {
         int i;
@@ -11783,12 +9974,12 @@ static void atkBE_rapidspinfree(void) //rapid spin
     if (gBattleMons[gBattlerAttacker].status2 & STATUS2_WRAPPED)
     {
         gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_WRAPPED);
-        gBattlerTarget = ewram16020arr(gBattlerAttacker);
-        gBattleTextBuff1[0] = 0xFD;
-        gBattleTextBuff1[1] = 2;
-        gBattleTextBuff1[2] = ewram16004arr(0, gBattlerAttacker);
-        gBattleTextBuff1[3] = ewram16004arr(1, gBattlerAttacker);
-        gBattleTextBuff1[4] = 0xFF;
+        gBattlerTarget = gSharedMem[BSTRUCT_OFF(wrappedBy) + gBattlerAttacker];
+        gBattleTextBuff1[0] = B_BUFF_PLACEHOLDER_BEGIN;
+        gBattleTextBuff1[1] = B_BUFF_MOVE;
+        gBattleTextBuff1[2] = gSharedMem[BSTRUCT_OFF(wrappedMove) + 2 * gBattlerAttacker + 0];
+        gBattleTextBuff1[3] = gSharedMem[BSTRUCT_OFF(wrappedMove) + 2 * gBattlerAttacker + 1];
+        gBattleTextBuff1[4] = B_BUFF_EOS;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_WrapFree;
     }
@@ -11916,33 +10107,37 @@ static void atkC3_trysetfutureattack(void)
     }
 }
 
-#ifdef NONMATCHING
 static void atkC4_trydobeatup(void)
 {
-    register struct Pokemon* party asm("r7");
-    if (GetBattlerSide(gBattlerAttacker) == 0)
+    struct Pokemon *party;
+
+    if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
         party = gPlayerParty;
     else
         party = gEnemyParty;
-
     if (gBattleMons[gBattlerTarget].hp == 0)
+    {
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+    }
     else
     {
-        while (gBattleCommunication[0] < 6)
+        u8 beforeLoop = gBattleCommunication[0];
+
+        for (;gBattleCommunication[0] < PARTY_SIZE; ++gBattleCommunication[0])
         {
-            if (GetMonData(&party[gBattleCommunication[0]], MON_DATA_HP) && GetMonData(&party[gBattleCommunication[0]], MON_DATA_SPECIES2)
-                && GetMonData(&party[gBattleCommunication[0]], MON_DATA_SPECIES2) != SPECIES_EGG && !GetMonData(&party[gBattleCommunication[0]], MON_DATA_STATUS))
-                    break;
-            gBattleCommunication[0]++;
+            if (GetMonData(&party[gBattleCommunication[0]], MON_DATA_HP)
+             && GetMonData(&party[gBattleCommunication[0]], MON_DATA_SPECIES2)
+             && GetMonData(&party[gBattleCommunication[0]], MON_DATA_SPECIES2) != SPECIES_EGG
+             && !GetMonData(&party[gBattleCommunication[0]], MON_DATA_STATUS))
+                break;
         }
-        if (gBattleCommunication[0] < 6)
+        if (gBattleCommunication[0] < PARTY_SIZE)
         {
-            gBattleTextBuff1[0] = 0xFD;
-            gBattleTextBuff1[1] = 4;
+            gBattleTextBuff1[0] = B_BUFF_PLACEHOLDER_BEGIN;
+            gBattleTextBuff1[1] = B_BUFF_MON_NICK_WITH_PREFIX;
             gBattleTextBuff1[2] = gBattlerAttacker;
             gBattleTextBuff1[3] = gBattleCommunication[0];
-            gBattleTextBuff1[4] = 0xFF;
+            gBattleTextBuff1[4] = B_BUFF_EOS;
             gBattlescriptCurrInstr += 9;
 
             gBattleMoveDamage = gBaseStats[GetMonData(&party[gBattleCommunication[0]], MON_DATA_SPECIES)].baseAttack;
@@ -11952,269 +10147,14 @@ static void atkC4_trydobeatup(void)
             gBattleMoveDamage = (gBattleMoveDamage / 50) + 2;
             if (gProtectStructs[gBattlerAttacker].helpingHand)
                 gBattleMoveDamage = gBattleMoveDamage * 15 / 10;
-
-            gBattleCommunication[0]++;
+            ++gBattleCommunication[0];
         }
-        else if (gBattleCommunication[0] != 0)
+        else if (beforeLoop != 0)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         else
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 5);
     }
 }
-#else
-NAKED
-static void atkC4_trydobeatup(void)
-{
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r9\n\
-    mov r6, r8\n\
-    push {r6,r7}\n\
-    ldr r0, _08029A8C @ =gBattlerAttacker\n\
-    ldrb r0, [r0]\n\
-    bl GetBattlerSide\n\
-    lsls r0, 24\n\
-    ldr r7, _08029A90 @ =gEnemyParty\n\
-    cmp r0, 0\n\
-    bne _08029A62\n\
-    ldr r7, _08029A94 @ =gPlayerParty\n\
-_08029A62:\n\
-    ldr r2, _08029A98 @ =gBattleMons\n\
-    ldr r0, _08029A9C @ =gBattlerTarget\n\
-    ldrb r1, [r0]\n\
-    movs r0, 0x58\n\
-    muls r0, r1\n\
-    adds r0, r2\n\
-    ldrh r0, [r0, 0x28]\n\
-    cmp r0, 0\n\
-    bne _08029AA4\n\
-    ldr r3, _08029AA0 @ =gBattlescriptCurrInstr\n\
-    ldr r2, [r3]\n\
-    ldrb r1, [r2, 0x1]\n\
-    ldrb r0, [r2, 0x2]\n\
-    lsls r0, 8\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x3]\n\
-    lsls r0, 16\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x4]\n\
-    b _08029C40\n\
-    .align 2, 0\n\
-_08029A8C: .4byte gBattlerAttacker\n\
-_08029A90: .4byte gEnemyParty\n\
-_08029A94: .4byte gPlayerParty\n\
-_08029A98: .4byte gBattleMons\n\
-_08029A9C: .4byte gBattlerTarget\n\
-_08029AA0: .4byte gBattlescriptCurrInstr\n\
-_08029AA4:\n\
-    ldr r6, _08029BE0 @ =gBattleCommunication\n\
-    ldrb r0, [r6]\n\
-    mov r8, r0\n\
-    cmp r0, 0x5\n\
-    bls _08029AB0\n\
-    b _08029C0C\n\
-_08029AB0:\n\
-    adds r4, r6, 0\n\
-    movs r5, 0x64\n\
-_08029AB4:\n\
-    ldrb r0, [r4]\n\
-    muls r0, r5\n\
-    adds r0, r7, r0\n\
-    movs r1, 0x39\n\
-    bl GetMonData\n\
-    cmp r0, 0\n\
-    beq _08029AF8\n\
-    ldrb r0, [r6]\n\
-    muls r0, r5\n\
-    adds r0, r7, r0\n\
-    movs r1, 0x41\n\
-    bl GetMonData\n\
-    cmp r0, 0\n\
-    beq _08029AF8\n\
-    ldrb r0, [r4]\n\
-    muls r0, r5\n\
-    adds r0, r7, r0\n\
-    movs r1, 0x41\n\
-    bl GetMonData\n\
-    movs r1, 0xCE\n\
-    lsls r1, 1\n\
-    cmp r0, r1\n\
-    beq _08029AF8\n\
-    ldrb r0, [r4]\n\
-    muls r0, r5\n\
-    adds r0, r7, r0\n\
-    movs r1, 0x37\n\
-    bl GetMonData\n\
-    cmp r0, 0\n\
-    beq _08029B08\n\
-_08029AF8:\n\
-    ldrb r0, [r4]\n\
-    adds r0, 0x1\n\
-    strb r0, [r4]\n\
-    adds r6, r4, 0\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    cmp r0, 0x5\n\
-    bls _08029AB4\n\
-_08029B08:\n\
-    ldr r1, _08029BE0 @ =gBattleCommunication\n\
-    mov r9, r1\n\
-    ldrb r2, [r1]\n\
-    cmp r2, 0x5\n\
-    bhi _08029C0C\n\
-    ldr r1, _08029BE4 @ =gBattleTextBuff1\n\
-    movs r0, 0xFD\n\
-    strb r0, [r1]\n\
-    movs r0, 0x4\n\
-    strb r0, [r1, 0x1]\n\
-    ldr r6, _08029BE8 @ =gBattlerAttacker\n\
-    ldrb r0, [r6]\n\
-    strb r0, [r1, 0x2]\n\
-    strb r2, [r1, 0x3]\n\
-    movs r0, 0xFF\n\
-    strb r0, [r1, 0x4]\n\
-    ldr r1, _08029BEC @ =gBattlescriptCurrInstr\n\
-    ldr r0, [r1]\n\
-    adds r0, 0x9\n\
-    str r0, [r1]\n\
-    ldr r2, _08029BF0 @ =gBattleMoveDamage\n\
-    mov r8, r2\n\
-    ldr r5, _08029BF4 @ =gBaseStats\n\
-    mov r1, r9\n\
-    ldrb r0, [r1]\n\
-    movs r4, 0x64\n\
-    muls r0, r4\n\
-    adds r0, r7, r0\n\
-    movs r1, 0xB\n\
-    bl GetMonData\n\
-    lsls r1, r0, 3\n\
-    subs r1, r0\n\
-    lsls r1, 2\n\
-    adds r1, r5\n\
-    ldrb r3, [r1, 0x1]\n\
-    mov r2, r8\n\
-    str r3, [r2]\n\
-    ldr r2, _08029BF8 @ =gBattleMoves\n\
-    ldr r0, _08029BFC @ =gCurrentMove\n\
-    ldrh r1, [r0]\n\
-    lsls r0, r1, 1\n\
-    adds r0, r1\n\
-    lsls r0, 2\n\
-    adds r0, r2\n\
-    ldrb r0, [r0, 0x1]\n\
-    muls r0, r3\n\
-    mov r1, r8\n\
-    str r0, [r1]\n\
-    mov r2, r9\n\
-    ldrb r0, [r2]\n\
-    muls r0, r4\n\
-    adds r0, r7, r0\n\
-    movs r1, 0x38\n\
-    bl GetMonData\n\
-    lsls r0, 1\n\
-    movs r1, 0x5\n\
-    bl __udivsi3\n\
-    adds r0, 0x2\n\
-    mov r2, r8\n\
-    ldr r1, [r2]\n\
-    muls r0, r1\n\
-    str r0, [r2]\n\
-    ldr r3, _08029C00 @ =gBattleMons\n\
-    ldr r1, _08029C04 @ =gBattlerTarget\n\
-    ldrb r2, [r1]\n\
-    movs r1, 0x58\n\
-    muls r1, r2\n\
-    adds r1, r3\n\
-    ldrh r2, [r1]\n\
-    lsls r1, r2, 3\n\
-    subs r1, r2\n\
-    lsls r1, 2\n\
-    adds r1, r5\n\
-    ldrb r1, [r1, 0x2]\n\
-    bl __divsi3\n\
-    mov r1, r8\n\
-    str r0, [r1]\n\
-    movs r1, 0x32\n\
-    bl __divsi3\n\
-    adds r2, r0, 0x2\n\
-    mov r0, r8\n\
-    str r2, [r0]\n\
-    ldr r1, _08029C08 @ =gProtectStructs\n\
-    ldrb r0, [r6]\n\
-    lsls r0, 4\n\
-    adds r0, r1\n\
-    ldrb r0, [r0]\n\
-    lsls r0, 28\n\
-    cmp r0, 0\n\
-    bge _08029BD4\n\
-    lsls r0, r2, 4\n\
-    subs r0, r2\n\
-    movs r1, 0xA\n\
-    bl __divsi3\n\
-    mov r1, r8\n\
-    str r0, [r1]\n\
-_08029BD4:\n\
-    mov r2, r9\n\
-    ldrb r0, [r2]\n\
-    adds r0, 0x1\n\
-    strb r0, [r2]\n\
-    b _08029C46\n\
-    .align 2, 0\n\
-_08029BE0: .4byte gBattleCommunication\n\
-_08029BE4: .4byte gBattleTextBuff1\n\
-_08029BE8: .4byte gBattlerAttacker\n\
-_08029BEC: .4byte gBattlescriptCurrInstr\n\
-_08029BF0: .4byte gBattleMoveDamage\n\
-_08029BF4: .4byte gBaseStats\n\
-_08029BF8: .4byte gBattleMoves\n\
-_08029BFC: .4byte gCurrentMove\n\
-_08029C00: .4byte gBattleMons\n\
-_08029C04: .4byte gBattlerTarget\n\
-_08029C08: .4byte gProtectStructs\n\
-_08029C0C:\n\
-    mov r0, r8\n\
-    cmp r0, 0\n\
-    beq _08029C2C\n\
-    ldr r3, _08029C28 @ =gBattlescriptCurrInstr\n\
-    ldr r2, [r3]\n\
-    ldrb r1, [r2, 0x1]\n\
-    ldrb r0, [r2, 0x2]\n\
-    lsls r0, 8\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x3]\n\
-    lsls r0, 16\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x4]\n\
-    b _08029C40\n\
-    .align 2, 0\n\
-_08029C28: .4byte gBattlescriptCurrInstr\n\
-_08029C2C:\n\
-    ldr r3, _08029C54 @ =gBattlescriptCurrInstr\n\
-    ldr r2, [r3]\n\
-    ldrb r1, [r2, 0x5]\n\
-    ldrb r0, [r2, 0x6]\n\
-    lsls r0, 8\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x7]\n\
-    lsls r0, 16\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x8]\n\
-_08029C40:\n\
-    lsls r0, 24\n\
-    orrs r1, r0\n\
-    str r1, [r3]\n\
-_08029C46:\n\
-    pop {r3,r4}\n\
-    mov r8, r3\n\
-    mov r9, r4\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_08029C54: .4byte gBattlescriptCurrInstr\n\
-        .syntax divided");
-}
-#endif // NONMATCHING
 
 static void atkC5_setsemiinvulnerablebit(void)
 {
@@ -12418,7 +10358,7 @@ static void atkD2_tryswapitems(void)
         else {
             u16 oldItemAtk, *newItemAtk;
 
-            newItemAtk = (u16 *)(ewram160F0 + 2 * gBattlerAttacker);
+            newItemAtk = (u16 *)(gBattleStruct->changedItems + gBattlerAttacker);
             oldItemAtk = gBattleMons[gBattlerAttacker].item;
             *newItemAtk = gBattleMons[gBattlerTarget].item;
 
@@ -12433,10 +10373,10 @@ static void atkD2_tryswapitems(void)
             BtlController_EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gBattlerTarget].item);
             MarkBattlerForControllerExec(gBattlerTarget);
 
-            ewram160E8arr2(0, gBattlerTarget) = 0;
-            ewram160E8arr2(1, gBattlerTarget) = 0;
-            ewram160E8arr2(0, gBattlerAttacker) = 0;
-            ewram160E8arr2(1, gBattlerAttacker) = 0;
+            gSharedMem[BSTRUCT_OFF(choicedMove) + 2 * gBattlerTarget   + 0] = 0;
+            gSharedMem[BSTRUCT_OFF(choicedMove) + 2 * gBattlerTarget   + 1] = 0;
+            gSharedMem[BSTRUCT_OFF(choicedMove) + 2 * gBattlerAttacker + 0] = 0;
+            gSharedMem[BSTRUCT_OFF(choicedMove) + 2 * gBattlerAttacker + 1] = 0;
 
             gBattlescriptCurrInstr += 5;
 
@@ -12480,7 +10420,7 @@ static void atkD4_trywish(void)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 2);
         break;
     case 1: //heal effect
-        gBattleTextBuff1[0] = 0xFD;
+        gBattleTextBuff1[0] = B_BUFF_PLACEHOLDER_BEGIN;
         gBattleTextBuff1[1] = 4;
         gBattleTextBuff1[2] = gBattlerTarget;
         gBattleTextBuff1[3] = gWishFutureKnock.wishMonId[gBattlerTarget];
@@ -12633,247 +10573,49 @@ static void atkDD_weightdamagecalculation(void)
     gBattlescriptCurrInstr++;
 }
 
-#ifdef NONMATCHING
 static void atkDE_assistattackselect(void)
 {
-    u32 chooseable_moves_no = 0;
-    struct Pokemon* party;
-    int i, j;
-    u16* chooseable_moves;
-    if (GetBattlerPosition(gBattlerAttacker) & 1)
+    s32 chooseableMovesNo = 0;
+    struct Pokemon *party;
+    s32 monId, moveId;
+    u16 *movesArray = (u16 *)&gBattleStruct->assistMove;
+
+    if (GET_BATTLER_SIDE(gBattlerAttacker) != B_SIDE_PLAYER)
         party = gEnemyParty;
     else
         party = gPlayerParty;
-
-    for (i = 0; i < 6; i++)
+    for (monId = 0; monId < PARTY_SIZE; ++monId)
     {
-        if (i == gBattlerPartyIndexes[gBattlerAttacker])
-            break;
-        if (!GetMonData(&party[i], MON_DATA_SPECIES2) || GetMonData(&party[i], MON_DATA_SPECIES2) == SPECIES_EGG)
-            break;
-        chooseable_moves = &gBattleStruct->assistMove[chooseable_moves_no];
-        for (j = 0; j < 4; j++)
+        if (monId == gBattlerPartyIndexes[gBattlerAttacker]
+         || GetMonData(&party[monId], MON_DATA_SPECIES2) == SPECIES_NONE
+         || GetMonData(&party[monId], MON_DATA_SPECIES2) == SPECIES_EGG)
+            continue;
+        for (moveId = 0; moveId < MAX_MON_MOVES; ++moveId)
         {
-            int k;
-            u16 move = GetMonData(&party[i], MON_DATA_MOVE1 + i);
+            s32 i = 0;
+            u16 move = GetMonData(&party[monId], MON_DATA_MOVE1 + moveId);
+
             if (IsMoveUnchoosable(move))
-                break;
-            //sMovesForbiddenToCopy[k]
-            for (k = 0; ;k++)
-            {
-                if (sMovesForbiddenToCopy[k] == 0xFFFF)
-                {
-                    if (move)
-                    {
-                        *chooseable_moves = move;
-                        chooseable_moves++;
-                        chooseable_moves_no++;
-                    }
-                    break;
-                }
-                if (sMovesForbiddenToCopy[k] == move)
-                    break;
-            }
+                continue;
+            for (; sMovesForbiddenToCopy[i] != ASSIST_FORBIDDEN_END && move != sMovesForbiddenToCopy[i]; ++i);
+            if (sMovesForbiddenToCopy[i] != ASSIST_FORBIDDEN_END || move == MOVE_NONE)
+                continue;
+            movesArray[chooseableMovesNo] = move;
+            ++chooseableMovesNo;
         }
     }
-    if (chooseable_moves_no)
+    if (chooseableMovesNo)
     {
         gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
-        gRandomMove = gBattleStruct->assistMove[Random() % chooseable_moves_no];
+        gRandomMove = movesArray[((Random() & 0xFF) * chooseableMovesNo) >> 8];
         gBattlerTarget = GetMoveTarget(gRandomMove, 0);
         gBattlescriptCurrInstr += 5;
     }
     else
+    {
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+    }
 }
-
-#else
-NAKED
-static void atkDE_assistattackselect(void)
-{
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r10\n\
-    mov r6, r9\n\
-    mov r5, r8\n\
-    push {r5-r7}\n\
-    sub sp, 0x8\n\
-    movs r0, 0\n\
-    mov r10, r0\n\
-    ldr r0, _0802AB9C @ =gBattlerAttacker\n\
-    ldrb r0, [r0]\n\
-    bl GetBattlerPosition\n\
-    movs r1, 0x1\n\
-    ands r1, r0\n\
-    ldr r0, _0802ABA0 @ =gPlayerParty\n\
-    str r0, [sp]\n\
-    cmp r1, 0\n\
-    beq _0802AAAC\n\
-    ldr r1, _0802ABA4 @ =gEnemyParty\n\
-    str r1, [sp]\n\
-_0802AAAC:\n\
-    movs r2, 0\n\
-_0802AAAE:\n\
-    ldr r1, _0802ABA8 @ =gBattlerPartyIndexes\n\
-    ldr r0, _0802AB9C @ =gBattlerAttacker\n\
-    ldrb r0, [r0]\n\
-    lsls r0, 1\n\
-    adds r0, r1\n\
-    adds r1, r2, 0x1\n\
-    str r1, [sp, 0x4]\n\
-    ldrh r0, [r0]\n\
-    cmp r2, r0\n\
-    beq _0802AB54\n\
-    movs r0, 0x64\n\
-    adds r6, r2, 0\n\
-    muls r6, r0\n\
-    ldr r0, [sp]\n\
-    adds r4, r0, r6\n\
-    adds r0, r4, 0\n\
-    movs r1, 0x41\n\
-    bl GetMonData\n\
-    cmp r0, 0\n\
-    beq _0802AB54\n\
-    adds r0, r4, 0\n\
-    movs r1, 0x41\n\
-    bl GetMonData\n\
-    movs r1, 0xCE\n\
-    lsls r1, 1\n\
-    cmp r0, r1\n\
-    beq _0802AB54\n\
-    movs r5, 0\n\
-    ldr r1, _0802ABAC @ =0x0000ffff\n\
-    mov r8, r1\n\
-    mov r9, r6\n\
-    mov r1, r10\n\
-    lsls r0, r1, 1\n\
-    ldr r1, _0802ABB0 @ =gSharedMem + 0x16024\n\
-    adds r6, r0, r1\n\
-_0802AAF8:\n\
-    movs r7, 0\n\
-    adds r1, r5, 0\n\
-    adds r1, 0xD\n\
-    ldr r0, [sp]\n\
-    add r0, r9\n\
-    bl GetMonData\n\
-    lsls r0, 16\n\
-    lsrs r4, r0, 16\n\
-    adds r0, r4, 0\n\
-    bl IsMoveUnchoosable\n\
-    lsls r0, 24\n\
-    adds r1, r5, 0x1\n\
-    cmp r0, 0\n\
-    bne _0802AB4E\n\
-    ldr r0, _0802ABB4 @ =sMovesForbiddenToCopy\n\
-    ldrh r2, [r0]\n\
-    adds r3, r0, 0\n\
-    cmp r2, r8\n\
-    beq _0802AB42\n\
-    cmp r4, r2\n\
-    beq _0802AB38\n\
-    ldr r5, _0802ABAC @ =0x0000ffff\n\
-    adds r2, r3, 0\n\
-_0802AB2A:\n\
-    adds r2, 0x2\n\
-    adds r7, 0x1\n\
-    ldrh r0, [r2]\n\
-    cmp r0, r5\n\
-    beq _0802AB42\n\
-    cmp r4, r0\n\
-    bne _0802AB2A\n\
-_0802AB38:\n\
-    lsls r0, r7, 1\n\
-    adds r0, r3\n\
-    ldrh r0, [r0]\n\
-    cmp r0, r8\n\
-    bne _0802AB4E\n\
-_0802AB42:\n\
-    cmp r4, 0\n\
-    beq _0802AB4E\n\
-    strh r4, [r6]\n\
-    adds r6, 0x2\n\
-    movs r0, 0x1\n\
-    add r10, r0\n\
-_0802AB4E:\n\
-    adds r5, r1, 0\n\
-    cmp r5, 0x3\n\
-    ble _0802AAF8\n\
-_0802AB54:\n\
-    ldr r2, [sp, 0x4]\n\
-    cmp r2, 0x5\n\
-    ble _0802AAAE\n\
-    mov r1, r10\n\
-    cmp r1, 0\n\
-    beq _0802ABCC\n\
-    ldr r2, _0802ABB8 @ =gHitMarker\n\
-    ldr r0, [r2]\n\
-    ldr r1, _0802ABBC @ =0xfffffbff\n\
-    ands r0, r1\n\
-    str r0, [r2]\n\
-    ldr r4, _0802ABC0 @ =gRandomMove\n\
-    bl Random\n\
-    movs r1, 0xFF\n\
-    ands r1, r0\n\
-    mov r0, r10\n\
-    muls r0, r1\n\
-    asrs r0, 8\n\
-    lsls r0, 1\n\
-    ldr r1, _0802ABB0 @ =gSharedMem + 0x16024\n\
-    adds r0, r1\n\
-    ldrh r0, [r0]\n\
-    strh r0, [r4]\n\
-    ldrh r0, [r4]\n\
-    movs r1, 0\n\
-    bl GetMoveTarget\n\
-    ldr r1, _0802ABC4 @ =gBattlerTarget\n\
-    strb r0, [r1]\n\
-    ldr r1, _0802ABC8 @ =gBattlescriptCurrInstr\n\
-    ldr r0, [r1]\n\
-    adds r0, 0x5\n\
-    str r0, [r1]\n\
-    b _0802ABE6\n\
-    .align 2, 0\n\
-_0802AB9C: .4byte gBattlerAttacker\n\
-_0802ABA0: .4byte gPlayerParty\n\
-_0802ABA4: .4byte gEnemyParty\n\
-_0802ABA8: .4byte gBattlerPartyIndexes\n\
-_0802ABAC: .4byte 0x0000ffff\n\
-_0802ABB0: .4byte gSharedMem + 0x16024\n\
-_0802ABB4: .4byte sMovesForbiddenToCopy\n\
-_0802ABB8: .4byte gHitMarker\n\
-_0802ABBC: .4byte 0xfffffbff\n\
-_0802ABC0: .4byte gRandomMove\n\
-_0802ABC4: .4byte gBattlerTarget\n\
-_0802ABC8: .4byte gBattlescriptCurrInstr\n\
-_0802ABCC:\n\
-    ldr r3, _0802ABF8 @ =gBattlescriptCurrInstr\n\
-    ldr r2, [r3]\n\
-    ldrb r1, [r2, 0x1]\n\
-    ldrb r0, [r2, 0x2]\n\
-    lsls r0, 8\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x3]\n\
-    lsls r0, 16\n\
-    orrs r1, r0\n\
-    ldrb r0, [r2, 0x4]\n\
-    lsls r0, 24\n\
-    orrs r1, r0\n\
-    str r1, [r3]\n\
-_0802ABE6:\n\
-    add sp, 0x8\n\
-    pop {r3-r5}\n\
-    mov r8, r3\n\
-    mov r9, r4\n\
-    mov r10, r5\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_0802ABF8: .4byte gBattlescriptCurrInstr\n\
-        .syntax divided");
-}
-
-#endif // NONMATCHING
 
 static void atkDF_trysetmagiccoat(void)
 {
@@ -12904,7 +10646,7 @@ static void atkE1_trygetintimidatetarget(void)
 {
     u8 side;
 
-    gBattleStruct->scriptingActive = ewram160DD;
+    gBattleStruct->scriptingActive = gBattleStruct->intimidateBank;
     side = GetBattlerSide(gBattleStruct->scriptingActive);
     gBattleTextBuff1[0] = 0xFD;
     gBattleTextBuff1[1] = 9;
@@ -12932,7 +10674,7 @@ static void atkE2_switchoutabilities(void)
     {
     case ABILITY_NATURAL_CURE:
         gBattleMons[gActiveBattler].status1 = 0;
-        BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, gBitTable[ewram16064arr(gActiveBattler)], 4, &gBattleMons[gActiveBattler].status1);
+        BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, gBitTable[gSharedMem[BSTRUCT_OFF(unk16064) + gActiveBattler]], 4, &gBattleMons[gActiveBattler].status1);
         MarkBattlerForControllerExec(gActiveBattler);
         break;
     }
@@ -12986,7 +10728,7 @@ static void atkE4_getsecretpowereffect(void)
 static void atkE5_pickup(void)
 {
     int i;
-    for (i = 0; i < 6; i++)
+    for (i = 0; i < PARTY_SIZE; i++)
     {
         u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2);
         u16 held_item = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
@@ -13097,7 +10839,7 @@ static void atkEA_tryrecycleitem(void)
 {
     u16* used_item;
     gActiveBattler = gBattlerAttacker;
-    used_item = USED_HELD_ITEM(gActiveBattler);
+    used_item = ((u16 *)&gSharedMem[BSTRUCT_OFF(usedHeldItems) + gActiveBattler * 2]);
     if (*used_item && gBattleMons[gActiveBattler].item == 0)
     {
         gLastUsedItem = *used_item;
@@ -13204,7 +10946,7 @@ void atkEF_handleballthrow(void)
         
         
         if (gLastUsedItem == ITEM_SAFARI_BALL || gLastUsedItem == ITEM_SPORT_BALL)
-            catch_rate = gBattleStruct->unk16089 * 1275 / 100; //correct the name to safariFleeRate
+            catch_rate = gBattleStruct->safariCatchFactor * 1275 / 100; //correct the name to safariFleeRate
         else
             catch_rate = gBaseStats[gBattleMons[gBattlerTarget].species].catchRate;
         if (gLastUsedItem > 5)
@@ -13373,7 +11115,7 @@ void atkEF_handleballthrow(void)
         {
             if (gLastUsedItem == ITEM_MASTER_BALL || gLastUsedItem != ITEM_PARK_BALL || gLastUsedItem != ITEM_DREAM_BALL)
             {
-                gBattleResults.unk5_1 = 1;
+                gBattleResults.usedMasterBall = 1;
             }
             else
             {
@@ -13491,94 +11233,49 @@ static void atkF2_displaydexinfo(void)
     }
 }
 
-NAKED
 void sub_802BBD4(u8 r0, u8 r1, u8 r2, u8 r3, u8 sp0)
 {
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r10\n\
-    mov r6, r9\n\
-    mov r5, r8\n\
-    push {r5-r7}\n\
-    ldr r4, [sp, 0x20]\n\
-    lsls r0, 24\n\
-    lsrs r6, r0, 24\n\
-    lsls r1, 24\n\
-    lsrs r1, 24\n\
-    mov r12, r1\n\
-    lsls r2, 24\n\
-    lsrs r5, r2, 24\n\
-    lsls r3, 24\n\
-    lsrs r7, r3, 24\n\
-    lsls r4, 24\n\
-    lsrs r4, 24\n\
-    mov r8, r4\n\
-    mov r2, r12\n\
-    cmp r2, r7\n\
-    bgt _0802BC5A\n\
-    lsls r1, r6, 1\n\
-    ldr r0, _0802BC20 @ =0x0600c000\n\
-    adds r1, r0\n\
-    mov r9, r1\n\
-_0802BC06:\n\
-    adds r1, r6, 0\n\
-    adds r0, r2, 0x1\n\
-    mov r10, r0\n\
-    cmp r1, r5\n\
-    bgt _0802BC54\n\
-    lsls r0, r2, 6\n\
-    mov r4, r9\n\
-    adds r3, r4, r0\n\
-_0802BC16:\n\
-    cmp r2, r12\n\
-    bne _0802BC28\n\
-    ldr r0, _0802BC24 @ =0x00001022\n\
-    b _0802BC36\n\
-    .align 2, 0\n\
-_0802BC20: .4byte 0x0600c000\n\
-_0802BC24: .4byte 0x00001022\n\
-_0802BC28:\n\
-    cmp r2, r7\n\
-    bne _0802BC34\n\
-    ldr r0, _0802BC30 @ =0x00001028\n\
-    b _0802BC36\n\
-    .align 2, 0\n\
-_0802BC30: .4byte 0x00001028\n\
-_0802BC34:\n\
-    ldr r0, _0802BC68 @ =0x00001025\n\
-_0802BC36:\n\
-    cmp r1, r6\n\
-    beq _0802BC42\n\
-    adds r0, 0x1\n\
-    cmp r1, r5\n\
-    bne _0802BC42\n\
-    adds r0, 0x1\n\
-_0802BC42:\n\
-    mov r4, r8\n\
-    cmp r4, 0\n\
-    beq _0802BC4A\n\
-    movs r0, 0\n\
-_0802BC4A:\n\
-    strh r0, [r3]\n\
-    adds r3, 0x2\n\
-    adds r1, 0x1\n\
-    cmp r1, r5\n\
-    ble _0802BC16\n\
-_0802BC54:\n\
-    mov r2, r10\n\
-    cmp r2, r7\n\
-    ble _0802BC06\n\
-_0802BC5A:\n\
-    pop {r3-r5}\n\
-    mov r8, r3\n\
-    mov r9, r4\n\
-    mov r10, r5\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_0802BC68: .4byte 0x00001025\n\
-        .syntax divided");
+    int i;
+    int j;
+    int tile;
+
+    for (i = r1; i <= r3; i++)
+    {
+        for (j = r0; j <= r2; j++)
+        {
+            u16 * dest = ((u16 *)(BG_VRAM + (24 * 0x800) + (0x2 * j) + (0x40 * i)));
+            if (i == r1)
+            {
+                if (j == r0)
+                    tile = 0x1022;
+                else if (j == r2)
+                    tile = 0x1024;
+                else
+                    tile = 0x1023;
+            }
+            else if (i == r3)
+            {
+                if (j == r0)
+                    tile = 0x1028;
+                else if (j == r2)
+                    tile = 0x102A;
+                else
+                    tile = 0x1029;
+            }
+            else
+            {
+                if (j == r0)
+                    tile = 0x1025;
+                else if (j == r2)
+                    tile = 0x1027;
+                else
+                    tile = 0x1026;
+            }
+            if (sp0)
+                tile = 0;
+            *dest = tile;
+        }
+    }
 }
 
 void sub_802BC6C(void)

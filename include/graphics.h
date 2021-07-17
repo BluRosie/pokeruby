@@ -69,14 +69,16 @@ extern const u8 gInterfacePal_BeastBall[];
 
 extern const u8 gUnknown_08D030D0[];
 
-extern const u8 gUnknown_08D17144[];
-extern const u8 gUnknown_08D1725C[];
-extern const u8 gUnknown_08D17424[];
+extern const u8 gContestPalette[];
+extern const u8 gContestGfx[];
+extern const u8 gContestBgmap[];
 extern const u8 gUnknown_08D17C3C[];
 extern const u8 gContestMiscGfx[];
 extern const u8 gContestAudienceGfx[];
 extern const u8 gContestJudgeSymbolsGfx[];
 extern const u8 gContest3Pal[];
+extern const u8 gContestNumbers_UnusedGfx[];
+extern const u8 gContestNumbers_UnusedPal[];
 extern const u8 gTiles_8D1975C[];
 extern const u8 gUnknown_08D1977C[];
 extern const u8 gUnknown_08D1A250[];
@@ -5999,6 +6001,8 @@ extern struct BattleAnimBackground gBattleAnimBackgroundImage_21[];
 extern struct BattleAnimBackground gBattleAnimBgImage_TrickRoom[];
 extern struct BattleAnimBackground gBattleAnimBgImage_RockWrecker[];
 
+extern struct BattleAnimBackground gBattleAnimBackgroundImage_Surf[];
+extern struct BattleAnimBackground gBattleAnimBackgroundImageMuddyWater_Pal[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_00[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_02[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_03[];
@@ -6013,6 +6017,7 @@ extern struct BattleAnimBackground gBattleAnimBackgroundPalette_17[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_18[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_20[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_21[];
+extern struct BattleAnimBackground gBattleAnimBackgroundPalette_Surf[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_22[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPalette_24[];
 extern struct BattleAnimBackground gBattleAnimBackgroundPaletteGigaImpact[];
@@ -6118,6 +6123,10 @@ extern const u8 Tiles_D129AC[];
 extern const u8 gAreaUnknownTiles[];
 extern const u16 gAreaUnknownPalette[];
 
+extern const u8 gUnknown_08E70968[];
+extern const u8 gUnknown_08E70C38[];
+extern const u8 gUnknown_08E70F0C[];
+
 extern const u8 gUnknown_08E964B8[];
 
 extern const u8 gUnknown_08E8096C[];
@@ -6127,5 +6136,7 @@ extern const u8 gRouletteHeadersTiles[];
 extern const u8 gRouletteCreditTiles[];
 extern const u8 gRouletteNumbersTiles[];
 extern const u8 gRouletteMultiplierTiles[];
+
+extern const u8 gDecoration10000_Gfx[];
 
 #endif  // GUARD_GRAPHICS_H

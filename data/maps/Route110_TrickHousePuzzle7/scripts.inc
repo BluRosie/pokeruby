@@ -1,8 +1,8 @@
 Route110_TrickHousePuzzle7_MapScripts:: @ 816314C
-	map_script 5, Route110_TrickHousePuzzle7_MapScript1_163161
-	map_script 3, Route110_TrickHousePuzzle7_MapScript1_163253
-	map_script 1, Route110_TrickHousePuzzle7_MapScript1_16326F
-	map_script 2, Route110_TrickHousePuzzle7_MapScript2_16327B
+	map_script MAP_SCRIPT_ON_RESUME, Route110_TrickHousePuzzle7_MapScript1_163161
+	map_script MAP_SCRIPT_ON_TRANSITION, Route110_TrickHousePuzzle7_MapScript1_163253
+	map_script MAP_SCRIPT_ON_LOAD, Route110_TrickHousePuzzle7_MapScript1_16326F
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route110_TrickHousePuzzle7_MapScript2_16327B
 	.byte 0
 
 Route110_TrickHousePuzzle7_MapScript1_163161:: @ 8163161
@@ -119,7 +119,7 @@ Route110_TrickHousePuzzle7_EventScript_1632B9:: @ 81632B9
 	call_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1, Route110_TrickHousePuzzle7_EventScript_163195
 	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1, Route110_TrickHousePuzzle7_EventScript_1631F4
 	special DrawWholeMapView
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	goto_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1, Route110_TrickHousePuzzle7_EventScript_1633A4
 	goto_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1, Route110_TrickHousePuzzle7_EventScript_1633A9
 	end
@@ -130,7 +130,7 @@ Route110_TrickHousePuzzle7_EventScript_1632E8:: @ 81632E8
 	call_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2, Route110_TrickHousePuzzle7_EventScript_1631A8
 	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2, Route110_TrickHousePuzzle7_EventScript_163207
 	special DrawWholeMapView
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	goto_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2, Route110_TrickHousePuzzle7_EventScript_1633AE
 	goto_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2, Route110_TrickHousePuzzle7_EventScript_1633B3
 	end
@@ -141,7 +141,7 @@ Route110_TrickHousePuzzle7_EventScript_163317:: @ 8163317
 	call_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3, Route110_TrickHousePuzzle7_EventScript_1631BB
 	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3, Route110_TrickHousePuzzle7_EventScript_16321A
 	special DrawWholeMapView
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	goto_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3, Route110_TrickHousePuzzle7_EventScript_1633B8
 	goto_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3, Route110_TrickHousePuzzle7_EventScript_1633BD
 	end
@@ -152,7 +152,7 @@ Route110_TrickHousePuzzle7_EventScript_163346:: @ 8163346
 	call_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_1631CE
 	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_16322D
 	special DrawWholeMapView
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	goto_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_1633C2
 	goto_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4, Route110_TrickHousePuzzle7_EventScript_1633C7
 	end
@@ -163,7 +163,7 @@ Route110_TrickHousePuzzle7_EventScript_163375:: @ 8163375
 	call_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5, Route110_TrickHousePuzzle7_EventScript_1631E1
 	call_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5, Route110_TrickHousePuzzle7_EventScript_163240
 	special DrawWholeMapView
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	goto_if_unset FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5, Route110_TrickHousePuzzle7_EventScript_1633CC
 	goto_if_set FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5, Route110_TrickHousePuzzle7_EventScript_1633D1
 	end
@@ -219,16 +219,16 @@ Route110_TrickHousePuzzle7_EventScript_1633D1:: @ 81633D1
 	end
 
 Route110_TrickHousePuzzle7_EventScript_1633D6:: @ 81633D6
-	trainerbattle 0, TRAINER_JOSHUA, 0, Route110_TrickHousePuzzle7_Text_19DF0B, Route110_TrickHousePuzzle7_Text_19DF4B
-	msgbox Route110_TrickHousePuzzle7_Text_19DF7E, 6
+	trainerbattle_single TRAINER_JOSHUA, Route110_TrickHousePuzzle7_Text_19DF0B, Route110_TrickHousePuzzle7_Text_19DF4B
+	msgbox Route110_TrickHousePuzzle7_Text_19DF7E, MSGBOX_AUTOCLOSE
 	end
 
 Route110_TrickHousePuzzle7_EventScript_1633ED:: @ 81633ED
-	trainerbattle 0, TRAINER_PATRICIA, 0, Route110_TrickHousePuzzle7_Text_19DFBB, Route110_TrickHousePuzzle7_Text_19DFF2
-	msgbox Route110_TrickHousePuzzle7_Text_19E00F, 6
+	trainerbattle_single TRAINER_PATRICIA, Route110_TrickHousePuzzle7_Text_19DFBB, Route110_TrickHousePuzzle7_Text_19DFF2
+	msgbox Route110_TrickHousePuzzle7_Text_19E00F, MSGBOX_AUTOCLOSE
 	end
 
 Route110_TrickHousePuzzle7_EventScript_163404:: @ 8163404
-	trainerbattle 0, TRAINER_ALEXIS, 0, Route110_TrickHousePuzzle7_Text_19E054, Route110_TrickHousePuzzle7_Text_19E098
-	msgbox Route110_TrickHousePuzzle7_Text_19E0B2, 6
+	trainerbattle_single TRAINER_ALEXIS, Route110_TrickHousePuzzle7_Text_19E054, Route110_TrickHousePuzzle7_Text_19E098
+	msgbox Route110_TrickHousePuzzle7_Text_19E0B2, MSGBOX_AUTOCLOSE
 	end

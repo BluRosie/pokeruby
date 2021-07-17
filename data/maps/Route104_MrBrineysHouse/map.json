@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE104_MR_BRINEYS_HOUSE",
   "name": "Route104_MrBrineysHouse",
   "layout": "LAYOUT_ROUTE104_MR_BRINEYS_HOUSE",
-  "music": "MUS_MACHI_S2",
+  "music": "MUS_PETALBURG",
   "region_map_section": "MAPSEC_ROUTE_104",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -19,7 +19,7 @@
       "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_DOWN_LEFT_UP_RIGHT",
       "movement_range_x": 3,
       "movement_range_y": 3,
-      "trainer_type": "0",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route104_MrBrineysHouse_EventScript_15BCEB",
       "flag": "FLAG_HIDE_MR_BRINEY_ROUTE104_HOUSE"
@@ -32,7 +32,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 3,
       "movement_range_y": 3,
-      "trainer_type": "0",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route104_MrBrineysHouse_EventScript_15BDD1",
       "flag": "FLAG_HIDE_PEEKO_BRINEY_HOUSE"

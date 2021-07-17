@@ -6,6 +6,7 @@
 #include "constants/songs.h"
 #include "sound.h"
 #include "string_util.h"
+#include "start_menu.h"
 
 enum
 {
@@ -1479,7 +1480,7 @@ const struct WindowTemplate gWindowTemplate_81E7144 =
     BG_SCREEN_ADDR(31), // tilemap
 };
 
-const struct WindowTemplate gWindowTemplate_81E7160 =
+const struct WindowTemplate gWindowTemplate_ContestPainting =
 {
     1, // BG number
     1, // BG character base block
@@ -2018,7 +2019,7 @@ void Text_SetWindowText(struct Window *win, const u8 *text)
     win->delayCounter = 0;
 }
 
-void Text_InitWindow8002EB0(struct Window *win, const u8 *text, u16 tileDataStartOffset, u8 left, u8 top)
+void Contest_StartTextPrinter(struct Window *win, const u8 *text, u16 tileDataStartOffset, u8 left, u8 top)
 {
     gMain.watchedKeysMask = A_BUTTON | B_BUTTON;
     gMain.watchedKeysPressed = 0;
@@ -2078,7 +2079,7 @@ static u8 sub_8002FA0(struct Window *win, const u8 *text)
 
 static u8 PrintNextChar(struct Window *win)
 {
-    u8 c = win->text[win->textIndex++];
+    u32 c = win->text[win->textIndex++];
 
     // Handle special control characters
     switch (c)
@@ -2106,6 +2107,12 @@ static u8 PrintNextChar(struct Window *win)
         return HandleExtCtrlCode(win);
     }
 
+// TODO: see if this is in rev1+
+#if (DEBUG && ENGLISH && REVISION == 0)
+    // Code related to the Murakawa task.
+    if ((gUnknown_Debug_03004BD0) && (!gUnknown_Debug_Murakawa2))
+        c = win->textMode + CHAR_0;
+#endif
     sPrintGlyphFuncs[win->textMode](win, c);
     return 1;
 }
@@ -2539,7 +2546,7 @@ u8 Text_UpdateWindowAutoscroll(struct Window *win)
     return retVal;
 }
 
-u8 Text_UpdateWindowInContest(struct Window *win)
+u8 Contest_RunTextPrinter(struct Window *win)
 {
     u8 retVal;
 

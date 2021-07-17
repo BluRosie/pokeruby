@@ -14,6 +14,7 @@
 #include "rom_8077ABC.h"
 #include "rom_8094928.h"
 #include "util.h"
+#include "constants/item_effects.h"
 
 extern s32 gBattleMoveDamage;
 extern u8 gAbsentBattlerFlags;
@@ -53,11 +54,11 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
     s32 cmdIndex;
     bool8 retVal = TRUE;
     const u8 *itemEffect;
-    u8 sp24 = 6;
-    u32 sp28;
-    s8 sp2C = 0;
+    u8 paramIdx = ITEM_EFFECT_ARG_START;
+    u32 data2;
+    s8 friendshipMod = 0;
     u8 holdEffect;
-    u8 sp34 = 4;
+    u8 battleId = 4; // Not active
     u16 heldItem;
     u8 r10;
     u32 r4;
@@ -86,7 +87,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
         {
             if (gBattlerPartyIndexes[cmdIndex] == partyIndex)
             {
-                sp34 = cmdIndex;
+                battleId = cmdIndex;
                 break;
             }
             cmdIndex += 2;
@@ -95,10 +96,10 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
     else
     {
         gActiveBattler = 0;
-        sp34 = 4;
+        battleId = 4;
     }
 
-    if (!IS_POKEMON_ITEM(item))
+    if (!ITEM_HAS_EFFECT(item))
         return TRUE;
     if (ItemId_GetEffect(item) == NULL && item != ITEM_ENIGMA_BERRY)
         return TRUE;
@@ -229,30 +230,30 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                 retVal = FALSE;
             }
             if ((itemEffect[cmdIndex] & CURE_INFATUATION)
-             && gMain.inBattle && sp34 != 4 && (gBattleMons[sp34].status2 & STATUS2_INFATUATION))
+             && gMain.inBattle && battleId != 4 && (gBattleMons[battleId].status2 & STATUS2_INFATUATION))
             {
-                gBattleMons[sp34].status2 &= ~STATUS2_INFATUATION;
+                gBattleMons[battleId].status2 &= ~STATUS2_INFATUATION;
                 retVal = FALSE;
             }
             if ((itemEffect[cmdIndex] & CURE_SLEEP)
-             && HealStatusConditions(pkmn, partyIndex, 7, sp34) == 0)
+             && HealStatusConditions(pkmn, partyIndex, 7, battleId) == 0)
             {
-                if (sp34 != 4)
-                    gBattleMons[sp34].status2 &= ~STATUS2_NIGHTMARE;
+                if (battleId != 4)
+                    gBattleMons[battleId].status2 &= ~STATUS2_NIGHTMARE;
                 retVal = FALSE;
             }
-            if ((itemEffect[cmdIndex] & CURE_POISON) && HealStatusConditions(pkmn, partyIndex, 0xF88, sp34) == 0)
+            if ((itemEffect[cmdIndex] & CURE_POISON) && HealStatusConditions(pkmn, partyIndex, 0xF88, battleId) == 0)
                 retVal = FALSE;
-            if ((itemEffect[cmdIndex] & CURE_BURN) && HealStatusConditions(pkmn, partyIndex, 16, sp34) == 0)
+            if ((itemEffect[cmdIndex] & CURE_BURN) && HealStatusConditions(pkmn, partyIndex, 16, battleId) == 0)
                 retVal = FALSE;
-            if ((itemEffect[cmdIndex] & CURE_ICE) && HealStatusConditions(pkmn, partyIndex, 32, sp34) == 0)
+            if ((itemEffect[cmdIndex] & CURE_ICE) && HealStatusConditions(pkmn, partyIndex, 32, battleId) == 0)
                 retVal = FALSE;
-            if ((itemEffect[cmdIndex] & CURE_PARALYSIS) && HealStatusConditions(pkmn, partyIndex, 64, sp34) == 0)
+            if ((itemEffect[cmdIndex] & CURE_PARALYSIS) && HealStatusConditions(pkmn, partyIndex, 64, battleId) == 0)
                 retVal = FALSE;
             if ((itemEffect[cmdIndex] & CURE_CONFUSION)
-             && gMain.inBattle && sp34 != 4 && (gBattleMons[sp34].status2 & STATUS2_CONFUSION))
+             && gMain.inBattle && battleId != 4 && (gBattleMons[battleId].status2 & STATUS2_CONFUSION))
             {
-                gBattleMons[sp34].status2 &= ~STATUS2_CONFUSION;
+                gBattleMons[battleId].status2 &= ~STATUS2_CONFUSION;
                 retVal = FALSE;
             }
             break;
@@ -262,53 +263,53 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             {
                 r10 &= ~PP_UP;
                 data = (GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL) & gPPUpReadMasks[moveIndex]) >> (moveIndex * 2);
-                sp28 = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL), moveIndex);
-                if (data < 3 && sp28 > 4)
+                data2 = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL), moveIndex);
+                if (data < 3 && data2 > 4)
                 {
                     data = GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL) + gPPUpValues[moveIndex];
                     SetMonData(pkmn, MON_DATA_PP_BONUSES, &data);
 
-                    data = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), data, moveIndex) - sp28;
+                    data = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), data, moveIndex) - data2;
                     data = GetMonData(pkmn, MON_DATA_PP1 + moveIndex, NULL) + data;
                     SetMonData(pkmn, MON_DATA_PP1 + moveIndex, &data);
                     retVal = FALSE;
                 }
             }
-            sp28 = 0;
-            while (r10 != 0)
+            data2 = 0;
+            while (effect4 != 0)
             {
-                if (r10 & 1)
+                if (effect4 & 1)
                 {
                     s32 r5;
      
-                    switch (sp28)
+                    switch (data2)
                     {
                     case 0:
                     case 1:
                         break;
                     // if trying to revive
                     case 2:
-                        if (r10 & (REVIVES >> sp28))
+                        if (r10 & (REVIVES >> data2))
                         {
                             if (GetMonData(pkmn, MON_DATA_HP, NULL) != 0)
                             {
-                                sp24++;
+                                paramIdx++;
                                 break;
                             }
                             if (gMain.inBattle)
                             {
-                                if (sp34 != 4)
+                                if (battleId != 4)
                                 {
-                                    gAbsentBattlerFlags &= ~gBitTable[sp34];
-                                    CopyPlayerPartyMonToBattleData(sp34, pokemon_order_func(gBattlerPartyIndexes[sp34]));
-                                    if (GetBattlerSide(gActiveBattler) == 0 && gBattleResults.unk4 < 255)
-                                        gBattleResults.unk4++;
+                                    gAbsentBattlerFlags &= ~gBitTable[battleId];
+                                    CopyPlayerPartyMonToBattleData(battleId, pokemon_order_func(gBattlerPartyIndexes[battleId]));
+                                    if (GetBattlerSide(gActiveBattler) == 0 && gBattleResults.reviveCount < 255)
+                                        gBattleResults.reviveCount++;
                                 }
                                 else
                                 {
                                     gAbsentBattlerFlags &= ~gBitTable[gActiveBattler ^ 2];
-                                    if (GetBattlerSide(gActiveBattler) == 0 && gBattleResults.unk4 < 255)
-                                        gBattleResults.unk4++;
+                                    if (GetBattlerSide(gActiveBattler) == 0 && gBattleResults.reviveCount < 255)
+                                        gBattleResults.reviveCount++;
                                 }
                             }
                         }
@@ -316,11 +317,11 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         {
                             if (GetMonData(pkmn, MON_DATA_HP, NULL) == 0)
                             {
-                                sp24++;
+                                paramIdx++;
                                 break;
                             }
                         }
-                        data = itemEffect[sp24++];
+                        data = itemEffect[paramIdx++];
                         switch (data)
                         {
                         case 0xFF: // fully heal
@@ -332,7 +333,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                                 data = 1;
                             break;
                         case 0xFD: // keep distance from max constant
-                            data = eStatHp;
+                            data = gBattleStruct->levelUpHP;
                             break;
                         case 0xFC: // quarter heal
                             data = GetMonData(pkmn, MON_DATA_MAX_HP, NULL) / 4;
@@ -348,16 +349,16 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                                 if (data > GetMonData(pkmn, MON_DATA_MAX_HP, NULL))
                                     data = GetMonData(pkmn, MON_DATA_MAX_HP, NULL);
                                 SetMonData(pkmn, MON_DATA_HP, &data);
-                                if (gMain.inBattle && sp34 != 4)
+                                if (gMain.inBattle && battleId != 4)
                                 {
-                                    gBattleMons[sp34].hp = data;
+                                    gBattleMons[battleId].hp = data;
                                     if (!(r10 & 0x10) && GetBattlerSide(gActiveBattler) == 0) // won't let the opponent use revives?
                                     {
-                                        if (gBattleResults.unk3 < 255)
-                                            gBattleResults.unk3++;
+                                        if (gBattleResults.playerHealInBattleCount < 255)
+                                            gBattleResults.playerHealInBattleCount++;
                                         // I have to re-use this variable to match.
                                         r5 = gActiveBattler;
-                                        gActiveBattler = sp34;
+                                        gActiveBattler = battleId;
                                         BtlController_EmitGetMonData(0, 0, 0);
                                         MarkBattlerForControllerExec(gActiveBattler);
                                         gActiveBattler = r5;
@@ -370,7 +371,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                             }
                             retVal = FALSE;
                         }
-                        r10 &= 0xEF;
+                        effect4 &= ~(ITEM4_REVIVE >> 2);
                         break;
                     // pp things
                     case 3:
@@ -384,7 +385,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                                 r4 = GetMonData(pkmn, MON_DATA_MOVE1 + r5, NULL);
                                 if (data != CalculatePPWithBonus(r4, GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL), r5))
                                 {
-                                    data += itemEffect[sp24];
+                                    data += itemEffect[paramIdx];
                                     r4 = GetMonData(pkmn, MON_DATA_MOVE1 + r5, NULL);
                                     if (data > CalculatePPWithBonus(r4, GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL), r5))
                                     {
@@ -393,13 +394,13 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                                     }
                                     SetMonData(pkmn, MON_DATA_PP1 + r5, &data);
                                     if (gMain.inBattle
-                                     && sp34 != 4 && !(gBattleMons[sp34].status2 & 0x200000)
-                                     && !(gDisableStructs[sp34].mimickedMoves & gBitTable[r5]))
-                                        gBattleMons[sp34].pp[r5] = data;
+                                     && battleId != 4 && !(gBattleMons[battleId].status2 & STATUS2_TRANSFORMED)
+                                     && !(gDisableStructs[battleId].mimickedMoves & gBitTable[r5]))
+                                        gBattleMons[battleId].pp[r5] = data;
                                     retVal = FALSE;
                                 }
                             }
-                            sp24++;
+                            paramIdx++;
                         }
                         else // if not healing all the moves
                         {
@@ -409,7 +410,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                             r4 = GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL);
                             if (data != CalculatePPWithBonus(r4, GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL), moveIndex))
                             {
-                                data += itemEffect[sp24++];
+                                data += itemEffect[paramIdx++];
                                 r4 = GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL);
                                 if (data > CalculatePPWithBonus(r4, GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL), moveIndex))
                                 {
@@ -418,9 +419,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                                 }
                                 SetMonData(pkmn, MON_DATA_PP1 + moveIndex, &data);
                                 if (gMain.inBattle
-                                 && sp34 != 4 && !(gBattleMons[sp34].status2 & 0x200000)
-                                 && !(gDisableStructs[sp34].mimickedMoves & gBitTable[moveIndex]))
-                                    gBattleMons[sp34].pp[moveIndex] = data;
+                                 && battleId != 4 && !(gBattleMons[battleId].status2 & STATUS2_TRANSFORMED)
+                                 && !(gDisableStructs[battleId].mimickedMoves & gBitTable[moveIndex]))
+                                    gBattleMons[battleId].pp[moveIndex] = data;
                                 retVal = FALSE;
                             }
                         }
@@ -439,50 +440,51 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         break;
                     }
                 }
-                sp28++;
-                r10 >>= 1;
+                data2++;
+                effect4 >>= 1;
             }
             break;
         case 5:
-            r10 = itemEffect[cmdIndex];
-            sp28 = 0;
-            while (r10 != 0)
+            effect4 = itemEffect[cmdIndex];
+            data2 = 0;
+            while (effect4 != 0)
             {
-                if (r10 & 1)
+                if (effect4 & 1)
                 {
-                    switch (sp28)
+                    switch (data2)
                     {
                     case 0:
                     case 1:
                     case 2:
                     case 3:
                         break;
-                    case 4:
+                    case 4: // PP_MAX
                         data = (GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL) & gPPUpReadMasks[moveIndex]) >> (moveIndex * 2);
                         if (data < 3)
                         {
-                            r4 = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL), moveIndex);
+                            evChange = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL), moveIndex);
                             data = GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL);
                             data &= gPPUpWriteMasks[moveIndex];
                             data += gPPUpValues[moveIndex] * 3;
 
                             SetMonData(pkmn, MON_DATA_PP_BONUSES, &data);
-                            data = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), data, moveIndex) - r4;
+                            data = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), data, moveIndex) -
+                                   evChange;
                             data = GetMonData(pkmn, MON_DATA_PP1 + moveIndex, NULL) + data;
                             SetMonData(pkmn, MON_DATA_PP1 + moveIndex, &data);
                             retVal = FALSE;
                         }
                         break;
                     case 5: // bad friendship
-                        if (GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL) < 100 && retVal == 0 && sp2C == 0)
+                        if (GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL) < 100 && retVal == 0 && friendshipMod == 0)
                         {
-                            sp2C = itemEffect[sp24];
+                            friendshipMod = itemEffect[paramIdx];
                             friendship = GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL);
-                            if (sp2C > 0 && holdEffect == HOLD_EFFECT_HAPPINESS_UP)
-                                friendship += 150 * sp2C / 100;
+                            if (friendshipMod > 0 && holdEffect == HOLD_EFFECT_HAPPINESS_UP)
+                                friendship += 150 * friendshipMod / 100;
                             else
-                                friendship += sp2C;
-                            if (sp2C > 0)
+                                friendship += friendshipMod;
+                            if (friendshipMod > 0)
                             {
                                 if (GetMonData(pkmn, MON_DATA_POKEBALL, NULL) == 11)
                                     friendship++;
@@ -495,19 +497,20 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                                 friendship = 255;
                             SetMonData(pkmn, MON_DATA_FRIENDSHIP, &friendship);
                         }
-                        sp24++;
+                        paramIdx++;
                         break;
                     case 6: // good friendship
                         if (GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL) >= 100 && GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL) < 200
-                         && retVal == 0 && sp2C == 0)
+                         && retVal == 0 &&
+                            friendshipMod == 0)
                         {
-                            sp2C = itemEffect[sp24];
+                            friendshipMod = itemEffect[paramIdx];
                             friendship = GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL);
-                            if (sp2C > 0 && holdEffect == HOLD_EFFECT_HAPPINESS_UP)
-                                friendship += 150 * sp2C / 100;
+                            if (friendshipMod > 0 && holdEffect == HOLD_EFFECT_HAPPINESS_UP)
+                                friendship += 150 * friendshipMod / 100;
                             else
-                                friendship += sp2C;
-                            if (sp2C > 0)
+                                friendship += friendshipMod;
+                            if (friendshipMod > 0)
                             {
                                 if (GetMonData(pkmn, MON_DATA_POKEBALL, NULL) == 11)
                                     friendship++;
@@ -520,18 +523,18 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                                 friendship = 255;
                             SetMonData(pkmn, MON_DATA_FRIENDSHIP, &friendship);
                         }
-                        sp24++;
+                        paramIdx++;
                         break;
                     case 7: // great friendship
-                        if (GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL) >= 200 && retVal == 0 && sp2C == 0)
+                        if (GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL) >= 200 && retVal == 0 && friendshipMod == 0)
                         {
-                            sp2C = itemEffect[sp24];
+                            friendshipMod = itemEffect[paramIdx];
                             friendship = GetMonData(pkmn, MON_DATA_FRIENDSHIP, NULL);
-                            if (sp2C > 0 && holdEffect == HOLD_EFFECT_HAPPINESS_UP)
-                                friendship += 150 * sp2C / 100;
+                            if (friendshipMod > 0 && holdEffect == HOLD_EFFECT_HAPPINESS_UP)
+                                friendship += 150 * friendshipMod / 100;
                             else
-                                friendship += sp2C;
-                            if (sp2C > 0)
+                                friendship += friendshipMod;
+                            if (friendshipMod > 0)
                             {
                                 if (GetMonData(pkmn, MON_DATA_POKEBALL, NULL) == 11)
                                     friendship++;
@@ -544,12 +547,12 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                                 friendship = 255;
                             SetMonData(pkmn, MON_DATA_FRIENDSHIP, &friendship);
                         }
-                        sp24++;
+                        paramIdx++;
                         break;
                     }
                 }
-                sp28++;
-                r10 >>= 1;
+                data2++;
+                effect4 >>= 1;
             }
             break;
         }

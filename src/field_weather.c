@@ -18,6 +18,7 @@
 #include "task.h"
 #include "trig.h"
 #include "ewram.h"
+#include "constants/field_weather.h"
 
 #define DROUGHT_COLOR_INDEX(color) ((((color) >> 1) & 0xF) | (((color) >> 2) & 0xF0) | (((color) >> 3) & 0xF00))
 
@@ -1237,13 +1238,13 @@ void SetRainStrengthFromSoundEffect(u16 soundEffect)
     {
         switch (soundEffect)
         {
-        case SE_T_KOAME:
+        case SE_RAIN:
             gWeatherPtr->rainStrength = 0;
             break;
-        case SE_T_OOAME:
+        case SE_DOWNPOUR:
             gWeatherPtr->rainStrength = 1;
             break;
-        case SE_T_AME:
+        case SE_THUNDERSTORM:
             gWeatherPtr->rainStrength = 2;
             break;
         default:
@@ -1261,14 +1262,14 @@ void PlayRainSoundEffect(void)
         switch (gWeatherPtr->rainStrength)
         {
         case 0:
-            PlaySE(SE_T_KOAME_E);
+            PlaySE(SE_RAIN_STOP);
             break;
         case 1:
-            PlaySE(SE_T_OOAME_E);
+            PlaySE(SE_DOWNPOUR_STOP);
             break;
         case 2:
         default:
-            PlaySE(SE_T_AME_E);
+            PlaySE(SE_THUNDERSTORM_STOP);
             break;
         }
     }

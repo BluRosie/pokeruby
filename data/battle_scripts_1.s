@@ -3,6 +3,7 @@
 #include "constants/moves.h"
 #include "constants/songs.h"
 #include "constants/hold_effects.h"
+#include "constants/pokemon.h"
 	.include "include/macros.inc"
 	.include "include/macros/battle_script.inc"
 	.include "constants/constants.inc"
@@ -4234,7 +4235,7 @@ BattleScript_Pausex20:: @ 81D8EEF
 	return
 
 BattleScript_LevelUp:: @ 81D8EF3
-	fanfare MUS_FANFA1
+	fanfare MUS_LEVEL_UP
 	printstring BATTLE_TEXT_GrewLevel 
 	setbyte sLVLBOX_STATE, 0
 	drawlvlupbox
@@ -4266,7 +4267,7 @@ BattleScript_ForgotAndLearnedNewMove: @ 81D8F46
 
 BattleScript_LearnedNewMove: @ 81D8F4F
 	buffermovetolearn
-	fanfare MUS_FANFA1
+	fanfare MUS_LEVEL_UP
 	printstring BATTLE_TEXT_LearnedMove
 	waitmessage 64
 	updatechoicemoveonlvlup USER

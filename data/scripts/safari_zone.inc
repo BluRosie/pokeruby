@@ -24,7 +24,7 @@ EventScript_1C3443:
 
 gUnknown_081C3448:: @ 81C3448
 	lockall
-	playse SE_PINPON
+	playse SE_DING_DONG
 	message UnknownString_81C34E4
 	waitmessage
 	waitbuttonpress
@@ -33,7 +33,7 @@ gUnknown_081C3448:: @ 81C3448
 
 gUnknown_081C3459:: @ 81C3459
 	lockall
-	playse SE_PINPON
+	playse SE_DING_DONG
 	message UnknownString_81C3514
 	waitmessage
 	waitbuttonpress
@@ -52,7 +52,7 @@ gUnknown_081C346A:: @ 81C346A
 	end
 
 EventScript_1C348E:
-	fadescreen 1
+	fadescreen FADE_TO_BLACK
 	special OpenPokeblockCaseOnFeeder
 	waitstate
 	compare VAR_RESULT, 0xFFFF

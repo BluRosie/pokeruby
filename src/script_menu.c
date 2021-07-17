@@ -11,6 +11,7 @@
 #include "sprite.h"
 #include "strings.h"
 #include "task.h"
+#include "constants/script_menu.h"
 
 // multichoice lists
 const struct MenuAction MultichoiceList_00[] =
@@ -555,30 +556,30 @@ const struct MultichoiceListStruct gMultichoiceLists[] =
     {MultichoiceList_72, ARRAY_COUNT(MultichoiceList_72)},
 };
 
-const u8 *const gUnknown_083CE048[] =
+const u8 *const gStdStrings[] =
 {
-    OtherText_Cool2,
-    OtherText_Beauty3,
-    OtherText_Cute2,
-    OtherText_Smart2,
-    OtherText_Tough2,
-    OtherText_Normal,
-    OtherText_Super,
-    OtherText_Hyper,
-    OtherText_Master,
-    OtherText_Cool3,
-    OtherText_Beauty4,
-    OtherText_Cute3,
-    OtherText_Smart3,
-    OtherText_Tough3,
-    OtherText_Items,
-    OtherText_KeyItems,
-    OtherText_Balls,
-    OtherText_TMsHMs,
-    OtherText_Berries,
+    [STDSTRING_COOL]      = OtherText_Cool2,
+    [STDSTRING_BEAUTY]    = OtherText_Beauty3,
+    [STDSTRING_CUTE]      = OtherText_Cute2,
+    [STDSTRING_SMART]     = OtherText_Smart2,
+    [STDSTRING_TOUGH]     = OtherText_Tough2,
+    [STDSTRING_NORMAL]    = OtherText_Normal,
+    [STDSTRING_SUPER]     = OtherText_Super,
+    [STDSTRING_HYPER]     = OtherText_Hyper,
+    [STDSTRING_MASTER]    = OtherText_Master,
+    [STDSTRING_COOL2]     = OtherText_Cool3,
+    [STDSTRING_BEAUTY2]   = OtherText_Beauty4,
+    [STDSTRING_CUTE2]     = OtherText_Cute3,
+    [STDSTRING_SMART2]    = OtherText_Smart3,
+    [STDSTRING_TOUGH2]    = OtherText_Tough3,
+    [STDSTRING_ITEMS]     = OtherText_Items,
+    [STDSTRING_KEYITEMS]  = OtherText_KeyItems,
+    [STDSTRING_POKEBALLS] = OtherText_Balls,
+    [STDSTRING_TMHMS]     = OtherText_TMsHMs,
+    [STDSTRING_BERRIES]   = OtherText_Berries,
 };
 
-extern u8 gPCText_WhichPCShouldBeAccessed[];
+extern u8 Text_WhichPCShouldBeAccessed[];
 
 extern u16 gSpecialVar_Result;
 
@@ -880,7 +881,7 @@ static void Task_HandleMultichoiceGridInput(u8 taskId)
 #undef tIgnoreBPress
 #undef tDoWrap
 
-bool8 ScrSpecial_CreatePCMenu(void)
+bool8 ScriptMenu_CreatePCMultichoice(void)
 {
     if (FuncIsActiveTask(Task_HandleMultichoiceInput) == TRUE)
     {
@@ -894,17 +895,38 @@ bool8 ScrSpecial_CreatePCMenu(void)
     }
 }
 
-#if ENGLISH
 void ScriptMenu_CreatePCMenu(void)
 {
-    u16 playersPCWidth = GetStringWidthInTilesForScriptMenu(gPCText_PlayersPC);
     u8 width;
     u8 numChoices;
 
+#if ENGLISH
+    u16 playersPCWidth = GetStringWidthInTilesForScriptMenu(gPCText_PlayersPC);
     if (playersPCWidth > GetStringWidthInTilesForScriptMenu(gPCText_SomeonesPC))
         width = playersPCWidth;
     else
         width = 8;
+#elif GERMAN
+    s32 sp8[4];
+    s32 r4 = 0;
+    s32 r5;
+
+    if (FlagGet(FLAG_SYS_PC_LANETTE))
+        sp8[r4++] = GetStringWidthInTilesForScriptMenu(gPCText_LanettesPC);
+    else
+        sp8[r4++] = GetStringWidthInTilesForScriptMenu(gPCText_SomeonesPC);
+    sp8[r4++] = GetStringWidthInTilesForScriptMenu(gPCText_PlayersPC);
+    sp8[r4++] = GetStringWidthInTilesForScriptMenu(gPCText_LogOff);
+    if (FlagGet(FLAG_SYS_GAME_CLEAR))
+        sp8[r4++] = GetStringWidthInTilesForScriptMenu(gPCText_HallOfFame);
+
+    width = 0;
+    for (r5 = 0; r5 < r4; r5++)
+    {
+        if (width < sp8[r5])
+            width = sp8[r5];
+    }
+#endif
 
     if (FlagGet(FLAG_SYS_GAME_CLEAR)) // player has cleared game?
     {
@@ -929,175 +951,11 @@ void ScriptMenu_CreatePCMenu(void)
     InitMenu(0, 1, 1, numChoices, 0, width + 1);
     StartScriptMenuTask(0, 0, width + 2, 2 * numChoices + 1, 0, numChoices);
 }
-#elif GERMAN
-NAKED
-void ScriptMenu_CreatePCMenu(void) {
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    sub sp, 0x18\n\
-    ldr r0, _080B5748 @ =0x0000084b\n\
-    bl FlagGet\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _080B5750\n\
-    ldr r0, _080B574C @ =gPCText_LanettesPC\n\
-    b _080B5752\n\
-    .align 2, 0\n\
-_080B5748: .4byte 0x0000084b\n\
-_080B574C: .4byte gPCText_LanettesPC\n\
-_080B5750:\n\
-    ldr r0, _080B57E8 @ =gPCText_SomeonesPC\n\
-_080B5752:\n\
-    bl GetStringWidthInTilesForScriptMenu\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    str r0, [sp, 0x8]\n\
-    movs r4, 0x1\n\
-    ldr r0, _080B57EC @ =gPCText_PlayersPC\n\
-    bl GetStringWidthInTilesForScriptMenu\n\
-    lsls r1, r4, 2\n\
-    add r1, sp\n\
-    adds r1, 0x8\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    str r0, [r1]\n\
-    ldr r0, _080B57F0 @ =gPCText_LogOff\n\
-    bl GetStringWidthInTilesForScriptMenu\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    str r0, [sp, 0x10]\n\
-    movs r4, 0x3\n\
-    ldr r0, _080B57F4 @ =0x00000804\n\
-    bl FlagGet\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _080B5798\n\
-    ldr r0, _080B57F8 @ =gPCText_HallOfFame\n\
-    bl GetStringWidthInTilesForScriptMenu\n\
-    lsls r0, 16\n\
-    lsrs r0, 16\n\
-    str r0, [sp, 0x14]\n\
-    movs r4, 0x4\n\
-_080B5798:\n\
-    movs r5, 0\n\
-    cmp r5, r4\n\
-    bge _080B57B4\n\
-    add r2, sp, 0x8\n\
-    adds r1, r4, 0\n\
-_080B57A2:\n\
-    ldr r0, [r2]\n\
-    cmp r5, r0\n\
-    bge _080B57AC\n\
-    lsls r0, 24\n\
-    lsrs r5, r0, 24\n\
-_080B57AC:\n\
-    adds r2, 0x4\n\
-    subs r1, 0x1\n\
-    cmp r1, 0\n\
-    bne _080B57A2\n\
-_080B57B4:\n\
-    ldr r0, _080B57F4 @ =0x00000804\n\
-    bl FlagGet\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _080B57FC\n\
-    movs r7, 0x4\n\
-    adds r4, r5, 0x2\n\
-    lsls r2, r4, 24\n\
-    lsrs r2, 24\n\
-    movs r0, 0\n\
-    movs r1, 0\n\
-    movs r3, 0x9\n\
-    bl Menu_DrawStdWindowFrame\n\
-    ldr r0, _080B57F8 @ =gPCText_HallOfFame\n\
-    movs r1, 0x1\n\
-    movs r2, 0x5\n\
-    bl Menu_PrintText\n\
-    ldr r0, _080B57F0 @ =gPCText_LogOff\n\
-    movs r1, 0x1\n\
-    movs r2, 0x7\n\
-    bl Menu_PrintText\n\
-    b _080B5818\n\
-    .align 2, 0\n\
-_080B57E8: .4byte gPCText_SomeonesPC\n\
-_080B57EC: .4byte gPCText_PlayersPC\n\
-_080B57F0: .4byte gPCText_LogOff\n\
-_080B57F4: .4byte 0x00000804\n\
-_080B57F8: .4byte gPCText_HallOfFame\n\
-_080B57FC:\n\
-    movs r7, 0x3\n\
-    adds r4, r5, 0x2\n\
-    lsls r2, r4, 24\n\
-    lsrs r2, 24\n\
-    movs r0, 0\n\
-    movs r1, 0\n\
-    movs r3, 0x7\n\
-    bl Menu_DrawStdWindowFrame\n\
-    ldr r0, _080B5834 @ =gPCText_LogOff\n\
-    movs r1, 0x1\n\
-    movs r2, 0x5\n\
-    bl Menu_PrintText\n\
-_080B5818:\n\
-    adds r6, r4, 0\n\
-    ldr r0, _080B5838 @ =0x0000084b\n\
-    bl FlagGet\n\
-    lsls r0, 24\n\
-    cmp r0, 0\n\
-    beq _080B5840\n\
-    ldr r0, _080B583C @ =gPCText_LanettesPC\n\
-    movs r1, 0x1\n\
-    movs r2, 0x1\n\
-    bl Menu_PrintText\n\
-    b _080B584A\n\
-    .align 2, 0\n\
-_080B5834: .4byte gPCText_LogOff\n\
-_080B5838: .4byte 0x0000084b\n\
-_080B583C: .4byte gPCText_LanettesPC\n\
-_080B5840:\n\
-    ldr r0, _080B5888 @ =gPCText_SomeonesPC\n\
-    movs r1, 0x1\n\
-    movs r2, 0x1\n\
-    bl Menu_PrintText\n\
-_080B584A:\n\
-    ldr r0, _080B588C @ =gPCText_PlayersPC\n\
-    movs r1, 0x1\n\
-    movs r2, 0x3\n\
-    bl Menu_PrintText\n\
-    movs r4, 0\n\
-    str r4, [sp]\n\
-    adds r0, r5, 0x1\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    str r0, [sp, 0x4]\n\
-    movs r0, 0\n\
-    movs r1, 0x1\n\
-    movs r2, 0x1\n\
-    adds r3, r7, 0\n\
-    bl InitMenu\n\
-    lsls r2, r6, 24\n\
-    lsrs r2, 24\n\
-    lsls r3, r7, 1\n\
-    adds r3, 0x1\n\
-    str r4, [sp]\n\
-    str r7, [sp, 0x4]\n\
-    movs r0, 0\n\
-    movs r1, 0\n\
-    bl StartScriptMenuTask\n\
-    add sp, 0x18\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_080B5888: .4byte gPCText_SomeonesPC\n\
-_080B588C: .4byte gPCText_PlayersPC\n\
-    .syntax divided\n");
-}
-#endif
 
 void ScriptMenu_DisplayPCStartupPrompt(void)
 {
     Menu_DisplayDialogueFrame();
-    Menu_PrintText(gPCText_WhichPCShouldBeAccessed, 2, 15);
+    Menu_PrintText(Text_WhichPCShouldBeAccessed, 2, 15);
 }
 
 #define tState       data[0]

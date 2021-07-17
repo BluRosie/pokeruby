@@ -11,6 +11,7 @@
 #include "util.h"
 #include "constants/event_object_movement.h"
 #include "constants/field_effects.h"
+#include "constants/trainer_types.h"
 
 extern const struct SpritePalette sEventObjectSpritePalettes[];
 extern const struct SpritePalette gFieldEffectObjectPaletteInfo0;
@@ -47,7 +48,7 @@ bool8 CheckTrainers(void)
     for (objEventId = 0; objEventId < 16; objEventId++)
     {
         if (gObjectEvents[objEventId].active
-         && (gObjectEvents[objEventId].trainerType == 1 ||  gObjectEvents[objEventId].trainerType == 3)
+         && (gObjectEvents[objEventId].trainerType == TRAINER_TYPE_NORMAL ||  gObjectEvents[objEventId].trainerType == TRAINER_TYPE_BURIED)
          && CheckTrainer(objEventId))
             return TRUE;
     }
@@ -87,14 +88,14 @@ static bool8 TrainerCanApproachPlayer(struct ObjectEvent *trainerObj)
     u8 approachDistance;
 
     PlayerGetDestCoords(&x, &y);
-    if (trainerObj->trainerType == 1)  // can only see in one direction
+    if (trainerObj->trainerType == TRAINER_TYPE_NORMAL)  // can only see in one direction
     {
         approachDistance = sDirectionalApproachDistanceFuncs[trainerObj->facingDirection - 1](trainerObj, trainerObj->trainerRange_berryTreeId, x, y);
         return CheckPathBetweenTrainerAndPlayer(trainerObj, approachDistance, trainerObj->facingDirection);
     }
-    else  // can see in all directions
+    else // TRAINER_TYPE_SEE_ALL_DIRECTIONS, TRAINER_TYPE_BURIED
     {
-        for (i = 0; i < 4; i++)
+        for (i = 0; i < ARRAY_COUNT(sDirectionalApproachDistanceFuncs); i++)
         {
             approachDistance = sDirectionalApproachDistanceFuncs[i](trainerObj, trainerObj->trainerRange_berryTreeId, x, y);
             if (CheckPathBetweenTrainerAndPlayer(trainerObj, approachDistance, i + 1)) // directions are 1-4 instead of 0-3. south north west east
@@ -452,7 +453,7 @@ void sub_8084794(struct ObjectEvent *var)
 
 static void Task_DestroyTrainerApproachTask(u8);
 
-void ScrSpecial_EndTrainerApproach(void)
+void EndTrainerApproach(void)
 {
     sub_80842FC(Task_DestroyTrainerApproachTask);
 }
@@ -570,10 +571,10 @@ static void objc_exclamation_mark_probably(struct Sprite *sprite)
     {
         struct Sprite *objEventSprite = &gSprites[gObjectEvents[objEventId].spriteId];
         sprite->data[4] += sprite->data[3];
-        sprite->pos1.x = objEventSprite->pos1.x;
-        sprite->pos1.y = objEventSprite->pos1.y - 16;
-        sprite->pos2.x = objEventSprite->pos2.x;
-        sprite->pos2.y = objEventSprite->pos2.y + sprite->data[4];
+        sprite->x = objEventSprite->x;
+        sprite->y = objEventSprite->y - 16;
+        sprite->x2 = objEventSprite->x2;
+        sprite->y2 = objEventSprite->y2 + sprite->data[4];
         if (sprite->data[4])
             sprite->data[3]++;
         else

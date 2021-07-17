@@ -922,6 +922,17 @@
 #define NUM_HIDDEN_MACHINES      8
 
 #define NUM_OF_ITEMS 853
+#define ITEMS_COUNT 853
+#define ITEM_FIELD_ARROW ITEMS_COUNT
+
+#define MAX_BAG_ITEM_CAPACITY  99
+#define MAX_PC_ITEM_CAPACITY   999
+#define MAX_BERRY_CAPACITY     999
+
+#define FIRST_BERRY_INDEX             ITEM_CHERI_BERRY
+#define LAST_BERRY_INDEX              ITEM_ENIGMA_BERRY
+
+#define ITEM_TO_BERRY(itemId)(((itemId - FIRST_BERRY_INDEX) + 1))
 
 // Check if the item is one that can be used on a Pokemon.
 #define IS_POKEMON_ITEM(item) ((item) >= ITEM_POTION && (item) <= ITEM_MARANGA_BERRY)
@@ -935,6 +946,8 @@
 #define IS_ITEM_MEGA_STONE(item) ((item) >= ITEM_GENGARITE && (item) <= ITEM_BEEDRILLITE)
 
 #define IS_ITEM_Z_CRYSTAL(item) ((item) >= ITEM_NORMALIUM_Z)
+
+#define ITEM_HAS_EFFECT(item) ((item) >= ITEM_POTION && (item) <= ITEM_0B2)
 
 #define IS_ITEM_PLATE(item) ((item) >= ITEM_FLAME_PLATE && (item) <= ITEM_PIXIE_PLATE)
 

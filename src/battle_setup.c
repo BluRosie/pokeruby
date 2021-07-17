@@ -2,6 +2,14 @@
 #include "battle_setup.h"
 #include "battle.h"
 #include "battle_transition.h"
+#include "constants/battle_setup.h"
+#include "constants/items.h"
+#include "constants/map_types.h"
+#include "constants/maps.h"
+#include "constants/opponents.h"
+#include "constants/songs.h"
+#include "constants/species.h"
+#include "contest_util.h"
 #include "data2.h"
 #include "event_data.h"
 #include "field_control_avatar.h"
@@ -13,12 +21,11 @@
 #include "fldeff_poison.h"
 #include "main.h"
 #include "metatile_behavior.h"
+#include "overworld.h"
 #include "palette.h"
 #include "random.h"
-#include "overworld.h"
 #include "safari_zone.h"
 #include "script.h"
-#include "script_pokemon_80C4.h"
 #include "secret_base.h"
 #include "sound.h"
 #include "starter_choose.h"
@@ -27,12 +34,6 @@
 #include "task.h"
 #include "text.h"
 #include "trainer.h"
-#include "constants/map_types.h"
-#include "constants/maps.h"
-#include "constants/opponents.h"
-#include "constants/songs.h"
-#include "constants/species.h"
-#include "constants/items.h"
 
 extern u16 gSpecialVar_Result;
 
@@ -54,13 +55,13 @@ extern u8 gBattleOutcome;
 
 extern struct ObjectEvent gObjectEvents[];
 
-extern u8 gUnknown_0819F818[];
-extern u8 gUnknown_0819F840[];
-extern u8 gUnknown_0819F878[];
-extern u8 gUnknown_0819F887[];
-extern u8 gUnknown_0819F8AE[];
+extern u8 EventScript_TryDoNormalTrainerBattle[];
+extern u8 EventScript_TryDoDoubleTrainerBattle[];
+extern u8 EventScript_DoNoIntroTrainerBattle[];
+extern u8 EventScript_TryDoRematchBattle[];
+extern u8 EventScript_TryDoDoubleRematchBattle[];
 
-extern u8 gUnknown_0819F80B[];
+extern u8 EventScript_StartTrainerBattle[];
 extern u8 gUnknown_081C6C02[];
 
 // The first transition is used if the enemy pokemon are lower level than our pokemon.
@@ -589,7 +590,7 @@ void ScrSpecial_StartRayquazaBattle(void)
     ScriptContext2_Enable();
     gMain.savedCallback = CB2_EndScriptedWildBattle;
     gBattleTypeFlags = BATTLE_TYPE_LEGENDARY;
-    CreateBattleStartTask(B_TRANSITION_BLUR, MUS_BATTLE34);
+    CreateBattleStartTask(B_TRANSITION_BLUR, MUS_VS_KYOGRE_GROUDON);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
 }
@@ -600,9 +601,9 @@ void ScrSpecial_StartGroudonKyogreBattle(void)
     gMain.savedCallback = CB2_EndScriptedWildBattle;
     gBattleTypeFlags = BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_KYOGRE_GROUDON;
     if (gGameVersion == VERSION_RUBY)
-        CreateBattleStartTask(B_TRANSITION_SHARDS, MUS_BATTLE34); // GROUDON
+        CreateBattleStartTask(B_TRANSITION_SHARDS, MUS_VS_KYOGRE_GROUDON); // GROUDON
     else
-        CreateBattleStartTask(B_TRANSITION_RIPPLE, MUS_BATTLE34); // KYOGRE
+        CreateBattleStartTask(B_TRANSITION_RIPPLE, MUS_VS_KYOGRE_GROUDON); // KYOGRE
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
 }
@@ -612,7 +613,7 @@ void ScrSpecial_StartRegiBattle(void)
     ScriptContext2_Enable();
     gMain.savedCallback = CB2_EndScriptedWildBattle;
     gBattleTypeFlags = BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_REGI;
-    CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_BATTLE36);
+    CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_VS_REGI);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
 }
@@ -1005,37 +1006,37 @@ u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
 
     switch (sTrainerBattleMode)
     {
-    case 3:
+    case TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT:
         TrainerBattleLoadArgs(gTrainerBattleSpecs_3, data);
-        return gUnknown_0819F878;
-    case 4:
+        return EventScript_DoNoIntroTrainerBattle;
+    case TRAINER_BATTLE_DOUBLE:
         TrainerBattleLoadArgs(gTrainerBattleSpecs_2, data);
         SetMapVarsToTrainer();
-        return gUnknown_0819F840;
-    case 1:
-    case 2:
+        return EventScript_TryDoDoubleTrainerBattle;
+    case TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC:
+    case TRAINER_BATTLE_CONTINUE_SCRIPT:
         TrainerBattleLoadArgs(gTrainerBattleSpecs_1, data);
         SetMapVarsToTrainer();
-        return gUnknown_0819F818;
-    case 6:
-    case 8:
+        return EventScript_TryDoNormalTrainerBattle;
+    case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE:
+    case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC:
         TrainerBattleLoadArgs(gTrainerBattleSpecs_4, data);
         SetMapVarsToTrainer();
-        return gUnknown_0819F840;
-    case 7:
+        return EventScript_TryDoDoubleTrainerBattle;
+    case TRAINER_BATTLE_REMATCH_DOUBLE:
         TrainerBattleLoadArgs(gTrainerBattleSpecs_2, data);
         SetMapVarsToTrainer();
         gTrainerBattleOpponent = GetRematchTrainerId(gTrainerBattleOpponent);
-        return gUnknown_0819F8AE;
-    case 5:
+        return EventScript_TryDoDoubleRematchBattle;
+    case TRAINER_BATTLE_REMATCH:
         TrainerBattleLoadArgs(gTrainerBattleSpecs_0, data);
         SetMapVarsToTrainer();
         gTrainerBattleOpponent = GetRematchTrainerId(gTrainerBattleOpponent);
-        return gUnknown_0819F887;
-    default:
+        return EventScript_TryDoRematchBattle;
+    default: // TRAINER_BATTLE_SINGLE
         TrainerBattleLoadArgs(gTrainerBattleSpecs_0, data);
         SetMapVarsToTrainer();
-        return gUnknown_0819F818;
+        return EventScript_TryDoNormalTrainerBattle;
     }
 }
 
@@ -1044,7 +1045,7 @@ void TrainerWantsBattle(u8 trainerObjEventId, const u8 *trainerScript)
     gSelectedObjectEvent = trainerObjEventId;
     gSpecialVar_LastTalked = gObjectEvents[trainerObjEventId].localId;
     BattleSetup_ConfigureTrainerBattle(trainerScript + 1);
-    ScriptContext1_SetupScript(gUnknown_0819F80B);
+    ScriptContext1_SetupScript(EventScript_StartTrainerBattle);
     ScriptContext2_Enable();
 }
 
@@ -1054,7 +1055,7 @@ bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
     return FlagGet(TRAINER_FLAG_START + flag);
 }
 
-void sub_8082524(void)
+void SetUpTrainerMovement(void)
 {
     struct ObjectEvent *objectEvent = &gObjectEvents[gSelectedObjectEvent];
 
@@ -1066,7 +1067,7 @@ u8 ScrSpecial_GetTrainerBattleMode(void)
     return sTrainerBattleMode;
 }
 
-u8 ScrSpecial_HasTrainerBeenFought(void)
+u8 GetTrainerFlag(void)
 {
     return FlagGet(CurrentOpponentTrainerFlag());
 }
@@ -1139,7 +1140,7 @@ void CB2_EndTrainerEyeRematchBattle(void)
     }
 }
 
-void ScrSpecial_StartTrainerEyeRematch(void)
+void BattleSetup_StartRematchBattle(void)
 {
     gBattleTypeFlags = BATTLE_TYPE_TRAINER;
     gMain.savedCallback = CB2_EndTrainerEyeRematchBattle;
@@ -1150,7 +1151,7 @@ void ScrSpecial_StartTrainerEyeRematch(void)
 static const u8 *GetTrainerIntroSpeech(void);
 static const u8 *GetTrainerNonBattlingSpeech(void);
 
-void ScrSpecial_ShowTrainerIntroSpeech(void)
+void ShowTrainerIntroSpeech(void)
 {
     ShowFieldMessage(GetTrainerIntroSpeech());
 }
@@ -1185,46 +1186,46 @@ void PlayTrainerEncounterMusic(void)
         switch (sub_803FC58(gTrainerBattleOpponent))
         {
         case TRAINER_ENCOUNTER_MUSIC_MALE:
-            music = MUS_BOYEYE;
+            music = MUS_ENCOUNTER_MALE;
             break;
         case TRAINER_ENCOUNTER_MUSIC_FEMALE:
-            music = MUS_GIRLEYE;
+            music = MUS_ENCOUNTER_FEMALE;
             break;
         case TRAINER_ENCOUNTER_MUSIC_GIRL:
-            music = MUS_SYOUJOEYE;
+            music = MUS_ENCOUNTER_GIRL;
             break;
         case TRAINER_ENCOUNTER_MUSIC_INTENSE:
-            music = MUS_HAGESHII;
+            music = MUS_ENCOUNTER_INTENSE;
             break;
         case TRAINER_ENCOUNTER_MUSIC_COOL:
-            music = MUS_KAKKOII;
+            music = MUS_ENCOUNTER_COOL;
             break;
         case TRAINER_ENCOUNTER_MUSIC_AQUA:
-            music = MUS_AQA_0;
+            music = MUS_ENCOUNTER_AQUA;
             break;
         case TRAINER_ENCOUNTER_MUSIC_MAGMA:
-            music = MUS_MGM0;
+            music = MUS_ENCOUNTER_MAGMA;
             break;
         case TRAINER_ENCOUNTER_MUSIC_SWIMMER:
-            music = MUS_SWIMEYE;
+            music = MUS_ENCOUNTER_SWIMMER;
             break;
         case TRAINER_ENCOUNTER_MUSIC_TWINS:
-            music = MUS_HUTAGO;
+            music = MUS_ENCOUNTER_TWINS;
             break;
         case TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR:
-            music = MUS_SITENNOU;
+            music = MUS_ENCOUNTER_ELITE_FOUR;
             break;
         case TRAINER_ENCOUNTER_MUSIC_HIKER:
-            music = MUS_YAMA_EYE;
+            music = MUS_ENCOUNTER_HIKER;
             break;
         case TRAINER_ENCOUNTER_MUSIC_INTERVIEWER:
-            music = MUS_INTER_V;
+            music = MUS_ENCOUNTER_INTERVIEWER;
             break;
         case TRAINER_ENCOUNTER_MUSIC_RICH:
-            music = MUS_TEST;
+            music = MUS_ENCOUNTER_RICH;
             break;
         default:
-            music = MUS_AYASII;
+            music = MUS_ENCOUNTER_SUSPICIOUS;
         }
         PlayNewMapMusic(music);
     }
@@ -1286,8 +1287,9 @@ s32 TrainerIdToRematchTableId(const struct TrainerEyeTrainer *trainers, u16 oppo
 
     for (i = 0; i < NUM_TRAINER_EYE_TRAINERS; i++)
     {
-        for (j = 0; j < 5 && trainers[i].opponentIDs[j] != 0; j++)
+        for (j = 0; j < 5; j++)
         {
+            if (trainers[i].opponentIDs[j] == 0) break; // one-line required to match with -g
             if (trainers[i].opponentIDs[j] == opponentId)
                 return i;
         }
@@ -1353,7 +1355,7 @@ bool8 IsFirstTrainerIdReadyForRematch(const struct TrainerEyeTrainer *trainers, 
 {
     s32 trainerEyeIndex = FirstBattleTrainerIdToRematchTableId(trainers, opponentId);
 
-    if (trainerEyeIndex != -1 && trainerEyeIndex < 100 && gSaveBlock1.trainerRematches[trainerEyeIndex])
+    if (trainerEyeIndex != -1 && trainerEyeIndex < MAX_REMATCH_ENTRIES && gSaveBlock1.trainerRematches[trainerEyeIndex])
         return TRUE;
     else
         return FALSE;
@@ -1363,7 +1365,7 @@ bool8 GetTrainerEyeRematchFlag(const struct TrainerEyeTrainer *trainers, u16 opp
 {
     s32 trainerEyeIndex = TrainerIdToRematchTableId(trainers, opponentId);
 
-    if (trainerEyeIndex != -1 && trainerEyeIndex < 100 && gSaveBlock1.trainerRematches[trainerEyeIndex])
+    if (trainerEyeIndex != -1 && trainerEyeIndex < MAX_REMATCH_ENTRIES && gSaveBlock1.trainerRematches[trainerEyeIndex])
         return TRUE;
     else
         return FALSE;
@@ -1471,7 +1473,7 @@ bool8 ShouldTryRematchBattle(void)
         return WasSecondRematchWon(gTrainerEyeTrainers, gTrainerBattleOpponent);
 }
 
-u8 ScrSpecial_GetTrainerEyeRematchFlag(void)
+u8 IsTrainerReadyForRematch(void)
 {
     return GetTrainerEyeRematchFlag(gTrainerEyeTrainers, gTrainerBattleOpponent);
 }

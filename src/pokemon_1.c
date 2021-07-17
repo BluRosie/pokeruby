@@ -1741,9 +1741,9 @@ void CalculateMonStats(struct Pokemon *mon)
         newMaxHP = (((n + hpEV / 4) * level) / 100) + level + 10;
     }
 
-    eStatHp = newMaxHP - oldMaxHP;
-    if (eStatHp == 0)
-        eStatHp = 1;
+    gBattleStruct->levelUpHP = newMaxHP - oldMaxHP;
+    if (gBattleStruct->levelUpHP == 0)
+        gBattleStruct->levelUpHP = 1;
 
     SetMonData(mon, MON_DATA_MAX_HP, &newMaxHP);
 
@@ -1774,6 +1774,8 @@ void CalculateMonStats(struct Pokemon *mon)
 }
 
 #if DEBUG
+// TODO: check other revisions
+#if !(ENGLISH && REVISION == 0)
 void Nakamura_NakaGenderTest_RecalcStats(struct Pokemon *mon)
 {
     s32 currentHP = GetMonData(mon, MON_DATA_HP, NULL);
@@ -1818,6 +1820,7 @@ void Nakamura_NakaGenderTest_RecalcStats(struct Pokemon *mon)
 
     SetMonData(mon, MON_DATA_HP, &currentHP);
 }
+#endif
 #endif
 
 void ExpandBoxMon(const struct BoxPokemon *src, struct Pokemon *dest)

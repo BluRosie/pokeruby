@@ -477,13 +477,13 @@ void sub_80DB74C(struct Sprite *sprite)
     {
         if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
         {
-            sprite->pos1.x = 72;
-            sprite->pos1.y = 80;
+            sprite->x = 72;
+            sprite->y = 80;
         }
         else
         {
-            sprite->pos1.x = 176;
-            sprite->pos1.y = 40;
+            sprite->x = 176;
+            sprite->y = 40;
         }
     }
     else
@@ -491,12 +491,12 @@ void sub_80DB74C(struct Sprite *sprite)
         if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
             gBattleAnimArgs[0] = -gBattleAnimArgs[0];
 
-        sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 0) + gBattleAnimArgs[0];
-        sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 1) + gBattleAnimArgs[1];
+        sprite->x = GetBattlerSpriteCoord(gBattleAnimAttacker, 0) + gBattleAnimArgs[0];
+        sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, 1) + gBattleAnimArgs[1];
     }
 
     if (IsContest())
-        sprite->pos1.y += 9;
+        sprite->y += 9;
 
     sprite->data[0] = 256 + IndexOfSpritePaletteTag(gBattleAnimArgs[2]) * 16;
     sprite->callback = sub_80DB88C;
@@ -547,14 +547,14 @@ static void sub_80DB92C(struct Sprite *sprite)
             u8 bank = bankCopy = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
 
             if (IsAnimBankSpriteVisible(bank))
-                gSprites[gBattlerSpriteIds[bank]].invisible = 0;
+                gSprites[gBattlerSpriteIds[bank]].invisible = FALSE;
 
             bank = bankCopy ^ 2;
             if (IsAnimBankSpriteVisible(bank))
-                gSprites[gBattlerSpriteIds[bank]].invisible = 0;
+                gSprites[gBattlerSpriteIds[bank]].invisible = FALSE;
         }
 
-        sprite->invisible = 1;
+        sprite->invisible = TRUE;
         sprite->callback = sub_80DB9E4;
     }
 }
@@ -593,13 +593,13 @@ void sub_80DBA4C(struct Sprite *sprite)
         {
             if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
             {
-                sprite->pos1.x = 72 - gBattleAnimArgs[0];
-                sprite->pos1.y = gBattleAnimArgs[1] + 80;
+                sprite->x = 72 - gBattleAnimArgs[0];
+                sprite->y = gBattleAnimArgs[1] + 80;
             }
             else
             {
-                sprite->pos1.x = gBattleAnimArgs[0] + 176;
-                sprite->pos1.y = gBattleAnimArgs[1] + 40;
+                sprite->x = gBattleAnimArgs[0] + 176;
+                sprite->y = gBattleAnimArgs[1] + 40;
             }
         }
         else
@@ -621,20 +621,20 @@ void sub_80DBA4C(struct Sprite *sprite)
 
 void sub_80DBAF4(struct Sprite *sprite)
 {
-    sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
-    sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
+    sprite->x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
+    sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
 
     if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
     {
         StartSpriteAnim(sprite, 1);
-        sprite->pos1.x -= 40;
-        sprite->pos1.y += 10;
+        sprite->x -= 40;
+        sprite->y += 10;
         sprite->data[1] = -1;
     }
     else
     {
-        sprite->pos1.x += 40;
-        sprite->pos1.y -= 10;
+        sprite->x += 40;
+        sprite->y -= 10;
         sprite->data[1] = 1;
     }
 
@@ -652,12 +652,12 @@ void sub_80DBB70(struct Sprite *sprite)
         x = -x;
     }
 
-    sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2) + x;
-    sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3) + y;
+    sprite->x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2) + x;
+    sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3) + y;
 
-    if (sprite->pos1.y < 16)
+    if (sprite->y < 16)
     {
-        sprite->pos1.y = 16;
+        sprite->y = 16;
     }
 
     StoreSpriteCallbackInData(sprite, sub_80DBC00);
@@ -739,13 +739,13 @@ static void sub_80DBD58(u8 taskId)
     case 1:
         if (task->data[3] != 0)
         {
-            gSprites[task->data[0]].pos2.y -= 8;
+            gSprites[task->data[0]].y2 -= 8;
             task->data[3]--;
         }
         else
         {
-            gSprites[task->data[0]].invisible = 1;
-            gSprites[task->data[0]].pos1.x = 272;
+            gSprites[task->data[0]].invisible = TRUE;
+            gSprites[task->data[0]].x = 272;
             sub_8078F40(task->data[0]);
             DestroyAnimVisualTask(taskId);
         }
@@ -794,20 +794,20 @@ static void sub_80DBE98(u8 taskId)
                 switch (task->data[2])
                 {
                 case 0:
-                    gSprites[spriteId].pos2.x = task->data[12];
-                    gSprites[spriteId].pos2.y = -task->data[12];
+                    gSprites[spriteId].x2 = task->data[12];
+                    gSprites[spriteId].y2 = -task->data[12];
                     break;
                 case 1:
-                    gSprites[spriteId].pos2.x = -task->data[12];
-                    gSprites[spriteId].pos2.y = task->data[12];
+                    gSprites[spriteId].x2 = -task->data[12];
+                    gSprites[spriteId].y2 = task->data[12];
                     break;
                 case 2:
-                    gSprites[spriteId].pos2.x = task->data[12];
-                    gSprites[spriteId].pos2.y = task->data[12];
+                    gSprites[spriteId].x2 = task->data[12];
+                    gSprites[spriteId].y2 = task->data[12];
                     break;
                 case 3:
-                    gSprites[spriteId].pos2.x = -task->data[12];
-                    gSprites[spriteId].pos2.y = -task->data[12];
+                    gSprites[spriteId].x2 = -task->data[12];
+                    gSprites[spriteId].y2 = -task->data[12];
                     break;
                 }
             }
@@ -861,8 +861,8 @@ void sub_80DC068(struct Sprite *sprite)
 {
     if (gBattleAnimArgs[0] == 0)
     {
-        sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
-        sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
+        sprite->x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
+        sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
     }
 
     sprite->data[0] = gBattleAnimArgs[1];
@@ -1065,17 +1065,14 @@ static void sub_80DC3F4(u8 taskId)
     }
 }
 
-#ifdef NONMATCHING
 void sub_80DC4F4(u8 taskId)
 {
     s16 spriteId;
-    u8 matrixNum;
-    register u8 matrixNum2 asm("r6");
+    s16 matrixNum;
     struct Task *task = &gTasks[taskId];
     
     matrixNum = AllocOamMatrix();
-    matrixNum2 = matrixNum;
-    if (matrixNum2 == 0xFF)
+    if (matrixNum == 0xFF)
     {
         DestroyAnimVisualTask(taskId);
         return;
@@ -1091,7 +1088,7 @@ void sub_80DC4F4(u8 taskId)
 
     gSprites[spriteId].callback = SpriteCallbackDummy;
     gSprites[spriteId].oam.affineMode = ST_OAM_AFFINE_DOUBLE;
-    gSprites[spriteId].oam.matrixNum = matrixNum2;
+    gSprites[spriteId].oam.matrixNum = matrixNum;
     gSprites[spriteId].affineAnimPaused = 1;
     gSprites[spriteId].subpriority++;
     obj_id_set_rotscale(spriteId, 256, 256, 0);
@@ -1102,132 +1099,6 @@ void sub_80DC4F4(u8 taskId)
     task->data[15] = spriteId;
     task->func = sub_80DC5F4;
 }
-#else
-NAKED
-void sub_80DC4F4(u8 taskId)
-{
-    asm(".syntax unified\n\
-    push {r4-r7,lr}\n\
-    mov r7, r10\n\
-    mov r6, r9\n\
-    mov r5, r8\n\
-    push {r5-r7}\n\
-    lsls r0, 24\n\
-    lsrs r4, r0, 24\n\
-    mov r8, r4\n\
-    lsls r0, r4, 2\n\
-    adds r0, r4\n\
-    lsls r0, 3\n\
-    ldr r1, _080DC528 @ =gTasks\n\
-    adds r7, r0, r1\n\
-    bl AllocOamMatrix\n\
-    lsls r0, 24\n\
-    lsrs r5, r0, 24\n\
-    mov r10, r5\n\
-    adds r6, r5, 0\n\
-    cmp r6, 0xFF\n\
-    bne _080DC52C\n\
-    adds r0, r4, 0\n\
-    bl DestroyAnimVisualTask\n\
-    b _080DC5D6\n\
-    .align 2, 0\n\
-_080DC528: .4byte gTasks\n\
-_080DC52C:\n\
-    ldr r1, _080DC550 @ =gBattleAnimArgs\n\
-    ldrb r0, [r1]\n\
-    bl duplicate_obj_of_side_rel2move_in_transparent_mode\n\
-    lsls r0, 16\n\
-    lsrs r1, r0, 16\n\
-    mov r9, r1\n\
-    asrs r0, 16\n\
-    cmp r0, 0\n\
-    bge _080DC554\n\
-    adds r0, r5, 0\n\
-    bl FreeOamMatrix\n\
-    mov r0, r8\n\
-    bl DestroyAnimVisualTask\n\
-    b _080DC5D6\n\
-    .align 2, 0\n\
-_080DC550: .4byte gBattleAnimArgs\n\
-_080DC554:\n\
-    ldr r2, _080DC5E4 @ =gSprites\n\
-    lsls r4, r0, 4\n\
-    adds r4, r0\n\
-    lsls r4, 2\n\
-    adds r0, r2, 0\n\
-    adds r0, 0x1C\n\
-    adds r0, r4, r0\n\
-    ldr r1, _080DC5E8 @ =SpriteCallbackDummy\n\
-    str r1, [r0]\n\
-    adds r4, r2\n\
-    ldrb r0, [r4, 0x1]\n\
-    movs r1, 0x3\n\
-    orrs r0, r1\n\
-    strb r0, [r4, 0x1]\n\
-    movs r0, 0x1F\n\
-    ands r6, r0\n\
-    lsls r2, r6, 1\n\
-    ldrb r1, [r4, 0x3]\n\
-    movs r0, 0x3F\n\
-    negs r0, r0\n\
-    ands r0, r1\n\
-    orrs r0, r2\n\
-    strb r0, [r4, 0x3]\n\
-    adds r2, r4, 0\n\
-    adds r2, 0x2C\n\
-    ldrb r0, [r2]\n\
-    movs r1, 0x80\n\
-    orrs r0, r1\n\
-    strb r0, [r2]\n\
-    adds r1, r4, 0\n\
-    adds r1, 0x43\n\
-    ldrb r0, [r1]\n\
-    adds r0, 0x1\n\
-    strb r0, [r1]\n\
-    mov r1, r9\n\
-    lsls r0, r1, 24\n\
-    lsrs r0, 24\n\
-    movs r2, 0x80\n\
-    lsls r2, 1\n\
-    adds r1, r2, 0\n\
-    movs r3, 0\n\
-    bl obj_id_set_rotscale\n\
-    ldrb r3, [r4, 0x1]\n\
-    lsrs r1, r3, 6\n\
-    ldrb r2, [r4, 0x3]\n\
-    lsrs r2, 6\n\
-    lsls r3, 30\n\
-    lsrs r3, 30\n\
-    adds r0, r4, 0\n\
-    bl CalcCenterToCornerVec\n\
-    ldr r1, _080DC5EC @ =gBattleAnimArgs\n\
-    ldrb r0, [r1]\n\
-    bl GetAnimBattlerSpriteId\n\
-    lsls r0, 24\n\
-    lsrs r0, 24\n\
-    strh r0, [r7, 0x22]\n\
-    mov r0, r10\n\
-    strh r0, [r7, 0x24]\n\
-    mov r1, r9\n\
-    strh r1, [r7, 0x26]\n\
-    ldr r0, _080DC5F0 @ =sub_80DC5F4\n\
-    str r0, [r7]\n\
-_080DC5D6:\n\
-    pop {r3-r5}\n\
-    mov r8, r3\n\
-    mov r9, r4\n\
-    mov r10, r5\n\
-    pop {r4-r7}\n\
-    pop {r0}\n\
-    bx r0\n\
-    .align 2, 0\n\
-_080DC5E4: .4byte gSprites\n\
-_080DC5E8: .4byte SpriteCallbackDummy\n\
-_080DC5EC: .4byte gBattleAnimArgs\n\
-_080DC5F0: .4byte sub_80DC5F4\n\
-    .syntax divided\n");
-}
-#endif // NONMATCHING
 
 void sub_80DC5F4(u8 taskId)
 {
@@ -1267,11 +1138,11 @@ void sub_80DC700(struct Sprite *sprite)
     switch (sprite->data[0])
     {
     case 0:
-        sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 0);
-        sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 1);
+        sprite->x = GetBattlerSpriteCoord(gBattleAnimAttacker, 0);
+        sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, 1);
 
         if (IsContest())
-            sprite->pos1.y += 12;
+            sprite->y += 12;
 
         sprite->data[1] = 8;
         REG_BLDCNT = 0x3F40;
@@ -1281,7 +1152,7 @@ void sub_80DC700(struct Sprite *sprite)
     case 1:
         if (sprite->affineAnimEnded)
         {
-            PlaySE12WithPanning(SE_W100, BattleAnimAdjustPanning(SOUND_PAN_ATTACKER_NEG));
+            PlaySE12WithPanning(SE_M_TELEPORT, BattleAnimAdjustPanning(SOUND_PAN_ATTACKER_NEG));
             ChangeSpriteAffineAnim(sprite, 1);
             sprite->data[0]++;
         }
@@ -1296,12 +1167,12 @@ void sub_80DC700(struct Sprite *sprite)
             if (sprite->data[1] == 0)
             {
                 sprite->data[0]++;
-                sprite->invisible = 1;
+                sprite->invisible = TRUE;
             }
         }
 
         sprite->data[3] += 896;
-        sprite->pos2.y -= sprite->data[3] >> 8;
+        sprite->y2 -= sprite->data[3] >> 8;
         sprite->data[3] &= 0xFF;
         break;
     case 3:

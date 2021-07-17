@@ -265,23 +265,9 @@ static void BuyMenuDrawGraphics(void)
     REG_BG3VOFS = 0;
     gPaletteFade.bufferTransferDisabled = 1;
 
-    /*
-        THEORY: This seemingly useless loop is required in order to match this
-        function without hacks. The reason is because it alters the 0 optimization
-        of a later assignment into using 2 different 0s instead of the same register.
-        It is speculated that at some point Game Freak insert an artificial
-        breakpoint here in order to look at the contents of OAM before it is cleared,
-        possibly because a programmer made a mistake in shop.c which corrupted its
-        contents. There may have been a macro here which at one point idled on the
-        while(1) but was changed to 0 for release due to a define somewhere. A
-        while(0) also matches, but it is more correct to use do {} while(0) as it
-        was a fix to prevent compiler warnings on older compilers.
-    */
-    do {} while(0);
-
-    DmaFill32Defvars(3, 0, (void*)OAM, OAM_SIZE);
+    Dma3FillLarge32_(0, (void*)OAM, OAM_SIZE);
     LZDecompressVram(gBuyMenuFrame_Gfx, (void*)(VRAM + 0x7C00));
-    LZDecompressWram(gBuyMenuFrame_Tilemap, ewram18000_2);
+    LZDecompressWram(gBuyMenuFrame_Tilemap, ewram18000);
     LoadCompressedPalette(gMenuMoneyPal, 0xC0, sizeof(gMenuMoneyPal));
     FreeAllSpritePalettes();
     ResetPaletteFade();
@@ -317,7 +303,7 @@ static void DrawFirstMartScrollIndicators(void)
 {
     ClearVerticalScrollIndicatorPalettes();
 
-    if (gMartInfo.itemCount > 7)
+    if (gMartInfo.itemCount >= 8)
     {
         CreateVerticalScrollIndicators(TOP_ARROW, 172, 12);
         CreateVerticalScrollIndicators(BOTTOM_ARROW, 172, 148);
@@ -354,45 +340,42 @@ static void BuyMenuDrawMapMetatileLayer(u16 *array, s16 offset1, s16 offset2, u1
     array[offset1 + offset2 + 33] = array2[3]; // bottom right
 }
 
-static void BuyMenuDrawMapMetatile(int var1, int var2, u16 *var3, s32 var4)
+static void BuyMenuDrawMapMetatile(s16 var1, s16 var2, u16 *var3, u8 var4)
 {
-    u8 tempVar4 = var4;
-    s16 offset1 = var1 * 2;
-    s16 offset2 = (var2 * 0x40) + 0x40;
+    var1 <<= 1;
+    var2 = (var2 <<6) + 0x40;
 
-    switch (tempVar4)
+    switch (var4)
     {
     case 0:
-        BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[2], offset1, offset2, var3);
-        BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[1], offset1, offset2, var3 + 4);
+        BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[2], var1, var2, var3);
+        BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[1], var1, var2, var3 + 4);
         break;
     case 1:
-        BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[3], offset1, offset2, var3);
-        BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[2], offset1, offset2, var3 + 4);
+        BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[3], var1, var2, var3);
+        BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[2], var1, var2, var3 + 4);
         break;
     case 2:
-        BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[3], offset1, offset2, var3);
-        BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[1], offset1, offset2, var3 + 4);
+        BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[3], var1, var2, var3);
+        BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[1], var1, var2, var3 + 4);
         break;
     }
 }
 
 // used to draw the border tiles around the viewport.
-static void BuyMenuDrawMapPartialMetatile(s16 var1, int var2, u16 *var3)
+static void BuyMenuDrawMapPartialMetatile(s16 var1, s16 var2, u16 *var3)
 {
-    s16 offset1 = var1 * 2;
-    s16 offset2 = (var2 * 0x40) + 0x40;
+    var1 <<=1;
+    var2 = (var2 << 6) + 0x40;
 
-    BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[3], offset1, offset2, var3);
-    BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[2], offset1, offset2, var3 + 4);
+    BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[3], var1, var2, var3);
+    BuyMenuDrawMapMetatileLayer(gBGTilemapBuffers[2], var1, var2, var3 + 4);
 }
 
 static void Shop_DrawViewportTiles(void)
 {
-    s16 facingX;
-    s16 facingY;
-    s16 x;
-    s16 y;
+    s16 facingX, facingY;
+    s16 x, y;
 
     GetXYCoordsOneStepInFrontOfPlayer(&facingX, &facingY);
     facingX -= 3;
@@ -406,7 +389,7 @@ static void Shop_DrawViewportTiles(void)
 
             if (y != 5 && x != 6)
             {
-                s32 r3 = MapGridGetMetatileLayerTypeAt(facingX + x, facingY + y);
+                u8 r3 = MapGridGetMetatileLayerTypeAt(facingX + x, facingY + y);
 
                 if (metatileId < 512)
                     BuyMenuDrawMapMetatile(x, y, (u16 *)gMapHeader.mapLayout->primaryTileset->metatiles + metatileId * 8, r3);
@@ -437,11 +420,9 @@ static void Shop_DrawViewport(void)
 
 static void Shop_LoadViewportObjects(void)
 {
-    s16 facingX;
-    s16 facingY;
+    s16 facingX, facingY;
     u8 playerHeight;
-    u8 y;
-    u8 x;
+    u8 y, x;
     u8 r8 = 0;
 
     GetXYCoordsOneStepInFrontOfPlayer(&facingX, &facingY);
@@ -517,7 +498,7 @@ static void BuyMenuDrawTextboxBG_Restore(void)
 
     for (i = 0; i < 8; i++)
         for (j = 0; j < 14; j++)
-            gBGTilemapBuffers[1][32 * (i + 12) + j] = ewram18300[32 * i + j] + 0xC3E0;
+            gBGTilemapBuffers[1][32 * (i + 12) + j] = ewram18000[0x180 + 32 * i + j] + 0xC3E0;
 }
 
 static void Shop_PrintItemDesc(void)
@@ -657,7 +638,7 @@ static void Shop_DoItemTransaction(u8 taskId)
 {
     IncrementGameStat(GAME_STAT_SHOPPED);
     RemoveMoney(&gSaveBlock1.money, gMartTotalCost);
-    PlaySE(SE_REGI);
+    PlaySE(SE_SHOP);
     UpdateMoneyWindow(gSaveBlock1.money, 0, 0);
     gTasks[taskId].func = Shop_DoPremierBallCheck;
 }
@@ -691,7 +672,7 @@ static void Task_DoItemPurchase(u8 taskId)
         }
         else // a normal mart is only type 0, so types 1 and 2 are decoration marts.
         {
-            if (GiveDecoration(gMartInfo.itemList[gMartInfo.choicesAbove + gMartInfo.cursor]))
+            if (AddDecoration(gMartInfo.itemList[gMartInfo.choicesAbove + gMartInfo.cursor]))
             {
                 if (gMartInfo.martType == MART_TYPE_1)
                     DisplayItemMessageOnField(taskId, gOtherText_HereYouGo2, Shop_DoItemTransaction, 0xC3E1);

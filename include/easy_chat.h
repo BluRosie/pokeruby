@@ -18,7 +18,7 @@ struct Shared1000
     u16 *unk4;
     u8 unk8;
     u8 unk9;
-    u8 unkA;  // length of unkC array
+    u8 unkA;  // length of contestant array
     u8 unkB;  // reporter talked to (Gabby or Ty)
     u16 unkC[9];
     void (*unk20)(void);
@@ -117,7 +117,7 @@ struct Shared1000
 // const pointer to shared1000. easy_chat might be two separate files.
 extern struct Shared1000 *const gEasyChatStruct;
 
-void sub_80E60D8(void);
+void ShowEasyChatScreen(void);
 void sub_80E62A0(u8 arg0, u16 *arg1, void (*arg2)(void), u8 arg3);
 u16 sub_80EB72C(u16 group);
 void sub_80EB6FC(u16 *, u16);
