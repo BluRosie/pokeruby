@@ -1081,8 +1081,12 @@ RustboroCity_DevonCorp_2F_Text_1A1102:: @ 81A1102
 	.string "Want to give a nickname to the\n"
 	.string "{STR_VAR_2} you received?$"
 
-fieldPoisonText_PokemonFainted:: @ 81A1132
-	.string "{STR_VAR_1} fainted...\p$"
+@fieldPoisonText_PokemonFainted:: @ 81A1132
+@	.string "{STR_VAR_1} fainted...\p$"
+
+fieldPoisonText_PokemonSurvived::
+	.string "{STR_VAR_1} survived the poisoning.\n"
+	.string "The poison faded away!\p$"
 
 UnknownString_81A1141: @ 81A1141
 	.string "{PLAYER} is out of useable POKéMON!\p"

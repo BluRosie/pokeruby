@@ -1116,8 +1116,8 @@ static void AnimThrowMistBall(struct Sprite *sprite)
 
 static void AnimThrowMeFirstBall(struct Sprite *sprite)
 {
-    sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
-    sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
+    sprite->x = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
+    sprite->y = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
     sprite->callback = TranslateAnimSpriteToAttackerMonLocation;
 }
 
@@ -1638,7 +1638,7 @@ const union AnimCmd *const gAvalancheAnimCmd[] =
 
 static void AvalancheAnim_Step2(struct Sprite *sprite)
 {
-    sprite->pos1.x += sprite->data[5];
+    sprite->x += sprite->data[5];
 
     sprite->data[0] = 192;
     sprite->data[1] = sprite->data[5];
@@ -1654,10 +1654,10 @@ static void AvalancheAnim_Step2(struct Sprite *sprite)
 static void AvalancheAnim_Step(struct Sprite *sprite)
 {
     if (gBattleAnimArgs[3] != 0)
-        SetAverageBattlerPositions(gBattleAnimTarget, 0, &sprite->pos1.x, &sprite->pos1.y);
+        SetAverageBattlerPositions(gBattleAnimTarget, 0, &sprite->x, &sprite->y);
 
-    sprite->pos1.x += gBattleAnimArgs[0];
-    sprite->pos1.y += 14;
+    sprite->x += gBattleAnimArgs[0];
+    sprite->y += 14;
 
     StartSpriteAnim(sprite, gBattleAnimArgs[1]);
     AnimateSprite(sprite);

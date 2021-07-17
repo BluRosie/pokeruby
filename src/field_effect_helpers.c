@@ -1408,3 +1408,15 @@ static void sub_812882C(struct Sprite *sprite /*r6*/, u8 z, u8 offset)
         }
     }
 }
+
+void LoadFieldEffectPalette(u8 fieldEffect)
+{
+    const struct SpriteTemplate *spriteTemplate;
+
+    spriteTemplate = gFieldEffectObjectTemplatePointers[fieldEffect];
+    if (spriteTemplate->paletteTag != 0xffff)
+    {
+        LoadEventObjectPalette(spriteTemplate->paletteTag);
+        UpdatePaletteGammaType(IndexOfSpritePaletteTag(spriteTemplate->paletteTag), GAMMA_NORMAL);
+    }
+}

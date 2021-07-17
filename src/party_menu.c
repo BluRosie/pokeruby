@@ -77,8 +77,9 @@ static void SwitchLeftWithLeftStepTwo(u8 taskId);
 static void SwitchRightWithRightStepTwo(u8 taskId);
 static void SwitchStepTwo(u8 taskId);
 static void RedrawMonInfoAfterSwitch(u8 taskId);
-static void sub_806E884(u8 taskId);
+//static void sub_806E884(u8 taskId);
 static void sub_8070D90(u8 taskId);
+static void Task_PartyMenuPrintRun(u8 taskId);
 static void EraseWindowsForSwitch(u8 taskId);
 static void SwitchLeftWithLeftStepOne(u8 taskId);
 static void SwitchRightWithRightStepOne(u8 taskId);
@@ -520,9 +521,8 @@ extern s32 gBattleMoveDamage;
 extern u16 gMoveToLearn;
 
 extern u16 gUnknown_08E9A300[];
-extern struct Coords8 const gLvlSymbolCoords[6];
-extern u8 gUnknown_02039460[];
-extern struct Window gUnknown_03004210;
+extern struct Coords8 const gUnknown_08376738[12][6];
+extern struct Window gWindowTemplate_Contest_MoveDescription;
 
 extern const u8 gPartyMenuMisc_Gfx[];
 extern const u8 gPartyMenuMisc_Tilemap[];
@@ -1036,8 +1036,8 @@ bool8 DrawPartyMonBackground(u8 monIndex)
 
 void sub_806B908(void)
 {
-    const u8 * r4;
-    struct Pokemon * pokemon;
+    //const u8 * r4;
+    //struct Pokemon * pokemon;
     memset(&gBGTilemapBuffers[2], 0, 0x800);
     gPartyMenuType = PARTY_MENU_LAYOUT_MULTI_BATTLE;
     DrawBigMonWindow(gUnknown_083769C0[12], gUnknown_083769C0[13], 3);
@@ -1784,7 +1784,7 @@ void SwitchMons(u8 taskId)
             ePartyMenu.xForSwitchTwo = LEFT_COLUMN_X_POS;
 
             gTasks[taskId].func = SwitchLeftWithLeftStepOne;
-            ewram1B000.unk261 = 1;
+            ePartyMenu2.unk261 = 1;
         }
         else if (ePartyMenu.switchIndexOne % 2 && ePartyMenu.switchIndexTwo % 2) // switch right with right
         {
@@ -1802,7 +1802,7 @@ void SwitchMons(u8 taskId)
             ePartyMenu.xForSwitchTwo = RIGHT_COLUMN_X_POS;
 
             gTasks[taskId].func = SwitchRightWithRightStepOne;
-            ewram1B000.unk261 = 1;
+            ePartyMenu2.unk261 = 1;
         }
         else
         {
@@ -1820,7 +1820,7 @@ void SwitchMons(u8 taskId)
             ePartyMenu.xForSwitchTwo = RIGHT_COLUMN_X_POS;
 
             gTasks[taskId].func = SwitchStepOne;
-            ewram1B000.unk261 = 1;
+            ePartyMenu2.unk261 = 1;
         }
 
         gSprites[ePartyMenu.iconIdSwitchOne].callback = SpriteCB_sub_806D37C;
@@ -2656,7 +2656,7 @@ static void PartyMenuWriteTilemap(u8 a, u8 x, u8 y)
 void PartyMenuDoPrintLevel(u8 monIndex, u8 menuLayout, u8 level)
 {
     u8 *stringVar;
-    u32 var1;
+    //u32 var1;
     u8 x = gLvlSymbolCoords[monIndex].x;
     u8 y = gLvlSymbolCoords[monIndex].y;
 
@@ -2747,7 +2747,7 @@ void PartyMenuDoPrintHP(u8 monIndex, u8 b, u16 currentHP, u16 maxHP)
 
     AlignInt1InMenuWindow(++textPtr, maxHP, 34, 1);
     CpuFastFill(0, gTileBufferPtr + 0x100, 0x100);
-    Text_InitWindow8004E3C((struct WindowTemplate *)&gWindowTemplate_81E6CAC, gUnknown_02039460 - 0x100 /*gTileBuffer*/, gStringVar1);
+    Text_InitWindow8004E3C((struct WindowTemplate *)&gWindowTemplate_81E6CAC, gTileBufferPtr, gStringVar1);
     CpuFastCopy(gTileBufferPtr + 0x100, OBJ_VRAM1 + 0x300 + (monIndex * 0x400), 0x100);
 }
 
@@ -2888,6 +2888,9 @@ TaskFunc PartyMenuGetPopupMenuFunc(u8 menuIndex, const struct PartyPopupMenu *me
     u8 action = menus[menuIndex].items[itemIndex];
     return menuActions[action].func;
 }
+
+#define WINDOW_LEFT (3)
+#define WINDOW_RIGHT (26)
 
 u8 DisplayPartyMenuMessage(const u8 *message, u8 noClearAfter)
 {

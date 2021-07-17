@@ -470,8 +470,8 @@ static void AnimDragonRushCallback(struct Sprite *sprite)
     sprite->data[1] += sprite->data[0];
     sprite->data[1] &= 0xFF;
 
-    sprite->pos2.x = Cos(sprite->data[1], 20);
-    sprite->pos2.y = Sin(sprite->data[1], 20);
+    sprite->x2 = Cos(sprite->data[1], 20);
+    sprite->y2 = Sin(sprite->data[1], 20);
     if (sprite->animEnded)
         DestroyAnimSprite(sprite);
 

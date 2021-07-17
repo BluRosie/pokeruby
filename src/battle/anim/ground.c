@@ -778,10 +778,10 @@ static void MudBombParticles_Callback(struct Sprite *sprite)
 static void MudBombParticles(struct Sprite *sprite)
 {
     sprite->data[0] = gBattleAnimArgs[2];
-    sprite->data[1] = sprite->pos1.x;
-    sprite->data[2] = sprite->pos1.x + gBattleAnimArgs[0];
-    sprite->data[3] = sprite->pos1.y;
-    sprite->data[4] = sprite->pos1.y + gBattleAnimArgs[1];
+    sprite->data[1] = sprite->x;
+    sprite->data[2] = sprite->x + gBattleAnimArgs[0];
+    sprite->data[3] = sprite->y;
+    sprite->data[4] = sprite->y + gBattleAnimArgs[1];
 
     InitSpriteDataForLinearTranslation(sprite);
 

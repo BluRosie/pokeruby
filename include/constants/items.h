@@ -947,7 +947,7 @@
 
 #define IS_ITEM_Z_CRYSTAL(item) ((item) >= ITEM_NORMALIUM_Z)
 
-#define ITEM_HAS_EFFECT(item) ((item) >= ITEM_POTION && (item) <= ITEM_0B2)
+#define ITEM_HAS_EFFECT(item) ((item) >= ITEM_POTION && (item) <= ITEM_MARANGA_BERRY)
 
 #define IS_ITEM_PLATE(item) ((item) >= ITEM_FLAME_PLATE && (item) <= ITEM_PIXIE_PLATE)
 

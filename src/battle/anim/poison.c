@@ -356,7 +356,7 @@ void AnimPoisonJabProjectile(struct Sprite *sprite)
     InitSpritePosToAnimTarget(sprite, TRUE);
     targetXPos = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X_2);
     targetYPos = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y_PIC_OFFSET);
-    rotation = ArcTan2Neg(targetXPos - sprite->pos1.x, targetYPos - sprite->pos1.y);
+    rotation = ArcTan2Neg(targetXPos - sprite->x, targetYPos - sprite->y);
     TrySetSpriteRotScale(sprite, FALSE, 0x100, 0x100, rotation);
     sprite->data[0] = gBattleAnimArgs[2];
     sprite->data[2] = targetXPos;
@@ -371,7 +371,7 @@ void AnimGunkShotParticlesStep(struct Sprite *sprite)
 {
     if (TranslateAnimLinear(sprite))
         DestroyAnimSprite(sprite);
-    sprite->pos2.y += Sin(sprite->data[6] >> 8, sprite->data[7]);
+    sprite->y2 += Sin(sprite->data[6] >> 8, sprite->data[7]);
     if ((sprite->data[6] + sprite->data[5]) >> 8 > 127)
     {
         sprite->data[6] = 0;
@@ -389,9 +389,9 @@ static void AnimGunkShotParticles(struct Sprite *sprite)
 
     InitSpritePosToAnimAttacker(sprite, TRUE);
     sprite->data[0] = 30;
-    sprite->data[1] = sprite->pos1.x;
+    sprite->data[1] = sprite->x;
     sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
-    sprite->data[3] = sprite->pos1.y;
+    sprite->data[3] = sprite->y;
     sprite->data[4] = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
     InitAnimLinearTranslation(sprite);
     sprite->data[5] = 0xD200 / sprite->data[0];

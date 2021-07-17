@@ -139,8 +139,7 @@ extern struct SpriteTemplate gCreatingSpriteTemplate;
 extern u8 gDexCryScreenState;
 extern const u8 gPokedexMenu_Gfx[];
 extern const u8 gUnknown_08E96738[];
-extern const u8 gPokedexStartMenuMain_Tilemap[];
-extern const u8 gPokedexStartMenuSearchResults_Tilemap[];
+extern const u8 gPokedexListLayout[];
 extern const u8 gUnknown_08E9C6DC[];
 extern const u8 gPokedexPageLayout[];
 extern const u8 gPokedexScreenSelectBarMain_Tilemap[];
@@ -440,7 +439,7 @@ static const struct SpriteTemplate sScrollArrowSpriteTemplate =
     .callback = SpriteCB_ScrollArrow,
 };
 static void SpriteCB_DexListInterfaceText(struct Sprite *);
-static const struct SpriteTemplate gSpriteTemplate_83A0554 =
+static const struct SpriteTemplate gSpriteTemplate_BottomLeftText =
 {
     .tileTag = 4096,
     .paletteTag = 4096,
@@ -451,7 +450,7 @@ static const struct SpriteTemplate gSpriteTemplate_83A0554 =
     .callback = SpriteCB_DexListInterfaceText,
 };
 static void SpriteCB_RotatingPokeBall(struct Sprite *);
-static const struct SpriteTemplate gSpriteTemplate_83A056C =
+static const struct SpriteTemplate gSpriteTemplate_TransparentBarForBall =
 {
     .tileTag = 4096,
     .paletteTag = 4096,
@@ -1248,7 +1247,7 @@ static void DisplayDexForNewMon(u8);
 static void sub_8090A3C(u8);
 static void sub_8090B8C(u8);
 static void sub_8090C28(struct Sprite *);
-static void sub_8090C68(void);
+//static void sub_8090C68(void);
 static void ResetOtherVideoRegisters(u16);
 static void PrintEntryScreenDexNum(u16 order, u8, u8);
 static u8 PrintEntryScreenSpeciesName(u16 num, u8, u8);
@@ -1899,9 +1898,9 @@ static bool8 LoadPokedexListPage(u8 a)
         LZ77UnCompVram(gUnknown_08E9C6DC, (void *)(VRAM + 0x7800));
         DmaClear16(3, VRAM + 0x6000, 0x500);
         if (a == MAIN_DEXPAGE)
-            LZ77UnCompVram(gPokedexStartMenuMain_Tilemap, (void *)(VRAM + 0x6500));
+            LZ77UnCompVram(gPokedexListLayout, (void *)(VRAM + 0x6500));
         else
-            LZ77UnCompVram(gPokedexStartMenuSearchResults_Tilemap, (void *)(VRAM + 0x6500));
+            LZ77UnCompVram(gPokedexListLayout, (void *)(VRAM + 0x6500));
         ResetPaletteFade();
         if (a == MAIN_DEXPAGE)
             gPokedexView->isSearchResults = FALSE;
@@ -1926,7 +1925,7 @@ static bool8 LoadPokedexListPage(u8 a)
         gMain.state++;
         break;
     case 3:
-        if (screen == MAIN_DEXPAGE)
+        if (a == MAIN_DEXPAGE)
             SortPokedex(gPokedexView->dexMode, gPokedexView->dexOrder);
         CreateMonSpritesAtPos(gPokedexView->selectedPokemon, 0xE);
         gPokedexView->menuIsOpen = 0;
@@ -2289,26 +2288,26 @@ static void CreateMonSpritesAtPos(u16 selectedMon, u16 b)
     CreateMonListEntry(0, selectedMon, b);
     REG_BG2VOFS = gPokedexView->initialVOffset;
 
-    unk = GetPokemonSpriteToDisplay(selectedMon - 1);
-    if (unk != 0xFFFF)
+    dexNum = GetPokemonSpriteToDisplay(selectedMon - 1);
+    if (dexNum != 0xFFFF)
     {
-        spriteId = CreatePokedexMonSprite(unk, X_POSITION_FOR_SCROLLING, Y_POSITION_FOR_SCROLLING);
+        spriteId = CreatePokedexMonSprite(dexNum, X_POSITION_FOR_SCROLLING, Y_POSITION_FOR_SCROLLING);
         gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
         gSprites[spriteId].data[5] = -32;
     }
 
-    unk = GetPokemonSpriteToDisplay(selectedMon);
-    if (unk != 0xFFFF)
+    dexNum = GetPokemonSpriteToDisplay(selectedMon);
+    if (dexNum != 0xFFFF)
     {
-        spriteId = CreatePokedexMonSprite(unk, X_POSITION_FOR_SCROLLING, Y_POSITION_FOR_SCROLLING);
+        spriteId = CreatePokedexMonSprite(dexNum, X_POSITION_FOR_SCROLLING, Y_POSITION_FOR_SCROLLING);
         gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
         gSprites[spriteId].data[5] = 0;
     }
 
-    unk = GetPokemonSpriteToDisplay(selectedMon + 1);
-    if (unk != 0xFFFF)
+    dexNum = GetPokemonSpriteToDisplay(selectedMon + 1);
+    if (dexNum != 0xFFFF)
     {
-        spriteId = CreatePokedexMonSprite(unk, X_POSITION_FOR_SCROLLING, Y_POSITION_FOR_SCROLLING);
+        spriteId = CreatePokedexMonSprite(dexNum, X_POSITION_FOR_SCROLLING, Y_POSITION_FOR_SCROLLING);
         gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
         gSprites[spriteId].data[5] = 32;
     }
@@ -2388,7 +2387,7 @@ static void CreateScrollingPokemonSprite(u8 direction, u16 selectedMon)
         }
         if (gPokedexView->listVOffset <= 0xE)
             gPokedexView->listVOffset++;
-+        else
+        else
             gPokedexView->listVOffset = 0;
         break;
     }
@@ -2456,8 +2455,8 @@ static u16 TryDoPokedexScroll(u16 a, u16 b)
         goto _0808E5A2;
     }
     //_0808E628
-    r5 = gUnknown_083A05EC[gPokedexView->scrollSpeed / 4];
-    r3 = gUnknown_083A05F1[gPokedexView->scrollSpeed / 4];
+    r5 = gPixelsPerScrollIteration[gPokedexView->scrollSpeed / 4];
+    r3 = gScrollingIterations[gPokedexView->scrollSpeed / 4];
     gPokedexView->scrollTimer = r3;
     gPokedexView->maxScrollTimer = r3;
     gPokedexView->scrollMonIncrement = r5;
@@ -2494,9 +2493,9 @@ static u8 TryDoInfoScreenScroll(void)
         temp = currentMon;
         while (temp != 0)
         {
-            r2 = GetNextPosition(1, r2, 0, gPokedexView->pokemonListCount - 1);
+            temp = GetNextPosition(1, temp, 0, gPokedexView->pokemonListCount - 1);
 
-            if (gPokedexView->pokedexList[r2].seen)
+            if (gPokedexView->pokedexList[temp].seen)
             {
                 currentMon = temp;
                 break;
@@ -2507,7 +2506,7 @@ static u8 TryDoInfoScreenScroll(void)
             return 0;
         else
         {
-            gPokedexView->selectedPokemon = r4;
+            gPokedexView->selectedPokemon = currentMon;
             gPokedexView->pokeBallRotation -= 16;
             return 1;
         }
@@ -2517,9 +2516,9 @@ static u8 TryDoInfoScreenScroll(void)
         temp = currentMon;
         while (temp < gPokedexView->pokemonListCount - 1)
         {
-            r2 = GetNextPosition(0, r2, 0, gPokedexView->pokemonListCount - 1);
+            temp = GetNextPosition(0, temp, 0, gPokedexView->pokemonListCount - 1);
 
-            if (gPokedexView->pokedexList[r2].seen)
+            if (gPokedexView->pokedexList[temp].seen)
             {
                 currentMon = temp;
                 break;
@@ -2530,7 +2529,7 @@ static u8 TryDoInfoScreenScroll(void)
             return 0;
         else
         {
-            gPokedexView->selectedPokemon = r4;
+            gPokedexView->selectedPokemon = currentMon;
             gPokedexView->pokeBallRotation += 16;
             return 1;
         }
@@ -2569,16 +2568,16 @@ static u32 CreatePokedexMonSprite(u16 num, s16 x, s16 y)
 
     for (palette = 0; palette < 4; palette++)
     {
-        if (gPokedexView->monSpriteIds[i] == 0xFFFF)
+        if (gPokedexView->monSpriteIds[palette] == 0xFFFF)
         {
-            u8 spriteId = CreateMonSpriteFromNationalDexNumber(num, x, y, i);
+            u8 spriteId = CreateMonSpriteFromNationalDexNumber(num, x, y, palette);
 
             gSprites[spriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
             gSprites[spriteId].oam.priority = 3;
             gSprites[spriteId].data[0] = 0;
-            gSprites[spriteId].data[1] = i;
+            gSprites[spriteId].data[1] = palette;
             gSprites[spriteId].data[2] = NationalPokedexNumToSpecies(num);
-            gPokedexView->monSpriteIds[i] = spriteId;
+            gPokedexView->monSpriteIds[palette] = spriteId;
             return spriteId;
         }
     }
@@ -2622,7 +2621,7 @@ static void CreateInterfaceSprites(u8 a)
     gSprites[spriteId].data[0] = 0x1F;
     gSprites[spriteId].data[1] = 0x80;
 
-    if (screen == MAIN_DEXPAGE)
+    if (a == MAIN_DEXPAGE)
     {
         u32 _a;
 
@@ -2632,7 +2631,7 @@ static void CreateInterfaceSprites(u8 a)
         StartSpriteAnim(&gSprites[spriteId], 1); // own text
         _a = 0;
 
-        spriteId = CreateSprite(&gSpriteTemplate_83A059C, 28, 48, 1);
+        spriteId = CreateSprite(&gSpriteTemplate_SeenOwnNumbers, 28, 48, 1);
         r5 = gPokedexView->seenCount / 100;
         StartSpriteAnim(&gSprites[spriteId], r5);
         if (r5 != 0)
@@ -2640,19 +2639,19 @@ static void CreateInterfaceSprites(u8 a)
         else
             gSprites[spriteId].invisible = TRUE;
 
-        spriteId = CreateSprite(&gSpriteTemplate_83A059C, 34, 48, 1);
+        spriteId = CreateSprite(&gSpriteTemplate_SeenOwnNumbers, 34, 48, 1);
         r5 = (gPokedexView->seenCount % 100) / 10;
         if (r5 != 0 || _a != 0)
             StartSpriteAnim(&gSprites[spriteId], r5);
         else
             gSprites[spriteId].invisible = TRUE;
 
-        spriteId = CreateSprite(&gSpriteTemplate_83A059C, 40, 48, 1);
+        spriteId = CreateSprite(&gSpriteTemplate_SeenOwnNumbers, 40, 48, 1);
         r5 = (gPokedexView->seenCount % 100) % 10;
         StartSpriteAnim(&gSprites[spriteId], r5);
         _a = 0;
 
-        spriteId = CreateSprite(&gSpriteTemplate_83A059C, 28, 80, 1);
+        spriteId = CreateSprite(&gSpriteTemplate_SeenOwnNumbers, 28, 80, 1);
         r5 = gPokedexView->ownCount / 100;
         StartSpriteAnim(&gSprites[spriteId], r5);
         if (r5 != 0)
@@ -2660,14 +2659,14 @@ static void CreateInterfaceSprites(u8 a)
         else
             gSprites[spriteId].invisible = TRUE;
 
-        spriteId = CreateSprite(&gSpriteTemplate_83A059C, 34, 80, 1);
+        spriteId = CreateSprite(&gSpriteTemplate_SeenOwnNumbers, 34, 80, 1);
         r5 = (gPokedexView->ownCount % 100) / 10;
         if (r5 != 0 || _a != 0)
             StartSpriteAnim(&gSprites[spriteId], r5);
         else
             gSprites[spriteId].invisible = TRUE;
 
-        spriteId = CreateSprite(&gSpriteTemplate_83A059C, 40, 80, 1);
+        spriteId = CreateSprite(&gSpriteTemplate_SeenOwnNumbers, 40, 80, 1);
         r5 = (gPokedexView->ownCount % 100) % 10;
         StartSpriteAnim(&gSprites[spriteId], r5);
 
@@ -2946,7 +2945,7 @@ static void Task_InitPageScreenMultistep(u8 taskId)
             UnusedPrintMonName(gPokedexEntries[sPokedexListItem->dexNum].categoryName, CATEGORY_LEFT, 5);
             sub_8091458(gPokedexEntries[sPokedexListItem->dexNum].height, 16, 7);
             sub_8091564(gPokedexEntries[sPokedexListItem->dexNum].weight, 16, 9);
-            Menu_PrintText(gPokedexEntries[sPokedexListItem->dexNum].descriptionPage1, DESCRIPTION_X_POSITION, DESCRIPTION_Y_POSITION);
+            Menu_PrintText(gPokedexEntries[sPokedexListItem->dexNum].description, DESCRIPTION_X_POSITION, DESCRIPTION_Y_POSITION);
             sub_80C0DC0(14, 0x3FC);
         }
         else
@@ -3789,7 +3788,7 @@ static void DisplayDexForNewMon(u8 taskId)
 {
     u8 spriteId;
     u16 dexNum = gTasks[taskId].data[1];
-    //u16 i;
+    u16 i;
 
     switch (gTasks[taskId].data[0])
     {
@@ -3799,7 +3798,7 @@ static void DisplayDexForNewMon(u8 taskId)
         {
             gPokedexVBlankCB = gMain.vblankCallback;
             SetVBlankCallback(NULL);
-            InitBGAndObj(0x100); // init all but bg0
+            ResetOtherVideoRegisters(0x100); // init all but bg0
             ResetOtherVideoRegisters(0x100);
             gTasks[taskId].data[0] = 1;
         }
@@ -3838,7 +3837,7 @@ static void DisplayDexForNewMon(u8 taskId)
         UnusedPrintMonName(gPokedexEntries[dexNum].categoryName, CATEGORY_LEFT, 5);
         sub_8091458(gPokedexEntries[dexNum].height, 16, 7);
         sub_8091564(gPokedexEntries[dexNum].weight, 16, 9);
-        Menu_PrintText(gPokedexEntries[dexNum].descriptionPage1, DESCRIPTION_X_POSITION, DESCRIPTION_Y_POSITION);
+        Menu_PrintText(gPokedexEntries[dexNum].description, DESCRIPTION_X_POSITION, DESCRIPTION_Y_POSITION);
         sub_80C0DC0(14, 0x3FC);
         gTasks[taskId].data[0]++;
         break;
@@ -4949,7 +4948,7 @@ static void Task_HandleSearchParameterInput(u8 taskId)
     r8 = sSearchOptions[r1].texts;
     p1 = (u16 *)&gTasks[taskId].data[sSearchOptions[r1].taskDataCursorPos];
     p2 = (u16 *)&gTasks[taskId].data[sSearchOptions[r1].taskDataScrollOffset];
-    r2 = sSearchOptions[r1].numOptions - 1;
+    numOptions = sSearchOptions[r1].numOptions - 1;
     if (gMain.newKeys & A_BUTTON)
     {
         sub_814ADC8();

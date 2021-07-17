@@ -311,16 +311,16 @@ static void sub_80D50E8(struct Sprite *sprite)
 
 static void AnimLavaPlumeOrbitScatterStep(struct Sprite *sprite)
 {
-    sprite->pos2.x += sprite->data[0];
-    sprite->pos2.y += sprite->data[1];
-    if (sprite->pos1.x + sprite->pos2.x + 16 > 272u || sprite->pos1.y + sprite->pos2.y > 160 || sprite->pos1.y + sprite->pos2.y < -16)
+    sprite->x2 += sprite->data[0];
+    sprite->y2 += sprite->data[1];
+    if (sprite->x + sprite->x2 + 16 > 272u || sprite->y + sprite->y2 > 160 || sprite->y + sprite->y2 < -16)
         DestroyAnimSprite(sprite);
 }
 
 static void AnimLavaPlumeOrbitScatter(struct Sprite *sprite)
 {
-    sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
-    sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
+    sprite->x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
+    sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
     sprite->data[0] = Sin(gBattleAnimArgs[0], 10);
     sprite->data[1] = Cos(gBattleAnimArgs[0], 7);
     sprite->callback = AnimLavaPlumeOrbitScatterStep;

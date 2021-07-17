@@ -105,8 +105,8 @@ void AnimOrbitFast(struct Sprite* sprite)
 
 void AnimOrbitFastTarget(struct Sprite* sprite)
 {
-    sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
-    sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
+    sprite->x = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
+    sprite->y = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
     sprite->affineAnimPaused = 1;
     sprite->data[0] = gBattleAnimArgs[0];
     sprite->data[1] = gBattleAnimArgs[1];
@@ -168,8 +168,8 @@ void AnimOrbitScatter(struct Sprite* sprite)
 // arg 0: initial wave offset
 void AnimPulseScatter(struct Sprite* sprite)
 {
-    sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
-    sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
+    sprite->x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
+    sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
     sprite->data[0] = Sin(gBattleAnimArgs[0], 10);
     sprite->data[1] = Cos(gBattleAnimArgs[0], 7);
     sprite->data[4] = 3;
@@ -181,8 +181,8 @@ void AnimPulseScatter(struct Sprite* sprite)
 // arg 0: initial wave offset
 void AnimJudgmentScatter(struct Sprite* sprite)
 {
-    sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
-    sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
+    sprite->x = GetBattlerSpriteCoord(gBattleAnimAttacker, 2);
+    sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, 3);
     sprite->data[0] = Sin(gBattleAnimArgs[0], 10);
     sprite->data[1] = Cos(gBattleAnimArgs[0], 7);
     sprite->callback = AnimJudgmentScatterStep;
@@ -199,15 +199,15 @@ static void AnimOrbitScatterStep(struct Sprite* sprite)
 static void AnimPulseScatterStep(struct Sprite* sprite)
 {
     u16 rotation;
-    sprite->pos2.x += sprite->data[0] / (sprite->data[4] / 3);
-    sprite->pos2.y += sprite->data[1] / (sprite->data[4] / 3);
+    sprite->x2 += sprite->data[0] / (sprite->data[4] / 3);
+    sprite->y2 += sprite->data[1] / (sprite->data[4] / 3);
 
     rotation = ArcTan2Neg(sprite->data[0], sprite->data[1]);
     TrySetSpriteRotScale(sprite, FALSE, 0x100, 0x100, rotation);
 
-    if (sprite->pos1.x + sprite->pos2.x + 16 > 0x110u 
-     || sprite->pos1.y + sprite->pos2.y > 0xA0 
-     || sprite->pos1.y + sprite->pos2.y < -16
+    if (sprite->x + sprite->x2 + 16 > 0x110u 
+     || sprite->y + sprite->y2 > 0xA0 
+     || sprite->y + sprite->y2 < -16
      || sprite->data[0] / (sprite->data[4] / 3) == 0)
         DestroyAnimSprite(sprite);
     else
@@ -217,14 +217,14 @@ static void AnimPulseScatterStep(struct Sprite* sprite)
 static void AnimJudgmentScatterStep(struct Sprite* sprite)
 {
     u16 rotation;
-    sprite->pos2.x += sprite->data[0];
-    sprite->pos2.y += sprite->data[1];
+    sprite->x2 += sprite->data[0];
+    sprite->y2 += sprite->data[1];
 
     rotation = ArcTan2Neg(sprite->data[0], sprite->data[1]);
     TrySetSpriteRotScale(sprite, FALSE, 0x100, 0x100, rotation);
 
-    if (sprite->pos1.x + sprite->pos2.x + 16 > 0x110u 
-     || sprite->pos1.y + sprite->pos2.y > 0xA0 
-     || sprite->pos1.y + sprite->pos2.y < -16)
+    if (sprite->x + sprite->x2 + 16 > 0x110u 
+     || sprite->y + sprite->y2 > 0xA0 
+     || sprite->y + sprite->y2 < -16)
         DestroyAnimSprite(sprite);
 }

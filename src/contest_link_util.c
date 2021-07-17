@@ -611,9 +611,9 @@ static void sub_80C2A8C(u8 taskId)
             personality = gContestMons[i].personality;
             otId = gContestMons[i].otId;
             if (GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE)
-                HandleLoadSpecialPokePic(gMonFrontPicTableFemale + species, gMonFrontPicCoords[species].coords, gMonFrontPicCoords[species].y_offset, (intptr_t)gSharedMem, gMonSpriteGfx_Sprite_ptr[1], species, personality);
+                HandleLoadSpecialPokePic(gMonFrontPicTableFemale + species, gMonFrontPicCoords[species].coords, gMonFrontPicCoords[species].y_offset, (void *)gSharedMem, gMonSpriteGfx_Sprite_ptr[1], species, personality);
             else
-                HandleLoadSpecialPokePic(gMonFrontPicTable + species, gMonFrontPicCoords[species].coords, gMonFrontPicCoords[species].y_offset, (intptr_t)gSharedMem, gMonSpriteGfx_Sprite_ptr[1], species, personality);
+                HandleLoadSpecialPokePic(gMonFrontPicTable + species, gMonFrontPicCoords[species].coords, gMonFrontPicCoords[species].y_offset, (void *)gSharedMem, gMonSpriteGfx_Sprite_ptr[1], species, personality);
             monPal = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
             LoadCompressedObjectPalette(monPal);
             GetMonSpriteTemplate_803C56C(species, 1);

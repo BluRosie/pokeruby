@@ -1382,7 +1382,7 @@ static void AnimGrassKnotStep(struct Sprite *sprite)
 {
     if (!TranslateAnimLinear(sprite))
     {
-        sprite->pos2.y += Sin(sprite->data[7] >> 8, sprite->data[5]);
+        sprite->y2 += Sin(sprite->data[7] >> 8, sprite->data[5]);
         sprite->data[7] += sprite->data[6];
     }
     else
@@ -1402,10 +1402,10 @@ static void AnimGrassKnot(struct Sprite *sprite)
         gBattleAnimArgs[2] = -gBattleAnimArgs[2];
 
     sprite->data[0] = gBattleAnimArgs[3];
-    sprite->data[1] = sprite->pos1.x;
-    sprite->data[2] = sprite->pos1.x + gBattleAnimArgs[2];
-    sprite->data[3] = sprite->pos1.y;
-    sprite->data[4] = sprite->pos1.y;
+    sprite->data[1] = sprite->x;
+    sprite->data[2] = sprite->x + gBattleAnimArgs[2];
+    sprite->data[3] = sprite->y;
+    sprite->data[4] = sprite->y;
 
     InitAnimLinearTranslation(sprite);
 

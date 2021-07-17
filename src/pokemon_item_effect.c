@@ -60,7 +60,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
     u8 holdEffect;
     u8 battleId = 4; // Not active
     u16 heldItem;
-    u8 r10;
+    u8 effect4;
     u32 r4;
     u32 evCount = GetMonEVCount(pkmn);
     u8 i = 0;
@@ -258,10 +258,10 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
             }
             break;
         case 4:
-            r10 = itemEffect[cmdIndex];
+            effect4 = itemEffect[cmdIndex];
             if (itemEffect[cmdIndex] & PP_UP)
             {
-                r10 &= ~PP_UP;
+                effect4 &= ~PP_UP;
                 data = (GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL) & gPPUpReadMasks[moveIndex]) >> (moveIndex * 2);
                 data2 = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL), moveIndex);
                 if (data < 3 && data2 > 4)
@@ -289,7 +289,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         break;
                     // if trying to revive
                     case 2:
-                        if (r10 & (REVIVES >> data2))
+                        if (effect4 & (REVIVES >> data2))
                         {
                             if (GetMonData(pkmn, MON_DATA_HP, NULL) != 0)
                             {
@@ -352,7 +352,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                                 if (gMain.inBattle && battleId != 4)
                                 {
                                     gBattleMons[battleId].hp = data;
-                                    if (!(r10 & 0x10) && GetBattlerSide(gActiveBattler) == 0) // won't let the opponent use revives?
+                                    if (!(effect4 & 0x10) && GetBattlerSide(gActiveBattler) == 0) // won't let the opponent use revives?
                                     {
                                         if (gBattleResults.playerHealInBattleCount < 255)
                                             gBattleResults.playerHealInBattleCount++;
@@ -375,7 +375,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         break;
                     // pp things
                     case 3:
-                        if (!(r10 & (LIMITED_PP_RESTORE_ITEM >> sp28))) // if healing all moves' pp
+                        if (!(effect4 & (LIMITED_PP_RESTORE_ITEM >> data2))) // if healing all moves' pp
                         {
                             for (r5 = 0; r5 < 4; r5++)
                             {
@@ -462,14 +462,13 @@ bool8 PokemonUseItemEffects(struct Pokemon *pkmn, u16 item, u8 partyIndex, u8 mo
                         data = (GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL) & gPPUpReadMasks[moveIndex]) >> (moveIndex * 2);
                         if (data < 3)
                         {
-                            evChange = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL), moveIndex);
+                            r4 = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL), moveIndex);
                             data = GetMonData(pkmn, MON_DATA_PP_BONUSES, NULL);
                             data &= gPPUpWriteMasks[moveIndex];
                             data += gPPUpValues[moveIndex] * 3;
 
                             SetMonData(pkmn, MON_DATA_PP_BONUSES, &data);
-                            data = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), data, moveIndex) -
-                                   evChange;
+                            data = CalculatePPWithBonus(GetMonData(pkmn, MON_DATA_MOVE1 + moveIndex, NULL), data, moveIndex) - r4;
                             data = GetMonData(pkmn, MON_DATA_PP1 + moveIndex, NULL) + data;
                             SetMonData(pkmn, MON_DATA_PP1 + moveIndex, &data);
                             retVal = FALSE;

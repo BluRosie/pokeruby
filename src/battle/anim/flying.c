@@ -20,7 +20,7 @@ static void sub_80DA034(struct Sprite *sprite);
 static void sub_80DA05C(struct Sprite *sprite);
 static void sub_80DA16C(struct Sprite *sprite);
 static void sub_80DA1EC(struct Sprite *sprite);
-static void sub_80DA208(struct Sprite *sprite);
+void sub_80DA208(struct Sprite *sprite);
 static void sub_80DA300(struct Sprite *sprite);
 static void sub_80DA348(struct Sprite *sprite);
 static void sub_80DA38C(struct Sprite *sprite);
@@ -452,7 +452,7 @@ static void sub_80DA1EC(struct Sprite *sprite)
     }
 }
 
-static void sub_80DA208(struct Sprite *sprite)
+void sub_80DA208(struct Sprite *sprite)
 {
     if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
     {

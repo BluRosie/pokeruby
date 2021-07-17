@@ -4543,7 +4543,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn)
                 else
                 {
                     gLastUsedItem = gBattleMons[gBattlerTarget].item;
-                    *USED_HELD_ITEM(gBattlerAttacker) = gLastUsedItem;
+                    gBattleStruct->usedHeldItems[gBattlerAttacker] = gLastUsedItem;
                     gBattleMons[gBattlerTarget].item = 0;
                     gBattleMons[gBattlerAttacker].item = gLastUsedItem;
                     gActiveBattler = gBattlerAttacker;

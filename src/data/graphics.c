@@ -7,10 +7,10 @@ const u16 gBattleTextboxTiles[] = INCBIN_U16("graphics/interface/menu.4bpp.lz");
 const u16 gBattleTextboxPalette[] = INCBIN_U16("graphics/interface/menu.gbapal.lz");
 const u16 gBattleTextboxTilemap[] = INCBIN_U16("graphics/interface/menu_map.bin");
 
-const u8 gMonFrontPic_CircledQuestionMark[] = INCBIN_U8("graphics/pokemon/circled_question_mark/front.4bpp.lz");
+/*const u8 gMonFrontPic_CircledQuestionMark[] = INCBIN_U8("graphics/pokemon/circled_question_mark/front.4bpp.lz");
 const u8 gMonBackPic_CircledQuestionMark[] = INCBIN_U8("graphics/pokemon/circled_question_mark/back.4bpp.lz");
 const u16 gMonPalette_CircledQuestionMark[] = INCBIN_U16("graphics/pokemon/circled_question_mark/normal.gbapal.lz");
-const u16 gMonShinyPalette_CircledQuestionMark[] = INCBIN_U16("graphics/pokemon/circled_question_mark/shiny.gbapal.lz");
+const u16 gMonShinyPalette_CircledQuestionMark[] = INCBIN_U16("graphics/pokemon/circled_question_mark/shiny.gbapal.lz");*/
 
 // The test menu debug battle tileset. This uses the old Crystal
 // charmap and rendering method (it uses tiles instead of text).
@@ -1262,10 +1262,10 @@ const u16 gMonIconPalettes[][16] =
 const u8 gUnknown_08E96738[] = INCBIN_U8("graphics/unknown/unknown_E96738.bin.lz");
 const u8 gPokedexListLayout[] = INCBIN_U8("graphics/pokedex/pokedex_list_menu.bin.lz");
 const u8 gPokedexListResultsLayout[] = INCBIN_U8("graphics/pokedex/pokedex_listing_menu.bin.lz");
-const u8 gUnknown_08E96ACC[] = INCBIN_U8("graphics/pokedex/pokedex_navbar.bin.lz");
-const u8 gUnknown_08E96B58[] = INCBIN_U8("graphics/pokedex/pokedex_navbar_3.bin.lz");
+const u8 gPokedexScreenSelectBarMain_Tilemap[] = INCBIN_U8("graphics/pokedex/pokedex_navbar.bin.lz");
+const u8 gPokedexScreenSelectBarSubmenu_Tilemap[] = INCBIN_U8("graphics/pokedex/pokedex_navbar_3.bin.lz");
 const u8 gPokedexPageLayout[] = INCBIN_U8("graphics/pokedex/pokedex_detail_layout.bin.lz");
-const u8 gUnknown_08E96D2C[] = INCBIN_U8("graphics/unknown/unknown_E96D2C.bin.lz");
+const u8 gPokedexMenuSearch_Tilemap[] = INCBIN_U8("graphics/unknown/unknown_E96D2C.bin.lz");
 
 const u8 gBagScreenLabels_Tilemap[] = INCBIN_U8("graphics/interface/bag_screen_labels.bin");
 
