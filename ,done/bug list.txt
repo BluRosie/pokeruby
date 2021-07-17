@@ -1,5 +1,6 @@
 urgent bugs:
-
+leaving battles destroys the rom
+pokemon encountered are shiny
 
 meh whatever bugs:
 - fix up the font a bit more (Lv, PKMN, POKEBLOCK, parentheses, colon, semicolon, &, pp)
