@@ -1538,6 +1538,12 @@
 	callstd STD_OBTAIN_ITEM
 	.endm
 
+	.macro giveitem_std item:req, amount=1
+	setorcopyvar VAR_0x8000, \item
+	setorcopyvar VAR_0x8001, \amount
+	callstd STD_OBTAIN_ITEM
+	.endm
+
 	.macro finditem item:req, amount=1
 	setorcopyvar VAR_0x8000, \item
 	setorcopyvar VAR_0x8001, \amount
